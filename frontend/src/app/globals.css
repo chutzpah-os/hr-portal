@@ -1,0 +1,334 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── shadcn/ui CSS variables — dark theme mapeado para o design SpaceX ─── */
+@layer base {
+  :root {
+    /* background: preto puro / foreground: branco frio (240, 35%, 96%) */
+    --background: 0 0% 0%;
+    --foreground: 240 35% 96%;
+
+    --card: 0 0% 2%;
+    --card-foreground: 240 35% 96%;
+
+    --popover: 0 0% 3%;
+    --popover-foreground: 240 35% 96%;
+
+    --primary: 240 35% 96%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 240 5% 8%;
+    --secondary-foreground: 240 35% 96%;
+
+    --muted: 240 5% 10%;
+    --muted-foreground: 240 5% 50%;
+
+    --accent: 240 5% 12%;
+    --accent-foreground: 240 35% 96%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5% 15%;
+    --input: 240 5% 15%;
+    --ring: 240 35% 80%;
+
+    --radius: 0.25rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+}
+
+/* ─── Design System: SpaceX-Inspired Color Variables ─── */
+:root {
+  --white-100: rgba(240, 240, 250, 1);
+  --white-90:  rgba(240, 240, 250, 0.9);
+  --white-80:  rgba(240, 240, 250, 0.8);
+  --white-70:  rgba(240, 240, 250, 0.7);
+  --white-60:  rgba(240, 240, 250, 0.6);
+  --white-50:  rgba(240, 240, 250, 0.5);
+  --white-35:  rgba(240, 240, 250, 0.35);
+  --white-25:  rgba(255, 255, 255, 0.25);
+  --white-15:  rgba(240, 240, 250, 0.15);
+  --white-10:  rgba(240, 240, 250, 0.1);
+  --black-50:  rgba(0, 0, 0, 0.5);
+  --black-80:  rgba(0, 0, 0, 0.8);
+  --gray-80:   rgba(37, 38, 40, 0.8);
+  --gray-60:   rgba(37, 38, 40, 0.6);
+  --gray-40:   rgba(37, 38, 40, 0.4);
+}
+
+/* ─── Base Styles ─── */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: rgb(0, 0, 0);
+  color: var(--white-100);
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: clamp(2rem, 6vw, 5rem);
+  line-height: 95%;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.96px;
+}
+
+h3 {
+  font-size: clamp(0.9rem, 2vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Keyframe Animations ─── */
+@keyframes reveal-header {
+  from { opacity: 0; transform: translateY(220%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes reveal-subheader {
+  from { opacity: 0; transform: translateY(220%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes reveal-button {
+  from { opacity: 0; transform: translateY(300%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in {
+  from { left: -10px; opacity: 0; }
+  to   { left: 0;     opacity: 1; }
+}
+
+@keyframes slide-out {
+  from { left: 0;    opacity: 1; }
+  to   { left: 10px; opacity: 0; }
+}
+
+/* ─── Positioning Utility Classes ─── */
+@layer utilities {
+  .inner-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .inner-left-middle {
+    position: absolute;
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .inner-left-bottom {
+    position: absolute;
+    left: 50px;
+    bottom: 15%;
+  }
+
+  .inner-right-bottom {
+    position: absolute;
+    right: 50px;
+    bottom: 15%;
+  }
+
+  .inner-center-top {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .animate-reveal-header {
+    animation: reveal-header 0.75s ease-in-out both;
+  }
+
+  .animate-reveal-subheader {
+    animation: reveal-subheader 0.75s ease-in-out 0.5s both;
+  }
+
+  .animate-reveal-button {
+    animation: reveal-button 0.75s ease-in-out 1s both;
+  }
+}
+
+/* ─── Section Layout ─── */
+.section-fullscreen {
+  height: max(100svh, 941px);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-content {
+  position: relative;
+  z-index: 3;
+}
+
+/* ─── CTA Glassmorphism Button ─── */
+.cta-button {
+  background-color: var(--black-50);
+  border: 1px solid var(--white-35);
+  border-radius: 4px;
+  padding: 0 20px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--white-90);
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.5s cubic-bezier(0.19, 1, 0.22, 1),
+              border-color 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  white-space: nowrap;
+}
+
+.cta-button:hover {
+  background-color: var(--white-15);
+  border-color: var(--white-50);
+}
+
+/* ─── Clickable Card ─── */
+.portfolio-card {
+  cursor: pointer;
+  border: 1px solid var(--white-15);
+  border-radius: 4px;
+  background-color: rgba(5, 5, 5, 0.9);
+  transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+              border-color 0.3s ease,
+              background-color 0.3s ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--white-35);
+  background-color: rgba(15, 15, 15, 0.95);
+}
+
+/* ─── Skill Tag ─── */
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 2px;
+  border: 1px solid var(--white-15);
+  color: var(--white-80);
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ─── Hero Overlay ─── */
+.hero-overlay {
+  background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 100%);
+}
+
+@media (max-width: 961px) {
+  .hero-overlay {
+    background: rgba(0, 0, 0, 0.72);
+  }
+}
+
+/* ─── Section Divider ─── */
+hr.section-divider {
+  border: none;
+  border-top: 1px solid var(--white-25);
+  margin: 0;
+}
+
+/* ─── Print Styles ─── */
+@media print {
+  .no-print { display: none !important; }
+  body { background-color: white; color: black; }
+}
+
+/* ─── Mobile Breakpoint (≤ 961px) ─── */
+@media (max-width: 961px) {
+  body {
+    font-size: 0.9rem;
+    line-height: 1.4rem;
+  }
+
+  .scroll-hint {
+    display: none;
+  }
+
+  .section-fullscreen {
+    height: auto;
+    min-height: 100svh;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+  }
+
+  .inner-left-middle {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    padding: 1.5rem 1.25rem;
+    width: 100%;
+    max-width: 100% !important;
+  }
+
+  .inner-center {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .inner-left-bottom,
+  .inner-right-bottom {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    padding: 1rem 1.25rem;
+  }
+
+  .inner-center-top {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+  }
+}
+
+/* ─── Small phone (≤ 480px) ─── */
+@media (max-width: 480px) {
+  .cta-button {
+    font-size: 13px;
+    padding: 0 14px;
+    height: 44px;
+  }
+}

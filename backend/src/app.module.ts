@@ -1,0 +1,13 @@
+import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
+import { FirebaseModule } from './firebase/firebase.module'
+import { BlogModule } from './blog/blog.module'
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    FirebaseModule,
+    BlogModule,
+  ],
+})
+export class AppModule {}
