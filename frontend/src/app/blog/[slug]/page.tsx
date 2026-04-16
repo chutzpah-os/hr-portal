@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
 import { blogApi } from '@/lib/api'
+import BackLink from '../BackLink'
 
 export const revalidate = 60
 
@@ -26,18 +26,7 @@ export default async function PostPage({ params }: Props) {
     >
       <article className="max-w-2xl mx-auto px-6 md:px-10">
         {/* Back */}
-        <Link
-          href="/blog"
-          className="inline-flex items-center gap-2 text-xs uppercase tracking-widest mb-10 transition-colors duration-200"
-          style={{ color: 'var(--white-40)' }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--white-80)')}
-          onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--white-40)')}
-        >
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-          Blog
-        </Link>
+        <BackLink />
 
         {/* Tags & date */}
         <div className="flex flex-wrap items-center gap-3 mb-4">
@@ -52,7 +41,7 @@ export default async function PostPage({ params }: Props) {
           ))}
           {post.publishedAt && (
             <span className="text-xs ml-auto" style={{ color: 'var(--white-35)' }}>
-              {new Date(post.publishedAt).toLocaleDateString('pt-BR', {
+              {new Date(post.publishedAt).toLocaleDateString('en-US', {
                 day: '2-digit',
                 month: 'long',
                 year: 'numeric',
