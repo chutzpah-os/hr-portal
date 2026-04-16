@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'images.unsplash.com' },
     ],
   },
+  // Increase timeout for API calls during build
+  experimental: {
+    fetchCacheKeyPrefix: '',
+  },
+  // Increase build timeout
+  staticPageGenerationTimeout: 180, // 3 minutes instead of default 60s
 }
 
 export default nextConfig
