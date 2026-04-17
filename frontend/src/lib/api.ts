@@ -10,6 +10,7 @@ export interface Post {
   publishedAt: string | null
   createdAt: string
   updatedAt: string
+  category?: 'Technical' | 'Non-Technical'
 }
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001/api'

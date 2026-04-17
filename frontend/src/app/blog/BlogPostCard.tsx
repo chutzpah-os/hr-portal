@@ -28,6 +28,27 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
         }}
       >
         <div className="flex flex-wrap items-center gap-3 mb-3">
+          {/* Category Badge */}
+          {post.category && (
+            <span
+              className="text-[0.6rem] uppercase tracking-widest px-2 py-1 rounded font-medium"
+              style={{
+                backgroundColor: post.category === 'Technical'
+                  ? 'rgba(59, 130, 246, 0.15)'
+                  : 'rgba(16, 185, 129, 0.15)',
+                border: `1px solid ${post.category === 'Technical'
+                  ? 'rgba(59, 130, 246, 0.3)'
+                  : 'rgba(16, 185, 129, 0.3)'}`,
+                color: post.category === 'Technical'
+                  ? '#93C5FD'
+                  : '#6EE7B7',
+              }}
+            >
+              {post.category}
+            </span>
+          )}
+
+          {/* Tags */}
           {post.tags.map((tag) => (
             <span
               key={tag}
@@ -37,6 +58,8 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
               {tag}
             </span>
           ))}
+
+          {/* Date */}
           {post.publishedAt && (
             <span className="text-xs ml-auto" style={{ color: 'var(--white-35)' }}>
               {new Date(post.publishedAt).toLocaleDateString('en-US', {
