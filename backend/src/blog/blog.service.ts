@@ -27,6 +27,7 @@ export class BlogService {
       content: dto.content,
       excerpt: dto.excerpt,
       tags: dto.tags,
+      category: dto.category,
       coverImage: dto.coverImage ?? null,
       published: dto.published ?? false,
       publishedAt: dto.published ? now : null,
