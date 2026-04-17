@@ -16,14 +16,8 @@ export interface Post {
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001/api'
 
 async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
-  // Only work in browser environment
-  if (typeof window === 'undefined') {
-    throw new Error('API calls only available in browser')
-  }
-
-  // Create abort controller for timeout
   const controller = new AbortController()
-  const timeoutId = setTimeout(() => controller.abort(), 30000) // 30 seconds timeout
+  const timeoutId = setTimeout(() => controller.abort(), 30000)
 
   try {
     const res = await fetch(`${API_URL}${path}`, {

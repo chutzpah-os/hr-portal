@@ -4,7 +4,7 @@ import { AppModule } from './app.module'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
-
+// Configure CORS for multiple origins
   const corsOrigins = process.env.CORS_ORIGIN
     ? process.env.CORS_ORIGIN.split(',').map(origin => origin.trim())
     : ['http://localhost:3000', 'http://localhost:3003', 'https://hanielrolemberg.vercel.app']
@@ -16,6 +16,9 @@ async function bootstrap() {
     credentials: true,
   })
 
+  const port = process.env.PORT ?? 3001
+  await app.listen(port)
+  console.log(`API running on http://localhost:${port}/api`)
   app.setGlobalPrefix('api')
 
   app.useGlobalPipes(
@@ -26,9 +29,7 @@ async function bootstrap() {
     }),
   )
 
-  const port = process.env.PORT ?? 3001
-  await app.listen(port)
-  console.log(`API running on http://localhost:${port}/api`)
+  
 }
 
 bootstrap()
