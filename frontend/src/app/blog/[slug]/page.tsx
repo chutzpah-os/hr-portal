@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { blogApi } from '@/lib/api'
+import { blogApi, type Post } from '@/lib/api'
 import BackLink from '../BackLink'
 
 export const revalidate = 60
@@ -82,13 +82,16 @@ export default async function PostPage({ params }: Props) {
     </main>
   )
 }
+
+// Corrigido: Agora usa o tipo 'Post' em vez de 'any' para satisfazer o ESLint na Vercel
 export async function generateStaticParams() {
   try {
     const posts = await blogApi.getPosts()
-    return posts.map((post: any) => ({
+    return posts.map((post: Post) => ({
       slug: post.slug,
     }))
-  } catch {
+  } catch (error) {
+    console.error('Failed to generate static params:', error)
     return []
   }
 }
