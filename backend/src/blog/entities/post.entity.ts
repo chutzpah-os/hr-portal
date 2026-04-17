@@ -10,4 +10,5 @@ export interface Post {
   publishedAt: string | null
   createdAt: string
   updatedAt: string
+  category?: 'Technical' | 'Non-Technical'
 }

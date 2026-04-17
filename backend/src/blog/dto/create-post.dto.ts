@@ -1,4 +1,4 @@
-import { IsString, IsBoolean, IsArray, IsOptional, MinLength } from 'class-validator'
+import { IsString, IsBoolean, IsArray, IsOptional, MinLength, IsIn  } from 'class-validator'
 
 export class CreatePostDto {
   @IsString()
@@ -27,4 +27,8 @@ export class CreatePostDto {
   @IsOptional()
   @IsBoolean()
   published?: boolean
+
+  @IsOptional()
+  @IsIn(['Technical', 'Non-Technical'])
+  category?: 'Technical' | 'Non-Technical'
 }
