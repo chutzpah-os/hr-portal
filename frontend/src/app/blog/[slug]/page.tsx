@@ -82,3 +82,13 @@ export default async function PostPage({ params }: Props) {
     </main>
   )
 }
+export async function generateStaticParams() {
+  try {
+    const posts = await blogApi.getPosts()
+    return posts.map((post: any) => ({
+      slug: post.slug,
+    }))
+  } catch {
+    return []
+  }
+}
