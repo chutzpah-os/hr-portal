@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 
 const CONTACT_ITEMS = [
@@ -76,11 +77,13 @@ export default function ContactSection() {
             className="absolute inset-x-0 bottom-0 z-10"
             style={{ height: '40%', background: 'linear-gradient(to top, rgb(0,0,0) 0%, transparent 100%)' }}
           />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/images/contact-bg.jpg"
             alt=""
-            className="w-full h-full object-cover object-center"
+            fill
+            className="object-cover object-center"
+            loading="lazy"
+            sizes="50vw"
           />
         </div>
 

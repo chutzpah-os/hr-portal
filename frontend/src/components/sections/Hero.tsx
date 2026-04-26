@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import CTA from '@/components/ui/CTA'
 
@@ -78,11 +79,13 @@ export default function Hero() {
           className="absolute inset-0"
           style={{ backgroundColor: 'rgba(0,0,0,0.35)', zIndex: 1 }}
         />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src="/images/profile.jpg"
           alt="Haniel Rolemberg"
-          className="w-full h-full object-cover object-top"
+          fill
+          className="object-cover object-top"
+          priority
+          sizes="42vw"
         />
       </div>
 
