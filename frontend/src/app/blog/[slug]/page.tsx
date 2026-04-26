@@ -1,11 +1,42 @@
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 import { blogApi, type Post } from '@/lib/api'
 import BackLink from '../BackLink'
 
 export const revalidate = 60
 
+const BASE_URL = 'https://hanielrolemberg.com'
+
 interface Props {
   params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
+  try {
+    const post = await blogApi.getPost(slug)
+    const url = `${BASE_URL}/blog/${post.slug}`
+    return {
+      title: post.title,
+      description: post.excerpt,
+      alternates: { canonical: url },
+      openGraph: {
+        title: post.title,
+        description: post.excerpt,
+        url,
+        type: 'article',
+        publishedTime: post.publishedAt ?? undefined,
+        tags: post.tags,
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: post.title,
+        description: post.excerpt,
+      },
+    }
+  } catch {
+    return {}
+  }
 }
 
 export default async function PostPage({ params }: Props) {
@@ -20,10 +51,34 @@ export default async function PostPage({ params }: Props) {
 
   if (!post || !post.published) notFound()
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    author: {
+      '@type': 'Person',
+      name: 'Haniel Rolemberg',
+      url: BASE_URL,
+    },
+    publisher: {
+      '@type': 'Person',
+      name: 'Haniel Rolemberg',
+    },
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt,
+    url: `${BASE_URL}/blog/${post.slug}`,
+    keywords: post.tags.join(', '),
+  }
+
   return (
     <main
       style={{ minHeight: '100svh', backgroundColor: 'rgb(0,0,0)', paddingTop: '7rem', paddingBottom: '5rem' }}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <article className="max-w-2xl mx-auto px-6 md:px-10">
         {/* Back */}
         <BackLink />

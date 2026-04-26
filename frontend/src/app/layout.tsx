@@ -64,6 +64,27 @@ export const metadata: Metadata = {
   },
 }
 
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Haniel Rolemberg',
+  url: BASE_URL,
+  sameAs: [
+    'https://linkedin.com/in/hanielrolemberg',
+    'https://github.com/hanielrolemberg',
+  ],
+  jobTitle: 'Problem Solver',
+  description: 'Problem Solver working across software development, cybersecurity, data engineering, and AI/ML. Founder of the Problem Solver Foundation.',
+}
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Haniel Rolemberg',
+  url: BASE_URL,
+  author: { '@type': 'Person', name: 'Haniel Rolemberg' },
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -71,6 +92,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${robotoMono.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+      </head>
       <body>
         {children}
       </body>
