@@ -1,43 +1,28 @@
 'use client'
 
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { blogApi, type Post } from '@/lib/api'
+import { type Post } from '@/lib/api'
 import BlogPostCard from './BlogPostCard'
 import BlogFilters, { type FilterState } from '../../components/blog/BlogFilters'
 
 type Category = 'Technical' | 'Non-Technical'
 type DateFilterOption = 'all' | 'last-month' | 'last-3-months' | 'this-year' | 'custom'
 
-export default function BlogPageContent() {
-  const [posts, setPosts] = useState<Post[]>([])
-  const [loading, setLoading] = useState(true)
+interface Props {
+  initialPosts: Post[]
+}
+
+export default function BlogPageContent({ initialPosts }: Props) {
+  const [posts] = useState<Post[]>(initialPosts)
   const searchParams = useSearchParams()
 
-  // Inicializa os filtros diretamente. 
-  // Como o componente está dentro de um Suspense no page.tsx, searchParams é seguro aqui.
   const [filters, setFilters] = useState<FilterState>({
     searchQuery: searchParams.get('search') || '',
     selectedTags: searchParams.get('tags')?.split(',').filter(Boolean) || [],
     selectedCategory: (searchParams.get('category') as Category | 'All') || 'All',
     dateFilter: (searchParams.get('date') as DateFilterOption) || 'all',
   })
-
-  // Busca os posts apenas uma vez ao montar o componente
-  useEffect(() => {
-    async function loadPosts() {
-      try {
-        const data = await blogApi.getPosts()
-        setPosts(data)
-      } catch (error) {
-        console.error('Failed to load posts:', error)
-        setPosts([])
-      } finally {
-        setLoading(false)
-      }
-    }
-    loadPosts()
-  }, [])
 
   // Lógica de filtragem memorizada para performance
   const filteredPosts = useMemo(() => {
@@ -105,21 +90,6 @@ export default function BlogPageContent() {
       return dateB.getTime() - dateA.getTime()
     })
   }, [posts, filters])
-
-  // Componente de Skeleton para Loading
-  if (loading) {
-    return (
-      <main style={{ minHeight: '100svh', backgroundColor: 'rgb(0,0,0)', paddingTop: '7rem', paddingBottom: '5rem' }}>
-        <div className="max-w-4xl mx-auto px-6 md:px-10">
-          <div className="animate-pulse space-y-4">
-            <div className="h-8 bg-gray-800 rounded w-32"></div>
-            <div className="h-4 bg-gray-800 rounded w-64"></div>
-            <div className="h-32 bg-gray-800 rounded"></div>
-          </div>
-        </div>
-      </main>
-    )
-  }
 
   return (
     <main style={{ minHeight: '100svh', backgroundColor: 'rgb(0,0,0)', paddingTop: '7rem', paddingBottom: '5rem' }}>

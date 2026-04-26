@@ -1,15 +1,20 @@
-'use client'
-
 import { Suspense } from 'react'
+import { blogApi, type Post } from '@/lib/api'
 import BlogPageContent from './BlogPageContent'
 
-// Force this page to be client-only to avoid SSR issues
-export const dynamic = 'force-dynamic'
+export const revalidate = 60
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  let posts: Post[] = []
+  try {
+    posts = await blogApi.getPosts()
+  } catch {
+    posts = []
+  }
+
   return (
     <Suspense fallback={<BlogPageSkeleton />}>
-      <BlogPageContent />
+      <BlogPageContent initialPosts={posts} />
     </Suspense>
   )
 }

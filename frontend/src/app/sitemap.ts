@@ -1,8 +1,26 @@
 import type { MetadataRoute } from 'next'
+import { blogApi } from '@/lib/api'
 
 const BASE_URL = 'https://hanielrolemberg.com'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 3600
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  let postEntries: MetadataRoute.Sitemap = []
+  try {
+    const posts = await blogApi.getPosts()
+    postEntries = posts
+      .filter(p => p.published)
+      .map(post => ({
+        url: `${BASE_URL}/blog/${post.slug}`,
+        lastModified: new Date(post.updatedAt),
+        changeFrequency: 'monthly' as const,
+        priority: 0.6,
+      }))
+  } catch {
+    postEntries = []
+  }
+
   return [
     {
       url: BASE_URL,
@@ -28,5 +46,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.7,
     },
+    ...postEntries,
   ]
 }
