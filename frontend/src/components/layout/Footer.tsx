@@ -30,9 +30,7 @@ const SOCIAL_LINKS = [
   },
 ]
 
-const NAV_LINKS = [
-  { label: 'Contact', href: '/#contact' },
-]
+const NAV_LINKS: { label: string; href: string }[] = []
 
 export default function Footer() {
   return (
