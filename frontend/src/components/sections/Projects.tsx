@@ -17,6 +17,14 @@ const FILTERS: { key: FilterKey; label: string }[] = [
   { key: 'challenges', label: 'Challenges' },
 ]
 
+const CATEGORY_LABEL: Record<string, string> = {
+  aiml: 'AI / ML',
+  softwareDevelopment: 'Software',
+  dataEngineering: 'Data',
+  cybersecurity: 'Cyber',
+  challenges: 'Challenges',
+}
+
 const LIMIT = 3
 
 function getAllProjects(): Project[] {
@@ -52,7 +60,7 @@ function ProjectCard({
           className="relative z-10 text-xs uppercase tracking-widest font-medium"
           style={{ color: 'var(--white-50)' }}
         >
-          {project.tags[0]}
+          {CATEGORY_LABEL[project.category] ?? project.tags[0]}
         </span>
       </div>
 
