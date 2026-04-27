@@ -122,7 +122,7 @@ function SolutionModal({ solution, onClose }: { solution: Solution; onClose: () 
 
         {/* Problem title */}
         <p className="text-sm mb-8 italic" style={{ color: 'var(--white-45)' }}>
-          "{solution.problemTitle}"
+          &ldquo;{solution.problemTitle}&rdquo;
         </p>
 
         {/* Blocks */}
@@ -247,7 +247,7 @@ function SolutionCard({ solution, onClick }: { solution: Solution; onClick: () =
 
       {/* Problem title */}
       <p className="text-xs italic mb-4 line-clamp-2" style={{ color: 'var(--white-40)' }}>
-        "{solution.problemTitle}"
+        &ldquo;{solution.problemTitle}&rdquo;
       </p>
 
       {/* Impact preview */}
@@ -405,7 +405,7 @@ export default function SolutionsPage() {
               Whether it is technical, strategic, or social — if the problem is real, I want to hear about it.
             </p>
             <a href="mailto:contact@hanielrolemberg.com" className="cta-button text-xs">
-              Let's Talk
+              Let&apos;s Talk
             </a>
           </div>
 
