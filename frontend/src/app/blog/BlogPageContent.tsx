@@ -1,20 +1,40 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { type Post } from '@/lib/api'
+import { blogApi, type Post } from '@/lib/api'
 import BlogPostCard from './BlogPostCard'
 import BlogFilters, { type FilterState } from '../../components/blog/BlogFilters'
 
 type Category = 'Technical' | 'Non-Technical'
 type DateFilterOption = 'all' | 'last-month' | 'last-3-months' | 'this-year' | 'custom'
 
-interface Props {
-  initialPosts: Post[]
+const MAX_ATTEMPTS = 12
+const RETRY_INTERVAL = 5000
+
+function PostsSkeleton() {
+  return (
+    <div className="space-y-6 animate-pulse">
+      {[1, 2, 3].map((i) => (
+        <div
+          key={i}
+          className="rounded-lg p-8 border"
+          style={{ border: '1px solid var(--white-8)', backgroundColor: 'rgba(5,5,5,0.9)' }}
+        >
+          <div className="h-3 rounded w-24 mb-4" style={{ backgroundColor: 'var(--white-10)' }} />
+          <div className="h-5 rounded w-3/4 mb-3" style={{ backgroundColor: 'var(--white-10)' }} />
+          <div className="h-3 rounded w-full mb-2" style={{ backgroundColor: 'var(--white-8)' }} />
+          <div className="h-3 rounded w-2/3" style={{ backgroundColor: 'var(--white-8)' }} />
+        </div>
+      ))}
+    </div>
+  )
 }
 
-export default function BlogPageContent({ initialPosts }: Props) {
-  const [posts] = useState<Post[]>(initialPosts)
+export default function BlogPageContent() {
+  const [posts, setPosts] = useState<Post[]>([])
+  const [loading, setLoading] = useState(true)
+  const [failed, setFailed] = useState(false)
   const searchParams = useSearchParams()
 
   const [filters, setFilters] = useState<FilterState>({
@@ -24,7 +44,37 @@ export default function BlogPageContent({ initialPosts }: Props) {
     dateFilter: (searchParams.get('date') as DateFilterOption) || 'all',
   })
 
-  // Lógica de filtragem memorizada para performance
+  useEffect(() => {
+    let attempts = 0
+    let timer: ReturnType<typeof setTimeout>
+    let cancelled = false
+
+    const fetchPosts = async () => {
+      try {
+        const data = await blogApi.getPosts()
+        if (cancelled) return
+        setPosts(data)
+        setLoading(false)
+        return
+      } catch {
+        if (cancelled) return
+        attempts++
+        if (attempts < MAX_ATTEMPTS) {
+          timer = setTimeout(fetchPosts, RETRY_INTERVAL)
+        } else {
+          setLoading(false)
+          setFailed(true)
+        }
+      }
+    }
+
+    fetchPosts()
+    return () => {
+      cancelled = true
+      clearTimeout(timer)
+    }
+  }, [])
+
   const filteredPosts = useMemo(() => {
     let result = posts.filter(post => post.published)
 
@@ -104,58 +154,74 @@ export default function BlogPageContent({ initialPosts }: Props) {
           Articles, reflections, and technical notes.
         </p>
 
-        <BlogFilters
-          posts={posts}
-          filters={filters}
-          onFiltersChange={setFilters}
-        />
-
-        <div className="mb-6">
-          <p className="text-sm" style={{ color: 'var(--white-60)' }}>
-            {filteredPosts.length === 0
-              ? 'No posts found'
-              : filteredPosts.length === 1
-              ? '1 post found'
-              : `${filteredPosts.length} posts found`
-            }
-            {posts.length !== filteredPosts.length && (
-              <span style={{ color: 'var(--white-40)' }}>
-                {' '}(filtered from {posts.length} total)
-              </span>
-            )}
-          </p>
-        </div>
-
-        {filteredPosts.length === 0 ? (
-          <div
-            className="text-center py-12 rounded-lg border"
-            style={{
-              backgroundColor: 'rgba(5, 5, 5, 0.5)',
-              border: '1px solid var(--white-8)',
-            }}
-          >
-            <p className="text-sm mb-2" style={{ color: 'var(--white-60)' }}>
-              No posts match your current filters
+        {loading ? (
+          <>
+            <p className="text-xs mb-6" style={{ color: 'var(--white-30)' }}>
+              Loading posts...
             </p>
-            <button
-              onClick={() => setFilters({
-                searchQuery: '',
-                selectedTags: [],
-                selectedCategory: 'All',
-                dateFilter: 'all',
-              })}
-              className="text-sm hover:opacity-80 transition-opacity"
-              style={{ color: 'var(--white-80)' }}
-            >
-              Clear filters
-            </button>
+            <PostsSkeleton />
+          </>
+        ) : failed ? (
+          <div
+            className="rounded p-8 text-center border"
+            style={{ border: '1px solid var(--white-10)', backgroundColor: 'rgba(5,5,5,0.9)' }}
+          >
+            <p className="text-sm" style={{ color: 'var(--white-40)' }}>
+              Could not load posts. Please try again later.
+            </p>
           </div>
         ) : (
-          <div className="space-y-6">
-            {filteredPosts.map((post) => (
-              <BlogPostCard key={post.id} post={post} />
-            ))}
-          </div>
+          <>
+            <BlogFilters
+              posts={posts}
+              filters={filters}
+              onFiltersChange={setFilters}
+            />
+
+            <div className="mb-6">
+              <p className="text-sm" style={{ color: 'var(--white-60)' }}>
+                {filteredPosts.length === 0
+                  ? 'No posts found'
+                  : filteredPosts.length === 1
+                  ? '1 post found'
+                  : `${filteredPosts.length} posts found`}
+                {posts.length !== filteredPosts.length && (
+                  <span style={{ color: 'var(--white-40)' }}>
+                    {' '}(filtered from {posts.length} total)
+                  </span>
+                )}
+              </p>
+            </div>
+
+            {filteredPosts.length === 0 ? (
+              <div
+                className="text-center py-12 rounded-lg border"
+                style={{ backgroundColor: 'rgba(5,5,5,0.5)', border: '1px solid var(--white-8)' }}
+              >
+                <p className="text-sm mb-2" style={{ color: 'var(--white-60)' }}>
+                  No posts match your current filters
+                </p>
+                <button
+                  onClick={() => setFilters({
+                    searchQuery: '',
+                    selectedTags: [],
+                    selectedCategory: 'All',
+                    dateFilter: 'all',
+                  })}
+                  className="text-sm hover:opacity-80 transition-opacity"
+                  style={{ color: 'var(--white-80)' }}
+                >
+                  Clear filters
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-6">
+                {filteredPosts.map((post) => (
+                  <BlogPostCard key={post.id} post={post} />
+                ))}
+              </div>
+            )}
+          </>
         )}
       </div>
     </main>
