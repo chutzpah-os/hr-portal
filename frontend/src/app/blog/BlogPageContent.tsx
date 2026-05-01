@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { blogApi, type Post } from '@/lib/api'
+import { blogClientApi, type Post } from '@/lib/api'
 import BlogPostCard from './BlogPostCard'
 import BlogFilters, { type FilterState } from '../../components/blog/BlogFilters'
 
@@ -51,7 +51,7 @@ export default function BlogPageContent() {
 
     const fetchPosts = async () => {
       try {
-        const data = await blogApi.getPosts()
+        const data = await blogClientApi.getPosts()
         if (cancelled) return
         setPosts(data)
         setLoading(false)

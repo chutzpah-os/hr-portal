@@ -13,14 +13,15 @@ export interface Post {
   category?: 'Technical' | 'Non-Technical'
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001/api'
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001/api'
 
+// Used server-side (API routes, blog post pages)
 async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
   const controller = new AbortController()
   const timeoutId = setTimeout(() => controller.abort(), 10000)
 
   try {
-    const res = await fetch(`${API_URL}${path}`, {
+    const res = await fetch(`${BACKEND_URL}${path}`, {
       headers: { 'Content-Type': 'application/json', ...options?.headers },
       signal: controller.signal,
       cache: 'no-store',
@@ -40,7 +41,33 @@ async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
   }
 }
 
+// Used client-side — routes through the Next.js proxy to avoid CORS
+async function clientFetch<T>(path: string): Promise<T> {
+  const controller = new AbortController()
+  const timeoutId = setTimeout(() => controller.abort(), 10000)
+
+  try {
+    const res = await fetch(`/api${path}`, {
+      signal: controller.signal,
+      cache: 'no-store',
+    })
+
+    clearTimeout(timeoutId)
+
+    if (!res.ok) throw new Error(`API error ${res.status}`)
+    return res.json() as Promise<T>
+  } catch (error) {
+    clearTimeout(timeoutId)
+    throw error
+  }
+}
+
 export const blogApi = {
   getPosts: () => apiFetch<Post[]>('/posts'),
   getPost: (slug: string) => apiFetch<Post>(`/posts/${slug}`),
+}
+
+// Client-side version — used in BlogTeaser and BlogPageContent
+export const blogClientApi = {
+  getPosts: () => clientFetch<Post[]>('/posts'),
 }

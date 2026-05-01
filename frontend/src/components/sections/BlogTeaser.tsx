@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import SectionWrapper from '@/components/ui/SectionWrapper'
-import { blogApi, type Post } from '@/lib/api'
+import { blogClientApi, type Post } from '@/lib/api'
 
 const MAX_ATTEMPTS = 12
 const RETRY_INTERVAL = 5000
@@ -41,7 +41,7 @@ export default function BlogTeaser() {
 
     const fetchPosts = async () => {
       try {
-        const data = await blogApi.getPosts()
+        const data = await blogClientApi.getPosts()
         if (cancelled) return
         const recent = data
           .filter(p => p.published)
