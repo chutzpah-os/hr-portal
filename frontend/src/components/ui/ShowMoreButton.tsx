@@ -16,7 +16,7 @@ export default function ShowMoreButton({ extraCount, onClick }: ShowMoreButtonPr
         onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--white-40)')}
       >
         <span>
-          See More (+{extraCount})
+          See All
         </span>
         <svg
           width="12"
