@@ -81,7 +81,7 @@ export default function EducationSection() {
           Education
         </h2>
         <div className="space-y-4">
-          {extra.map((edu) => (
+          {all.map((edu) => (
             <EducationCard key={edu.id} edu={edu} onClick={openDetail} />
           ))}
         </div>

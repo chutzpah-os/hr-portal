@@ -77,7 +77,7 @@ export default function VolunteeringSection() {
           Volunteering
         </h2>
         <div className="space-y-4">
-          {extra.map((vol) => (
+          {all.map((vol) => (
             <VolunteeringCard key={vol.id} vol={vol} onClick={openDetail} />
           ))}
         </div>

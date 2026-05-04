@@ -143,7 +143,7 @@ export default function CertificationsSection() {
           Certifications
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {extra.map((cert) => (
+          {all.map((cert) => (
             <CertCard key={cert.id} cert={cert} />
           ))}
         </div>

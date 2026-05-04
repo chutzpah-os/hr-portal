@@ -61,7 +61,7 @@ export default function SkillsSection() {
           Skills
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {extra.map(({ name, items }) => (
+          {allEntries.map(({ name, items }) => (
             <SkillCategory key={name} category={name} skills={items} />
           ))}
         </div>

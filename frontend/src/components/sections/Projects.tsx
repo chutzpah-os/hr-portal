@@ -151,7 +151,7 @@ export default function ProjectsSection() {
           Projects
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {extra.map((project) => (
+          {filtered.map((project) => (
             <ProjectCard key={project.id} project={project} onClick={openDetail} />
           ))}
         </div>

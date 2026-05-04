@@ -84,7 +84,7 @@ export default function ExperienceSection() {
           Experience
         </h2>
         <div className="space-y-4">
-          {extra.map((exp) => (
+          {all.map((exp) => (
             <ExperienceCard key={exp.id} exp={exp} onClick={openDetail} />
           ))}
         </div>
