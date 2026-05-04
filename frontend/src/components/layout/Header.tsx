@@ -58,8 +58,24 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
+            <a
+              href="https://calendly.com/hanielrolemberg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs uppercase tracking-widest px-4 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap"
+              style={{ border: '1px solid var(--white-30)', color: 'var(--white-90)' }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'var(--white-70)'
+                e.currentTarget.style.color = 'var(--white-100)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'var(--white-30)'
+                e.currentTarget.style.color = 'var(--white-90)'
+              }}
+            >
+              Book a Call
+            </a>
           </nav>
-
 
           {/* Hamburger toggle — visible below xl */}
           <button
@@ -99,6 +115,16 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
+            <a
+              href="https://calendly.com/hanielrolemberg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm uppercase tracking-widest"
+              style={{ color: 'var(--white-60)' }}
+              onClick={() => setMobileOpen(false)}
+            >
+              Book a Call
+            </a>
           </div>
         )}
       </div>
