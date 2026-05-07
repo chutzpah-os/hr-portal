@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 
 const CONTACT_ITEMS = [
@@ -72,6 +71,177 @@ const CONTACT_ITEMS = [
   },
 ]
 
+// ── Information theory / signal / wave formulas ────────────────────────────────
+// [label, x, y, fontSize, opMin, opMax, dur, beginDelay]
+// [label, x, y, fontSize, _unused, opPeak, cycleDur, beginOffset]
+const SIGNAL_FORMULAS: [string, number, number, number, number, number, number, number][] = [
+  ['H(X) = −∑ p log₂p',        200,  48, 10, 0, 0.80, 18,  0.0],
+  ['C = B log₂(1 + S/N)',        62, 115, 9.5,0, 0.74, 20,  5.3],
+  ['I(X;Y) = H(X) − H(X|Y)',   342, 192,  9, 0, 0.70, 22, 11.0],
+  ['BER = Q(√(2Eᵦ/N₀))',       155, 422,  9, 0, 0.70, 17,  2.1],
+  ['f(t) = A sin(ωt + φ)',       316,  92, 9.5,0, 0.80, 16,  7.8],
+  ['X[k]=Σ x[n] e^−j2πnk/N',   200, 448,  8, 0, 0.65, 23, 14.5],
+  ['SNR = 10 log(Pₛ/Pₙ)',        62, 298, 9.5,0, 0.74, 15,  3.4],
+  ['λ = c / f',                  352, 342, 11, 0, 0.82, 19,  9.2],
+  ['∇²E = με ∂²E/∂t²',          335, 462,  8, 0, 0.65, 21,  1.0],
+  ['v = fλ',                      62,  48, 11, 0, 0.80, 16, 13.8],
+  ['P(B|A) P(A) = P(A|B) P(B)', 300, 378,  8, 0, 0.65, 24,  6.5],
+  ['E[X] = ∫ x · f(x) dx',       62, 382,  9, 0, 0.70, 20,  0.7],
+  ['S = −kᵦ ∑ pᵢ ln pᵢ',        200, 132,  9, 0, 0.70, 22,  4.0],
+  ['dS/dt ≥ 0',                   320, 458, 9.5,0, 0.74, 18, 10.5],
+]
+
+// ── Network topology nodes & edges ─────────────────────────────────────────────
+const NET_NODES = [
+  { id: 0, cx: 200, cy: 240, r: 5,   main: true  },
+  { id: 1, cx: 200, cy: 108, r: 3,   main: false },
+  { id: 2, cx:  78, cy: 178, r: 3.5, main: false },
+  { id: 3, cx: 332, cy: 162, r: 3,   main: false },
+  { id: 4, cx: 118, cy: 348, r: 3.5, main: false },
+  { id: 5, cx: 292, cy: 358, r: 3,   main: false },
+  { id: 6, cx:  52, cy:  88, r: 2.5, main: false },
+  { id: 7, cx: 358, cy: 308, r: 2.5, main: false },
+]
+
+const NET_EDGES = [
+  [0, 1], [0, 2], [0, 3], [0, 4], [0, 5],
+  [1, 3], [2, 6], [3, 7], [4, 5],
+]
+
+// Sine wave path (cubic-bezier approximation)
+function sinePath(cy: number, amp: number, period: number, width = 400): string {
+  const segs = Math.ceil(width / period)
+  let d = `M 0,${cy}`
+  for (let i = 0; i < segs; i++) {
+    const x0 = i * period
+    const xm = x0 + period / 2
+    const x1 = x0 + period
+    const p4 = x0 + period / 4
+    const p34 = x0 + (3 * period) / 4
+    d += ` C ${p4},${cy - amp} ${p4},${cy - amp} ${xm},${cy}`
+    d += ` C ${p34},${cy + amp} ${p34},${cy + amp} ${x1},${cy}`
+  }
+  return d
+}
+
+// ── Science visual panel ───────────────────────────────────────────────────────
+function SignalOverlay() {
+  return (
+    <svg
+      viewBox="0 0 400 480"
+      preserveAspectRatio="xMidYMid slice"
+      className="absolute inset-0 w-full h-full"
+      style={{ opacity: 0.90 }}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* ── Oscilloscope sine waves ── */}
+      {[
+        { cy:  75, amp: 18, period: 120, op: 0.07 },
+        { cy: 155, amp: 13, period:  88, op: 0.055 },
+        { cy: 322, amp: 22, period: 108, op: 0.07 },
+        { cy: 416, amp: 15, period: 100, op: 0.05 },
+      ].map(({ cy, amp, period, op }, i) => (
+        <path
+          key={`wave-${i}`}
+          d={sinePath(cy, amp, period)}
+          stroke={`rgba(240,240,250,${op})`}
+          strokeWidth="1"
+          fill="none"
+        />
+      ))}
+
+      {/* ── Network topology ── */}
+      {NET_EDGES.map(([a, b]) => {
+        const na = NET_NODES[a]
+        const nb = NET_NODES[b]
+        return (
+          <line
+            key={`e-${a}-${b}`}
+            x1={na.cx} y1={na.cy}
+            x2={nb.cx} y2={nb.cy}
+            stroke="rgba(240,240,250,0.22)"
+            strokeWidth="1"
+            strokeDasharray="4 3"
+          />
+        )
+      })}
+      {NET_NODES.map((n) => (
+        <circle
+          key={`n-${n.id}`}
+          cx={n.cx}
+          cy={n.cy}
+          r={n.r}
+          fill={n.main ? 'rgba(240,240,250,0.90)' : 'rgba(240,240,250,0.45)'}
+        />
+      ))}
+
+      {/* ── Expanding signal rings (beacon) ── */}
+      {[0, 1.45, 2.9].map((delay, i) => (
+        <circle
+          key={`ring-${i}`}
+          cx="200"
+          cy="240"
+          r="10"
+          fill="none"
+          stroke="rgba(240,240,250,0.60)"
+          strokeWidth="0.8"
+        >
+          <animate
+            attributeName="r"
+            values="10;185"
+            dur="4.35s"
+            repeatCount="indefinite"
+            begin={`${delay}s`}
+          />
+          <animate
+            attributeName="opacity"
+            values="0.35;0"
+            dur="4.35s"
+            repeatCount="indefinite"
+            begin={`${delay}s`}
+          />
+        </circle>
+      ))}
+
+      {/* Hub pulse */}
+      <circle cx="200" cy="240" r="5" fill="rgba(240,240,250,0.92)">
+        <animate attributeName="r"       values="5;7.5;5"   dur="2.4s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.65;1;0.65" dur="2.4s" repeatCount="indefinite" />
+      </circle>
+      <circle cx="200" cy="240" r="14" fill="none" stroke="rgba(240,240,250,0.15)" strokeWidth="0.8">
+        <animate attributeName="r"       values="14;21;14" dur="2.4s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.15;0;0.15" dur="2.4s" repeatCount="indefinite" />
+      </circle>
+
+      {/* ── Formulas ── */}
+      {SIGNAL_FORMULAS.map(([label, x, y, fs, , opPeak, dur, begin]) => (
+        <text
+          key={`${label}-${x}`}
+          x={x}
+          y={y}
+          fontSize={fs}
+          fill="rgba(240,240,250,1)"
+          opacity={0}
+          fontFamily="monospace"
+          textAnchor="middle"
+        >
+          {label}
+          <animate
+            attributeName="opacity"
+            values={`0;0;${opPeak};${opPeak};0;0`}
+            keyTimes="0;0.28;0.40;0.68;0.80;1"
+            calcMode="linear"
+            dur={`${dur}s`}
+            repeatCount="indefinite"
+            begin={`${begin}s`}
+          />
+        </text>
+      ))}
+    </svg>
+  )
+}
+
+// ── Section ────────────────────────────────────────────────────────────────────
 export default function ContactSection() {
   return (
     <SectionWrapper id="contact" fullscreen={false}>
@@ -80,36 +250,37 @@ export default function ContactSection() {
       </h2>
 
       <div className="flex flex-col md:flex-row items-center">
-        {/* Image — bleeds to the left edge, taller */}
+        {/* Science visual — left */}
         <div className="relative hidden md:block flex-shrink-0" style={{ width: '50%', height: '480px' }}>
-          {/* Dark tint */}
-          <div className="absolute inset-0 z-[1]" style={{ backgroundColor: 'rgba(0,0,0,0.3)' }} />
-          {/* Right fade */}
+          <SignalOverlay />
+          {/* Fade right edge into card background */}
           <div
-            className="absolute inset-y-0 right-0 z-10"
-            style={{ width: '55%', background: 'linear-gradient(to left, rgb(0,0,0) 0%, rgba(0,0,0,0.6) 40%, transparent 100%)' }}
+            className="absolute inset-y-0 right-0 pointer-events-none"
+            style={{
+              width: '55%',
+              background: 'linear-gradient(to left, rgb(0,0,0) 0%, rgba(0,0,0,0.55) 40%, transparent 100%)',
+              zIndex: 2,
+            }}
           />
-          {/* Top fade */}
           <div
-            className="absolute inset-x-0 top-0 z-10"
-            style={{ height: '40%', background: 'linear-gradient(to bottom, rgb(0,0,0) 0%, transparent 100%)' }}
+            className="absolute inset-x-0 top-0 pointer-events-none"
+            style={{
+              height: '30%',
+              background: 'linear-gradient(to bottom, rgb(0,0,0) 0%, transparent 100%)',
+              zIndex: 2,
+            }}
           />
-          {/* Bottom fade */}
           <div
-            className="absolute inset-x-0 bottom-0 z-10"
-            style={{ height: '40%', background: 'linear-gradient(to top, rgb(0,0,0) 0%, transparent 100%)' }}
-          />
-          <Image
-            src="/images/contact-bg.jpg"
-            alt=""
-            fill
-            className="object-cover object-center"
-            loading="lazy"
-            sizes="50vw"
+            className="absolute inset-x-0 bottom-0 pointer-events-none"
+            style={{
+              height: '30%',
+              background: 'linear-gradient(to top, rgb(0,0,0) 0%, transparent 100%)',
+              zIndex: 2,
+            }}
           />
         </div>
 
-        {/* Contact links — right, inside the card */}
+        {/* Contact links — right */}
         <div className="flex-1 px-6 md:px-10 max-w-xl ml-auto">
           <div
             className="rounded p-8 md:p-12"
