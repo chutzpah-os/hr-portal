@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { SOLUTIONS, GROUPS, type Solution, type SolutionGroup } from '@/data/solutions'
+import RocketBackground from '@/components/ui/RocketBackground'
 
 const STAGES: { label: string; short: string; color: string }[] = [
   { label: 'Idea / Problem Discovery',     short: 'Idea',     color: 'rgba(148,163,184,1)' },
@@ -295,6 +296,7 @@ export default function SolutionsPage() {
         <SolutionModal solution={selected} onClose={() => setSelected(null)} />
       )}
 
+      <RocketBackground />
       <main style={{ minHeight: '100svh', backgroundColor: 'rgb(0,0,0)', paddingTop: '7rem', paddingBottom: '6rem' }}>
         <div className="max-w-5xl mx-auto px-6 md:px-10">
 

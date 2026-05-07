@@ -3,14 +3,16 @@
 import { useState } from 'react'
 import CVDownloadModal from '@/components/ui/CVDownloadModal'
 import CTA from '@/components/ui/CTA'
+import MolecularParticles from '@/components/ui/MolecularParticles'
 
 export default function PortfolioHero() {
   const [cvModalOpen, setCvModalOpen] = useState(false)
 
   return (
-    <section className="flex flex-col md:flex-row items-center" style={{ minHeight: '600px' }}>
+    <section className="relative flex flex-col md:flex-row items-center overflow-hidden" style={{ minHeight: '600px' }}>
+      <MolecularParticles />
       {/* Text — left */}
-      <div className="flex-1 px-6 md:px-10 py-20 md:py-28 max-w-2xl">
+      <div className="relative z-10 flex-1 px-6 md:px-10 py-20 md:py-28 max-w-2xl">
         <p
           className="text-xs uppercase tracking-widest mb-5"
           style={{ color: 'var(--white-40)' }}

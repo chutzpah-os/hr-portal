@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import DNACanvas3D from '@/components/ui/DNACanvas3D'
 
 export const metadata: Metadata = {
   title: 'About — Haniel Rolemberg',
@@ -8,9 +9,9 @@ export default function AboutPage() {
   return (
     <main style={{ paddingTop: '5rem' }}>
 
-      {/* About — text + image side by side */}
+      {/* About — text + DNA side by side */}
       <section className="max-w-content mx-auto px-6 md:px-10 py-16 md:py-20">
-        <div className="flex flex-col md:flex-row gap-12 items-start">
+        <div className="flex flex-col md:flex-row gap-12 items-center">
 
           {/* Text */}
           <div className="flex-1 min-w-0">
@@ -41,40 +42,16 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Image */}
-          <div className="relative hidden md:block flex-shrink-0" style={{ width: '340px', height: '440px' }}>
-            {/* Left fade */}
-            <div
-              className="absolute inset-y-0 left-0 z-10"
-              style={{ width: '70%', background: 'linear-gradient(to right, rgb(0,0,0) 0%, rgba(0,0,0,0.8) 30%, transparent 100%)' }}
-            />
-            {/* Right fade */}
-            <div
-              className="absolute inset-y-0 right-0 z-10"
-              style={{ width: '65%', background: 'linear-gradient(to left, rgb(0,0,0) 0%, rgba(0,0,0,0.8) 30%, transparent 100%)' }}
-            />
-            {/* Top fade */}
-            <div
-              className="absolute inset-x-0 top-0 z-10"
-              style={{ height: '65%', background: 'linear-gradient(to bottom, rgb(0,0,0) 0%, rgba(0,0,0,0.7) 30%, transparent 100%)' }}
-            />
-            {/* Bottom fade */}
-            <div
-              className="absolute inset-x-0 bottom-0 z-10"
-              style={{ height: '65%', background: 'linear-gradient(to top, rgb(0,0,0) 0%, rgba(0,0,0,0.7) 30%, transparent 100%)' }}
-            />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/haniel-palestra.jpg"
-              alt="Haniel Rolemberg"
-              className="w-full h-full object-cover"
-              style={{ objectPosition: 'center 15%' }}
-            />
+          {/* DNA — replaces image */}
+          <div
+            className="flex-shrink-0 w-full md:w-auto rounded overflow-hidden"
+            style={{ width: '340px', height: 'clamp(320px, 50vh, 460px)' }}
+          >
+            <DNACanvas3D />
           </div>
 
         </div>
       </section>
-
 
     </main>
   )
