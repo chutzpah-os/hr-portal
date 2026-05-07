@@ -131,7 +131,7 @@ export default function MolecularParticles() {
 
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(240,240,250,0.55)'
+        ctx.fillStyle = 'rgba(240,240,250,0.22)'
         ctx.fill()
       }
 
@@ -147,7 +147,7 @@ export default function MolecularParticles() {
               ctx.beginPath()
               ctx.moveTo(particles[i].x, particles[i].y)
               ctx.lineTo(particles[j].x, particles[j].y)
-              ctx.strokeStyle = `rgba(240,240,250,${(1 - d / MAX_D) * 0.3})`
+              ctx.strokeStyle = `rgba(240,240,250,${(1 - d / MAX_D) * 0.12})`
               ctx.lineWidth = 0.5
               ctx.stroke()
             }
@@ -168,7 +168,7 @@ export default function MolecularParticles() {
     <canvas
       ref={ref}
       className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ opacity: 0.6 }}
+      style={{ opacity: 0.35 }}
     />
   )
 }

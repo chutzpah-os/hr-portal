@@ -2,10 +2,10 @@
 
 // [cx, cy, rot_deg, op_peak, dur_s, begin_s]
 const ROCKETS: [number, number, number, number, number, number][] = [
-  [570, 720, -64, 0.52, 28, 0],
-  [762, 348, -32, 0.48, 33, 11],
-  [642, 188, -78, 0.45, 26, 19],
-  [828, 558, -50, 0.50, 31, 6],
+  [570, 720, -64, 0.22, 28, 0],
+  [762, 348, -32, 0.20, 33, 11],
+  [642, 188, -78, 0.18, 26, 19],
+  [828, 558, -50, 0.20, 31, 6],
 ]
 
 // [text, x, y, rot, dur, begin]
@@ -37,7 +37,7 @@ export default function RocketBackground() {
         <marker id="arrowTip" markerWidth="8" markerHeight="8" refX="4" refY="3" orient="auto">
           <polyline
             points="0,0 6,3 0,6"
-            stroke="rgba(240,240,250,0.55)"
+            stroke="rgba(240,240,250,0.28)"
             fill="none"
             strokeWidth="0.9"
             strokeLinecap="round"
@@ -104,7 +104,7 @@ export default function RocketBackground() {
             <line
               x1={noseX} y1={noseY}
               x2={velEndX} y2={velEndY}
-              stroke="rgba(240,240,250,0.50)"
+              stroke="rgba(240,240,250,0.25)"
               strokeWidth="0.9"
               markerEnd="url(#arrowTip)"
             />
@@ -112,7 +112,7 @@ export default function RocketBackground() {
             {/* Rocket sketch — transform: translate then rotate */}
             <g
               transform={`translate(${cx} ${cy}) rotate(${rot})`}
-              stroke="rgba(240,240,250,0.82)"
+              stroke="rgba(240,240,250,0.45)"
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -145,7 +145,7 @@ export default function RocketBackground() {
               fontSize="9"
               fontFamily="monospace"
               fontStyle="italic"
-              fill="rgba(240,240,250,0.45)"
+              fill="rgba(240,240,250,0.22)"
               textAnchor="middle"
             >
               θ = {Math.abs(rot)}°
@@ -181,7 +181,7 @@ export default function RocketBackground() {
           {text}
           <animate
             attributeName="opacity"
-            values="0;0;0.52;0.52;0;0"
+            values="0;0;0.22;0.22;0;0"
             keyTimes="0;0.28;0.40;0.70;0.82;1"
             calcMode="linear"
             dur={`${dur}s`}

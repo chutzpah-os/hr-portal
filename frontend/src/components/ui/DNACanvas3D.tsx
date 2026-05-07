@@ -88,13 +88,13 @@ export default function DNACanvas3D() {
         ctx.beginPath()
         ctx.moveTo(A[i].sx, A[i].sy)
         ctx.lineTo(A[i + 1].sx, A[i + 1].sy)
-        ctx.strokeStyle = `rgba(${COL_A},0.55)`
+        ctx.strokeStyle = `rgba(${COL_A},0.28)`
         ctx.stroke()
 
         ctx.beginPath()
         ctx.moveTo(B[i].sx, B[i].sy)
         ctx.lineTo(B[i + 1].sx, B[i + 1].sy)
-        ctx.strokeStyle = `rgba(${COL_B},0.55)`
+        ctx.strokeStyle = `rgba(${COL_B},0.28)`
         ctx.stroke()
       }
 
@@ -110,7 +110,7 @@ export default function DNACanvas3D() {
         ctx.beginPath()
         ctx.moveTo(rung.a.sx, rung.a.sy)
         ctx.lineTo(rung.b.sx, rung.b.sy)
-        ctx.strokeStyle = `rgba(200,200,230,${depth * 0.28})`
+        ctx.strokeStyle = `rgba(200,200,230,${depth * 0.14})`
         ctx.lineWidth = 0.9
         ctx.stroke()
 
@@ -120,7 +120,7 @@ export default function DNACanvas3D() {
         for (let d = 1; d <= 3; d++) {
           ctx.beginPath()
           ctx.arc(rung.a.sx + dx * d, rung.a.sy + dy * d, 1.4, 0, Math.PI * 2)
-          ctx.fillStyle = `rgba(240,240,250,${depth * 0.45})`
+          ctx.fillStyle = `rgba(240,240,250,${depth * 0.22})`
           ctx.fill()
         }
 
@@ -128,21 +128,21 @@ export default function DNACanvas3D() {
         // Glow + node A
         ctx.beginPath()
         ctx.arc(rung.a.sx, rung.a.sy, r * 2.4, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(${cA},${depth * 0.22})`
+        ctx.fillStyle = `rgba(${cA},${depth * 0.10})`
         ctx.fill()
         ctx.beginPath()
         ctx.arc(rung.a.sx, rung.a.sy, r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(${cA},${depth})`
+        ctx.fillStyle = `rgba(${cA},${depth * 0.50})`
         ctx.fill()
 
         // Glow + node B
         ctx.beginPath()
         ctx.arc(rung.b.sx, rung.b.sy, r * 2.4, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(${cB},${depth * 0.22})`
+        ctx.fillStyle = `rgba(${cB},${depth * 0.10})`
         ctx.fill()
         ctx.beginPath()
         ctx.arc(rung.b.sx, rung.b.sy, r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(${cB},${depth})`
+        ctx.fillStyle = `rgba(${cB},${depth * 0.50})`
         ctx.fill()
       }
 

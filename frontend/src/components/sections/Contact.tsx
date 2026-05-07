@@ -75,20 +75,20 @@ const CONTACT_ITEMS = [
 // [label, x, y, fontSize, opMin, opMax, dur, beginDelay]
 // [label, x, y, fontSize, _unused, opPeak, cycleDur, beginOffset]
 const SIGNAL_FORMULAS: [string, number, number, number, number, number, number, number][] = [
-  ['H(X) = −∑ p log₂p',        200,  48, 10, 0, 0.80, 18,  0.0],
-  ['C = B log₂(1 + S/N)',        62, 115, 9.5,0, 0.74, 20,  5.3],
-  ['I(X;Y) = H(X) − H(X|Y)',   342, 192,  9, 0, 0.70, 22, 11.0],
-  ['BER = Q(√(2Eᵦ/N₀))',       155, 422,  9, 0, 0.70, 17,  2.1],
-  ['f(t) = A sin(ωt + φ)',       316,  92, 9.5,0, 0.80, 16,  7.8],
-  ['X[k]=Σ x[n] e^−j2πnk/N',   200, 448,  8, 0, 0.65, 23, 14.5],
-  ['SNR = 10 log(Pₛ/Pₙ)',        62, 298, 9.5,0, 0.74, 15,  3.4],
-  ['λ = c / f',                  352, 342, 11, 0, 0.82, 19,  9.2],
-  ['∇²E = με ∂²E/∂t²',          335, 462,  8, 0, 0.65, 21,  1.0],
-  ['v = fλ',                      62,  48, 11, 0, 0.80, 16, 13.8],
-  ['P(B|A) P(A) = P(A|B) P(B)', 300, 378,  8, 0, 0.65, 24,  6.5],
-  ['E[X] = ∫ x · f(x) dx',       62, 382,  9, 0, 0.70, 20,  0.7],
-  ['S = −kᵦ ∑ pᵢ ln pᵢ',        200, 132,  9, 0, 0.70, 22,  4.0],
-  ['dS/dt ≥ 0',                   320, 458, 9.5,0, 0.74, 18, 10.5],
+  ['H(X) = −∑ p log₂p',        200,  48, 10, 0, 0.30, 18,  0.0],
+  ['C = B log₂(1 + S/N)',        62, 115, 9.5,0, 0.26, 20,  5.3],
+  ['I(X;Y) = H(X) − H(X|Y)',   342, 192,  9, 0, 0.24, 22, 11.0],
+  ['BER = Q(√(2Eᵦ/N₀))',       155, 422,  9, 0, 0.24, 17,  2.1],
+  ['f(t) = A sin(ωt + φ)',       316,  92, 9.5,0, 0.30, 16,  7.8],
+  ['X[k]=Σ x[n] e^−j2πnk/N',   200, 448,  8, 0, 0.22, 23, 14.5],
+  ['SNR = 10 log(Pₛ/Pₙ)',        62, 298, 9.5,0, 0.26, 15,  3.4],
+  ['λ = c / f',                  352, 342, 11, 0, 0.30, 19,  9.2],
+  ['∇²E = με ∂²E/∂t²',          335, 462,  8, 0, 0.22, 21,  1.0],
+  ['v = fλ',                      62,  48, 11, 0, 0.30, 16, 13.8],
+  ['P(B|A) P(A) = P(A|B) P(B)', 300, 378,  8, 0, 0.22, 24,  6.5],
+  ['E[X] = ∫ x · f(x) dx',       62, 382,  9, 0, 0.24, 20,  0.7],
+  ['S = −kᵦ ∑ pᵢ ln pᵢ',        200, 132,  9, 0, 0.24, 22,  4.0],
+  ['dS/dt ≥ 0',                   320, 458, 9.5,0, 0.26, 18, 10.5],
 ]
 
 // ── Network topology nodes & edges ─────────────────────────────────────────────
@@ -131,7 +131,7 @@ function SignalOverlay() {
       viewBox="0 0 400 480"
       preserveAspectRatio="xMidYMid slice"
       className="absolute inset-0 w-full h-full"
-      style={{ opacity: 0.90 }}
+      style={{ opacity: 0.40 }}
       xmlns="http://www.w3.org/2000/svg"
     >
       {/* ── Oscilloscope sine waves ── */}
@@ -171,7 +171,7 @@ function SignalOverlay() {
           cx={n.cx}
           cy={n.cy}
           r={n.r}
-          fill={n.main ? 'rgba(240,240,250,0.90)' : 'rgba(240,240,250,0.45)'}
+          fill={n.main ? 'rgba(240,240,250,0.45)' : 'rgba(240,240,250,0.20)'}
         />
       ))}
 
@@ -183,7 +183,7 @@ function SignalOverlay() {
           cy="240"
           r="10"
           fill="none"
-          stroke="rgba(240,240,250,0.60)"
+          stroke="rgba(240,240,250,0.25)"
           strokeWidth="0.8"
         >
           <animate
@@ -204,13 +204,13 @@ function SignalOverlay() {
       ))}
 
       {/* Hub pulse */}
-      <circle cx="200" cy="240" r="5" fill="rgba(240,240,250,0.92)">
-        <animate attributeName="r"       values="5;7.5;5"   dur="2.4s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.65;1;0.65" dur="2.4s" repeatCount="indefinite" />
+      <circle cx="200" cy="240" r="5" fill="rgba(240,240,250,0.45)">
+        <animate attributeName="r"       values="5;7.5;5"     dur="2.4s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.30;0.50;0.30" dur="2.4s" repeatCount="indefinite" />
       </circle>
-      <circle cx="200" cy="240" r="14" fill="none" stroke="rgba(240,240,250,0.15)" strokeWidth="0.8">
-        <animate attributeName="r"       values="14;21;14" dur="2.4s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.15;0;0.15" dur="2.4s" repeatCount="indefinite" />
+      <circle cx="200" cy="240" r="14" fill="none" stroke="rgba(240,240,250,0.08)" strokeWidth="0.8">
+        <animate attributeName="r"       values="14;21;14"   dur="2.4s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.08;0;0.08" dur="2.4s" repeatCount="indefinite" />
       </circle>
 
       {/* ── Formulas ── */}
