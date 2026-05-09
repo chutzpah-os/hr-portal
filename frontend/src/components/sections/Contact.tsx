@@ -249,81 +249,48 @@ export default function ContactSection() {
         Contact
       </p>
 
-      <div className="flex flex-col md:flex-row items-center">
-        {/* Science visual — left */}
-        <div className="relative hidden md:block flex-shrink-0" style={{ width: '50%', height: '480px' }}>
-          <SignalOverlay />
-          {/* Fade right edge into card background */}
-          <div
-            className="absolute inset-y-0 right-0 pointer-events-none"
-            style={{
-              width: '55%',
-              background: 'linear-gradient(to left, rgb(255,255,255) 0%, rgba(255,255,255,0.55) 40%, transparent 100%)',
-              zIndex: 2,
-            }}
-          />
-          <div
-            className="absolute inset-x-0 top-0 pointer-events-none"
-            style={{
-              height: '30%',
-              background: 'linear-gradient(to bottom, rgb(255,255,255) 0%, transparent 100%)',
-              zIndex: 2,
-            }}
-          />
-          <div
-            className="absolute inset-x-0 bottom-0 pointer-events-none"
-            style={{
-              height: '30%',
-              background: 'linear-gradient(to top, rgb(255,255,255) 0%, transparent 100%)',
-              zIndex: 2,
-            }}
-          />
-        </div>
-
-        {/* Contact links — right */}
-        <div className="flex-1 px-6 md:px-10 max-w-xl ml-auto">
-          <div
-            className="rounded p-8 md:p-12"
-            style={{
-              border: '1px solid var(--white-10)',
-              backgroundColor: 'rgba(248, 248, 252, 0.85)',
-            }}
-          >
-            <div className="grid grid-cols-2 gap-x-8 gap-y-8">
-              {CONTACT_ITEMS.map((item) => (
-                <a
-                  key={item.key}
-                  href={item.href}
-                  target={item.href.startsWith('http') ? '_blank' : undefined}
-                  rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="flex items-center gap-4 group"
+      <div className="max-w-2xl mx-auto px-6 md:px-10 w-full">
+        <div
+          className="rounded p-8 md:p-12"
+          style={{
+            border: '1px solid var(--white-10)',
+            backgroundColor: 'rgba(248, 248, 252, 0.85)',
+          }}
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8">
+            {CONTACT_ITEMS.map((item) => (
+              <a
+                key={item.key}
+                href={item.href}
+                target={item.href.startsWith('http') ? '_blank' : undefined}
+                rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className="flex items-center gap-4 group"
+              >
+                <div
+                  className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded transition-colors duration-300"
+                  style={{
+                    border: '1px solid var(--white-15)',
+                    color: 'var(--white-60)',
+                  }}
                 >
-                  <div
-                    className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded transition-colors duration-300"
-                    style={{
-                      border: '1px solid var(--white-15)',
-                      color: 'var(--white-60)',
-                    }}
+                  {item.icon}
+                </div>
+                <div className="min-w-0">
+                  <p
+                    className="text-xs uppercase tracking-widest mb-0.5"
+                    style={{ color: 'var(--white-40)' }}
                   >
-                    {item.icon}
-                  </div>
-                  <div className="min-w-0">
-                    <p
-                      className="text-xs uppercase tracking-widest mb-0.5"
-                      style={{ color: 'var(--white-40)' }}
-                    >
-                      {item.label}
-                    </p>
-                    <p
-                      className="text-xs transition-colors duration-200 truncate"
-                      style={{ color: 'var(--white-80)' }}
-                    >
-                      {item.value}
-                    </p>
-                  </div>
-                </a>
-              ))}
-            </div>
+                    {item.label}
+                  </p>
+                  <p
+                    className="text-xs transition-colors duration-200 truncate"
+                    style={{ color: 'var(--white-80)' }}
+                  >
+                    {item.value}
+                  </p>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
       </div>

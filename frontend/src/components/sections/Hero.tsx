@@ -120,18 +120,18 @@ export default function Hero() {
         </div>
 
         {/* Right: portrait */}
-        <div className="md:w-[45%] flex justify-center md:justify-end items-center">
+        <div className="w-full md:w-[45%] flex justify-center md:justify-end items-center px-8 md:px-0">
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.85, delay: 0.15, ease: 'easeOut' }}
-            style={{ position: 'relative' }}
+            style={{ position: 'relative', paddingBottom: '24px', paddingLeft: '8px' }}
           >
             {/* Portrait frame */}
             <div
               style={{
-                width: 'clamp(260px, 30vw, 380px)',
-                height: 'clamp(340px, 40vw, 500px)',
+                width: 'clamp(220px, 60vw, 380px)',
+                height: 'clamp(290px, 75vw, 500px)',
                 borderRadius: '28px',
                 overflow: 'hidden',
                 transform: 'rotate(-2deg) scale(1.08)',
@@ -155,15 +155,15 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.75, ease: 'easeOut' }}
               style={{
                 position: 'absolute',
-                bottom: '-12px',
-                left: '-28px',
+                bottom: '0px',
+                left: '0px',
                 backgroundColor: 'rgb(255,255,255)',
                 border: '1px solid rgba(10,10,15,0.09)',
                 borderRadius: '18px',
-                padding: '12px 20px',
+                padding: '10px 16px',
                 boxShadow: '0 8px 32px rgba(10,10,15,0.10)',
                 display: 'flex',
-                gap: '20px',
+                gap: '16px',
               }}
             >
               {[
