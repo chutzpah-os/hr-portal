@@ -52,13 +52,13 @@ export default function Header() {
               key={item.label}
               href={item.href}
               className="text-xs uppercase tracking-widest px-3 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap"
-              style={{ color: 'var(--white-60)' }}
+              style={{ color: 'var(--accent)' }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.color = 'var(--white-100)'
-                e.currentTarget.style.backgroundColor = 'rgba(10,10,15,0.07)'
+                e.currentTarget.style.opacity = '0.7'
+                e.currentTarget.style.backgroundColor = 'rgba(212,119,90,0.08)'
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.color = 'var(--white-60)'
+                e.currentTarget.style.opacity = '1'
                 e.currentTarget.style.backgroundColor = 'transparent'
               }}
             >
@@ -77,18 +77,16 @@ export default function Header() {
           rel="noopener noreferrer"
           className="hidden md:flex text-xs uppercase tracking-widest px-4 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap"
           style={{
-            border: '1px solid rgba(10,10,15,0.2)',
-            color: 'var(--white-80)',
+            border: '1px solid var(--accent)',
+            color: 'var(--accent)',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(10,10,15,0.5)'
-            e.currentTarget.style.color = 'var(--white-100)'
-            e.currentTarget.style.backgroundColor = 'rgba(10,10,15,0.06)'
+            e.currentTarget.style.backgroundColor = 'var(--accent)'
+            e.currentTarget.style.color = 'rgb(255,255,255)'
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(10,10,15,0.2)'
-            e.currentTarget.style.color = 'var(--white-80)'
             e.currentTarget.style.backgroundColor = 'transparent'
+            e.currentTarget.style.color = 'var(--accent)'
           }}
         >
           Book a Call
@@ -147,14 +145,14 @@ export default function Header() {
                 key={item.label}
                 href={item.href}
                 className="text-xs uppercase tracking-widest px-4 py-2.5 rounded-xl transition-all duration-200"
-                style={{ color: 'var(--white-70)' }}
+                style={{ color: 'var(--accent)' }}
                 onClick={() => setMobileOpen(false)}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.color = 'var(--white-100)'
-                  e.currentTarget.style.backgroundColor = 'rgba(10,10,15,0.07)'
+                  e.currentTarget.style.opacity = '0.7'
+                  e.currentTarget.style.backgroundColor = 'rgba(212,119,90,0.08)'
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.color = 'var(--white-70)'
+                  e.currentTarget.style.opacity = '1'
                   e.currentTarget.style.backgroundColor = 'transparent'
                 }}
               >
@@ -167,14 +165,14 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs uppercase tracking-widest px-4 py-2.5 rounded-xl transition-all duration-200"
-              style={{ color: 'var(--white-50)' }}
+              style={{ color: 'var(--accent)' }}
               onClick={() => setMobileOpen(false)}
               onMouseEnter={(e) => {
-                e.currentTarget.style.color = 'var(--white-90)'
-                e.currentTarget.style.backgroundColor = 'rgba(10,10,15,0.07)'
+                e.currentTarget.style.opacity = '0.7'
+                e.currentTarget.style.backgroundColor = 'rgba(212,119,90,0.08)'
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.color = 'var(--white-50)'
+                e.currentTarget.style.opacity = '1'
                 e.currentTarget.style.backgroundColor = 'transparent'
               }}
             >

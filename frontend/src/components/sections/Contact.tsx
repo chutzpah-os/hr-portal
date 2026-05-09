@@ -245,9 +245,9 @@ function SignalOverlay() {
 export default function ContactSection() {
   return (
     <SectionWrapper id="contact" fullscreen={false}>
-      <h2 className="text-center mb-12 px-6 md:px-10" style={{ color: 'var(--white-100)' }}>
-        Get in Touch
-      </h2>
+      <p className="section-label text-center mb-12 px-6 md:px-10">
+        Contact
+      </p>
 
       <div className="flex flex-col md:flex-row items-center">
         {/* Science visual — left */}
@@ -289,17 +289,17 @@ export default function ContactSection() {
               backgroundColor: 'rgba(248, 248, 252, 0.85)',
             }}
           >
-            <div className="space-y-8">
+            <div className="grid grid-cols-2 gap-x-8 gap-y-8">
               {CONTACT_ITEMS.map((item) => (
                 <a
                   key={item.key}
                   href={item.href}
                   target={item.href.startsWith('http') ? '_blank' : undefined}
                   rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="flex items-center gap-5 group"
+                  className="flex items-center gap-4 group"
                 >
                   <div
-                    className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded transition-colors duration-300"
+                    className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded transition-colors duration-300"
                     style={{
                       border: '1px solid var(--white-15)',
                       color: 'var(--white-60)',
@@ -307,15 +307,15 @@ export default function ContactSection() {
                   >
                     {item.icon}
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p
-                      className="text-xs uppercase tracking-widest mb-1"
+                      className="text-xs uppercase tracking-widest mb-0.5"
                       style={{ color: 'var(--white-40)' }}
                     >
                       {item.label}
                     </p>
                     <p
-                      className="text-sm transition-colors duration-200"
+                      className="text-xs transition-colors duration-200 truncate"
                       style={{ color: 'var(--white-80)' }}
                     >
                       {item.value}

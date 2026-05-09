@@ -43,18 +43,7 @@ export default function ProcessSection() {
         >
           Process
         </motion.p>
-        <motion.h2
-          className="mb-16"
-          style={{ color: 'var(--white-100)' }}
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.6, delay: 0.05, ease: 'easeOut' }}
-        >
-          How I Work
-        </motion.h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
           {STEPS.map(({ num, title, description }, i) => (
             <motion.div
               key={num}
