@@ -37,7 +37,7 @@ export default function RocketBackground() {
         <marker id="arrowTip" markerWidth="8" markerHeight="8" refX="4" refY="3" orient="auto">
           <polyline
             points="0,0 6,3 0,6"
-            stroke="rgba(240,240,250,0.28)"
+            stroke="rgba(10,10,15,0.28)"
             fill="none"
             strokeWidth="0.9"
             strokeLinecap="round"
@@ -77,7 +77,7 @@ export default function RocketBackground() {
             <line
               x1={groundX1} y1={groundY}
               x2={groundX2} y2={groundY}
-              stroke="rgba(240,240,250,0.20)"
+              stroke="rgba(10,10,15,0.20)"
               strokeWidth="0.7"
               strokeDasharray="5 4"
             />
@@ -85,7 +85,7 @@ export default function RocketBackground() {
             <line
               x1={cx} y1={groundY}
               x2={cx} y2={cy + 8}
-              stroke="rgba(240,240,250,0.15)"
+              stroke="rgba(10,10,15,0.15)"
               strokeWidth="0.7"
               strokeDasharray="3 3"
             />
@@ -93,7 +93,7 @@ export default function RocketBackground() {
             {/* Trajectory arc */}
             <path
               d={`M ${noseX} ${noseY} Q ${ctrlX} ${ctrlY} ${arcEndX} ${arcEndY}`}
-              stroke="rgba(240,240,250,0.22)"
+              stroke="rgba(10,10,15,0.22)"
               fill="none"
               strokeWidth="0.9"
               strokeDasharray="7 5"
@@ -104,7 +104,7 @@ export default function RocketBackground() {
             <line
               x1={noseX} y1={noseY}
               x2={velEndX} y2={velEndY}
-              stroke="rgba(240,240,250,0.25)"
+              stroke="rgba(10,10,15,0.25)"
               strokeWidth="0.9"
               markerEnd="url(#arrowTip)"
             />
@@ -112,7 +112,7 @@ export default function RocketBackground() {
             {/* Rocket sketch — transform: translate then rotate */}
             <g
               transform={`translate(${cx} ${cy}) rotate(${rot})`}
-              stroke="rgba(240,240,250,0.45)"
+              stroke="rgba(10,10,15,0.45)"
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -145,7 +145,7 @@ export default function RocketBackground() {
               fontSize="9"
               fontFamily="monospace"
               fontStyle="italic"
-              fill="rgba(240,240,250,0.22)"
+              fill="rgba(10,10,15,0.22)"
               textAnchor="middle"
             >
               θ = {Math.abs(rot)}°
@@ -173,7 +173,7 @@ export default function RocketBackground() {
           fontSize="12"
           fontFamily="monospace"
           fontStyle="italic"
-          fill="rgba(240,240,250,1)"
+          fill="rgba(10,10,15,1)"
           opacity={0}
           textAnchor="middle"
           transform={`rotate(${rot} ${x} ${y})`}

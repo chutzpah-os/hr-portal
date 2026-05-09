@@ -5,10 +5,11 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const NAV_ITEMS = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Portfolio', href: '/portfolio' },
-  { label: 'Solutions', href: '/solutions' },
+  { label: 'Portfolio', href: '#portfolio' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'About', href: '#about' },
+  { label: 'Process', href: '#process' },
+  { label: 'Contact', href: '#contact' },
 ]
 
 export default function Header() {
@@ -20,11 +21,11 @@ export default function Header() {
       <motion.div
         className="pointer-events-auto flex items-center gap-1 px-2 py-2 rounded-full"
         style={{
-          backgroundColor: 'rgba(8,8,10,0.72)',
+          backgroundColor: 'rgba(255,255,255,0.78)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
-          border: '1px solid rgba(240,240,250,0.1)',
-          boxShadow: '0 4px 32px rgba(0,0,0,0.55), 0 1px 0 rgba(240,240,250,0.06) inset',
+          border: '1px solid rgba(10,10,15,0.10)',
+          boxShadow: '0 4px 32px rgba(10,10,15,0.10), 0 1px 0 rgba(10,10,15,0.04) inset',
         }}
         initial={{ opacity: 0, y: -24 }}
         animate={{ opacity: 1, y: 0 }}
@@ -35,14 +36,14 @@ export default function Header() {
           href="/"
           className="flex items-center px-3 py-1.5 rounded-full transition-colors duration-200"
           style={{ color: 'var(--white-100)' }}
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(240,240,250,0.07)')}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(10,10,15,0.07)')}
           onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
         >
           <span className="text-sm font-bold uppercase tracking-widest">HR</span>
         </Link>
 
         {/* Separator */}
-        <div className="hidden md:block w-px h-4 mx-1" style={{ backgroundColor: 'rgba(240,240,250,0.1)' }} />
+        <div className="hidden md:block w-px h-4 mx-1" style={{ backgroundColor: 'rgba(10,10,15,0.1)' }} />
 
         {/* Desktop nav items */}
         <nav className="hidden md:flex items-center gap-1">
@@ -54,7 +55,7 @@ export default function Header() {
               style={{ color: 'var(--white-60)' }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.color = 'var(--white-100)'
-                e.currentTarget.style.backgroundColor = 'rgba(240,240,250,0.07)'
+                e.currentTarget.style.backgroundColor = 'rgba(10,10,15,0.07)'
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.color = 'var(--white-60)'
@@ -67,7 +68,7 @@ export default function Header() {
         </nav>
 
         {/* Separator */}
-        <div className="hidden md:block w-px h-4 mx-1" style={{ backgroundColor: 'rgba(240,240,250,0.1)' }} />
+        <div className="hidden md:block w-px h-4 mx-1" style={{ backgroundColor: 'rgba(10,10,15,0.1)' }} />
 
         {/* Book a Call — desktop */}
         <a
@@ -76,16 +77,16 @@ export default function Header() {
           rel="noopener noreferrer"
           className="hidden md:flex text-xs uppercase tracking-widest px-4 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap"
           style={{
-            border: '1px solid rgba(240,240,250,0.2)',
+            border: '1px solid rgba(10,10,15,0.2)',
             color: 'var(--white-80)',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(240,240,250,0.5)'
+            e.currentTarget.style.borderColor = 'rgba(10,10,15,0.5)'
             e.currentTarget.style.color = 'var(--white-100)'
-            e.currentTarget.style.backgroundColor = 'rgba(240,240,250,0.06)'
+            e.currentTarget.style.backgroundColor = 'rgba(10,10,15,0.06)'
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(240,240,250,0.2)'
+            e.currentTarget.style.borderColor = 'rgba(10,10,15,0.2)'
             e.currentTarget.style.color = 'var(--white-80)'
             e.currentTarget.style.backgroundColor = 'transparent'
           }}
@@ -99,7 +100,7 @@ export default function Header() {
           onClick={() => setMobileOpen((v) => !v)}
           aria-label="Toggle menu"
           style={{ color: 'var(--white-100)' }}
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(240,240,250,0.07)')}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(10,10,15,0.07)')}
           onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
         >
           <motion.span
@@ -129,11 +130,11 @@ export default function Header() {
           <motion.div
             className="pointer-events-auto mt-2 flex flex-col gap-1 px-3 py-3 rounded-2xl"
             style={{
-              backgroundColor: 'rgba(8,8,10,0.88)',
+              backgroundColor: 'rgba(255,255,255,0.92)',
               backdropFilter: 'blur(20px)',
               WebkitBackdropFilter: 'blur(20px)',
-              border: '1px solid rgba(240,240,250,0.1)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.6)',
+              border: '1px solid rgba(10,10,15,0.10)',
+              boxShadow: '0 8px 32px rgba(10,10,15,0.10)',
               minWidth: '200px',
             }}
             initial={{ opacity: 0, y: -8, scale: 0.97 }}
@@ -150,7 +151,7 @@ export default function Header() {
                 onClick={() => setMobileOpen(false)}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = 'var(--white-100)'
-                  e.currentTarget.style.backgroundColor = 'rgba(240,240,250,0.07)'
+                  e.currentTarget.style.backgroundColor = 'rgba(10,10,15,0.07)'
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.color = 'var(--white-70)'
@@ -160,7 +161,7 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
-            <div className="mx-3 my-1 h-px" style={{ backgroundColor: 'rgba(240,240,250,0.08)' }} />
+            <div className="mx-3 my-1 h-px" style={{ backgroundColor: 'rgba(10,10,15,0.08)' }} />
             <a
               href="https://calendly.com/hanielrolemberg"
               target="_blank"
@@ -170,7 +171,7 @@ export default function Header() {
               onClick={() => setMobileOpen(false)}
               onMouseEnter={(e) => {
                 e.currentTarget.style.color = 'var(--white-90)'
-                e.currentTarget.style.backgroundColor = 'rgba(240,240,250,0.07)'
+                e.currentTarget.style.backgroundColor = 'rgba(10,10,15,0.07)'
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.color = 'var(--white-50)'

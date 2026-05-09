@@ -9,8 +9,8 @@ export default function NotFound() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'rgb(0,0,0)',
-        color: 'rgba(240,240,250,0.8)',
+        backgroundColor: 'rgb(255,255,255)',
+        color: 'rgba(10,10,15,0.8)',
         fontFamily: 'sans-serif',
         gap: '16px',
       }}
@@ -24,7 +24,7 @@ export default function NotFound() {
           fontSize: '0.7rem',
           letterSpacing: '0.15em',
           textTransform: 'uppercase',
-          color: 'rgba(240,240,250,0.5)',
+          color: 'rgba(10,10,15,0.5)',
         }}
       >
         Go home

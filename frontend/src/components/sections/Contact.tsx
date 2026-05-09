@@ -144,7 +144,7 @@ function SignalOverlay() {
         <path
           key={`wave-${i}`}
           d={sinePath(cy, amp, period)}
-          stroke={`rgba(240,240,250,${op})`}
+          stroke={`rgba(10,10,15,${op})`}
           strokeWidth="1"
           fill="none"
         />
@@ -159,7 +159,7 @@ function SignalOverlay() {
             key={`e-${a}-${b}`}
             x1={na.cx} y1={na.cy}
             x2={nb.cx} y2={nb.cy}
-            stroke="rgba(240,240,250,0.22)"
+            stroke="rgba(10,10,15,0.22)"
             strokeWidth="1"
             strokeDasharray="4 3"
           />
@@ -171,7 +171,7 @@ function SignalOverlay() {
           cx={n.cx}
           cy={n.cy}
           r={n.r}
-          fill={n.main ? 'rgba(240,240,250,0.45)' : 'rgba(240,240,250,0.20)'}
+          fill={n.main ? 'rgba(10,10,15,0.45)' : 'rgba(10,10,15,0.20)'}
         />
       ))}
 
@@ -183,7 +183,7 @@ function SignalOverlay() {
           cy="240"
           r="10"
           fill="none"
-          stroke="rgba(240,240,250,0.25)"
+          stroke="rgba(10,10,15,0.25)"
           strokeWidth="0.8"
         >
           <animate
@@ -204,11 +204,11 @@ function SignalOverlay() {
       ))}
 
       {/* Hub pulse */}
-      <circle cx="200" cy="240" r="5" fill="rgba(240,240,250,0.45)">
+      <circle cx="200" cy="240" r="5" fill="rgba(10,10,15,0.45)">
         <animate attributeName="r"       values="5;7.5;5"     dur="2.4s" repeatCount="indefinite" />
         <animate attributeName="opacity" values="0.30;0.50;0.30" dur="2.4s" repeatCount="indefinite" />
       </circle>
-      <circle cx="200" cy="240" r="14" fill="none" stroke="rgba(240,240,250,0.08)" strokeWidth="0.8">
+      <circle cx="200" cy="240" r="14" fill="none" stroke="rgba(10,10,15,0.08)" strokeWidth="0.8">
         <animate attributeName="r"       values="14;21;14"   dur="2.4s" repeatCount="indefinite" />
         <animate attributeName="opacity" values="0.08;0;0.08" dur="2.4s" repeatCount="indefinite" />
       </circle>
@@ -220,7 +220,7 @@ function SignalOverlay() {
           x={x}
           y={y}
           fontSize={fs}
-          fill="rgba(240,240,250,1)"
+          fill="rgba(10,10,15,1)"
           opacity={0}
           fontFamily="monospace"
           textAnchor="middle"
@@ -258,7 +258,7 @@ export default function ContactSection() {
             className="absolute inset-y-0 right-0 pointer-events-none"
             style={{
               width: '55%',
-              background: 'linear-gradient(to left, rgb(0,0,0) 0%, rgba(0,0,0,0.55) 40%, transparent 100%)',
+              background: 'linear-gradient(to left, rgb(255,255,255) 0%, rgba(255,255,255,0.55) 40%, transparent 100%)',
               zIndex: 2,
             }}
           />
@@ -266,7 +266,7 @@ export default function ContactSection() {
             className="absolute inset-x-0 top-0 pointer-events-none"
             style={{
               height: '30%',
-              background: 'linear-gradient(to bottom, rgb(0,0,0) 0%, transparent 100%)',
+              background: 'linear-gradient(to bottom, rgb(255,255,255) 0%, transparent 100%)',
               zIndex: 2,
             }}
           />
@@ -274,7 +274,7 @@ export default function ContactSection() {
             className="absolute inset-x-0 bottom-0 pointer-events-none"
             style={{
               height: '30%',
-              background: 'linear-gradient(to top, rgb(0,0,0) 0%, transparent 100%)',
+              background: 'linear-gradient(to top, rgb(255,255,255) 0%, transparent 100%)',
               zIndex: 2,
             }}
           />
@@ -285,8 +285,8 @@ export default function ContactSection() {
           <div
             className="rounded p-8 md:p-12"
             style={{
-              border: '1px solid var(--white-15)',
-              backgroundColor: 'rgba(5, 5, 5, 0.9)',
+              border: '1px solid var(--white-10)',
+              backgroundColor: 'rgba(248, 248, 252, 0.85)',
             }}
           >
             <div className="space-y-8">

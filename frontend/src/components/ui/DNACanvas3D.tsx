@@ -120,7 +120,7 @@ export default function DNACanvas3D() {
         for (let d = 1; d <= 3; d++) {
           ctx.beginPath()
           ctx.arc(rung.a.sx + dx * d, rung.a.sy + dy * d, 1.4, 0, Math.PI * 2)
-          ctx.fillStyle = `rgba(240,240,250,${depth * 0.22})`
+          ctx.fillStyle = `rgba(10,10,15,${depth * 0.22})`
           ctx.fill()
         }
 

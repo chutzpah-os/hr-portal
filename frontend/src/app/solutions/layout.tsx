@@ -1,3 +1,11 @@
+// Solutions layout dormant — re-enable when solutions page is reactivated
+import type { ReactNode } from 'react'
+
+export default function SolutionsLayout({ children }: { children: ReactNode }) {
+  return <>{children}</>
+}
+
+/*
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import type { ReactNode } from 'react'
@@ -24,3 +32,4 @@ export default function SolutionsLayout({ children }: { children: ReactNode }) {
     </>
   )
 }
+*/

@@ -21,8 +21,8 @@ export default function Error({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'rgb(0,0,0)',
-        color: 'rgba(240,240,250,0.8)',
+        backgroundColor: 'rgb(255,255,255)',
+        color: 'rgba(10,10,15,0.8)',
         fontFamily: 'sans-serif',
         gap: '16px',
       }}
@@ -37,9 +37,9 @@ export default function Error({
           letterSpacing: '0.15em',
           textTransform: 'uppercase',
           padding: '8px 20px',
-          border: '1px solid rgba(240,240,250,0.35)',
+          border: '1px solid rgba(10,10,15,0.35)',
           background: 'transparent',
-          color: 'rgba(240,240,250,0.6)',
+          color: 'rgba(10,10,15,0.6)',
           cursor: 'pointer',
         }}
       >

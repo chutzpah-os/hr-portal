@@ -43,26 +43,26 @@ export default function PortfolioHero() {
         style={{ width: '45%', height: '600px' }}
       >
         {/* Dark tint */}
-        <div className="absolute inset-0 z-[1]" style={{ backgroundColor: 'rgba(0,0,0,0.25)' }} />
+        <div className="absolute inset-0 z-[1]" style={{ backgroundColor: 'rgba(255,255,255,0.25)' }} />
         {/* Left fade */}
         <div
           className="absolute inset-y-0 left-0 z-10"
-          style={{ width: '65%', background: 'linear-gradient(to right, rgb(0,0,0) 0%, rgba(0,0,0,0.7) 30%, rgba(0,0,0,0.2) 70%, transparent 100%)' }}
+          style={{ width: '65%', background: 'linear-gradient(to right, rgb(255,255,255) 0%, rgba(255,255,255,0.7) 30%, rgba(255,255,255,0.2) 70%, transparent 100%)' }}
         />
         {/* Right fade */}
         <div
           className="absolute inset-y-0 right-0 z-10"
-          style={{ width: '45%', background: 'linear-gradient(to left, rgb(0,0,0) 0%, rgba(0,0,0,0.7) 30%, transparent 100%)' }}
+          style={{ width: '45%', background: 'linear-gradient(to left, rgb(255,255,255) 0%, rgba(255,255,255,0.7) 30%, transparent 100%)' }}
         />
         {/* Top fade */}
         <div
           className="absolute inset-x-0 top-0 z-10"
-          style={{ height: '55%', background: 'linear-gradient(to bottom, rgb(0,0,0) 0%, rgba(0,0,0,0.6) 30%, transparent 100%)' }}
+          style={{ height: '55%', background: 'linear-gradient(to bottom, rgb(255,255,255) 0%, rgba(255,255,255,0.6) 30%, transparent 100%)' }}
         />
         {/* Bottom fade */}
         <div
           className="absolute inset-x-0 bottom-0 z-10"
-          style={{ height: '55%', background: 'linear-gradient(to top, rgb(0,0,0) 0%, rgba(0,0,0,0.6) 30%, transparent 100%)' }}
+          style={{ height: '55%', background: 'linear-gradient(to top, rgb(255,255,255) 0%, rgba(255,255,255,0.6) 30%, transparent 100%)' }}
         />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img

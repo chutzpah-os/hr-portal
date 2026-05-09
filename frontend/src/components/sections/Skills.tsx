@@ -14,7 +14,7 @@ function SkillCategory({ category, skills }: { category: string; skills: string[
       className="rounded p-6"
       style={{
         border: '1px solid var(--white-15)',
-        backgroundColor: 'rgba(5, 5, 5, 0.9)',
+        backgroundColor: 'rgba(248, 248, 252, 0.85)',
       }}
     >
       <h3 className="text-xs tracking-widest mb-4" style={{ color: 'var(--white-50)' }}>
