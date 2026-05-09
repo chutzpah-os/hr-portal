@@ -39,7 +39,7 @@ export default function Header() {
           onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(10,10,15,0.07)')}
           onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
         >
-          <span className="text-sm font-bold uppercase tracking-widest">HR</span>
+          <span className="text-sm font-bold uppercase tracking-widest" style={{ color: 'var(--accent)' }}>HR</span>
         </Link>
 
         {/* Separator */}
