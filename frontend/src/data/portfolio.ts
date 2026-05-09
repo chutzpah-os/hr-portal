@@ -24,6 +24,7 @@ export interface Experience {
   tags: string[]
   cvAreas: CVArea[]
   details: ExperienceDetails
+  image?: string
 }
 
 export interface EducationDetails {
@@ -987,6 +988,7 @@ export interface Experience {
   tags: string[]
   cvAreas: CVArea[]
   details: ExperienceDetails
+  image?: string
 }
 
 export interface EducationDetails {
@@ -1202,7 +1204,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: 'exp5',
-      title: 'Sales Representative (B2C/B2B)',
+      title: 'Sales Representative',
       company: 'Family Business',
       period: '2011 - 2017',
       description:

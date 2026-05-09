@@ -1,153 +1,337 @@
 'use client'
 
-import { useState } from 'react'
-import Modal from '@/components/ui/Modal'
-import ShowMoreButton from '@/components/ui/ShowMoreButton'
+import { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import { portfolioData, type Certification } from '@/data/portfolio'
 
 const LIMIT = 4
+const rotations = [-3, 4, -2, 5, -4, 3, -5, 2, -3, 4]
 
-const CATEGORY_LABELS: Record<Certification['category'], string> = {
-  cloud: 'Cloud',
-  security: 'Security',
-  networking: 'Networking',
-  data: 'Data',
+const CATEGORY_LABEL: Record<Certification['category'], string> = {
+  cloud:       'Cloud',
+  security:    'Security',
+  networking:  'Networking',
+  data:        'Data',
   development: 'Development',
 }
 
-function CategoryIcon({ category }: { category: Certification['category'] }) {
-  const style = { color: 'var(--white-35)', flexShrink: 0 as const }
+const CATEGORY_GRADIENTS: Record<Certification['category'], string> = {
+  cloud:       'from-[#f2d0c4] to-[#D4775A]',
+  security:    'from-[#f2d0c4] to-[#D4775A]',
+  networking:  'from-[#f2d0c4] to-[#D4775A]',
+  data:        'from-[#f2d0c4] to-[#D4775A]',
+  development: 'from-[#f2d0c4] to-[#D4775A]',
+}
 
-  if (category === 'cloud')
-    return (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={style}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />
-      </svg>
-    )
-
-  if (category === 'security')
-    return (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={style}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-      </svg>
-    )
-
-  if (category === 'networking')
-    return (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={style}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 3.75H6A2.25 2.25 0 003.75 6v1.5M16.5 3.75H18A2.25 2.25 0 0120.25 6v1.5m0 9V18A2.25 2.25 0 0118 20.25h-1.5m-9 0H6A2.25 2.25 0 013.75 18v-1.5M15 12a3 3 0 11-6 0 3 3 0 016 0zm3.75-4.5h.75a.75.75 0 01.75.75v.75M3.75 7.5H3a.75.75 0 00-.75.75v.75M3.75 16.5H3a.75.75 0 00-.75.75v.75m17.25 0h.75a.75.75 0 00.75-.75v-.75" />
-      </svg>
-    )
-
-  if (category === 'data')
-    return (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={style}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 5.625c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
-      </svg>
-    )
+function CertCard({
+  cert,
+  index,
+  onClick,
+}: {
+  cert: Certification
+  index: number
+  onClick: () => void
+}) {
+  const rot = rotations[index % rotations.length]
+  const gradient = CATEGORY_GRADIENTS[cert.category]
 
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={style}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
-    </svg>
+    <motion.button
+      onClick={onClick}
+      className="w-full text-left group"
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: index * 0.04 }}
+    >
+      <div
+        className="rounded-3xl overflow-hidden"
+        style={{
+          padding: '28px 32px',
+          backgroundColor: 'rgba(248,248,252,0.92)',
+          border: '1px solid var(--white-10)',
+        }}
+      >
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+          <div className="sm:w-1/2">
+            <span
+              className="text-[0.6rem] uppercase tracking-widest block mb-2"
+              style={{ color: 'var(--white-35)' }}
+            >
+              {CATEGORY_LABEL[cert.category]}
+            </span>
+            <h3
+              className="mb-3 leading-tight"
+              style={{
+                color: 'var(--white-95)',
+                fontSize: 'clamp(0.95rem, 2vw, 1.15rem)',
+                fontWeight: 700,
+              }}
+            >
+              {cert.title}
+            </h3>
+            <div className="flex flex-wrap gap-x-3 gap-y-1 mb-5">
+              <span className="text-xs" style={{ color: 'var(--white-40)' }}>
+                {cert.issuer}
+              </span>
+              <span className="text-xs" style={{ color: 'var(--white-30)' }}>
+                {cert.date}
+              </span>
+            </div>
+            <span
+              className="inline-flex items-center gap-2 text-xs uppercase tracking-widest group-hover:gap-3 transition-all duration-300"
+              style={{ color: 'var(--white-40)' }}
+            >
+              View details <span>→</span>
+            </span>
+          </div>
+
+          <div className="sm:w-[45%] relative h-[140px] sm:h-[160px]">
+            <motion.div
+              className={`absolute inset-0 overflow-hidden rounded-2xl bg-gradient-to-br ${gradient}`}
+              style={{ rotate: rot, boxShadow: '0 8px 24px rgba(10,10,15,0.07)' }}
+              whileHover={{ rotate: 0, scale: 1.03 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="w-full h-full flex items-end p-4">
+                <span
+                  className="text-[0.55rem] uppercase tracking-widest font-medium"
+                  style={{ color: 'rgba(10,10,15,0.28)' }}
+                >
+                  {CATEGORY_LABEL[cert.category]}
+                </span>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </motion.button>
   )
 }
 
-function CertCard({ cert }: { cert: Certification }) {
+function CertModal({
+  cert,
+  onClose,
+}: {
+  cert: Certification | null
+  onClose: () => void
+}) {
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (cert) {
+      document.body.style.overflow = 'hidden'
+      if (scrollRef.current) scrollRef.current.scrollTop = 0
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [cert])
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [onClose])
+
   return (
-    <div
-      className="rounded p-5"
-      style={{
-        border: '1px solid var(--white-10)',
-        backgroundColor: 'rgba(5, 5, 5, 0.9)',
-      }}
-    >
-      <div className="flex items-start gap-3">
-        <CategoryIcon category={cert.category} />
-        <div className="flex-grow min-w-0">
-          <div className="flex items-start justify-between gap-2 mb-1">
-            <p className="text-sm font-medium leading-tight" style={{ color: 'var(--white-90)' }}>
-              {cert.title}
-            </p>
-            <span className="text-xs flex-shrink-0" style={{ color: 'var(--white-40)' }}>
-              {cert.date}
-            </span>
-          </div>
-          <p className="text-xs mb-1" style={{ color: 'var(--white-50)' }}>
-            {cert.issuer}
-          </p>
-          <p className="text-xs mb-3" style={{ color: 'var(--white-35)' }}>
-            {CATEGORY_LABELS[cert.category]}
-          </p>
-          <div className="flex flex-wrap gap-1.5">
-            {cert.tags.map((tag) => (
-              <span
-                key={tag}
-                className="text-[0.65rem] uppercase tracking-wider px-2 py-0.5 rounded"
-                style={{
-                  border: '1px solid var(--white-10)',
-                  color: 'var(--white-40)',
-                }}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-          {cert.verifyUrl && cert.verifyUrl !== '#' && (
-            <a
-              href={cert.verifyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block mt-3 text-xs uppercase tracking-widest transition-colors duration-200"
-              style={{ color: 'var(--white-40)' }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--white-80)')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--white-40)')}
+    <AnimatePresence>
+      {cert && (
+        <>
+          <motion.div
+            key="backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40"
+            style={{ backgroundColor: 'rgba(10,10,15,0.22)', backdropFilter: 'blur(3px)' }}
+            onClick={onClose}
+          />
+
+          <motion.div
+            key="panel"
+            initial={{ y: '100%', opacity: 0.6 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: '100%', opacity: 0 }}
+            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed flex flex-col rounded-3xl overflow-hidden"
+            style={{
+              top: 72,
+              left: 8,
+              right: 8,
+              bottom: 16,
+              zIndex: 50,
+              backgroundColor: 'rgb(248,248,252)',
+            }}
+          >
+            <div
+              className="flex items-start justify-between px-6 py-5 shrink-0"
+              style={{ borderBottom: '1px solid rgba(10,10,15,0.08)', backgroundColor: 'rgb(248,248,252)' }}
             >
-              Verify Language Proficiency →
-            </a>
-          )}
-        </div>
-      </div>
-    </div>
+              <div className="pr-4 min-w-0">
+                <span
+                  className="text-[0.6rem] uppercase tracking-widest block mb-1"
+                  style={{ color: 'var(--white-35)' }}
+                >
+                  {CATEGORY_LABEL[cert.category]}
+                </span>
+                <h2
+                  className="font-bold leading-tight mb-1.5"
+                  style={{
+                    color: 'var(--white-100)',
+                    fontSize: 'clamp(1rem, 2vw, 1.3rem)',
+                    letterSpacing: '-0.02em',
+                  }}
+                >
+                  {cert.title}
+                </h2>
+                <p className="text-sm" style={{ color: 'var(--white-55)' }}>
+                  {cert.issuer} · {cert.date}
+                </p>
+              </div>
+              <button
+                onClick={onClose}
+                className="shrink-0 flex items-center justify-center w-9 h-9 rounded-xl transition-colors duration-200 text-xl font-light"
+                style={{ backgroundColor: 'rgba(10,10,15,0.08)', color: 'var(--white-60)' }}
+                aria-label="Close"
+              >
+                ×
+              </button>
+            </div>
+
+            <div
+              className="flex flex-wrap gap-2 px-6 py-3 shrink-0"
+              style={{ borderBottom: '1px solid rgba(10,10,15,0.06)' }}
+            >
+              {cert.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="text-[0.65rem] font-medium px-2.5 py-1 rounded-full"
+                  style={{ backgroundColor: 'rgba(255,255,255,0.85)', color: 'var(--white-50)', border: '1px solid var(--white-10)' }}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <div
+              ref={scrollRef}
+              className="flex-1 min-h-0 overflow-y-auto overscroll-contain"
+              style={{ touchAction: 'pan-y' } as React.CSSProperties}
+              onWheel={(e) => e.stopPropagation()}
+              onTouchStart={(e) => e.stopPropagation()}
+              onTouchMove={(e) => e.stopPropagation()}
+            >
+              <div className="px-6 sm:px-10 py-8 max-w-2xl mx-auto w-full">
+                <p className="text-[0.6rem] uppercase tracking-widest mb-2" style={{ color: 'var(--white-35)' }}>
+                  Issuer
+                </p>
+                <p className="text-sm mb-6" style={{ color: 'var(--white-65)' }}>
+                  {cert.issuer}
+                </p>
+
+                <p className="text-[0.6rem] uppercase tracking-widest mb-2" style={{ color: 'var(--white-35)' }}>
+                  Date
+                </p>
+                <p className="text-sm mb-8" style={{ color: 'var(--white-65)' }}>
+                  {cert.date}
+                </p>
+
+                {cert.credentialId && (
+                  <>
+                    <p className="text-[0.6rem] uppercase tracking-widest mb-2" style={{ color: 'var(--white-35)' }}>
+                      Credential ID
+                    </p>
+                    <p className="text-sm mb-8 font-mono" style={{ color: 'var(--white-55)' }}>
+                      {cert.credentialId}
+                    </p>
+                  </>
+                )}
+
+                {cert.verifyUrl && cert.verifyUrl !== '#' && (
+                  <a
+                    href={cert.verifyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs uppercase tracking-widest transition-opacity duration-200 hover:opacity-60"
+                    style={{ color: 'var(--accent)' }}
+                  >
+                    Verify Credential →
+                  </a>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
   )
 }
 
 export default function CertificationsSection() {
-  const [showMore, setShowMore] = useState(false)
+  const [active, setActive] = useState<Certification | null>(null)
+  const [expanded, setExpanded] = useState(false)
 
   const all = portfolioData.certifications
-  const visible = all.slice(0, LIMIT)
-  const extra = all.slice(LIMIT)
+  const displayed = expanded ? all : all.slice(0, LIMIT)
 
   return (
     <SectionWrapper id="certifications" fullscreen={false}>
-      <div className="max-w-4xl mx-auto px-6 md:px-10">
-        <h2 className="text-center mb-12" style={{ color: 'var(--white-100)' }}>
-          Certifications
-        </h2>
+      <div className="max-w-content mx-auto px-6 md:px-10">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10">
+          <div>
+            <motion.h2
+              style={{ color: 'var(--white-100)' }}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+            >
+              Certifications
+            </motion.h2>
+          </div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {visible.map((cert) => (
-            <CertCard key={cert.id} cert={cert} />
+        <motion.p layout className="text-xs mb-6" style={{ color: 'var(--white-30)' }}>
+          {all.length} certification{all.length !== 1 ? 's' : ''}
+        </motion.p>
+
+        <div className="flex flex-col gap-4">
+          {displayed.map((cert, i) => (
+            <CertCard
+              key={cert.id}
+              cert={cert}
+              index={i}
+              onClick={() => setActive(cert)}
+            />
           ))}
         </div>
 
-        {extra.length > 0 && (
-          <ShowMoreButton extraCount={extra.length} onClick={() => setShowMore(true)} />
+        {all.length > LIMIT && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="mt-8 flex justify-center"
+          >
+            <button
+              onClick={() => setExpanded((v) => !v)}
+              className="text-xs uppercase tracking-widest flex items-center gap-2 transition-opacity duration-200 hover:opacity-60"
+              style={{ color: 'var(--accent)' }}
+            >
+              {expanded ? (
+                <><span>Show less</span><span>↑</span></>
+              ) : (
+                <><span>Show all {all.length} certifications</span><span>↓</span></>
+              )}
+            </button>
+          </motion.div>
         )}
       </div>
 
-      <Modal isOpen={showMore} onClose={() => setShowMore(false)}>
-        <h2 className="text-xs uppercase tracking-widest mb-8" style={{ color: 'var(--white-50)' }}>
-          Certifications
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {all.map((cert) => (
-            <CertCard key={cert.id} cert={cert} />
-          ))}
-        </div>
-      </Modal>
+      <CertModal cert={active} onClose={() => setActive(null)} />
     </SectionWrapper>
   )
 }

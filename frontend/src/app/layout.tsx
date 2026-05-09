@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, Roboto_Mono } from 'next/font/google'
+import { Inter, Roboto_Mono, Syne, Playfair_Display } from 'next/font/google'
 import './globals.css'
 
 const inter = Inter({
@@ -14,23 +14,37 @@ const robotoMono = Roboto_Mono({
   display: 'swap',
 })
 
+const syne = Syne({
+  subsets: ['latin'],
+  variable: '--font-syne',
+  display: 'swap',
+})
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  display: 'swap',
+})
+
 const BASE_URL = 'https://hanielrolemberg.com'
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'Haniel Rolemberg — Problem Solver',
+    default: 'Haniel Rolemberg — Cybersecurity Specialist',
     template: '%s — Haniel Rolemberg',
   },
   description:
-    'Problem Solver | Software Development, Cybersecurity, Data Engineering & AI/ML. On a mission to impact 1 billion lives by 2035.',
+    'Cybersecurity Specialist & Problem Solver — penetration testing, threat modeling, secure systems design, and AI-driven security. On a mission to impact 1 billion lives by 2035.',
   keywords: [
-    'Problem Solver',
-    'Software Engineer',
     'Cybersecurity',
-    'Data Engineering',
-    'Machine Learning',
+    'Penetration Testing',
+    'Threat Modeling',
+    'Security Engineer',
+    'Problem Solver',
     'Haniel Rolemberg',
+    'Red Team',
+    'CTF',
   ],
   authors: [{ name: 'Haniel Rolemberg', url: BASE_URL }],
   creator: 'Haniel Rolemberg',
@@ -73,8 +87,8 @@ const personSchema = {
     'https://linkedin.com/in/hanielrolemberg',
     'https://github.com/hanielrolemberg',
   ],
-  jobTitle: 'Problem Solver',
-  description: 'Problem Solver working across software development, cybersecurity, data engineering, and AI/ML. Founder of the Problem Solver Foundation.',
+  jobTitle: 'Cybersecurity Specialist',
+  description: 'Cybersecurity Specialist and Problem Solver. Penetration testing, threat modeling, secure systems design. Founder of the Problem Solver Foundation. Mission: impact 1 billion lives by 2035.',
 }
 
 const websiteSchema = {
@@ -91,7 +105,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${robotoMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${robotoMono.variable} ${syne.variable} ${playfair.variable}`}>
       <head>
         <script
           type="application/ld+json"
