@@ -34,10 +34,10 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
       onClick={onClose}
     >
       <div
-        className="relative max-w-2xl w-full max-h-[90vh] overflow-y-auto rounded"
+        className="relative max-w-2xl w-full max-h-[90vh] overflow-y-auto rounded bg-white"
         style={{
-          backgroundColor: 'rgb(8, 8, 8)',
-          border: '1px solid var(--white-25)',
+          border: '1px solid rgba(10,10,15,0.12)',
+          boxShadow: '0 24px 80px rgba(10,10,15,0.14)',
         }}
         onClick={(e) => e.stopPropagation()}
       >
