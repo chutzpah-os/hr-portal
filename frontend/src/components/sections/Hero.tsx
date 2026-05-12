@@ -144,6 +144,8 @@ export default function Hero() {
                 alt="Haniel Rolemberg"
                 fill
                 priority
+                sizes="(max-width: 768px) 60vw, 380px"
+                quality={85}
                 className="object-cover object-top"
               />
             </div>

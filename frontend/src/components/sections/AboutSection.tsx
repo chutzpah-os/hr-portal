@@ -72,9 +72,11 @@ export default function AboutSection() {
             transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
           >
             <Image
-              src="/images/hanielandhisfather.png"
+              src="/images/hanielandhisfather.jpg"
               alt="Haniel and his father"
               fill
+              sizes="(max-width: 768px) 90vw, 360px"
+              quality={85}
               className="object-cover object-center"
             />
           </motion.div>

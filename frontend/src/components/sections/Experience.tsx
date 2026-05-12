@@ -55,12 +55,6 @@ function ExperienceCard({
 
           {/* Left: text */}
           <div className="sm:w-1/2">
-            <span
-              className="text-[0.6rem] uppercase tracking-widest block mb-2"
-              style={{ color: 'var(--white-35)' }}
-            >
-              {exp.period}
-            </span>
             <h3
               className="mb-1 leading-tight"
               style={{
@@ -106,6 +100,8 @@ function ExperienceCard({
                   src={exp.image}
                   alt={exp.company}
                   fill
+                  sizes="(max-width: 640px) 90vw, 45vw"
+                  quality={80}
                   className="object-cover"
                 />
               ) : (
@@ -188,6 +184,8 @@ function ExperienceModal({
                   src={exp.image}
                   alt={exp.company}
                   fill
+                  sizes="100vw"
+                  quality={80}
                   className="object-cover"
                 />
                 <div
@@ -211,7 +209,7 @@ function ExperienceModal({
                   className="text-[0.6rem] uppercase tracking-widest block mb-1"
                   style={{ color: 'var(--white-35)' }}
                 >
-                  {exp.company} · {exp.period}
+                  {exp.company}
                 </span>
                 <h2
                   className="font-bold leading-tight mb-1.5"
@@ -404,15 +402,6 @@ export default function ExperienceSection() {
                       className="flex-1 mx-4"
                       style={{ borderBottom: '1px dotted rgba(10,10,15,0.18)', marginBottom: '5px' }}
                     />
-                    <span
-                      className="text-xs shrink-0"
-                      style={{
-                        color: 'var(--white-40)',
-                        fontFamily: 'var(--font-mono, monospace)',
-                      }}
-                    >
-                      {exp.period}
-                    </span>
                   </motion.div>
                 ))}
 
