@@ -394,6 +394,17 @@ hr.section-divider {
   color: var(--accent);
 }
 
+/* ─── Blog post body ─── */
+.prose-blog p {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: rgba(10,10,15,0.72);
+  margin-bottom: 1.6rem;
+}
+.prose-blog p:last-child {
+  margin-bottom: 0;
+}
+
 /* ─── Timeline connector ─── */
 .timeline-line {
   position: absolute;
