@@ -1474,7 +1474,7 @@ export const portfolioData: PortfolioData = {
       title: 'Board Member / Volunteer',
       organization: 'Clube Poliglota Brasil',
       period: 'Jan 2021 - Sep 2023',
-      image: '/images/cpb.jpg',
+      image: '/images/cpbb.png',
       description: 'Managed a team of content creators, implemented SEO and growth hacking strategies, improved blog performance with PHP, and authored a book on language learning.',
       cvAreas: ['software'],
       details: {
