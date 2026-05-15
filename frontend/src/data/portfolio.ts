@@ -60,6 +60,7 @@ export interface Volunteering {
   description: string
   cvAreas: CVArea[]
   details: VolunteeringDetails
+  image?: string
 }
 
 export type ProjectCategory = 'softwareDevelopment' | 'cybersecurity' | 'dataEngineering' | 'aiml' | 'challenges'
@@ -1024,6 +1025,7 @@ export interface Volunteering {
   description: string
   cvAreas: CVArea[]
   details: VolunteeringDetails
+  image?: string
 }
 
 export type ProjectCategory = 'softwareDevelopment' | 'cybersecurity' | 'dataEngineering' | 'aiml' | 'challenges'
@@ -1385,6 +1387,7 @@ export const portfolioData: PortfolioData = {
       title: 'Strategic Alliances | IT',
       organization: 'Project Management Institute (PMI)',
       period: 'Apr 2024 - Present',
+      image: '/images/pmi.jpg',
       description: 'Supporting strategic partnerships, IT operations, and joint initiatives including Agile Brazil and Produte-SE.',
       cvAreas: ['software'],
       details: {
@@ -1404,6 +1407,7 @@ export const portfolioData: PortfolioData = {
       title: 'Tech Advocate',
       organization: 'Tech Brazil Advocates',
       period: 'Jan 2024 - Present',
+      image: '/images/advocatetech.jpg',
       description: 'Mapping the local tech innovation ecosystem in Sergipe, Brazil.',
       cvAreas: ['software'],
       details: {
@@ -1422,6 +1426,7 @@ export const portfolioData: PortfolioData = {
       title: 'Community Leader',
       organization: 'GDG Aracaju (Google Developer Group)',
       period: 'Oct 2023 - Nov 2024',
+      image: '/images/gdgaracaju.jpg',
       description: 'Led 25+ volunteers to empower 300+ tech professionals through events, workshops, and mentorship.',
       cvAreas: ['software'],
       details: {
@@ -1443,6 +1448,7 @@ export const portfolioData: PortfolioData = {
       title: 'Volunteer Staff',
       organization: 'Rotary International / Rotaract',
       period: 'Oct 2022 - Sep 2023',
+      image: '/images/rotary.jpg',
       description: 'Contributing to environmental protection, health, education, and peace initiatives.',
       cvAreas: [],
       details: {
@@ -1464,6 +1470,7 @@ export const portfolioData: PortfolioData = {
       title: 'Board Member / Volunteer',
       organization: 'Clube Poliglota Brasil',
       period: 'Jan 2021 - Sep 2023',
+      image: '/images/cpb.jpg',
       description: 'Managed a team of content creators, implemented SEO and growth hacking strategies, improved blog performance with PHP, and authored a book on language learning.',
       cvAreas: ['software'],
       details: {

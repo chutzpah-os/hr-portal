@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import { portfolioData, type Volunteering } from '@/data/portfolio'
 
@@ -39,12 +40,6 @@ function VolunteeringCard({
       >
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
           <div className="sm:w-1/2">
-            <span
-              className="text-[0.6rem] uppercase tracking-widest block mb-2"
-              style={{ color: 'var(--white-35)' }}
-            >
-              {vol.period}
-            </span>
             <h3
               className="mb-3 leading-tight"
               style={{
@@ -70,19 +65,30 @@ function VolunteeringCard({
 
           <div className="sm:w-[45%] relative h-[140px] sm:h-[160px]">
             <motion.div
-              className={`absolute inset-0 overflow-hidden rounded-2xl bg-gradient-to-br ${GRADIENT}`}
+              className={`absolute inset-0 overflow-hidden rounded-2xl ${!vol.image ? `bg-gradient-to-br ${GRADIENT}` : ''}`}
               style={{ rotate: rot, boxShadow: '0 8px 24px rgba(10,10,15,0.07)' }}
               whileHover={{ rotate: 0, scale: 1.03 }}
               transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="w-full h-full flex items-end p-4">
-                <span
-                  className="text-[0.55rem] uppercase tracking-widest font-medium"
-                  style={{ color: 'rgba(10,10,15,0.28)' }}
-                >
-                  {vol.organization}
-                </span>
-              </div>
+              {vol.image ? (
+                <Image
+                  src={vol.image}
+                  alt={vol.organization}
+                  fill
+                  sizes="(max-width: 640px) 90vw, 45vw"
+                  quality={80}
+                  className="object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex items-end p-4">
+                  <span
+                    className="text-[0.55rem] uppercase tracking-widest font-medium"
+                    style={{ color: 'rgba(10,10,15,0.28)' }}
+                  >
+                    {vol.organization}
+                  </span>
+                </div>
+              )}
             </motion.div>
           </div>
         </div>
@@ -147,16 +153,38 @@ function VolunteeringModal({
               backgroundColor: 'rgb(248,248,252)',
             }}
           >
+            {/* Cover image banner */}
+            {vol.image && (
+              <div className="relative w-full shrink-0" style={{ height: '200px' }}>
+                <Image
+                  src={vol.image}
+                  alt={vol.organization}
+                  fill
+                  sizes="100vw"
+                  quality={80}
+                  className="object-cover"
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{ background: 'linear-gradient(to bottom, transparent 40%, rgb(248,248,252))' }}
+                />
+              </div>
+            )}
+
             <div
               className="flex items-start justify-between px-6 py-5 shrink-0"
-              style={{ borderBottom: '1px solid rgba(10,10,15,0.08)', backgroundColor: 'rgb(248,248,252)' }}
+              style={{
+                borderBottom: '1px solid rgba(10,10,15,0.08)',
+                backgroundColor: 'rgb(248,248,252)',
+                marginTop: vol.image ? '-2rem' : 0,
+              }}
             >
               <div className="pr-4 min-w-0">
                 <span
                   className="text-[0.6rem] uppercase tracking-widest block mb-1"
                   style={{ color: 'var(--white-35)' }}
                 >
-                  {vol.organization} · {vol.period}
+                  {vol.organization}
                 </span>
                 <h2
                   className="font-bold leading-tight mb-1.5"
