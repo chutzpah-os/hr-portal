@@ -27,23 +27,41 @@ function extractAttr(xml: string, tag: string, attr: string): string {
   return match ? match[1] : ''
 }
 
-async function isVideoAvailable(videoId: string): Promise<boolean> {
+// Returns false only on definitive 404 — anything else (timeout, error) keeps the video
+async function isVideoUnavailable(videoId: string): Promise<boolean> {
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), 2500)
   try {
     const res = await fetch(
       `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`,
-      { next: { revalidate: 3600 } }
+      { signal: controller.signal, next: { revalidate: 3600 } }
     )
-    return res.ok
+    return res.status === 404
   } catch {
+    // timeout or network error — assume available
     return false
+  } finally {
+    clearTimeout(timer)
   }
 }
 
 async function fetchChannel(channelId: string, channelSlug: string): Promise<YTVideo[]> {
-  const url = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`
-  const res = await fetch(url, { next: { revalidate: 3600 } })
-  if (!res.ok) return []
-  const xml = await res.text()
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), 5000)
+
+  let xml: string
+  try {
+    const res = await fetch(
+      `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`,
+      { signal: controller.signal, next: { revalidate: 3600 } }
+    )
+    if (!res.ok) return []
+    xml = await res.text()
+  } catch {
+    return []
+  } finally {
+    clearTimeout(timer)
+  }
 
   const channelName = extractTag(xml, 'title')
   const entries = xml.split('<entry>').slice(1)
@@ -64,9 +82,9 @@ async function fetchChannel(channelId: string, channelSlug: string): Promise<YTV
     }
   })
 
-  // Check availability for all videos in parallel
-  const availability = await Promise.all(videos.map((v) => isVideoAvailable(v.id)))
-  return videos.filter((_, i) => availability[i])
+  // Filter only confirmed-unavailable videos; keep everything else
+  const unavailable = await Promise.all(videos.map((v) => isVideoUnavailable(v.id)))
+  return videos.filter((_, i) => !unavailable[i])
 }
 
 export async function GET() {
@@ -74,7 +92,6 @@ export async function GET() {
     const results = await Promise.all(
       CHANNELS.map((ch) => fetchChannel(ch.id, ch.slug))
     )
-    // Interleave channels so the carousel mixes both
     const merged: YTVideo[] = []
     const max = Math.max(...results.map((r) => r.length))
     for (let i = 0; i < max; i++) {
