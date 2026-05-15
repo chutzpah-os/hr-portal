@@ -8,6 +8,7 @@ import EducationSection from '@/components/sections/Education'
 import LanguagesSection from '@/components/sections/Languages'
 import CertificationsSection from '@/components/sections/Certifications'
 import SkillsSection from '@/components/sections/SkillsSection'
+import AwardsSection from '@/components/sections/AwardsSection'
 
 export default function PortfolioPage() {
   return (
@@ -30,6 +31,8 @@ export default function PortfolioPage() {
         <CertificationsSection />
         <hr className="section-divider" />
         <SkillsSection />
+        <hr className="section-divider" />
+        <AwardsSection />
       </PortfolioSection>
     </main>
   )

@@ -71,16 +71,16 @@ export default function SkillsSection() {
   return (
     <SectionWrapper id="skills" fullscreen={false}>
       <div className="max-w-content mx-auto px-6 md:px-10">
-        <motion.h2
-          className="mb-10"
-          style={{ color: 'var(--white-100)' }}
+        <motion.p
+          className="section-label mb-10"
+          style={{ color: 'var(--white-45)' }}
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           Skills
-        </motion.h2>
+        </motion.p>
 
         <div>
           {portfolioData.skills.map(({ name, items }, i) => (

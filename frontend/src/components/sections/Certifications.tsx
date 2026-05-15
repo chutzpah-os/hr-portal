@@ -261,15 +261,16 @@ export default function CertificationsSection() {
       <div className="max-w-content mx-auto px-6 md:px-10">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10">
           <div>
-            <motion.h2
-              style={{ color: 'var(--white-100)' }}
+            <motion.p
+              className="section-label"
+              style={{ color: 'var(--white-45)' }}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
             >
               Certifications
-            </motion.h2>
+            </motion.p>
           </div>
         </div>
 

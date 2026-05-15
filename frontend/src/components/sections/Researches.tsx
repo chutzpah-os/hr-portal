@@ -266,6 +266,7 @@ export default function ResearchesSection() {
       <div className="max-w-content mx-auto px-6 md:px-10">
         <motion.p
           className="section-label mb-10"
+          style={{ color: 'var(--white-45)' }}
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

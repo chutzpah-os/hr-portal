@@ -128,6 +128,14 @@ export interface Research {
   image?: string
 }
 
+export interface Award {
+  id: string
+  title: string
+  issuer: string
+  year: string
+  description?: string
+}
+
 export interface PortfolioData {
   personal: PersonalInfo
   experience: Experience[]
@@ -138,6 +146,7 @@ export interface PortfolioData {
   projects: Record<ProjectCategory, Project[]>
   certifications: Certification[]
   researches: Research[]
+  awards: Award[]
 }
 
 // ─── Portfolio Data ──────────────────────────────────────────────────────────
@@ -1104,6 +1113,14 @@ export interface Research {
   image?: string
 }
 
+export interface Award {
+  id: string
+  title: string
+  issuer: string
+  year: string
+  description?: string
+}
+
 export interface PortfolioData {
   personal: PersonalInfo
   experience: Experience[]
@@ -1114,6 +1131,7 @@ export interface PortfolioData {
   projects: Record<ProjectCategory, Project[]>
   certifications: Certification[]
   researches: Research[]
+  awards: Award[]
 }
 
 // ─── Portfolio Data ──────────────────────────────────────────────────────────
@@ -2092,6 +2110,17 @@ export const portfolioData: PortfolioData = {
       field: 'Oncology · Gastroenterology · AI',
       status: 'in development',
       cvAreas: ['aiml'],
+    },
+  ],
+
+  awards: [
+    {
+      id: 'award1',
+      title: 'Top 1.2% — Competitive Selection Exam',
+      issuer: 'Stealth Selection Process',
+      year: '2018',
+      description:
+        'At age 18, successfully passed a highly competitive exam with four phases, including written and physical fitness tests, ranking in the top 1.2%.',
     },
   ],
 }
