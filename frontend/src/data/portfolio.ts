@@ -355,6 +355,7 @@ export const portfolioData: PortfolioData = {
       title: 'Community Leader',
       organization: 'GDG Aracaju',
       period: 'Oct 2023 - Nov 2024',
+      image: '/images/gdgaracaju.jpg',
       description: 'Leading a team of 25+ volunteers to empower 300+ tech professionals and enthusiasts',
       cvAreas: ['software'],
       details: {
@@ -375,6 +376,7 @@ export const portfolioData: PortfolioData = {
       title: 'Volunteer Staff',
       organization: 'Rotary International',
       period: 'Oct 2022 - Sep 2023',
+      image: '/images/rotary.jpg',
       description: 'Contributing to environmental protection, health, education, and peace initiatives',
       cvAreas: ['cyber', 'aiml', 'data', 'software'],
       details: {
