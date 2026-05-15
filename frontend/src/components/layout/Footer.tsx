@@ -77,10 +77,21 @@ export default function Footer() {
           ))}
         </nav>
 
-        {/* Copyright */}
-        <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--white-50)' }}>
-          © 2026 Haniel Rolemberg. All rights reserved.
-        </p>
+        {/* Email + Copyright */}
+        <div className="flex flex-col items-center md:items-end gap-1">
+          <a
+            href="mailto:contact@hanielrolemberg.com"
+            className="text-xs transition-colors duration-200"
+            style={{ color: 'var(--white-55)' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent)')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--white-55)')}
+          >
+            contact@hanielrolemberg.com
+          </a>
+          <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--white-35)' }}>
+            © 2026 Haniel Rolemberg. All rights reserved.
+          </p>
+        </div>
       </div>
     </footer>
   )
