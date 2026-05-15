@@ -43,6 +43,7 @@ export interface Education {
   description: string
   cvAreas: CVArea[]
   details: EducationDetails
+  type?: 'degree' | 'course'
 }
 
 export interface VolunteeringDetails {
@@ -81,6 +82,7 @@ export interface Project {
   tags: string[]
   cvAreas: CVArea[]
   details: ProjectDetails
+  image?: string
 }
 
 export interface LanguageDetails {
@@ -123,6 +125,7 @@ export interface Research {
   status: 'in development' | 'published' | 'under review'
   cvAreas: CVArea[]
   link?: string
+  image?: string
 }
 
 export interface PortfolioData {
@@ -221,6 +224,7 @@ export const portfolioData: PortfolioData = {
   education: [
     {
       id: 'edu1',
+      type: 'degree',
       title: "Bachelor's Degree in Computer Science",
       institution: 'Estácio',
       period: '2022',
@@ -242,6 +246,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: 'edu2',
+      type: 'degree',
       title: 'Bachelor\'s Degree in Public Administration',
       institution: 'Estácio',
       period: '2017 - 2019 • GPA: 4.97/5',
@@ -265,6 +270,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: 'edu3',
+      type: 'course',
       title: 'Junior Cybersecurity Analyst Career Path',
       institution: 'Cisco Networking Academy',
       period: '2024 - 2025',
@@ -287,6 +293,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: 'edu4',
+      type: 'course',
       title: 'Ethical Hacker',
       institution: 'Cisco Networking Academy',
       period: '2023',
@@ -309,6 +316,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: 'edu5',
+      type: 'course',
       title: 'Network Technician Career Path',
       institution: 'Cisco Networking Academy',
       period: '2023',
@@ -1011,6 +1019,7 @@ export interface Education {
   description: string
   cvAreas: CVArea[]
   details: EducationDetails
+  type?: 'degree' | 'course'
 }
 
 export interface VolunteeringDetails {
@@ -1049,6 +1058,7 @@ export interface Project {
   tags: string[]
   cvAreas: CVArea[]
   details: ProjectDetails
+  image?: string
 }
 
 export interface LanguageDetails {
@@ -1091,6 +1101,7 @@ export interface Research {
   status: 'in development' | 'published' | 'under review'
   cvAreas: CVArea[]
   link?: string
+  image?: string
 }
 
 export interface PortfolioData {
@@ -1234,6 +1245,7 @@ export const portfolioData: PortfolioData = {
   education: [
     {
       id: 'edu1',
+      type: 'degree',
       title: "Bachelor's Degree in Computer Science",
       institution: 'Estácio',
       period: '2022 - Present',
@@ -1256,6 +1268,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: 'edu2',
+      type: 'degree',
       title: "Bachelor's Degree in Public Administration",
       institution: 'Estácio',
       period: '2017 - 2019 • GPA: 4.97/5',
@@ -1279,6 +1292,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: 'edu3',
+      type: 'course',
       title: 'Junior Cybersecurity Analyst Career Path',
       institution: 'Cisco Networking Academy',
       period: '2024 - 2025',
@@ -1302,6 +1316,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: 'edu4',
+      type: 'course',
       title: 'Ethical Hacker',
       institution: 'Cisco Networking Academy',
       period: '2023',
@@ -1324,6 +1339,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: 'edu5',
+      type: 'course',
       title: 'Network Technician Career Path',
       institution: 'Cisco Networking Academy',
       period: '2023',
@@ -1345,6 +1361,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: 'edu6',
+      type: 'course',
       title: 'CS50 — Computer Science from Harvard',
       institution: 'Fundação Estudar',
       period: 'Completed',
@@ -1558,7 +1575,7 @@ export const portfolioData: PortfolioData = {
           'Technical documentation and presentations',
           'International business and community leadership',
         ],
-        verificationLink: '#',
+        verificationLink: 'https://youtu.be/P24KDOH8mNI?si=esDMWjFPKW4xFDqs',
       },
     },
     {

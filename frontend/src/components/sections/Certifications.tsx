@@ -46,64 +46,43 @@ function CertCard({
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: index * 0.04 }}
     >
       <div
-        className="rounded-3xl overflow-hidden"
+        className="rounded-2xl transition-all duration-200"
         style={{
-          padding: '28px 32px',
+          padding: '20px 24px',
           backgroundColor: 'rgba(248,248,252,0.92)',
           border: '1px solid var(--white-10)',
         }}
+        onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(212,119,90,0.3)' }}
+        onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--white-10)' }}
       >
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
-          <div className="sm:w-1/2">
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0">
             <span
-              className="text-[0.6rem] uppercase tracking-widest block mb-2"
-              style={{ color: 'var(--white-35)' }}
+              className="text-[0.58rem] uppercase tracking-widest block mb-1.5"
+              style={{ color: 'var(--accent)' }}
             >
               {CATEGORY_LABEL[cert.category]}
             </span>
             <h3
-              className="mb-3 leading-tight"
+              className="leading-snug mb-1.5"
               style={{
-                color: 'var(--white-95)',
-                fontSize: 'clamp(0.95rem, 2vw, 1.15rem)',
-                fontWeight: 700,
+                color: 'var(--white-90)',
+                fontSize: 'clamp(0.85rem, 1.8vw, 1rem)',
+                fontWeight: 600,
               }}
             >
               {cert.title}
             </h3>
-            <div className="flex flex-wrap gap-x-3 gap-y-1 mb-5">
-              <span className="text-xs" style={{ color: 'var(--white-40)' }}>
-                {cert.issuer}
-              </span>
-              <span className="text-xs" style={{ color: 'var(--white-30)' }}>
-                {cert.date}
-              </span>
-            </div>
-            <span
-              className="inline-flex items-center gap-2 text-xs uppercase tracking-widest group-hover:gap-3 transition-all duration-300"
-              style={{ color: 'var(--white-40)' }}
-            >
-              View details <span>→</span>
-            </span>
+            <p className="text-xs" style={{ color: 'var(--white-45)' }}>
+              {cert.issuer}
+            </p>
           </div>
-
-          <div className="sm:w-[45%] relative h-[140px] sm:h-[160px]">
-            <motion.div
-              className={`absolute inset-0 overflow-hidden rounded-2xl bg-gradient-to-br ${gradient}`}
-              style={{ rotate: rot, boxShadow: '0 8px 24px rgba(10,10,15,0.07)' }}
-              whileHover={{ rotate: 0, scale: 1.03 }}
-              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="w-full h-full flex items-end p-4">
-                <span
-                  className="text-[0.55rem] uppercase tracking-widest font-medium"
-                  style={{ color: 'rgba(10,10,15,0.28)' }}
-                >
-                  {CATEGORY_LABEL[cert.category]}
-                </span>
-              </div>
-            </motion.div>
-          </div>
+          <span
+            className="shrink-0 text-lg leading-none mt-1 group-hover:translate-x-1 transition-transform duration-200"
+            style={{ color: 'var(--white-25)' }}
+          >
+            →
+          </span>
         </div>
       </div>
     </motion.button>
@@ -298,7 +277,7 @@ export default function CertificationsSection() {
           {all.length} certification{all.length !== 1 ? 's' : ''}
         </motion.p>
 
-        <div className="flex flex-col gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {displayed.map((cert, i) => (
             <CertCard
               key={cert.id}

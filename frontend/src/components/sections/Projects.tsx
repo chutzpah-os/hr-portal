@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import SectionWrapper from '@/components/ui/SectionWrapper'
+import Image from 'next/image'
 import { portfolioData, type Project, type ProjectCategory } from '@/data/portfolio'
 
 type FilterKey = 'all' | ProjectCategory
@@ -24,16 +24,7 @@ const CATEGORY_LABEL: Record<string, string> = {
   challenges:          'Challenges',
 }
 
-const CATEGORY_GRADIENTS: Record<string, string> = {
-  aiml:                'from-[#f2d0c4] to-[#D4775A]',
-  softwareDevelopment: 'from-[#f2d0c4] to-[#D4775A]',
-  dataEngineering:     'from-[#f2d0c4] to-[#D4775A]',
-  cybersecurity:       'from-[#f2d0c4] to-[#D4775A]',
-  challenges:          'from-[#f2d0c4] to-[#D4775A]',
-}
-
-const LIMIT = 3
-const rotations = [-3, 4, -2, 5, -4, 3, -5, 2, -3, 4]
+const LIMIT = 5
 
 function getAllProjects(): Project[] {
   return Object.values(portfolioData.projects).flat()
@@ -44,94 +35,85 @@ function getFilteredProjects(filter: FilterKey): Project[] {
   return portfolioData.projects[filter] ?? []
 }
 
-// ── Card ──────────────────────────────────────────────────────────────────────
-function ProjectCard({
+// ── Row ───────────────────────────────────────────────────────────────────────
+function ProjectRow({
   project,
   index,
   onClick,
+  isLast,
 }: {
   project: Project
   index: number
   onClick: () => void
+  isLast: boolean
 }) {
-  const rot = rotations[index % rotations.length]
-  const gradient = CATEGORY_GRADIENTS[project.category] ?? 'from-[#f2d0c4] to-[#D4775A]'
-
   return (
     <motion.button
       onClick={onClick}
       className="w-full text-left group"
-      initial={{ opacity: 0, y: 12 }}
+      initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: index * 0.04 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1], delay: index * 0.06 }}
     >
       <div
-        className="rounded-3xl overflow-hidden"
-        style={{
-          padding: '28px 32px',
-          backgroundColor: 'rgba(248,248,252,0.92)',
-          border: '1px solid var(--white-10)',
-        }}
+        className="flex items-center gap-5 py-5"
+        style={{ borderBottom: isLast ? 'none' : '1px solid rgba(10,10,15,0.07)' }}
       >
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
-
-          {/* Left: text */}
-          <div className="sm:w-1/2">
-            <span
-              className="text-[0.6rem] uppercase tracking-widest block mb-2"
-              style={{ color: 'var(--white-35)' }}
-            >
-              {CATEGORY_LABEL[project.category]}
-            </span>
-            <h3
-              className="mb-3 leading-tight"
-              style={{
-                color: 'var(--white-95)',
-                fontSize: 'clamp(0.95rem, 2vw, 1.15rem)',
-                fontWeight: 700,
-              }}
-            >
-              {project.title}
-            </h3>
-            <div className="flex flex-wrap gap-x-3 gap-y-1 mb-5">
-              {project.tags.slice(0, 3).map((tag) => (
-                <span key={tag} className="text-xs" style={{ color: 'var(--white-40)' }}>
-                  {tag}
-                </span>
-              ))}
+        {/* Image / fallback */}
+        <div
+          className="shrink-0 rounded-lg overflow-hidden"
+          style={{ width: '52px', height: '52px', backgroundColor: 'rgba(212,119,90,0.10)' }}
+        >
+          {project.image ? (
+            <Image
+              src={project.image}
+              alt={project.title}
+              width={52}
+              height={52}
+              quality={75}
+              className="object-cover w-full h-full"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center">
+              <span className="text-[0.6rem] font-semibold uppercase text-center px-1" style={{ color: 'var(--accent)' }}>
+                {CATEGORY_LABEL[project.category].slice(0, 2)}
+              </span>
             </div>
-            <span
-              className="inline-flex items-center gap-2 text-xs uppercase tracking-widest group-hover:gap-3 transition-all duration-300"
-              style={{ color: 'var(--white-40)' }}
-            >
-              View details <span>→</span>
-            </span>
-          </div>
-
-          {/* Right: tilted gradient block */}
-          <div className="sm:w-[45%] relative h-[140px] sm:h-[160px]">
-            <motion.div
-              className={`absolute inset-0 overflow-hidden rounded-2xl bg-gradient-to-br ${gradient}`}
-              style={{
-                rotate: rot,
-                boxShadow: '0 8px 24px rgba(10,10,15,0.07)',
-              }}
-              whileHover={{ rotate: 0, scale: 1.03 }}
-              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="w-full h-full flex items-end p-4">
-                <span
-                  className="text-[0.55rem] uppercase tracking-widest font-medium"
-                  style={{ color: 'rgba(10,10,15,0.28)' }}
-                >
-                  {CATEGORY_LABEL[project.category]}
-                </span>
-              </div>
-            </motion.div>
-          </div>
-
+          )}
         </div>
+
+        {/* Text */}
+        <div className="flex-1 min-w-0">
+          <h3
+            className="leading-snug mb-1.5 transition-colors duration-200 group-hover:text-[var(--accent)]"
+            style={{
+              color: 'var(--white-90)',
+              fontSize: 'clamp(0.9rem, 1.8vw, 1.05rem)',
+              fontWeight: 600,
+            }}
+          >
+            {project.title}
+          </h3>
+          <span
+            className="text-[0.6rem] uppercase tracking-widest px-2 py-0.5 rounded-full"
+            style={{
+              color: 'var(--accent)',
+              backgroundColor: 'var(--accent-dim)',
+              letterSpacing: '0.15em',
+            }}
+          >
+            {CATEGORY_LABEL[project.category]}
+          </span>
+        </div>
+
+        {/* Arrow */}
+        <span
+          className="shrink-0 text-base opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200"
+          style={{ color: 'var(--accent)' }}
+        >
+          →
+        </span>
       </div>
     </motion.button>
   )
@@ -349,24 +331,22 @@ export default function ProjectsSection() {
   }
 
   return (
-    <SectionWrapper id="projects" fullscreen={false}>
-      <div className="max-w-content mx-auto px-6 md:px-10">
+    <section id="projects">
+      <div className="max-w-content mx-auto px-6 md:px-10 pt-10 pb-14">
 
-        {/* Header: section label + filters side by side */}
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10">
-          <div>
-            <motion.h2
-              style={{ color: 'var(--white-100)' }}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-            >
-              Projects
-            </motion.h2>
-          </div>
+        {/* Header: label + filters */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+          <motion.p
+            className="text-[0.6rem] uppercase tracking-[0.22em] font-medium shrink-0"
+            style={{ color: 'var(--white-35)' }}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          >
+            Projects
+          </motion.p>
 
-          {/* Filter pills — aligned right */}
           <div className="flex flex-wrap gap-2">
             {FILTERS.map((f) => (
               <button
@@ -375,9 +355,9 @@ export default function ProjectsSection() {
                 className="text-[0.65rem] uppercase tracking-widest px-3 py-1.5 rounded-full transition-all duration-200"
                 style={{
                   border: '1px solid',
-                  borderColor: filter === f.key ? 'var(--white-50)' : 'var(--white-15)',
-                  color: filter === f.key ? 'var(--white-100)' : 'var(--white-45)',
-                  backgroundColor: filter === f.key ? 'var(--white-10)' : 'transparent',
+                  borderColor: filter === f.key ? 'var(--accent)' : 'var(--white-15)',
+                  color: filter === f.key ? 'var(--accent)' : 'var(--white-45)',
+                  backgroundColor: filter === f.key ? 'var(--accent-dim)' : 'transparent',
                 }}
               >
                 {f.label}
@@ -386,24 +366,26 @@ export default function ProjectsSection() {
           </div>
         </div>
 
-        {/* Project count */}
-        <motion.p layout className="text-xs mb-6" style={{ color: 'var(--white-30)' }}>
-          {filtered.length} project{filtered.length !== 1 ? 's' : ''}
-        </motion.p>
-
-        {/* Vertical list of cards */}
-        <div className="flex flex-col gap-4">
+        {/* Rows */}
+        <div
+          className="rounded-2xl"
+          style={{
+            border: '1px solid var(--white-10)',
+            backgroundColor: 'rgba(10,10,15,0.025)',
+            padding: '0 28px',
+          }}
+        >
           {displayed.map((project, i) => (
-            <ProjectCard
+            <ProjectRow
               key={project.id}
               project={project}
               index={i}
+              isLast={i === displayed.length - 1}
               onClick={() => setActive(project)}
             />
           ))}
         </div>
 
-        {/* Show all / Show less */}
         {filtered.length > LIMIT && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -427,8 +409,7 @@ export default function ProjectsSection() {
 
       </div>
 
-      {/* Detail modal */}
       <ProjectModal project={active} onClose={() => setActive(null)} />
-    </SectionWrapper>
+    </section>
   )
 }

@@ -3,97 +3,100 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import SectionWrapper from '@/components/ui/SectionWrapper'
 import { portfolioData, type Volunteering } from '@/data/portfolio'
 
 const LIMIT = 3
-const GRADIENT = 'from-[#f2d0c4] to-[#D4775A]'
-const rotations = [-3, 4, -2, 5, -4, 3, -5, 2, -3, 4]
 
-function VolunteeringCard({
+function VolunteeringTimelineItem({
   vol,
   index,
+  isLast,
   onClick,
 }: {
   vol: Volunteering
   index: number
+  isLast: boolean
   onClick: () => void
 }) {
-  const rot = rotations[index % rotations.length]
-
   return (
-    <motion.button
-      onClick={onClick}
-      className="w-full text-left group"
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: index * 0.04 }}
+    <motion.div
+      className="flex gap-5"
+      initial={{ opacity: 0, x: -16 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: index * 0.06 }}
     >
-      <div
-        className="rounded-3xl overflow-hidden"
-        style={{
-          padding: '28px 32px',
-          backgroundColor: 'rgba(248,248,252,0.92)',
-          border: '1px solid var(--white-10)',
-        }}
-      >
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
-          <div className="sm:w-1/2">
+      {/* Dot + line */}
+      <div className="flex flex-col items-center shrink-0" style={{ width: '20px' }}>
+        <div
+          className="rounded-full shrink-0"
+          style={{
+            width: '10px',
+            height: '10px',
+            backgroundColor: 'var(--accent)',
+            marginTop: '6px',
+            boxShadow: '0 0 0 3px rgba(212,119,90,0.15)',
+          }}
+        />
+        {!isLast && (
+          <div
+            className="flex-1 mt-2"
+            style={{ width: '1px', backgroundColor: 'rgba(10,10,15,0.1)', minHeight: '32px' }}
+          />
+        )}
+      </div>
+
+      {/* Clickable content */}
+      <button onClick={onClick} className="group text-left pb-8 flex-1">
+        <div className="flex items-start gap-4">
+          {/* Image thumbnail */}
+          <div
+            className="shrink-0 rounded-xl overflow-hidden"
+            style={{ width: '68px', height: '68px', backgroundColor: 'rgba(212,119,90,0.10)' }}
+          >
+            {vol.image ? (
+              <Image
+                src={vol.image}
+                alt={vol.organization}
+                width={68}
+                height={68}
+                quality={75}
+                className="object-cover w-full h-full"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center">
+                <span className="text-sm font-semibold uppercase" style={{ color: 'var(--accent)' }}>
+                  {vol.organization.slice(0, 2)}
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Text */}
+          <div className="min-w-0 pt-1">
             <h3
-              className="mb-3 leading-tight"
+              className="leading-snug mb-1 transition-colors duration-200 group-hover:text-[var(--accent)]"
               style={{
-                color: 'var(--white-95)',
-                fontSize: 'clamp(0.95rem, 2vw, 1.15rem)',
-                fontWeight: 700,
+                color: 'var(--white-90)',
+                fontSize: 'clamp(0.9rem, 1.8vw, 1.05rem)',
+                fontWeight: 600,
               }}
             >
               {vol.title}
             </h3>
-            <div className="flex flex-wrap gap-x-3 gap-y-1 mb-5">
-              <span className="text-xs" style={{ color: 'var(--white-40)' }}>
-                {vol.organization}
-              </span>
-            </div>
+            <p className="text-xs" style={{ color: 'var(--white-45)' }}>
+              {vol.organization}
+            </p>
             <span
-              className="inline-flex items-center gap-2 text-xs uppercase tracking-widest group-hover:gap-3 transition-all duration-300"
-              style={{ color: 'var(--white-40)' }}
+              className="inline-flex items-center gap-1 text-[0.6rem] uppercase tracking-widest mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+              style={{ color: 'var(--accent)' }}
             >
-              View details <span>→</span>
+              View details →
             </span>
           </div>
-
-          <div className="sm:w-[45%] relative h-[140px] sm:h-[160px]">
-            <motion.div
-              className={`absolute inset-0 overflow-hidden rounded-2xl ${!vol.image ? `bg-gradient-to-br ${GRADIENT}` : ''}`}
-              style={{ rotate: rot, boxShadow: '0 8px 24px rgba(10,10,15,0.07)' }}
-              whileHover={{ rotate: 0, scale: 1.03 }}
-              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {vol.image ? (
-                <Image
-                  src={vol.image}
-                  alt={vol.organization}
-                  fill
-                  sizes="(max-width: 640px) 90vw, 45vw"
-                  quality={80}
-                  className="object-cover"
-                />
-              ) : (
-                <div className="w-full h-full flex items-end p-4">
-                  <span
-                    className="text-[0.55rem] uppercase tracking-widest font-medium"
-                    style={{ color: 'rgba(10,10,15,0.28)' }}
-                  >
-                    {vol.organization}
-                  </span>
-                </div>
-              )}
-            </motion.div>
-          </div>
         </div>
-      </div>
-    </motion.button>
+      </button>
+    </motion.div>
   )
 }
 
@@ -287,32 +290,26 @@ export default function VolunteeringSection() {
   const displayed = expanded ? all : all.slice(0, LIMIT)
 
   return (
-    <SectionWrapper id="volunteering" fullscreen={false}>
-      <div className="max-w-content mx-auto px-6 md:px-10">
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10">
-          <div>
-            <motion.h2
-              style={{ color: 'var(--white-100)' }}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-            >
-              Volunteering
-            </motion.h2>
-          </div>
-        </div>
-
-        <motion.p layout className="text-xs mb-6" style={{ color: 'var(--white-30)' }}>
-          {all.length} role{all.length !== 1 ? 's' : ''}
+    <section id="volunteering">
+      <div className="max-w-content mx-auto px-6 md:px-10 pt-10 pb-14">
+        <motion.p
+          className="text-[0.6rem] uppercase tracking-[0.22em] mb-8 font-medium"
+          style={{ color: 'var(--white-35)' }}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        >
+          Volunteering
         </motion.p>
 
-        <div className="flex flex-col gap-4">
+        <div>
           {displayed.map((vol, i) => (
-            <VolunteeringCard
+            <VolunteeringTimelineItem
               key={vol.id}
               vol={vol}
               index={i}
+              isLast={i === displayed.length - 1}
               onClick={() => setActive(vol)}
             />
           ))}
@@ -341,6 +338,6 @@ export default function VolunteeringSection() {
       </div>
 
       <VolunteeringModal vol={active} onClose={() => setActive(null)} />
-    </SectionWrapper>
+    </section>
   )
 }

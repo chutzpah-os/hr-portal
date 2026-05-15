@@ -9,7 +9,6 @@ import VolunteeringSection from '@/components/sections/Volunteering'
 import CertificationsSection from '@/components/sections/Certifications'
 import ExperienceSection from '@/components/sections/Experience'
 import AboutSection from '@/components/sections/AboutSection'
-import ProcessSection from '@/components/sections/ProcessSection'
 import ContactSection from '@/components/sections/Contact'
 import PortfolioSection from '@/components/sections/PortfolioSection'
 import SkillsSection from '@/components/sections/SkillsSection'
@@ -27,6 +26,10 @@ export default function Home() {
 
         {/* ── Portfolio ── */}
         <PortfolioSection>
+          <ExperienceSection />
+          <hr className="section-divider" />
+          <VolunteeringSection />
+          <hr className="section-divider" />
           <ProjectsSection />
           <hr className="section-divider" />
           <ResearchesSection />
@@ -34,8 +37,6 @@ export default function Home() {
           <EducationSection />
           <hr className="section-divider" />
           <LanguagesSection />
-          <hr className="section-divider" />
-          <VolunteeringSection />
           <hr className="section-divider" />
           <CertificationsSection />
 
@@ -45,18 +46,8 @@ export default function Home() {
 
         <hr className="section-divider" />
 
-        {/* ── Experience ── */}
-        <ExperienceSection />
-
-        <hr className="section-divider" />
-
-        {/* ── About + Skills ── */}
+        {/* ── About ── */}
         <AboutSection />
-
-        <hr className="section-divider" />
-
-        {/* ── Process ── */}
-        <ProcessSection />
 
         <hr className="section-divider" />
 

@@ -2,102 +2,59 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import SectionWrapper from '@/components/ui/SectionWrapper'
 import { portfolioData, type Language } from '@/data/portfolio'
 
-const LIMIT = 3
-const GRADIENT = 'from-[#f2d0c4] to-[#D4775A]'
-const rotations = [-3, 4, -2, 5, -4, 3, -5, 2, -3, 4]
+function getYouTubeEmbedUrl(url: string): string | null {
+  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/)
+  return match ? `https://www.youtube.com/embed/${match[1]}` : null
+}
 
-function LanguageCard({
+function LanguageRow({
   lang,
   index,
+  isLast,
   onClick,
 }: {
   lang: Language
   index: number
+  isLast: boolean
   onClick: () => void
 }) {
-  const rot = rotations[index % rotations.length]
-
   return (
     <motion.button
       onClick={onClick}
       className="w-full text-left group"
-      initial={{ opacity: 0, y: 12 }}
+      initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: index * 0.04 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1], delay: index * 0.06 }}
     >
       <div
-        className="rounded-3xl overflow-hidden"
-        style={{
-          padding: '28px 32px',
-          backgroundColor: 'rgba(248,248,252,0.92)',
-          border: '1px solid var(--white-10)',
-        }}
+        className="flex items-center gap-5 py-5"
+        style={{ borderBottom: isLast ? 'none' : '1px solid rgba(10,10,15,0.07)' }}
       >
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
-          <div className="sm:w-1/2">
-            <span
-              className="text-[0.6rem] uppercase tracking-widest block mb-2"
-              style={{ color: 'var(--white-35)' }}
-            >
-              {lang.level}
-            </span>
-            <h3
-              className="mb-3 leading-tight"
-              style={{
-                color: 'var(--white-95)',
-                fontSize: 'clamp(0.95rem, 2vw, 1.15rem)',
-                fontWeight: 700,
-              }}
-            >
-              {lang.language}
-            </h3>
-            <div className="mb-5 max-w-[160px]">
-              <div
-                className="w-full h-px relative overflow-hidden rounded-full"
-                style={{ backgroundColor: 'var(--white-15)' }}
-              >
-                <div
-                  className="absolute left-0 top-0 h-full rounded-full"
-                  style={{ width: `${lang.proficiency}%`, backgroundColor: 'var(--white-40)' }}
-                />
-              </div>
-            </div>
-            <span
-              className="inline-flex items-center gap-2 text-xs uppercase tracking-widest group-hover:gap-3 transition-all duration-300"
-              style={{ color: 'var(--white-40)' }}
-            >
-              View details <span>→</span>
-            </span>
-          </div>
-
-          <div className="sm:w-[45%] relative h-[140px] sm:h-[160px]">
-            <motion.div
-              className={`absolute inset-0 overflow-hidden rounded-2xl bg-gradient-to-br ${GRADIENT}`}
-              style={{ rotate: rot, boxShadow: '0 8px 24px rgba(10,10,15,0.07)' }}
-              whileHover={{ rotate: 0, scale: 1.03 }}
-              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="w-full h-full flex items-end justify-between p-4">
-                <span
-                  className="text-[0.55rem] uppercase tracking-widest font-medium"
-                  style={{ color: 'rgba(10,10,15,0.28)' }}
-                >
-                  {lang.level}
-                </span>
-                <span
-                  className="text-[0.7rem] font-bold"
-                  style={{ color: 'rgba(10,10,15,0.35)' }}
-                >
-                  {lang.proficiency}%
-                </span>
-              </div>
-            </motion.div>
-          </div>
+        <div className="flex-1 min-w-0">
+          <h3
+            className="leading-snug mb-0.5 transition-colors duration-200 group-hover:text-[var(--accent)]"
+            style={{
+              color: 'var(--white-90)',
+              fontSize: 'clamp(0.9rem, 1.8vw, 1.05rem)',
+              fontWeight: 600,
+            }}
+          >
+            {lang.language}
+          </h3>
+          <p className="text-[0.65rem] uppercase tracking-widest" style={{ color: 'var(--white-40)' }}>
+            {lang.level}
+          </p>
         </div>
+
+        <span
+          className="shrink-0 text-base opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200"
+          style={{ color: 'var(--accent)' }}
+        >
+          →
+        </span>
       </div>
     </motion.button>
   )
@@ -128,6 +85,10 @@ function LanguageModal({
     return () => window.removeEventListener('keydown', handler)
   }, [onClose])
 
+  const embedUrl = lang?.details.verificationLink
+    ? getYouTubeEmbedUrl(lang.details.verificationLink)
+    : null
+
   return (
     <AnimatePresence>
       {lang && (
@@ -150,15 +111,9 @@ function LanguageModal({
             exit={{ y: '100%', opacity: 0 }}
             transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
             className="fixed flex flex-col rounded-3xl overflow-hidden"
-            style={{
-              top: 72,
-              left: 8,
-              right: 8,
-              bottom: 16,
-              zIndex: 50,
-              backgroundColor: 'rgb(248,248,252)',
-            }}
+            style={{ top: 72, left: 8, right: 8, bottom: 16, zIndex: 50, backgroundColor: 'rgb(248,248,252)' }}
           >
+            {/* Header */}
             <div
               className="flex items-start justify-between px-6 py-5 shrink-0"
               style={{ borderBottom: '1px solid rgba(10,10,15,0.08)', backgroundColor: 'rgb(248,248,252)' }}
@@ -171,12 +126,8 @@ function LanguageModal({
                   {lang.level}
                 </span>
                 <h2
-                  className="font-bold leading-tight mb-1.5"
-                  style={{
-                    color: 'var(--white-100)',
-                    fontSize: 'clamp(1rem, 2vw, 1.3rem)',
-                    letterSpacing: '-0.02em',
-                  }}
+                  className="font-bold leading-tight"
+                  style={{ color: 'var(--white-100)', fontSize: 'clamp(1rem, 2vw, 1.3rem)', letterSpacing: '-0.02em' }}
                 >
                   {lang.language}
                 </h2>
@@ -191,6 +142,7 @@ function LanguageModal({
               </button>
             </div>
 
+            {/* Body */}
             <div
               ref={scrollRef}
               className="flex-1 min-h-0 overflow-y-auto overscroll-contain"
@@ -200,46 +152,51 @@ function LanguageModal({
               onTouchMove={(e) => e.stopPropagation()}
             >
               <div className="px-6 sm:px-10 py-8 max-w-2xl mx-auto w-full">
-                <div className="mb-8">
-                  <div className="flex justify-between items-center mb-3">
-                    <span
-                      className="text-[0.6rem] uppercase tracking-widest"
-                      style={{ color: 'var(--white-35)' }}
-                    >
-                      Proficiency
-                    </span>
-                    <span className="text-sm font-bold" style={{ color: 'var(--white-80)' }}>
-                      {lang.proficiency}%
-                    </span>
-                  </div>
-                  <div
-                    className="w-full h-1 rounded-full"
-                    style={{ backgroundColor: 'var(--white-15)' }}
-                  >
-                    <div
-                      className="h-1 rounded-full"
-                      style={{ width: `${lang.proficiency}%`, backgroundColor: 'var(--white-60)' }}
-                    />
-                  </div>
-                </div>
 
                 <p className="text-sm leading-relaxed mb-8" style={{ color: 'var(--white-70)' }}>
                   {lang.details.description}
                 </p>
 
-                <p className="text-[0.6rem] uppercase tracking-widest mb-3" style={{ color: 'var(--white-35)' }}>
-                  Certifications &amp; Skills
-                </p>
-                <ul className="space-y-2 mb-8">
-                  {lang.details.certifications.map((cert, i) => (
-                    <li key={i} className="flex gap-2 text-sm" style={{ color: 'var(--white-65)' }}>
-                      <span style={{ color: 'var(--white-30)' }}>—</span>
-                      {cert}
-                    </li>
-                  ))}
-                </ul>
+                {lang.details.certifications.length > 0 && (
+                  <>
+                    <p className="text-[0.6rem] uppercase tracking-widest mb-3" style={{ color: 'var(--white-35)' }}>
+                      Certifications &amp; Notes
+                    </p>
+                    <ul className="space-y-2 mb-8">
+                      {lang.details.certifications.map((cert, i) => (
+                        <li key={i} className="flex gap-2 text-sm" style={{ color: 'var(--white-65)' }}>
+                          <span style={{ color: 'var(--white-30)' }}>—</span>
+                          {cert}
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
 
-                {lang.details.verificationLink && lang.details.verificationLink !== '#' && (
+                {/* YouTube embed */}
+                {embedUrl && (
+                  <div className="mt-2">
+                    <p className="text-[0.6rem] uppercase tracking-widest mb-3" style={{ color: 'var(--white-35)' }}>
+                      Verification
+                    </p>
+                    <div
+                      className="w-full rounded-2xl overflow-hidden"
+                      style={{ aspectRatio: '16/9' }}
+                    >
+                      <iframe
+                        src={embedUrl}
+                        title={`${lang.language} proficiency verification`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="w-full h-full"
+                        style={{ border: 'none' }}
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {/* Fallback: plain link if not YouTube */}
+                {!embedUrl && lang.details.verificationLink && lang.details.verificationLink !== '#' && (
                   <a
                     href={lang.details.verificationLink}
                     target="_blank"
@@ -247,9 +204,10 @@ function LanguageModal({
                     className="text-xs uppercase tracking-widest transition-opacity duration-200 hover:opacity-60"
                     style={{ color: 'var(--accent)' }}
                   >
-                    Verify Language Proficiency →
+                    Verify Proficiency →
                   </a>
                 )}
+
               </div>
             </div>
           </motion.div>
@@ -261,66 +219,44 @@ function LanguageModal({
 
 export default function LanguagesSection() {
   const [active, setActive] = useState<Language | null>(null)
-  const [expanded, setExpanded] = useState(false)
 
   const all = portfolioData.languages
-  const displayed = expanded ? all : all.slice(0, LIMIT)
 
   return (
-    <SectionWrapper id="languages" fullscreen={false}>
-      <div className="max-w-content mx-auto px-6 md:px-10">
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10">
-          <div>
-            <motion.h2
-              style={{ color: 'var(--white-100)' }}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-            >
-              Languages
-            </motion.h2>
-          </div>
-        </div>
-
-        <motion.p layout className="text-xs mb-6" style={{ color: 'var(--white-30)' }}>
-          {all.length} language{all.length !== 1 ? 's' : ''}
+    <section id="languages">
+      <div className="max-w-content mx-auto px-6 md:px-10 pt-10 pb-14">
+        <motion.p
+          className="text-[0.6rem] uppercase tracking-[0.22em] mb-8 font-medium"
+          style={{ color: 'var(--white-35)' }}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        >
+          Languages
         </motion.p>
 
-        <div className="flex flex-col gap-4">
-          {displayed.map((lang, i) => (
-            <LanguageCard
+        <div
+          className="rounded-2xl"
+          style={{
+            border: '1px solid var(--white-10)',
+            backgroundColor: 'rgba(10,10,15,0.025)',
+            padding: '0 28px',
+          }}
+        >
+          {all.map((lang, i) => (
+            <LanguageRow
               key={lang.id}
               lang={lang}
               index={i}
+              isLast={i === all.length - 1}
               onClick={() => setActive(lang)}
             />
           ))}
         </div>
-
-        {all.length > LIMIT && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mt-8 flex justify-center"
-          >
-            <button
-              onClick={() => setExpanded((v) => !v)}
-              className="text-xs uppercase tracking-widest flex items-center gap-2 transition-opacity duration-200 hover:opacity-60"
-              style={{ color: 'var(--accent)' }}
-            >
-              {expanded ? (
-                <><span>Show less</span><span>↑</span></>
-              ) : (
-                <><span>Show all {all.length}</span><span>↓</span></>
-              )}
-            </button>
-          </motion.div>
-        )}
       </div>
 
       <LanguageModal lang={active} onClose={() => setActive(null)} />
-    </SectionWrapper>
+    </section>
   )
 }

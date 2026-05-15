@@ -5,11 +5,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { portfolioData } from '@/data/portfolio'
 
 const SUMMARY = [
+  { label: 'Work History',   count: portfolioData.experience.length },
+  { label: 'Volunteering',   count: portfolioData.volunteering.length },
   { label: 'Projects',       count: Object.values(portfolioData.projects).flat().length },
   { label: 'Researches',     count: portfolioData.researches.length },
   { label: 'Education',      count: portfolioData.education.length },
   { label: 'Languages',      count: portfolioData.languages.length },
-  { label: 'Volunteering',   count: portfolioData.volunteering.length },
   { label: 'Certifications', count: portfolioData.certifications.length },
   { label: 'Skills',         count: portfolioData.skills.reduce((s, c) => s + c.items.length, 0) },
 ]
@@ -24,7 +25,7 @@ export default function PortfolioSection({ children }: { children: ReactNode }) 
       {/* ── Header bar ── */}
       <div
         className="max-w-content mx-auto px-6 md:px-10 flex items-center justify-between"
-        style={{ paddingTop: '5rem', paddingBottom: '1.5rem' }}
+        style={{ paddingTop: '5rem', paddingBottom: '0.75rem' }}
       >
         <motion.p
           className="section-label"
@@ -80,8 +81,8 @@ export default function PortfolioSection({ children }: { children: ReactNode }) 
             <div
               className="rounded-3xl"
               style={{
-                border: '1px solid var(--white-10)',
-                backgroundColor: 'rgba(248,248,252,0.92)',
+                border: '1px solid rgba(10,10,15,0.08)',
+                backgroundColor: 'rgba(10,10,15,0.025)',
                 padding: '2rem 2.5rem',
               }}
             >

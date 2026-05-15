@@ -3,123 +3,100 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import SectionWrapper from '@/components/ui/SectionWrapper'
 import { portfolioData, type Experience } from '@/data/portfolio'
 
 const LIMIT = 3
-const rotations = [-3, 4, -2, 5, -4, 3]
 
-const AREA_GRADIENTS: Record<string, string> = {
-  cyber:    'from-[#f2d0c4] to-[#D4775A]',
-  data:     'from-[#f2d0c4] to-[#D4775A]',
-  aiml:     'from-[#f2d0c4] to-[#D4775A]',
-  software: 'from-[#f2d0c4] to-[#D4775A]',
-}
-
-function cardGradient(exp: Experience) {
-  const area = exp.cvAreas?.[0]
-  return AREA_GRADIENTS[area] ?? 'from-[#f2d0c4] to-[#D4775A]'
-}
-
-// ── Card ──────────────────────────────────────────────────────────────────────
-function ExperienceCard({
+function ExperienceTimelineItem({
   exp,
   index,
+  isLast,
   onClick,
 }: {
   exp: Experience
   index: number
+  isLast: boolean
   onClick: () => void
 }) {
-  const rot = rotations[index % rotations.length]
-  const gradient = cardGradient(exp)
-
   return (
-    <motion.button
-      onClick={onClick}
-      className="w-full text-left group"
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: index * 0.06 }}
+    <motion.div
+      className="flex gap-5"
+      initial={{ opacity: 0, x: -16 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: index * 0.06 }}
     >
-      <div
-        className="rounded-3xl overflow-hidden"
-        style={{
-          padding: '28px 32px',
-          backgroundColor: 'rgba(248,248,252,0.92)',
-          border: '1px solid var(--white-10)',
-        }}
-      >
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+      {/* Dot + line */}
+      <div className="flex flex-col items-center shrink-0" style={{ width: '20px' }}>
+        <div
+          className="rounded-full shrink-0"
+          style={{
+            width: '10px',
+            height: '10px',
+            backgroundColor: 'var(--accent)',
+            marginTop: '6px',
+            boxShadow: '0 0 0 3px rgba(212,119,90,0.15)',
+          }}
+        />
+        {!isLast && (
+          <div
+            className="flex-1 mt-2"
+            style={{ width: '1px', backgroundColor: 'rgba(10,10,15,0.1)', minHeight: '32px' }}
+          />
+        )}
+      </div>
 
-          {/* Left: text */}
-          <div className="sm:w-1/2">
+      {/* Clickable content */}
+      <button onClick={onClick} className="group text-left pb-8 flex-1">
+        <div className="flex items-start gap-4">
+          {/* Image thumbnail */}
+          <div
+            className="shrink-0 rounded-xl overflow-hidden"
+            style={{ width: '68px', height: '68px', backgroundColor: 'rgba(212,119,90,0.10)' }}
+          >
+            {exp.image ? (
+              <Image
+                src={exp.image}
+                alt={exp.company}
+                width={68}
+                height={68}
+                quality={75}
+                className="object-cover w-full h-full"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center">
+                <span className="text-sm font-semibold uppercase" style={{ color: 'var(--accent)' }}>
+                  {exp.company.slice(0, 2)}
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Text */}
+          <div className="min-w-0 pt-1">
             <h3
-              className="mb-1 leading-tight"
+              className="leading-snug mb-1 transition-colors duration-200 group-hover:text-[var(--accent)]"
               style={{
-                color: 'var(--white-95)',
-                fontSize: 'clamp(0.95rem, 2vw, 1.15rem)',
-                fontWeight: 700,
+                color: 'var(--white-90)',
+                fontSize: 'clamp(0.9rem, 1.8vw, 1.05rem)',
+                fontWeight: 600,
               }}
             >
               {exp.title}
             </h3>
-            <p className="text-sm mb-3" style={{ color: 'var(--white-55)' }}>
+            <p className="text-xs" style={{ color: 'var(--white-45)' }}>
               {exp.company}
             </p>
-            <div className="flex flex-wrap gap-x-3 gap-y-1 mb-5">
-              {exp.tags.slice(0, 3).map((tag) => (
-                <span key={tag} className="text-xs" style={{ color: 'var(--white-40)' }}>
-                  {tag}
-                </span>
-              ))}
-            </div>
             <span
-              className="inline-flex items-center gap-2 text-xs uppercase tracking-widest group-hover:gap-3 transition-all duration-300"
-              style={{ color: 'var(--white-40)' }}
+              className="inline-flex items-center gap-1 text-[0.6rem] uppercase tracking-widest mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+              style={{ color: 'var(--accent)' }}
             >
-              View details <span>→</span>
+              View details →
             </span>
           </div>
-
-          {/* Right: tilted image or gradient block */}
-          <div className="sm:w-[45%] relative h-[140px] sm:h-[160px]">
-            <motion.div
-              className={`absolute inset-0 overflow-hidden rounded-2xl ${!exp.image ? `bg-gradient-to-br ${gradient}` : ''}`}
-              style={{
-                rotate: rot,
-                boxShadow: '0 8px 24px rgba(10,10,15,0.07)',
-                backgroundColor: exp.image ? 'transparent' : undefined,
-              }}
-              whileHover={{ rotate: 0, scale: 1.03 }}
-              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {exp.image ? (
-                <Image
-                  src={exp.image}
-                  alt={exp.company}
-                  fill
-                  sizes="(max-width: 640px) 90vw, 45vw"
-                  quality={80}
-                  className="object-cover"
-                />
-              ) : (
-                <div className="w-full h-full flex items-end p-4">
-                  <span
-                    className="text-[0.55rem] uppercase tracking-widest font-medium"
-                    style={{ color: 'rgba(10,10,15,0.28)' }}
-                  >
-                    {exp.company}
-                  </span>
-                </div>
-              )}
-            </motion.div>
-          </div>
-
         </div>
-      </div>
-    </motion.button>
+      </button>
+    </motion.div>
   )
 }
 
@@ -309,166 +286,59 @@ function ExperienceModal({
 export default function ExperienceSection() {
   const [active, setActive] = useState<Experience | null>(null)
   const [showAll, setShowAll] = useState(false)
-  const [collapsed, setCollapsed] = useState(true)
 
   const all = portfolioData.experience
   const displayed = showAll ? all : all.slice(0, LIMIT)
 
   return (
-    <SectionWrapper id="experience" fullscreen={false}>
-      <div className="max-w-content mx-auto px-6 md:px-10">
-
-        {/* Header */}
-        <div
-          className="flex items-center justify-between"
-          style={{ paddingBottom: '2.5rem' }}
+    <section id="experience">
+      <div className="max-w-content mx-auto px-6 md:px-10 pt-10 pb-14">
+        <motion.p
+          className="text-[0.6rem] uppercase tracking-[0.22em] mb-8 font-medium"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          style={{ color: 'var(--white-35)' }}
         >
-          <motion.p
-            className="section-label"
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          >
-            Work History
-          </motion.p>
+          Work History
+        </motion.p>
 
-          <motion.button
-            onClick={() => setCollapsed((v) => !v)}
+        <div>
+          {displayed.map((exp, i) => (
+            <ExperienceTimelineItem
+              key={exp.id}
+              exp={exp}
+              index={i}
+              isLast={i === displayed.length - 1}
+              onClick={() => setActive(exp)}
+            />
+          ))}
+        </div>
+
+        {all.length > LIMIT && (
+          <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex items-center gap-2 text-[0.6rem] uppercase tracking-widest px-3 py-1.5 rounded-full transition-all duration-200"
-            style={{ border: '1px solid var(--white-15)', color: 'var(--white-45)' }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'var(--white-40)'
-              e.currentTarget.style.color = 'var(--white-80)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'var(--white-15)'
-              e.currentTarget.style.color = 'var(--white-45)'
-            }}
+            className="mt-8 flex justify-center"
           >
-            {collapsed ? <><span>Expand</span><span>↓</span></> : <><span>Collapse</span><span>↑</span></>}
-          </motion.button>
-        </div>
-
-        <AnimatePresence mode="wait">
-          {collapsed ? (
-            /* ── Collapsed: dot-leader index card ── */
-            <motion.div
-              key="summary"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              style={{ paddingBottom: '5rem' }}
+            <button
+              onClick={() => setShowAll((v) => !v)}
+              className="text-xs uppercase tracking-widest flex items-center gap-2 transition-opacity duration-200 hover:opacity-60"
+              style={{ color: 'var(--accent)' }}
             >
-              <div
-                className="rounded-3xl"
-                style={{
-                  border: '1px solid var(--white-10)',
-                  backgroundColor: 'rgba(248,248,252,0.92)',
-                  padding: '2rem 2.5rem',
-                }}
-              >
-                {all.map((exp, i) => (
-                  <motion.div
-                    key={exp.id}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.35, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                    className="flex items-baseline py-3"
-                    style={{
-                      borderBottom: i < all.length - 1
-                        ? '1px solid rgba(10,10,15,0.05)'
-                        : '1px solid rgba(10,10,15,0.10)',
-                    }}
-                  >
-                    <span
-                      className="text-sm font-medium shrink-0"
-                      style={{ color: 'var(--white-80)', minWidth: '10rem' }}
-                    >
-                      {exp.title}
-                    </span>
-                    <span
-                      className="text-xs shrink-0 mx-3"
-                      style={{ color: 'var(--white-40)' }}
-                    >
-                      {exp.company}
-                    </span>
-                    <span
-                      className="flex-1 mx-4"
-                      style={{ borderBottom: '1px dotted rgba(10,10,15,0.18)', marginBottom: '5px' }}
-                    />
-                  </motion.div>
-                ))}
-
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.4, delay: all.length * 0.05 + 0.1 }}
-                  className="flex items-center justify-end gap-5 pt-5"
-                >
-                  <span className="text-[0.6rem] uppercase tracking-widest" style={{ color: 'var(--white-30)' }}>
-                    Total
-                  </span>
-                  <span
-                    className="text-2xl font-bold tabular-nums leading-none"
-                    style={{ color: 'var(--accent)', fontFamily: 'var(--font-syne, var(--font-inter))' }}
-                  >
-                    {String(all.length).padStart(2, '0')}
-                  </span>
-                </motion.div>
-              </div>
-            </motion.div>
-          ) : (
-            /* ── Expanded: full cards ── */
-            <motion.div
-              key="content"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.35 }}
-            >
-              <div className="flex flex-col gap-4">
-                {displayed.map((exp, i) => (
-                  <ExperienceCard
-                    key={exp.id}
-                    exp={exp}
-                    index={i}
-                    onClick={() => setActive(exp)}
-                  />
-                ))}
-              </div>
-
-              {all.length > LIMIT && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="mt-8 flex justify-center"
-                >
-                  <button
-                    onClick={() => setShowAll((v) => !v)}
-                    className="text-xs uppercase tracking-widest flex items-center gap-2 transition-opacity duration-200 hover:opacity-60"
-                    style={{ color: 'var(--accent)' }}
-                  >
-                    {showAll ? (
-                      <><span>Show less</span><span>↑</span></>
-                    ) : (
-                      <><span>Show all {all.length}</span><span>↓</span></>
-                    )}
-                  </button>
-                </motion.div>
+              {showAll ? (
+                <><span>Show less</span><span>↑</span></>
+              ) : (
+                <><span>Show all {all.length}</span><span>↓</span></>
               )}
-            </motion.div>
-          )}
-        </AnimatePresence>
+            </button>
+          </motion.div>
+        )}
       </div>
 
       <ExperienceModal exp={active} onClose={() => setActive(null)} />
-    </SectionWrapper>
+    </section>
   )
 }

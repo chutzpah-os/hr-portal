@@ -6,88 +6,80 @@ import SectionWrapper from '@/components/ui/SectionWrapper'
 import { portfolioData, type Education } from '@/data/portfolio'
 
 const LIMIT = 3
-const GRADIENT = 'from-[#f2d0c4] to-[#D4775A]'
-const rotations = [-3, 4, -2, 5, -4, 3, -5, 2, -3, 4]
 
-function EducationCard({
+function EducationTimelineItem({
   edu,
   index,
+  isLast,
   onClick,
 }: {
   edu: Education
   index: number
+  isLast: boolean
   onClick: () => void
 }) {
-  const rot = rotations[index % rotations.length]
-
   return (
-    <motion.button
-      onClick={onClick}
-      className="w-full text-left group"
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
+    <motion.div
+      className="flex gap-5"
+      initial={{ opacity: 0, x: -16 }}
+      whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: index * 0.04 }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: index * 0.07 }}
     >
-      <div
-        className="rounded-3xl overflow-hidden"
-        style={{
-          padding: '28px 32px',
-          backgroundColor: 'rgba(248,248,252,0.92)',
-          border: '1px solid var(--white-10)',
-        }}
-      >
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
-          <div className="sm:w-1/2">
-            <span
-              className="text-[0.6rem] uppercase tracking-widest block mb-2"
-              style={{ color: 'var(--white-35)' }}
-            >
-              {edu.period}
-            </span>
-            <h3
-              className="mb-3 leading-tight"
-              style={{
-                color: 'var(--white-95)',
-                fontSize: 'clamp(0.95rem, 2vw, 1.15rem)',
-                fontWeight: 700,
-              }}
-            >
-              {edu.title}
-            </h3>
-            <div className="flex flex-wrap gap-x-3 gap-y-1 mb-5">
-              <span className="text-xs" style={{ color: 'var(--white-40)' }}>
-                {edu.institution}
-              </span>
-            </div>
-            <span
-              className="inline-flex items-center gap-2 text-xs uppercase tracking-widest group-hover:gap-3 transition-all duration-300"
-              style={{ color: 'var(--white-40)' }}
-            >
-              View details <span>→</span>
-            </span>
-          </div>
-
-          <div className="sm:w-[45%] relative h-[140px] sm:h-[160px]">
-            <motion.div
-              className={`absolute inset-0 overflow-hidden rounded-2xl bg-gradient-to-br ${GRADIENT}`}
-              style={{ rotate: rot, boxShadow: '0 8px 24px rgba(10,10,15,0.07)' }}
-              whileHover={{ rotate: 0, scale: 1.03 }}
-              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="w-full h-full flex items-end p-4">
-                <span
-                  className="text-[0.55rem] uppercase tracking-widest font-medium"
-                  style={{ color: 'rgba(10,10,15,0.28)' }}
-                >
-                  {edu.institution}
-                </span>
-              </div>
-            </motion.div>
-          </div>
-        </div>
+      {/* Line + dot */}
+      <div className="flex flex-col items-center shrink-0" style={{ width: '20px' }}>
+        <div
+          className="rounded-full shrink-0"
+          style={{
+            width: '10px',
+            height: '10px',
+            backgroundColor: 'var(--accent)',
+            marginTop: '5px',
+            boxShadow: '0 0 0 3px rgba(212,119,90,0.15)',
+          }}
+        />
+        {!isLast && (
+          <div
+            className="flex-1 mt-2"
+            style={{ width: '1px', backgroundColor: 'rgba(10,10,15,0.1)', minHeight: '32px' }}
+          />
+        )}
       </div>
-    </motion.button>
+
+      {/* Content */}
+      <button
+        onClick={onClick}
+        className="group text-left pb-8 w-full"
+      >
+        <p
+          className="text-[0.58rem] uppercase tracking-widest mb-1"
+          style={{ color: 'var(--white-35)' }}
+        >
+          {edu.period}
+        </p>
+        <h3
+          className="leading-snug mb-1 transition-colors duration-200"
+          style={{
+            color: 'var(--white-90)',
+            fontSize: 'clamp(0.9rem, 1.8vw, 1.05rem)',
+            fontWeight: 600,
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--accent)' }}
+          onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--white-90)' }}
+        >
+          {edu.title}
+        </h3>
+        <p className="text-xs" style={{ color: 'var(--white-45)' }}>
+          {edu.institution}
+        </p>
+        <span
+          className="inline-flex items-center gap-1 text-[0.6rem] uppercase tracking-widest mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+          style={{ color: 'var(--accent)' }}
+        >
+          View details →
+        </span>
+      </button>
+    </motion.div>
   )
 }
 
@@ -269,65 +261,66 @@ function EducationModal({
   )
 }
 
+function TimelineGroup({
+  items,
+  label,
+  onItemClick,
+}: {
+  items: Education[]
+  label: string
+  onItemClick: (edu: Education) => void
+}) {
+  return (
+    <div className="mb-10">
+      <motion.p
+        className="text-[0.6rem] uppercase tracking-widest mb-6"
+        style={{ color: 'var(--white-35)' }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
+      >
+        {label}
+      </motion.p>
+      <div>
+        {items.map((edu, i) => (
+          <EducationTimelineItem
+            key={edu.id}
+            edu={edu}
+            index={i}
+            isLast={i === items.length - 1}
+            onClick={() => onItemClick(edu)}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function EducationSection() {
   const [active, setActive] = useState<Education | null>(null)
-  const [expanded, setExpanded] = useState(false)
 
   const all = portfolioData.education
-  const displayed = expanded ? all : all.slice(0, LIMIT)
+  const degrees = all.filter((e) => e.type === 'degree')
+  const courses = all.filter((e) => e.type === 'course' || !e.type)
 
   return (
     <SectionWrapper id="education" fullscreen={false}>
       <div className="max-w-content mx-auto px-6 md:px-10">
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10">
-          <div>
-            <motion.h2
-              style={{ color: 'var(--white-100)' }}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-            >
-              Academic Background
-            </motion.h2>
-          </div>
-        </div>
-
-        <motion.p layout className="text-xs mb-6" style={{ color: 'var(--white-30)' }}>
-          {all.length} institution{all.length !== 1 ? 's' : ''}
+        <motion.p
+          className="section-label mb-10"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+        >
+          Academic Background
         </motion.p>
 
-        <div className="flex flex-col gap-4">
-          {displayed.map((edu, i) => (
-            <EducationCard
-              key={edu.id}
-              edu={edu}
-              index={i}
-              onClick={() => setActive(edu)}
-            />
-          ))}
+        <div className="max-w-lg">
+          {degrees.length > 0 && <TimelineGroup items={degrees} label="Degrees" onItemClick={setActive} />}
+          {courses.length > 0 && <TimelineGroup items={courses} label="Courses & Programs" onItemClick={setActive} />}
         </div>
-
-        {all.length > LIMIT && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mt-8 flex justify-center"
-          >
-            <button
-              onClick={() => setExpanded((v) => !v)}
-              className="text-xs uppercase tracking-widest flex items-center gap-2 transition-opacity duration-200 hover:opacity-60"
-              style={{ color: 'var(--accent)' }}
-            >
-              {expanded ? (
-                <><span>Show less</span><span>↑</span></>
-              ) : (
-                <><span>Show all {all.length}</span><span>↓</span></>
-              )}
-            </button>
-          </motion.div>
-        )}
       </div>
 
       <EducationModal edu={active} onClose={() => setActive(null)} />
