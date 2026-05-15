@@ -4,7 +4,6 @@ import { useState, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import Footer from '@/components/layout/Footer'
 
 interface YTVideo {
   id: string
@@ -420,8 +419,6 @@ export default function Home() {
 
         <FeaturedContent />
       </main>
-
-      <Footer />
     </>
   )
 }

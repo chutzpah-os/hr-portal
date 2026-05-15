@@ -1,4 +1,3 @@
-import Footer from '@/components/layout/Footer'
 import type { ReactNode } from 'react'
 
 export const metadata = {
@@ -15,10 +14,5 @@ export const metadata = {
 }
 
 export default function AboutLayout({ children }: { children: ReactNode }) {
-  return (
-    <>
-      {children}
-      <Footer />
-    </>
-  )
+  return <>{children}</>
 }
