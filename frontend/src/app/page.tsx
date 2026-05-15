@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -29,57 +29,41 @@ const CHANNEL_LINKS: Record<string, string> = {
   psf: 'https://www.youtube.com/@ProblemSolverFoundation',
 }
 
-const CHANNELS = [
-  { id: 'UCzmKBWAle1KP7tOcOgi18EA', slug: 'haniel', name: 'Haniel Rolemberg' },
-  { id: 'UClfUa-1qwNE8SPw30DPG8RA', slug: 'psf',    name: 'Problem Solver Foundation' },
+const VIDEOS: YTVideo[] = [
+  {
+    id: 'WtmbDEZowAU',
+    title: "Before It's Too Late: A Reflection on Time",
+    thumbnail: 'https://i.ytimg.com/vi/WtmbDEZowAU/hqdefault.jpg',
+    publishedAt: '',
+    channelName: 'Haniel Rolemberg',
+    channelId: 'haniel',
+    url: 'https://www.youtube.com/watch?v=WtmbDEZowAU',
+  },
+  {
+    id: 'P24KDOH8mNI',
+    title: 'How 1 Billion People Can Change the Future',
+    thumbnail: 'https://i.ytimg.com/vi/P24KDOH8mNI/hqdefault.jpg',
+    publishedAt: '',
+    channelName: 'Problem Solver Foundation',
+    channelId: 'psf',
+    url: 'https://www.youtube.com/watch?v=P24KDOH8mNI',
+  },
+  {
+    id: 'fGkdnoaTm84',
+    title: '(PT/BR) Why Israel Leads Innovation? | PSF Innovation Talks Ep01',
+    thumbnail: 'https://i.ytimg.com/vi/fGkdnoaTm84/hqdefault.jpg',
+    publishedAt: '',
+    channelName: 'Problem Solver Foundation',
+    channelId: 'psf',
+    url: 'https://www.youtube.com/watch?v=fGkdnoaTm84',
+  },
 ]
 
-async function fetchChannelVideos(channelId: string, slug: string, name: string): Promise<YTVideo[]> {
-  const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`
-  const url = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&count=15`
-  const res = await fetch(url)
-  const data = await res.json()
-  if (data.status !== 'ok') return []
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return data.items.map((item: any) => {
-    const videoId = item.link.match(/v=([^&]+)/)?.[1] ?? ''
-    return {
-      id: videoId,
-      title: item.title,
-      thumbnail: `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
-      publishedAt: item.pubDate,
-      channelName: name,
-      channelId: slug,
-      url: item.link,
-    }
-  })
-}
-
 function FeaturedContent() {
-  const [videos, setVideos] = useState<YTVideo[]>([])
-  const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState<Filter>('all')
   const trackRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    Promise.all(CHANNELS.map((ch) => fetchChannelVideos(ch.id, ch.slug, ch.name)))
-      .then((results) => {
-        const merged: YTVideo[] = []
-        const max = Math.max(...results.map((r) => r.length))
-        for (let i = 0; i < max; i++) {
-          for (const list of results) { if (list[i]) merged.push(list[i]) }
-        }
-        setVideos(merged)
-        setLoading(false)
-      })
-      .catch(() => setLoading(false))
-  }, [])
-
-  useEffect(() => {
-    if (trackRef.current) trackRef.current.scrollLeft = 0
-  }, [filter])
-
-  const displayed = filter === 'all' ? videos : videos.filter((v) => v.channelId === filter)
+  const displayed = filter === 'all' ? VIDEOS : VIDEOS.filter((v) => v.channelId === filter)
 
   const scroll = (dir: 'left' | 'right') => {
     if (!trackRef.current) return
@@ -151,19 +135,12 @@ function FeaturedContent() {
         </div>
 
         {/* Carousel */}
-        {loading ? (
-          <div className="flex gap-4 overflow-hidden">
-            {[...Array(4)].map((_, i) => (
-              <div key={i} className="shrink-0 rounded-2xl animate-pulse" style={{ width: '260px', height: '188px', backgroundColor: 'rgba(10,10,15,0.06)' }} />
-            ))}
-          </div>
-        ) : (
-          <div
-            ref={trackRef}
-            className="flex gap-4 overflow-x-auto pb-2"
-            style={{ scrollSnapType: 'x mandatory', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {displayed.map((video) => (
+        <div
+          ref={trackRef}
+          className="flex gap-4 overflow-x-auto pb-2"
+          style={{ scrollSnapType: 'x mandatory', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {displayed.map((video) => (
               <a
                 key={video.id}
                 data-card
@@ -190,14 +167,15 @@ function FeaturedContent() {
                   <p className="text-xs font-medium leading-snug line-clamp-2 transition-colors duration-200 group-hover:text-[var(--accent)]" style={{ color: 'var(--white-85)' }}>
                     {video.title}
                   </p>
-                  <p className="text-[0.6rem] uppercase tracking-widest mt-2" style={{ color: 'var(--white-35)' }}>
-                    {new Date(video.publishedAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
-                  </p>
+                  {video.publishedAt && (
+                    <p className="text-[0.6rem] uppercase tracking-widest mt-2" style={{ color: 'var(--white-35)' }}>
+                      {new Date(video.publishedAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                    </p>
+                  )}
                 </div>
               </a>
             ))}
-          </div>
-        )}
+        </div>
 
         {channelLink && (
           <div className="mt-6 flex justify-end">
@@ -351,7 +329,7 @@ export default function Home() {
               transition={{ duration: 0.7, delay: 0.12, ease: 'easeOut' }}
               style={{
                 width: 'min(80vw, 300px)',
-                height: 'clamp(240px, 34vw, 390px)',
+                height: 'clamp(300px, 40vw, 420px)',
                 position: 'relative',
                 borderRadius: '18px',
                 overflow: 'hidden',
@@ -364,7 +342,8 @@ export default function Home() {
                 fill
                 sizes="(max-width: 768px) 90vw, 320px"
                 quality={85}
-                className="object-cover object-top"
+                className="object-cover"
+                style={{ objectPosition: 'center 20%' }}
                 priority
               />
             </motion.div>
