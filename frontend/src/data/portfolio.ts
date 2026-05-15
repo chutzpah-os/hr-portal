@@ -336,7 +336,7 @@ export const portfolioData: PortfolioData = {
       title: 'Community Organizer',
       organization: 'Problem Solvers Foundation',
       period: 'Sep 2025 - Present',
-      image: '/images/psf.png',
+      image: '/images/psff.jpg',
       description: 'Building a community on a mission to impact 1 billion lives by 2035',
       cvAreas: ['cyber', 'aiml', 'data', 'software'],
       details: {
@@ -1371,7 +1371,7 @@ export const portfolioData: PortfolioData = {
       title: 'Community Organizer',
       organization: 'Problem Solvers Foundation',
       period: 'Jan 2026 - Present',
-      image: '/images/psf.png',
+      image: '/images/psff.jpg',
       description: 'Building a community on a mission to impact 1 billion lives by 2035.',
       cvAreas: ['cyber', 'aiml', 'data', 'software'],
       details: {
@@ -1411,7 +1411,7 @@ export const portfolioData: PortfolioData = {
       title: 'Tech Advocate',
       organization: 'Tech Brazil Advocates',
       period: 'Jan 2024 - Present',
-      image: '/images/advocatetech.jpg',
+      image: '/images/advoctech.png',
       description: 'Mapping the local tech innovation ecosystem in Sergipe, Brazil.',
       cvAreas: ['software'],
       details: {
