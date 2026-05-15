@@ -342,7 +342,7 @@ export default function Home() {
                 sizes="(max-width: 768px) 90vw, 320px"
                 quality={85}
                 className="object-cover"
-                style={{ objectPosition: 'center 20%' }}
+                style={{ objectPosition: 'center 30%' }}
                 priority
               />
             </motion.div>
