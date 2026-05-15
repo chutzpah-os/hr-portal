@@ -336,8 +336,8 @@ export default function Home() {
               }}
             >
               <Image
-                src="/images/haniel-palestra.jpg"
-                alt="Haniel Rolemberg speaking at a conference"
+                src="/images/Haniel-Rolemberg.jpeg"
+                alt="Haniel Rolemberg"
                 fill
                 sizes="(max-width: 768px) 90vw, 320px"
                 quality={85}
