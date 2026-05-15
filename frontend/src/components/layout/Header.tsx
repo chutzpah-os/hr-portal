@@ -5,9 +5,9 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const NAV_ITEMS = [
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Portfolio', href: '/portfolio' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ]
 
 export default function Header() {

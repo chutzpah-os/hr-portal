@@ -120,7 +120,7 @@ export default function Hero() {
         </div>
 
         {/* Right: portrait */}
-        <div className="w-full md:w-[45%] flex justify-center md:justify-end items-center px-8 md:px-0">
+        <div className="w-full md:w-[45%] flex justify-center md:justify-end items-center px-4 md:px-0">
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}

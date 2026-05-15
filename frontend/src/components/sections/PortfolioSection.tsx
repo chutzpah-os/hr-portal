@@ -79,11 +79,10 @@ export default function PortfolioSection({ children }: { children: ReactNode }) 
             style={{ paddingBottom: '5rem' }}
           >
             <div
-              className="rounded-3xl"
+              className="rounded-3xl px-5 py-7 md:px-10 md:py-8"
               style={{
                 border: '1px solid rgba(10,10,15,0.08)',
                 backgroundColor: 'rgba(10,10,15,0.025)',
-                padding: '2rem 2.5rem',
               }}
             >
               {/* Index rows */}
@@ -107,7 +106,7 @@ export default function PortfolioSection({ children }: { children: ReactNode }) 
                 >
                   <span
                     className="text-sm font-medium shrink-0"
-                    style={{ color: 'var(--white-80)', minWidth: '9rem' }}
+                    style={{ color: 'var(--white-80)', minWidth: 'clamp(6rem, 18vw, 9rem)' }}
                   >
                     {label}
                   </span>
