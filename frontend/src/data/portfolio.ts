@@ -336,6 +336,7 @@ export const portfolioData: PortfolioData = {
       title: 'Community Organizer',
       organization: 'Problem Solvers Foundation',
       period: 'Sep 2025 - Present',
+      image: '/images/psf.png',
       description: 'Building a community on a mission to impact 1 billion lives by 2035',
       cvAreas: ['cyber', 'aiml', 'data', 'software'],
       details: {
@@ -1370,6 +1371,7 @@ export const portfolioData: PortfolioData = {
       title: 'Community Organizer',
       organization: 'Problem Solvers Foundation',
       period: 'Jan 2026 - Present',
+      image: '/images/psf.png',
       description: 'Building a community on a mission to impact 1 billion lives by 2035.',
       cvAreas: ['cyber', 'aiml', 'data', 'software'],
       details: {
