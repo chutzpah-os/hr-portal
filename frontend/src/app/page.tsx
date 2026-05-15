@@ -29,6 +29,32 @@ const CHANNEL_LINKS: Record<string, string> = {
   psf: 'https://www.youtube.com/@ProblemSolverFoundation',
 }
 
+const CHANNELS = [
+  { id: 'UCzmKBWAle1KP7tOcOgi18EA', slug: 'haniel', name: 'Haniel Rolemberg' },
+  { id: 'UClfUa-1qwNE8SPw30DPG8RA', slug: 'psf',    name: 'Problem Solver Foundation' },
+]
+
+async function fetchChannelVideos(channelId: string, slug: string, name: string): Promise<YTVideo[]> {
+  const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`
+  const url = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&count=15`
+  const res = await fetch(url)
+  const data = await res.json()
+  if (data.status !== 'ok') return []
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return data.items.map((item: any) => {
+    const videoId = item.link.match(/v=([^&]+)/)?.[1] ?? ''
+    return {
+      id: videoId,
+      title: item.title,
+      thumbnail: `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+      publishedAt: item.pubDate,
+      channelName: name,
+      channelId: slug,
+      url: item.link,
+    }
+  })
+}
+
 function FeaturedContent() {
   const [videos, setVideos] = useState<YTVideo[]>([])
   const [loading, setLoading] = useState(true)
@@ -36,9 +62,16 @@ function FeaturedContent() {
   const trackRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    fetch('/api/youtube')
-      .then((r) => r.json())
-      .then((data) => { setVideos(data); setLoading(false) })
+    Promise.all(CHANNELS.map((ch) => fetchChannelVideos(ch.id, ch.slug, ch.name)))
+      .then((results) => {
+        const merged: YTVideo[] = []
+        const max = Math.max(...results.map((r) => r.length))
+        for (let i = 0; i < max; i++) {
+          for (const list of results) { if (list[i]) merged.push(list[i]) }
+        }
+        setVideos(merged)
+        setLoading(false)
+      })
       .catch(() => setLoading(false))
   }, [])
 
