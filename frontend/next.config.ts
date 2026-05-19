@@ -3,6 +3,12 @@ import path from 'path'
 
 const nextConfig: NextConfig = {
   outputFileTracingRoot: path.join(__dirname, '../'),
+  async redirects() {
+    return [
+      { source: '/contact', destination: '/', permanent: true },
+      { source: '/solutions', destination: '/', permanent: true },
+    ]
+  },
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'i.ibb.co' },
