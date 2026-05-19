@@ -4,11 +4,14 @@ import matter from 'gray-matter'
 
 const CONTENT_DIR = path.join(process.cwd(), 'src/content/blog')
 
+export type PostCategory = 'technical' | 'non-technical'
+
 export interface PostMeta {
   slug: string
   title: string
   date: string
   excerpt: string
+  category: PostCategory
 }
 
 export interface Post extends PostMeta {
@@ -28,6 +31,7 @@ export function getAllPosts(): PostMeta[] {
         title: data.title as string,
         date: data.date as string,
         excerpt: data.excerpt as string,
+        category: (data.category as PostCategory) ?? 'non-technical',
       }
     })
     .sort((a, b) => (a.date > b.date ? -1 : 1))
@@ -42,6 +46,7 @@ export function getPostBySlug(slug: string): Post {
     title: data.title as string,
     date: data.date as string,
     excerpt: data.excerpt as string,
+    category: (data.category as PostCategory) ?? 'non-technical',
     content,
   }
 }

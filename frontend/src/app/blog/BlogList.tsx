@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import type { PostMeta } from '@/lib/blog'
+import type { PostMeta, PostCategory } from '@/lib/blog'
 
 function formatDate(dateStr: string): string {
   return new Date(dateStr).toLocaleDateString('en-US', {
@@ -12,39 +12,65 @@ function formatDate(dateStr: string): string {
 
 const PAGE_SIZE = 10
 
+type CategoryFilter = 'all' | PostCategory
+
+function FilterButton({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
+  return (
+    <button
+      onClick={onClick}
+      className="text-[0.65rem] uppercase tracking-widest px-3 py-1.5 rounded-full transition-all duration-200"
+      style={active ? {
+        backgroundColor: 'var(--accent)',
+        color: '#fff',
+      } : {
+        border: '1px solid rgba(10,10,15,0.12)',
+        color: 'var(--white-45)',
+        backgroundColor: 'transparent',
+      }}
+    >
+      {children}
+    </button>
+  )
+}
+
 export default function BlogList({ posts }: { posts: PostMeta[] }) {
   const [order, setOrder] = useState<'newest' | 'oldest'>('newest')
+  const [category, setCategory] = useState<CategoryFilter>('all')
   const [visible, setVisible] = useState(PAGE_SIZE)
 
-  const sorted = order === 'newest' ? posts : [...posts].reverse()
+  const reset = () => setVisible(PAGE_SIZE)
+
+  const filtered = category === 'all' ? posts : posts.filter((p) => p.category === category)
+  const sorted = order === 'newest' ? filtered : [...filtered].reverse()
   const shown = sorted.slice(0, visible)
   const hasMore = visible < sorted.length
 
   return (
     <>
-      {/* Filter */}
-      <div className="flex gap-2 mb-10">
-        {(['newest', 'oldest'] as const).map((opt) => (
-          <button
-            key={opt}
-            onClick={() => { setOrder(opt); setVisible(PAGE_SIZE) }}
-            className="text-[0.65rem] uppercase tracking-widest px-3 py-1.5 rounded-full transition-all duration-200"
-            style={order === opt ? {
-              backgroundColor: 'var(--accent)',
-              color: '#fff',
-            } : {
-              border: '1px solid rgba(10,10,15,0.12)',
-              color: 'var(--white-45)',
-              backgroundColor: 'transparent',
-            }}
-          >
-            {opt === 'newest' ? 'Newest' : 'Oldest'}
-          </button>
-        ))}
+      {/* Filters */}
+      <div className="flex flex-wrap gap-x-6 gap-y-3 mb-10">
+        {/* Order */}
+        <div className="flex gap-2">
+          <FilterButton active={order === 'newest'} onClick={() => { setOrder('newest'); reset() }}>Newest</FilterButton>
+          <FilterButton active={order === 'oldest'} onClick={() => { setOrder('oldest'); reset() }}>Oldest</FilterButton>
+        </div>
+
+        {/* Separator */}
+        <div style={{ width: '1px', backgroundColor: 'rgba(10,10,15,0.1)', alignSelf: 'stretch' }} />
+
+        {/* Category */}
+        <div className="flex gap-2">
+          <FilterButton active={category === 'all'} onClick={() => { setCategory('all'); reset() }}>All</FilterButton>
+          <FilterButton active={category === 'technical'} onClick={() => { setCategory('technical'); reset() }}>Technical</FilterButton>
+          <FilterButton active={category === 'non-technical'} onClick={() => { setCategory('non-technical'); reset() }}>Non-Technical</FilterButton>
+        </div>
       </div>
 
       {/* Post list */}
       <div>
+        {shown.length === 0 && (
+          <p className="text-sm py-10 text-center" style={{ color: 'var(--white-35)' }}>No posts found.</p>
+        )}
         {shown.map((post, i) => (
           <article
             key={post.slug}
@@ -56,7 +82,7 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
           >
             <Link href={`/blog/${post.slug}`} className="group block">
               <h2
-                className="font-semibold mb-1.5 transition-colors duration-200 group-hover:opacity-70"
+                className="font-semibold mb-1.5 transition-colors duration-200 group-hover:opacity-70 line-clamp-2"
                 style={{
                   color: 'var(--white-100)',
                   fontSize: 'clamp(1rem, 2.5vw, 1.15rem)',
