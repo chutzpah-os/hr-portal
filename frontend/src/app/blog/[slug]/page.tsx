@@ -1,6 +1,102 @@
 import { getAllPosts, getPostBySlug, formatDate } from '@/lib/blog'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import type { ReactNode } from 'react'
+
+function renderInline(text: string): ReactNode {
+  const boldParts = text.split(/(\*\*[^*]+\*\*)/)
+  return boldParts.map((part, i) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={i}>{part.slice(2, -2)}</strong>
+    }
+    const linkMatch = part.match(/\[([^\]]+)\]\(([^)]+)\)/)
+    if (linkMatch) {
+      const before = part.slice(0, part.indexOf('['))
+      const after = part.slice(part.indexOf(')') + 1)
+      return (
+        <span key={i}>
+          {before}
+          <a href={linkMatch[2]} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>{linkMatch[1]}</a>
+          {after}
+        </span>
+      )
+    }
+    return part
+  })
+}
+
+function renderBlock(block: string, i: number): ReactNode {
+  const text = block.trim()
+
+  if (text === '***' || text === '---' || text === '___') {
+    return <hr key={i} style={{ border: 'none', borderTop: '1px solid rgba(10,10,15,0.08)', margin: '2.5rem 0' }} />
+  }
+  if (text.startsWith('### ')) {
+    return (
+      <h3 key={i} style={{ color: 'var(--white-100)', fontFamily: 'var(--font-syne)', fontSize: '1rem', fontWeight: 700, letterSpacing: '-0.01em', marginBottom: '0.75rem', marginTop: '2rem' }}>
+        {renderInline(text.replace(/^### /, ''))}
+      </h3>
+    )
+  }
+  if (text.startsWith('## ')) {
+    return (
+      <h2 key={i} style={{ color: 'var(--white-100)', fontFamily: 'var(--font-syne)', fontSize: '1.15rem', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: '0.75rem', marginTop: '2.5rem' }}>
+        {renderInline(text.replace(/^## /, ''))}
+      </h2>
+    )
+  }
+  if (text.startsWith('> ')) {
+    return (
+      <blockquote key={i} style={{ borderLeft: '3px solid var(--accent)', paddingLeft: '1rem', margin: '1.5rem 0', color: 'var(--white-60)', fontStyle: 'italic' }}>
+        {renderInline(text.replace(/^> /, ''))}
+      </blockquote>
+    )
+  }
+  if (text.startsWith('|')) {
+    const lines = text.split('\n').filter((l) => l.trim() && !/^\|[\s\-:|]+\|$/.test(l.trim()))
+    const rows = lines.map((l) => l.split('|').slice(1, -1).map((c) => c.trim()))
+    const [header, ...body] = rows
+    return (
+      <div key={i} style={{ overflowX: 'auto', marginBottom: '1.6rem', marginTop: '1rem' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.82rem' }}>
+          <thead>
+            <tr>
+              {header.map((cell, j) => (
+                <th key={j} style={{ borderBottom: '2px solid rgba(10,10,15,0.12)', padding: '0.5rem 0.75rem', textAlign: 'left', color: 'var(--white-90)', fontWeight: 600, whiteSpace: 'nowrap' }}>
+                  {renderInline(cell)}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {body.map((row, r) => (
+              <tr key={r} style={{ borderBottom: '1px solid rgba(10,10,15,0.06)' }}>
+                {row.map((cell, j) => (
+                  <td key={j} style={{ padding: '0.5rem 0.75rem', color: 'var(--white-60)', verticalAlign: 'top' }}>
+                    {renderInline(cell)}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+  if (/^[\*\-] /.test(text)) {
+    const items = text.split('\n').filter((l) => l.trim())
+    return (
+      <ul key={i} style={{ paddingLeft: '1.25rem', marginBottom: '1.6rem', color: 'rgba(10,10,15,0.72)' }}>
+        {items.map((item, j) => (
+          <li key={j} style={{ marginBottom: '0.4rem', lineHeight: 1.75 }}>
+            {renderInline(item.replace(/^[\*\-]\s+/, ''))}
+          </li>
+        ))}
+      </ul>
+    )
+  }
+  return <p key={i}>{renderInline(text)}</p>
+}
 
 export async function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }))
@@ -111,24 +207,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           {post.content
             .split(/\n\n+/)
             .filter((block) => block.trim())
-            .map((block, i) => {
-              const text = block.trim()
-              if (text.startsWith('### ')) {
-                return (
-                  <h3 key={i} style={{ color: 'var(--white-100)', fontFamily: 'var(--font-syne)', fontSize: '1rem', fontWeight: 700, letterSpacing: '-0.01em', marginBottom: '0.75rem', marginTop: '2rem' }}>
-                    {text.replace(/^### /, '')}
-                  </h3>
-                )
-              }
-              if (text.startsWith('## ')) {
-                return (
-                  <h2 key={i} style={{ color: 'var(--white-100)', fontFamily: 'var(--font-syne)', fontSize: '1.15rem', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: '0.75rem', marginTop: '2.5rem' }}>
-                    {text.replace(/^## /, '')}
-                  </h2>
-                )
-              }
-              return <p key={i}>{text}</p>
-            })}
+            .map((block, i) => renderBlock(block, i))}
         </div>
       </div>
     </main>
