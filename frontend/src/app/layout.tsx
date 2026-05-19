@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     images: [
       {
-        url: '/images/profile.jpg',
+        url: '/images/Haniel-Rolemberg.jpeg',
         width: 1200,
         height: 630,
         alt: 'Haniel Rolemberg — Problem Solver',
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Haniel Rolemberg — Problem Solver',
     description: 'Problem Solver | Software · Cybersecurity · Data · AI/ML',
-    images: ['/images/profile.jpg'],
+    images: ['/images/Haniel-Rolemberg.jpeg'],
   },
 }
 

@@ -6,12 +6,39 @@ export async function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }))
 }
 
+const BASE_URL = 'https://hanielrolemberg.com'
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const post = getPostBySlug(slug)
+  const url = `${BASE_URL}/blog/${slug}`
+
   return {
     title: `${post.title} — Haniel Rolemberg`,
     description: post.excerpt,
+    alternates: { canonical: url },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      url,
+      type: 'article',
+      publishedTime: post.date,
+      authors: ['Haniel Rolemberg'],
+      images: [
+        {
+          url: `${BASE_URL}/images/Haniel-Rolemberg.jpeg`,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: [`${BASE_URL}/images/Haniel-Rolemberg.jpeg`],
+    },
   }
 }
 
@@ -19,8 +46,32 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const post = getPostBySlug(slug)
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    url: `${BASE_URL}/blog/${slug}`,
+    author: {
+      '@type': 'Person',
+      name: 'Haniel Rolemberg',
+      url: BASE_URL,
+    },
+    image: `${BASE_URL}/images/Haniel-Rolemberg.jpeg`,
+    publisher: {
+      '@type': 'Person',
+      name: 'Haniel Rolemberg',
+      url: BASE_URL,
+    },
+  }
+
   return (
     <main style={{ paddingTop: '5.5rem', minHeight: '80svh' }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <div style={{ maxWidth: '680px', margin: '0 auto', padding: '3rem 1.5rem 6rem' }}>
 
         {/* Back link */}
@@ -59,10 +110,25 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         <div className="prose-blog">
           {post.content
             .split(/\n\n+/)
-            .filter((p) => p.trim())
-            .map((para, i) => (
-              <p key={i}>{para.trim()}</p>
-            ))}
+            .filter((block) => block.trim())
+            .map((block, i) => {
+              const text = block.trim()
+              if (text.startsWith('### ')) {
+                return (
+                  <h3 key={i} style={{ color: 'var(--white-100)', fontFamily: 'var(--font-syne)', fontSize: '1rem', fontWeight: 700, letterSpacing: '-0.01em', marginBottom: '0.75rem', marginTop: '2rem' }}>
+                    {text.replace(/^### /, '')}
+                  </h3>
+                )
+              }
+              if (text.startsWith('## ')) {
+                return (
+                  <h2 key={i} style={{ color: 'var(--white-100)', fontFamily: 'var(--font-syne)', fontSize: '1.15rem', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: '0.75rem', marginTop: '2.5rem' }}>
+                    {text.replace(/^## /, '')}
+                  </h2>
+                )
+              }
+              return <p key={i}>{text}</p>
+            })}
         </div>
       </div>
     </main>
