@@ -1,4 +1,5 @@
 import Hero from '@/components/sections/Hero'
+import RecommendationsCarousel from '@/components/sections/RecommendationsCarousel'
 import PortfolioSection from '@/components/sections/PortfolioSection'
 import ExperienceSection from '@/components/sections/Experience'
 import VolunteeringSection from '@/components/sections/Volunteering'
@@ -14,6 +15,8 @@ export default function PortfolioPage() {
   return (
     <main>
       <Hero />
+      <hr className="section-divider" />
+      <RecommendationsCarousel />
       <hr className="section-divider" />
       <PortfolioSection>
         <ExperienceSection />
