@@ -25,18 +25,18 @@ const RECS = [
   {
     id: 3,
     name: 'Marcus Lima',
-    title: 'Analista de Desenvolvimento de Software',
+    title: 'Software Development Analyst',
     company: 'Banese',
-    photo: null,
-    text: 'Tive a oportunidade de trabalhar com Haniel no GDG Aracaju, e posso afirmar que ele é uma das pessoas mais comprometidas e inspiradoras com quem já colaborei. Seu perfil se destaca pela liderança, iniciativa e habilidades de comunicação excepcionais. Sempre que surgia um desafio, ele estava à frente, buscando as melhores soluções para garantir que os eventos do GDG fossem sempre um sucesso.',
+    photo: '/images/marc.jpeg',
+    text: "I had the opportunity to work with Haniel at GDG Aracaju, and I can say he is one of the most committed and inspiring people I've ever collaborated with. He stands out for his leadership, initiative, and exceptional communication skills. Whenever a challenge arose, he was at the forefront, finding the best solutions to ensure GDG events were always a success.",
   },
   {
     id: 4,
     name: 'Irandi Silva',
-    title: 'Diretor Comercial',
+    title: 'Commercial Director',
     company: 'CDL',
     photo: '/images/irandi-silva.jpg',
-    text: 'Tive a oportunidade de trabalhar com Haniel Rolemberg em diversos projetos e posso afirmar com segurança que ele é excepcional, tanto em termos de habilidades técnicas quanto em lidar com pessoas. Haniel possui uma habilidade única de identificar os pontos fortes de cada projeto, maximizando os resultados. Recomendo fortemente Haniel para qualquer desafio que exija liderança, inovação e excelência técnica.',
+    text: "I had the opportunity to work with Haniel Rolemberg on several projects and can say with confidence that he is exceptional — both in technical skills and in dealing with people. Haniel played a crucial role in managing innovative projects, always keeping focus on results and ensuring teams were aligned and motivated. He has a unique ability to identify each project's strengths and maximize outcomes. I strongly recommend Haniel for any challenge requiring leadership, innovation, and technical excellence.",
   },
 ]
 
