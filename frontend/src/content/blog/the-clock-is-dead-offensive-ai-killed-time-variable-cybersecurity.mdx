@@ -1,0 +1,142 @@
+---
+title: "The Clock Is Dead: How Offensive AI Killed the Time Variable in Cybersecurity"
+date: "2026-05-27"
+excerpt: "The average breakout time dropped to 29 minutes in 2025. The fastest recorded case: 27 seconds. Data exfiltration began 4 minutes after initial access. If your security strategy still depends on a human reviewing an alert before action is taken, you're playing a different game than the one being played against you."
+category: "technical"
+---
+
+*And why your entire security strategy needs to be rebuilt from scratch*
+
+---
+
+I remember the first time I saw a real incident timeline drawn on a whiteboard. An analyst walked me through it step by step — initial access on a Monday, lateral movement on Tuesday, data staged by Thursday, exfiltration over the weekend. Five days. A whole week of opportunity to detect, respond, contain.
+
+That world is gone.
+
+I'm not being dramatic. The data is in, and it's the kind of data that should make every security leader sit down and seriously reconsider whether what they're doing right now has any relationship to the threat they're actually facing.
+
+The average breakout time — from initial access to lateral movement — dropped to 29 minutes in 2025. Twenty-nine minutes. The fastest recorded case? Twenty-seven seconds. In another documented incident, data exfiltration began four minutes after initial access. Four minutes from "they're in" to "the data is leaving."
+
+Tell me: what does your current detection and response playbook do in four minutes?
+
+---
+
+## The Part Nobody Wants to Talk About
+
+Here's what's uncomfortable about these numbers. They're not the result of attackers getting smarter or working harder. They're the result of attackers largely stepping back and letting machines do the work.
+
+In late 2025, there was a documented espionage campaign where an AI tool orchestrated the entire attack. Eighty to ninety percent of the operation was run autonomously. Thirty global targets across tech, finance, energy, and government. Thousands of probes per second. No human team could run reconnaissance at that speed. No human team needed to.
+
+And if that still sounds abstract, let me put a price tag on it. In February 2026, a research team published benchmark results for an LLM-based penetration testing agent. It was given a realistic Active Directory environment — five hosts, multiple domains, real lateral movement required. The agent compromised four of the five hosts. The total cost in API fees: $28.50. A human penetration testing firm would charge between $15,000 and $50,000 for the same scope.
+
+One tool called RapidPen can go from a target IP address to shell access in an average of 200 to 400 seconds. Cost per run: under a dollar.
+
+The economic moat that used to protect organizations — the fact that sophisticated attacks were expensive and required skilled humans — has been demolished. The barrier to launching a complex, multi-stage intrusion is now roughly the same as ordering lunch.
+
+---
+
+## This Isn't Just About Speed
+
+Speed is the headline, but it's not the whole story.
+
+The qualitative shift is that AI didn't just make attacks faster. It made them adaptive, persistent, and available to people who never could have pulled them off before. In February 2025, three teenagers — ages 14, 15, and 16, with no coding background — used ChatGPT to build a tool that hammered a major telecom system over 220,000 times. In July 2025, a single actor used an agentic coding platform to run an extortion campaign against 17 organizations over one month. One person. Seventeen targets. One month. Autonomous AI handling the development, execution, and coordination.
+
+This is what "lowered skill floor" actually means in practice. It's not that the attacks got simpler. It's that the skills required to execute complex attacks can now be rented from an API endpoint for less than the cost of a coffee.
+
+Then there's the zero-day problem, which just crossed a line that changes the conversation entirely.
+
+In May 2026, Google confirmed that for the first time ever, hackers used AI to discover and exploit a zero-day vulnerability. Not to weaponize a known vulnerability. Not to automate an existing exploit. To find a new one — a previously unknown flaw — autonomously. This particular zero-day would have bypassed two-factor authentication across Google products.
+
+Zero-days have always been the crown jewel of offensive cyber capability. They're rare, expensive, and require deep expertise to find. The entire model of vulnerability management assumes there's a meaningful delay between a flaw existing and a flaw being exploited. AI is compressing that delay toward zero.
+
+---
+
+## The Attack Surface Just Inverted
+
+There's another dimension that makes this harder: the AI systems organizations are now deploying for productivity and efficiency are themselves becoming attack targets and attack vectors.
+
+By late 2025, 89% of organizations were detecting AI prompts classified as risky, and one in 41 was classified as high risk — a 97% increase from the start of the year. Attackers are injecting malicious prompts into legitimate enterprise AI tools, turning the organization's own productivity stack against it. Agentic frameworks, MCP servers, locally deployed models — every new surface introduced for efficiency is a new surface that can be probed.
+
+This is where agentic AI on the offensive side gets genuinely alarming. Unlike traditional automation, agentic AI can plan, adapt, and persist. A blocked attack doesn't stop — it resumes automatically when the agent finds another opening. Reconnaissance isn't a defined pre-attack phase anymore. It happens continuously, silently, in parallel with everything else. The agent doesn't sleep, doesn't get frustrated, doesn't forget where it left off.
+
+Organizations that are deploying AI internally without thinking carefully about how those systems can be abused are simultaneously defending against AI-powered attacks and handing adversaries new tools to use against them.
+
+---
+
+## Why Detection-and-Response Is the Wrong Frame
+
+The cybersecurity industry spent the last fifteen years building detection and response capabilities. Invest in visibility, find the threat quickly, respond and contain. The logic was sound for the threat environment it was designed for.
+
+That logic now has a fatal flaw: it assumes you have time to detect before you need to respond.
+
+When breakout happens in 29 minutes on average, and data leaves in four minutes in the worst cases, the detection step and the response step have to collapse into one. There's no space between them anymore. By the time an analyst sees the alert, reads the context, and decides what to do, the attacker has already moved. In many cases, they've already won.
+
+This is why the frame needs to shift from detection-and-response to resilience. Not as a buzzword. As a genuine architectural commitment.
+
+Resilience means accepting that some attacks will succeed, and designing systems specifically so that success doesn't translate into catastrophe. It means containment-by-default rather than perimeter-by-assumption. It means recovery as a primary design requirement, not an afterthought. It means the question you ask about your systems changes from "can this be breached?" — the answer is yes — to "can this keep operating when it is?"
+
+---
+
+## What Agentic Defense Actually Looks Like
+
+The good news — and there is genuine good news here — is that the same AI capabilities driving offensive attacks are available on the defensive side. The challenge is that most organizations haven't restructured their operations to actually use them.
+
+Agentic security defense means the system doesn't wait for a human to review an alert before acting. When abnormal login attempts appear from two countries simultaneously, an agentic system blocks access in those regions, notifies the team, and begins tracing whether accounts were compromised — all before any human has opened a ticket. If malware spreads on employee devices, the system quarantines infected machines and produces a forensic report of the attack chain automatically. The human doesn't disappear from this picture, but they shift from being in the execution loop to being in the governance loop. They review, they make high-stakes judgment calls, they handle the edge cases the system flags as uncertain.
+
+Google announced autonomous threat hunting and detection engineering agents at Cloud Next 2026. The framing was significant: not "AI-assisted" security, but AI agents taking primary responsibility for these functions with humans in a supervisory capacity.
+
+Booz Allen put it bluntly in their March 2026 report: early containment actions — isolating systems, blocking malicious traffic, revoking suspicious sessions, initiating remediation — cannot wait for manual approval. They have to happen automatically within defined limits while the intrusion is still unfolding. Not after. Not with human sign-off. While it's happening.
+
+---
+
+## The Foundations That Actually Matter
+
+Here's where I want to be careful, because a lot of what gets marketed as AI defense is genuinely just noise.
+
+AI doesn't fix bad fundamentals. If your logging is incomplete, an AI system will have blind spots. If your identity controls are weak, an AI system will be chasing ghosts. If your alert pipeline is a mess, automation will amplify that mess at scale. The organizations that extracted real value from AI security tools in 2025 were the ones with disciplined operating models before they added AI.
+
+**Strong identity controls are non-negotiable.** The perimeter is gone. Identity is the new perimeter. Every privileged access path needs to be known, minimized, and monitored. Agentic attackers will hunt for identity weaknesses because they're fast to exploit and often deeply connected to everything else.
+
+**Behavioral detection, not indicator-based detection.** Traditional security tools look for known bad signatures. AI-powered attacks generate novel behavior. Your detection capability needs to understand what normal looks like for your environment and flag deviations — not just match against a list of known IOCs that the attacker has already designed around.
+
+**Network segmentation and blast radius control.** Assume breach, design for containment. If an attacker gets into one system, how much of your environment can they reach? In a well-segmented environment: not much. This matters more now than it ever has, because the speed of lateral movement means you often won't be able to stop it — but you can limit how far it goes.
+
+**Recovery architecture that is actually tested.** Immutable backups. Hermetically sealed recovery environments. Regular testing of actual recovery scenarios, not just backup jobs completing successfully. When ransomware hits and encryption begins at machine speed, the difference between a catastrophic event and an operational disruption comes down to how fast you can restore from a known-good state.
+
+---
+
+## The Accountability Question
+
+There's a governance dimension to this that doesn't get enough attention.
+
+CISOs are increasingly expected to answer a question they couldn't answer five years ago: not just "do we have security controls?" but "how does our organization perform operationally under active attack?" These are different questions. The first is about coverage. The second is about resilience.
+
+Boards are starting to ask the second question. And the honest answer for most organizations is that they don't know, because they've never tested it rigorously. They've done tabletop exercises. They've run penetration tests against specific scopes. But they haven't stress-tested their ability to detect, contain, and continue operating when an autonomous agent is running intrusion chains at machine speed across their environment simultaneously.
+
+That gap between the threat model and the testing model is where organizations are getting hurt.
+
+---
+
+## What I Actually Think Needs to Change
+
+I've been thinking about this for a while, and I keep coming back to the same conclusion: the mental model most security teams are working from was built for a different era.
+
+The old model assumes humans are in the critical path. Detect, hand to analyst, analyst decides, analyst acts. That model has a minimum latency measured in minutes to hours. The threat environment now has a minimum latency measured in seconds.
+
+The new model has to assume that any decision requiring a human in the loop will lose the race against an autonomous attacker. Which means the architecture has to be built to act without humans in the critical path for execution, while keeping humans firmly in the critical path for strategy, governance, and high-stakes exception handling.
+
+This isn't about removing humans from security. It's about putting them where they're actually valuable. Humans are extraordinary at judgment under ambiguity, at understanding business context, at navigating the gray areas that automated systems will always encounter. Humans are terrible at being faster than a machine running at API speed.
+
+Play to the strengths. Build the architecture around that reality.
+
+---
+
+## The Closing Thought
+
+If your security strategy still depends on a human reviewing an alert before any action is taken, you're not behind the curve. You're playing a different game than the one being played against you.
+
+The time variable in security didn't compress. It didn't shrink. For certain classes of attack, it disappeared entirely. Twenty-seven seconds is not a window. It's not an opportunity to respond. It's barely the time it takes to unlock your phone.
+
+The organizations that will navigate the next three years without a catastrophic incident are the ones that accept this uncomfortable truth now and start building architecture that doesn't pretend time exists as a defensive resource.
+
+Everyone else is working on borrowed time — and the loan is coming due faster than you think.
