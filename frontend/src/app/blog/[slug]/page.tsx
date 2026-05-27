@@ -112,6 +112,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${post.title} — Haniel Rolemberg`,
     description: post.excerpt,
+    keywords: post.tags,
     alternates: { canonical: url },
     openGraph: {
       title: post.title,
@@ -119,7 +120,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       url,
       type: 'article',
       publishedTime: post.date,
+      modifiedTime: post.date,
       authors: ['Haniel Rolemberg'],
+      tags: post.tags,
       images: [
         {
           url: `${BASE_URL}/images/Haniel-Rolemberg.jpeg`,
@@ -147,18 +150,28 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.excerpt,
+    keywords: post.tags.join(', '),
+    articleSection: post.category === 'technical' ? 'Technology' : 'Personal',
+    inLanguage: 'en-US',
     datePublished: post.date,
+    dateModified: post.date,
     url: `${BASE_URL}/blog/${slug}`,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${BASE_URL}/blog/${slug}` },
     author: {
       '@type': 'Person',
       name: 'Haniel Rolemberg',
       url: BASE_URL,
+      sameAs: [
+        'https://www.linkedin.com/in/hanielrolemberg/',
+        'https://github.com/chutzpah-os',
+      ],
     },
     image: `${BASE_URL}/images/Haniel-Rolemberg.jpeg`,
     publisher: {
       '@type': 'Person',
       name: 'Haniel Rolemberg',
       url: BASE_URL,
+      sameAs: ['https://www.linkedin.com/in/hanielrolemberg/'],
     },
   }
 
