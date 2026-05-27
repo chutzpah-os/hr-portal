@@ -13,6 +13,7 @@ const SUMMARY = [
   { label: 'Languages',      count: portfolioData.languages.length },
   { label: 'Certifications', count: portfolioData.certifications.length },
   { label: 'Skills',         count: portfolioData.skills.reduce((s, c) => s + c.items.length, 0) },
+  { label: 'Awards',         count: portfolioData.awards.length },
 ]
 
 const total = SUMMARY.reduce((s, { count }) => s + count, 0)
