@@ -44,15 +44,6 @@ export default function Hero() {
         {/* Left: text */}
         <div className="md:w-[55%] flex flex-col justify-center">
 
-          {/* Eyebrow */}
-          <motion.p
-            className="text-[0.65rem] uppercase tracking-[0.3em] mb-8"
-            style={{ color: 'var(--white-35)' }}
-            initial="hidden" animate="visible" variants={fadeUp(0)}
-          >
-            Problem Solver · 1b2035
-          </motion.p>
-
           {/* Headline */}
           <motion.h1
             initial="hidden" animate="visible" variants={fadeUp(0.1)}
@@ -67,9 +58,9 @@ export default function Hero() {
               marginBottom: '2rem',
             }}
           >
-            You Can&apos;t Stop<br />
-            What You<br />
-            <mark>Can&apos;t See.</mark>
+            Research.<br />
+            <mark>Build.</mark><br />
+            Secure.
           </motion.h1>
 
           {/* Description */}
@@ -78,7 +69,7 @@ export default function Hero() {
             style={{ color: 'var(--white-65)' }}
             initial="hidden" animate="visible" variants={fadeUp(0.28)}
           >
-            Threats thrive in what you can&apos;t see. I find them, name them, and build the systems that stop them.
+            AI. Data. Security. R&amp;D. Hard problems across disciplines — I find what&apos;s broken and build the version that holds.
           </motion.p>
 
           {/* CTAs */}
@@ -150,6 +141,29 @@ export default function Hero() {
               />
             </div>
 
+            {/* Eyebrow badge — top of portrait */}
+            <motion.div
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.75, ease: 'easeOut' }}
+              style={{
+                position: 'absolute',
+                top: '0px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                backgroundColor: 'rgb(255,255,255)',
+                border: '1px solid rgba(10,10,15,0.09)',
+                borderRadius: '18px',
+                padding: '8px 18px',
+                boxShadow: '0 8px 32px rgba(10,10,15,0.10)',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em]" style={{ color: 'var(--white-80)' }}>
+                Problem Solver · <span style={{ color: 'var(--accent)' }}>1b2035</span>
+              </p>
+            </motion.div>
+
             {/* Stats badge — bottom-left of portrait */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -184,8 +198,8 @@ export default function Hero() {
                     {value}
                   </p>
                   <p
-                    className="text-[0.52rem] uppercase tracking-widest"
-                    style={{ color: 'var(--white-35)' }}
+                    className="text-[0.7rem] font-semibold uppercase tracking-[0.22em]"
+                    style={{ color: 'var(--white-80)' }}
                   >
                     {label}
                   </p>
