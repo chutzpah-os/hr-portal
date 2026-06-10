@@ -42,15 +42,15 @@ Built for ambitious people who want to move faster without losing clarity on why
     hasModal: true,
   },
   {
-    id: 'hoshilang',
-    name: 'HoshiLang',
+    id: 'hofshilang',
+    name: 'HofShiLang',
     tagline: 'Empowering youth through languages.',
     shortDescription: 'Language learning with a proprietary formula designed to turn ambition into measurable fluency.',
-    fullDescription: `HoshiLang is a language learning product built around a proprietary formula — not a generic curriculum, but a structured method that maps ambition to measurable outcomes.
+    fullDescription: `HofShiLang is a language learning product built around a proprietary formula — not a generic curriculum, but a structured method that maps ambition to measurable outcomes.
 
-The core insight: most learners plateau because they track effort (hours studied, lessons completed) instead of progress (what they can actually do). HoshiLang shifts the frame. Every learner has a clear CEFR target, a weekly engagement contract, and real-world interaction goals that build toward fluency.
+The core insight: most learners plateau because they track effort (hours studied, lessons completed) instead of progress (what they can actually do). HofShiLang shifts the frame. Every learner has a clear CEFR target, a weekly engagement contract, and real-world interaction goals that build toward fluency.
 
-Beyond the product, HoshiLang operates as an educational initiative. Through partnerships with youth programs, it brings language access to communities where multilingualism is a direct path to economic opportunity.
+Beyond the product, HofShiLang operates as an educational initiative. Through partnerships with youth programs, it brings language access to communities where multilingualism is a direct path to economic opportunity.
 
 The formula: structured input + real-world output + accountability loops. The result: learners who don't just study a language — they start using it.`,
     metrics: [
@@ -60,6 +60,8 @@ The formula: structured input + real-world output + accountability loops. The re
     ],
     tags: ['R&D', 'Software', 'Education'],
     status: 'In Development',
+    image: '/images/hofshilang.png',
+    imageFit: 'contain',
     hasModal: true,
   },
   {
