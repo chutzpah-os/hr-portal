@@ -64,11 +64,17 @@ The formula: structured input + real-world output + accountability loops. The re
     name: '1k Miles of Hope',
     tagline: 'Running for a cure.',
     shortDescription: 'A fundraising campaign to finance cancer research — every mile matters.',
-    fullDescription: '',
+    fullDescription: `1k Miles of Hope is a fundraising initiative created to support cancer research through the Terry Fox Foundation — one of the most impactful cancer research programs in the world.
+
+The goal is simple: run 1,000 miles and raise funds that go directly toward financing scientific research aimed at finding a cure. Every kilometer translates into real resources for real scientists working on real breakthroughs.
+
+Cancer touches almost every family. This campaign is a way to turn movement into meaning — to make every run, every mile, and every step count for something larger than the finish line.
+
+If you want to contribute, every donation makes a difference.`,
     tags: ['Social Impact', 'Health'],
     status: 'Active',
     cta: { label: 'Donate', href: 'https://international.terryfox.ca/page/1k-miles-of-hope', external: true },
-    hasModal: false,
+    hasModal: true,
   },
 ]
 
@@ -233,8 +239,6 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
 }
 
 function ProductCard({ product, onClick }: { product: Product; onClick: () => void }) {
-  const isExternal = !product.hasModal && product.cta
-
   const cardContent = (
     <div
       className="group flex flex-col h-full rounded-3xl overflow-hidden transition-all duration-300 cursor-pointer"
@@ -327,38 +331,16 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
 
         {/* Footer */}
         <div className="mt-5 flex items-center justify-between">
-          {isExternal ? (
-            <span
-              className="text-xs uppercase tracking-widest font-semibold"
-              style={{ color: 'var(--accent)' }}
-            >
-              Donate →
-            </span>
-          ) : (
-            <span
-              className="text-xs uppercase tracking-widest"
-              style={{ color: 'var(--white-35)' }}
-            >
-              View details →
-            </span>
-          )}
+          <span
+            className="text-xs uppercase tracking-widest"
+            style={{ color: 'var(--white-35)' }}
+          >
+            View details →
+          </span>
         </div>
       </div>
     </div>
   )
-
-  if (isExternal && product.cta) {
-    return (
-      <a
-        href={product.cta.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block h-full"
-      >
-        {cardContent}
-      </a>
-    )
-  }
 
   return (
     <button onClick={onClick} className="text-left block w-full h-full">
@@ -473,7 +455,7 @@ export default function SolutionsPage() {
                 >
                   <ProductCard
                     product={product}
-                    onClick={() => product.hasModal && setSelected(product)}
+                    onClick={() => setSelected(product)}
                   />
                 </motion.div>
               ))}
