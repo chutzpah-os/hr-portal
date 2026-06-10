@@ -19,7 +19,6 @@ interface Product {
   imageFit?: 'contain' | 'cover'
   modalImage?: string
   cta?: { label: string; href: string; external?: boolean }
-  hasModal: boolean
 }
 
 const PRODUCTS: Product[] = [
@@ -39,7 +38,6 @@ Built for ambitious people who want to move faster without losing clarity on why
     status: 'In Development',
     image: '/images/cherut.png',
     imageFit: 'contain',
-    hasModal: true,
   },
   {
     id: 'hofshilang',
@@ -62,7 +60,6 @@ The formula: structured input + real-world output + accountability loops. The re
     status: 'In Development',
     image: '/images/hofshilang.png',
     imageFit: 'contain',
-    hasModal: true,
   },
   {
     id: '1k-miles',
@@ -82,7 +79,6 @@ If you want to contribute, every donation makes a difference.`,
     imageFit: 'cover',
     modalImage: '/images/hanielrunning.jpeg',
     cta: { label: 'Donate', href: 'https://international.terryfox.ca/page/1k-miles-of-hope', external: true },
-    hasModal: true,
   },
 ]
 

@@ -1,7 +1,5 @@
 'use client'
 
-import React from 'react'
-
 // [text, x%, y%, fontSize, opMin, opMax, dur, delay]
 type Entry = [string, number, number, number, number, number, number, number]
 

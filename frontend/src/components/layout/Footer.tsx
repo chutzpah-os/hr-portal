@@ -30,7 +30,6 @@ const SOCIAL_LINKS = [
   },
 ]
 
-const NAV_LINKS: { label: string; href: string }[] = []
 
 export default function Footer() {
   return (
@@ -69,22 +68,6 @@ export default function Footer() {
             </a>
           ))}
         </div>
-
-        {/* Nav links */}
-        <nav className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
-          {NAV_LINKS.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="text-xs uppercase tracking-widest transition-colors duration-200"
-              style={{ color: 'var(--white-50)' }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--white-80)')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--white-50)')}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
 
         {/* Copyright */}
         <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--white-35)' }}>
