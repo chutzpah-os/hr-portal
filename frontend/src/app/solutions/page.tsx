@@ -303,8 +303,7 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
             alt={product.name}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className={product.imageFit === 'cover' ? 'object-cover object-center' : 'object-contain'}
-            style={product.imageFit !== 'cover' ? { padding: '1.5rem' } : undefined}
+            className="object-cover object-center"
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
