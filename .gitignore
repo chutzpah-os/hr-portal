@@ -41,3 +41,6 @@ docs/obsidian/notes/raw/dominio-email-seo-2026-04-26.md
 .agents
 .claude
 skills-lock.json
+
+# Staging assets (copies live in frontend/public/images/)
+assets/
