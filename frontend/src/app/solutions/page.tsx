@@ -16,6 +16,8 @@ interface Product {
   tags: FilterTag[]
   status: string
   image?: string
+  imageFit?: 'contain' | 'cover'
+  modalImage?: string
   cta?: { label: string; href: string; external?: boolean }
   hasModal: boolean
 }
@@ -36,6 +38,7 @@ Built for ambitious people who want to move faster without losing clarity on why
     tags: ['R&D', 'Software', 'Management'],
     status: 'In Development',
     image: '/images/cherut.png',
+    imageFit: 'contain',
     hasModal: true,
   },
   {
@@ -73,6 +76,9 @@ Cancer touches almost every family. This campaign is a way to turn movement into
 If you want to contribute, every donation makes a difference.`,
     tags: ['Social Impact', 'Health'],
     status: 'Active',
+    image: '/images/hospitalroompai.jpg',
+    imageFit: 'cover',
+    modalImage: '/images/hanielrunning.jpeg',
     cta: { label: 'Donate', href: 'https://international.terryfox.ca/page/1k-miles-of-hope', external: true },
     hasModal: true,
   },
@@ -173,7 +179,7 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
           &ldquo;{product.tagline}&rdquo;
         </p>
 
-        {/* Image */}
+        {/* Cover image */}
         {product.image && (
           <div
             className="rounded-2xl overflow-hidden mb-7"
@@ -189,8 +195,8 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
               alt={product.name}
               fill
               sizes="(max-width: 768px) 100vw, 672px"
-              className="object-contain"
-              style={{ padding: '1rem' }}
+              className={product.imageFit === 'cover' ? 'object-cover' : 'object-contain'}
+              style={product.imageFit !== 'cover' ? { padding: '1rem' } : undefined}
             />
           </div>
         )}
@@ -203,6 +209,26 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
             </p>
           ))}
         </div>
+
+        {/* Modal photo */}
+        {product.modalImage && (
+          <div
+            className="rounded-2xl overflow-hidden mb-7"
+            style={{
+              aspectRatio: '4/3',
+              position: 'relative',
+              border: '1px solid rgba(10,10,15,0.07)',
+            }}
+          >
+            <Image
+              src={product.modalImage}
+              alt={`${product.name} — photo`}
+              fill
+              sizes="(max-width: 768px) 100vw, 672px"
+              className="object-cover object-top"
+            />
+          </div>
+        )}
 
         {/* Metrics */}
         {product.metrics && product.metrics.length > 0 && (
@@ -275,8 +301,8 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
             alt={product.name}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-contain"
-            style={{ padding: '1.5rem' }}
+            className={product.imageFit === 'cover' ? 'object-cover object-center' : 'object-contain'}
+            style={product.imageFit !== 'cover' ? { padding: '1.5rem' } : undefined}
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
