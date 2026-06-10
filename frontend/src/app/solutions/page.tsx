@@ -174,9 +174,24 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
         >
           {product.name}
         </h2>
-        <p className="text-sm italic mb-7" style={{ color: 'var(--white-50)' }}>
-          &ldquo;{product.tagline}&rdquo;
-        </p>
+        <div className="flex items-center gap-4 mb-7 flex-wrap">
+          <p className="text-sm italic" style={{ color: 'var(--white-50)' }}>
+            &ldquo;{product.tagline}&rdquo;
+          </p>
+          {product.cta && (
+            <a
+              href={product.cta.href}
+              target={product.cta.external ? '_blank' : undefined}
+              rel={product.cta.external ? 'noopener noreferrer' : undefined}
+              className="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest px-4 py-2 rounded-full transition-all duration-200 shrink-0"
+              style={{ backgroundColor: 'var(--accent)', color: 'rgb(255,255,255)', fontWeight: 600 }}
+              onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.85' }}
+              onMouseLeave={(e) => { e.currentTarget.style.opacity = '1' }}
+            >
+              {product.cta.label} →
+            </a>
+          )}
+        </div>
 
         {/* Cover image */}
         {product.image && (
@@ -244,20 +259,6 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
           </div>
         )}
 
-        {/* CTA */}
-        {product.cta && (
-          <a
-            href={product.cta.href}
-            target={product.cta.external ? '_blank' : undefined}
-            rel={product.cta.external ? 'noopener noreferrer' : undefined}
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-widest px-6 py-3 rounded-full transition-all duration-200"
-            style={{ backgroundColor: 'var(--accent)', color: 'rgb(255,255,255)', fontWeight: 600 }}
-            onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.85' }}
-            onMouseLeave={(e) => { e.currentTarget.style.opacity = '1' }}
-          >
-            {product.cta.label} →
-          </a>
-        )}
       </motion.div>
     </motion.div>
   )
