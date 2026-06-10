@@ -30,6 +30,15 @@ const CHANNEL_LINKS: Record<string, string> = {
 
 const VIDEOS: YTVideo[] = [
   {
+    id: 'z_RI0YRuNGg',
+    title: 'Memento Mori | What Marcus Aurelius Actually Meant',
+    thumbnail: 'https://i.ytimg.com/vi/z_RI0YRuNGg/hqdefault.jpg',
+    publishedAt: '',
+    channelName: 'Haniel Rolemberg',
+    channelId: 'haniel',
+    url: 'https://www.youtube.com/watch?v=z_RI0YRuNGg',
+  },
+  {
     id: 'WtmbDEZowAU',
     title: "Before It's Too Late: A Reflection on Time",
     thumbnail: 'https://i.ytimg.com/vi/WtmbDEZowAU/hqdefault.jpg',
