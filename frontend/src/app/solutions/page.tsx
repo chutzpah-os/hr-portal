@@ -90,9 +90,10 @@ function StatusBadge({ status }: { status: string }) {
     <span
       className="text-[0.55rem] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full"
       style={{
-        backgroundColor: isActive ? 'rgba(74,222,128,0.12)' : 'rgba(212,119,90,0.10)',
+        backgroundColor: 'rgb(255,255,255)',
         color: isActive ? 'rgba(34,150,80,1)' : 'var(--accent)',
-        border: `1px solid ${isActive ? 'rgba(74,222,128,0.25)' : 'rgba(212,119,90,0.20)'}`,
+        border: `1px solid ${isActive ? 'rgba(74,222,128,0.40)' : 'rgba(212,119,90,0.35)'}`,
+        boxShadow: '0 1px 4px rgba(10,10,15,0.10)',
       }}
     >
       {status}
