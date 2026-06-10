@@ -315,6 +315,19 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
         <div className="absolute top-3 right-3">
           <StatusBadge status={product.status} />
         </div>
+        {/* Donate badge */}
+        {product.cta?.label === 'Donate' && (
+          <div
+            className="absolute bottom-3 left-3 text-[0.6rem] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full"
+            style={{
+              backgroundColor: 'var(--accent)',
+              color: 'rgb(255,255,255)',
+              boxShadow: '0 2px 12px rgba(212,119,90,0.45)',
+            }}
+          >
+            Donate ♥
+          </div>
+        )}
       </div>
 
       {/* Body */}
