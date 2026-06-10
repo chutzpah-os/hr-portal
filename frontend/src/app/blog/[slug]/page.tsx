@@ -4,10 +4,13 @@ import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 
 function renderInline(text: string): ReactNode {
-  const boldParts = text.split(/(\*\*[^*]+\*\*)/)
-  return boldParts.map((part, i) => {
+  const segments = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/)
+  return segments.map((part, i) => {
     if (part.startsWith('**') && part.endsWith('**')) {
       return <strong key={i}>{part.slice(2, -2)}</strong>
+    }
+    if (part.startsWith('*') && part.endsWith('*')) {
+      return <em key={i}>{part.slice(1, -1)}</em>
     }
     const linkMatch = part.match(/\[([^\]]+)\]\(([^)]+)\)/)
     if (linkMatch) {
