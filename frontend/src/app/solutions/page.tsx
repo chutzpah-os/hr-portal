@@ -79,6 +79,26 @@ Built at the intersection of data engineering, machine learning, and decision in
     status: 'In Development',
   },
   {
+    id: 'sentinel-ai',
+    name: 'Sentinel AI',
+    tagline: 'Eyes that never blink. Intelligence that never sleeps.',
+    shortDescription: 'Physical security platform powered by computer vision and AI — monitoring people, objects, and movements in real time.',
+    fullDescription: `Sentinel AI brings machine intelligence to physical security. Where traditional surveillance records, Sentinel AI understands.
+
+The system uses computer vision, machine learning, and data pipelines to monitor environments in real time — detecting people, tracking movement patterns, identifying objects, and surfacing anomalies before they escalate. The goal is not to replace human judgment, but to extend it: giving security teams the context they need, exactly when they need it.
+
+Built for environments where physical security is mission-critical — from corporate campuses and critical infrastructure to public spaces that require continuous, intelligent oversight.
+
+The foundation: CV models trained for real-world conditions, behavioral pattern recognition, and data infrastructure designed for low-latency alerting at scale.`,
+    metrics: [
+      { label: 'Core Tech', value: 'Computer Vision' },
+      { label: 'Stack', value: 'AI/ML · Data' },
+      { label: 'Focus', value: 'Physical Security' },
+    ],
+    tags: ['R&D', 'Software', 'AI/ML', 'Cybersecurity'],
+    status: 'In Development',
+  },
+  {
     id: 'shomesh',
     name: 'Shemesh',
     tagline: 'Governance that protects. Compliance that scales.',
