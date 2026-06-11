@@ -4,7 +4,17 @@ import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 
-type FilterTag = 'All' | 'R&D' | 'Software' | 'Education' | 'Management' | 'Social Impact' | 'Health' | 'Community' | 'AI/ML' | 'Cybersecurity' | 'Government' | 'Compliance'
+type StartupStage = 'Ideation' | 'Validation' | 'MVP' | 'Early Traction' | 'PMF' | 'Growth' | 'Scale'
+
+const STAGES: { label: StartupStage; color: string; bg: string }[] = [
+  { label: 'Ideation',       color: 'rgba(148,163,184,1)',  bg: 'rgba(148,163,184,0.10)' },
+  { label: 'Validation',     color: 'rgba(96,165,250,1)',   bg: 'rgba(96,165,250,0.10)'  },
+  { label: 'MVP',            color: 'rgba(251,191,36,1)',   bg: 'rgba(251,191,36,0.10)'  },
+  { label: 'Early Traction', color: 'rgba(251,146,60,1)',   bg: 'rgba(251,146,60,0.10)'  },
+  { label: 'PMF',            color: 'rgba(74,222,128,1)',   bg: 'rgba(74,222,128,0.10)'  },
+  { label: 'Growth',         color: 'rgba(52,211,153,1)',   bg: 'rgba(52,211,153,0.10)'  },
+  { label: 'Scale',          color: 'rgba(34,211,238,1)',   bg: 'rgba(34,211,238,0.10)'  },
+]
 
 interface Product {
   id: string
@@ -13,8 +23,8 @@ interface Product {
   shortDescription: string
   fullDescription: string
   metrics?: { label: string; value: string }[]
-  tags: FilterTag[]
-  status: string
+  tags: string[]
+  status: StartupStage
   image?: string
   imageFit?: 'contain' | 'cover'
   modalImage?: string
@@ -35,7 +45,7 @@ At its core: OKRs cascade into weekly priorities, which connect to daily habits 
 
 Built for ambitious people who want to move faster without losing clarity on why they're moving at all.`,
     tags: ['R&D', 'Software', 'Management'],
-    status: 'Active',
+    status: 'Ideation',
     image: '/images/cherut.png',
     imageFit: 'contain',
   },
@@ -54,7 +64,7 @@ Beyond coordination, the portal is a space for community identity — where the 
 
 Built to scale the mission without losing the human element.`,
     tags: ['R&D', 'Software', 'Community'],
-    status: 'Active',
+    status: 'Ideation',
   },
   {
     id: 'data-aggregator',
@@ -76,7 +86,7 @@ Built at the intersection of data engineering, machine learning, and decision in
       { label: 'Scope', value: 'Multi-domain' },
     ],
     tags: ['R&D', 'Software', 'AI/ML'],
-    status: 'In Development',
+    status: 'Ideation',
   },
   {
     id: 'hotel-romeo-echo',
@@ -91,7 +101,7 @@ Built for operations where asset visibility is not optional: field teams, logist
 
 The system is designed to integrate with existing workflows rather than replace them — adding a layer of intelligence and accountability on top of what's already there.`,
     tags: ['R&D', 'Software', 'Management'],
-    status: 'In Development',
+    status: 'Ideation',
   },
   {
     id: 'seder-koah',
@@ -106,7 +116,7 @@ The platform centralizes internal operations — team management, workflow coord
 
 Built to bring order, operational clarity, and measurable efficiency to governmental units of any size, from municipal departments to larger public bodies.`,
     tags: ['R&D', 'Software', 'Government', 'Management', 'Compliance'],
-    status: 'In Development',
+    status: 'Ideation',
   },
   {
     id: 'business-metrics',
@@ -126,7 +136,7 @@ Built for: holding companies, serial entrepreneurs, venture studios, investors, 
       { label: 'For', value: 'Operators & Investors' },
     ],
     tags: ['R&D', 'Software', 'Management'],
-    status: 'Active',
+    status: 'Ideation',
   },
   {
     id: 'sentinel-ai',
@@ -146,7 +156,7 @@ The foundation: CV models trained for real-world conditions, behavioral pattern 
       { label: 'Focus', value: 'Physical Security' },
     ],
     tags: ['R&D', 'Software', 'AI/ML', 'Cybersecurity'],
-    status: 'In Development',
+    status: 'Ideation',
   },
   {
     id: 'shomesh',
@@ -163,7 +173,7 @@ The platform covers corporate governance frameworks, regulatory compliance track
 
 More details will be shared as the project matures.`,
     tags: ['R&D', 'Software', 'Compliance', 'Government', 'Management'],
-    status: 'Active',
+    status: 'Ideation',
   },
   {
     id: 'etz-defense',
@@ -174,7 +184,7 @@ More details will be shared as the project matures.`,
 
 The focus is on cryptography — ensuring that sensitive information is protected at rest, in transit, and at access. Designed to meet the rigor that regulated sectors demand. More details will be shared as the project matures.`,
     tags: ['R&D', 'Software', 'Cybersecurity', 'Government', 'Compliance'],
-    status: 'Active',
+    status: 'Ideation',
   },
   {
     id: 'hofshilang',
@@ -194,7 +204,7 @@ The formula: structured input + real-world output + accountability loops. The re
       { label: 'Model', value: 'Product + Initiative' },
     ],
     tags: ['R&D', 'Software', 'Education'],
-    status: 'In Development',
+    status: 'Ideation',
     image: '/images/hofshilang.png',
     imageFit: 'contain',
   },
@@ -211,7 +221,7 @@ Cancer touches almost every family. This campaign is a way to turn movement into
 
 If you want to contribute, every donation makes a difference.`,
     tags: ['Social Impact', 'Health'],
-    status: 'Active',
+    status: 'Ideation',
     image: '/images/hospitalroompai.jpg',
     imageFit: 'cover',
     modalImage: '/images/hanielrunning.jpeg',
@@ -219,17 +229,16 @@ If you want to contribute, every donation makes a difference.`,
   },
 ]
 
-const FILTERS: FilterTag[] = ['All', 'R&D', 'Software', 'AI/ML', 'Cybersecurity', 'Government', 'Compliance', 'Education', 'Management', 'Community', 'Social Impact', 'Health']
 
 function StatusBadge({ status }: { status: string }) {
-  const isActive = status === 'Active'
+  const stage = STAGES.find((s) => s.label === status) ?? STAGES[0]
   return (
     <span
       className="text-[0.55rem] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full"
       style={{
         backgroundColor: 'rgb(255,255,255)',
-        color: isActive ? 'rgba(34,150,80,1)' : 'var(--accent)',
-        border: `1px solid ${isActive ? 'rgba(74,222,128,0.40)' : 'rgba(212,119,90,0.35)'}`,
+        color: stage.color,
+        border: `1px solid ${stage.color.replace('1)', '0.35)')}`,
         boxShadow: '0 1px 4px rgba(10,10,15,0.10)',
       }}
     >
@@ -524,17 +533,13 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
   )
 }
 
-type StatusFilter = 'All' | 'Active' | 'In Development'
-const STATUS_FILTERS: StatusFilter[] = ['All', 'Active', 'In Development']
-
 export default function SolutionsPage() {
-  const [activeFilter, setActiveFilter] = useState<FilterTag>('All')
-  const [activeStatus, setActiveStatus] = useState<StatusFilter>('All')
+  const [activeStage, setActiveStage] = useState<StartupStage | 'All'>('All')
   const [selected, setSelected] = useState<Product | null>(null)
 
-  const filtered = PRODUCTS
-    .filter((p) => activeFilter === 'All' || p.tags.includes(activeFilter))
-    .filter((p) => activeStatus === 'All' || p.status === activeStatus)
+  const filtered = activeStage === 'All'
+    ? PRODUCTS
+    : PRODUCTS.filter((p) => p.status === activeStage)
 
   const handleClose = useCallback(() => setSelected(null), [])
 
@@ -592,61 +597,30 @@ export default function SolutionsPage() {
             </p>
           </motion.div>
 
-          {/* Tag filter bar */}
-          <motion.div
-            className="flex flex-wrap gap-2 mb-3"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
-          >
-            {FILTERS.map((tag) => (
-              <button
-                key={tag}
-                onClick={() => setActiveFilter(tag)}
-                className="text-[0.65rem] uppercase tracking-widest px-4 py-1.5 rounded-full transition-all duration-200"
-                style={{
-                  border: '1px solid',
-                  borderColor: activeFilter === tag ? 'var(--accent)' : 'rgba(10,10,15,0.12)',
-                  color: activeFilter === tag ? 'rgb(255,255,255)' : 'var(--white-50)',
-                  backgroundColor: activeFilter === tag ? 'var(--accent)' : 'transparent',
-                  fontWeight: activeFilter === tag ? 600 : 400,
-                }}
-              >
-                {tag}
-              </button>
-            ))}
-          </motion.div>
-
-          {/* Status filter bar */}
+          {/* Stage filter bar */}
           <motion.div
             className="flex flex-wrap gap-2 mb-10"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15, ease: 'easeOut' }}
+            transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
           >
-            {STATUS_FILTERS.map((s) => {
-              const isActive = activeStatus === s
-              const isActiveStatus = s === 'Active'
+            {(['All', ...STAGES.map((s) => s.label)] as (StartupStage | 'All')[]).map((s) => {
+              const isSelected = activeStage === s
+              const stage = STAGES.find((st) => st.label === s)
               return (
                 <button
                   key={s}
-                  onClick={() => setActiveStatus(s)}
-                  className="text-[0.6rem] uppercase tracking-widest px-3 py-1 rounded-full transition-all duration-200"
+                  onClick={() => setActiveStage(s)}
+                  className="text-[0.6rem] uppercase tracking-widest px-3 py-1.5 rounded-full transition-all duration-200"
                   style={{
                     border: '1px solid',
-                    borderColor: isActive
-                      ? (isActiveStatus ? 'rgba(34,150,80,0.6)' : 'rgba(10,10,15,0.25)')
-                      : 'rgba(10,10,15,0.08)',
-                    color: isActive
-                      ? (isActiveStatus ? 'rgba(34,150,80,1)' : 'var(--white-80)')
-                      : 'var(--white-35)',
-                    backgroundColor: isActive
-                      ? (isActiveStatus ? 'rgba(74,222,128,0.10)' : 'rgba(10,10,15,0.05)')
-                      : 'transparent',
-                    fontWeight: isActive ? 600 : 400,
+                    borderColor: isSelected ? (stage?.color ?? 'var(--accent)') : 'rgba(10,10,15,0.10)',
+                    color: isSelected ? (stage?.color ?? 'var(--white-90)') : 'var(--white-40)',
+                    backgroundColor: isSelected ? (stage?.bg ?? 'rgba(10,10,15,0.05)') : 'transparent',
+                    fontWeight: isSelected ? 600 : 400,
                   }}
                 >
-                  {s === 'All' ? 'All statuses' : s}
+                  {s === 'All' ? 'All stages' : s}
                 </button>
               )
             })}
