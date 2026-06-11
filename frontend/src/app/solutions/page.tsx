@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 
-type FilterTag = 'All' | 'R&D' | 'Software' | 'Education' | 'Management' | 'Social Impact' | 'Health' | 'Community' | 'AI/ML'
+type FilterTag = 'All' | 'R&D' | 'Software' | 'Education' | 'Management' | 'Social Impact' | 'Health' | 'Community' | 'AI/ML' | 'Cybersecurity'
 
 interface Product {
   id: string
@@ -79,6 +79,17 @@ Built at the intersection of data engineering, machine learning, and decision in
     status: 'In Development',
   },
   {
+    id: 'etz-defense',
+    name: 'Etz Defense',
+    tagline: 'Sensitive data deserves serious protection.',
+    shortDescription: 'Secure registration and management of sensitive data and assets — built on cryptographic foundations.',
+    fullDescription: `Etz Defense is a platform for the secure registration and management of sensitive data and critical assets.
+
+The focus is on cryptography — ensuring that sensitive information is protected at rest, in transit, and at access. More details will be shared as the project matures.`,
+    tags: ['R&D', 'Software', 'Cybersecurity'],
+    status: 'In Development',
+  },
+  {
     id: 'hofshilang',
     name: 'HofShiLang',
     tagline: 'Empowering youth through languages.',
@@ -121,7 +132,7 @@ If you want to contribute, every donation makes a difference.`,
   },
 ]
 
-const FILTERS: FilterTag[] = ['All', 'R&D', 'Software', 'AI/ML', 'Education', 'Management', 'Community', 'Social Impact', 'Health']
+const FILTERS: FilterTag[] = ['All', 'R&D', 'Software', 'AI/ML', 'Cybersecurity', 'Education', 'Management', 'Community', 'Social Impact', 'Health']
 
 function StatusBadge({ status }: { status: string }) {
   const isActive = status === 'Active'
