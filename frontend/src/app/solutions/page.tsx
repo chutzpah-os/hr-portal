@@ -79,6 +79,23 @@ Built at the intersection of data engineering, machine learning, and decision in
     status: 'In Development',
   },
   {
+    id: 'shomesh',
+    name: 'Shomesh',
+    tagline: 'Governance that protects. Compliance that scales.',
+    shortDescription: 'Corporate governance and compliance platform for mid-to-large corporations — and the startups building toward that scale.',
+    fullDescription: `Shomesh is a compliance and corporate governance platform built to protect corporations from the inside out.
+
+The premise: governance failures are rarely sudden — they accumulate quietly through gaps in process, unclear accountability, and compliance blind spots. Shomesh makes those gaps visible before they become liabilities.
+
+Designed for medium and large corporations with the structural complexity that demands rigorous governance, and equally available to startups that want to build compliance-ready from day one rather than retrofit it later.
+
+The platform covers corporate governance frameworks, regulatory compliance tracking, risk visibility, and accountability structures — giving leadership the confidence that the organization is protected, auditable, and aligned.
+
+More details will be shared as the project matures.`,
+    tags: ['R&D', 'Software', 'Compliance', 'Government', 'Management'],
+    status: 'In Development',
+  },
+  {
     id: 'etz-defense',
     name: 'Etz Defense',
     tagline: 'Sensitive data deserves serious protection.',
