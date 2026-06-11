@@ -126,7 +126,7 @@ Built for: holding companies, serial entrepreneurs, venture studios, investors, 
       { label: 'For', value: 'Operators & Investors' },
     ],
     tags: ['R&D', 'Software', 'Management'],
-    status: 'In Development',
+    status: 'Active',
   },
   {
     id: 'sentinel-ai',
@@ -163,7 +163,7 @@ The platform covers corporate governance frameworks, regulatory compliance track
 
 More details will be shared as the project matures.`,
     tags: ['R&D', 'Software', 'Compliance', 'Government', 'Management'],
-    status: 'In Development',
+    status: 'Active',
   },
   {
     id: 'etz-defense',
@@ -174,7 +174,7 @@ More details will be shared as the project matures.`,
 
 The focus is on cryptography — ensuring that sensitive information is protected at rest, in transit, and at access. Designed to meet the rigor that regulated sectors demand. More details will be shared as the project matures.`,
     tags: ['R&D', 'Software', 'Cybersecurity', 'Government', 'Compliance'],
-    status: 'In Development',
+    status: 'Active',
   },
   {
     id: 'hofshilang',
