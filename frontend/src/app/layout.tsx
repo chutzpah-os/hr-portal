@@ -33,20 +33,20 @@ const BASE_URL = 'https://hanielrolemberg.com'
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'Haniel Rolemberg — Cybersecurity Specialist',
+    default: 'Haniel Rolemberg — Problem Solver | R&D Consultant | Professor',
     template: '%s — Haniel Rolemberg',
   },
   description:
-    'Cybersecurity Specialist & Problem Solver — penetration testing, threat modeling, secure systems design, and AI-driven security. On a mission to impact 1 billion lives by 2035.',
+    'Problem Solver, R&D Consultant & Professor — software engineering, cybersecurity, data, AI/ML. On a mission to impact 1 billion lives by 2035.',
   keywords: [
-    'Cybersecurity',
-    'Penetration Testing',
-    'Threat Modeling',
-    'Security Engineer',
     'Problem Solver',
+    'R&D Consultant',
+    'Professor',
     'Haniel Rolemberg',
-    'Red Team',
-    'CTF',
+    'Cybersecurity',
+    'Software Engineering',
+    'Data Engineering',
+    'AI ML',
   ],
   authors: [{ name: 'Haniel Rolemberg', url: BASE_URL }],
   creator: 'Haniel Rolemberg',
@@ -57,8 +57,8 @@ export const metadata: Metadata = {
     canonical: BASE_URL,
   },
   openGraph: {
-    title: 'Haniel Rolemberg — Problem Solver',
-    description: 'Problem Solver | Software · Cybersecurity · Data · AI/ML',
+    title: 'Haniel Rolemberg — Problem Solver | R&D Consultant | Professor',
+    description: 'Problem Solver, R&D Consultant & Professor — software, cybersecurity, data, AI/ML.',
     url: BASE_URL,
     siteName: 'Haniel Rolemberg',
     type: 'website',
@@ -74,8 +74,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Haniel Rolemberg — Problem Solver',
-    description: 'Problem Solver | Software · Cybersecurity · Data · AI/ML',
+    title: 'Haniel Rolemberg — Problem Solver | R&D Consultant | Professor',
+    description: 'Problem Solver, R&D Consultant & Professor — software, cybersecurity, data, AI/ML.',
     images: ['/images/Haniel-Rolemberg.jpeg'],
   },
 }
@@ -89,8 +89,8 @@ const personSchema = {
     'https://linkedin.com/in/hanielrolemberg',
     'https://github.com/hanielrolemberg',
   ],
-  jobTitle: 'Cybersecurity Specialist',
-  description: 'Cybersecurity Specialist and Problem Solver. Penetration testing, threat modeling, secure systems design. Founder of the Problem Solver Foundation. Mission: impact 1 billion lives by 2035.',
+  jobTitle: 'Problem Solver | R&D Consultant | Professor',
+  description: 'Problem Solver, R&D Consultant and Professor. Software engineering, cybersecurity, data engineering, AI/ML. Founder of the Problem Solver Foundation. Mission: impact 1 billion lives by 2035.',
 }
 
 const websiteSchema = {
