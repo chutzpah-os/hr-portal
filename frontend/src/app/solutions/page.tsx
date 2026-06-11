@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 
-type FilterTag = 'All' | 'R&D' | 'Software' | 'Education' | 'Management' | 'Social Impact' | 'Health' | 'Community' | 'AI/ML' | 'Cybersecurity'
+type FilterTag = 'All' | 'R&D' | 'Software' | 'Education' | 'Management' | 'Social Impact' | 'Health' | 'Community' | 'AI/ML' | 'Cybersecurity' | 'Government' | 'Compliance'
 
 interface Product {
   id: string
@@ -83,10 +83,10 @@ Built at the intersection of data engineering, machine learning, and decision in
     name: 'Etz Defense',
     tagline: 'Sensitive data deserves serious protection.',
     shortDescription: 'Secure registration and management of sensitive data and assets — built on cryptographic foundations.',
-    fullDescription: `Etz Defense is a platform for the secure registration and management of sensitive data and critical assets.
+    fullDescription: `Etz Defense is a platform for the secure registration and management of sensitive data and critical assets, built for government and compliance-driven environments.
 
-The focus is on cryptography — ensuring that sensitive information is protected at rest, in transit, and at access. More details will be shared as the project matures.`,
-    tags: ['R&D', 'Software', 'Cybersecurity'],
+The focus is on cryptography — ensuring that sensitive information is protected at rest, in transit, and at access. Designed to meet the rigor that regulated sectors demand. More details will be shared as the project matures.`,
+    tags: ['R&D', 'Software', 'Cybersecurity', 'Government', 'Compliance'],
     status: 'In Development',
   },
   {
@@ -132,7 +132,7 @@ If you want to contribute, every donation makes a difference.`,
   },
 ]
 
-const FILTERS: FilterTag[] = ['All', 'R&D', 'Software', 'AI/ML', 'Cybersecurity', 'Education', 'Management', 'Community', 'Social Impact', 'Health']
+const FILTERS: FilterTag[] = ['All', 'R&D', 'Software', 'AI/ML', 'Cybersecurity', 'Government', 'Compliance', 'Education', 'Management', 'Community', 'Social Impact', 'Health']
 
 function StatusBadge({ status }: { status: string }) {
   const isActive = status === 'Active'
