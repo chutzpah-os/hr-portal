@@ -95,7 +95,7 @@ Built for: holding companies, serial entrepreneurs, venture studios, investors, 
       { label: 'Focus', value: 'KPI Management' },
       { label: 'For', value: 'Operators & Investors' },
     ],
-    tags: ['R&D', 'Software', 'Management', 'AI/ML'],
+    tags: ['R&D', 'Software', 'Management'],
     status: 'In Development',
   },
   {
