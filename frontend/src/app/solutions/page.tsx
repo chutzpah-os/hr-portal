@@ -593,7 +593,7 @@ export default function SolutionsPage() {
               className="text-base max-w-xl leading-relaxed"
               style={{ color: 'var(--white-55)' }}
             >
-              Things I&apos;m building — from personal productivity systems to language learning and social impact. Each starts with a real problem.
+              R&amp;D-driven products and initiatives — from productivity systems and language learning to security, governance, and social impact. Each starts with a real problem worth solving.
             </p>
           </motion.div>
 
