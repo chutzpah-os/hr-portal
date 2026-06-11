@@ -35,7 +35,7 @@ At its core: OKRs cascade into weekly priorities, which connect to daily habits 
 
 Built for ambitious people who want to move faster without losing clarity on why they're moving at all.`,
     tags: ['R&D', 'Software', 'Management'],
-    status: 'In Development',
+    status: 'Active',
     image: '/images/cherut.png',
     imageFit: 'contain',
   },
@@ -54,7 +54,7 @@ Beyond coordination, the portal is a space for community identity — where the 
 
 Built to scale the mission without losing the human element.`,
     tags: ['R&D', 'Software', 'Community'],
-    status: 'In Development',
+    status: 'Active',
   },
   {
     id: 'data-aggregator',
