@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 
-type FilterTag = 'All' | 'R&D' | 'Software' | 'Education' | 'Management' | 'Social Impact' | 'Health'
+type FilterTag = 'All' | 'R&D' | 'Software' | 'Education' | 'Management' | 'Social Impact' | 'Health' | 'Community' | 'AI/ML'
 
 interface Product {
   id: string
@@ -38,6 +38,45 @@ Built for ambitious people who want to move faster without losing clarity on why
     status: 'In Development',
     image: '/images/cherut.png',
     imageFit: 'contain',
+  },
+  {
+    id: 'psf-portal',
+    name: 'PSF Portal',
+    tagline: 'The operating system for the Problem Solvers community.',
+    shortDescription: 'Internal platform for the Problem Solver Foundation — connecting members, tracking impact, and coordinating initiatives across the community.',
+    fullDescription: `The PSF Portal is the internal backbone of the Problem Solver Foundation — a community on a mission to impact 1 billion lives by 2035.
+
+The challenge: as a distributed community grows, coordination breaks down. Members lose context, initiatives lose momentum, and the mission gets diluted. The PSF Portal exists to prevent that.
+
+At its core, the portal connects people to each other and to the work that matters. Members can find ongoing initiatives, join teams, track collective progress, and share resources. Leaders get visibility into what's moving and what's stalled.
+
+Beyond coordination, the portal is a space for community identity — where the culture of problem-solving is documented, practiced, and passed forward.
+
+Built to scale the mission without losing the human element.`,
+    tags: ['R&D', 'Software', 'Community'],
+    status: 'In Development',
+  },
+  {
+    id: 'data-aggregator',
+    name: 'Data Aggregator',
+    tagline: 'Turning noise into signals — before problems become crises.',
+    shortDescription: 'AI-powered platform that aggregates, processes, and surfaces data patterns to understand and anticipate complex problems across domains.',
+    fullDescription: `The Data Aggregator is a research and intelligence platform built around a core premise: most problems are predictable — if you're looking at the right data.
+
+The system pulls from heterogeneous sources (public datasets, research publications, community signals, structured feeds) and applies AI/ML pipelines to identify patterns, correlations, and early indicators across domains. The output isn't raw data — it's insight: what's emerging, why it matters, and what responses are worth exploring.
+
+Use cases span from social impact (identifying communities at risk before crises surface) to technical research (spotting gaps in existing solutions), to organizational intelligence (understanding where initiatives stall and why).
+
+The R&D focus is on building pipelines that are domain-agnostic but context-aware — systems that can reason about different problem classes without requiring full re-architecture for each new domain.
+
+Built at the intersection of data engineering, machine learning, and decision intelligence.`,
+    metrics: [
+      { label: 'Focus', value: 'Prediction & Prevention' },
+      { label: 'Stack', value: 'AI/ML · Data Engineering' },
+      { label: 'Scope', value: 'Multi-domain' },
+    ],
+    tags: ['R&D', 'Software', 'AI/ML'],
+    status: 'In Development',
   },
   {
     id: 'hofshilang',
@@ -82,7 +121,7 @@ If you want to contribute, every donation makes a difference.`,
   },
 ]
 
-const FILTERS: FilterTag[] = ['All', 'R&D', 'Software', 'Education', 'Management', 'Social Impact', 'Health']
+const FILTERS: FilterTag[] = ['All', 'R&D', 'Software', 'AI/ML', 'Education', 'Management', 'Community', 'Social Impact', 'Health']
 
 function StatusBadge({ status }: { status: string }) {
   const isActive = status === 'Active'
