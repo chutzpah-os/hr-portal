@@ -79,6 +79,21 @@ Built at the intersection of data engineering, machine learning, and decision in
     status: 'In Development',
   },
   {
+    id: 'seder-koah',
+    name: 'Seder Koah',
+    tagline: 'Structure and strength for public institutions.',
+    shortDescription: 'Internal management system designed for governmental units — organizing operations, people, and processes in the public sector to generate real efficiency.',
+    fullDescription: `Seder Koah is an internal management platform built specifically for governmental units and public institutions — with efficiency as its core objective.
+
+The public sector has unique operational demands: regulatory constraints, multi-level accountability, complex organizational hierarchies, and the constant pressure to do more with limited resources. Generic management tools weren't built for this context. Seder Koah was.
+
+The platform centralizes internal operations — team management, workflow coordination, document control, and process tracking — eliminating the redundancies and friction that drain public institutions of time and resources. The result is a leaner, faster, more accountable operation.
+
+Built to bring order, operational clarity, and measurable efficiency to governmental units of any size, from municipal departments to larger public bodies.`,
+    tags: ['R&D', 'Software', 'Government', 'Management', 'Compliance'],
+    status: 'In Development',
+  },
+  {
     id: 'business-metrics',
     name: 'Business Metrics',
     tagline: 'One dashboard. Every business. All the numbers that matter.',
