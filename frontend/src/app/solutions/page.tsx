@@ -80,12 +80,12 @@ Built at the intersection of data engineering, machine learning, and decision in
   },
   {
     id: 'shomesh',
-    name: 'Shomesh',
+    name: 'Shemesh',
     tagline: 'Governance that protects. Compliance that scales.',
     shortDescription: 'Corporate governance and compliance platform for mid-to-large corporations — and the startups building toward that scale.',
-    fullDescription: `Shomesh is a compliance and corporate governance platform built to protect corporations from the inside out.
+    fullDescription: `Shemesh is a compliance and corporate governance platform built to protect corporations from the inside out.
 
-The premise: governance failures are rarely sudden — they accumulate quietly through gaps in process, unclear accountability, and compliance blind spots. Shomesh makes those gaps visible before they become liabilities.
+The premise: governance failures are rarely sudden — they accumulate quietly through gaps in process, unclear accountability, and compliance blind spots. Shemesh makes those gaps visible before they become liabilities.
 
 Designed for medium and large corporations with the structural complexity that demands rigorous governance, and equally available to startups that want to build compliance-ready from day one rather than retrofit it later.
 
