@@ -524,13 +524,17 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
   )
 }
 
+type StatusFilter = 'All' | 'Active' | 'In Development'
+const STATUS_FILTERS: StatusFilter[] = ['All', 'Active', 'In Development']
+
 export default function SolutionsPage() {
   const [activeFilter, setActiveFilter] = useState<FilterTag>('All')
+  const [activeStatus, setActiveStatus] = useState<StatusFilter>('All')
   const [selected, setSelected] = useState<Product | null>(null)
 
-  const filtered = activeFilter === 'All'
-    ? PRODUCTS
-    : PRODUCTS.filter((p) => p.tags.includes(activeFilter))
+  const filtered = PRODUCTS
+    .filter((p) => activeFilter === 'All' || p.tags.includes(activeFilter))
+    .filter((p) => activeStatus === 'All' || p.status === activeStatus)
 
   const handleClose = useCallback(() => setSelected(null), [])
 
@@ -588,9 +592,9 @@ export default function SolutionsPage() {
             </p>
           </motion.div>
 
-          {/* Filter bar */}
+          {/* Tag filter bar */}
           <motion.div
-            className="flex flex-wrap gap-2 mb-10"
+            className="flex flex-wrap gap-2 mb-3"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
@@ -611,6 +615,41 @@ export default function SolutionsPage() {
                 {tag}
               </button>
             ))}
+          </motion.div>
+
+          {/* Status filter bar */}
+          <motion.div
+            className="flex flex-wrap gap-2 mb-10"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15, ease: 'easeOut' }}
+          >
+            {STATUS_FILTERS.map((s) => {
+              const isActive = activeStatus === s
+              const isActiveStatus = s === 'Active'
+              return (
+                <button
+                  key={s}
+                  onClick={() => setActiveStatus(s)}
+                  className="text-[0.6rem] uppercase tracking-widest px-3 py-1 rounded-full transition-all duration-200"
+                  style={{
+                    border: '1px solid',
+                    borderColor: isActive
+                      ? (isActiveStatus ? 'rgba(34,150,80,0.6)' : 'rgba(10,10,15,0.25)')
+                      : 'rgba(10,10,15,0.08)',
+                    color: isActive
+                      ? (isActiveStatus ? 'rgba(34,150,80,1)' : 'var(--white-80)')
+                      : 'var(--white-35)',
+                    backgroundColor: isActive
+                      ? (isActiveStatus ? 'rgba(74,222,128,0.10)' : 'rgba(10,10,15,0.05)')
+                      : 'transparent',
+                    fontWeight: isActive ? 600 : 400,
+                  }}
+                >
+                  {s === 'All' ? 'All statuses' : s}
+                </button>
+              )
+            })}
           </motion.div>
 
           {/* Cards grid */}
