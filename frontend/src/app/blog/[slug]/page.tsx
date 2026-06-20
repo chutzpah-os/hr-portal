@@ -1,5 +1,5 @@
 import { getAllPosts, getPostBySlug, formatDate } from '@/lib/blog'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
@@ -149,7 +149,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const post = getPostBySlug(slug)
-  if (!post) notFound()
+  if (!post) redirect('/blog')
 
   const articleSchema = {
     '@context': 'https://schema.org',
