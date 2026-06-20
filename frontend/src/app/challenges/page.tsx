@@ -2,41 +2,9 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-
-interface Challenge {
-  id: string
-  name: string
-  tagline: string
-  shortDescription: string
-  fullDescription: string
-  tags: string[]
-  image?: string
-  imageFit?: 'contain' | 'cover'
-  modalImage?: string
-  cta?: { label: string; href: string; external?: boolean }
-}
-
-const CHALLENGES: Challenge[] = [
-  {
-    id: '1k-miles',
-    name: '1k Miles of Hope',
-    tagline: 'Running for a cure.',
-    shortDescription: 'A fundraising campaign to finance cancer research — every mile matters.',
-    fullDescription: `1k Miles of Hope is a fundraising initiative created to support cancer research through the Terry Fox Foundation — one of the most impactful cancer research programs in the world.
-
-The goal is simple: run 1,000 miles and raise funds that go directly toward financing scientific research aimed at finding a cure. Every kilometer translates into real resources for real scientists working on real breakthroughs.
-
-Cancer touches almost every family. This campaign is a way to turn movement into meaning — to make every run, every mile, and every step count for something larger than the finish line.
-
-If you want to contribute, every donation makes a difference.`,
-    tags: ['Social Impact', 'Health', 'Running'],
-    image: '/images/hospitalroompai.jpg',
-    imageFit: 'cover',
-    modalImage: '/images/hanielrunning.jpeg',
-    cta: { label: 'Donate', href: 'https://international.terryfox.ca/page/1k-miles-of-hope', external: true },
-  },
-]
+import { CHALLENGES, type Challenge } from '@/data/challenges'
 
 function ChallengeModal({ challenge, onClose }: { challenge: Challenge; onClose: () => void }) {
   useEffect(() => {
@@ -145,13 +113,16 @@ function ChallengeModal({ challenge, onClose }: { challenge: Challenge; onClose:
           </div>
         )}
 
-        {/* Description */}
+        {/* Description — truncated preview */}
         <div className="mb-7">
-          {challenge.fullDescription.split('\n\n').map((para, i) => (
+          {challenge.fullDescription.split('\n\n').slice(0, 2).map((para, i) => (
             <p key={i} className="text-sm leading-relaxed mb-4" style={{ color: 'var(--white-70)' }}>
               {para}
             </p>
           ))}
+          {challenge.fullDescription.split('\n\n').length > 2 && (
+            <p className="text-xs" style={{ color: 'var(--white-35)' }}>…</p>
+          )}
         </div>
 
         {/* Modal photo */}
@@ -169,6 +140,31 @@ function ChallengeModal({ challenge, onClose }: { challenge: Challenge; onClose:
             />
           </div>
         )}
+
+        {/* View full page */}
+        <div
+          className="pt-5 flex items-center justify-between flex-wrap gap-3"
+          style={{ borderTop: '1px solid rgba(10,10,15,0.07)' }}
+        >
+          <p className="text-xs" style={{ color: 'var(--white-35)' }}>
+            Full story and details on the dedicated page.
+          </p>
+          <Link
+            href={`/challenges/${challenge.id}`}
+            onClick={onClose}
+            className="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest px-5 py-2.5 rounded-full transition-all duration-200 shrink-0"
+            style={{
+              backgroundColor: 'rgba(10,10,15,0.05)',
+              color: 'var(--white-80)',
+              border: '1px solid rgba(10,10,15,0.10)',
+              fontWeight: 500,
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(10,10,15,0.08)' }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(10,10,15,0.05)' }}
+          >
+            View full page →
+          </Link>
+        </div>
       </motion.div>
     </motion.div>
   )
@@ -255,7 +251,7 @@ function ChallengeCard({ challenge, onClick }: { challenge: Challenge; onClick: 
           </p>
           <div className="mt-5">
             <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--white-35)' }}>
-              View details →
+              Preview →
             </span>
           </div>
         </div>

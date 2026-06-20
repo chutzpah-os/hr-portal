@@ -1,243 +1,209 @@
-export type SolutionStatus =
-  | 'Idea / Problem Discovery'
-  | 'Problem-Solution Fit'
-  | 'MVP (Build Fast, Test Fast)'
-  | 'Early Users / Initial Traction'
-  | 'Product-Market Fit (PMF)'
-  | 'Growth'
-  | 'Scale'
-export type SolutionGroup = 'PSF' | 'Chutzpah Stealth' | 'Chutzpah Flags' | 'Chutzpah Code' | 'Chutzpah Verde'
+export type StartupStage = 'Ideation' | 'Validation' | 'MVP' | 'Early Traction' | 'PMF' | 'Growth' | 'Scale'
 
-export interface Solution {
+export const STAGES: { label: StartupStage; color: string; bg: string }[] = [
+  { label: 'Ideation',       color: 'rgba(148,163,184,1)',  bg: 'rgba(148,163,184,0.10)' },
+  { label: 'Validation',     color: 'rgba(96,165,250,1)',   bg: 'rgba(96,165,250,0.10)'  },
+  { label: 'MVP',            color: 'rgba(251,191,36,1)',   bg: 'rgba(251,191,36,0.10)'  },
+  { label: 'Early Traction', color: 'rgba(251,146,60,1)',   bg: 'rgba(251,146,60,0.10)'  },
+  { label: 'PMF',            color: 'rgba(74,222,128,1)',   bg: 'rgba(74,222,128,0.10)'  },
+  { label: 'Growth',         color: 'rgba(52,211,153,1)',   bg: 'rgba(52,211,153,0.10)'  },
+  { label: 'Scale',          color: 'rgba(34,211,238,1)',   bg: 'rgba(34,211,238,0.10)'  },
+]
+
+export interface Product {
   id: string
-  group: SolutionGroup
-  title: string
-  problemTitle: string
-  problem: string
-  approach: string
-  role: string
-  startDate: string
-  endDate: string | null
-  deadline: string
-  status: SolutionStatus
-  impact: string
-  resultsNow: string[]
+  name: string
+  tagline: string
+  shortDescription: string
+  fullDescription: string
+  metrics?: { label: string; value: string }[]
   tags: string[]
-  link?: string
+  status: StartupStage
+  image?: string
+  imageFit?: 'contain' | 'cover'
+  modalImage?: string
+  cta?: { label: string; href: string; external?: boolean }
 }
 
-export const SOLUTIONS: Solution[] = [
-  // ─── PSF ──────────────────────────────────────────────────────────────────
+export const PRODUCTS: Product[] = [
   {
-    id: 'psf-foundation',
-    group: 'PSF',
-    title: 'Problem Solver Foundation',
-    problemTitle: 'Fragmented global problem-solving with low cross-discipline coordination',
-    problem:
-      'Many of the world\'s most critical challenges are addressed in isolation by disconnected organizations, researchers, and institutions. This fragmentation reduces efficiency, slows innovation, and limits the ability to generate scalable, coordinated solutions for high-impact global problems.',
-    approach:
-      'Built a collaborative ecosystem that connects researchers, technologists, and institutions into coordinated problem-solving networks. The foundation acts as a structured platform for identifying critical global challenges, organizing talent and resources, and enabling the development and scaling of innovative solutions with measurable impact.',
-    role: 'Founder',
-    startDate: 'Jan 2026',
-    endDate: null,
-    deadline: 'Ongoing (long-term foundation initiative)',
-    status: 'Early Users / Initial Traction',
-    impact: 'Target: connect 1 billion problem-solvers across disciplines, geographies, and sectors by 2035.',
-    resultsNow: [
-      'Foundation concept defined and structured',
-      'Public-facing website launched',
-      'Core mission and positioning established',
-    ],
-    tags: ['Social', 'Strategy', 'Global Impact'],
-    link: 'https://problemsolverfoundation.vercel.app/',
-  },
-  {
-    id: 'psf-cancer',
-    group: 'PSF',
-    title: 'Fighting Cancer Now',
-    problemTitle: 'Insufficient funding and public engagement for cancer research',
-    problem:
-      'Cancer research continues to face funding constraints and limited sustained public engagement. While awareness exists, there is a gap in converting emotional impact into structured, continuous financial support for research advancement.',
-    approach:
-      'Create an integrated fundraising ecosystem: a 1,000-mile running challenge broadcast on social media, a book documenting the journey and mission, and a documentary film to expand reach and global awareness. Together, these components convert physical endurance and storytelling into sustained financial support for cancer research.',
-    role: 'Founder & Athlete',
-    startDate: '2026',
-    endDate: null,
-    deadline: 'TBD (aligned with training cycle, media production, and fundraising rollout phases)',
-    status: 'Idea / Problem Discovery',
-    impact: 'Multi-channel fundraising ecosystem targeting sustained financial support for cancer research through endurance sport, publishing, and documentary film.',
-    resultsNow: [
-      'Core concept defined (1,000-mile challenge + fundraising ecosystem)',
-      'Narrative structure identified (run, book, documentary)',
-    ],
-    tags: ['Social', 'Health', 'Fundraising', 'Media'],
-  },
+    id: 'cherut',
+    name: 'Cherut',
+    tagline: 'Your life, running on a system.',
+    shortDescription: 'Full operating system for personal productivity — OKRs, habits, calendar, and journaling in one place.',
+    fullDescription: `Cherut is a life OS built for people who treat daily execution as measurable data. The name comes from the Hebrew word for freedom — because a good system doesn't constrain you, it frees you.
 
-  // ─── Chutzpah Stealth ────────────────────────────────────────────────────
-  {
-    id: 'stealth-sentinel',
-    group: 'Chutzpah Stealth',
-    title: 'Sentinel AI',
-    problemTitle: 'Fragmented and non-scalable real-time computer vision pipeline',
-    problem:
-      'Current computer vision implementations are often isolated, model-specific, and lack a unified architecture for real-time processing, deployment, and monitoring. This creates limitations in scalability, latency handling, and system extensibility when integrating multiple AI models and data streams.',
-    approach:
-      'Design and implement a modular, pipeline-based computer vision system in Python that standardizes input/output processing across models, integrates YOLO and TensorFlow for detection tasks, and exposes results through a JavaScript-based management interface for monitoring, control, and visualization.',
-    role: 'Technical Lead',
-    startDate: '2025',
-    endDate: null,
-    deadline: '2027 Q2 — validate with 10 users, acquire first early customers (target: 1K users)',
-    status: 'MVP (Build Fast, Test Fast)',
-    impact: 'Target: 1K users by 2027 Q2. Serving enterprise security, industrial monitoring, and defense operators.',
-    resultsNow: [
-      'Core Python backend structure established',
-      'OpenCV pipeline implemented for image/video processing',
-      'Initial YOLO integration configured',
-      'Basic frontend structure for landing page and system management',
-    ],
-    tags: ['Technical', 'AI/ML', 'Computer Vision', 'Defense'],
-  },
-  {
-    id: 'stealth-etz',
-    group: 'Chutzpah Stealth',
-    title: 'Etz',
-    problemTitle: 'Fragmented intelligence and decision-support across corporate and defense domains',
-    problem:
-      'Organizations operating in complex environments lack a unified system to consolidate, process, and interpret multi-source intelligence data. Existing solutions are fragmented and non-interoperable, limiting operational efficiency and situational awareness.',
-    approach:
-      'Build a modular intelligence pipeline architecture with multi-source data ingestion and normalization, role-based access control, and domain segmentation. MVP focused on a single validated corporate use case, expanding iteratively after validation into dual-use civil and defense applications.',
-    role: 'Product Architect',
-    startDate: '2025',
-    endDate: null,
-    deadline: '2027 Q2 — validate with 1 corporate user, target 10 corporate users',
-    status: 'Idea / Problem Discovery',
-    impact: 'Target: 10 corporate users by 2027 Q2. Designed for institutions with 5,000+ employees.',
-    resultsNow: [
-      'Concept defined',
-      'Dual-use system architecture (civil + defense) scoped',
-    ],
-    tags: ['Technical', 'Intelligence', 'Enterprise', 'Defense'],
-  },
-  {
-    id: 'stealth-seder',
-    group: 'Chutzpah Stealth',
-    title: 'Seder Koah',
-    problemTitle: 'Fragmented internal coordination in defense organizations',
-    problem:
-      'Defense and security organizations often operate with fragmented internal systems for coordination, resource allocation, and operational management. Many institutions still manage critical information through paper-based processes, increasing inefficiencies, delaying decisions, and limiting unified situational awareness across units.',
-    approach:
-      'Design a modular internal management system that centralizes operational workflows, enables structured communication between units, and provides real-time visibility over resources and activities — built with hierarchical access control, audit logs, and scalable architecture for defense-grade environments.',
-    role: 'Systems Architect',
-    startDate: '2025',
-    endDate: null,
-    deadline: '2027 Q3 — MVP definition and initial validation with first institutional user',
-    status: 'Idea / Problem Discovery',
-    impact: 'Target: first institutional validation by 2027 Q3. Designed for defense and security organizations.',
-    resultsNow: [
-      'Concept defined',
-      'Architecture requirements scoped for defense-grade environments',
-    ],
-    tags: ['Technical', 'Defense', 'Operations', 'Systems'],
-  },
+The premise: most productivity tools are disconnected. You track goals in one app, habits in another, calendar in a third, and reflect somewhere else entirely. Cherut unifies these layers into a single, structured operating system.
 
-  // ─── Chutzpah Code ──────────────────────────────────────────────────────
-  {
-    id: 'flags-hofshilang',
-    group: 'Chutzpah Flags',
-    title: 'HofShiLang',
-    problemTitle: 'Brazilians study for years and still can\'t speak — the fluency trap',
-    problem:
-      'Despite high demand and recognized professional benefits, only ~5% of Brazil\'s population has basic English knowledge and roughly 1% is genuinely fluent. Traditional schools focus on grammar over communication. Apps like Duolingo are engaging but never lead to real speaking ability. Cost and rigid schedules exclude millions, especially in the Northeast. A deep cultural pressure to "speak like a native" creates fear of mistakes, blocking natural output.',
-    approach:
-      'A Brazilian language learning platform built on the Natural Acquisition method — prioritizing conversation and cultural immersion over grammar. Freemium model: core methodology content is free to attract volume, while the critical monetization layer is live small-group Conversation Clubs (paid subscription). Counter-positioning: free core content that traditional schools cannot replicate without destroying their business model.',
-    role: 'Co-Founder',
-    startDate: '2025',
-    endDate: null,
-    deadline: '2027 Q2 (1K customers) → 2027 Q4 (10K customers) → 2035 (750K young learners)',
-    status: 'Problem-Solution Fit',
-    impact: 'Target: 10,000 customers achieving genuine fluency by end of 2027. Starting in Sergipe/Northeast Brazil, scaling nationally and globally.',
-    resultsNow: [
-      'LLF methodology documented and released (dual-language EN/PT ebook + landing page)',
-      'Multilingual vocabulary base of 200 words across 7 languages structured',
-      'Anki flashcard sets under development',
-      'Instagram content strategy defined (30-day calendar)',
-      '50+ students with documented progress reported',
-    ],
-    tags: ['Product', 'EdTech', 'Language', 'Brazil'],
+At its core: OKRs cascade into weekly priorities, which connect to daily habits and time blocks. Every evening, a short review closes the loop. Over time, you accumulate a personal dataset — not just tasks done, but patterns, energy, focus windows, and progress toward what actually matters.
+
+Built for ambitious people who want to move faster without losing clarity on why they're moving at all.`,
+    tags: ['R&D', 'Software', 'Management'],
+    status: 'Ideation',
+    image: '/images/cherut.png',
+    imageFit: 'contain',
   },
   {
-    id: 'flags-cherut',
-    group: 'Chutzpah Code',
-    title: 'Cherut',
-    problemTitle: 'Chronic inconsistency in goal-directed behavior among young adults',
-    problem:
-      'Young adults aged 18–35 in the US and Latin America experience measurable declines in well-being and structured life outcomes despite high access to information. In the US, under-30s now rank among the least happy populations internationally. ~25% of young people in Latin America are neither studying nor working. While young adults articulate clear aspirations, psychological stress, economic uncertainty, and social fragmentation impede the translation of intention into consistent, observable action.',
-    approach:
-      'A data-driven habit and execution platform that tracks daily behavior and goal adherence in real time, identifies execution gaps using behavioral analytics, provides adaptive routines and personalized feedback loops, and uses AI to predict inconsistency patterns and recommend interventions.',
-    role: 'Co-Founder',
-    startDate: '2025',
-    endDate: null,
-    deadline: 'MVP in 7 days; v1 scalable release in 6 months',
-    status: 'Idea / Problem Discovery',
-    impact: 'Target: MVP with 10 users; impact 1,000 users in 6 months.',
-    resultsNow: [
-      'Problem and target audience defined',
-      'Initial product concept and architecture defined',
-      'Landing page deployed',
-      'Early validation phase (qualitative insights)',
-    ],
-    tags: ['Product', 'HealthTech', 'AI', 'Productivity'],
-    link: 'https://cherut-web.vercel.app/',
+    id: 'psf-portal',
+    name: 'PSF Portal',
+    tagline: 'The operating system for the Problem Solvers community.',
+    shortDescription: 'Internal platform for the Problem Solver Foundation — connecting members, tracking impact, and coordinating initiatives across the community.',
+    fullDescription: `The PSF Portal is the internal backbone of the Problem Solver Foundation — a community on a mission to impact 1 billion lives by 2035.
+
+The challenge: as a distributed community grows, coordination breaks down. Members lose context, initiatives lose momentum, and the mission gets diluted. The PSF Portal exists to prevent that.
+
+At its core, the portal connects people to each other and to the work that matters. Members can find ongoing initiatives, join teams, track collective progress, and share resources. Leaders get visibility into what's moving and what's stalled.
+
+Beyond coordination, the portal is a space for community identity — where the culture of problem-solving is documented, practiced, and passed forward.
+
+Built to scale the mission without losing the human element.`,
+    tags: ['R&D', 'Software', 'Community'],
+    status: 'Ideation',
   },
   {
-    id: 'verde-agrifood',
-    group: 'Chutzpah Verde',
-    title: 'Chutzpah Verde',
-    problemTitle: 'Inefficient agricultural supply chain caused by price volatility, intermediary dependency, and lack of distributed logistics and storage',
-    problem:
-      'Agricultural markets suffer from unstable pricing and low predictability for producers, driven by sudden market fluctuations and weak demand forecasting. At the same time, consumers face inflated prices due to multiple intermediary layers between production and consumption. Logistics and storage are highly centralized, creating inefficiencies in distribution speed, cost, and flexibility.',
-    approach:
-      'Design a four-layer decentralized ecosystem integrating intelligence, commerce, logistics, and storage into a unified agricultural operating system: Eden (pricing intelligence + demand forecasting for producers), Consumer Platform (direct producer-to-consumer marketplace), Courier Layer (decentralized last-mile delivery network), and Storage Layer (distributed micro-storage network using individual homes and local spaces).',
-    role: 'Founder & Product Architect',
-    startDate: '2026',
-    endDate: null,
-    deadline: 'Q2 2027: MVP with 10 customers · Q4 2027: Scale to 1,000 users',
-    status: 'Idea / Problem Discovery',
-    impact: 'Target: 1,000 users by Q4 2027. Connecting rural producers, consumers, couriers, and micro-storage operators into a single decentralized agri-food operating system.',
-    resultsNow: [
-      'Multi-layer ecosystem defined (Eden, Marketplace, Courier, Storage)',
-      'Core system architecture conceptualized',
+    id: 'data-aggregator',
+    name: 'Data Aggregator',
+    tagline: 'Turning noise into signals — before problems become crises.',
+    shortDescription: 'AI-powered platform that aggregates, processes, and surfaces data patterns to understand and anticipate complex problems across domains.',
+    fullDescription: `The Data Aggregator is a research and intelligence platform built around a core premise: most problems are predictable — if you're looking at the right data.
+
+The system pulls from heterogeneous sources (public datasets, research publications, community signals, structured feeds) and applies AI/ML pipelines to identify patterns, correlations, and early indicators across domains. The output isn't raw data — it's insight: what's emerging, why it matters, and what responses are worth exploring.
+
+Use cases span from social impact (identifying communities at risk before crises surface) to technical research (spotting gaps in existing solutions), to organizational intelligence (understanding where initiatives stall and why).
+
+The R&D focus is on building pipelines that are domain-agnostic but context-aware — systems that can reason about different problem classes without requiring full re-architecture for each new domain.
+
+Built at the intersection of data engineering, machine learning, and decision intelligence.`,
+    metrics: [
+      { label: 'Focus', value: 'Prediction & Prevention' },
+      { label: 'Stack', value: 'AI/ML · Data Engineering' },
+      { label: 'Scope', value: 'Multi-domain' },
     ],
-    tags: ['AgriTech', 'Marketplace', 'Logistics', 'Strategy'],
+    tags: ['R&D', 'Software', 'AI/ML'],
+    status: 'Ideation',
   },
   {
-    id: 'flags-clubinho',
-    group: 'Chutzpah Code',
-    title: 'Clubinho Co.',
-    problemTitle: 'Brain Rot — the disconnect from real-life experiences',
-    problem:
-      'Young people are increasingly finding it difficult to live real experiences with other people and build local communities. Digital consumption replaces physical engagement, leaving individuals isolated, superficially connected, and without a natural path to discover, try, and commit to meaningful activities alongside others. Existing solutions are fragmented — hobby apps focus on a single interest, event apps offer one-time experiences, social networks remain superficial.',
-    approach:
-      'A platform that guides users through a natural interest cycle: define interests → discover personalized activities → try a free/trial first experience with no commitment → choose to continue or explore something new → join communities (clubinhos) of people at the same stage. For businesses and creators: publish activities, offer a trial class as a gateway, convert interested users into enrolled members, and manage their own community.',
-    role: 'Co-Founder',
-    startDate: '2026',
-    endDate: null,
-    deadline: 'MVP in 7 days',
-    status: 'Idea / Problem Discovery',
-    impact: 'Target: connect young people to real-life experiences and build local hobby communities. Business model: conversion engine for activity businesses and community creators.',
-    resultsNow: [
-      'Problem and target audience defined',
-      'Platform concept and user cycle designed',
+    id: 'hotel-romeo-echo',
+    name: 'Hotel Romeo Echo',
+    tagline: 'Know where every asset is. Always.',
+    shortDescription: 'Asset tracking system for organizations that need real-time visibility over their physical and digital assets.',
+    fullDescription: `Hotel Romeo Echo is an asset tracking platform built for organizations that can't afford to lose visibility over what they own.
+
+Whether physical assets — equipment, vehicles, devices, infrastructure — or digital ones, Hotel Romeo Echo provides a centralized registry with real-time location and status tracking. Every asset has a history. Every movement is logged. Every anomaly is surfaced.
+
+Built for operations where asset visibility is not optional: field teams, logistics, critical infrastructure, government agencies, and enterprises managing large inventories across distributed locations.
+
+The system is designed to integrate with existing workflows rather than replace them — adding a layer of intelligence and accountability on top of what's already there.`,
+    tags: ['R&D', 'Software', 'Management'],
+    status: 'Ideation',
+  },
+  {
+    id: 'seder-koah',
+    name: 'Seder Koah',
+    tagline: 'Structure and strength for public institutions.',
+    shortDescription: 'Internal management system designed for governmental units — organizing operations, people, and processes in the public sector to generate real efficiency.',
+    fullDescription: `Seder Koah is an internal management platform built specifically for governmental units and public institutions — with efficiency as its core objective.
+
+The public sector has unique operational demands: regulatory constraints, multi-level accountability, complex organizational hierarchies, and the constant pressure to do more with limited resources. Generic management tools weren't built for this context. Seder Koah was.
+
+The platform centralizes internal operations — team management, workflow coordination, document control, and process tracking — eliminating the redundancies and friction that drain public institutions of time and resources. The result is a leaner, faster, more accountable operation.
+
+Built to bring order, operational clarity, and measurable efficiency to governmental units of any size, from municipal departments to larger public bodies.`,
+    tags: ['R&D', 'Software', 'Government', 'Management', 'Compliance'],
+    status: 'Ideation',
+  },
+  {
+    id: 'business-metrics',
+    name: 'Business Metrics',
+    tagline: 'One dashboard. Every business. All the numbers that matter.',
+    shortDescription: 'Centralized metrics management system for tracking and comparing KPIs across multiple businesses from a single platform.',
+    fullDescription: `Business Metrics is a multi-tenant platform for managing, monitoring, and analyzing performance metrics across multiple businesses simultaneously.
+
+The problem it solves: founders, operators, and investors who run or oversee multiple ventures spend too much time aggregating data from disconnected sources — spreadsheets, dashboards, financial tools, CRMs — just to get a clear picture of what's happening. Business Metrics consolidates that into a single, structured view.
+
+Each business gets its own metric workspace. KPIs are defined once and tracked continuously. Cross-business views allow comparison, benchmarking, and pattern recognition across a portfolio.
+
+Built for: holding companies, serial entrepreneurs, venture studios, investors, and management consulting firms that need real-time operational visibility across multiple entities — without building custom tooling for each one.`,
+    metrics: [
+      { label: 'Model', value: 'Multi-tenant' },
+      { label: 'Focus', value: 'KPI Management' },
+      { label: 'For', value: 'Operators & Investors' },
     ],
-    tags: ['Product', 'Social', 'Community', 'Consumer'],
+    tags: ['R&D', 'Software', 'Management'],
+    status: 'Ideation',
+  },
+  {
+    id: 'sentinel-ai',
+    name: 'Sentinel AI',
+    tagline: 'Eyes that never blink. Intelligence that never sleeps.',
+    shortDescription: 'Physical security platform powered by computer vision and AI — monitoring people, objects, and movements in real time.',
+    fullDescription: `Sentinel AI brings machine intelligence to physical security. Where traditional surveillance records, Sentinel AI understands.
+
+The system uses computer vision, machine learning, and data pipelines to monitor environments in real time — detecting people, tracking movement patterns, identifying objects, and surfacing anomalies before they escalate. The goal is not to replace human judgment, but to extend it: giving security teams the context they need, exactly when they need it.
+
+Built for environments where physical security is mission-critical — from corporate campuses and critical infrastructure to public spaces that require continuous, intelligent oversight.
+
+The foundation: CV models trained for real-world conditions, behavioral pattern recognition, and data infrastructure designed for low-latency alerting at scale.`,
+    metrics: [
+      { label: 'Core Tech', value: 'Computer Vision' },
+      { label: 'Stack', value: 'AI/ML · Data' },
+      { label: 'Focus', value: 'Physical Security' },
+    ],
+    tags: ['R&D', 'Software', 'AI/ML', 'Cybersecurity'],
+    status: 'Ideation',
+  },
+  {
+    id: 'shemesh',
+    name: 'Shemesh',
+    tagline: 'Governance that protects. Compliance that scales.',
+    shortDescription: 'Corporate governance and compliance platform for mid-to-large corporations — and the startups building toward that scale.',
+    fullDescription: `Shemesh is a compliance and corporate governance platform built to protect corporations from the inside out.
+
+The premise: governance failures are rarely sudden — they accumulate quietly through gaps in process, unclear accountability, and compliance blind spots. Shemesh makes those gaps visible before they become liabilities.
+
+Designed for medium and large corporations with the structural complexity that demands rigorous governance, and equally available to startups that want to build compliance-ready from day one rather than retrofit it later.
+
+The platform covers corporate governance frameworks, regulatory compliance tracking, risk visibility, and accountability structures — giving leadership the confidence that the organization is protected, auditable, and aligned.
+
+More details will be shared as the project matures.`,
+    tags: ['R&D', 'Software', 'Compliance', 'Government', 'Management'],
+    status: 'Ideation',
+  },
+  {
+    id: 'etz-defense',
+    name: 'Etz Defense',
+    tagline: 'Sensitive data deserves serious protection.',
+    shortDescription: 'Secure registration and management of sensitive data and assets — built on cryptographic foundations.',
+    fullDescription: `Etz Defense is a platform for the secure registration and management of sensitive data and critical assets, built for government and compliance-driven environments.
+
+The focus is on cryptography — ensuring that sensitive information is protected at rest, in transit, and at access. Designed to meet the rigor that regulated sectors demand. More details will be shared as the project matures.`,
+    tags: ['R&D', 'Software', 'Cybersecurity', 'Government', 'Compliance'],
+    status: 'Ideation',
+  },
+  {
+    id: 'hofshilang',
+    name: 'HofShiLang',
+    tagline: 'Empowering youth through languages.',
+    shortDescription: 'Language learning with a proprietary formula designed to turn ambition into measurable fluency.',
+    fullDescription: `HofShiLang is a language learning product built around a proprietary formula — not a generic curriculum, but a structured method that maps ambition to measurable outcomes.
+
+The core insight: most learners plateau because they track effort (hours studied, lessons completed) instead of progress (what they can actually do). HofShiLang shifts the frame. Every learner has a clear CEFR target, a weekly engagement contract, and real-world interaction goals that build toward fluency.
+
+Beyond the product, HofShiLang operates as an educational initiative. Through partnerships with youth programs, it brings language access to communities where multilingualism is a direct path to economic opportunity.
+
+The formula: structured input + real-world output + accountability loops. The result: learners who don't just study a language — they start using it.`,
+    metrics: [
+      { label: 'Framework', value: 'CEFR-aligned' },
+      { label: 'Focus', value: 'Youth' },
+      { label: 'Model', value: 'Product + Initiative' },
+    ],
+    tags: ['R&D', 'Software', 'Education'],
+    status: 'Ideation',
+    image: '/images/hofshilang.png',
+    imageFit: 'contain',
   },
 ]
 
-export const GROUPS: ('All' | SolutionGroup)[] = [
-  'All',
-  'PSF',
-  'Chutzpah Stealth',
-  'Chutzpah Flags',
-  'Chutzpah Code',
-  'Chutzpah Verde',
-]
+export function getProduct(slug: string): Product | undefined {
+  return PRODUCTS.find((p) => p.id === slug)
+}
