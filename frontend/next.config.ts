@@ -6,6 +6,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: '/contact', destination: '/', permanent: true },
+      {
+        source: '/blog/your-phone-lost-on-the-map-yet-alert-to-imminent-danger',
+        destination: '/blog/how-your-phone-knows-where-you-are-gps-spoofing-cell-broadcast-emergency-alerts',
+        permanent: true,
+      },
     ]
   },
   images: {
