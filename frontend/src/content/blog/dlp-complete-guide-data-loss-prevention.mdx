@@ -1,0 +1,366 @@
+---
+title: "DLP: The Complete Guide to Data Loss Prevention"
+date: "2026-06-20"
+excerpt: "From regex and fingerprinting to AI-powered classification, DSPM convergence, and GenAI exfiltration vectors — a complete technical guide to how DLP works, where it fails, and where it's headed in 2026."
+category: "technical"
+tags: ["DLP", "Data Loss Prevention", "Cybersecurity", "DSPM", "CASB", "SSE", "Insider Threat", "GenAI Security", "Zero Trust"]
+groups: ["Cybersecurity/DLP"]
+---
+
+Data Loss Prevention is one of the oldest disciplines in enterprise security — and one of the most misunderstood. Most organizations have *some* form of DLP. Most of those implementations are barely functional: a pile of regex rules generating thousands of alerts that no one reads, tuned so poorly that blocking a legitimate email takes three approvals and a support ticket.
+
+This guide goes from first principles to the frontier. If you're new to DLP, start at the top. If you already know the basics, skip ahead — the sections on DSPM convergence, agentic AI risk, and GenAI exfiltration vectors cover what changed in 2025–2026 and why it matters.
+
+---
+
+## Part I: What DLP Actually Is
+
+### The Core Problem
+
+Organizations generate, process, and transmit sensitive data constantly. Some of that data should never leave a controlled environment: source code, customer PII, financial records, health information, proprietary formulas, M&A plans. DLP is the set of controls designed to detect when sensitive data is moving somewhere it shouldn't — and stop it.
+
+The operative word is *controls*. DLP is not a single product. It is an architecture that spans people, processes, and technology across three distinct data states:
+
+- **Data at Rest** — stored in databases, file servers, cloud storage, endpoints
+- **Data in Motion** — traversing the network (email, web uploads, API calls, SaaS sync)
+- **Data in Use** — actively processed by applications, copied to clipboard, printed, screenshotted
+
+A complete DLP program needs visibility and enforcement across all three. Most legacy implementations cover only one or two.
+
+### Why Data Leaves
+
+Before designing controls, understand the channels. Data exfiltration — intentional or accidental — happens through:
+
+| Vector | Examples |
+|--------|---------|
+| Email | Sending PII to personal accounts, CC'ing external parties |
+| Web upload | Pasting source code into ChatGPT, uploading a spreadsheet to Dropbox |
+| Cloud sync | OneDrive/Dropbox desktop clients syncing restricted folders |
+| Removable media | USB drives, external SSDs |
+| Print/screenshot | Physical capture of on-screen data |
+| API egress | Applications sending data to external endpoints |
+| SaaS-to-SaaS | Slack/Jira/GitHub integrations copying data across tenants |
+| AI tools | Prompts fed to LLMs containing confidential documents |
+
+A threat model built only around email misses the majority of modern egress channels.
+
+---
+
+## Part II: Detection Techniques
+
+This is where DLP gets technical. Everything else — policy, enforcement, response — depends on detection being accurate. The industry uses several approaches, each with different precision and cost profiles.
+
+### 1. Keyword and Regex Matching
+
+The oldest technique. You define patterns — regular expressions — that match known data structures.
+
+**Examples:**
+- US Social Security Numbers: `\b\d{3}-\d{2}-\d{4}\b`
+- Credit card numbers (Luhn-valid): `\b(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})\b`
+- Brazilian CPF: `\b\d{3}\.\d{3}\.\d{3}-\d{2}\b`
+
+Regex is cheap to compute and easy to audit. It is also brittle. It produces massive false positive rates on data that *looks like* sensitive data but isn't, and fails completely on unstructured text (a paragraph that mentions financial details without structured formatting).
+
+Most enterprise DLP products ship hundreds of pre-built regex rules. Most of them need significant tuning before deployment — and most organizations never tune them.
+
+### 2. Data Classification Labels
+
+Instead of detecting sensitive data at egress, classify it at creation. Files are tagged with sensitivity labels (Confidential, Restricted, Internal, Public) either manually by users or automatically by classification engines.
+
+DLP policies then enforce based on the label, not the content of the file. A file labeled `Confidential` cannot be uploaded to an external domain, full stop. This approach is significantly more reliable than content inspection alone — but requires a functioning classification program, which is its own project.
+
+Microsoft Purview Information Protection and Forcepoint both implement this model. The challenge: if classification is wrong at source (or simply not applied), DLP enforcement is blind.
+
+### 3. Exact Data Matching (EDM)
+
+EDM fingerprints a specific structured dataset — a database of customer records, for example — and detects when any portion of that exact data appears in an outbound channel.
+
+**How it works:**
+1. The organization provides a source dataset (CSV of customer names, SSNs, account numbers)
+2. The DLP engine generates token hashes for each field and field combination
+3. At inspection time, content is tokenized and hashed the same way
+4. A match on any hashed token triggers a policy
+
+EDM dramatically reduces false positives because it detects *exact* data, not patterns that *look like* data. It also handles minor formatting variations (spaces, dashes, case changes) if the tokenization step normalizes them.
+
+**Limitations:** EDM requires the source dataset to be maintained and updated. Data not in the dataset — new customer records added after the last refresh — is invisible until the next index rebuild.
+
+### 4. Document Fingerprinting / Indexed Document Matching (IDM)
+
+Where EDM handles structured data (rows and columns), IDM handles unstructured documents. A source document is ingested and a fingerprint is generated from its content — not a file hash, but a semantic fingerprint based on word sequences and n-grams.
+
+When an outbound document matches the fingerprint at a threshold percentage (say, 60% similarity), a policy fires. This detects modified copies: a Word document where the header was changed, a PDF with two paragraphs removed, a screenshot of a specific slide.
+
+IDM is effective for intellectual property protection — detecting when a confidential design document or M&A presentation is being transmitted even in modified form.
+
+### 5. Machine Learning Classification
+
+Modern DLP platforms train ML models on labeled datasets to classify content into sensitive categories: financial data, healthcare records, legal documents, source code, PII, credentials.
+
+ML classifiers handle unstructured text that regex cannot, generalize beyond exact matches, and adapt to context. A classifier trained on healthcare data recognizes a doctor's note as sensitive even if it contains no structured fields.
+
+**Current accuracy benchmarks:** Nightfall AI's classifier suite reports 95% accuracy across 100+ pre-built models. False positive rates with ML classifiers are significantly lower than regex-only approaches — but the models require ongoing monitoring and retraining as data distributions shift.
+
+### 6. Behavioral Analytics / User Entity Behavior Analytics (UEBA)
+
+Rather than inspecting content, UEBA builds baselines of normal behavior and flags anomalies. An employee who normally uploads 50MB/day suddenly uploading 4GB on a Friday afternoon before their last day triggers an alert — regardless of what the data is.
+
+UEBA is essential for insider threat detection because it catches behavior that content inspection misses: compressed archives of legitimate files, encrypted egress, screen capture sessions, mass downloads from shared drives.
+
+UEBA is typically integrated with DLP rather than a standalone DLP technique. Tools like Microsoft Purview Insider Risk Management combine UEBA signals with content inspection results to score risk.
+
+---
+
+## Part III: DLP Architecture
+
+A functional DLP architecture has three enforcement pillars. Gaps in any of them create egress channels that policies cannot see.
+
+### Pillar 1 — Network DLP
+
+Network DLP inspects traffic leaving the organization at the perimeter or inline via proxy. It captures:
+
+- Web traffic (HTTP/HTTPS) via SSL inspection
+- Email (SMTP) before delivery
+- FTP, SFT, and custom protocol traffic via deep packet inspection
+
+**SSL inspection** is non-negotiable for modern network DLP. Approximately 90% of enterprise web traffic is encrypted. Without inline SSL decryption, a DLP proxy sees only TLS metadata — destination IP, SNI hostname, certificate — not the payload. This requires deploying a CA certificate on endpoints so the proxy can man-in-the-middle HTTPS connections.
+
+**Challenge:** SSL inspection breaks mutual TLS (mTLS), certificate pinning (mobile banking apps, some SaaS), and raises privacy concerns for personal traffic on managed devices. Most organizations need bypass lists for known-good destinations.
+
+Network DLP is becoming less relevant as a standalone control. When data transits SaaS-to-SaaS (Slack → Google Drive, Salesforce → email), it may never traverse corporate infrastructure. This is where CASB and cloud DLP close the gap.
+
+### Pillar 2 — Endpoint DLP
+
+Endpoint DLP agents deployed on managed devices monitor and enforce policies at the source of data movement:
+
+- File operations (copy, move, delete, compress)
+- Removable media (USB block or allow-by-device-serial)
+- Print and screenshot
+- Clipboard operations (copy-paste across applications)
+- Browser uploads (via browser extension or kernel-level hooks)
+- Cloud sync client behavior
+
+Endpoint agents operate regardless of network connectivity, which is critical for remote workers and air-gapped scenarios.
+
+**Technical depth:** Endpoint DLP hooks into OS APIs at the kernel or user-space level. On Windows, this typically uses filter drivers (kernel-mode) or Detours-style API hooking (user-mode). macOS endpoint DLP uses system extensions (post-Catalina) and endpoint security framework (ESF) events — `ES_EVENT_TYPE_AUTH_OPEN`, `ES_EVENT_TYPE_AUTH_WRITE`, etc. The agent intercepts file I/O operations before they complete and applies policy.
+
+**Challenge:** Kernel-level agents are complex to deploy and maintain. They can cause system instability, conflict with other security tools (EDR agents), and require signed kernel extensions on modern macOS. Coverage gaps exist on Linux endpoints, BYOD devices, and virtual desktop infrastructure (VDI) with non-persistent sessions.
+
+### Pillar 3 — Cloud / SaaS DLP
+
+Cloud DLP operates through two integration modes:
+
+**API-mode (out-of-band):** Integrates directly with SaaS platform APIs (Microsoft 365, Google Workspace, Slack, Salesforce, Box) to scan data at rest and in transit within those platforms. Detects policy violations retroactively — after a file has been shared — and can quarantine, revoke access, or notify.
+
+**Inline proxy mode (in-band):** Routes SaaS traffic through a Cloud Access Security Broker (CASB) or Security Service Edge (SSE) that inspects payloads in real time before they reach the SaaS destination. Enables blocking at the point of transmission rather than after-the-fact remediation.
+
+API mode is easier to deploy but cannot block in real time. Inline mode blocks but introduces latency and requires SSL inspection.
+
+---
+
+## Part IV: Policy Design
+
+### The Policy Anatomy
+
+A DLP policy consists of:
+
+1. **Condition** — what content triggers it (data classification, regex match, label, file type, EDM match)
+2. **Scope** — who it applies to (all users, specific departments, specific roles, specific devices)
+3. **Channel** — where it applies (email, web, endpoint, cloud)
+4. **Action** — what happens when triggered (block, allow with justification, quarantine, notify, log-only)
+5. **Exceptions** — approved destinations or users exempt from the rule
+
+### The Tuning Problem
+
+DLP deployments fail because of tuning — or the absence of it. The recommended implementation sequence:
+
+**Phase 1 — Audit mode only.** Deploy policies in log-only mode. No blocking. Run for 2–4 weeks. Analyze the alerts: How many? What percentage are true positives? Where are the highest-volume false positive sources?
+
+**Phase 2 — Progressive enforcement.** Enable blocking on the highest-confidence, lowest-volume policies first. Credential disclosure rules (API keys, passwords in email) have low false positive rates. Broad "PII in email" rules have high false positive rates. Sequence matters.
+
+**Phase 3 — Threshold refinement.** Adjust confidence thresholds, minimum match counts, and whitelist approved destinations. A single occurrence of a pattern matching an SSN in a 10,000-word document is different from a spreadsheet of 50,000 SSNs.
+
+**Phase 4 — EDM and fingerprinting.** Add structured data and document fingerprinting after classification is stable. These have the lowest false positive rates but the highest implementation cost.
+
+Organizations that skip Phase 1 and go straight to blocking destroy user productivity and erode trust in the DLP program.
+
+---
+
+## Part V: Integration with the Modern Security Stack
+
+### CASB (Cloud Access Security Broker)
+
+CASB sits between users and cloud services, providing visibility into shadow IT, enforcing access policies, and applying DLP to cloud traffic. In 2019, Gartner folded CASB into its SSE framework.
+
+The four pillars of CASB:
+- **Visibility** — which cloud services are employees actually using (shadow IT discovery)
+- **Compliance** — enforce data protection regulations in cloud usage
+- **Data Security** — DLP policies applied to cloud egress and SaaS data
+- **Threat Protection** — detect compromised accounts and malicious cloud activity
+
+### SSE and SASE
+
+Security Service Edge (SSE) consolidates CASB, SWG (Secure Web Gateway), and ZTNA (Zero Trust Network Access) into a single cloud-delivered security platform. SASE adds SD-WAN to the SSE stack.
+
+DLP delivered via SSE inspects all egress traffic — web, cloud, and application — through a single inline policy engine without requiring per-endpoint proxies. Major vendors: Netskope, Zscaler, Palo Alto Prisma Access, Cloudflare One. In 2025, Cato Networks acquired Aim Security and integrated AI-specific DLP into its SASE platform.
+
+The advantage of SSE-native DLP: consistent policy enforcement regardless of which network the endpoint is on. A laptop at a coffee shop and a laptop in the corporate office get the same DLP inspection.
+
+### Zero Trust and DLP
+
+Zero Trust Network Access (ZTNA) and DLP are complementary but distinct. ZTNA controls *who* can access *what* resource. DLP controls *what data* can leave a resource. A user with legitimate access to a database can still exfiltrate its contents — ZTNA does not stop that. DLP at the egress layer does.
+
+The correct architecture: ZTNA gates access (authentication + authorization). DLP gates data movement (content inspection + policy enforcement). Neither substitutes for the other.
+
+---
+
+## Part VI: DSPM — The Layer Above DLP
+
+### What DSPM Is
+
+Data Security Posture Management (DSPM) is the discipline of continuously discovering, classifying, and assessing the risk posture of all sensitive data across an organization's environment — cloud, SaaS, on-premises.
+
+Where DLP enforces policies at egress channels, DSPM answers the question that must come first: *where does sensitive data actually live, and who has access to it?*
+
+Without DSPM, DLP policies are written in the dark. An organization might have DLP rules preventing PII from leaving via email while a misconfigured S3 bucket containing the same PII is publicly accessible — and no DLP policy ever sees it because it leaves via direct HTTP download.
+
+DSPM capabilities:
+- Automated discovery of data stores (cloud storage, databases, SaaS, code repos)
+- Content classification of discovered data
+- Access path analysis (who can reach this data and via what permissions)
+- Risk scoring (sensitive data + broad permissions + no encryption = high risk)
+- Continuous drift detection (new data stores, permission changes, misconfigurations)
+
+### DSPM + DLP Convergence
+
+In 2026, the industry is converging DSPM and DLP into unified data security platforms. BigID's DSPM-Augmented DLP (announced March 2026) uses live data intelligence from DSPM to continuously validate and improve DLP policies — automatically detecting false positives by cross-referencing alert content against the DSPM data catalog, and recommending policy changes based on contextual signals.
+
+Cyberhaven's Unified AI & Data Security Platform combines DSPM, DLP, insider risk management, and AI security under a single control plane. The rationale: data security controls that don't know where data lives, how it's classified, and how it flows are operationally blind.
+
+---
+
+## Part VII: The GenAI Exfiltration Problem
+
+This is the most significant development in DLP in 2025–2026. Traditional DLP was not designed for conversational AI interfaces, and it shows.
+
+### The Attack Surface
+
+Employees now routinely interact with LLMs — ChatGPT, Claude, Microsoft Copilot, Google Gemini — and paste organizational data into those interfaces:
+
+- Source code to debug a function
+- Customer email threads to draft a response
+- Financial spreadsheets to summarize figures
+- Internal documents to extract key points
+- Database schemas to write a query
+
+Each of these interactions may transmit sensitive data to an external AI provider's inference infrastructure. The data may be retained, used for training (depending on the provider's terms), and potentially recoverable by other parties.
+
+Traditional DLP solutions inspect known egress channels — email, web uploads, USB. A text paste into a web browser input field traversing HTTPS to an AI provider looks identical to typing a search query. Without SSL inspection and semantic content analysis of HTTP request bodies, it is invisible.
+
+### Prompt Injection as a DLP Problem
+
+Prompt injection adds a second attack vector: sensitive data being extracted *by* an AI model that has been manipulated.
+
+In 2026, the "Reprompt" attack (discovered by Varonis) demonstrated single-click data exfiltration from Microsoft Copilot Personal. A malicious prompt embedded in an email entered a RAG (Retrieval-Augmented Generation) database through the AI email assistant. The agent then generated responses containing the malicious prompt alongside sensitive organizational data extracted from its context window.
+
+This represents a new category: *indirect* data exfiltration where the human user is not the actor — the AI agent is.
+
+The Morris II worm (demonstrated by researchers) extended this to multi-agent systems: a malicious prompt embedded in an email caused an AI email assistant to generate outbound emails containing the same malicious prompt *and* sensitive information retrieved from organizational data sources, propagating autonomously.
+
+### DLP Controls for GenAI
+
+**Browser-level content inspection:** Nightfall AI and Microsoft Purview DLP for Edge now perform inline inspection of content pasted into web browser input fields, including AI chat interfaces. The agent intercepts keystrokes and clipboard events at the browser layer, classifies content before it is transmitted, and applies policy (block, warn, redact).
+
+**Prompt-level scanning API:** Nightfall's Firewall for AI provides an API that sits between an application and an LLM provider, inspecting prompts and responses bidirectionally. Sensitive data in prompts is detected and either blocked or redacted before reaching the LLM. PII, credentials, and confidential content in model responses are flagged before delivery to the user.
+
+**SASE/SSE genAI traffic inspection:** Zscaler, Netskope, and Cato Networks all added genAI-specific DLP policies in 2025 — detecting uploads to AI provider domains (openai.com, claude.ai, gemini.google.com) and applying content inspection to the HTTP request body.
+
+**Microsoft Purview for Copilot:** Microsoft Purview DLP policies now extend to Microsoft 365 Copilot interactions, with Copilot inheriting the same sensitivity label-based enforcement applied to the underlying documents it accesses. An employee cannot ask Copilot to summarize a document labeled "Highly Confidential" and receive an output that violates the label's DLP policy.
+
+---
+
+## Part VIII: Agentic AI and the Next Frontier
+
+### The Problem with AI Agents
+
+AI agents — autonomous AI systems that plan, execute multi-step tasks, call external tools, and modify state without human confirmation per step — represent the most significant evolution in DLP threat surface since cloud computing.
+
+A human user who exfiltrates data must perform an intentional action: type text, click a button, drag a file. An AI agent operating on behalf of a user (or autonomously via a scheduled workflow) can access data, transform it, and transmit it to external endpoints as a byproduct of completing a task — without the user being aware that it happened.
+
+Agent risk characteristics differ from human user risk:
+- Agents have **broad, often over-provisioned access** granted at setup time
+- Agents execute at **machine speed** — data movement that would take a human hours happens in seconds
+- Agents are **not bound by UI-level controls** — they call APIs directly, bypassing browser-based DLP
+- Agent behavior is **context-dependent and non-deterministic** — the same agent may behave differently on different inputs
+
+### Shadow AI Agents
+
+Shadow IT became shadow AI: employees and developers deploying AI agents without formal security review. These agents may have access to organizational credentials, SaaS APIs, and data stores. When they malfunction, are compromised, or are deliberately misused, the DLP implications are severe.
+
+In 2026, only 20% of organizations have the data security maturity required for safe AI agent adoption, according to a DSPM convergence study cited by GovInfoSecurity. The rest are operating agents with no visibility into what data those agents access or transmit.
+
+### DLP Controls for Agents
+
+The industry response is converging on several technical approaches:
+
+**Agent identity and access management:** Each AI agent is issued an identity (service principal, API key, OAuth client) and granted minimum necessary permissions — not the permissions of the user who deployed it. Access is scoped to specific data stores, time windows, and operations.
+
+**Agent activity logging:** All agent API calls, data reads, and external transmissions are logged to a SIEM. DLP policies fire on agent-generated traffic using the same content inspection pipeline as human-generated traffic, with agent identity as a correlation key.
+
+**DSPM-based access path analysis:** Before an agent is authorized to operate on a data store, DSPM maps what sensitive data that store contains and what permissions the agent would need. Over-broad access (agent requesting read access to an entire SharePoint tenant to retrieve one document) is flagged for review.
+
+**Multi-agent communication inspection:** Research published in 2026 on improving Google's A2A (Agent-to-Agent) protocol proposes DLP inspection of inter-agent messages in multi-agent systems — preventing sensitive data retrieved by one agent from being passed to a downstream agent operating in an untrusted environment.
+
+---
+
+## Part IX: Insider Threat — The Human Variable
+
+DLP exists because of insiders as much as external attackers. Insider threats break into two categories with different detection approaches:
+
+**Malicious insiders** act with intent: a departing employee downloading the customer database, a contractor selling source code, a privileged admin covering tracks while exfiltrating financial data. UEBA detects anomalies in behavior volume and timing. EDM and fingerprinting detect specific datasets. Endpoint DLP catches removable media and cloud sync.
+
+**Accidental insiders** have no malicious intent but cause breaches anyway: a misconfigured email distribution list, an attachment sent to the wrong recipient, a shared link with permissions set to "anyone with the link." This category accounts for the majority of reported incidents and requires different controls — data classification to prevent over-sharing, email delay + recall capabilities, and sharing permission governance.
+
+**Departing employees** represent the highest-risk population. Mimecast Incydr (a purpose-built insider risk management platform) correlates HR system signals (resignation date, termination date) with endpoint DLP telemetry to score risk and prioritize investigation. An employee in their last two weeks who suddenly accesses files outside their normal working set and uploads to personal cloud storage is scored high risk without requiring human triage of every alert.
+
+---
+
+## Part X: Implementation Roadmap
+
+If you are building or rebuilding a DLP program, the following sequence reduces failure risk:
+
+**Step 1 — Data Discovery.** Before any enforcement, know what sensitive data you have and where it lives. Deploy DSPM to scan cloud storage, SaaS platforms, databases, and endpoints. The output is a data inventory with sensitivity classifications and risk scores.
+
+**Step 2 — Define a Data Classification Policy.** Establish four to five sensitivity tiers (Public, Internal, Confidential, Restricted, Regulated). Define what data belongs in each tier. Apply labels — auto-classification via ML, enforced by sensitivity labels in Microsoft Purview or equivalent.
+
+**Step 3 — Map Egress Channels.** Instrument your environment to understand what channels data moves through: email volumes, web upload destinations, SaaS integrations, API endpoints, cloud sync clients, USB usage. This identifies where to place DLP controls.
+
+**Step 4 — Deploy in Audit Mode.** Start logging — zero enforcement. Collect 2–4 weeks of data. Analyze the alert volume, false positive rate, and highest-risk events.
+
+**Step 5 — Build Policy in Tiers.** Start with the highest-confidence, lowest-volume, highest-impact policies. Credentials in email. Mass downloads from file shares. Removable media on high-risk roles. Expand incrementally.
+
+**Step 6 — Integrate UEBA.** Add behavioral analytics to complement content inspection. UEBA catches what content inspection misses: encrypted archives, access pattern anomalies, post-hours bulk operations.
+
+**Step 7 — Address GenAI and Agents.** Extend DLP to AI tool usage via browser extension or SSE proxy. Establish agent identity governance. Deploy prompt-level inspection APIs if your organization builds AI-integrated applications.
+
+**Step 8 — Continuous Improvement.** DLP is not a deploy-and-forget system. False positives accumulate, data flows change, new egress channels emerge. Establish a monthly review cycle for alert quality, policy tuning, and coverage gaps.
+
+---
+
+## Where DLP Is Headed
+
+The direction is clear from where investment is flowing in 2025–2026:
+
+**Unified platforms** replace point solutions. Standalone network DLP, standalone CASB, and standalone endpoint DLP are converging into unified data security platforms (Cyberhaven, Netskope, Microsoft Purview, BigID) with shared classification, shared policy, and shared telemetry.
+
+**DSPM as the foundation.** You cannot protect what you cannot see. DSPM is becoming the prerequisite for DLP — providing the data catalog and risk context that makes DLP policies meaningful rather than arbitrary.
+
+**GenAI as the primary threat surface.** The most dangerous egress channel in 2026 is not email or USB — it is employees pasting organizational data into LLM interfaces and AI agents accessing data stores with over-provisioned credentials. DLP architectures that do not address this are protecting the wrong perimeter.
+
+**Behavioral and contextual enforcement** over keyword blocking. The next generation of DLP moves away from binary block/allow decisions toward contextual enforcement — understanding *why* a user is doing something, not just *what* they are doing. An employee exfiltrating data on their last day before termination is different from an employee sending the same data to a known business partner. Context changes the response.
+
+The organizations that will get DLP right in 2026 are not the ones with the most rules. They are the ones that know where their data is, understand how it moves, and have built enforcement that is precise enough to stop real threats without making the business stop functioning.
+
+---
+
+*This article covers DLP architecture, detection techniques, DSPM convergence, and GenAI/agentic threat surfaces as of mid-2026. The landscape evolves fast — treat this as a foundation, not a final word.*
