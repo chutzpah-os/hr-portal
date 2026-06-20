@@ -39,8 +39,9 @@ export function getAllPosts(): PostMeta[] {
     .sort((a, b) => (a.date > b.date ? -1 : 1))
 }
 
-export function getPostBySlug(slug: string): Post {
+export function getPostBySlug(slug: string): Post | null {
   const filepath = path.join(CONTENT_DIR, `${slug}.mdx`)
+  if (!fs.existsSync(filepath)) return null
   const raw = fs.readFileSync(filepath, 'utf8')
   const { data, content } = matter(raw)
   return {

@@ -1,4 +1,5 @@
 import { getAllPosts, getPostBySlug, formatDate } from '@/lib/blog'
+import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
@@ -110,6 +111,7 @@ const BASE_URL = 'https://hanielrolemberg.com'
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const post = getPostBySlug(slug)
+  if (!post) return {}
   const url = `${BASE_URL}/blog/${slug}`
 
   return {
@@ -147,6 +149,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const post = getPostBySlug(slug)
+  if (!post) notFound()
 
   const articleSchema = {
     '@context': 'https://schema.org',
