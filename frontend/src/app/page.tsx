@@ -30,6 +30,42 @@ const CHANNEL_LINKS: Record<string, string> = {
 
 const VIDEOS: YTVideo[] = [
   {
+    id: 'FYU0XuAOmcM',
+    title: "How R&D in Israel Actually Works: Startups, Multinationals & the Innovation Authority",
+    thumbnail: 'https://i.ytimg.com/vi/FYU0XuAOmcM/hqdefault.jpg',
+    publishedAt: '',
+    channelName: 'Problem Solver Foundation',
+    channelId: 'psf',
+    url: 'https://www.youtube.com/watch?v=FYU0XuAOmcM',
+  },
+  {
+    id: 'P24KDOH8mNI',
+    title: 'One Billion People Can Solve This | The 2035 Plan',
+    thumbnail: 'https://i.ytimg.com/vi/P24KDOH8mNI/hqdefault.jpg',
+    publishedAt: '',
+    channelName: 'Problem Solver Foundation',
+    channelId: 'psf',
+    url: 'https://www.youtube.com/watch?v=P24KDOH8mNI',
+  },
+  {
+    id: 'Vdzc9GZaJvk',
+    title: 'Why 1 Billion Problem Solvers? The Movement Changing Everything',
+    thumbnail: 'https://i.ytimg.com/vi/Vdzc9GZaJvk/hqdefault.jpg',
+    publishedAt: '',
+    channelName: 'Problem Solver Foundation',
+    channelId: 'psf',
+    url: 'https://www.youtube.com/watch?v=Vdzc9GZaJvk',
+  },
+  {
+    id: 'I5nnFQl8O5c',
+    title: "1K Miles of Hope: I'm Running 1,000 Miles to Raise Money for Cancer Research",
+    thumbnail: 'https://i.ytimg.com/vi/I5nnFQl8O5c/hqdefault.jpg',
+    publishedAt: '',
+    channelName: 'Haniel Rolemberg',
+    channelId: 'haniel',
+    url: 'https://www.youtube.com/watch?v=I5nnFQl8O5c',
+  },
+  {
     id: 'z_RI0YRuNGg',
     title: 'Memento Mori | What Marcus Aurelius Actually Meant',
     thumbnail: 'https://i.ytimg.com/vi/z_RI0YRuNGg/hqdefault.jpg',
@@ -46,24 +82,6 @@ const VIDEOS: YTVideo[] = [
     channelName: 'Haniel Rolemberg',
     channelId: 'haniel',
     url: 'https://www.youtube.com/watch?v=WtmbDEZowAU',
-  },
-  {
-    id: 'P24KDOH8mNI',
-    title: 'How 1 Billion People Can Change the Future',
-    thumbnail: 'https://i.ytimg.com/vi/P24KDOH8mNI/hqdefault.jpg',
-    publishedAt: '',
-    channelName: 'Problem Solver Foundation',
-    channelId: 'psf',
-    url: 'https://www.youtube.com/watch?v=P24KDOH8mNI',
-  },
-  {
-    id: 'fGkdnoaTm84',
-    title: '(PT/BR) Why Israel Leads Innovation? | PSF Innovation Talks Ep01',
-    thumbnail: 'https://i.ytimg.com/vi/fGkdnoaTm84/hqdefault.jpg',
-    publishedAt: '',
-    channelName: 'Problem Solver Foundation',
-    channelId: 'psf',
-    url: 'https://www.youtube.com/watch?v=fGkdnoaTm84',
   },
 ]
 
