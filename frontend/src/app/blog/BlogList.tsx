@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import type { PostMeta, PostCategory } from '@/lib/blog'
 
@@ -14,18 +14,22 @@ const PAGE_SIZE = 10
 
 type CategoryFilter = 'all' | PostCategory
 
-function FilterButton({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
+function FilterButton({ active, onClick, children, small }: { active: boolean; onClick: () => void; children: React.ReactNode; small?: boolean }) {
   return (
     <button
       onClick={onClick}
-      className="text-[0.65rem] uppercase tracking-widest px-3 py-1.5 rounded-full transition-all duration-200"
-      style={active ? {
-        backgroundColor: 'var(--accent)',
-        color: '#fff',
-      } : {
-        border: '1px solid rgba(10,10,15,0.12)',
-        color: 'var(--white-45)',
-        backgroundColor: 'transparent',
+      className="uppercase tracking-widest transition-all duration-200 rounded-full"
+      style={{
+        fontSize: small ? '0.58rem' : '0.65rem',
+        padding: small ? '0.25rem 0.75rem' : '0.375rem 0.75rem',
+        ...(active ? {
+          backgroundColor: 'var(--accent)',
+          color: '#fff',
+        } : {
+          border: '1px solid rgba(10,10,15,0.12)',
+          color: 'var(--white-45)',
+          backgroundColor: 'transparent',
+        }),
       }}
     >
       {children}
@@ -33,14 +37,61 @@ function FilterButton({ active, onClick, children }: { active: boolean; onClick:
   )
 }
 
+function buildGroupTree(posts: PostMeta[]): Map<string, Set<string>> {
+  const tree = new Map<string, Set<string>>()
+  for (const post of posts) {
+    for (const g of post.groups) {
+      const slash = g.indexOf('/')
+      const parent = slash === -1 ? g : g.slice(0, slash)
+      const child = slash === -1 ? null : g.slice(slash + 1)
+      if (!tree.has(parent)) tree.set(parent, new Set())
+      if (child) tree.get(parent)!.add(child)
+    }
+  }
+  return tree
+}
+
 export default function BlogList({ posts }: { posts: PostMeta[] }) {
   const [order, setOrder] = useState<'newest' | 'oldest'>('newest')
   const [category, setCategory] = useState<CategoryFilter>('all')
+  const [selectedParent, setSelectedParent] = useState<string | null>(null)
+  const [selectedChild, setSelectedChild] = useState<string | null>(null)
   const [visible, setVisible] = useState(PAGE_SIZE)
 
   const reset = () => setVisible(PAGE_SIZE)
 
-  const filtered = category === 'all' ? posts : posts.filter((p) => p.category === category)
+  const groupTree = useMemo(() => buildGroupTree(posts), [posts])
+  const parents = useMemo(() => Array.from(groupTree.keys()).sort(), [groupTree])
+  const children = useMemo(
+    () => selectedParent ? Array.from(groupTree.get(selectedParent) ?? []).sort() : [],
+    [groupTree, selectedParent]
+  )
+
+  function selectParent(p: string) {
+    if (selectedParent === p) {
+      setSelectedParent(null)
+      setSelectedChild(null)
+    } else {
+      setSelectedParent(p)
+      setSelectedChild(null)
+    }
+    reset()
+  }
+
+  function selectChild(c: string) {
+    setSelectedChild(selectedChild === c ? null : c)
+    reset()
+  }
+
+  const filtered = posts.filter((p) => {
+    if (category !== 'all' && p.category !== category) return false
+    if (!selectedParent) return true
+    const fullPath = selectedChild ? `${selectedParent}/${selectedChild}` : null
+    return p.groups.some((g) =>
+      fullPath ? g === fullPath : g === selectedParent || g.startsWith(`${selectedParent}/`)
+    )
+  })
+
   const sorted = order === 'newest' ? filtered : [...filtered].reverse()
   const shown = sorted.slice(0, visible)
   const hasMore = visible < sorted.length
@@ -48,22 +99,46 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
   return (
     <>
       {/* Filters */}
-      <div className="flex flex-wrap gap-x-6 gap-y-3 mb-10">
-        {/* Order */}
-        <div className="flex gap-2">
-          <FilterButton active={order === 'newest'} onClick={() => { setOrder('newest'); reset() }}>Newest</FilterButton>
-          <FilterButton active={order === 'oldest'} onClick={() => { setOrder('oldest'); reset() }}>Oldest</FilterButton>
+      <div className="flex flex-col gap-4 mb-10">
+
+        {/* Order + Category */}
+        <div className="flex flex-wrap gap-x-6 gap-y-3">
+          <div className="flex gap-2">
+            <FilterButton active={order === 'newest'} onClick={() => { setOrder('newest'); reset() }}>Newest</FilterButton>
+            <FilterButton active={order === 'oldest'} onClick={() => { setOrder('oldest'); reset() }}>Oldest</FilterButton>
+          </div>
+          <div style={{ width: '1px', backgroundColor: 'rgba(10,10,15,0.1)', alignSelf: 'stretch' }} />
+          <div className="flex gap-2">
+            <FilterButton active={category === 'all'} onClick={() => { setCategory('all'); reset() }}>All</FilterButton>
+            <FilterButton active={category === 'technical'} onClick={() => { setCategory('technical'); reset() }}>Technical</FilterButton>
+            <FilterButton active={category === 'non-technical'} onClick={() => { setCategory('non-technical'); reset() }}>Non-Technical</FilterButton>
+          </div>
         </div>
 
-        {/* Separator */}
-        <div style={{ width: '1px', backgroundColor: 'rgba(10,10,15,0.1)', alignSelf: 'stretch' }} />
+        {/* Groups */}
+        {parents.length > 0 && (
+          <div className="flex flex-col gap-2">
+            {/* Parent pills */}
+            <div className="flex flex-wrap gap-2">
+              {parents.map((p) => (
+                <FilterButton key={p} active={selectedParent === p} onClick={() => selectParent(p)}>
+                  {p}
+                </FilterButton>
+              ))}
+            </div>
 
-        {/* Category */}
-        <div className="flex gap-2">
-          <FilterButton active={category === 'all'} onClick={() => { setCategory('all'); reset() }}>All</FilterButton>
-          <FilterButton active={category === 'technical'} onClick={() => { setCategory('technical'); reset() }}>Technical</FilterButton>
-          <FilterButton active={category === 'non-technical'} onClick={() => { setCategory('non-technical'); reset() }}>Non-Technical</FilterButton>
-        </div>
+            {/* Sub-group pills */}
+            {selectedParent && children.length > 0 && (
+              <div className="flex flex-wrap gap-2 pl-3" style={{ borderLeft: '2px solid rgba(212,119,90,0.25)' }}>
+                {children.map((c) => (
+                  <FilterButton key={c} active={selectedChild === c} onClick={() => selectChild(c)} small>
+                    {c}
+                  </FilterButton>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Post list */}
@@ -93,16 +168,25 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
                 {post.title}
               </h2>
             </Link>
-            <p
-              className="text-xs uppercase tracking-widest mb-3"
-              style={{ color: 'var(--white-35)' }}
-            >
-              {formatDate(post.date)}
-            </p>
-            <p
-              className="text-sm leading-relaxed mb-4"
-              style={{ color: 'var(--white-60)' }}
-            >
+            <div className="flex flex-wrap items-center gap-3 mb-3">
+              <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--white-35)' }}>
+                {formatDate(post.date)}
+              </p>
+              {post.groups.length > 0 && (
+                <div className="flex flex-wrap gap-1.5">
+                  {post.groups.map((g) => (
+                    <span
+                      key={g}
+                      className="text-[0.5rem] uppercase tracking-widest px-2 py-0.5 rounded-full"
+                      style={{ backgroundColor: 'rgba(212,119,90,0.07)', color: 'var(--accent)', border: '1px solid rgba(212,119,90,0.15)' }}
+                    >
+                      {g.includes('/') ? g.split('/')[1] : g}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+            <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--white-60)' }}>
               {post.excerpt}
             </p>
             <Link
@@ -124,10 +208,7 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
           <button
             onClick={() => setVisible((v) => v + PAGE_SIZE)}
             className="text-xs uppercase tracking-widest px-6 py-2.5 rounded-full transition-all duration-200"
-            style={{
-              border: '1px solid rgba(10,10,15,0.15)',
-              color: 'var(--white-55)',
-            }}
+            style={{ border: '1px solid rgba(10,10,15,0.15)', color: 'var(--white-55)' }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = 'var(--accent)'
               e.currentTarget.style.color = 'var(--accent)'

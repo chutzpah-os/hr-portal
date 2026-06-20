@@ -13,10 +13,12 @@ export interface PostMeta {
   excerpt: string
   category: PostCategory
   tags: string[]
+  groups: string[]
 }
 
 export interface Post extends PostMeta {
   content: string
+  groups: string[]
 }
 
 export function getAllPosts(): PostMeta[] {
@@ -34,6 +36,7 @@ export function getAllPosts(): PostMeta[] {
         excerpt: data.excerpt as string,
         category: (data.category as PostCategory) ?? 'non-technical',
         tags: (data.tags as string[]) ?? [],
+        groups: (data.groups as string[]) ?? [],
       }
     })
     .sort((a, b) => (a.date > b.date ? -1 : 1))
@@ -51,6 +54,7 @@ export function getPostBySlug(slug: string): Post | null {
     excerpt: data.excerpt as string,
     category: (data.category as PostCategory) ?? 'non-technical',
     tags: (data.tags as string[]) ?? [],
+    groups: (data.groups as string[]) ?? [],
     content,
   }
 }
