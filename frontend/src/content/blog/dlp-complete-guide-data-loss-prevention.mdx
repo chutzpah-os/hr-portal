@@ -5,6 +5,21 @@ excerpt: "From regex and fingerprinting to AI-powered classification, DSPM conve
 category: "technical"
 tags: ["DLP", "Data Loss Prevention", "Cybersecurity", "DSPM", "CASB", "SSE", "Insider Threat", "GenAI Security", "Zero Trust"]
 groups: ["Cybersecurity/DLP"]
+faqs:
+  - question: "What is Data Loss Prevention (DLP)?"
+    answer: "DLP is a set of controls — people, processes, and technology — designed to detect and prevent sensitive data from leaving a controlled environment without authorization. It covers three data states: data at rest (stored files), data in motion (network traffic), and data in use (active processing, clipboard, printing)."
+  - question: "What are the three data states in DLP?"
+    answer: "Data at Rest: data stored in databases, file servers, cloud storage, and endpoints. Data in Motion: data traversing the network via email, web uploads, API calls, or SaaS sync. Data in Use: data being actively processed — opened in applications, copied to clipboard, printed, or screenshotted. A mature DLP program requires visibility and enforcement across all three."
+  - question: "What is Exact Data Matching (EDM) in DLP?"
+    answer: "Exact Data Matching (EDM) is a DLP detection technique where sensitive records (like PII in a database) are hashed into a fingerprint database. When data in motion or at rest is compared against these hashes, even partial matches trigger alerts. EDM dramatically reduces false positives compared to regex because it only fires on real data records, not patterns that look like them."
+  - question: "What is DSPM and how does it relate to DLP?"
+    answer: "Data Security Posture Management (DSPM) is a cloud-native discipline focused on discovering, classifying, and securing data across multi-cloud and SaaS environments. While traditional DLP enforces policies at the point of egress, DSPM provides continuous visibility into where sensitive data lives and who has access to it. In 2025–2026, DLP and DSPM platforms are converging — DSPM provides the data map; DLP enforces the controls."
+  - question: "How does GenAI create new DLP challenges?"
+    answer: "GenAI tools like ChatGPT, GitHub Copilot, and enterprise AI assistants create novel exfiltration vectors: employees paste source code or PII into prompts (browser-based exfiltration), AI agents retrieve and synthesize data across multiple systems, and LLMs can be manipulated via prompt injection to leak data they've processed. Traditional DLP rules struggle with these vectors because the 'exfiltration' looks like normal API traffic."
+  - question: "What is the difference between network DLP and endpoint DLP?"
+    answer: "Network DLP inspects traffic at the network perimeter — email gateways, web proxies, API gateways — and can block or quarantine data in motion. Endpoint DLP runs as an agent on devices and controls actions like clipboard copy, USB transfer, printing, and application data access. Endpoint DLP can see data in use; network DLP cannot. Both are needed for comprehensive coverage."
+  - question: "What is UEBA and why does it matter for insider threat detection?"
+    answer: "User and Entity Behavior Analytics (UEBA) establishes behavioral baselines for each user and device, then flags statistical anomalies — a finance employee suddenly downloading 10,000 customer records, or a developer accessing HR systems at 2 AM. UEBA doesn't catch specific data matches; it catches abnormal behavior patterns that precede data theft, making it essential for detecting sophisticated insider threats that evade content-based DLP."
 ---
 
 Data Loss Prevention is one of the oldest disciplines in enterprise security — and one of the most misunderstood. Most organizations have *some* form of DLP. Most of those implementations are barely functional: a pile of regex rules generating thousands of alerts that no one reads, tuned so poorly that blocking a legitimate email takes three approvals and a support ticket.

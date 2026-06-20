@@ -1,3 +1,12 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Writing — Haniel Rolemberg',
+  description: 'Long-form books and essays on technology, problem-solving, and the future of society by Haniel Rolemberg.',
+  alternates: { canonical: 'https://hanielrolemberg.com/writing' },
+  robots: { index: false, follow: true },
+}
+
 export default function WritingPage() {
   return (
     <main style={{ paddingTop: '5.5rem', minHeight: '80svh' }}>

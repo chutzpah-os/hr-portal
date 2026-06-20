@@ -53,11 +53,25 @@ export default async function ChallengePage(
     keywords: challenge.tags.join(', '),
   }
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Challenges', item: `${BASE_URL}/challenges` },
+      { '@type': 'ListItem', position: 3, name: challenge.name, item: `${BASE_URL}/challenges/${challenge.id}` },
+    ],
+  }
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       <main

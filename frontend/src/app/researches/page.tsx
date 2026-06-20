@@ -1,3 +1,12 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Research — Haniel Rolemberg',
+  description: 'Academic and applied research across cybersecurity, data systems, and AI by Haniel Rolemberg.',
+  alternates: { canonical: 'https://hanielrolemberg.com/researches' },
+  robots: { index: false, follow: true },
+}
+
 export default function ResearchesPage() {
   return (
     <main style={{ paddingTop: '5.5rem', minHeight: '80svh' }}>

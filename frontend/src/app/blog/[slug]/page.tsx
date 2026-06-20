@@ -169,7 +169,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       url: BASE_URL,
       sameAs: [
         'https://www.linkedin.com/in/hanielrolemberg/',
-        'https://github.com/chutzpah-os',
+        'https://github.com/hanielrolemberg',
       ],
     },
     image: `${BASE_URL}/images/Haniel-Rolemberg.jpeg`,
@@ -181,12 +181,31 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     },
   }
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${BASE_URL}/blog` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `${BASE_URL}/blog/${slug}` },
+    ],
+  }
+
+  const faqSchema = post.faqs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: post.faqs.map(({ question, answer }) => ({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: { '@type': 'Answer', text: answer },
+    })),
+  } : null
+
   return (
     <main style={{ paddingTop: '5.5rem', minHeight: '80svh' }}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
       <div style={{ maxWidth: '680px', margin: '0 auto', padding: '3rem 1.5rem 6rem' }}>
 
         {/* Back link */}

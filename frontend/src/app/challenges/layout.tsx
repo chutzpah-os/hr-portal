@@ -1,15 +1,15 @@
+import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Challenges — Haniel Rolemberg',
   description: 'Personal challenges and initiatives — from running for cancer research to causes that turn movement into meaning.',
-  alternates: {
-    canonical: 'https://hanielrolemberg.com/challenges',
-  },
+  alternates: { canonical: 'https://hanielrolemberg.com/challenges' },
   openGraph: {
     title: 'Challenges — Haniel Rolemberg',
     description: 'Personal challenges and initiatives — from running for cancer research to causes that turn movement into meaning.',
     url: 'https://hanielrolemberg.com/challenges',
+    type: 'website',
   },
 }
 

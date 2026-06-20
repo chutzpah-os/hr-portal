@@ -6,6 +6,11 @@ const CONTENT_DIR = path.join(process.cwd(), 'src/content/blog')
 
 export type PostCategory = 'technical' | 'non-technical'
 
+export interface FAQ {
+  question: string
+  answer: string
+}
+
 export interface PostMeta {
   slug: string
   title: string
@@ -14,11 +19,11 @@ export interface PostMeta {
   category: PostCategory
   tags: string[]
   groups: string[]
+  faqs: FAQ[]
 }
 
 export interface Post extends PostMeta {
   content: string
-  groups: string[]
 }
 
 export function getAllPosts(): PostMeta[] {
@@ -37,6 +42,7 @@ export function getAllPosts(): PostMeta[] {
         category: (data.category as PostCategory) ?? 'non-technical',
         tags: (data.tags as string[]) ?? [],
         groups: (data.groups as string[]) ?? [],
+        faqs: (data.faqs as FAQ[]) ?? [],
       }
     })
     .sort((a, b) => (a.date > b.date ? -1 : 1))
@@ -55,6 +61,7 @@ export function getPostBySlug(slug: string): Post | null {
     category: (data.category as PostCategory) ?? 'non-technical',
     tags: (data.tags as string[]) ?? [],
     groups: (data.groups as string[]) ?? [],
+    faqs: (data.faqs as FAQ[]) ?? [],
     content,
   }
 }

@@ -1,4 +1,17 @@
+import type { Metadata } from 'next'
 import Hero from '@/components/sections/Hero'
+
+export const metadata: Metadata = {
+  title: 'Portfolio — Haniel Rolemberg',
+  description: '6+ years of experience across cybersecurity, software engineering, data engineering, and AI/ML. 30+ projects, 22 certifications, and research across 6 initiatives. Full professional history and skills.',
+  alternates: { canonical: 'https://hanielrolemberg.com/portfolio' },
+  openGraph: {
+    title: 'Portfolio — Haniel Rolemberg',
+    description: 'Cybersecurity, software engineering, data and AI/ML. 6+ years of experience, 30+ projects, 22 certifications.',
+    url: 'https://hanielrolemberg.com/portfolio',
+    type: 'website',
+  },
+}
 import RecommendationsCarousel from '@/components/sections/RecommendationsCarousel'
 import PortfolioSection from '@/components/sections/PortfolioSection'
 import ExperienceSection from '@/components/sections/Experience'

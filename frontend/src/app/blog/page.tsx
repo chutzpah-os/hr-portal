@@ -1,5 +1,18 @@
+import type { Metadata } from 'next'
 import { getAllPosts } from '@/lib/blog'
 import BlogList from './BlogList'
+
+export const metadata: Metadata = {
+  title: 'Blog — Haniel Rolemberg',
+  description: 'Articles on cybersecurity, AI, data engineering, health, philosophy, and personal challenges. Technical guides, reflections, and live project updates.',
+  alternates: { canonical: 'https://hanielrolemberg.com/blog' },
+  openGraph: {
+    title: 'Blog — Haniel Rolemberg',
+    description: 'Articles on cybersecurity, AI, data engineering, health, philosophy, and personal challenges.',
+    url: 'https://hanielrolemberg.com/blog',
+    type: 'website',
+  },
+}
 
 export default function BlogPage() {
   const posts = getAllPosts()

@@ -1,3 +1,12 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Press — Haniel Rolemberg',
+  description: 'Media appearances, podcast interviews, and press coverage featuring Haniel Rolemberg.',
+  alternates: { canonical: 'https://hanielrolemberg.com/press' },
+  robots: { index: false, follow: true },
+}
+
 export default function PressPage() {
   return (
     <main style={{ paddingTop: '5.5rem', minHeight: '80svh' }}>
