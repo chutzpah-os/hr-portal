@@ -8,7 +8,12 @@ const nextConfig: NextConfig = {
       { source: '/contact', destination: '/', permanent: true },
       {
         source: '/blog/your-phone-lost-on-the-map-yet-alert-to-imminent-danger',
-        destination: '/blog/how-your-phone-knows-where-you-are-gps-spoofing-cell-broadcast-emergency-alerts',
+        destination: '/blog/phone-gps-spoofing-emergency-alerts',
+        permanent: true,
+      },
+      {
+        source: '/blog/how-your-phone-knows-where-you-are-gps-spoofing-cell-broadcast-emergency-alerts',
+        destination: '/blog/phone-gps-spoofing-emergency-alerts',
         permanent: true,
       },
     ]
