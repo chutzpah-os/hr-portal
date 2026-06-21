@@ -27,6 +27,30 @@ export interface Product {
 
 export const PRODUCTS: Product[] = [
   {
+    id: 'shoresh',
+    name: 'Shoresh',
+    tagline: 'Know who you\'re dealing with — before it\'s too late.',
+    shortDescription: 'KYC and compliance intelligence platform — risk scoring, PEP screening, sanctions lists, and financial exposure in a unified C-level dashboard.',
+    fullDescription: `Shoresh is a KYC and compliance intelligence platform built for financial institutions, fintechs, and any organization that needs to know exactly who they are doing business with.
+
+The name comes from the Hebrew word for "root" — because compliance starts at the root: understanding the true identity, structure, and risk profile of every entity before a relationship begins, and monitoring it continuously afterward.
+
+The platform consolidates what is typically scattered across multiple tools: PEP (Politically Exposed Person) screening, sanctions list matching, financial exposure estimation, AML risk scoring, and KYC dossier management. C-level and compliance officers get a single, unified view of their entire entity portfolio — with real-time alerts, risk distribution breakdowns, and pending KYC queues surfaced automatically.
+
+At its core, Shoresh is built around three principles: visibility (nothing hidden in a spreadsheet), accountability (every alert logged and tracked), and speed (risk decisions made with the right information, fast).
+
+Built for regulated environments where getting this wrong isn't an option.`,
+    metrics: [
+      { label: 'Core', value: 'KYC · AML · Compliance' },
+      { label: 'View', value: 'C-Level Dashboard' },
+      { label: 'Stack', value: 'Data · AI/ML' },
+    ],
+    tags: ['R&D', 'Software', 'Compliance', 'Fintech'],
+    status: 'MVP',
+    image: '/images/shoresh-cover.png',
+    imageFit: 'cover',
+  },
+  {
     id: 'cherut',
     name: 'Cherut',
     tagline: 'Your life, running on a system.',
