@@ -137,26 +137,6 @@ Built to bring order, operational clarity, and measurable efficiency to governme
     status: 'Ideation',
   },
   {
-    id: 'business-metrics',
-    name: 'Business Metrics',
-    tagline: 'One dashboard. Every business. All the numbers that matter.',
-    shortDescription: 'Centralized metrics management system for tracking and comparing KPIs across multiple businesses from a single platform.',
-    fullDescription: `Business Metrics is a multi-tenant platform for managing, monitoring, and analyzing performance metrics across multiple businesses simultaneously.
-
-The problem it solves: founders, operators, and investors who run or oversee multiple ventures spend too much time aggregating data from disconnected sources — spreadsheets, dashboards, financial tools, CRMs — just to get a clear picture of what's happening. Business Metrics consolidates that into a single, structured view.
-
-Each business gets its own metric workspace. KPIs are defined once and tracked continuously. Cross-business views allow comparison, benchmarking, and pattern recognition across a portfolio.
-
-Built for: holding companies, serial entrepreneurs, venture studios, investors, and management consulting firms that need real-time operational visibility across multiple entities — without building custom tooling for each one.`,
-    metrics: [
-      { label: 'Model', value: 'Multi-tenant' },
-      { label: 'Focus', value: 'KPI Management' },
-      { label: 'For', value: 'Operators & Investors' },
-    ],
-    tags: ['R&D', 'Software', 'Management'],
-    status: 'Ideation',
-  },
-  {
     id: 'sentinel-ai',
     name: 'Sentinel AI',
     tagline: 'Eyes that never blink. Intelligence that never sleeps.',
