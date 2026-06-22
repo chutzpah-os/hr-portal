@@ -224,7 +224,7 @@ The formula: structured input + real-world output + accountability loops. The re
     tags: ['R&D', 'Software', 'Education'],
     status: 'Ideation',
     image: '/images/hofshilang.png',
-    imageFit: 'contain',
+    imageFit: 'cover',
   },
 ]
 
