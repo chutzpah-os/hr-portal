@@ -83,6 +83,8 @@ Beyond coordination, the portal is a space for community identity — where the 
 Built to scale the mission without losing the human element.`,
     tags: ['R&D', 'Software', 'Community'],
     status: 'Ideation',
+    image: '/images/psf-portal-cover.png',
+    imageFit: 'cover',
   },
   {
     id: 'data-aggregator',
