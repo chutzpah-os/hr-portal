@@ -176,8 +176,8 @@ More details will be shared as the project matures.`,
     status: 'Ideation',
   },
   {
-    id: 'etz-defense',
-    name: 'Etz Defense',
+    id: 'etz',
+    name: 'Etz',
     tagline: 'Sensitive data deserves serious protection.',
     shortDescription: 'Secure registration and management of sensitive data and assets — built on cryptographic foundations.',
     fullDescription: `Etz Defense is a platform for the secure registration and management of sensitive data and critical assets, built for government and compliance-driven environments.

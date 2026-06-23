@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
     return [
       { source: '/contact', destination: '/', permanent: true },
       {
+        source: '/solutions/etz-defense',
+        destination: '/solutions/etz',
+        permanent: true,
+      },
+      {
         source: '/blog/your-phone-lost-on-the-map-yet-alert-to-imminent-danger',
         destination: '/blog/phone-gps-spoofing-emergency-alerts',
         permanent: true,
