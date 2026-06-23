@@ -107,6 +107,8 @@ Built at the intersection of data engineering, machine learning, and decision in
     ],
     tags: ['R&D', 'Software', 'AI/ML'],
     status: 'Ideation',
+    image: '/images/datapsf1.png',
+    imageFit: 'cover',
   },
   {
     id: 'hotel-romeo-echo',
