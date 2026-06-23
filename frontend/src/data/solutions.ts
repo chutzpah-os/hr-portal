@@ -111,21 +111,6 @@ Built at the intersection of data engineering, machine learning, and decision in
     imageFit: 'cover',
   },
   {
-    id: 'hotel-romeo-echo',
-    name: 'Hotel Romeo Echo',
-    tagline: 'Know where every asset is. Always.',
-    shortDescription: 'Asset tracking system for organizations that need real-time visibility over their physical and digital assets.',
-    fullDescription: `Hotel Romeo Echo is an asset tracking platform built for organizations that can't afford to lose visibility over what they own.
-
-Whether physical assets — equipment, vehicles, devices, infrastructure — or digital ones, Hotel Romeo Echo provides a centralized registry with real-time location and status tracking. Every asset has a history. Every movement is logged. Every anomaly is surfaced.
-
-Built for operations where asset visibility is not optional: field teams, logistics, critical infrastructure, government agencies, and enterprises managing large inventories across distributed locations.
-
-The system is designed to integrate with existing workflows rather than replace them — adding a layer of intelligence and accountability on top of what's already there.`,
-    tags: ['R&D', 'Software', 'Management'],
-    status: 'Ideation',
-  },
-  {
     id: 'seder-koah',
     name: 'Seder Koah',
     tagline: 'Structure and strength for public institutions.',
