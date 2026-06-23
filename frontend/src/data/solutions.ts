@@ -185,6 +185,8 @@ More details will be shared as the project matures.`,
 The focus is on cryptography — ensuring that sensitive information is protected at rest, in transit, and at access. Designed to meet the rigor that regulated sectors demand. More details will be shared as the project matures.`,
     tags: ['R&D', 'Software', 'Cybersecurity', 'Government', 'Compliance'],
     status: 'Ideation',
+    image: '/images/etz-cover.png',
+    imageFit: 'cover',
   },
   {
     id: 'hofshilang',
