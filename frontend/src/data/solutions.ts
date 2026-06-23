@@ -29,24 +29,19 @@ export const PRODUCTS: Product[] = [
   {
     id: 'shoresh',
     name: 'Shoresh',
-    tagline: 'Know who you\'re dealing with — before it\'s too late.',
-    shortDescription: 'KYC and compliance intelligence platform — risk scoring, PEP screening, sanctions lists, and financial exposure in a unified C-level dashboard.',
-    fullDescription: `Shoresh is a KYC and compliance intelligence platform built for financial institutions, fintechs, and any organization that needs to know exactly who they are doing business with.
+    tagline: 'Governance that protects. Compliance that scales.',
+    shortDescription: 'Corporate governance and compliance platform for mid-to-large corporations — and the startups building toward that scale.',
+    fullDescription: `Shoresh is a compliance and corporate governance platform built to protect corporations from the inside out.
 
-The name comes from the Hebrew word for "root" — because compliance starts at the root: understanding the true identity, structure, and risk profile of every entity before a relationship begins, and monitoring it continuously afterward.
+The premise: governance failures are rarely sudden — they accumulate quietly through gaps in process, unclear accountability, and compliance blind spots. Shoresh makes those gaps visible before they become liabilities.
 
-The platform consolidates what is typically scattered across multiple tools: PEP (Politically Exposed Person) screening, sanctions list matching, financial exposure estimation, AML risk scoring, and KYC dossier management. C-level and compliance officers get a single, unified view of their entire entity portfolio — with real-time alerts, risk distribution breakdowns, and pending KYC queues surfaced automatically.
+Designed for medium and large corporations with the structural complexity that demands rigorous governance, and equally available to startups that want to build compliance-ready from day one rather than retrofit it later.
 
-At its core, Shoresh is built around three principles: visibility (nothing hidden in a spreadsheet), accountability (every alert logged and tracked), and speed (risk decisions made with the right information, fast).
+The platform covers corporate governance frameworks, regulatory compliance tracking, risk visibility, and accountability structures — giving leadership the confidence that the organization is protected, auditable, and aligned.
 
-Built for regulated environments where getting this wrong isn't an option.`,
-    metrics: [
-      { label: 'Core', value: 'KYC · AML · Compliance' },
-      { label: 'View', value: 'C-Level Dashboard' },
-      { label: 'Stack', value: 'Data · AI/ML' },
-    ],
-    tags: ['R&D', 'Software', 'Compliance', 'Fintech'],
-    status: 'MVP',
+More details will be shared as the project matures.`,
+    tags: ['R&D', 'Software', 'Compliance', 'Government', 'Management'],
+    status: 'Ideation',
     image: '/images/shoresh-cover.png',
     imageFit: 'cover',
   },
@@ -143,23 +138,6 @@ The foundation: CV models trained for real-world conditions, behavioral pattern 
       { label: 'Focus', value: 'Physical Security' },
     ],
     tags: ['R&D', 'Software', 'AI/ML', 'Cybersecurity'],
-    status: 'Ideation',
-  },
-  {
-    id: 'shemesh',
-    name: 'Shemesh',
-    tagline: 'Governance that protects. Compliance that scales.',
-    shortDescription: 'Corporate governance and compliance platform for mid-to-large corporations — and the startups building toward that scale.',
-    fullDescription: `Shemesh is a compliance and corporate governance platform built to protect corporations from the inside out.
-
-The premise: governance failures are rarely sudden — they accumulate quietly through gaps in process, unclear accountability, and compliance blind spots. Shemesh makes those gaps visible before they become liabilities.
-
-Designed for medium and large corporations with the structural complexity that demands rigorous governance, and equally available to startups that want to build compliance-ready from day one rather than retrofit it later.
-
-The platform covers corporate governance frameworks, regulatory compliance tracking, risk visibility, and accountability structures — giving leadership the confidence that the organization is protected, auditable, and aligned.
-
-More details will be shared as the project matures.`,
-    tags: ['R&D', 'Software', 'Compliance', 'Government', 'Management'],
     status: 'Ideation',
   },
   {
