@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { PRODUCTS, STAGES, getProduct } from '@/data/solutions'
+import { PRODUCTS, getProduct } from '@/data/solutions'
 
 const BASE_URL = 'https://hanielrolemberg.com'
 
@@ -43,8 +43,6 @@ export default async function ProductPage(
   const product = getProduct(slug)
   if (!product) notFound()
 
-  const stage = STAGES.find((s) => s.label === product.status) ?? STAGES[0]
-
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
@@ -61,7 +59,7 @@ export default async function ProductPage(
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
-      { '@type': 'ListItem', position: 2, name: 'Solutions', item: `${BASE_URL}/solutions` },
+      { '@type': 'ListItem', position: 2, name: 'Lab', item: `${BASE_URL}/solutions` },
       { '@type': 'ListItem', position: 3, name: product.name, item: `${BASE_URL}/solutions/${product.id}` },
     ],
   }
@@ -103,13 +101,13 @@ export default async function ProductPage(
               className="text-xs uppercase tracking-widest transition-opacity hover:opacity-60"
               style={{ color: 'var(--white-40)' }}
             >
-              ← Solutions
+              ← Lab
             </Link>
           </nav>
 
           {/* Header */}
           <div className="mb-10">
-            {/* Tags + status */}
+            {/* Tags */}
             <div className="flex flex-wrap gap-2 mb-5">
               {product.tags.map((tag) => (
                 <span
@@ -124,17 +122,6 @@ export default async function ProductPage(
                   {tag}
                 </span>
               ))}
-              <span
-                className="text-[0.55rem] font-semibold uppercase tracking-widest px-2.5 py-0.5 rounded-full"
-                style={{
-                  backgroundColor: 'rgb(255,255,255)',
-                  color: stage.color,
-                  border: `1px solid ${stage.color.replace('1)', '0.35)')}`,
-                  boxShadow: '0 1px 4px rgba(10,10,15,0.10)',
-                }}
-              >
-                {product.status}
-              </span>
             </div>
 
             <h1
@@ -266,7 +253,7 @@ export default async function ProductPage(
               className="text-xs uppercase tracking-widest transition-opacity hover:opacity-60"
               style={{ color: 'var(--white-40)' }}
             >
-              ← Back to all products
+              ← Back to Lab
             </Link>
           </div>
         </div>

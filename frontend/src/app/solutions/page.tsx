@@ -4,24 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { PRODUCTS, STAGES, type Product, type StartupStage } from '@/data/solutions'
-
-function StatusBadge({ status }: { status: string }) {
-  const stage = STAGES.find((s) => s.label === status) ?? STAGES[0]
-  return (
-    <span
-      className="text-[0.55rem] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full"
-      style={{
-        backgroundColor: 'rgb(255,255,255)',
-        color: stage.color,
-        border: `1px solid ${stage.color.replace('1)', '0.35)')}`,
-        boxShadow: '0 1px 4px rgba(10,10,15,0.10)',
-      }}
-    >
-      {status}
-    </span>
-  )
-}
+import { PRODUCTS, type Product } from '@/data/solutions'
 
 function ProductModal({ product, onClose }: { product: Product; onClose: () => void }) {
   useEffect(() => {
@@ -79,7 +62,6 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
               {tag}
             </span>
           ))}
-          <StatusBadge status={product.status} />
         </div>
 
         {/* Name */}
@@ -243,10 +225,6 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
               </span>
             </div>
           )}
-          {/* Status badge overlay */}
-          <div className="absolute top-3 right-3">
-            <StatusBadge status={product.status} />
-          </div>
         </div>
 
         {/* Body */}
@@ -295,13 +273,7 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
 }
 
 export default function SolutionsPage() {
-  const [activeStage, setActiveStage] = useState<StartupStage | 'All'>('All')
   const [selected, setSelected] = useState<Product | null>(null)
-
-  const filtered = activeStage === 'All'
-    ? PRODUCTS
-    : PRODUCTS.filter((p) => p.status === activeStage)
-
   const handleClose = useCallback(() => setSelected(null), [])
 
   return (
@@ -336,7 +308,7 @@ export default function SolutionsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
-            <p className="section-label mb-4">Solutions</p>
+            <p className="section-label mb-4">Lab</p>
             <h1
               className="mb-4"
               style={{
@@ -348,67 +320,38 @@ export default function SolutionsPage() {
                 letterSpacing: '-0.02em',
               }}
             >
-              Products &amp; Initiatives
+              R&amp;D Showcase
             </h1>
             <p
               className="text-base max-w-xl leading-relaxed"
               style={{ color: 'var(--white-55)' }}
             >
-              R&amp;D-driven products and initiatives — from productivity systems and language learning to security, governance, and social impact. Each starts with a real problem worth solving.
+              Systems, software, and platforms built end-to-end — from compliance intelligence and physical security to governance, education, and community infrastructure. Each one starts with a real problem.
             </p>
-          </motion.div>
-
-          {/* Stage filter bar */}
-          <motion.div
-            className="flex flex-wrap gap-2 mb-10"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
-          >
-            {(['All', ...STAGES.map((s) => s.label)] as (StartupStage | 'All')[]).map((s) => {
-              const isSelected = activeStage === s
-              const stage = STAGES.find((st) => st.label === s)
-              return (
-                <button
-                  key={s}
-                  onClick={() => setActiveStage(s)}
-                  className="text-[0.6rem] uppercase tracking-widest px-3 py-1.5 rounded-full transition-all duration-200"
-                  style={{
-                    border: '1px solid',
-                    borderColor: isSelected ? (stage?.color ?? 'var(--accent)') : 'rgba(10,10,15,0.10)',
-                    color: isSelected ? (stage?.color ?? 'var(--white-90)') : 'var(--white-40)',
-                    backgroundColor: isSelected ? (stage?.bg ?? 'rgba(10,10,15,0.05)') : 'transparent',
-                    fontWeight: isSelected ? 600 : 400,
-                  }}
-                >
-                  {s === 'All' ? 'All stages' : s}
-                </button>
-              )
-            })}
           </motion.div>
 
           {/* Cards grid */}
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-20"
             layout
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
           >
-            <AnimatePresence mode="popLayout">
-              {filtered.map((product, i) => (
-                <motion.div
-                  key={product.id}
-                  layout
-                  initial={{ opacity: 0, y: 16, scale: 0.98 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.97 }}
-                  transition={{ duration: 0.3, delay: i * 0.06, ease: 'easeOut' }}
-                >
-                  <ProductCard
-                    product={product}
-                    onClick={() => setSelected(product)}
-                  />
-                </motion.div>
-              ))}
-            </AnimatePresence>
+            {PRODUCTS.map((product, i) => (
+              <motion.div
+                key={product.id}
+                layout
+                initial={{ opacity: 0, y: 16, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.3, delay: i * 0.06, ease: 'easeOut' }}
+              >
+                <ProductCard
+                  product={product}
+                  onClick={() => setSelected(product)}
+                />
+              </motion.div>
+            ))}
           </motion.div>
 
           {/* CTA footer */}

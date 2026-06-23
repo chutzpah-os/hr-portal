@@ -2,12 +2,12 @@ import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 
 export const metadata: Metadata = {
-  title: 'Solutions — Haniel Rolemberg',
-  description: 'Products and initiatives built by Haniel Rolemberg — from life operating systems to language learning and social impact campaigns.',
+  title: 'Lab — Haniel Rolemberg',
+  description: 'R&D showcase — software, AI/ML, and systems built end-to-end by Haniel Rolemberg, from compliance intelligence to physical security, governance, and education.',
   alternates: { canonical: 'https://hanielrolemberg.com/solutions' },
   openGraph: {
-    title: 'Solutions — Haniel Rolemberg',
-    description: 'Products and initiatives built by Haniel Rolemberg — from life operating systems to language learning and social impact campaigns.',
+    title: 'Lab — Haniel Rolemberg',
+    description: 'R&D showcase — software, AI/ML, and systems built end-to-end by Haniel Rolemberg.',
     url: 'https://hanielrolemberg.com/solutions',
     type: 'website',
   },

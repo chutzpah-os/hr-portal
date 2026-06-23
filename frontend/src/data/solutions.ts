@@ -180,7 +180,7 @@ More details will be shared as the project matures.`,
     name: 'Etz',
     tagline: 'Sensitive data deserves serious protection.',
     shortDescription: 'Secure registration and management of sensitive data and assets — built on cryptographic foundations.',
-    fullDescription: `Etz Defense is a platform for the secure registration and management of sensitive data and critical assets, built for government and compliance-driven environments.
+    fullDescription: `Etz is a platform for the secure registration and management of sensitive data and critical assets, built for government and compliance-driven environments.
 
 The focus is on cryptography — ensuring that sensitive information is protected at rest, in transit, and at access. Designed to meet the rigor that regulated sectors demand. More details will be shared as the project matures.`,
     tags: ['R&D', 'Software', 'Cybersecurity', 'Government', 'Compliance'],
