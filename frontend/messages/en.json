@@ -1,0 +1,119 @@
+{
+  "nav": {
+    "portfolio": "Portfolio",
+    "lab": "Lab",
+    "challenges": "Challenges",
+    "blog": "Blog",
+    "press": "Press",
+    "writing": "Writing",
+    "research": "Research",
+    "about": "About",
+    "bookCall": "Book a Call"
+  },
+  "common": {
+    "preview": "Preview →",
+    "viewFullPage": "View full page →",
+    "backToLab": "← Back to Lab",
+    "backLab": "← Lab",
+    "backAllPosts": "← All posts",
+    "backChallenges": "← Challenges",
+    "backToAllChallenges": "← Back to all challenges",
+    "close": "✕ Close",
+    "noResultsFound": "No posts found.",
+    "fullDetailsPage": "Full details, context, and updates on the dedicated page.",
+    "whatsNext": "What's next",
+    "haveProblem": "Have a problem worth solving?",
+    "haveProblemSub": "Whether it's technical, strategic, or social — if the problem is real, I want to hear about it.",
+    "bookCallCta": "Book a Call",
+    "donate": "Donate"
+  },
+  "home": {
+    "tagline": "Problem Solver",
+    "bio1": "Cancer has been part of my family for as long as I can remember — uncles, aunts, cousins, all fighting it at different points. At 16, my father was diagnosed with skin cancer. I didn't know then that survival depended so heavily on the type. To me, cancer meant one thing. That misunderstanding hit like a reset: a sudden urgency to live fully, to act, and to dedicate myself to problems that actually matter.",
+    "bio2": "That urgency pushed me across fields — public policy, software engineering, data systems, cybersecurity, AI/ML. Not because I was chasing credentials, but because the hardest problems don't fit inside one discipline.",
+    "bio3": "It also led me to build the <psf>Problem Solver Foundation</psf> — a community that connects people across borders to solve real-world problems using technology and science. My mission: <mission>impact one billion lives by 2035</mission>.",
+    "bookCall": "Book a Call",
+    "aboutLink": "About me →",
+    "featuredContent": "Featured Content",
+    "videos": "Videos",
+    "videoFilterAll": "All",
+    "viewAllVideos": "View all videos →",
+    "newsletterLabel": "Newsletter",
+    "newsletterSubtitle": "Occasional notes on cybersecurity, deep work, and what I'm building. No spam — just signal.",
+    "newsletterPlaceholder": "your@email.com",
+    "newsletterSubmit": "Subscribe",
+    "newsletterSuccess": "You're in. I'll be in touch.",
+    "newsletterError": "Something went wrong. Please try again."
+  },
+  "about": {
+    "sectionLabel": "About",
+    "title": "About Me"
+  },
+  "portfolio": {
+    "sectionLabel": "Portfolio",
+    "headline": "Research. Build. Secure.",
+    "downloadCV": "Download CV",
+    "experience": "Experience",
+    "education": "Education",
+    "skills": "Skills",
+    "projects": "Projects",
+    "certifications": "Certifications",
+    "languages": "Languages",
+    "volunteering": "Volunteering",
+    "researches": "Research",
+    "awards": "Awards",
+    "present": "Present",
+    "filterAll": "All",
+    "noResults": "No items found for the selected filter."
+  },
+  "blog": {
+    "sectionLabel": "Blog",
+    "title": "Writing",
+    "subtitle": "Thoughts on cybersecurity, engineering, data, and the intersection of technology and humanity.",
+    "filterAll": "All",
+    "filterTechnical": "Technical",
+    "filterNonTechnical": "Non-Technical",
+    "sortNewest": "Newest",
+    "sortOldest": "Oldest",
+    "searchPlaceholder": "Search posts…",
+    "noResults": "No posts found.",
+    "readMore": "Read more →",
+    "backAllPosts": "← All posts",
+    "tableOfContents": "Table of Contents",
+    "faqs": "FAQs",
+    "tags": "Tags",
+    "minuteRead": "min read",
+    "publishedOn": "Published"
+  },
+  "lab": {
+    "sectionLabel": "Lab",
+    "title": "R&D Showcase",
+    "subtitle": "Systems, software, and platforms built end-to-end — from compliance intelligence and physical security to governance, education, and community infrastructure. Each one starts with a real problem."
+  },
+  "challenges": {
+    "sectionLabel": "Challenges",
+    "title": "Personal Challenges",
+    "subtitle": "Personal initiatives, campaigns, and challenges — each one a commitment to action.",
+    "donateLabel": "Donate",
+    "backAll": "← Back to all challenges",
+    "backChallenges": "← Challenges"
+  },
+  "press": {
+    "sectionLabel": "Press",
+    "title": "Featured Media Appearances",
+    "subtitle": "Interviews, podcast appearances, and press coverage will be listed here.",
+    "empty": "No appearances yet"
+  },
+  "researches": {
+    "sectionLabel": "Research",
+    "title": "Research Papers",
+    "subtitle": "Academic papers, technical reports, and research publications will be listed here.",
+    "empty": "No papers published yet"
+  },
+  "writing": {
+    "sectionLabel": "Writing",
+    "title": "Published Books",
+    "subtitle": "Books and long-form publications will be listed here.",
+    "empty": "No books published yet"
+  }
+}

@@ -1,22 +1,32 @@
 'use client'
 
-import Link from 'next/link'
 import { useState } from 'react'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-
-const NAV_ITEMS = [
-  { label: 'Portfolio', href: '/portfolio' },
-  { label: 'Lab', href: '/solutions' },
-  { label: 'Challenges', href: '/challenges' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Press', href: '/press' },
-  { label: 'Writing', href: '/writing' },
-  { label: 'Research', href: '/researches' },
-  { label: 'About', href: '/about' },
-]
+import { useTranslations, useLocale } from 'next-intl'
+import { usePathname, useRouter } from '@/navigation'
 
 export default function Header() {
+  const t = useTranslations('nav')
+  const locale = useLocale()
+  const pathname = usePathname()
+  const router = useRouter()
   const [mobileOpen, setMobileOpen] = useState(false)
+
+  const NAV_ITEMS = [
+    { label: t('portfolio'), href: '/portfolio' },
+    { label: t('lab'), href: '/solutions' },
+    { label: t('challenges'), href: '/challenges' },
+    { label: t('blog'), href: '/blog' },
+    { label: t('press'), href: '/press' },
+    { label: t('writing'), href: '/writing' },
+    { label: t('research'), href: '/researches' },
+    { label: t('about'), href: '/about' },
+  ]
+
+  const switchLocale = (next: string) => {
+    router.replace(pathname, { locale: next })
+  }
 
   return (
     <div className="fixed top-5 left-0 right-0 z-[100] flex flex-col items-center no-print pointer-events-none">
@@ -52,7 +62,7 @@ export default function Header() {
         <nav className="hidden md:flex items-center gap-1">
           {NAV_ITEMS.map((item) => (
             <Link
-              key={item.label}
+              key={item.href}
               href={item.href}
               className="text-xs uppercase tracking-widest px-3 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap"
               style={{ color: 'var(--accent)' }}
@@ -73,16 +83,35 @@ export default function Header() {
         {/* Separator */}
         <div className="hidden md:block w-px h-4 mx-1" style={{ backgroundColor: 'rgba(10,10,15,0.1)' }} />
 
+        {/* Language switcher — desktop */}
+        <div className="hidden md:flex items-center gap-0.5 px-1">
+          {(['en', 'pt'] as const).map((loc, i) => (
+            <button
+              key={loc}
+              onClick={() => switchLocale(loc)}
+              className="text-[0.6rem] uppercase tracking-widest px-2 py-1 rounded-full transition-all duration-200"
+              style={{
+                color: locale === loc ? 'var(--accent)' : 'var(--white-35)',
+                fontWeight: locale === loc ? 700 : 400,
+                backgroundColor: locale === loc ? 'rgba(212,119,90,0.08)' : 'transparent',
+              }}
+            >
+              {loc.toUpperCase()}
+              {i === 0 && <span style={{ color: 'rgba(10,10,15,0.2)', marginLeft: '2px' }}> |</span>}
+            </button>
+          ))}
+        </div>
+
+        {/* Separator */}
+        <div className="hidden md:block w-px h-4 mx-1" style={{ backgroundColor: 'rgba(10,10,15,0.1)' }} />
+
         {/* Book a Call — desktop */}
         <a
           href="https://calendly.com/hanielrolemberg"
           target="_blank"
           rel="noopener noreferrer"
           className="hidden md:flex text-xs uppercase tracking-widest px-4 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap"
-          style={{
-            border: '1px solid var(--accent)',
-            color: 'var(--accent)',
-          }}
+          style={{ border: '1px solid var(--accent)', color: 'var(--accent)' }}
           onMouseEnter={(e) => {
             e.currentTarget.style.backgroundColor = 'var(--accent)'
             e.currentTarget.style.color = 'rgb(255,255,255)'
@@ -92,7 +121,7 @@ export default function Header() {
             e.currentTarget.style.color = 'var(--accent)'
           }}
         >
-          Book a Call
+          {t('bookCall')}
         </a>
 
         {/* Hamburger — mobile */}
@@ -145,7 +174,7 @@ export default function Header() {
           >
             {NAV_ITEMS.map((item) => (
               <Link
-                key={item.label}
+                key={item.href}
                 href={item.href}
                 className="text-xs uppercase tracking-widest px-4 py-2.5 rounded-xl transition-all duration-200"
                 style={{ color: 'var(--accent)' }}
@@ -162,7 +191,30 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
+
             <div className="mx-3 my-1 h-px" style={{ backgroundColor: 'rgba(10,10,15,0.08)' }} />
+
+            {/* Language switcher — mobile */}
+            <div className="flex gap-1 px-4 py-1.5">
+              {(['en', 'pt'] as const).map((loc) => (
+                <button
+                  key={loc}
+                  onClick={() => { switchLocale(loc); setMobileOpen(false) }}
+                  className="text-[0.6rem] uppercase tracking-widest px-3 py-1.5 rounded-full transition-all duration-200"
+                  style={{
+                    color: locale === loc ? 'var(--accent)' : 'var(--white-35)',
+                    fontWeight: locale === loc ? 700 : 400,
+                    backgroundColor: locale === loc ? 'rgba(212,119,90,0.08)' : 'transparent',
+                    border: locale === loc ? '1px solid rgba(212,119,90,0.2)' : '1px solid transparent',
+                  }}
+                >
+                  {loc.toUpperCase()}
+                </button>
+              ))}
+            </div>
+
+            <div className="mx-3 my-1 h-px" style={{ backgroundColor: 'rgba(10,10,15,0.08)' }} />
+
             <a
               href="https://calendly.com/hanielrolemberg"
               target="_blank"
@@ -179,7 +231,7 @@ export default function Header() {
                 e.currentTarget.style.backgroundColor = 'transparent'
               }}
             >
-              Book a Call
+              {t('bookCall')}
             </a>
           </motion.div>
         )}

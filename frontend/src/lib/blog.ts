@@ -2,8 +2,6 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 
-const CONTENT_DIR = path.join(process.cwd(), 'src/content/blog')
-
 export type PostCategory = 'technical' | 'non-technical'
 
 export interface FAQ {
@@ -26,13 +24,20 @@ export interface Post extends PostMeta {
   content: string
 }
 
-export function getAllPosts(): PostMeta[] {
-  const files = fs.readdirSync(CONTENT_DIR).filter((f) => f.endsWith('.mdx'))
+function contentDir(locale = 'en'): string {
+  const localeDir = path.join(process.cwd(), 'src/content/blog', locale)
+  if (fs.existsSync(localeDir)) return localeDir
+  return path.join(process.cwd(), 'src/content/blog/en')
+}
+
+export function getAllPosts(locale = 'en'): PostMeta[] {
+  const dir = contentDir(locale)
+  const files = fs.readdirSync(dir).filter((f) => f.endsWith('.mdx'))
 
   return files
     .map((filename) => {
       const slug = filename.replace(/\.mdx$/, '')
-      const raw = fs.readFileSync(path.join(CONTENT_DIR, filename), 'utf8')
+      const raw = fs.readFileSync(path.join(dir, filename), 'utf8')
       const { data } = matter(raw)
       return {
         slug,
@@ -48,10 +53,18 @@ export function getAllPosts(): PostMeta[] {
     .sort((a, b) => (a.date > b.date ? -1 : 1))
 }
 
-export function getPostBySlug(slug: string): Post | null {
-  const filepath = path.join(CONTENT_DIR, `${slug}.mdx`)
-  if (!fs.existsSync(filepath)) return null
-  const raw = fs.readFileSync(filepath, 'utf8')
+export function getPostBySlug(slug: string, locale = 'en'): Post | null {
+  const dir = contentDir(locale)
+  const filepath = path.join(dir, `${slug}.mdx`)
+
+  // fallback to EN if locale version doesn't exist
+  const finalPath = fs.existsSync(filepath)
+    ? filepath
+    : path.join(process.cwd(), 'src/content/blog/en', `${slug}.mdx`)
+
+  if (!fs.existsSync(finalPath)) return null
+
+  const raw = fs.readFileSync(finalPath, 'utf8')
   const { data, content } = matter(raw)
   return {
     slug,
@@ -66,8 +79,8 @@ export function getPostBySlug(slug: string): Post | null {
   }
 }
 
-export function formatDate(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString('en-US', {
+export function formatDate(dateStr: string, locale = 'en'): string {
+  return new Date(dateStr).toLocaleDateString(locale === 'pt' ? 'pt-BR' : 'en-US', {
     month: 'long',
     day: 'numeric',
     year: 'numeric',

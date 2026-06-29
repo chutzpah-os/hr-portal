@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 import { Inter, Roboto_Mono, Syne, Playfair_Display } from 'next/font/google'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
 import './globals.css'
 
 const inter = Inter({
@@ -107,7 +105,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${robotoMono.variable} ${syne.variable} ${playfair.variable}`}>
+    <html className={`${inter.variable} ${robotoMono.variable} ${syne.variable} ${playfair.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -118,11 +116,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body>
-        <Header />
-        {children}
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   )
 }

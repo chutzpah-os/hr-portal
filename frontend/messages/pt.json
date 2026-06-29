@@ -1,0 +1,119 @@
+{
+  "nav": {
+    "portfolio": "Portfolio",
+    "lab": "Lab",
+    "challenges": "Desafios",
+    "blog": "Blog",
+    "press": "Imprensa",
+    "writing": "Publicações",
+    "research": "Pesquisa",
+    "about": "Sobre",
+    "bookCall": "Agendar Reunião"
+  },
+  "common": {
+    "preview": "Visualizar →",
+    "viewFullPage": "Ver página completa →",
+    "backToLab": "← Voltar ao Lab",
+    "backLab": "← Lab",
+    "backAllPosts": "← Todos os posts",
+    "backChallenges": "← Desafios",
+    "backToAllChallenges": "← Voltar a todos os desafios",
+    "close": "✕ Fechar",
+    "noResultsFound": "Nenhum post encontrado.",
+    "fullDetailsPage": "Detalhes completos, contexto e atualizações na página dedicada.",
+    "whatsNext": "O que vem a seguir",
+    "haveProblem": "Tem um problema que vale a pena resolver?",
+    "haveProblemSub": "Seja técnico, estratégico ou social — se o problema é real, quero ouvir sobre ele.",
+    "bookCallCta": "Agendar Reunião",
+    "donate": "Doar"
+  },
+  "home": {
+    "tagline": "Solucionador de Problemas",
+    "bio1": "O câncer sempre fez parte da minha família — tios, tias, primos, todos enfrentando a doença em diferentes momentos. Aos 16 anos, meu pai foi diagnosticado com câncer de pele. Eu não sabia então que a sobrevivência dependia tanto do tipo. Para mim, câncer significava uma coisa só. Esse mal-entendido foi como um reset: uma urgência súbita de viver plenamente, agir e me dedicar a problemas que realmente importam.",
+    "bio2": "Essa urgência me levou a cruzar fronteiras — políticas públicas, engenharia de software, sistemas de dados, cibersegurança, IA/ML. Não porque eu estava atrás de credenciais, mas porque os problemas mais difíceis não cabem em uma única disciplina.",
+    "bio3": "Isso também me levou a construir a <psf>Problem Solver Foundation</psf> — uma comunidade que conecta pessoas além das fronteiras para resolver problemas reais usando tecnologia e ciência. Minha missão: <mission>impactar um bilhão de vidas até 2035</mission>.",
+    "bookCall": "Agendar Reunião",
+    "aboutLink": "Sobre mim →",
+    "featuredContent": "Conteúdo em Destaque",
+    "videos": "Vídeos",
+    "videoFilterAll": "Todos",
+    "viewAllVideos": "Ver todos os vídeos →",
+    "newsletterLabel": "Newsletter",
+    "newsletterSubtitle": "Notas ocasionais sobre cibersegurança, trabalho profundo e o que estou construindo. Sem spam — só conteúdo relevante.",
+    "newsletterPlaceholder": "seu@email.com",
+    "newsletterSubmit": "Inscrever",
+    "newsletterSuccess": "Você está dentro. Entro em contato em breve.",
+    "newsletterError": "Algo deu errado. Por favor, tente novamente."
+  },
+  "about": {
+    "sectionLabel": "Sobre",
+    "title": "Sobre Mim"
+  },
+  "portfolio": {
+    "sectionLabel": "Portfolio",
+    "headline": "Pesquisar. Construir. Proteger.",
+    "downloadCV": "Baixar CV",
+    "experience": "Experiência",
+    "education": "Educação",
+    "skills": "Habilidades",
+    "projects": "Projetos",
+    "certifications": "Certificações",
+    "languages": "Idiomas",
+    "volunteering": "Voluntariado",
+    "researches": "Pesquisa",
+    "awards": "Prêmios",
+    "present": "Presente",
+    "filterAll": "Todos",
+    "noResults": "Nenhum item encontrado para o filtro selecionado."
+  },
+  "blog": {
+    "sectionLabel": "Blog",
+    "title": "Escrita",
+    "subtitle": "Reflexões sobre cibersegurança, engenharia, dados e a interseção entre tecnologia e humanidade.",
+    "filterAll": "Todos",
+    "filterTechnical": "Técnico",
+    "filterNonTechnical": "Não Técnico",
+    "sortNewest": "Mais Recentes",
+    "sortOldest": "Mais Antigos",
+    "searchPlaceholder": "Buscar posts…",
+    "noResults": "Nenhum post encontrado.",
+    "readMore": "Ler mais →",
+    "backAllPosts": "← Todos os posts",
+    "tableOfContents": "Índice",
+    "faqs": "Perguntas Frequentes",
+    "tags": "Tags",
+    "minuteRead": "min de leitura",
+    "publishedOn": "Publicado em"
+  },
+  "lab": {
+    "sectionLabel": "Lab",
+    "title": "Vitrine de P&D",
+    "subtitle": "Sistemas, softwares e plataformas desenvolvidos do início ao fim — de inteligência de compliance e segurança física a governança, educação e infraestrutura comunitária. Cada um começa com um problema real."
+  },
+  "challenges": {
+    "sectionLabel": "Desafios",
+    "title": "Desafios Pessoais",
+    "subtitle": "Iniciativas pessoais, campanhas e desafios — cada um é um compromisso com a ação.",
+    "donateLabel": "Doar",
+    "backAll": "← Voltar a todos os desafios",
+    "backChallenges": "← Desafios"
+  },
+  "press": {
+    "sectionLabel": "Imprensa",
+    "title": "Aparições na Mídia",
+    "subtitle": "Entrevistas, participações em podcasts e cobertura de imprensa serão listadas aqui.",
+    "empty": "Nenhuma aparição ainda"
+  },
+  "researches": {
+    "sectionLabel": "Pesquisa",
+    "title": "Artigos Científicos",
+    "subtitle": "Artigos acadêmicos, relatórios técnicos e publicações de pesquisa serão listados aqui.",
+    "empty": "Nenhum artigo publicado ainda"
+  },
+  "writing": {
+    "sectionLabel": "Publicações",
+    "title": "Livros Publicados",
+    "subtitle": "Livros e publicações de longa forma serão listados aqui.",
+    "empty": "Nenhum livro publicado ainda"
+  }
+}
