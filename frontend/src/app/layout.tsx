@@ -105,7 +105,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html className={`${inter.variable} ${robotoMono.variable} ${syne.variable} ${playfair.variable}`}>
+    <html suppressHydrationWarning className={`${inter.variable} ${robotoMono.variable} ${syne.variable} ${playfair.variable}`}>
       <head>
         <script
           type="application/ld+json"

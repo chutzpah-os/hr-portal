@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Press — Haniel Rolemberg',
@@ -7,7 +8,9 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 }
 
-export default function PressPage() {
+export default async function PressPage() {
+  const t = await getTranslations('press')
+
   return (
     <main style={{ paddingTop: '5.5rem', minHeight: '80svh' }}>
       <div className="max-w-content mx-auto px-6 md:px-10 py-16 md:py-24">
@@ -16,7 +19,7 @@ export default function PressPage() {
           className="text-[0.6rem] uppercase tracking-[0.22em] mb-4 font-medium"
           style={{ color: 'var(--accent)' }}
         >
-          Press
+          {t('sectionLabel')}
         </p>
         <h1
           className="font-bold leading-tight mb-4"
@@ -27,13 +30,13 @@ export default function PressPage() {
             fontFamily: 'var(--font-syne)',
           }}
         >
-          Featured Media Appearances
+          {t('title')}
         </h1>
         <p
           className="text-base leading-relaxed mb-16 max-w-xl"
           style={{ color: 'var(--white-55)' }}
         >
-          Interviews, podcast appearances, and press coverage will be listed here.
+          {t('subtitle')}
         </p>
 
         <div
@@ -52,7 +55,7 @@ export default function PressPage() {
             className="text-xs uppercase tracking-widest"
             style={{ color: 'var(--white-35)' }}
           >
-            No appearances yet
+            {t('empty')}
           </p>
         </div>
 

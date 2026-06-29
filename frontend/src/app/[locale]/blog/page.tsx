@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 import { getAllPosts } from '@/lib/blog'
 import BlogList from './BlogList'
 
@@ -14,8 +15,11 @@ export const metadata: Metadata = {
   },
 }
 
-export default function BlogPage() {
-  const posts = getAllPosts()
+export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const posts = getAllPosts(locale)
+  const t = await getTranslations('blog')
+
   return (
     <main style={{ paddingTop: '5.5rem', minHeight: '80svh' }}>
       <div style={{ maxWidth: '680px', margin: '0 auto', padding: '3rem 1.5rem 6rem' }}>
@@ -23,10 +27,10 @@ export default function BlogPage() {
           className="text-[0.6rem] uppercase tracking-[0.22em] mb-3 font-medium"
           style={{ color: 'var(--white-35)' }}
         >
-          Blog
+          {t('sectionLabel')}
         </p>
         <h1
-          className="font-bold mb-10"
+          className="font-bold mb-4"
           style={{
             color: 'var(--white-100)',
             fontSize: 'clamp(1.8rem, 4vw, 2.4rem)',
@@ -34,8 +38,14 @@ export default function BlogPage() {
             fontFamily: 'var(--font-syne)',
           }}
         >
-          Blog
+          {t('title')}
         </h1>
+        <p
+          className="text-base leading-relaxed mb-10 max-w-xl"
+          style={{ color: 'var(--white-55)' }}
+        >
+          {t('subtitle')}
+        </p>
         <BlogList posts={posts} />
       </div>
     </main>

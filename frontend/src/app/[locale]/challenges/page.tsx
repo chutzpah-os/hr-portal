@@ -5,8 +5,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CHALLENGES, type Challenge } from '@/data/challenges'
+import { useTranslations } from 'next-intl'
 
 function ChallengeModal({ challenge, onClose }: { challenge: Challenge; onClose: () => void }) {
+  const tc = useTranslations('common')
+
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
     window.addEventListener('keydown', handler)
@@ -47,7 +50,7 @@ function ChallengeModal({ challenge, onClose }: { challenge: Challenge; onClose:
           className="absolute top-5 right-5 text-[0.6rem] uppercase tracking-widest transition-opacity hover:opacity-50"
           style={{ color: 'var(--white-40)' }}
         >
-          ✕ Close
+          {tc('close')}
         </button>
 
         {/* Tags */}
@@ -147,7 +150,7 @@ function ChallengeModal({ challenge, onClose }: { challenge: Challenge; onClose:
           style={{ borderTop: '1px solid rgba(10,10,15,0.07)' }}
         >
           <p className="text-xs" style={{ color: 'var(--white-35)' }}>
-            Full story and details on the dedicated page.
+            {tc('fullDetailsPage')}
           </p>
           <Link
             href={`/challenges/${challenge.id}`}
@@ -162,7 +165,7 @@ function ChallengeModal({ challenge, onClose }: { challenge: Challenge; onClose:
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(10,10,15,0.08)' }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(10,10,15,0.05)' }}
           >
-            View full page →
+            {tc('viewFullPage')}
           </Link>
         </div>
       </motion.div>
@@ -171,6 +174,7 @@ function ChallengeModal({ challenge, onClose }: { challenge: Challenge; onClose:
 }
 
 function ChallengeCard({ challenge, onClick }: { challenge: Challenge; onClick: () => void }) {
+  const tc = useTranslations('common')
   return (
     <button onClick={onClick} className="text-left block w-full h-full">
       <div
@@ -251,7 +255,7 @@ function ChallengeCard({ challenge, onClick }: { challenge: Challenge; onClick: 
           </p>
           <div className="mt-5">
             <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--white-35)' }}>
-              Preview →
+              {tc('preview')}
             </span>
           </div>
         </div>
@@ -261,6 +265,7 @@ function ChallengeCard({ challenge, onClick }: { challenge: Challenge; onClick: 
 }
 
 export default function ChallengesPage() {
+  const t = useTranslations('challenges')
   const [selected, setSelected] = useState<Challenge | null>(null)
   const handleClose = useCallback(() => setSelected(null), [])
 
@@ -284,15 +289,15 @@ export default function ChallengesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
-            <p className="section-label mb-4">Challenges</p>
+            <p className="section-label mb-4">{t('sectionLabel')}</p>
             <h1
               className="mb-4"
               style={{ color: 'var(--white-100)', fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontFamily: 'var(--font-syne)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.02em' }}
             >
-              Personal Challenges
+              {t('title')}
             </h1>
             <p className="text-base max-w-xl leading-relaxed" style={{ color: 'var(--white-55)' }}>
-              Beyond products and research — initiatives that matter on a personal level. Causes I run for, challenges I take on, and commitments that go further than work.
+              {t('subtitle')}
             </p>
           </motion.div>
 

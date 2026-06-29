@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Research — Haniel Rolemberg',
@@ -7,7 +8,9 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 }
 
-export default function ResearchesPage() {
+export default async function ResearchesPage() {
+  const t = await getTranslations('researches')
+
   return (
     <main style={{ paddingTop: '5.5rem', minHeight: '80svh' }}>
       <div className="max-w-content mx-auto px-6 md:px-10 py-16 md:py-24">
@@ -16,7 +19,7 @@ export default function ResearchesPage() {
           className="text-[0.6rem] uppercase tracking-[0.22em] mb-4 font-medium"
           style={{ color: 'var(--accent)' }}
         >
-          Research
+          {t('sectionLabel')}
         </p>
         <h1
           className="font-bold leading-tight mb-4"
@@ -27,13 +30,13 @@ export default function ResearchesPage() {
             fontFamily: 'var(--font-syne)',
           }}
         >
-          Research Papers
+          {t('title')}
         </h1>
         <p
           className="text-base leading-relaxed mb-16 max-w-xl"
           style={{ color: 'var(--white-55)' }}
         >
-          Academic and applied research across cybersecurity, data systems, and AI will be published here.
+          {t('subtitle')}
         </p>
 
         <div
@@ -52,7 +55,7 @@ export default function ResearchesPage() {
             className="text-xs uppercase tracking-widest"
             style={{ color: 'var(--white-35)' }}
           >
-            No papers published yet
+            {t('empty')}
           </p>
         </div>
 

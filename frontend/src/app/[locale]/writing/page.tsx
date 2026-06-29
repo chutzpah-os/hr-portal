@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Writing — Haniel Rolemberg',
@@ -7,7 +8,9 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 }
 
-export default function WritingPage() {
+export default async function WritingPage() {
+  const t = await getTranslations('writing')
+
   return (
     <main style={{ paddingTop: '5.5rem', minHeight: '80svh' }}>
       <div className="max-w-content mx-auto px-6 md:px-10 py-16 md:py-24">
@@ -16,7 +19,7 @@ export default function WritingPage() {
           className="text-[0.6rem] uppercase tracking-[0.22em] mb-4 font-medium"
           style={{ color: 'var(--accent)' }}
         >
-          Writing
+          {t('sectionLabel')}
         </p>
         <h1
           className="font-bold leading-tight mb-4"
@@ -27,13 +30,13 @@ export default function WritingPage() {
             fontFamily: 'var(--font-syne)',
           }}
         >
-          Published Books
+          {t('title')}
         </h1>
         <p
           className="text-base leading-relaxed mb-16 max-w-xl"
           style={{ color: 'var(--white-55)' }}
         >
-          Long-form work on technology, problem-solving, and the future of society will appear here.
+          {t('subtitle')}
         </p>
 
         <div
@@ -52,7 +55,7 @@ export default function WritingPage() {
             className="text-xs uppercase tracking-widest"
             style={{ color: 'var(--white-35)' }}
           >
-            No books published yet
+            {t('empty')}
           </p>
         </div>
 

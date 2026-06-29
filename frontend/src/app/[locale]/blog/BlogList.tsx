@@ -3,9 +3,10 @@
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import type { PostMeta, PostCategory } from '@/lib/blog'
+import { useTranslations, useLocale } from 'next-intl'
 
-function formatDate(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString('en-US', {
+function formatDate(dateStr: string, locale: string): string {
+  return new Date(dateStr).toLocaleDateString(locale === 'pt' ? 'pt-BR' : 'en-US', {
     month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC',
   })
 }
@@ -52,6 +53,9 @@ function buildGroupTree(posts: PostMeta[]): Map<string, Set<string>> {
 }
 
 export default function BlogList({ posts }: { posts: PostMeta[] }) {
+  const t = useTranslations('blog')
+  const locale = useLocale()
+
   const [order, setOrder] = useState<'newest' | 'oldest'>('newest')
   const [category, setCategory] = useState<CategoryFilter>('all')
   const [selectedParent, setSelectedParent] = useState<string | null>(null)
@@ -104,14 +108,14 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
         {/* Order + Category */}
         <div className="flex flex-wrap gap-x-6 gap-y-3">
           <div className="flex gap-2">
-            <FilterButton active={order === 'newest'} onClick={() => { setOrder('newest'); reset() }}>Newest</FilterButton>
-            <FilterButton active={order === 'oldest'} onClick={() => { setOrder('oldest'); reset() }}>Oldest</FilterButton>
+            <FilterButton active={order === 'newest'} onClick={() => { setOrder('newest'); reset() }}>{t('sortNewest')}</FilterButton>
+            <FilterButton active={order === 'oldest'} onClick={() => { setOrder('oldest'); reset() }}>{t('sortOldest')}</FilterButton>
           </div>
           <div style={{ width: '1px', backgroundColor: 'rgba(10,10,15,0.1)', alignSelf: 'stretch' }} />
           <div className="flex gap-2">
-            <FilterButton active={category === 'all'} onClick={() => { setCategory('all'); reset() }}>All</FilterButton>
-            <FilterButton active={category === 'technical'} onClick={() => { setCategory('technical'); reset() }}>Technical</FilterButton>
-            <FilterButton active={category === 'non-technical'} onClick={() => { setCategory('non-technical'); reset() }}>Non-Technical</FilterButton>
+            <FilterButton active={category === 'all'} onClick={() => { setCategory('all'); reset() }}>{t('filterAll')}</FilterButton>
+            <FilterButton active={category === 'technical'} onClick={() => { setCategory('technical'); reset() }}>{t('filterTechnical')}</FilterButton>
+            <FilterButton active={category === 'non-technical'} onClick={() => { setCategory('non-technical'); reset() }}>{t('filterNonTechnical')}</FilterButton>
           </div>
         </div>
 
@@ -144,7 +148,7 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
       {/* Post list */}
       <div>
         {shown.length === 0 && (
-          <p className="text-sm py-10 text-center" style={{ color: 'var(--white-35)' }}>No posts found.</p>
+          <p className="text-sm py-10 text-center" style={{ color: 'var(--white-35)' }}>{t('noResults')}</p>
         )}
         {shown.map((post, i) => (
           <article
@@ -170,7 +174,7 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
             </Link>
             <div className="flex flex-wrap items-center gap-3 mb-3">
               <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--white-35)' }}>
-                {formatDate(post.date)}
+                {formatDate(post.date, locale)}
               </p>
               {post.groups.length > 0 && (
                 <div className="flex flex-wrap gap-1.5">
@@ -196,7 +200,7 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
               onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.7')}
               onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
             >
-              Read more →
+              {t('readMore')}
             </Link>
           </article>
         ))}
@@ -218,7 +222,7 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
               e.currentTarget.style.color = 'var(--white-55)'
             }}
           >
-            Load more
+            {t('loadMore')}
           </button>
         </div>
       )}

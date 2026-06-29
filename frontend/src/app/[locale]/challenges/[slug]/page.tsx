@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { CHALLENGES, getChallenge } from '@/data/challenges'
+import { getTranslations } from 'next-intl/server'
 
 const BASE_URL = 'https://hanielrolemberg.com'
 
@@ -42,6 +43,7 @@ export default async function ChallengePage(
   const { slug } = await params
   const challenge = getChallenge(slug)
   if (!challenge) notFound()
+  const t = await getTranslations('challenges')
 
   const schema = {
     '@context': 'https://schema.org',
@@ -99,7 +101,7 @@ export default async function ChallengePage(
               className="text-xs uppercase tracking-widest transition-opacity hover:opacity-60"
               style={{ color: 'var(--white-40)' }}
             >
-              ← Challenges
+              {t('backChallenges')}
             </Link>
           </nav>
 
@@ -243,7 +245,7 @@ export default async function ChallengePage(
               className="text-xs uppercase tracking-widest transition-opacity hover:opacity-60"
               style={{ color: 'var(--white-40)' }}
             >
-              ← Back to challenges
+              {t('backAll')}
             </Link>
           </div>
         </div>

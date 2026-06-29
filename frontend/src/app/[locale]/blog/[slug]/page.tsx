@@ -3,6 +3,7 @@ import { notFound, redirect } from 'next/navigation'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
+import { getTranslations } from 'next-intl/server'
 
 function renderInline(text: string): ReactNode {
   const segments = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/)
@@ -108,9 +109,9 @@ export async function generateStaticParams() {
 
 const BASE_URL = 'https://hanielrolemberg.com'
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params
-  const post = getPostBySlug(slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string; locale: string }> }): Promise<Metadata> {
+  const { slug, locale } = await params
+  const post = getPostBySlug(slug, locale)
   if (!post) return {}
   const url = `${BASE_URL}/blog/${slug}`
 
@@ -146,10 +147,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
-export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
-  const post = getPostBySlug(slug)
+export default async function PostPage({ params }: { params: Promise<{ slug: string; locale: string }> }) {
+  const { slug, locale } = await params
+  const post = getPostBySlug(slug, locale)
   if (!post) redirect('/blog')
+  const t = await getTranslations('blog')
 
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -214,7 +216,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           className="text-[0.65rem] uppercase tracking-widest transition-opacity duration-200 hover:opacity-60 inline-block mb-10"
           style={{ color: 'var(--white-40)' }}
         >
-          ← All posts
+          {t('backAllPosts')}
         </Link>
 
         {/* Header */}
@@ -234,7 +236,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           className="text-xs uppercase tracking-widest mb-10"
           style={{ color: 'var(--white-35)' }}
         >
-          {formatDate(post.date)}
+          {formatDate(post.date, locale)}
         </p>
 
         {/* Divider */}
