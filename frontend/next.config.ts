@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: '/contact', destination: '/', permanent: true },
+      { source: '/challenges/1k-miles', destination: '/challenges/1k-miles-of-hope', permanent: true },
       {
         source: '/solutions/etz-defense',
         destination: '/solutions/etz',

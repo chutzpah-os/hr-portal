@@ -13,7 +13,7 @@ export interface Challenge {
 
 export const CHALLENGES: Challenge[] = [
   {
-    id: '1k-miles',
+    id: '1k-miles-of-hope',
     name: '1k Miles of Hope',
     tagline: 'Running for a cure.',
     shortDescription: 'A fundraising campaign to finance cancer research — every mile matters.',
