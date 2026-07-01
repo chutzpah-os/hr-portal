@@ -67,7 +67,22 @@ export async function GET() {
     'how-cancer-works',
     'dlp-complete-guide-data-loss-prevention',
     'the-clock-is-dead-offensive-ai-killed-time-variable-cybersecurity',
+    'phone-gps-spoofing-emergency-alerts',
+    '1k-miles-of-hope-ep-01-this-is-how-it-starts',
   ])
+
+  // Live series posts get 'monthly' regardless of age
+  const LIVE_SERIES_SLUGS = new Set([
+    '1k-miles-of-hope-ep-01-this-is-how-it-starts',
+  ])
+
+  const threeMonthsAgo = new Date()
+  threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3)
+
+  function blogChangefreq(post: { slug: string; date: string }): ChangeFreq {
+    if (LIVE_SERIES_SLUGS.has(post.slug)) return 'monthly'
+    return new Date(post.date) >= threeMonthsAgo ? 'monthly' : 'yearly'
+  }
 
   const entries: UrlEntry[] = [
     // Static pages — UI translated into all 5 locales
@@ -93,7 +108,7 @@ export async function GET() {
       .map((post) => ({
         loc: `${BASE_URL}/en/blog/${post.slug}`,
         lastmod: post.date,
-        changefreq: 'yearly' as const,
+        changefreq: blogChangefreq(post),
         priority: HIGH_PRIORITY_SLUGS.has(post.slug) ? 0.8 : 0.7,
         alternates: {
           en: `${BASE_URL}/en/blog/${post.slug}`,
