@@ -74,6 +74,9 @@ export async function GET() {
   // Live series posts get 'monthly' regardless of age
   const LIVE_SERIES_SLUGS = new Set([
     '1k-miles-of-hope-ep-01-this-is-how-it-starts',
+    '1k-miles-of-hope-ep-01-first-day',
+    '1k-miles-of-hope-ep-02-second-day',
+    '1k-miles-of-hope-ep-03-third-day',
   ])
 
   const threeMonthsAgo = new Date()
@@ -102,19 +105,41 @@ export async function GET() {
     ...CHALLENGES.flatMap((c) =>
       localeEntries(`/challenges/${c.id}`, '2026-07-01', 'monthly', 0.8),
     ),
-    // Blog posts — EN canonical only (content not yet translated)
-    ...posts
-      .filter((p) => p.lang === 'en')
-      .map((post) => ({
-        loc: `${BASE_URL}/en/blog/${post.slug}`,
-        lastmod: post.date,
-        changefreq: blogChangefreq(post),
-        priority: HIGH_PRIORITY_SLUGS.has(post.slug) ? 0.8 : 0.7,
-        alternates: {
-          en: `${BASE_URL}/en/blog/${post.slug}`,
-          'x-default': `${BASE_URL}/en/blog/${post.slug}`,
-        },
-      })),
+    // Blog posts — one entry per locale that has the post, with hreflang alternates
+    ...(() => {
+      // Group posts by slug to know which languages each post has
+      const bySlug = new Map<string, Map<string, string>>() // slug → { lang → date }
+      for (const p of posts) {
+        if (!bySlug.has(p.slug)) bySlug.set(p.slug, new Map())
+        bySlug.get(p.slug)!.set(p.lang, p.date)
+      }
+
+      const blogEntries: UrlEntry[] = []
+      for (const [slug, langMap] of bySlug) {
+        const enDate = langMap.get('en') ?? [...langMap.values()][0]
+        const priority = HIGH_PRIORITY_SLUGS.has(slug) ? 0.8 : 0.7
+        const changefreq = blogChangefreq({ slug, date: enDate })
+
+        // Build alternates from available langs + x-default pointing to EN
+        const alternates: Record<string, string> = {}
+        for (const lang of langMap.keys()) {
+          alternates[lang] = `${BASE_URL}/${lang}/blog/${slug}`
+        }
+        alternates['x-default'] = `${BASE_URL}/en/blog/${slug}`
+
+        // One <url> per available language
+        for (const [lang, date] of langMap) {
+          blogEntries.push({
+            loc: `${BASE_URL}/${lang}/blog/${slug}`,
+            lastmod: date,
+            changefreq,
+            priority,
+            alternates,
+          })
+        }
+      }
+      return blogEntries
+    })(),
   ]
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
