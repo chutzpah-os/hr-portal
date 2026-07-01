@@ -17,6 +17,9 @@ export interface Challenge {
   modalImage?: string
   cta?: { label: string; href: string; external?: boolean }
   pt?: ChallengeTranslation
+  es?: ChallengeTranslation
+  fr?: ChallengeTranslation
+  ca?: ChallengeTranslation
 }
 
 export const CHALLENGES: Challenge[] = [
@@ -49,6 +52,18 @@ O câncer toca quase todas as famílias. Esta campanha é uma forma de transform
 Se você quiser contribuir, toda doação faz diferença.`,
       tags: ['Impacto Social', 'Saúde', 'Corrida'],
     },
+    es: {
+      tagline: 'Corriendo por una cura.',
+      shortDescription: 'Una campaña de recaudación para financiar la investigación contra el cáncer — cada milla importa.',
+      fullDescription: `1k Miles of Hope es una iniciativa de recaudación creada para apoyar la investigación contra el cáncer a través de la Terry Fox Foundation — uno de los programas de investigación oncológica más impactantes del mundo.
+
+El objetivo es simple: correr 1.000 millas y recaudar fondos que van directamente a financiar investigación científica orientada a encontrar una cura. Cada kilómetro se traduce en recursos reales para científicos reales que trabajan en descubrimientos reales.
+
+El cáncer toca casi todas las familias. Esta campaña es una forma de convertir el movimiento en significado — hacer que cada carrera, cada milla y cada paso cuente para algo más grande que la línea de meta.
+
+Si quieres contribuir, cada donación hace la diferencia.`,
+      tags: ['Impacto Social', 'Salud', 'Carrera'],
+    },
   },
 ]
 
@@ -57,6 +72,10 @@ export function getChallenge(slug: string): Challenge | undefined {
 }
 
 export function getLocalizedChallenge(challenge: Challenge, locale: string): Challenge {
-  if (locale !== 'pt' || !challenge.pt) return challenge
-  return { ...challenge, ...challenge.pt }
+  const t = locale === 'pt' ? challenge.pt
+    : locale === 'es' ? challenge.es
+    : locale === 'fr' ? challenge.fr
+    : locale === 'ca' ? challenge.ca
+    : undefined
+  return t ? { ...challenge, ...t } : challenge
 }

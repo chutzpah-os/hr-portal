@@ -7,7 +7,22 @@ import { useLocale } from 'next-intl'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import { getUiStrings } from '@/i18n/uiStrings'
 
-const RECS = [
+interface RecTranslations {
+  pt?: string
+  es?: string
+  fr?: string
+  ca?: string
+}
+
+const RECS: {
+  id: number
+  name: string
+  title: string
+  company: string
+  photo?: string
+  text: string
+  translations?: RecTranslations
+}[] = [
   {
     id: 1,
     name: 'Saulo Nascimento',
@@ -15,6 +30,10 @@ const RECS = [
     company: 'BTG Pactual · KMP',
     photo: '/images/saulo.jpeg',
     text: "Haniel's a super determined person who always aims for the top. I had the pleasure of closely following the development of his projects, and his leadership skills and technical quality are definitely noticeable. He's an excellent professional!",
+    translations: {
+      pt: 'Haniel é uma pessoa extremamente determinada que sempre mira no topo. Tive o prazer de acompanhar de perto o desenvolvimento de seus projetos, e suas habilidades de liderança e qualidade técnica são definitivamente perceptíveis. Ele é um excelente profissional!',
+      es: 'Haniel es una persona sumamente determinada que siempre apunta a lo más alto. Tuve el placer de seguir de cerca el desarrollo de sus proyectos, y sus habilidades de liderazgo y su calidad técnica son definitivamente notables. ¡Es un excelente profesional!',
+    },
   },
   {
     id: 2,
@@ -23,6 +42,10 @@ const RECS = [
     company: 'Caju',
     photo: '/images/mica.jpeg',
     text: "I met Haniel through the Google Developers Aracaju community when I became a volunteer. His main skills include communication, leadership, and initiative. Throughout the time we've worked together, I've had the opportunity to closely observe how Hani is a person who excels at teamwork, contributing to the growth of his peers and bringing out the best in people by aligning their skills with the needs of the community. A special thank you for everything I've learned from you and for inspiring so many people to make a difference with the knowledge they've acquired. You truly make an impact wherever you go.",
+    translations: {
+      pt: 'Conheci Haniel através da comunidade Google Developers Aracaju quando me tornei voluntária. Suas principais habilidades incluem comunicação, liderança e iniciativa. Durante o tempo que trabalhamos juntos, tive a oportunidade de observar de perto como Hani é uma pessoa que se destaca no trabalho em equipe, contribuindo para o crescimento de seus colegas e trazendo o melhor das pessoas ao alinhar suas habilidades com as necessidades da comunidade. Um agradecimento especial por tudo que aprendi com você e por inspirar tantas pessoas a fazer a diferença com o conhecimento que adquiriram. Você verdadeiramente causa impacto onde quer que vá.',
+      es: 'Conocí a Haniel a través de la comunidad Google Developers Aracaju cuando me convertí en voluntaria. Sus principales habilidades incluyen la comunicación, el liderazgo y la iniciativa. Durante el tiempo que hemos trabajado juntos, he tenido la oportunidad de observar de cerca cómo Hani es una persona que sobresale en el trabajo en equipo, contribuyendo al crecimiento de sus colegas y sacando lo mejor de las personas al alinear sus habilidades con las necesidades de la comunidad. Un agradecimiento especial por todo lo que he aprendido de ti y por inspirar a tantas personas a marcar la diferencia con el conocimiento que han adquirido. Verdaderamente generas un impacto dondequiera que vas.',
+    },
   },
   {
     id: 3,
@@ -31,6 +54,10 @@ const RECS = [
     company: 'Banese',
     photo: '/images/marc.jpeg',
     text: "I had the opportunity to work with Haniel at GDG Aracaju, and I can say he is one of the most committed and inspiring people I've ever collaborated with. He stands out for his leadership, initiative, and exceptional communication skills. Whenever a challenge arose, he was at the forefront, finding the best solutions to ensure GDG events were always a success.",
+    translations: {
+      pt: 'Tive a oportunidade de trabalhar com Haniel no GDG Aracaju, e posso dizer que ele é uma das pessoas mais comprometidas e inspiradoras com quem já colaborei. Ele se destaca por sua liderança, iniciativa e habilidades de comunicação excepcionais. Sempre que um desafio surgia, ele estava na frente, encontrando as melhores soluções para garantir que os eventos do GDG fossem sempre um sucesso.',
+      es: 'Tuve la oportunidad de trabajar con Haniel en GDG Aracaju, y puedo decir que es una de las personas más comprometidas e inspiradoras con las que he colaborado. Se distingue por su liderazgo, iniciativa y excepcionales habilidades de comunicación. Cada vez que surgía un desafío, estaba al frente, encontrando las mejores soluciones para garantizar que los eventos de GDG siempre fueran un éxito.',
+    },
   },
   {
     id: 4,
@@ -39,6 +66,10 @@ const RECS = [
     company: 'CDL',
     photo: '/images/irandi-silva.jpg',
     text: "I had the opportunity to work with Haniel Rolemberg on several projects and can say with confidence that he is exceptional — both in technical skills and in dealing with people. Haniel played a crucial role in managing innovative projects, always keeping focus on results and ensuring teams were aligned and motivated. He has a unique ability to identify each project's strengths and maximize outcomes. I strongly recommend Haniel for any challenge requiring leadership, innovation, and technical excellence.",
+    translations: {
+      pt: 'Tive a oportunidade de trabalhar com Haniel Rolemberg em vários projetos e posso dizer com confiança que ele é excepcional — tanto em habilidades técnicas quanto no trato com as pessoas. Haniel desempenhou um papel crucial na gestão de projetos inovadores, sempre mantendo o foco nos resultados e garantindo que as equipes estivessem alinhadas e motivadas. Ele tem uma capacidade única de identificar os pontos fortes de cada projeto e maximizar os resultados. Recomendo fortemente Haniel para qualquer desafio que exija liderança, inovação e excelência técnica.',
+      es: 'Tuve la oportunidad de trabajar con Haniel Rolemberg en varios proyectos y puedo decir con confianza que es excepcional — tanto en habilidades técnicas como en el trato con las personas. Haniel desempeñó un papel crucial en la gestión de proyectos innovadores, siempre manteniendo el enfoque en los resultados y asegurando que los equipos estuvieran alineados y motivados. Tiene una capacidad única para identificar los puntos fuertes de cada proyecto y maximizar los resultados. Recomiendo ampliamente a Haniel para cualquier desafío que requiera liderazgo, innovación y excelencia técnica.',
+    },
   },
 ]
 
@@ -125,7 +156,8 @@ export default function RecommendationsCarousel() {
   }
 
   const rec = RECS[activeIdx]
-  const isLong = rec.text.length > LONG_THRESHOLD
+  const displayText = rec.translations?.[locale as keyof RecTranslations] ?? rec.text
+  const isLong = displayText.length > LONG_THRESHOLD
 
   const LinkedInCTA = ({ className = '' }: { className?: string }) => (
     <a
@@ -218,7 +250,7 @@ export default function RecommendationsCarousel() {
                         : {}),
                     }}
                   >
-                    {rec.text}
+                    {displayText}
                   </p>
 
                   {isLong && !expanded && (
