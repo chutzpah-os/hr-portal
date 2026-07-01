@@ -1,7 +1,10 @@
-export type LocaleKey = 'en' | 'pt' | 'es'
+export type LocaleKey = 'en' | 'pt' | 'es' | 'fr'
 
 export function resolveLocale(locale: string): LocaleKey {
-  return (locale === 'pt' || locale === 'es') ? locale : 'en'
+  if (locale === 'pt') return 'pt'
+  if (locale === 'es') return 'es'
+  if (locale === 'fr') return 'fr'
+  return 'en'
 }
 
 interface UiStrings {
@@ -86,6 +89,94 @@ interface UiStrings {
 }
 
 const UI: Record<LocaleKey, UiStrings> = {
+  fr: {
+    close: 'Fermer',
+    viewDetails: 'Voir les détails →',
+    showLess: 'Voir moins',
+    showAll: (n) => `Voir les ${n}`,
+    workHistory: 'Parcours Professionnel',
+    keyFocusAreas: 'Domaines Clés de Compétence',
+    technologies: 'Technologies',
+    certifications: 'Certifications',
+    certCategoryLabel: {
+      cloud: 'Cloud', security: 'Sécurité', networking: 'Réseaux',
+      data: 'Données', development: 'Développement',
+    },
+    issuer: 'Émetteur',
+    date: 'Date',
+    credentialId: 'ID de Certification',
+    verifyCredential: 'Vérifier la Certification →',
+    showAllCerts: (n) => `Voir les ${n} certifications`,
+    volunteering: 'Bénévolat',
+    focusAreas: 'Domaines d\'Action',
+    responsibilities: 'Responsabilités',
+    category: 'Catégorie',
+    projects: 'Projets',
+    projectFilters: [
+      { key: 'all',                 label: 'Tous'      },
+      { key: 'aiml',                label: 'IA / ML'   },
+      { key: 'softwareDevelopment', label: 'Logiciel'  },
+      { key: 'dataEngineering',     label: 'Données'   },
+      { key: 'cybersecurity',       label: 'Cyber'     },
+      { key: 'challenges',          label: 'Défis'     },
+    ],
+    projectCategoryLabel: {
+      aiml: 'IA / ML', softwareDevelopment: 'Logiciel',
+      dataEngineering: 'Données', cybersecurity: 'Cyber', challenges: 'Défis',
+    },
+    features: 'Fonctionnalités',
+    techStack: 'Stack Technique',
+    viewOnGitHub: 'Voir sur GitHub →',
+    showAllProjects: (n) => `Voir les ${n} projets`,
+    researches: 'Recherches',
+    researchStatusLabel: {
+      'in development': 'en développement',
+      'published': 'publié',
+      'under review': 'en révision',
+    },
+    viewPublication: 'Voir la Publication →',
+    showAllResearches: (n) => `Voir les ${n} recherches`,
+    education: 'Formation',
+    academicBackground: 'Parcours Académique',
+    degrees: 'Diplômes',
+    coursesPrograms: 'Cours & Programmes',
+    keyCourses: 'Cours Principaux',
+    skillsDeveloped: 'Compétences Développées',
+    languages: 'Langues',
+    certificationsNotes: 'Certifications & Notes',
+    verification: 'Vérification',
+    verifyProficiency: 'Vérifier le Niveau →',
+    skills: 'Compétences',
+    awards: 'Prix',
+    noAwards: 'Pas encore de prix',
+    portfolio: 'Portfolio',
+    expand: 'Développer',
+    collapse: 'Réduire',
+    recommendations: 'Recommandations',
+    readMore: 'Lire la suite ↓',
+    seeMoreLinkedIn: 'Voir +10 sur LinkedIn',
+    prevRecommendation: 'Recommandation précédente',
+    nextRecommendation: 'Recommandation suivante',
+    goToRecommendation: (n) => `Aller à la recommandation ${n}`,
+    downloadCv: 'Télécharger le CV',
+    bookCall: 'Prendre un Rendez-vous',
+    heroDescription: 'IA. Données. Sécurité. R&D. Des problèmes difficiles à travers les disciplines — je trouve ce qui est cassé et je construis la version qui tient.',
+    heroHeadline: ['Rechercher.', 'Construire.', 'Sécuriser.'],
+    marqueeItems: [
+      'Tests d\'Intrusion', 'Zero Trust', 'Modélisation des Menaces', 'SIEM',
+      'Sécurité Réseau', 'IA / ML', 'Ingénierie des Données', 'Sécurité Cloud',
+      'Python', 'Kubernetes', 'Cybersécurité', 'BigQuery', 'TensorFlow',
+    ],
+    statsYears: 'Années',
+    statsResearch: 'Recherches',
+    statsProjects: 'Projets',
+    cvSelectArea: 'Sélectionnez un domaine de focus, puis choisissez votre format.',
+    cvOnePagePerArea: 'Une page par domaine',
+    cvDownloadTex: 'Télécharger .tex',
+    cvDownloadPdf: 'Télécharger .pdf',
+    cvGenerating: 'Génération...',
+  },
+
   en: {
     close: 'Close',
     viewDetails: 'View details →',

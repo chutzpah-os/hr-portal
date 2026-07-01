@@ -30,6 +30,11 @@ const METADATA_BY_LOCALE: Record<string, { title: string; description: string; o
     description: 'Más de 6 años de experiencia en ciberseguridad, ingeniería de software, ingeniería de datos e IA/ML. 30+ proyectos, 22 certificaciones e investigaciones en 6 iniciativas. Historial profesional completo y habilidades.',
     ogDescription: 'Ciberseguridad, ingeniería de software, datos e IA/ML. 6+ años de experiencia, 30+ proyectos, 22 certificaciones.',
   },
+  fr: {
+    title: 'Portfolio — Haniel Rolemberg',
+    description: 'Plus de 6 ans d\'expérience en cybersécurité, génie logiciel, ingénierie des données et IA/ML. 30+ projets, 22 certifications et recherches sur 6 initiatives. Parcours professionnel complet et compétences.',
+    ogDescription: 'Cybersécurité, génie logiciel, données et IA/ML. 6+ ans d\'expérience, 30+ projets, 22 certifications.',
+  },
 }
 
 export async function generateMetadata(

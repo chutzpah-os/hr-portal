@@ -1,0 +1,123 @@
+{
+  "nav": {
+    "portfolio": "Portfolio",
+    "lab": "Lab",
+    "challenges": "Défis",
+    "blog": "Blog",
+    "press": "Presse",
+    "writing": "Publications",
+    "research": "Recherche",
+    "about": "À propos",
+    "bookCall": "Prendre un Rendez-vous"
+  },
+  "common": {
+    "preview": "Aperçu →",
+    "viewFullPage": "Voir la page complète →",
+    "backToLab": "← Retour au Lab",
+    "backLab": "← Lab",
+    "backAllPosts": "← Tous les articles",
+    "backChallenges": "← Défis",
+    "backToAllChallenges": "← Retour à tous les défis",
+    "close": "✕ Fermer",
+    "noResultsFound": "Aucun article trouvé.",
+    "fullDetailsPage": "Détails complets, contexte et mises à jour sur la page dédiée.",
+    "whatsNext": "Et ensuite",
+    "haveProblem": "Vous avez un problème qui mérite d'être résolu ?",
+    "haveProblemSub": "Qu'il soit technique, stratégique ou social — si le problème est réel, je veux l'entendre.",
+    "bookCallCta": "Prendre un Rendez-vous",
+    "donate": "Faire un don"
+  },
+  "home": {
+    "tagline": "Solutionneur de Problèmes",
+    "bio1": "Le cancer a toujours fait partie de ma famille — oncles, tantes, cousins, tous l'ayant affronté à différents moments. À 16 ans, mon père a reçu un diagnostic de cancer de la peau. À l'époque, je ne savais pas que la survie dépendait autant du type. Pour moi, cancer signifiait une seule chose. Ce malentendu a été comme un redémarrage : une urgence soudaine de vivre pleinement, d'agir et de me consacrer à des problèmes qui comptent vraiment.",
+    "bio2": "Cette urgence m'a conduit à traverser des frontières — politiques publiques, ingénierie logicielle, systèmes de données, cybersécurité, IA/ML. Non pas pour accumuler des diplômes, mais parce que les problèmes les plus difficiles ne tiennent pas dans une seule discipline.",
+    "bio3": "Elle m'a également conduit à construire la <psf>Problem Solver Foundation</psf> — une communauté qui connecte les gens au-delà des frontières pour résoudre de vrais problèmes à l'aide de la technologie et de la science. Ma mission : <mission>impacter un milliard de vies d'ici 2035</mission>.",
+    "bookCall": "Prendre un Rendez-vous",
+    "aboutLink": "À mon sujet →",
+    "featuredContent": "Contenu en Vedette",
+    "videos": "Vidéos",
+    "videoFilterAll": "Tous",
+    "viewAllVideos": "Voir toutes les vidéos →",
+    "newsletterLabel": "Newsletter",
+    "newsletterSubtitle": "Notes occasionnelles sur la cybersécurité, le travail profond et ce que je construis. Sans spam — uniquement du contenu pertinent.",
+    "newsletterPlaceholder": "votre@email.com",
+    "newsletterSubmit": "S'abonner",
+    "newsletterSuccess": "Vous êtes inscrit. Je prendrai contact bientôt.",
+    "newsletterError": "Une erreur s'est produite. Veuillez réessayer."
+  },
+  "about": {
+    "sectionLabel": "À propos",
+    "title": "À mon sujet",
+    "tagline": "Solutionneur de Problèmes · Aracaju, Brésil"
+  },
+  "portfolio": {
+    "sectionLabel": "Portfolio",
+    "headline": "Rechercher. Construire. Sécuriser.",
+    "downloadCV": "Télécharger le CV",
+    "experience": "Expérience",
+    "education": "Formation",
+    "skills": "Compétences",
+    "projects": "Projets",
+    "certifications": "Certifications",
+    "languages": "Langues",
+    "volunteering": "Bénévolat",
+    "researches": "Recherches",
+    "awards": "Prix",
+    "present": "Présent",
+    "filterAll": "Tous",
+    "noResults": "Aucun élément trouvé pour le filtre sélectionné."
+  },
+  "blog": {
+    "sectionLabel": "Blog",
+    "title": "Écriture",
+    "subtitle": "Réflexions sur la cybersécurité, l'ingénierie, les données et l'intersection entre technologie et humanité.",
+    "filterAll": "Tous",
+    "filterTechnical": "Technique",
+    "filterNonTechnical": "Non Technique",
+    "sortNewest": "Plus Récents",
+    "sortOldest": "Plus Anciens",
+    "searchPlaceholder": "Rechercher des articles…",
+    "noResults": "Aucun article trouvé.",
+    "readMore": "Lire la suite →",
+    "loadMore": "Charger plus",
+    "backAllPosts": "← Tous les articles",
+    "tableOfContents": "Table des matières",
+    "faqs": "Questions Fréquentes",
+    "tags": "Étiquettes",
+    "minuteRead": "min de lecture",
+    "publishedOn": "Publié le"
+  },
+  "lab": {
+    "sectionLabel": "Lab",
+    "title": "Vitrine R&D",
+    "subtitle": "Systèmes, logiciels et plateformes développés de bout en bout — de l'intelligence de conformité et la sécurité physique à la gouvernance, l'éducation et l'infrastructure communautaire. Chacun commence par un vrai problème."
+  },
+  "challenges": {
+    "sectionLabel": "Défis",
+    "title": "Défis Personnels",
+    "subtitle": "Initiatives personnelles, campagnes et défis — chacun est un engagement envers l'action.",
+    "donateLabel": "Faire un don",
+    "backAll": "← Retour à tous les défis",
+    "backChallenges": "← Défis",
+    "donateNote": "Chaque don va directement à la recherche sur le cancer. Sans minimum. Chaque montant compte.",
+    "donateCta": "Faire un don à la Fondation Terry Fox →"
+  },
+  "press": {
+    "sectionLabel": "Presse",
+    "title": "Apparitions Médiatiques",
+    "subtitle": "Interviews, participations à des podcasts et couverture presse seront listées ici.",
+    "empty": "Aucune apparition encore"
+  },
+  "researches": {
+    "sectionLabel": "Recherche",
+    "title": "Articles Scientifiques",
+    "subtitle": "Articles académiques, rapports techniques et publications de recherche seront listés ici.",
+    "empty": "Aucun article publié pour l'instant"
+  },
+  "writing": {
+    "sectionLabel": "Publications",
+    "title": "Livres Publiés",
+    "subtitle": "Livres et publications longues seront listés ici.",
+    "empty": "Aucun livre publié pour l'instant"
+  }
+}
