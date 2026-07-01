@@ -2,24 +2,28 @@
 
 import { useState, type ReactNode } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { portfolioData } from '@/data/portfolio'
-
-const SUMMARY = [
-  { label: 'Work History',   count: portfolioData.experience.length },
-  { label: 'Volunteering',   count: portfolioData.volunteering.length },
-  { label: 'Projects',       count: Object.values(portfolioData.projects).flat().length },
-  { label: 'Researches',     count: portfolioData.researches.length },
-  { label: 'Education',      count: portfolioData.education.length },
-  { label: 'Languages',      count: portfolioData.languages.length },
-  { label: 'Certifications', count: portfolioData.certifications.length },
-  { label: 'Skills',         count: portfolioData.skills.reduce((s, c) => s + c.items.length, 0) },
-  { label: 'Awards',         count: portfolioData.awards.length },
-]
-
-const total = SUMMARY.reduce((s, { count }) => s + count, 0)
+import { useLocale } from 'next-intl'
+import { getPortfolioData } from '@/data/portfolio'
 
 export default function PortfolioSection({ children }: { children: ReactNode }) {
   const [expanded, setExpanded] = useState(false)
+  const locale = useLocale()
+  const portfolioData = getPortfolioData(locale)
+  const isPt = locale === 'pt'
+
+  const SUMMARY = [
+    { label: isPt ? 'Histórico Profissional' : 'Work History', count: portfolioData.experience.length },
+    { label: isPt ? 'Voluntariado' : 'Volunteering', count: portfolioData.volunteering.length },
+    { label: isPt ? 'Projetos' : 'Projects', count: Object.values(portfolioData.projects).flat().length },
+    { label: isPt ? 'Pesquisas' : 'Researches', count: portfolioData.researches.length },
+    { label: isPt ? 'Educação' : 'Education', count: portfolioData.education.length },
+    { label: isPt ? 'Idiomas' : 'Languages', count: portfolioData.languages.length },
+    { label: isPt ? 'Certificações' : 'Certifications', count: portfolioData.certifications.length },
+    { label: isPt ? 'Habilidades' : 'Skills', count: portfolioData.skills.reduce((s, c) => s + c.items.length, 0) },
+    { label: isPt ? 'Premiações' : 'Awards', count: portfolioData.awards.length },
+  ]
+
+  const total = SUMMARY.reduce((s, { count }) => s + count, 0)
 
   return (
     <section id="portfolio">
@@ -35,7 +39,7 @@ export default function PortfolioSection({ children }: { children: ReactNode }) 
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          Portfolio
+          {isPt ? 'Portfólio' : 'Portfolio'}
         </motion.p>
 
         <motion.button
@@ -59,9 +63,9 @@ export default function PortfolioSection({ children }: { children: ReactNode }) 
           }}
         >
           {expanded ? (
-            <><span>Collapse</span><span>↑</span></>
+            <><span>{isPt ? 'Recolher' : 'Collapse'}</span><span>↑</span></>
           ) : (
-            <><span>Expand</span><span>↓</span></>
+            <><span>{isPt ? 'Expandir' : 'Expand'}</span><span>↓</span></>
           )}
         </motion.button>
       </div>

@@ -1,16 +1,19 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useLocale } from 'next-intl'
 import SectionWrapper from '@/components/ui/SectionWrapper'
-import { portfolioData } from '@/data/portfolio'
+import { getPortfolioData } from '@/data/portfolio'
 
 export default function AwardsSection() {
-  const awards = portfolioData.awards
+  const locale = useLocale()
+  const isPt = locale === 'pt'
+  const awards = getPortfolioData(locale).awards
 
   return (
     <SectionWrapper id="awards" fullscreen={false}>
       <div className="max-w-content mx-auto px-6 md:px-10">
-        <p className="section-label mb-10" style={{ color: 'var(--white-45)' }}>Awards</p>
+        <p className="section-label mb-10" style={{ color: 'var(--white-45)' }}>{isPt ? 'Premiações' : 'Awards'}</p>
 
         {awards.length === 0 ? (
           <motion.div
@@ -30,7 +33,7 @@ export default function AwardsSection() {
               </svg>
             </div>
             <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--white-35)' }}>
-              No awards yet
+              {isPt ? 'Ainda sem premiações' : 'No awards yet'}
             </p>
           </motion.div>
         ) : (

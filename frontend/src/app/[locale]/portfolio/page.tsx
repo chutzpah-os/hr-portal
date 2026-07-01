@@ -1,17 +1,5 @@
 import type { Metadata } from 'next'
 import Hero from '@/components/sections/Hero'
-
-export const metadata: Metadata = {
-  title: 'Portfolio — Haniel Rolemberg',
-  description: '6+ years of experience across cybersecurity, software engineering, data engineering, and AI/ML. 30+ projects, 22 certifications, and research across 6 initiatives. Full professional history and skills.',
-  alternates: { canonical: 'https://hanielrolemberg.com/portfolio' },
-  openGraph: {
-    title: 'Portfolio — Haniel Rolemberg',
-    description: 'Cybersecurity, software engineering, data and AI/ML. 6+ years of experience, 30+ projects, 22 certifications.',
-    url: 'https://hanielrolemberg.com/portfolio',
-    type: 'website',
-  },
-}
 import RecommendationsCarousel from '@/components/sections/RecommendationsCarousel'
 import PortfolioSection from '@/components/sections/PortfolioSection'
 import ExperienceSection from '@/components/sections/Experience'
@@ -23,6 +11,40 @@ import LanguagesSection from '@/components/sections/Languages'
 import CertificationsSection from '@/components/sections/Certifications'
 import SkillsSection from '@/components/sections/SkillsSection'
 import AwardsSection from '@/components/sections/AwardsSection'
+
+const BASE_URL = 'https://hanielrolemberg.com'
+
+const METADATA_BY_LOCALE = {
+  en: {
+    title: 'Portfolio — Haniel Rolemberg',
+    description: '6+ years of experience across cybersecurity, software engineering, data engineering, and AI/ML. 30+ projects, 22 certifications, and research across 6 initiatives. Full professional history and skills.',
+    ogDescription: 'Cybersecurity, software engineering, data and AI/ML. 6+ years of experience, 30+ projects, 22 certifications.',
+  },
+  pt: {
+    title: 'Portfólio — Haniel Rolemberg',
+    description: 'Mais de 6 anos de experiência em cibersegurança, engenharia de software, engenharia de dados e IA/ML. 30+ projetos, 22 certificações e pesquisas em 6 iniciativas. Histórico profissional completo e habilidades.',
+    ogDescription: 'Cibersegurança, engenharia de software, dados e IA/ML. 6+ anos de experiência, 30+ projetos, 22 certificações.',
+  },
+}
+
+export async function generateMetadata(
+  { params }: { params: Promise<{ locale: string }> }
+): Promise<Metadata> {
+  const { locale } = await params
+  const m = locale === 'pt' ? METADATA_BY_LOCALE.pt : METADATA_BY_LOCALE.en
+
+  return {
+    title: m.title,
+    description: m.description,
+    alternates: { canonical: `${BASE_URL}/portfolio` },
+    openGraph: {
+      title: m.title,
+      description: m.ogDescription,
+      url: `${BASE_URL}/portfolio`,
+      type: 'website',
+    },
+  }
+}
 
 export default function PortfolioPage() {
   return (

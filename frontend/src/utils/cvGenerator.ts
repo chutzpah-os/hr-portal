@@ -1,5 +1,38 @@
-import { portfolioData, type Experience, type Education, type Volunteering, type Project, type Certification, type SkillCategory } from '@/data/portfolio'
+import { getPortfolioData, type Experience, type Education, type Volunteering, type Project, type Certification, type SkillCategory } from '@/data/portfolio'
 import { type CVArea, type CVAreaOrAll, ALL_AREAS, AREA_LABELS } from './cvAreaMap'
+
+// ─── Locale labels ─────────────────────────────────────────────────────────────
+
+const SECTION_LABELS_BY_LOCALE = {
+  en: {
+    education: 'Education',
+    skillsSummary: 'Skills Summary',
+    experience: 'Experience',
+    projects: 'Projects',
+    volunteering: 'Volunteer Experience',
+    certifications: 'Certifications',
+    technologies: 'Technologies',
+    gpa: 'GPA',
+    country: 'Brazil',
+  },
+  pt: {
+    education: 'Educação',
+    skillsSummary: 'Resumo de Habilidades',
+    experience: 'Experiência',
+    projects: 'Projetos',
+    volunteering: 'Experiência de Voluntariado',
+    certifications: 'Certificações',
+    technologies: 'Tecnologias',
+    gpa: 'CRA',
+    country: 'Brasil',
+  },
+} as const
+
+type CVLocale = keyof typeof SECTION_LABELS_BY_LOCALE
+
+function resolveCvLocale(locale: string): CVLocale {
+  return locale === 'pt' ? 'pt' : 'en'
+}
 
 // ─── Filtered data shape ──────────────────────────────────────────────────────
 
@@ -13,7 +46,9 @@ interface FilteredCV {
   volunteering: Volunteering[]
 }
 
-function filterForArea(area: CVArea): FilteredCV {
+function filterForArea(area: CVArea, locale: string): FilteredCV {
+  const portfolioData = getPortfolioData(locale)
+
   const experience = portfolioData.experience.filter((e) => e.cvAreas.includes(area))
 
   const education = portfolioData.education.filter((e) => e.cvAreas.includes(area))
@@ -51,9 +86,11 @@ function e(str: string): string {
   return escapeLatex(str)
 }
 
-function buildLatexForArea(cv: FilteredCV): string {
+function buildLatexForArea(cv: FilteredCV, locale: string): string {
   const { area, experience, education, skills, projects, certifications, volunteering } = cv
   const areaLabel = AREA_LABELS[area]
+  const labels = SECTION_LABELS_BY_LOCALE[resolveCvLocale(locale)]
+  const personalName = getPortfolioData(locale).personal.name
 
   const lines: string[] = []
 
@@ -61,7 +98,7 @@ function buildLatexForArea(cv: FilteredCV): string {
   lines.push(`% ── ${areaLabel} ──────────────────────────────────────`)
   lines.push('\\begin{center}')
   lines.push(`  {\\small ${e(areaLabel)}} \\\\[2pt]`)
-  lines.push(`  {\\Large\\scshape ${e(portfolioData.personal.name)}} \\\\[4pt]`)
+  lines.push(`  {\\Large\\scshape ${e(personalName)}} \\\\[4pt]`)
   lines.push(`  \\href{mailto:contact@hanielrolemberg.com}{contact@hanielrolemberg.com} $|$`)
   lines.push(`  \\href{https://hanielrolemberg.com}{hanielrolemberg.com} $|$`)
   lines.push(`  +55 (79) 99999-9999`)
@@ -70,15 +107,15 @@ function buildLatexForArea(cv: FilteredCV): string {
 
   // Education
   if (education.length > 0) {
-    lines.push('\\section{Education}')
+    lines.push(`\\section{${e(labels.education)}}`)
     lines.push('\\resumeSubHeadingListStart')
     for (const edu of education) {
       lines.push(`  \\resumeSubheading`)
-      lines.push(`    {${e(edu.institution)}}{Brazil}`)
+      lines.push(`    {${e(edu.institution)}}{${e(labels.country)}}`)
       lines.push(`    {${e(edu.title)}}{${e(edu.period)}}`)
       if (edu.details.gpa) {
         lines.push(`    \\resumeItemListStart`)
-        lines.push(`      \\resumeItem{GPA: ${e(edu.details.gpa)}}`)
+        lines.push(`      \\resumeItem{${e(labels.gpa)}: ${e(edu.details.gpa)}}`)
         lines.push(`    \\resumeItemListEnd`)
       }
     }
@@ -87,7 +124,7 @@ function buildLatexForArea(cv: FilteredCV): string {
 
   // Skills Summary
   if (skills.length > 0) {
-    lines.push('\\section{Skills Summary}')
+    lines.push(`\\section{${e(labels.skillsSummary)}}`)
     lines.push('\\begin{itemize}[leftmargin=*, label={}]')
     lines.push('  \\small{\\item{')
     for (const { name, items } of skills) {
@@ -99,18 +136,18 @@ function buildLatexForArea(cv: FilteredCV): string {
 
   // Experience
   if (experience.length > 0) {
-    lines.push('\\section{Experience}')
+    lines.push(`\\section{${e(labels.experience)}}`)
     lines.push('\\resumeSubHeadingListStart')
     for (const exp of experience) {
       lines.push(`  \\resumeSubheading`)
-      lines.push(`    {${e(exp.company)}}{Brazil}`)
+      lines.push(`    {${e(exp.company)}}{${e(labels.country)}}`)
       lines.push(`    {${e(exp.title)}}{${e(exp.period)}}`)
       lines.push(`    \\resumeItemListStart`)
       for (const area of exp.details.keyAreas) {
         lines.push(`      \\resumeItem{${e(area)}}`)
       }
       if (exp.details.technologies) {
-        lines.push(`      \\resumeItem{\\textbf{Technologies:} ${e(exp.details.technologies)}}`)
+        lines.push(`      \\resumeItem{\\textbf{${e(labels.technologies)}:} ${e(exp.details.technologies)}}`)
       }
       lines.push(`    \\resumeItemListEnd`)
     }
@@ -119,7 +156,7 @@ function buildLatexForArea(cv: FilteredCV): string {
 
   // Projects
   if (projects.length > 0) {
-    lines.push('\\section{Projects}')
+    lines.push(`\\section{${e(labels.projects)}}`)
     lines.push('\\resumeSubHeadingListStart')
     for (const proj of projects) {
       lines.push(`  \\resumeProjectHeading`)
@@ -136,11 +173,11 @@ function buildLatexForArea(cv: FilteredCV): string {
 
   // Volunteering
   if (volunteering.length > 0) {
-    lines.push('\\section{Volunteer Experience}')
+    lines.push(`\\section{${e(labels.volunteering)}}`)
     lines.push('\\resumeSubHeadingListStart')
     for (const vol of volunteering) {
       lines.push(`  \\resumeSubheading`)
-      lines.push(`    {${e(vol.organization)}}{Brazil}`)
+      lines.push(`    {${e(vol.organization)}}{${e(labels.country)}}`)
       lines.push(`    {${e(vol.title)}}{${e(vol.period)}}`)
       lines.push(`    \\resumeItemListStart`)
       lines.push(`      \\resumeItem{${e(vol.description)}}`)
@@ -151,7 +188,7 @@ function buildLatexForArea(cv: FilteredCV): string {
 
   // Certifications
   if (certifications.length > 0) {
-    lines.push('\\section{Certifications}')
+    lines.push(`\\section{${e(labels.certifications)}}`)
     lines.push('\\resumeItemListStart')
     for (const cert of certifications) {
       lines.push(`  \\resumeItem{${e(cert.title)} -- ${e(cert.issuer)} (${e(cert.date)})}`)
@@ -225,9 +262,9 @@ const LATEX_PREAMBLE = `\\documentclass[a4paper,20pt]{article}
 \\newcommand{\\resumeItemListEnd}{\\end{itemize}\\vspace{-5pt}}
 `
 
-export function generateLatex(areaOrAll: CVAreaOrAll): string {
+export function generateLatex(areaOrAll: CVAreaOrAll, locale: string): string {
   const areas = areaOrAll === 'all' ? ALL_AREAS : [areaOrAll]
-  const bodies = areas.map((a) => buildLatexForArea(filterForArea(a)))
+  const bodies = areas.map((a) => buildLatexForArea(filterForArea(a, locale), locale))
 
   const body = bodies.join('\n\n\\newpage\n\n')
 
@@ -255,9 +292,11 @@ function h(str: string): string {
   return escapeHtml(str)
 }
 
-function buildHtmlForArea(cv: FilteredCV): string {
+function buildHtmlForArea(cv: FilteredCV, locale: string): string {
   const { area, experience, education, skills, projects, certifications, volunteering } = cv
   const areaLabel = AREA_LABELS[area]
+  const labels = SECTION_LABELS_BY_LOCALE[resolveCvLocale(locale)]
+  const personalName = getPortfolioData(locale).personal.name
 
   const section = (title: string, content: string) => `
     <div class="section">
@@ -286,7 +325,7 @@ function buildHtmlForArea(cv: FilteredCV): string {
   html += `
     <div class="heading">
       <div class="heading-area">${h(areaLabel)}</div>
-      <div class="heading-name">${h(portfolioData.personal.name)}</div>
+      <div class="heading-name">${h(personalName)}</div>
       <div class="heading-contact">
         <a href="mailto:contact@hanielrolemberg.com">contact@hanielrolemberg.com</a>
         &nbsp;|&nbsp;
@@ -297,10 +336,10 @@ function buildHtmlForArea(cv: FilteredCV): string {
   // Education
   if (education.length > 0) {
     const eduHtml = education.map((edu) => `
-      ${subheading(h(edu.institution), h(edu.title), 'Brazil', h(edu.period))}
-      ${edu.details.gpa ? `<div class="gpa">GPA: ${h(edu.details.gpa)}</div>` : ''}
+      ${subheading(h(edu.institution), h(edu.title), h(labels.country), h(edu.period))}
+      ${edu.details.gpa ? `<div class="gpa">${h(labels.gpa)}: ${h(edu.details.gpa)}</div>` : ''}
     `).join('')
-    html += section('Education', eduHtml)
+    html += section(h(labels.education), eduHtml)
   }
 
   // Skills
@@ -308,16 +347,16 @@ function buildHtmlForArea(cv: FilteredCV): string {
     const skillsHtml = `<div class="skills-list">${skills.map(({ name, items: skillItems }) =>
       `<div><strong>${h(name)}:</strong> ${skillItems.map(h).join(', ')}</div>`
     ).join('')}</div>`
-    html += section('Skills Summary', skillsHtml)
+    html += section(h(labels.skillsSummary), skillsHtml)
   }
 
   // Experience
   if (experience.length > 0) {
     const expHtml = experience.map((exp) => `
-      ${subheading(h(exp.company), h(exp.title), 'Brazil', h(exp.period))}
-      ${items([...exp.details.keyAreas.map(h), `Technologies: ${h(exp.details.technologies)}`])}
+      ${subheading(h(exp.company), h(exp.title), h(labels.country), h(exp.period))}
+      ${items([...exp.details.keyAreas.map(h), `${h(labels.technologies)}: ${h(exp.details.technologies)}`])}
     `).join('')
-    html += section('Experience', expHtml)
+    html += section(h(labels.experience), expHtml)
   }
 
   // Projects
@@ -328,22 +367,22 @@ function buildHtmlForArea(cv: FilteredCV): string {
       </div>
       ${items([h(proj.description), ...proj.details.features.slice(0, 2).map(h)])}
     `).join('')
-    html += section('Projects', projHtml)
+    html += section(h(labels.projects), projHtml)
   }
 
   // Volunteering
   if (volunteering.length > 0) {
     const volHtml = volunteering.map((vol) => `
-      ${subheading(h(vol.organization), h(vol.title), 'Brazil', h(vol.period))}
+      ${subheading(h(vol.organization), h(vol.title), h(labels.country), h(vol.period))}
       ${items([h(vol.description)])}
     `).join('')
-    html += section('Volunteer Experience', volHtml)
+    html += section(h(labels.volunteering), volHtml)
   }
 
   // Certifications
   if (certifications.length > 0) {
     const certHtml = items(certifications.map((c) => `${h(c.title)} &mdash; ${h(c.issuer)} (${h(c.date)})`))
-    html += section('Certifications', certHtml)
+    html += section(h(labels.certifications), certHtml)
   }
 
   html += `</div>` // .page
@@ -398,9 +437,9 @@ const HTML_STYLES = `
   li { font-size: 8pt; line-height: 1.4; margin: 0 0 1pt 0; padding: 0; page-break-inside: avoid; }
 `
 
-export function generateHtml(areaOrAll: CVAreaOrAll): string {
+export function generateHtml(areaOrAll: CVAreaOrAll, locale: string): string {
   const areas = areaOrAll === 'all' ? ALL_AREAS : [areaOrAll]
-  const areaPages = areas.map((a) => buildHtmlForArea(filterForArea(a)))
+  const areaPages = areas.map((a) => buildHtmlForArea(filterForArea(a, locale), locale))
   const pages = areaPages.join('\n<div class="area-break"></div>\n')
 
   return `<!DOCTYPE html>
@@ -423,8 +462,8 @@ function areaSlug(area: CVAreaOrAll): string {
   return area === 'all' ? 'all_areas' : area
 }
 
-export function downloadTex(area: CVAreaOrAll): void {
-  const content = generateLatex(area)
+export function downloadTex(area: CVAreaOrAll, locale: string): void {
+  const content = generateLatex(area, locale)
   const blob = new Blob([content], { type: 'text/plain;charset=utf-8' })
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
@@ -434,8 +473,8 @@ export function downloadTex(area: CVAreaOrAll): void {
   URL.revokeObjectURL(url)
 }
 
-export function downloadPdf(area: CVAreaOrAll): void {
-  const html = generateHtml(area)
+export function downloadPdf(area: CVAreaOrAll, locale: string): void {
+  const html = generateHtml(area, locale)
   const slug = areaSlug(area)
 
   // Inject auto-print + suggested filename via <title> (browsers use it as default save name)

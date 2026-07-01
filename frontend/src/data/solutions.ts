@@ -10,6 +10,14 @@ export const STAGES: { label: StartupStage; color: string; bg: string }[] = [
   { label: 'Scale',          color: 'rgba(34,211,238,1)',   bg: 'rgba(34,211,238,0.10)'  },
 ]
 
+interface ProductTranslation {
+  tagline: string
+  shortDescription: string
+  fullDescription: string
+  tags: string[]
+  metrics?: { label: string; value: string }[]
+}
+
 export interface Product {
   id: string
   name: string
@@ -23,6 +31,12 @@ export interface Product {
   imageFit?: 'contain' | 'cover'
   modalImage?: string
   cta?: { label: string; href: string; external?: boolean }
+  pt?: ProductTranslation
+}
+
+export function getLocalizedProduct(product: Product, locale: string): Product {
+  if (locale !== 'pt' || !product.pt) return product
+  return { ...product, ...product.pt }
 }
 
 export const PRODUCTS: Product[] = [
@@ -44,6 +58,20 @@ More details will be shared as the project matures.`,
     status: 'Ideation',
     image: '/images/shoresh-cover.png',
     imageFit: 'cover',
+    pt: {
+      tagline: 'Governança que protege. Compliance que escala.',
+      shortDescription: 'Plataforma de governança corporativa e compliance para médias e grandes corporações — e para as startups que constroem rumo a essa escala.',
+      fullDescription: `Shoresh é uma plataforma de compliance e governança corporativa construída para proteger corporações de dentro para fora.
+
+A premissa: falhas de governança raramente são repentinas — elas se acumulam silenciosamente através de lacunas de processo, responsabilidades pouco claras e pontos cegos de compliance. Shoresh torna essas lacunas visíveis antes que se tornem passivos.
+
+Projetada para médias e grandes corporações com a complexidade estrutural que exige governança rigorosa, e igualmente disponível para startups que querem nascer prontas para compliance em vez de adaptar isso depois.
+
+A plataforma cobre frameworks de governança corporativa, rastreamento de compliance regulatório, visibilidade de riscos e estruturas de responsabilidade — dando à liderança a confiança de que a organização está protegida, auditável e alinhada.
+
+Mais detalhes serão compartilhados conforme o projeto amadurece.`,
+      tags: ['P&D', 'Software', 'Compliance', 'Governo', 'Gestão'],
+    },
   },
   {
     id: 'cherut',
@@ -61,6 +89,18 @@ Built for ambitious people who want to move faster without losing clarity on why
     status: 'Ideation',
     image: '/images/cherut.png',
     imageFit: 'contain',
+    pt: {
+      tagline: 'Sua vida, rodando em um sistema.',
+      shortDescription: 'Sistema operacional completo para produtividade pessoal — OKRs, hábitos, calendário e diário em um só lugar.',
+      fullDescription: `Cherut é um sistema operacional de vida construído para pessoas que tratam a execução diária como dado mensurável. O nome vem da palavra hebraica para liberdade — porque um bom sistema não te limita, ele te liberta.
+
+A premissa: a maioria das ferramentas de produtividade está desconectada. Você rastreia metas em um app, hábitos em outro, calendário em um terceiro, e reflete em um lugar totalmente diferente. Cherut unifica essas camadas em um único sistema operacional estruturado.
+
+No núcleo: OKRs se desdobram em prioridades semanais, que se conectam a hábitos diários e blocos de tempo. Toda noite, uma breve revisão fecha o ciclo. Com o tempo, você acumula um conjunto de dados pessoal — não apenas tarefas concluídas, mas padrões, energia, janelas de foco e progresso em direção ao que realmente importa.
+
+Construído para pessoas ambiciosas que querem se mover mais rápido sem perder a clareza sobre o porquê de estarem se movendo.`,
+      tags: ['P&D', 'Software', 'Gestão'],
+    },
   },
   {
     id: 'psf-portal',
@@ -80,6 +120,20 @@ Built to scale the mission without losing the human element.`,
     status: 'Ideation',
     image: '/images/psf-portal-cover.png',
     imageFit: 'cover',
+    pt: {
+      tagline: 'O sistema operacional da comunidade Problem Solvers.',
+      shortDescription: 'Plataforma interna da Problem Solver Foundation — conectando membros, acompanhando impacto e coordenando iniciativas em toda a comunidade.',
+      fullDescription: `O PSF Portal é a espinha dorsal interna da Problem Solver Foundation — uma comunidade com a missão de impactar 1 bilhão de vidas até 2035.
+
+O desafio: à medida que uma comunidade distribuída cresce, a coordenação se desfaz. Membros perdem contexto, iniciativas perdem força e a missão se dilui. O PSF Portal existe para evitar isso.
+
+No núcleo, o portal conecta pessoas umas às outras e ao trabalho que importa. Membros podem encontrar iniciativas em andamento, entrar em times, acompanhar o progresso coletivo e compartilhar recursos. Líderes ganham visibilidade sobre o que está avançando e o que está travado.
+
+Além da coordenação, o portal é um espaço para a identidade da comunidade — onde a cultura de resolução de problemas é documentada, praticada e passada adiante.
+
+Construído para escalar a missão sem perder o elemento humano.`,
+      tags: ['P&D', 'Software', 'Comunidade'],
+    },
   },
   {
     id: 'data-aggregator',
@@ -104,6 +158,25 @@ Built at the intersection of data engineering, machine learning, and decision in
     status: 'Ideation',
     image: '/images/datapsf1.png',
     imageFit: 'cover',
+    pt: {
+      tagline: 'Transformando ruído em sinal — antes que problemas virem crises.',
+      shortDescription: 'Plataforma com IA que agrega, processa e revela padrões de dados para entender e antecipar problemas complexos em diferentes domínios.',
+      fullDescription: `O Data Aggregator é uma plataforma de pesquisa e inteligência construída em torno de uma premissa central: a maioria dos problemas é previsível — se você estiver olhando para os dados certos.
+
+O sistema extrai de fontes heterogêneas (datasets públicos, publicações de pesquisa, sinais da comunidade, feeds estruturados) e aplica pipelines de IA/ML para identificar padrões, correlações e indicadores precoces em diferentes domínios. O resultado não é dado bruto — é insight: o que está emergindo, por que importa e quais respostas vale a pena explorar.
+
+Os casos de uso vão de impacto social (identificar comunidades em risco antes que crises surjam) a pesquisa técnica (encontrar lacunas em soluções existentes), passando por inteligência organizacional (entender onde iniciativas travam e por quê).
+
+O foco de P&D está em construir pipelines agnósticos de domínio, mas sensíveis ao contexto — sistemas capazes de raciocinar sobre diferentes classes de problemas sem exigir uma reconstrução completa para cada novo domínio.
+
+Construído na interseção entre engenharia de dados, machine learning e inteligência de decisão.`,
+      metrics: [
+        { label: 'Foco', value: 'Predição & Prevenção' },
+        { label: 'Stack', value: 'IA/ML · Engenharia de Dados' },
+        { label: 'Escopo', value: 'Multidomínio' },
+      ],
+      tags: ['P&D', 'Software', 'IA/ML'],
+    },
   },
   {
     id: 'seder-koah',
@@ -119,6 +192,18 @@ The platform centralizes internal operations — team management, workflow coord
 Built to bring order, operational clarity, and measurable efficiency to governmental units of any size, from municipal departments to larger public bodies.`,
     tags: ['R&D', 'Software', 'Government', 'Management', 'Compliance'],
     status: 'Ideation',
+    pt: {
+      tagline: 'Estrutura e força para instituições públicas.',
+      shortDescription: 'Sistema de gestão interna projetado para unidades governamentais — organizando operações, pessoas e processos no setor público para gerar eficiência real.',
+      fullDescription: `Seder Koah é uma plataforma de gestão interna construída especificamente para unidades governamentais e instituições públicas — com eficiência como objetivo central.
+
+O setor público tem demandas operacionais únicas: restrições regulatórias, responsabilização em múltiplos níveis, hierarquias organizacionais complexas e a pressão constante de fazer mais com recursos limitados. Ferramentas de gestão genéricas não foram feitas para esse contexto. Seder Koah foi.
+
+A plataforma centraliza operações internas — gestão de equipes, coordenação de fluxos de trabalho, controle de documentos e rastreamento de processos — eliminando as redundâncias e atritos que drenam tempo e recursos de instituições públicas. O resultado é uma operação mais enxuta, rápida e responsável.
+
+Construída para trazer ordem, clareza operacional e eficiência mensurável para unidades governamentais de qualquer porte, de secretarias municipais a órgãos públicos maiores.`,
+      tags: ['P&D', 'Software', 'Governo', 'Gestão', 'Compliance'],
+    },
   },
   {
     id: 'sentinel-ai',
@@ -139,6 +224,23 @@ The foundation: CV models trained for real-world conditions, behavioral pattern 
     ],
     tags: ['R&D', 'Software', 'AI/ML', 'Cybersecurity'],
     status: 'Ideation',
+    pt: {
+      tagline: 'Olhos que nunca piscam. Inteligência que nunca dorme.',
+      shortDescription: 'Plataforma de segurança física com visão computacional e IA — monitorando pessoas, objetos e movimentos em tempo real.',
+      fullDescription: `Sentinel AI traz inteligência de máquina para a segurança física. Onde a vigilância tradicional grava, Sentinel AI entende.
+
+O sistema usa visão computacional, machine learning e pipelines de dados para monitorar ambientes em tempo real — detectando pessoas, rastreando padrões de movimento, identificando objetos e revelando anomalias antes que escalem. O objetivo não é substituir o julgamento humano, mas estendê-lo: dando às equipes de segurança o contexto que precisam, exatamente quando precisam.
+
+Construído para ambientes onde a segurança física é missão crítica — de campi corporativos e infraestrutura crítica a espaços públicos que exigem supervisão contínua e inteligente.
+
+A base: modelos de visão computacional treinados para condições do mundo real, reconhecimento de padrões comportamentais e infraestrutura de dados projetada para alertas de baixa latência em escala.`,
+      metrics: [
+        { label: 'Tecnologia Principal', value: 'Visão Computacional' },
+        { label: 'Stack', value: 'IA/ML · Dados' },
+        { label: 'Foco', value: 'Segurança Física' },
+      ],
+      tags: ['P&D', 'Software', 'IA/ML', 'Cibersegurança'],
+    },
   },
   {
     id: 'etz',
@@ -152,6 +254,14 @@ The focus is on cryptography — ensuring that sensitive information is protecte
     status: 'Ideation',
     image: '/images/etz-cover.png',
     imageFit: 'cover',
+    pt: {
+      tagline: 'Dados sensíveis merecem proteção séria.',
+      shortDescription: 'Registro e gestão segura de dados e ativos sensíveis — construído sobre fundamentos criptográficos.',
+      fullDescription: `Etz é uma plataforma para o registro e a gestão segura de dados sensíveis e ativos críticos, construída para ambientes governamentais e orientados por compliance.
+
+O foco está na criptografia — garantindo que informações sensíveis estejam protegidas em repouso, em trânsito e no acesso. Projetada para atender ao rigor que setores regulados exigem. Mais detalhes serão compartilhados conforme o projeto amadurece.`,
+      tags: ['P&D', 'Software', 'Cibersegurança', 'Governo', 'Compliance'],
+    },
   },
   {
     id: 'hofshilang',
@@ -174,6 +284,23 @@ The formula: structured input + real-world output + accountability loops. The re
     status: 'Ideation',
     image: '/images/hofshilang.png',
     imageFit: 'cover',
+    pt: {
+      tagline: 'Empoderando jovens através de idiomas.',
+      shortDescription: 'Aprendizado de idiomas com uma fórmula proprietária projetada para transformar ambição em fluência mensurável.',
+      fullDescription: `HofShiLang é um produto de aprendizado de idiomas construído em torno de uma fórmula proprietária — não um currículo genérico, mas um método estruturado que mapeia ambição para resultados mensuráveis.
+
+O insight central: a maioria dos aprendizes estaciona porque rastreia esforço (horas estudadas, lições concluídas) em vez de progresso (o que realmente conseguem fazer). HofShiLang muda esse enquadramento. Cada aprendiz tem uma meta clara no CEFR, um contrato semanal de engajamento e metas de interação no mundo real que constroem fluência.
+
+Além do produto, HofShiLang opera como uma iniciativa educacional. Por meio de parcerias com programas voltados a jovens, leva acesso a idiomas para comunidades onde o multilinguismo é um caminho direto para oportunidade econômica.
+
+A fórmula: input estruturado + output no mundo real + ciclos de responsabilização. O resultado: aprendizes que não apenas estudam um idioma — eles começam a usá-lo.`,
+      metrics: [
+        { label: 'Framework', value: 'Alinhado ao CEFR' },
+        { label: 'Foco', value: 'Jovens' },
+        { label: 'Modelo', value: 'Produto + Iniciativa' },
+      ],
+      tags: ['P&D', 'Software', 'Educação'],
+    },
   },
 ]
 

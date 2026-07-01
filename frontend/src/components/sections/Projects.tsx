@@ -3,7 +3,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { portfolioData, type Project, type ProjectCategory } from '@/data/portfolio'
+import { useLocale } from 'next-intl'
+import { getPortfolioData, type PortfolioData, type Project, type ProjectCategory } from '@/data/portfolio'
 
 type FilterKey = 'all' | ProjectCategory
 
@@ -16,6 +17,15 @@ const FILTERS: { key: FilterKey; label: string }[] = [
   { key: 'challenges',          label: 'Challenges'},
 ]
 
+const FILTERS_PT: { key: FilterKey; label: string }[] = [
+  { key: 'all',                 label: 'Todos'     },
+  { key: 'aiml',                label: 'IA / ML'   },
+  { key: 'softwareDevelopment', label: 'Software'  },
+  { key: 'dataEngineering',     label: 'Dados'      },
+  { key: 'cybersecurity',       label: 'Cyber'     },
+  { key: 'challenges',          label: 'Desafios'  },
+]
+
 const CATEGORY_LABEL: Record<string, string> = {
   aiml:                'AI / ML',
   softwareDevelopment: 'Software',
@@ -24,14 +34,22 @@ const CATEGORY_LABEL: Record<string, string> = {
   challenges:          'Challenges',
 }
 
+const CATEGORY_LABEL_PT: Record<string, string> = {
+  aiml:                'IA / ML',
+  softwareDevelopment: 'Software',
+  dataEngineering:     'Dados',
+  cybersecurity:       'Cyber',
+  challenges:          'Desafios',
+}
+
 const LIMIT = 5
 
-function getAllProjects(): Project[] {
+function getAllProjects(portfolioData: PortfolioData): Project[] {
   return Object.values(portfolioData.projects).flat()
 }
 
-function getFilteredProjects(filter: FilterKey): Project[] {
-  if (filter === 'all') return getAllProjects()
+function getFilteredProjects(portfolioData: PortfolioData, filter: FilterKey): Project[] {
+  if (filter === 'all') return getAllProjects(portfolioData)
   return portfolioData.projects[filter] ?? []
 }
 
@@ -41,12 +59,15 @@ function ProjectRow({
   index,
   onClick,
   isLast,
+  isPt,
 }: {
   project: Project
   index: number
   onClick: () => void
   isLast: boolean
+  isPt: boolean
 }) {
+  const categoryLabel = isPt ? CATEGORY_LABEL_PT : CATEGORY_LABEL
   return (
     <motion.button
       onClick={onClick}
@@ -77,7 +98,7 @@ function ProjectRow({
           ) : (
             <div className="w-full h-full flex items-center justify-center">
               <span className="text-[0.6rem] font-semibold uppercase text-center px-1" style={{ color: 'var(--accent)' }}>
-                {CATEGORY_LABEL[project.category].slice(0, 2)}
+                {categoryLabel[project.category].slice(0, 2)}
               </span>
             </div>
           )}
@@ -103,7 +124,7 @@ function ProjectRow({
               letterSpacing: '0.15em',
             }}
           >
-            {CATEGORY_LABEL[project.category]}
+            {categoryLabel[project.category]}
           </span>
         </div>
 
@@ -123,10 +144,13 @@ function ProjectRow({
 function ProjectModal({
   project,
   onClose,
+  isPt,
 }: {
   project: Project | null
   onClose: () => void
+  isPt: boolean
 }) {
+  const categoryLabel = isPt ? CATEGORY_LABEL_PT : CATEGORY_LABEL
   const scrollRef = useRef<HTMLDivElement>(null)
 
   // Lock body scroll while open
@@ -193,7 +217,7 @@ function ProjectModal({
                   className="text-[0.6rem] uppercase tracking-widest block mb-1"
                   style={{ color: 'var(--white-35)' }}
                 >
-                  {CATEGORY_LABEL[project.category]}
+                  {categoryLabel[project.category]}
                 </span>
                 <h2
                   className="font-bold leading-tight mb-1.5"
@@ -225,7 +249,7 @@ function ProjectModal({
                   backgroundColor: 'rgba(10,10,15,0.08)',
                   color: 'var(--white-60)',
                 }}
-                aria-label="Close"
+                aria-label={isPt ? 'Fechar' : 'Close'}
               >
                 ×
               </button>
@@ -272,7 +296,7 @@ function ProjectModal({
                   className="text-[0.6rem] uppercase tracking-widest mb-3"
                   style={{ color: 'var(--white-35)' }}
                 >
-                  Features
+                  {isPt ? 'Funcionalidades' : 'Features'}
                 </p>
                 <ul className="space-y-2 mb-8">
                   {project.details.features.map((feat, i) => (
@@ -288,7 +312,7 @@ function ProjectModal({
                   className="text-[0.6rem] uppercase tracking-widest mb-2"
                   style={{ color: 'var(--white-35)' }}
                 >
-                  Tech Stack
+                  {isPt ? 'Stack Tecnológica' : 'Tech Stack'}
                 </p>
                 <p className="text-sm mb-8" style={{ color: 'var(--white-65)' }}>
                   {project.details.techStack}
@@ -303,7 +327,7 @@ function ProjectModal({
                     className="text-xs uppercase tracking-widest transition-opacity duration-200 hover:opacity-60"
                     style={{ color: 'var(--accent)' }}
                   >
-                    View on GitHub →
+                    {isPt ? 'Ver no GitHub →' : 'View on GitHub →'}
                   </a>
                 )}
 
@@ -321,8 +345,12 @@ export default function ProjectsSection() {
   const [filter, setFilter] = useState<FilterKey>('all')
   const [active, setActive] = useState<Project | null>(null)
   const [expanded, setExpanded] = useState(false)
+  const locale = useLocale()
+  const isPt = locale === 'pt'
+  const portfolioData = getPortfolioData(locale)
+  const filters = isPt ? FILTERS_PT : FILTERS
 
-  const filtered = getFilteredProjects(filter)
+  const filtered = getFilteredProjects(portfolioData, filter)
   const displayed = expanded ? filtered : filtered.slice(0, LIMIT)
 
   const handleFilter = (key: FilterKey) => {
@@ -344,11 +372,11 @@ export default function ProjectsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            Projects
+            {isPt ? 'Projetos' : 'Projects'}
           </motion.p>
 
           <div className="flex flex-wrap gap-2">
-            {FILTERS.map((f) => (
+            {filters.map((f) => (
               <button
                 key={f.key}
                 onClick={() => handleFilter(f.key)}
@@ -382,6 +410,7 @@ export default function ProjectsSection() {
               index={i}
               isLast={i === displayed.length - 1}
               onClick={() => setActive(project)}
+              isPt={isPt}
             />
           ))}
         </div>
@@ -399,9 +428,9 @@ export default function ProjectsSection() {
               style={{ color: 'var(--accent)' }}
             >
               {expanded ? (
-                <><span>Show less</span><span>↑</span></>
+                <><span>{isPt ? 'Mostrar menos' : 'Show less'}</span><span>↑</span></>
               ) : (
-                <><span>Show all {filtered.length} projects</span><span>↓</span></>
+                <><span>{isPt ? `Mostrar todos os ${filtered.length} projetos` : `Show all ${filtered.length} projects`}</span><span>↓</span></>
               )}
             </button>
           </motion.div>
@@ -409,7 +438,7 @@ export default function ProjectsSection() {
 
       </div>
 
-      <ProjectModal project={active} onClose={() => setActive(null)} />
+      <ProjectModal project={active} onClose={() => setActive(null)} isPt={isPt} />
     </section>
   )
 }

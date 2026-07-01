@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useLocale } from 'next-intl'
 import Modal from '@/components/ui/Modal'
 import { type CVAreaOrAll, AREA_LABELS } from '@/utils/cvAreaMap'
 import { downloadTex, downloadPdf } from '@/utils/cvGenerator'
@@ -15,6 +16,8 @@ interface CVDownloadModalProps {
 export default function CVDownloadModal({ isOpen, onClose }: CVDownloadModalProps) {
   const [selectedArea, setSelectedArea] = useState<CVAreaOrAll | null>(null)
   const [loading, setLoading] = useState(false)
+  const locale = useLocale()
+  const isPt = locale === 'pt'
 
   const handleClose = () => {
     setSelectedArea(null)
@@ -24,22 +27,22 @@ export default function CVDownloadModal({ isOpen, onClose }: CVDownloadModalProp
 
   const handleTex = () => {
     if (!selectedArea) return
-    downloadTex(selectedArea)
+    downloadTex(selectedArea, locale)
     handleClose()
   }
 
   const handlePdf = () => {
     if (!selectedArea) return
-    downloadPdf(selectedArea)
+    downloadPdf(selectedArea, locale)
     handleClose()
   }
 
   return (
     <Modal isOpen={isOpen} onClose={handleClose}>
       {/* Header */}
-      <p className="section-label mb-1">Download CV</p>
+      <p className="section-label mb-1">{isPt ? 'Baixar CV' : 'Download CV'}</p>
       <p className="text-[0.75rem] mb-8" style={{ color: 'var(--white-45)' }}>
-        Select a focus area, then choose your format.
+        {isPt ? 'Selecione uma área de foco e escolha o formato.' : 'Select a focus area, then choose your format.'}
       </p>
 
       {/* Area selection */}
@@ -74,7 +77,7 @@ export default function CVDownloadModal({ isOpen, onClose }: CVDownloadModalProp
               </span>
               {area === 'all' && (
                 <p className="text-[0.6rem] mt-0.5" style={{ color: 'var(--white-35)' }}>
-                  One page per area
+                  {isPt ? 'Uma página por área' : 'One page per area'}
                 </p>
               )}
             </button>
@@ -96,7 +99,7 @@ export default function CVDownloadModal({ isOpen, onClose }: CVDownloadModalProp
             onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.85' }}
             onMouseLeave={(e) => { e.currentTarget.style.opacity = '1' }}
           >
-            Download .tex
+            {isPt ? 'Baixar .tex' : 'Download .tex'}
           </button>
 
           <button
@@ -121,7 +124,7 @@ export default function CVDownloadModal({ isOpen, onClose }: CVDownloadModalProp
               }
             }}
           >
-            {loading ? 'Generating...' : 'Download .pdf'}
+            {loading ? (isPt ? 'Gerando...' : 'Generating...') : (isPt ? 'Baixar .pdf' : 'Download .pdf')}
           </button>
         </div>
       )}

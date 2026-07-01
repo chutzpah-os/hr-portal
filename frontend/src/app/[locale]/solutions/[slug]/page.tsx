@@ -2,7 +2,8 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { PRODUCTS, getProduct } from '@/data/solutions'
+import { getTranslations } from 'next-intl/server'
+import { PRODUCTS, getProduct, getLocalizedProduct } from '@/data/solutions'
 
 const BASE_URL = 'https://hanielrolemberg.com'
 
@@ -11,11 +12,12 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata(
-  { params }: { params: Promise<{ slug: string }> }
+  { params }: { params: Promise<{ locale: string; slug: string }> }
 ): Promise<Metadata> {
-  const { slug } = await params
-  const product = getProduct(slug)
-  if (!product) return {}
+  const { locale, slug } = await params
+  const rawProduct = getProduct(slug)
+  if (!rawProduct) return {}
+  const product = getLocalizedProduct(rawProduct, locale)
 
   const url = `${BASE_URL}/solutions/${product.id}`
   return {
@@ -37,11 +39,13 @@ export async function generateMetadata(
 }
 
 export default async function ProductPage(
-  { params }: { params: Promise<{ slug: string }> }
+  { params }: { params: Promise<{ locale: string; slug: string }> }
 ) {
-  const { slug } = await params
-  const product = getProduct(slug)
-  if (!product) notFound()
+  const { locale, slug } = await params
+  const rawProduct = getProduct(slug)
+  if (!rawProduct) notFound()
+  const product = getLocalizedProduct(rawProduct, locale)
+  const t = await getTranslations('common')
 
   const schema = {
     '@context': 'https://schema.org',
@@ -101,7 +105,7 @@ export default async function ProductPage(
               className="text-xs uppercase tracking-widest transition-opacity hover:opacity-60"
               style={{ color: 'var(--white-40)' }}
             >
-              ← Lab
+              {t('backLab')}
             </Link>
           </nav>
 
@@ -253,7 +257,7 @@ export default async function ProductPage(
               className="text-xs uppercase tracking-widest transition-opacity hover:opacity-60"
               style={{ color: 'var(--white-40)' }}
             >
-              ← Back to Lab
+              {t('backToLab')}
             </Link>
           </div>
         </div>

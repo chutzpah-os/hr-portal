@@ -47,7 +47,8 @@
   },
   "about": {
     "sectionLabel": "Sobre",
-    "title": "Sobre Mim"
+    "title": "Sobre Mim",
+    "tagline": "Solucionador de Problemas · Aracaju, Brasil"
   },
   "portfolio": {
     "sectionLabel": "Portfolio",
@@ -97,7 +98,9 @@
     "subtitle": "Iniciativas pessoais, campanhas e desafios — cada um é um compromisso com a ação.",
     "donateLabel": "Doar",
     "backAll": "← Voltar a todos os desafios",
-    "backChallenges": "← Desafios"
+    "backChallenges": "← Desafios",
+    "donateNote": "Toda doação vai diretamente para a pesquisa contra o câncer. Sem valor mínimo. Cada quantia importa.",
+    "donateCta": "Doar para a Terry Fox Foundation →"
   },
   "press": {
     "sectionLabel": "Imprensa",

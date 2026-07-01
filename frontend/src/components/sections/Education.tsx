@@ -2,8 +2,9 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useLocale } from 'next-intl'
 import SectionWrapper from '@/components/ui/SectionWrapper'
-import { portfolioData, type Education } from '@/data/portfolio'
+import { getPortfolioData, type Education } from '@/data/portfolio'
 
 const LIMIT = 3
 
@@ -12,11 +13,13 @@ function EducationTimelineItem({
   index,
   isLast,
   onClick,
+  isPt,
 }: {
   edu: Education
   index: number
   isLast: boolean
   onClick: () => void
+  isPt: boolean
 }) {
   return (
     <motion.div
@@ -76,7 +79,7 @@ function EducationTimelineItem({
           className="inline-flex items-center gap-1 text-[0.6rem] uppercase tracking-widest mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
           style={{ color: 'var(--accent)' }}
         >
-          View details →
+          {isPt ? 'Ver detalhes →' : 'View details →'}
         </span>
       </button>
     </motion.div>
@@ -86,9 +89,11 @@ function EducationTimelineItem({
 function EducationModal({
   edu,
   onClose,
+  isPt,
 }: {
   edu: Education | null
   onClose: () => void
+  isPt: boolean
 }) {
   const scrollRef = useRef<HTMLDivElement>(null)
 
@@ -177,7 +182,7 @@ function EducationModal({
                 onClick={onClose}
                 className="shrink-0 flex items-center justify-center w-9 h-9 rounded-xl transition-colors duration-200 text-xl font-light"
                 style={{ backgroundColor: 'rgba(10,10,15,0.08)', color: 'var(--white-60)' }}
-                aria-label="Close"
+                aria-label={isPt ? 'Fechar' : 'Close'}
               >
                 ×
               </button>
@@ -199,7 +204,7 @@ function EducationModal({
                 {edu.details.gpa && (
                   <p className="text-sm mb-8" style={{ color: 'var(--white-70)' }}>
                     <span className="text-[0.6rem] uppercase tracking-widest mr-2" style={{ color: 'var(--white-35)' }}>
-                      GPA
+                      {isPt ? 'CRA' : 'GPA'}
                     </span>
                     {edu.details.gpa}
                   </p>
@@ -208,7 +213,7 @@ function EducationModal({
                 {edu.details.keyAreas && (
                   <>
                     <p className="text-[0.6rem] uppercase tracking-widest mb-3" style={{ color: 'var(--white-35)' }}>
-                      Key Focus Areas
+                      {isPt ? 'Principais Áreas de Foco' : 'Key Focus Areas'}
                     </p>
                     <ul className="space-y-2 mb-8">
                       {edu.details.keyAreas.map((area, i) => (
@@ -224,7 +229,7 @@ function EducationModal({
                 {edu.details.keyCourses && (
                   <>
                     <p className="text-[0.6rem] uppercase tracking-widest mb-3" style={{ color: 'var(--white-35)' }}>
-                      Key Courses
+                      {isPt ? 'Principais Disciplinas' : 'Key Courses'}
                     </p>
                     <ul className="space-y-2 mb-8">
                       {edu.details.keyCourses.map((course, i) => (
@@ -240,7 +245,7 @@ function EducationModal({
                 {edu.details.skillsDeveloped && (
                   <>
                     <p className="text-[0.6rem] uppercase tracking-widest mb-3" style={{ color: 'var(--white-35)' }}>
-                      Skills Developed
+                      {isPt ? 'Habilidades Desenvolvidas' : 'Skills Developed'}
                     </p>
                     <ul className="space-y-2">
                       {edu.details.skillsDeveloped.map((skill, i) => (
@@ -265,10 +270,12 @@ function TimelineGroup({
   items,
   label,
   onItemClick,
+  isPt,
 }: {
   items: Education[]
   label: string
   onItemClick: (edu: Education) => void
+  isPt: boolean
 }) {
   return (
     <div className="mb-10">
@@ -290,6 +297,7 @@ function TimelineGroup({
             index={i}
             isLast={i === items.length - 1}
             onClick={() => onItemClick(edu)}
+            isPt={isPt}
           />
         ))}
       </div>
@@ -299,6 +307,9 @@ function TimelineGroup({
 
 export default function EducationSection() {
   const [active, setActive] = useState<Education | null>(null)
+  const locale = useLocale()
+  const isPt = locale === 'pt'
+  const portfolioData = getPortfolioData(locale)
 
   const all = portfolioData.education
   const degrees = all.filter((e) => e.type === 'degree')
@@ -315,16 +326,20 @@ export default function EducationSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
         >
-          Academic Background
+          {isPt ? 'Formação Acadêmica' : 'Academic Background'}
         </motion.p>
 
         <div className="max-w-lg">
-          {degrees.length > 0 && <TimelineGroup items={degrees} label="Degrees" onItemClick={setActive} />}
-          {courses.length > 0 && <TimelineGroup items={courses} label="Courses & Programs" onItemClick={setActive} />}
+          {degrees.length > 0 && (
+            <TimelineGroup items={degrees} label={isPt ? 'Graduações' : 'Degrees'} onItemClick={setActive} isPt={isPt} />
+          )}
+          {courses.length > 0 && (
+            <TimelineGroup items={courses} label={isPt ? 'Cursos & Programas' : 'Courses & Programs'} onItemClick={setActive} isPt={isPt} />
+          )}
         </div>
       </div>
 
-      <EducationModal edu={active} onClose={() => setActive(null)} />
+      <EducationModal edu={active} onClose={() => setActive(null)} isPt={isPt} />
     </SectionWrapper>
   )
 }

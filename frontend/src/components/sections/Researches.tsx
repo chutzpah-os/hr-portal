@@ -3,22 +3,31 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import { useLocale } from 'next-intl'
 import SectionWrapper from '@/components/ui/SectionWrapper'
-import { portfolioData, type Research } from '@/data/portfolio'
+import { getPortfolioData, type Research } from '@/data/portfolio'
 import { AREA_LABELS } from '@/utils/cvAreaMap'
 
 const LIMIT = 4
+
+const STATUS_LABELS_PT: Record<Research['status'], string> = {
+  'in development': 'em desenvolvimento',
+  'published': 'publicado',
+  'under review': 'em revisão',
+}
 
 function ResearchRow({
   research,
   index,
   onClick,
   isLast,
+  isPt,
 }: {
   research: Research
   index: number
   onClick: () => void
   isLast: boolean
+  isPt: boolean
 }) {
   return (
     <motion.button
@@ -84,7 +93,7 @@ function ResearchRow({
                 letterSpacing: '0.15em',
               }}
             >
-              {research.status}
+              {isPt ? STATUS_LABELS_PT[research.status] : research.status}
             </span>
           </div>
         </div>
@@ -104,9 +113,11 @@ function ResearchRow({
 function ResearchModal({
   research,
   onClose,
+  isPt,
 }: {
   research: Research | null
   onClose: () => void
+  isPt: boolean
 }) {
   const scrollRef = useRef<HTMLDivElement>(null)
 
@@ -195,7 +206,7 @@ function ResearchModal({
                 onClick={onClose}
                 className="shrink-0 flex items-center justify-center w-9 h-9 rounded-xl transition-colors duration-200 text-xl font-light"
                 style={{ backgroundColor: 'rgba(10,10,15,0.08)', color: 'var(--white-60)' }}
-                aria-label="Close"
+                aria-label={isPt ? 'Fechar' : 'Close'}
               >
                 ×
               </button>
@@ -209,7 +220,7 @@ function ResearchModal({
                 className="text-[0.65rem] font-medium px-2.5 py-1 rounded-full"
                 style={{ backgroundColor: 'rgba(255,255,255,0.85)', color: 'var(--white-50)', border: '1px solid var(--white-10)' }}
               >
-                {research.status}
+                {isPt ? STATUS_LABELS_PT[research.status] : research.status}
               </span>
               {research.cvAreas.map((area) => (
                 <span
@@ -242,7 +253,7 @@ function ResearchModal({
                     className="text-xs uppercase tracking-widest transition-opacity duration-200 hover:opacity-60"
                     style={{ color: 'var(--accent)' }}
                   >
-                    View Publication →
+                    {isPt ? 'Ver Publicação →' : 'View Publication →'}
                   </a>
                 )}
               </div>
@@ -257,8 +268,10 @@ function ResearchModal({
 export default function ResearchesSection() {
   const [active, setActive] = useState<Research | null>(null)
   const [expanded, setExpanded] = useState(false)
+  const locale = useLocale()
+  const isPt = locale === 'pt'
 
-  const all = portfolioData.researches
+  const all = getPortfolioData(locale).researches
   const displayed = expanded ? all : all.slice(0, LIMIT)
 
   return (
@@ -272,7 +285,7 @@ export default function ResearchesSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
         >
-          Researches
+          {isPt ? 'Pesquisas' : 'Researches'}
         </motion.p>
 
         <div
@@ -290,6 +303,7 @@ export default function ResearchesSection() {
               index={i}
               isLast={i === displayed.length - 1}
               onClick={() => setActive(research)}
+              isPt={isPt}
             />
           ))}
         </div>
@@ -307,16 +321,16 @@ export default function ResearchesSection() {
               style={{ color: 'var(--accent)' }}
             >
               {expanded ? (
-                <><span>Show less</span><span>↑</span></>
+                <><span>{isPt ? 'Mostrar menos' : 'Show less'}</span><span>↑</span></>
               ) : (
-                <><span>Show all {all.length} researches</span><span>↓</span></>
+                <><span>{isPt ? `Mostrar todas as ${all.length} pesquisas` : `Show all ${all.length} researches`}</span><span>↓</span></>
               )}
             </button>
           </motion.div>
         )}
       </div>
 
-      <ResearchModal research={active} onClose={() => setActive(null)} />
+      <ResearchModal research={active} onClose={() => setActive(null)} isPt={isPt} />
     </SectionWrapper>
   )
 }

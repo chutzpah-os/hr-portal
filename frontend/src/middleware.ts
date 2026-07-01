@@ -1,7 +1,11 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { PRODUCTS } from '@/data/solutions'
-import { CHALLENGES } from '@/data/challenges'
+import createMiddleware from 'next-intl/middleware'
+import { routing } from './i18n/routing'
+import { PRODUCTS } from './data/solutions'
+import { CHALLENGES } from './data/challenges'
+
+const intlMiddleware = createMiddleware(routing)
 
 const PRODUCT_SLUGS = new Set(PRODUCTS.map((p) => p.id))
 const CHALLENGE_SLUGS = new Set(CHALLENGES.map((c) => c.id))
@@ -17,7 +21,7 @@ const TOP_LEVEL_ROUTES = new Set([
   'challenges',
 ])
 
-export function middleware(request: NextRequest) {
+export default function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl
 
   if (
@@ -28,7 +32,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  // 1. Normalize: lowercase + strip trailing slash
+  // Normalize: lowercase + strip trailing slash
   const lower = pathname.toLowerCase()
   const sanitized = lower.length > 1 && lower.endsWith('/') ? lower.slice(0, -1) : lower
 
@@ -39,43 +43,43 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(url, { status: 308 })
   }
 
-  // 2. Validate route structure
+  // Strip locale prefix before validating route structure.
+  // localePrefix: 'always' means every locale (including the default 'en')
+  // is served under its own prefix — add new locales to routing.ts only.
   const segments = sanitized.split('/').filter(Boolean)
+  const isLocaleSegment = routing.locales.includes(segments[0] as (typeof routing.locales)[number])
+  const routeSegments = isLocaleSegment ? segments.slice(1) : segments
+  const localePrefix = isLocaleSegment ? `/${segments[0]}` : ''
 
-  // Root is always valid
-  if (segments.length === 0) return NextResponse.next()
+  if (routeSegments.length > 0) {
+    const [first, second] = routeSegments
 
-  const [first, second] = segments
-
-  // Unknown top-level route → home
-  if (!TOP_LEVEL_ROUTES.has(first)) {
-    return NextResponse.redirect(new URL('/', request.url), { status: 302 })
-  }
-
-  // No route goes deeper than 2 levels
-  if (segments.length > 2) {
-    return NextResponse.redirect(new URL(`/${first}`, request.url), { status: 302 })
-  }
-
-  // /solutions/[slug] — validate against known products
-  if (first === 'solutions' && second !== undefined) {
-    if (!PRODUCT_SLUGS.has(second)) {
-      return NextResponse.redirect(new URL('/solutions', request.url), { status: 302 })
+    // Unknown top-level route → home
+    if (!TOP_LEVEL_ROUTES.has(first)) {
+      return NextResponse.redirect(new URL(`${localePrefix}/`, request.url), { status: 302 })
     }
-  }
 
-  // /challenges/[slug] — validate against known challenges
-  if (first === 'challenges' && second !== undefined) {
-    if (!CHALLENGE_SLUGS.has(second)) {
-      return NextResponse.redirect(new URL('/challenges', request.url), { status: 302 })
+    // No route goes deeper than 2 levels
+    if (routeSegments.length > 2) {
+      return NextResponse.redirect(new URL(`${localePrefix}/${first}`, request.url), { status: 302 })
     }
+
+    // /solutions/[slug] — validate against known products
+    if (first === 'solutions' && second !== undefined && !PRODUCT_SLUGS.has(second)) {
+      return NextResponse.redirect(new URL(`${localePrefix}/solutions`, request.url), { status: 302 })
+    }
+
+    // /challenges/[slug] — validate against known challenges
+    if (first === 'challenges' && second !== undefined && !CHALLENGE_SLUGS.has(second)) {
+      return NextResponse.redirect(new URL(`${localePrefix}/challenges`, request.url), { status: 302 })
+    }
+
+    // /blog/[slug] → let through — validated at page level via Firestore
   }
 
-  // /blog/[slug] → let through — validated at page level via Firestore
-
-  return NextResponse.next()
+  return intlMiddleware(request)
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)'],
 }

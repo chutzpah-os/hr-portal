@@ -4,9 +4,12 @@ import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { PRODUCTS, type Product } from '@/data/solutions'
+import { useTranslations, useLocale } from 'next-intl'
+import { PRODUCTS, getLocalizedProduct, type Product } from '@/data/solutions'
 
 function ProductModal({ product, onClose }: { product: Product; onClose: () => void }) {
+  const tc = useTranslations('common')
+
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
     window.addEventListener('keydown', handler)
@@ -48,7 +51,7 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
           className="absolute top-5 right-5 text-[0.6rem] uppercase tracking-widest transition-opacity hover:opacity-50"
           style={{ color: 'var(--white-40)' }}
         >
-          ✕ Close
+          {tc('close')}
         </button>
 
         {/* Tags */}
@@ -152,7 +155,7 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
           style={{ borderTop: '1px solid rgba(10,10,15,0.07)' }}
         >
           <p className="text-xs" style={{ color: 'var(--white-35)' }}>
-            Full details, context, and updates on the dedicated page.
+            {tc('fullDetailsPage')}
           </p>
           <Link
             href={`/solutions/${product.id}`}
@@ -167,7 +170,7 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(10,10,15,0.08)' }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(10,10,15,0.05)' }}
           >
-            View full page →
+            {tc('viewFullPage')}
           </Link>
         </div>
       </motion.div>
@@ -176,6 +179,7 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
 }
 
 function ProductCard({ product, onClick }: { product: Product; onClick: () => void }) {
+  const tc = useTranslations('common')
   return (
     <button onClick={onClick} className="text-left block w-full h-full">
       <div
@@ -263,7 +267,7 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
 
           <div className="mt-5">
             <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--white-35)' }}>
-              Preview →
+              {tc('preview')}
             </span>
           </div>
         </div>
@@ -273,6 +277,10 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
 }
 
 export default function SolutionsPage() {
+  const t = useTranslations('lab')
+  const tc = useTranslations('common')
+  const locale = useLocale()
+  const products = PRODUCTS.map((p) => getLocalizedProduct(p, locale))
   const [selected, setSelected] = useState<Product | null>(null)
   const handleClose = useCallback(() => setSelected(null), [])
 
@@ -308,7 +316,7 @@ export default function SolutionsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
-            <p className="section-label mb-4">Lab</p>
+            <p className="section-label mb-4">{t('sectionLabel')}</p>
             <h1
               className="mb-4"
               style={{
@@ -320,13 +328,13 @@ export default function SolutionsPage() {
                 letterSpacing: '-0.02em',
               }}
             >
-              R&amp;D Showcase
+              {t('title')}
             </h1>
             <p
               className="text-base max-w-xl leading-relaxed"
               style={{ color: 'var(--white-55)' }}
             >
-              Systems, software, and platforms built end-to-end — from compliance intelligence and physical security to governance, education, and community infrastructure. Each one starts with a real problem.
+              {t('subtitle')}
             </p>
           </motion.div>
 
@@ -338,7 +346,7 @@ export default function SolutionsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
           >
-            {PRODUCTS.map((product, i) => (
+            {products.map((product, i) => (
               <motion.div
                 key={product.id}
                 layout
@@ -366,7 +374,7 @@ export default function SolutionsPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="section-label mb-4">What&apos;s next</p>
+            <p className="section-label mb-4">{tc('whatsNext')}</p>
             <h2
               className="mb-4"
               style={{
@@ -378,13 +386,13 @@ export default function SolutionsPage() {
                 letterSpacing: '-0.015em',
               }}
             >
-              Have a problem worth solving?
+              {tc('haveProblem')}
             </h2>
             <p
               className="text-sm mb-8 max-w-md mx-auto leading-relaxed"
               style={{ color: 'var(--white-50)' }}
             >
-              Whether it&apos;s technical, strategic, or social — if the problem is real, I want to hear about it.
+              {tc('haveProblemSub')}
             </p>
             <a
               href="https://calendly.com/hanielrolemberg"
@@ -395,7 +403,7 @@ export default function SolutionsPage() {
               onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.85' }}
               onMouseLeave={(e) => { e.currentTarget.style.opacity = '1' }}
             >
-              Book a Call
+              {tc('bookCallCta')}
             </a>
           </motion.div>
         </div>

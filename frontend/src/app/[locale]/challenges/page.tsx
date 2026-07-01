@@ -4,8 +4,8 @@ import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { CHALLENGES, type Challenge } from '@/data/challenges'
-import { useTranslations } from 'next-intl'
+import { CHALLENGES, getLocalizedChallenge, type Challenge } from '@/data/challenges'
+import { useTranslations, useLocale } from 'next-intl'
 
 function ChallengeModal({ challenge, onClose }: { challenge: Challenge; onClose: () => void }) {
   const tc = useTranslations('common')
@@ -223,7 +223,7 @@ function ChallengeCard({ challenge, onClick }: { challenge: Challenge; onClick: 
               className="absolute bottom-3 left-3 text-[0.6rem] font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full"
               style={{ backgroundColor: 'var(--accent)', color: 'rgb(255,255,255)', boxShadow: '0 2px 12px rgba(212,119,90,0.45)' }}
             >
-              Donate ♥
+              {tc('donate')} ♥
             </div>
           )}
         </div>
@@ -266,6 +266,8 @@ function ChallengeCard({ challenge, onClick }: { challenge: Challenge; onClick: 
 
 export default function ChallengesPage() {
   const t = useTranslations('challenges')
+  const locale = useLocale()
+  const challenges = CHALLENGES.map((c) => getLocalizedChallenge(c, locale))
   const [selected, setSelected] = useState<Challenge | null>(null)
   const handleClose = useCallback(() => setSelected(null), [])
 
@@ -308,7 +310,7 @@ export default function ChallengesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            {CHALLENGES.map((challenge, i) => (
+            {challenges.map((challenge, i) => (
               <motion.div
                 key={challenge.id}
                 initial={{ opacity: 0, y: 16, scale: 0.98 }}

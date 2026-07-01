@@ -1,17 +1,21 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useLocale } from 'next-intl'
 import SectionWrapper from '@/components/ui/SectionWrapper'
-import { portfolioData } from '@/data/portfolio'
+import { getPortfolioData } from '@/data/portfolio'
 
-const ACCENT: Record<string, string> = {
-  'Programming Languages':   '#D4775A',
-  'Web/Mobile Development':  '#c9a96e',
-  'Data & ML':               '#a78bfa',
-  'Databases':               '#fb923c',
-  'Cloud & DevOps':          '#60a5fa',
-  'Cybersecurity & Network': '#D4775A',
-}
+// Indexed by skill category position (locale-invariant, since category
+// labels are translated in portfolio.pt.ts and can't be used as keys).
+const ACCENT_BY_INDEX = [
+  '#D4775A', // Programming Languages
+  '#c9a96e', // Web/Mobile Development
+  '#a78bfa', // AI / ML
+  '#fb923c', // Data Engineering
+  '#fb923c', // Databases
+  '#D4775A', // Cybersecurity & Network
+  '#60a5fa', // Cloud & DevOps
+]
 
 function SkillRow({
   name,
@@ -22,7 +26,7 @@ function SkillRow({
   items: string[]
   index: number
 }) {
-  const accent = ACCENT[name] ?? '#D4775A'
+  const accent = ACCENT_BY_INDEX[index] ?? '#D4775A'
 
   return (
     <motion.div
@@ -68,6 +72,9 @@ function SkillRow({
 }
 
 export default function SkillsSection() {
+  const locale = useLocale()
+  const portfolioData = getPortfolioData(locale)
+
   return (
     <SectionWrapper id="skills" fullscreen={false}>
       <div className="max-w-content mx-auto px-6 md:px-10">
@@ -79,7 +86,7 @@ export default function SkillsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          Skills
+          {locale === 'pt' ? 'Habilidades' : 'Skills'}
         </motion.p>
 
         <div>

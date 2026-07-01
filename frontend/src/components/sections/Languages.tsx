@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { portfolioData, type Language } from '@/data/portfolio'
+import { useLocale } from 'next-intl'
+import { getPortfolioData, type Language } from '@/data/portfolio'
 
 function getYouTubeEmbedUrl(url: string): string | null {
   const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/)
@@ -63,9 +64,11 @@ function LanguageRow({
 function LanguageModal({
   lang,
   onClose,
+  isPt,
 }: {
   lang: Language | null
   onClose: () => void
+  isPt: boolean
 }) {
   const scrollRef = useRef<HTMLDivElement>(null)
 
@@ -136,7 +139,7 @@ function LanguageModal({
                 onClick={onClose}
                 className="shrink-0 flex items-center justify-center w-9 h-9 rounded-xl transition-colors duration-200 text-xl font-light"
                 style={{ backgroundColor: 'rgba(10,10,15,0.08)', color: 'var(--white-60)' }}
-                aria-label="Close"
+                aria-label={isPt ? 'Fechar' : 'Close'}
               >
                 ×
               </button>
@@ -160,7 +163,7 @@ function LanguageModal({
                 {lang.details.certifications.length > 0 && (
                   <>
                     <p className="text-[0.6rem] uppercase tracking-widest mb-3" style={{ color: 'var(--white-35)' }}>
-                      Certifications &amp; Notes
+                      {isPt ? 'Certificações & Notas' : 'Certifications & Notes'}
                     </p>
                     <ul className="space-y-2 mb-8">
                       {lang.details.certifications.map((cert, i) => (
@@ -177,7 +180,7 @@ function LanguageModal({
                 {embedUrl && (
                   <div className="mt-2">
                     <p className="text-[0.6rem] uppercase tracking-widest mb-3" style={{ color: 'var(--white-35)' }}>
-                      Verification
+                      {isPt ? 'Verificação' : 'Verification'}
                     </p>
                     <div
                       className="w-full rounded-2xl overflow-hidden"
@@ -204,7 +207,7 @@ function LanguageModal({
                     className="text-xs uppercase tracking-widest transition-opacity duration-200 hover:opacity-60"
                     style={{ color: 'var(--accent)' }}
                   >
-                    Verify Proficiency →
+                    {isPt ? 'Verificar Proficiência →' : 'Verify Proficiency →'}
                   </a>
                 )}
 
@@ -219,8 +222,10 @@ function LanguageModal({
 
 export default function LanguagesSection() {
   const [active, setActive] = useState<Language | null>(null)
+  const locale = useLocale()
+  const isPt = locale === 'pt'
 
-  const all = portfolioData.languages
+  const all = getPortfolioData(locale).languages
 
   return (
     <section id="languages">
@@ -233,7 +238,7 @@ export default function LanguagesSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          Languages
+          {isPt ? 'Idiomas' : 'Languages'}
         </motion.p>
 
         <div
@@ -256,7 +261,7 @@ export default function LanguagesSection() {
         </div>
       </div>
 
-      <LanguageModal lang={active} onClose={() => setActive(null)} />
+      <LanguageModal lang={active} onClose={() => setActive(null)} isPt={isPt} />
     </section>
   )
 }

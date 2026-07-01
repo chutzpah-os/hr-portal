@@ -47,7 +47,8 @@
   },
   "about": {
     "sectionLabel": "About",
-    "title": "About Me"
+    "title": "About Me",
+    "tagline": "Problem Solver · Aracaju, Brazil"
   },
   "portfolio": {
     "sectionLabel": "Portfolio",
@@ -97,7 +98,9 @@
     "subtitle": "Personal initiatives, campaigns, and challenges — each one a commitment to action.",
     "donateLabel": "Donate",
     "backAll": "← Back to all challenges",
-    "backChallenges": "← Challenges"
+    "backChallenges": "← Challenges",
+    "donateNote": "Every donation goes directly to cancer research. No minimum. Every amount matters.",
+    "donateCta": "Donate to Terry Fox Foundation →"
   },
   "press": {
     "sectionLabel": "Press",

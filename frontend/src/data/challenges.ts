@@ -1,3 +1,10 @@
+interface ChallengeTranslation {
+  tagline: string
+  shortDescription: string
+  fullDescription: string
+  tags: string[]
+}
+
 export interface Challenge {
   id: string
   name: string
@@ -9,6 +16,7 @@ export interface Challenge {
   imageFit?: 'contain' | 'cover'
   modalImage?: string
   cta?: { label: string; href: string; external?: boolean }
+  pt?: ChallengeTranslation
 }
 
 export const CHALLENGES: Challenge[] = [
@@ -29,9 +37,26 @@ If you want to contribute, every donation makes a difference.`,
     imageFit: 'cover',
     modalImage: '/images/hanielrunning.jpeg',
     cta: { label: 'Donate', href: 'https://international.terryfox.ca/page/1k-miles-of-hope', external: true },
+    pt: {
+      tagline: 'Correndo por uma cura.',
+      shortDescription: 'Uma campanha de arrecadação para financiar pesquisas contra o câncer — cada milha importa.',
+      fullDescription: `1k Miles of Hope é uma iniciativa de arrecadação criada para apoiar a pesquisa contra o câncer através da Terry Fox Foundation — um dos programas de pesquisa em câncer mais impactantes do mundo.
+
+O objetivo é simples: correr 1.000 milhas e arrecadar fundos que vão diretamente para financiar pesquisas científicas voltadas a encontrar uma cura. Cada quilômetro se traduz em recursos reais para cientistas reais trabalhando em descobertas reais.
+
+O câncer toca quase todas as famílias. Esta campanha é uma forma de transformar movimento em significado — fazer com que cada corrida, cada milha e cada passo conte para algo maior do que a linha de chegada.
+
+Se você quiser contribuir, toda doação faz diferença.`,
+      tags: ['Impacto Social', 'Saúde', 'Corrida'],
+    },
   },
 ]
 
 export function getChallenge(slug: string): Challenge | undefined {
   return CHALLENGES.find((c) => c.id === slug)
+}
+
+export function getLocalizedChallenge(challenge: Challenge, locale: string): Challenge {
+  if (locale !== 'pt' || !challenge.pt) return challenge
+  return { ...challenge, ...challenge.pt }
 }

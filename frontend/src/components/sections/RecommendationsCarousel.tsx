@@ -3,6 +3,7 @@
 import { useState, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import { useLocale } from 'next-intl'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 
 const RECS = [
@@ -96,6 +97,8 @@ export default function RecommendationsCarousel() {
   const [direction, setDirection] = useState(0)
   const [expanded, setExpanded] = useState(false)
   const touchStartX = useRef<number>(0)
+  const locale = useLocale()
+  const isPt = locale === 'pt'
 
   const goTo = useCallback((idx: number, dir: number) => {
     setDirection(dir)
@@ -137,7 +140,7 @@ export default function RecommendationsCarousel() {
         textDecoration: 'none',
       }}
     >
-      See +10 on LinkedIn
+      {isPt ? 'Ver +10 no LinkedIn' : 'See +10 on LinkedIn'}
       <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
         <path d="M2 8L8 2M8 2H3.5M8 2V6.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
@@ -156,7 +159,7 @@ export default function RecommendationsCarousel() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          Recommendations
+          {isPt ? 'Recomendações' : 'Recommendations'}
         </motion.p>
 
         {/* Carousel touch area */}
@@ -232,7 +235,7 @@ export default function RecommendationsCarousel() {
                         cursor: 'pointer',
                       }}
                     >
-                      Read more ↓
+                      {isPt ? 'Ler mais ↓' : 'Read more ↓'}
                     </button>
                   )}
                 </div>
@@ -310,8 +313,8 @@ export default function RecommendationsCarousel() {
           {/* Navigation bar */}
           <div className="flex items-center gap-2.5 mt-5">
             {/* Arrows */}
-            <NavArrow onClick={prev} dir="prev" label="Previous recommendation" />
-            <NavArrow onClick={next} dir="next" label="Next recommendation" />
+            <NavArrow onClick={prev} dir="prev" label={isPt ? 'Recomendação anterior' : 'Previous recommendation'} />
+            <NavArrow onClick={next} dir="next" label={isPt ? 'Próxima recomendação' : 'Next recommendation'} />
 
             {/* Dot indicators */}
             <div className="flex items-center gap-1.5 ml-1">
@@ -319,7 +322,7 @@ export default function RecommendationsCarousel() {
                 <button
                   key={i}
                   onClick={() => goTo(i, i > activeIdx ? 1 : -1)}
-                  aria-label={`Go to recommendation ${i + 1}`}
+                  aria-label={isPt ? `Ir para recomendação ${i + 1}` : `Go to recommendation ${i + 1}`}
                   style={{
                     height: '5px',
                     width: i === activeIdx ? '20px' : '5px',

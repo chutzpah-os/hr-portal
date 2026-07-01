@@ -2,8 +2,9 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useLocale } from 'next-intl'
 import SectionWrapper from '@/components/ui/SectionWrapper'
-import { portfolioData, type Certification } from '@/data/portfolio'
+import { getPortfolioData, type Certification } from '@/data/portfolio'
 
 const LIMIT = 4
 const rotations = [-3, 4, -2, 5, -4, 3, -5, 2, -3, 4]
@@ -14,6 +15,14 @@ const CATEGORY_LABEL: Record<Certification['category'], string> = {
   networking:  'Networking',
   data:        'Data',
   development: 'Development',
+}
+
+const CATEGORY_LABEL_PT: Record<Certification['category'], string> = {
+  cloud:       'Cloud',
+  security:    'Segurança',
+  networking:  'Redes',
+  data:        'Dados',
+  development: 'Desenvolvimento',
 }
 
 const CATEGORY_GRADIENTS: Record<Certification['category'], string> = {
@@ -28,10 +37,12 @@ function CertCard({
   cert,
   index,
   onClick,
+  isPt,
 }: {
   cert: Certification
   index: number
   onClick: () => void
+  isPt: boolean
 }) {
   const rot = rotations[index % rotations.length]
   const gradient = CATEGORY_GRADIENTS[cert.category]
@@ -61,7 +72,7 @@ function CertCard({
               className="text-[0.58rem] uppercase tracking-widest block mb-1.5"
               style={{ color: 'var(--accent)' }}
             >
-              {CATEGORY_LABEL[cert.category]}
+              {isPt ? CATEGORY_LABEL_PT[cert.category] : CATEGORY_LABEL[cert.category]}
             </span>
             <h3
               className="leading-snug mb-1.5"
@@ -92,9 +103,11 @@ function CertCard({
 function CertModal({
   cert,
   onClose,
+  isPt,
 }: {
   cert: Certification | null
   onClose: () => void
+  isPt: boolean
 }) {
   const scrollRef = useRef<HTMLDivElement>(null)
 
@@ -154,7 +167,7 @@ function CertModal({
                   className="text-[0.6rem] uppercase tracking-widest block mb-1"
                   style={{ color: 'var(--white-35)' }}
                 >
-                  {CATEGORY_LABEL[cert.category]}
+                  {isPt ? CATEGORY_LABEL_PT[cert.category] : CATEGORY_LABEL[cert.category]}
                 </span>
                 <h2
                   className="font-bold leading-tight mb-1.5"
@@ -174,7 +187,7 @@ function CertModal({
                 onClick={onClose}
                 className="shrink-0 flex items-center justify-center w-9 h-9 rounded-xl transition-colors duration-200 text-xl font-light"
                 style={{ backgroundColor: 'rgba(10,10,15,0.08)', color: 'var(--white-60)' }}
-                aria-label="Close"
+                aria-label={isPt ? 'Fechar' : 'Close'}
               >
                 ×
               </button>
@@ -205,14 +218,14 @@ function CertModal({
             >
               <div className="px-6 sm:px-10 py-8 max-w-2xl mx-auto w-full">
                 <p className="text-[0.6rem] uppercase tracking-widest mb-2" style={{ color: 'var(--white-35)' }}>
-                  Issuer
+                  {isPt ? 'Emissor' : 'Issuer'}
                 </p>
                 <p className="text-sm mb-6" style={{ color: 'var(--white-65)' }}>
                   {cert.issuer}
                 </p>
 
                 <p className="text-[0.6rem] uppercase tracking-widest mb-2" style={{ color: 'var(--white-35)' }}>
-                  Date
+                  {isPt ? 'Data' : 'Date'}
                 </p>
                 <p className="text-sm mb-8" style={{ color: 'var(--white-65)' }}>
                   {cert.date}
@@ -221,7 +234,7 @@ function CertModal({
                 {cert.credentialId && (
                   <>
                     <p className="text-[0.6rem] uppercase tracking-widest mb-2" style={{ color: 'var(--white-35)' }}>
-                      Credential ID
+                      {isPt ? 'ID da Credencial' : 'Credential ID'}
                     </p>
                     <p className="text-sm mb-8 font-mono" style={{ color: 'var(--white-55)' }}>
                       {cert.credentialId}
@@ -237,7 +250,7 @@ function CertModal({
                     className="text-xs uppercase tracking-widest transition-opacity duration-200 hover:opacity-60"
                     style={{ color: 'var(--accent)' }}
                   >
-                    Verify Credential →
+                    {isPt ? 'Verificar Credencial →' : 'Verify Credential →'}
                   </a>
                 )}
               </div>
@@ -252,8 +265,10 @@ function CertModal({
 export default function CertificationsSection() {
   const [active, setActive] = useState<Certification | null>(null)
   const [expanded, setExpanded] = useState(false)
+  const locale = useLocale()
+  const isPt = locale === 'pt'
 
-  const all = portfolioData.certifications
+  const all = getPortfolioData(locale).certifications
   const displayed = expanded ? all : all.slice(0, LIMIT)
 
   return (
@@ -269,13 +284,15 @@ export default function CertificationsSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
             >
-              Certifications
+              {isPt ? 'Certificações' : 'Certifications'}
             </motion.p>
           </div>
         </div>
 
         <motion.p layout className="text-xs mb-6" style={{ color: 'var(--white-30)' }}>
-          {all.length} certification{all.length !== 1 ? 's' : ''}
+          {isPt
+            ? `${all.length} certificaç${all.length !== 1 ? 'ões' : 'ão'}`
+            : `${all.length} certification${all.length !== 1 ? 's' : ''}`}
         </motion.p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -285,6 +302,7 @@ export default function CertificationsSection() {
               cert={cert}
               index={i}
               onClick={() => setActive(cert)}
+              isPt={isPt}
             />
           ))}
         </div>
@@ -302,16 +320,16 @@ export default function CertificationsSection() {
               style={{ color: 'var(--accent)' }}
             >
               {expanded ? (
-                <><span>Show less</span><span>↑</span></>
+                <><span>{isPt ? 'Mostrar menos' : 'Show less'}</span><span>↑</span></>
               ) : (
-                <><span>Show all {all.length} certifications</span><span>↓</span></>
+                <><span>{isPt ? `Mostrar todas as ${all.length} certificações` : `Show all ${all.length} certifications`}</span><span>↓</span></>
               )}
             </button>
           </motion.div>
         )}
       </div>
 
-      <CertModal cert={active} onClose={() => setActive(null)} />
+      <CertModal cert={active} onClose={() => setActive(null)} isPt={isPt} />
     </SectionWrapper>
   )
 }

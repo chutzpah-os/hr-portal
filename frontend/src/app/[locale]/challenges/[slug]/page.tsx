@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { CHALLENGES, getChallenge } from '@/data/challenges'
+import { CHALLENGES, getChallenge, getLocalizedChallenge } from '@/data/challenges'
 import { getTranslations } from 'next-intl/server'
 
 const BASE_URL = 'https://hanielrolemberg.com'
@@ -12,11 +12,12 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata(
-  { params }: { params: Promise<{ slug: string }> }
+  { params }: { params: Promise<{ locale: string; slug: string }> }
 ): Promise<Metadata> {
-  const { slug } = await params
-  const challenge = getChallenge(slug)
-  if (!challenge) return {}
+  const { locale, slug } = await params
+  const rawChallenge = getChallenge(slug)
+  if (!rawChallenge) return {}
+  const challenge = getLocalizedChallenge(rawChallenge, locale)
 
   const url = `${BASE_URL}/challenges/${challenge.id}`
   return {
@@ -38,11 +39,12 @@ export async function generateMetadata(
 }
 
 export default async function ChallengePage(
-  { params }: { params: Promise<{ slug: string }> }
+  { params }: { params: Promise<{ locale: string; slug: string }> }
 ) {
-  const { slug } = await params
-  const challenge = getChallenge(slug)
-  if (!challenge) notFound()
+  const { locale, slug } = await params
+  const rawChallenge = getChallenge(slug)
+  if (!rawChallenge) notFound()
+  const challenge = getLocalizedChallenge(rawChallenge, locale)
   const t = await getTranslations('challenges')
 
   const schema = {
@@ -221,7 +223,7 @@ export default async function ChallengePage(
               }}
             >
               <p className="text-sm mb-4" style={{ color: 'var(--white-55)' }}>
-                Every donation goes directly to cancer research. No minimum. Every amount matters.
+                {t('donateNote')}
               </p>
               <a
                 href={challenge.cta.href}
@@ -230,7 +232,7 @@ export default async function ChallengePage(
                 className="inline-flex items-center gap-2 text-xs uppercase tracking-widest px-6 py-3 rounded-full transition-opacity duration-200"
                 style={{ backgroundColor: 'var(--accent)', color: 'rgb(255,255,255)', fontWeight: 600 }}
               >
-                Donate to Terry Fox Foundation →
+                {t('donateCta')}
               </a>
             </div>
           )}
