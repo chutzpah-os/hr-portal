@@ -13,8 +13,17 @@ type PageDef = {
   priority: number
 }
 
-// Localizes a list of page definitions into one sitemap entry per locale
-// (e.g. /en/about, /pt/about). Add a locale to routing.ts and it's covered here automatically.
+// Build the hreflang alternates map for a given path across all locales.
+// x-default points to the default locale (en), as recommended by Google.
+function buildAlternates(path: string): Record<string, string> {
+  return Object.fromEntries([
+    ...routing.locales.map((l) => [l, `${BASE_URL}/${l}${path}`]),
+    ['x-default', `${BASE_URL}/${routing.defaultLocale}${path}`],
+  ])
+}
+
+// Generates one sitemap entry per locale for each page, with hreflang alternates.
+// Add a locale to routing.ts and it is covered here automatically.
 function localize(pages: PageDef[]): MetadataRoute.Sitemap {
   return routing.locales.flatMap((locale) =>
     pages.map((p) => ({
@@ -22,6 +31,9 @@ function localize(pages: PageDef[]): MetadataRoute.Sitemap {
       lastModified: p.lastModified,
       changeFrequency: p.changeFrequency,
       priority: p.priority,
+      alternates: {
+        languages: buildAlternates(p.path),
+      },
     }))
   )
 }
@@ -31,31 +43,31 @@ function localize(pages: PageDef[]): MetadataRoute.Sitemap {
 const STATIC_PAGES: PageDef[] = [
   {
     path: '',
-    lastModified: new Date('2026-06-20'),
+    lastModified: new Date('2026-07-01'),
     changeFrequency: 'monthly',
     priority: 1,
   },
   {
     path: '/about',
-    lastModified: new Date('2026-05-01'),
+    lastModified: new Date('2026-07-01'),
     changeFrequency: 'monthly',
     priority: 0.9,
   },
   {
     path: '/portfolio',
-    lastModified: new Date('2026-06-01'),
+    lastModified: new Date('2026-07-01'),
     changeFrequency: 'monthly',
     priority: 0.9,
   },
   {
     path: '/solutions',
-    lastModified: new Date('2026-06-20'),
+    lastModified: new Date('2026-07-01'),
     changeFrequency: 'monthly',
     priority: 0.9,
   },
   {
     path: '/challenges',
-    lastModified: new Date('2026-06-20'),
+    lastModified: new Date('2026-07-01'),
     changeFrequency: 'monthly',
     priority: 0.8,
   },
@@ -86,7 +98,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const latestPostDate = posts.length > 0 ? new Date(posts[0].date) : new Date('2026-01-01')
 
   // Individual blog posts: use publication date as lastModified.
-  // Mark long-form guides (higher word count / strategic content) with priority 0.8.
   const HIGH_PRIORITY_SLUGS = new Set([
     'how-cancer-works',
     'dlp-complete-guide-data-loss-prevention',
@@ -100,18 +111,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.8,
     },
-    // Solution pages: stable content, real date from data file last update
+    // Lab (solutions) individual pages — translated 2026-07-01
     ...PRODUCTS.map((p) => ({
       path: `/solutions/${p.id}`,
-      lastModified: new Date('2026-06-01'),
+      lastModified: new Date('2026-07-01'),
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),
-    // Challenge pages
+    // Challenge individual pages — translated 2026-07-01
     ...CHALLENGES.map((c) => ({
       path: `/challenges/${c.id}`,
-      lastModified: new Date('2026-06-20'),
-      changeFrequency: 'weekly' as const,
+      lastModified: new Date('2026-07-01'),
+      changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),
     ...posts.map((post) => ({
