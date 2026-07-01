@@ -135,7 +135,7 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
   const [category, setCategory] = useState<CategoryFilter>('all')
   const [selectedParent, setSelectedParent] = useState<string | null>(null)
   const [selectedChild, setSelectedChild] = useState<string | null>(null)
-  const [langFilter, setLangFilter] = useState<string | null>(null)
+  const [langFilter, setLangFilter] = useState<string | null>(locale)
   const [visible, setVisible] = useState(PAGE_SIZE)
 
   const reset = () => setVisible(PAGE_SIZE)
