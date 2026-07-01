@@ -1,9 +1,10 @@
-export type LocaleKey = 'en' | 'pt' | 'es' | 'fr'
+export type LocaleKey = 'en' | 'pt' | 'es' | 'fr' | 'ca'
 
 export function resolveLocale(locale: string): LocaleKey {
   if (locale === 'pt') return 'pt'
   if (locale === 'es') return 'es'
   if (locale === 'fr') return 'fr'
+  if (locale === 'ca') return 'ca'
   return 'en'
 }
 
@@ -89,6 +90,93 @@ interface UiStrings {
 }
 
 const UI: Record<LocaleKey, UiStrings> = {
+  ca: {
+    close: 'Tancar',
+    viewDetails: 'Veure detalls →',
+    showLess: 'Veure menys',
+    showAll: (n) => `Veure els ${n}`,
+    workHistory: 'Historial Professional',
+    keyFocusAreas: 'Àrees Clau de Competència',
+    technologies: 'Tecnologies',
+    certifications: 'Certificacions',
+    certCategoryLabel: {
+      cloud: 'Cloud', security: 'Seguretat', networking: 'Xarxes',
+      data: 'Dades', development: 'Desenvolupament',
+    },
+    issuer: 'Emissor',
+    date: 'Data',
+    credentialId: 'ID de Credencial',
+    verifyCredential: 'Verificar Credencial →',
+    showAllCerts: (n) => `Veure totes les ${n} certificacions`,
+    volunteering: 'Voluntariat',
+    focusAreas: 'Àrees d\'Acció',
+    responsibilities: 'Responsabilitats',
+    category: 'Categoria',
+    projects: 'Projectes',
+    projectFilters: [
+      { key: 'all',                 label: 'Tots'         },
+      { key: 'aiml',                label: 'IA / ML'      },
+      { key: 'softwareDevelopment', label: 'Programari'   },
+      { key: 'dataEngineering',     label: 'Dades'        },
+      { key: 'cybersecurity',       label: 'Ciber'        },
+      { key: 'challenges',          label: 'Reptes'       },
+    ],
+    projectCategoryLabel: {
+      aiml: 'IA / ML', softwareDevelopment: 'Programari',
+      dataEngineering: 'Dades', cybersecurity: 'Ciber', challenges: 'Reptes',
+    },
+    features: 'Funcionalitats',
+    techStack: 'Stack Tecnològic',
+    viewOnGitHub: 'Veure a GitHub →',
+    showAllProjects: (n) => `Veure tots els ${n} projectes`,
+    researches: 'Recerca',
+    researchStatusLabel: {
+      'in development': 'en desenvolupament',
+      'published': 'publicat',
+      'under review': 'en revisió',
+    },
+    viewPublication: 'Veure Publicació →',
+    showAllResearches: (n) => `Veure totes les ${n} recerques`,
+    education: 'Formació',
+    academicBackground: 'Formació Acadèmica',
+    degrees: 'Titulacions',
+    coursesPrograms: 'Cursos i Programes',
+    keyCourses: 'Assignatures Clau',
+    skillsDeveloped: 'Habilitats Desenvolupades',
+    languages: 'Idiomes',
+    certificationsNotes: 'Certificacions i Notes',
+    verification: 'Verificació',
+    verifyProficiency: 'Verificar Competència →',
+    skills: 'Habilitats',
+    awards: 'Premis',
+    noAwards: 'Encara sense premis',
+    portfolio: 'Portfolio',
+    expand: 'Expandir',
+    collapse: 'Col·lapsar',
+    recommendations: 'Recomanacions',
+    readMore: 'Llegir més ↓',
+    seeMoreLinkedIn: 'Veure +10 a LinkedIn',
+    prevRecommendation: 'Recomanació anterior',
+    nextRecommendation: 'Recomanació següent',
+    goToRecommendation: (n) => `Anar a la recomanació ${n}`,
+    downloadCv: 'Descarregar CV',
+    bookCall: 'Reservar una Reunió',
+    heroDescription: 'IA. Dades. Seguretat. R+D. Problemes difícils en múltiples disciplines — trobo el que està trencat i construeixo la versió que aguanta.',
+    heroHeadline: ['Investigar.', 'Construir.', 'Protegir.'],
+    marqueeItems: [
+      'Proves d\'Intrusió', 'Zero Trust', 'Modelat d\'Amenaces', 'SIEM',
+      'Seguretat de Xarxes', 'IA / ML', 'Enginyeria de Dades', 'Seguretat al Núvol',
+      'Python', 'Kubernetes', 'Ciberseguretat', 'BigQuery', 'TensorFlow',
+    ],
+    statsYears: 'Anys',
+    statsResearch: 'Recerca',
+    statsProjects: 'Projectes',
+    cvSelectArea: 'Selecciona una àrea de focus i tria el format.',
+    cvOnePagePerArea: 'Una pàgina per àrea',
+    cvDownloadTex: 'Descarregar .tex',
+    cvDownloadPdf: 'Descarregar .pdf',
+    cvGenerating: 'Generant...',
+  },
   fr: {
     close: 'Fermer',
     viewDetails: 'Voir les détails →',

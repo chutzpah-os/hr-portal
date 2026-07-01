@@ -28,6 +28,12 @@ const METADATA_BY_LOCALE: Record<string, { title: string; description: string; o
     ogTitle: 'À propos de Haniel Rolemberg',
     ogDescription: 'Solutionneur de Problèmes, Consultant en R&D et Professeur. Fondateur de la Problem Solvers Foundation. Mission : impacter 1 milliard de vies d\'ici 2035.',
   },
+  ca: {
+    title: 'Sobre mi — Haniel Rolemberg',
+    description: 'Solucionador de Problemes d\'Aracaju, Brasil. Consultor d\'R+D, Professor i Fundador de la Problem Solvers Foundation. En missió per impactar 1.000 milions de vides per al 2035 a través de la tecnologia i la connexió humana.',
+    ogTitle: 'Sobre Haniel Rolemberg',
+    ogDescription: 'Solucionador de Problemes, Consultor d\'R+D i Professor. Fundador de la Problem Solvers Foundation. Missió: impactar 1.000 milions de vides per al 2035.',
+  },
 }
 
 export async function generateMetadata(

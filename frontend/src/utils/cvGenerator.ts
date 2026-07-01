@@ -48,6 +48,17 @@ const SECTION_LABELS_BY_LOCALE = {
     gpa: 'GPA',
     country: 'Brésil',
   },
+  ca: {
+    education: 'Formació',
+    skillsSummary: 'Resum d\'Habilitats',
+    experience: 'Experiència',
+    projects: 'Projectes',
+    volunteering: 'Experiència de Voluntariat',
+    certifications: 'Certificacions',
+    technologies: 'Tecnologies',
+    gpa: 'GPA',
+    country: 'Brasil',
+  },
 } as const
 
 type CVLocale = keyof typeof SECTION_LABELS_BY_LOCALE
@@ -56,6 +67,7 @@ function resolveCvLocale(locale: string): CVLocale {
   if (locale === 'pt') return 'pt'
   if (locale === 'es') return 'es'
   if (locale === 'fr') return 'fr'
+  if (locale === 'ca') return 'ca'
   return 'en'
 }
 

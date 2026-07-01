@@ -1,0 +1,123 @@
+{
+  "nav": {
+    "portfolio": "Portfolio",
+    "lab": "Lab",
+    "challenges": "Reptes",
+    "blog": "Blog",
+    "press": "Premsa",
+    "writing": "Publicacions",
+    "research": "Recerca",
+    "about": "Sobre mi",
+    "bookCall": "Reservar una Reunió"
+  },
+  "common": {
+    "preview": "Vista prèvia →",
+    "viewFullPage": "Veure la pàgina completa →",
+    "backToLab": "← Tornar al Lab",
+    "backLab": "← Lab",
+    "backAllPosts": "← Tots els articles",
+    "backChallenges": "← Reptes",
+    "backToAllChallenges": "← Tornar a tots els reptes",
+    "close": "✕ Tancar",
+    "noResultsFound": "No s'han trobat articles.",
+    "fullDetailsPage": "Detalls complets, context i actualitzacions a la pàgina dedicada.",
+    "whatsNext": "Què ve ara",
+    "haveProblem": "Tens un problema que val la pena resoldre?",
+    "haveProblemSub": "Sigui tècnic, estratègic o social — si el problema és real, vull escoltar-lo.",
+    "bookCallCta": "Reservar una Reunió",
+    "donate": "Donar"
+  },
+  "home": {
+    "tagline": "Solucionador de Problemes",
+    "bio1": "El càncer sempre ha format part de la meva família — oncles, ties, cosins, tots enfrontant-s'hi en moments diferents. Als 16 anys, el meu pare va ser diagnosticat amb càncer de pell. Aleshores no sabia que la supervivència depenia tant del tipus. Per a mi, càncer significava una sola cosa. Aquest malentès va ser com un reinici: una urgència sobtada de viure plenament, actuar i dedicar-me a problemes que realment importen.",
+    "bio2": "Aquesta urgència em va portar a creuar fronteres — polítiques públiques, enginyeria de programari, sistemes de dades, ciberseguretat, IA/ML. No per acumular credencials, sinó perquè els problemes més difícils no caben en una sola disciplina.",
+    "bio3": "També em va portar a construir la <psf>Problem Solver Foundation</psf> — una comunitat que connecta persones més enllà de les fronteres per resoldre problemes reals mitjançant la tecnologia i la ciència. La meva missió: <mission>impactar mil milions de vides per al 2035</mission>.",
+    "bookCall": "Reservar una Reunió",
+    "aboutLink": "Sobre mi →",
+    "featuredContent": "Contingut Destacat",
+    "videos": "Vídeos",
+    "videoFilterAll": "Tots",
+    "viewAllVideos": "Veure tots els vídeos →",
+    "newsletterLabel": "Newsletter",
+    "newsletterSubtitle": "Notes ocasionals sobre ciberseguretat, treball profund i el que estic construint. Sense spam — només contingut rellevant.",
+    "newsletterPlaceholder": "el-teu@email.com",
+    "newsletterSubmit": "Subscriure's",
+    "newsletterSuccess": "Ja ets dins. Em posaré en contacte aviat.",
+    "newsletterError": "Alguna cosa ha anat malament. Si us plau, torna-ho a intentar."
+  },
+  "about": {
+    "sectionLabel": "Sobre mi",
+    "title": "Sobre Mi",
+    "tagline": "Solucionador de Problemes · Aracaju, Brasil"
+  },
+  "portfolio": {
+    "sectionLabel": "Portfolio",
+    "headline": "Investigar. Construir. Protegir.",
+    "downloadCV": "Descarregar CV",
+    "experience": "Experiència",
+    "education": "Formació",
+    "skills": "Habilitats",
+    "projects": "Projectes",
+    "certifications": "Certificacions",
+    "languages": "Idiomes",
+    "volunteering": "Voluntariat",
+    "researches": "Recerca",
+    "awards": "Premis",
+    "present": "Present",
+    "filterAll": "Tots",
+    "noResults": "No s'han trobat elements per al filtre seleccionat."
+  },
+  "blog": {
+    "sectionLabel": "Blog",
+    "title": "Escriptura",
+    "subtitle": "Reflexions sobre ciberseguretat, enginyeria, dades i la intersecció entre tecnologia i humanitat.",
+    "filterAll": "Tots",
+    "filterTechnical": "Tècnic",
+    "filterNonTechnical": "No Tècnic",
+    "sortNewest": "Més Recents",
+    "sortOldest": "Més Antics",
+    "searchPlaceholder": "Cercar articles…",
+    "noResults": "No s'han trobat articles.",
+    "readMore": "Llegir més →",
+    "loadMore": "Carregar més",
+    "backAllPosts": "← Tots els articles",
+    "tableOfContents": "Taula de continguts",
+    "faqs": "Preguntes Freqüents",
+    "tags": "Etiquetes",
+    "minuteRead": "min de lectura",
+    "publishedOn": "Publicat el"
+  },
+  "lab": {
+    "sectionLabel": "Lab",
+    "title": "Aparador R+D",
+    "subtitle": "Sistemes, programari i plataformes desenvolupats de principi a fi — des d'intel·ligència de compliment i seguretat física fins a governança, educació i infraestructura comunitària. Cadascun comença amb un problema real."
+  },
+  "challenges": {
+    "sectionLabel": "Reptes",
+    "title": "Reptes Personals",
+    "subtitle": "Iniciatives personals, campanyes i reptes — cadascun és un compromís amb l'acció.",
+    "donateLabel": "Donar",
+    "backAll": "← Tornar a tots els reptes",
+    "backChallenges": "← Reptes",
+    "donateNote": "Cada donació va directament a la recerca del càncer. Sense mínim. Cada quantitat importa.",
+    "donateCta": "Donar a la Terry Fox Foundation →"
+  },
+  "press": {
+    "sectionLabel": "Premsa",
+    "title": "Aparicions als Mitjans",
+    "subtitle": "Entrevistes, participacions en podcasts i cobertura de premsa s'enumeraran aquí.",
+    "empty": "Encara sense aparicions"
+  },
+  "researches": {
+    "sectionLabel": "Recerca",
+    "title": "Articles Científics",
+    "subtitle": "Articles acadèmics, informes tècnics i publicacions de recerca s'enumeraran aquí.",
+    "empty": "Cap article publicat encara"
+  },
+  "writing": {
+    "sectionLabel": "Publicacions",
+    "title": "Llibres Publicats",
+    "subtitle": "Llibres i publicacions de llarg abast s'enumeraran aquí.",
+    "empty": "Cap llibre publicat encara"
+  }
+}

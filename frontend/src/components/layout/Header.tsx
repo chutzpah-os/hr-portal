@@ -85,7 +85,7 @@ export default function Header() {
 
         {/* Language switcher — desktop */}
         <div className="hidden md:flex items-center gap-0.5 px-1">
-          {(['en', 'pt', 'es', 'fr'] as const).map((loc, i, arr) => (
+          {(['en', 'pt', 'es', 'fr', 'ca'] as const).map((loc, i, arr) => (
             <button
               key={loc}
               onClick={() => switchLocale(loc)}
@@ -196,7 +196,7 @@ export default function Header() {
 
             {/* Language switcher — mobile */}
             <div className="flex gap-1 px-4 py-1.5">
-              {(['en', 'pt', 'es', 'fr'] as const).map((loc) => (
+              {(['en', 'pt', 'es', 'fr', 'ca'] as const).map((loc) => (
                 <button
                   key={loc}
                   onClick={() => { switchLocale(loc); setMobileOpen(false) }}

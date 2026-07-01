@@ -10,6 +10,7 @@ const CHAPTERS = [
     labelPt: 'Origens',
     labelEs: 'Orígenes',
     labelFr: 'Origines',
+    labelCa: 'Orígens',
     paragraphs: [
       'I was born in Aracaju, in the northeast of Brazil — the smallest state in the country, but a place that shaped the foundation of who I am.',
       'When I was a child, I helped my father sell handcrafted wooden pieces at local artisan fairs. I started working very early, learning that dignity comes from effort and that survival often depends on creativity.',
@@ -34,12 +35,19 @@ const CHAPTERS = [
       'En grandissant, j\'ai également travaillé comme représentant commercial de produits pour salons de coiffure — une expérience qui m\'a appris à communiquer avec les gens, à établir la confiance, à comprendre la dynamique des affaires et à gérer le refus. Travailler directement avec des clients et des entrepreneurs m\'a donné une compréhension précoce de la façon dont les relations, la constance et l\'adaptabilité façonnent les opportunités.',
       'Ces années m\'ont enseigné la résilience avant même que je connaisse le mot. Mes premières leçons d\'entrepreneuriat, de discipline et de persévérance ne sont pas venues de livres ou d\'universités — elles sont venues de la vraie vie, de la responsabilité et de la nécessité.',
     ],
+    paragraphsCa: [
+      'Vaig néixer a Aracaju, al nord-est del Brasil — el menor estat del país, però un lloc que va forjar els fonaments del que soc.',
+      'De nen, ajudava el meu pare a vendre peces artesanals de fusta a les fires locals. Vaig començar a treballar molt aviat, aprenent que la dignitat ve de l\'esforç i que la supervivència sovint depèn de la creativitat.',
+      'A mesura que vaig créixer, també vaig treballar com a representant de vendes de productes per a perruqueries — una experiència que em va ensenyar a comunicar-me amb les persones, a construir confiança, a entendre la dinàmica dels negocis i a gestionar el rebuig. Treballar directament amb clients i emprenedors em va donar una comprensió primerenca de com les relacions, la consistència i l\'adaptabilitat modelen les oportunitats.',
+      'Aquells anys em van ensenyar resiliència abans que jo conegués la paraula. Les meves primeres lliçons d\'emprenedoria, disciplina i persistència no van venir de llibres ni universitats — van venir de la vida real, la responsabilitat i la necessitat.',
+    ],
   },
   {
     label: 'The Turning Point',
     labelPt: 'O Ponto de Virada',
     labelEs: 'El Punto de Inflexión',
     labelFr: 'Le Tournant',
+    labelCa: 'El Punt d\'Inflexió',
     paragraphs: [
       'In 2017, my family received difficult news: my father had been diagnosed with a skin disease. At the same time, cancer had already touched several members of my family — uncles, aunts, cousins. Watching people I loved suffer created a deep internal conflict inside me.',
       'That period changed the direction of my life. I stopped seeing technology and science as just interesting fields and started seeing them as tools capable of reducing suffering, saving time, protecting lives, and creating real impact.',
@@ -60,12 +68,18 @@ const CHAPTERS = [
       'Cette période a changé la direction de ma vie. J\'ai cessé de voir la technologie et la science comme de simples domaines intéressants et j\'ai commencé à les voir comme des outils capables de réduire la souffrance, de sauver du temps, de protéger des vies et de créer un impact réel.',
       'J\'ai réalisé que j\'avais deux choix : devenir une autre personne écrasée par le chaos, ou consacrer ma vie à construire des solutions en son sein. Cette décision me guide encore aujourd\'hui.',
     ],
+    paragraphsCa: [
+      'El 2017, la meva família va rebre una notícia difícil: el meu pare havia estat diagnosticat amb una malaltia de pell. Al mateix temps, el càncer ja havia tocat diversos membres de la meva família — oncles, ties, cosins. Veure patir persones que estimava va crear un profund conflicte interior en mi.',
+      'Aquell període va canviar la direcció de la meva vida. Vaig deixar de veure la tecnologia i la ciència com a simples camps interessants i vaig començar a veure-les com a eines capaces de reduir el sofriment, estalviar temps, protegir vides i crear un impacte real.',
+      'Em vaig adonar que tenia dues opcions: convertir-me en una altra persona aclaparada pel caos, o dedicar la meva vida a construir solucions dins d\'ell. Aquesta decisió encara em guia avui.',
+    ],
   },
   {
     label: 'The Journey',
     labelPt: 'A Jornada',
     labelEs: 'El Camino',
     labelFr: 'Le Parcours',
+    labelCa: 'El Camí',
     paragraphs: [
       'My path was never linear. I failed exams. I faced moments of financial instability. I experienced periods where fear, uncertainty, and self-doubt felt louder than ambition.',
       'There were projects that did not work, plans that collapsed, and moments where I questioned whether I was capable of building the future I imagined. But every setback forced me to develop something more important than confidence: endurance.',
@@ -86,12 +100,18 @@ const CHAPTERS = [
       'Il y a eu des projets qui n\'ont pas fonctionné, des plans qui se sont effondrés, et des moments où je me suis demandé si j\'étais capable de construire l\'avenir que j\'imaginais. Mais chaque revers m\'a obligé à développer quelque chose de plus important que la confiance : l\'endurance.',
       'J\'ai appris que la résilience ne consiste pas à ne jamais se briser — il s\'agit de se reconstruire avec plus de clarté à chaque fois que cela arrive.',
     ],
+    paragraphsCa: [
+      'El meu camí mai ha estat lineal. Vaig suspendre exàmens. Vaig afrontar moments d\'inestabilitat financera. Vaig viure períodes en què la por, la incertesa i el dubte sobre mi mateix sonaven més fort que l\'ambició.',
+      'Hi va haver projectes que no van funcionar, plans que es van enfonsar i moments en què vaig qüestionar si era capaç de construir el futur que imaginava. Però cada revés em va obligar a desenvolupar alguna cosa més important que la confiança: la resistència.',
+      'Vaig aprendre que la resiliència no consisteix a no trencar-se mai — consisteix a reconstruir-se amb més claredat cada vegada que passa.',
+    ],
   },
   {
     label: 'The Craft',
     labelPt: 'O Ofício',
     labelEs: 'El Oficio',
     labelFr: 'Le Métier',
+    labelCa: 'L\'Ofici',
     paragraphs: [
       'Technology became my language for solving problems. I became deeply interested in cybersecurity, software engineering, artificial intelligence, data systems, and scientific innovation — because they sit at the intersection of logic, strategy, and human impact.',
       'Over time, I dedicated myself to building systems, studying emerging technologies, and exploring how AI and engineering could be applied to healthcare, education, security, and human development at scale.',
@@ -112,12 +132,18 @@ const CHAPTERS = [
       'Au fil du temps, je me suis consacré à construire des systèmes, à étudier les technologies émergentes et à explorer comment l\'IA et l\'ingénierie pourraient être appliquées à la santé, l\'éducation, la sécurité et le développement humain à grande échelle.',
       'Ce qui m\'attire le plus n\'est pas la technologie elle-même — c\'est ce qu\'elle rend possible. La capacité de protéger. La capacité de prédire. La capacité de connecter les gens et d\'accélérer le progrès.',
     ],
+    paragraphsCa: [
+      'La tecnologia es va convertir en el meu llenguatge per resoldre problemes. Em vaig interessar profundament en la ciberseguretat, l\'enginyeria de programari, la intel·ligència artificial, els sistemes de dades i la innovació científica — perquè es troben a la intersecció entre la lògica, l\'estratègia i l\'impacte humà.',
+      'Amb el temps, em vaig dedicar a construir sistemes, estudiar tecnologies emergents i explorar com la IA i l\'enginyeria podrien aplicar-se a la salut, l\'educació, la seguretat i el desenvolupament humà a gran escala.',
+      'El que més m\'atrau no és la tecnologia en si — és el que la tecnologia fa possible. La capacitat de protegir. La capacitat de predir. La capacitat de connectar persones i accelerar el progrés.',
+    ],
   },
   {
     label: 'The Mission',
     labelPt: 'A Missão',
     labelEs: 'La Misión',
     labelFr: 'La Mission',
+    labelCa: 'La Missió',
     paragraphs: [
       'As my vision evolved, so did my mission. I began creating projects focused on impact: cybersecurity platforms, AI systems, health-oriented technologies, educational ecosystems, and initiatives designed to scale knowledge and opportunity.',
       'The foundation of everything I build comes from a single idea: human potential should not be limited by geography, fear, lack of access, or lack of information.',
@@ -138,12 +164,18 @@ const CHAPTERS = [
       'La base de tout ce que je construis vient d\'une seule idée : le potentiel humain ne devrait pas être limité par la géographie, la peur, le manque d\'accès ou le manque d\'information.',
       'Je veux que les choses que je crée me survivent — pas simplement comme des produits, mais comme des systèmes qui améliorent genuinement les vies.',
     ],
+    paragraphsCa: [
+      'A mesura que la meva visió va evolucionar, la meva missió també va evolucionar. Vaig començar a crear projectes centrats en l\'impacte: plataformes de ciberseguretat, sistemes d\'IA, tecnologies orientades a la salut, ecosistemes educatius i iniciatives dissenyades per escalar el coneixement i l\'oportunitat.',
+      'La base de tot el que construeixo ve d\'una sola idea: el potencial humà no hauria d\'estar limitat per la geografia, la por, la manca d\'accés o la manca d\'informació.',
+      'Vull que les coses que creo em sobrevivin — no simplement com a productes, sinó com a sistemes que milloren genuïnament les vides.',
+    ],
   },
   {
     label: 'What I Believe',
     labelPt: 'No Que Eu Acredito',
     labelEs: 'En Lo Que Creo',
     labelFr: 'Ce En Quoi Je Crois',
+    labelCa: 'El Que Crec',
     paragraphs: [
       'Today, I believe that meaningful progress happens when courage meets discipline. I believe technology should serve humanity, not distract it. I believe suffering can either break a person or sharpen their sense of purpose.',
       'My decisions are guided by a long-term vision: creating solutions capable of impacting millions — and eventually billions — of lives.',
@@ -164,10 +196,16 @@ const CHAPTERS = [
       'Mes décisions sont guidées par une vision à long terme : créer des solutions capables d\'impacter des millions — et finalement des milliards — de vies.',
       'Je tiens profondément à l\'innovation, à la vérité, à la résilience, à la foi, à la science et à la responsabilité. Je crois que l\'intelligence sans caractère est dangereuse, et que l\'ambition sans intention est vide.',
     ],
+    paragraphsCa: [
+      'Avui crec que el progrés significatiu succeeix quan el coratge es troba amb la disciplina. Crec que la tecnologia ha de servir la humanitat, no distreure-la. Crec que el sofriment pot trencar una persona o afinar el seu sentit de la intenció.',
+      'Les meves decisions estan guiades per una visió a llarg termini: crear solucions capaces d\'impactar milions — i eventualment milers de milions — de vides.',
+      'Em preocupen profundament la innovació, la veritat, la resiliència, la fe, la ciència i la responsabilitat. Crec que la intel·ligència sense caràcter és perillosa, i l\'ambició sense intenció és buida.',
+    ],
     closing: 'Will this create real impact for people?',
     closingPt: 'Isso vai criar impacto real para as pessoas?',
     closingEs: '¿Esto creará un impacto real para las personas?',
     closingFr: 'Est-ce que cela créera un impact réel pour les gens ?',
+    closingCa: 'Això crearà un impacte real per a les persones?',
   },
 ]
 
@@ -182,6 +220,7 @@ function getChapterLabel(chapter: typeof CHAPTERS[number], locale: string): stri
   if (locale === 'pt') return chapter.labelPt
   if (locale === 'es') return chapter.labelEs
   if (locale === 'fr') return (chapter as { labelFr?: string }).labelFr ?? chapter.label
+  if (locale === 'ca') return (chapter as { labelCa?: string }).labelCa ?? chapter.label
   return chapter.label
 }
 
@@ -189,6 +228,7 @@ function getChapterParagraphs(chapter: typeof CHAPTERS[number], locale: string):
   if (locale === 'pt') return chapter.paragraphsPt
   if (locale === 'es') return chapter.paragraphsEs
   if (locale === 'fr') return (chapter as { paragraphsFr?: string[] }).paragraphsFr ?? chapter.paragraphs
+  if (locale === 'ca') return (chapter as { paragraphsCa?: string[] }).paragraphsCa ?? chapter.paragraphs
   return chapter.paragraphs
 }
 
@@ -197,6 +237,7 @@ function getChapterClosing(chapter: typeof CHAPTERS[number], locale: string): st
   if (locale === 'pt') return (chapter as { closingPt?: string }).closingPt
   if (locale === 'es') return (chapter as { closingEs?: string }).closingEs
   if (locale === 'fr') return (chapter as { closingFr?: string }).closingFr
+  if (locale === 'ca') return (chapter as { closingCa?: string }).closingCa
   return (chapter as { closing?: string }).closing
 }
 
