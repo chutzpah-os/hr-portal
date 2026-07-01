@@ -26,7 +26,10 @@ export interface Post extends PostMeta {
 
 function contentDir(locale = 'en'): string {
   const localeDir = path.join(process.cwd(), 'src/content/blog', locale)
-  if (fs.existsSync(localeDir)) return localeDir
+  if (fs.existsSync(localeDir)) {
+    const hasMdx = fs.readdirSync(localeDir).some((f) => f.endsWith('.mdx'))
+    if (hasMdx) return localeDir
+  }
   return path.join(process.cwd(), 'src/content/blog/en')
 }
 
