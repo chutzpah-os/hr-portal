@@ -107,6 +107,20 @@ La plateforme couvre les cadres de gouvernance d\'entreprise, le suivi de la con
 Plus de détails seront partagés à mesure que le projet mûrit.`,
       tags: ['R&D', 'Logiciel', 'Conformité', 'Gouvernement', 'Gestion'],
     },
+    ca: {
+      tagline: 'Governança que protegeix. Compliment que escala.',
+      shortDescription: 'Plataforma de governança corporativa i compliment per a corporacions mitjanes i grans — i per a les startups que construeixen cap a aquesta escala.',
+      fullDescription: `Shoresh és una plataforma de compliment i governança corporativa construïda per protegir les corporacions des de dins cap a fora.
+
+La premissa: els errors de governança rarament són sobtats — s\'acumulen silenciosament a través de buits en els processos, responsabilitats poc clares i punts cecs de compliment. Shoresh fa visibles aquests buits abans que es converteixin en passius.
+
+Dissenyada per a corporacions mitjanes i grans amb la complexitat estructural que exigeix una governança rigorosa, i igualment accessible per a startups que volen nàixer preparades per al compliment en lloc d\'adaptar-lo posteriorment.
+
+La plataforma cobreix marcs de governança corporativa, seguiment del compliment regulatori, visibilitat dels riscos i estructures de responsabilitat — donant a la direcció la confiança que l\'organització està protegida, auditable i alineada.
+
+Més detalls es compartiran a mesura que el projecte maduresa.`,
+      tags: ['R+D', 'Programari', 'Compliment', 'Govern', 'Gestió'],
+    },
   },
   {
     id: 'cherut',
@@ -159,6 +173,18 @@ En son cœur : les OKRs se déclinent en priorités hebdomadaires, qui se connec
 
 Conçu pour les personnes ambitieuses qui veulent avancer plus vite sans perdre de vue pourquoi elles avancent.`,
       tags: ['R&D', 'Logiciel', 'Gestion'],
+    },
+    ca: {
+      tagline: 'La teva vida, funcionant en un sistema.',
+      shortDescription: 'Sistema operatiu complet per a la productivitat personal — OKRs, hàbits, calendari i diari en un sol lloc.',
+      fullDescription: `Cherut és un sistema operatiu de vida construït per a persones que tracten l\'execució diària com a dades mesurables. El nom prové de la paraula hebrea per a llibertat — perquè un bon sistema no et limita, et allibera.
+
+La premissa: la majoria de les eines de productivitat estan desconnectades. Fas el seguiment dels objectius en una app, els hàbits en una altra, el calendari en una tercera, i reflexiones en un lloc totalment diferent. Cherut unifica aquestes capes en un únic sistema operatiu estructurat.
+
+Al seu nucli: els OKRs es desglossen en prioritats setmanals, que es connecten als hàbits diaris i blocs de temps. Cada nit, una breu revisió tanca el cicle. Amb el temps, acumules un conjunt de dades personals — no només tasques completades, sinó patrons, energia, finestres de concentració i progrés cap al que realment importa.
+
+Construït per a persones ambicioses que volen moure\'s més ràpid sense perdre la claredat sobre per què es mouen.`,
+      tags: ['R+D', 'Programari', 'Gestió'],
     },
   },
   {
@@ -220,6 +246,20 @@ Au-delà de la coordination, le portail est un espace pour l\'identité de la co
 
 Conçu pour faire évoluer la mission sans perdre l\'élément humain.`,
       tags: ['R&D', 'Logiciel', 'Communauté'],
+    },
+    ca: {
+      tagline: 'El sistema operatiu de la comunitat Problem Solvers.',
+      shortDescription: 'Plataforma interna de la Problem Solver Foundation — connectant membres, fent seguiment de l\'impacte i coordinant iniciatives a tota la comunitat.',
+      fullDescription: `El PSF Portal és l\'espina dorsal interna de la Problem Solver Foundation — una comunitat amb la missió d\'impactar 1.000 milions de vides fins al 2035.
+
+El repte: a mesura que una comunitat distribuïda creix, la coordinació es trenca. Els membres perden el context, les iniciatives perden impuls i la missió es dilueix. El PSF Portal existeix per evitar-ho.
+
+Al seu nucli, el portal connecta les persones entre si i amb el treball que importa. Els membres poden trobar iniciatives en marxa, unir-se a equips, fer el seguiment del progrés col·lectiu i compartir recursos. Els líders obtenen visibilitat sobre el que avança i el que s\'ha aturat.
+
+Més enllà de la coordinació, el portal és un espai per a la identitat de la comunitat — on la cultura de resolució de problemes es documenta, practica i transmet.
+
+Construït per escalar la missió sense perdre l\'element humà.`,
+      tags: ['R+D', 'Programari', 'Comunitat'],
     },
   },
   {
@@ -302,6 +342,25 @@ Construit à l\'intersection de l\'ingénierie des données, du machine learning
       ],
       tags: ['R&D', 'Logiciel', 'IA/ML'],
     },
+    ca: {
+      tagline: 'Convertint soroll en senyals — abans que els problemes es converteixin en crisis.',
+      shortDescription: 'Plataforma amb IA que agrega, processa i revela patrons de dades per entendre i anticipar problemes complexos en diferents dominis.',
+      fullDescription: `El Data Aggregator és una plataforma de recerca i intel·ligència construïda al voltant d\'una premissa central: la majoria dels problemes són predictibles — si estàs mirant les dades correctes.
+
+El sistema extreu de fonts heterogènies (conjunts de dades públics, publicacions de recerca, senyals de la comunitat, feeds estructurats) i aplica pipelines d\'IA/ML per identificar patrons, correlacions i indicadors primerencs en diferents dominis. El resultat no són dades en brut — és insight: el que emergeix, per què importa i quines respostes val la pena explorar.
+
+Els casos d\'ús van des de l\'impacte social (identificar comunitats en risc abans que sorgeixin les crisis) fins a la recerca tècnica (detectar buits en solucions existents), passant per la intel·ligència organitzacional (entendre on s\'estanquen les iniciatives i per què).
+
+El focus de R+D és construir pipelines agnòstics del domini però sensibles al context — sistemes capaços de raonar sobre diferents classes de problemes sense requerir una re-arquitectura completa per a cada nou domini.
+
+Construït a la intersecció entre enginyeria de dades, machine learning i intel·ligència de decisió.`,
+      metrics: [
+        { label: 'Focus', value: 'Predicció i Prevenció' },
+        { label: 'Stack', value: 'IA/ML · Enginyeria de Dades' },
+        { label: 'Abast', value: 'Multidomini' },
+      ],
+      tags: ['R+D', 'Programari', 'IA/ML'],
+    },
   },
   {
     id: 'seder-koah',
@@ -352,6 +411,18 @@ La plateforme centralise les opérations internes — gestion des équipes, coor
 
 Conçue pour apporter de l\'ordre, de la clarté opérationnelle et une efficacité mesurable aux unités gouvernementales de toute taille, des départements municipaux aux organismes publics plus importants.`,
       tags: ['R&D', 'Logiciel', 'Gouvernement', 'Gestion', 'Conformité'],
+    },
+    ca: {
+      tagline: 'Estructura i força per a les institucions públiques.',
+      shortDescription: 'Sistema de gestió interna dissenyat per a unitats governamentals — organitzant operacions, persones i processos en el sector públic per generar eficiència real.',
+      fullDescription: `Seder Koah és una plataforma de gestió interna construïda específicament per a unitats governamentals i institucions públiques — amb l\'eficiència com a objectiu central.
+
+El sector públic té demandes operatives úniques: restriccions regulatòries, responsabilitat multinivell, jerarquies organitzatives complexes i la pressió constant de fer més amb recursos limitats. Les eines de gestió genèriques no van ser dissenyades per a aquest context. Seder Koah sí.
+
+La plataforma centralitza les operacions internes — gestió d\'equips, coordinació de fluxos de treball, control de documents i seguiment de processos — eliminant les redundàncies i friccions que drenen temps i recursos de les institucions públiques. El resultat és una operació més àgil, ràpida i responsable.
+
+Construïda per portar ordre, claredat operativa i eficiència mesurable a unitats governamentals de qualsevol mida, des de departaments municipals fins a organismes públics més grans.`,
+      tags: ['R+D', 'Programari', 'Govern', 'Gestió', 'Compliment'],
     },
   },
   {
@@ -424,6 +495,23 @@ La base : des modèles de vision par ordinateur entraînés pour des conditions 
       ],
       tags: ['R&D', 'Logiciel', 'IA/ML', 'Cybersécurité'],
     },
+    ca: {
+      tagline: 'Ulls que mai parpellegen. Intel·ligència que mai dorm.',
+      shortDescription: 'Plataforma de seguretat física amb visió per computador i IA — monitorant persones, objectes i moviments en temps real.',
+      fullDescription: `Sentinel AI porta la intel·ligència màquina a la seguretat física. On la vigilància tradicional grava, Sentinel AI comprèn.
+
+El sistema utilitza visió per computador, machine learning i pipelines de dades per monitorar entorns en temps real — detectant persones, fent seguiment de patrons de moviment, identificant objectes i revelant anomalies abans que escalin. L\'objectiu no és substituir el judici humà, sinó ampliar-lo: donant als equips de seguretat el context que necessiten, exactament quan ho necessiten.
+
+Construït per a entorns on la seguretat física és de missió crítica — des de campus corporatius i infraestructures crítiques fins a espais públics que requereixen supervisió contínua i intel·ligent.
+
+La base: models de visió per computador entrenats per a condicions del món real, reconeixement de patrons de comportament i infraestructura de dades dissenyada per a alertes de baixa latència a escala.`,
+      metrics: [
+        { label: 'Tecnologia Principal', value: 'Visió per Computador' },
+        { label: 'Stack', value: 'IA/ML · Dades' },
+        { label: 'Focus', value: 'Seguretat Física' },
+      ],
+      tags: ['R+D', 'Programari', 'IA/ML', 'Ciberseguretat'],
+    },
   },
   {
     id: 'etz',
@@ -460,6 +548,14 @@ El foco está en la criptografía — garantizando que la información sensible 
 
 Le focus est sur la cryptographie — garantissant que les informations sensibles sont protégées au repos, en transit et lors de l\'accès. Conçue pour répondre à la rigueur exigée par les secteurs réglementés. Plus de détails seront partagés à mesure que le projet mûrit.`,
       tags: ['R&D', 'Logiciel', 'Cybersécurité', 'Gouvernement', 'Conformité'],
+    },
+    ca: {
+      tagline: 'Les dades sensibles mereixen una protecció seriosa.',
+      shortDescription: 'Registre i gestió segura de dades i actius sensibles — construït sobre fonaments criptogràfics.',
+      fullDescription: `Etz és una plataforma per al registre i la gestió segura de dades sensibles i actius crítics, construïda per a entorns governamentals i orientats al compliment.
+
+El focus és en la criptografia — garantint que la informació sensible estigui protegida en repòs, en trànsit i en l\'accés. Dissenyada per complir amb el rigor que exigeixen els sectors regulats. Més detalls es compartiran a mesura que el projecte maduresa.`,
+      tags: ['R+D', 'Programari', 'Ciberseguretat', 'Govern', 'Compliment'],
     },
   },
   {
@@ -533,6 +629,23 @@ La formule : input structuré + output dans le monde réel + boucles de responsa
         { label: 'Modèle', value: 'Produit + Initiative' },
       ],
       tags: ['R&D', 'Logiciel', 'Éducation'],
+    },
+    ca: {
+      tagline: 'Empoderant els joves a través de les llengües.',
+      shortDescription: 'Aprenentatge d\'idiomes amb una fórmula pròpia dissenyada per convertir l\'ambició en fluïdesa mesurable.',
+      fullDescription: `HofShiLang és un producte d\'aprenentatge d\'idiomes construït al voltant d\'una fórmula pròpia — no un currículum genèric, sinó un mètode estructurat que traça el camí de l\'ambició als resultats mesurables.
+
+L\'insight central: la majoria dels aprenents s\'estanquen perquè fan seguiment de l\'esforç (hores estudiades, lliçons completades) en lloc del progrés (el que realment són capaços de fer). HofShiLang canvia el marc. Cada aprenent té un objectiu clar en el MECR, un contracte setmanal de compromís i objectius d\'interacció en el món real que construeixen cap a la fluïdesa.
+
+Més enllà del producte, HofShiLang opera com una iniciativa educativa. A través d\'aliances amb programes juvenils, porta l\'accés als idiomes a comunitats on el multilingüisme és un camí directe cap a l\'oportunitat econòmica.
+
+La fórmula: input estructurat + output en el món real + cicles de responsabilitat. El resultat: aprenents que no només estudien un idioma — comencen a usar-lo.`,
+      metrics: [
+        { label: 'Marc', value: 'Alineat al MECR' },
+        { label: 'Focus', value: 'Joventut' },
+        { label: 'Model', value: 'Producte + Iniciativa' },
+      ],
+      tags: ['R+D', 'Programari', 'Educació'],
     },
   },
 ]

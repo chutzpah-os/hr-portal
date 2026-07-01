@@ -76,6 +76,18 @@ Le cancer touche presque toutes les familles. Cette campagne est une façon de t
 Si vous souhaitez contribuer, chaque don fait la différence.`,
       tags: ['Impact Social', 'Santé', 'Course'],
     },
+    ca: {
+      tagline: 'Corrent per una cura.',
+      shortDescription: 'Una campanya de recaptació per finançar la recerca contra el càncer — cada milla compta.',
+      fullDescription: `1k Miles of Hope és una iniciativa de recaptació creada per donar suport a la recerca contra el càncer a través de la Terry Fox Foundation — un dels programes de recerca oncològica més impactants del món.
+
+L\'objectiu és simple: córrer 1.000 milles i recaptar fons que van directament a finançar recerca científica orientada a trobar una cura. Cada quilòmetre es tradueix en recursos reals per a científics reals que treballen en descobertes reals.
+
+El càncer toca gairebé totes les famílies. Aquesta campanya és una manera de convertir el moviment en significat — fer que cada cursa, cada milla i cada pas compti per a alguna cosa més gran que la línia d\'arribada.
+
+Si vols contribuir, cada donació fa la diferència.`,
+      tags: ['Impacte Social', 'Salut', 'Cursa'],
+    },
   },
 ]
 
