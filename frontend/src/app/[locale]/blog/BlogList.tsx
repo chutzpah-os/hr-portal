@@ -270,6 +270,16 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
               <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--white-35)' }}>
                 {formatDate(post.date, locale)}
               </p>
+              <span
+                className="text-[0.48rem] uppercase tracking-widest px-2 py-0.5 rounded-full"
+                style={{
+                  backgroundColor: 'rgba(147,197,253,0.06)',
+                  color: 'rgba(147,197,253,0.55)',
+                  border: '1px solid rgba(147,197,253,0.14)',
+                }}
+              >
+                {post.lang}
+              </span>
               {post.groups.length > 0 && (
                 <div className="flex flex-wrap gap-1.5">
                   {post.groups.map((g) => (
