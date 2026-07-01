@@ -85,7 +85,7 @@ export default function Header() {
 
         {/* Language switcher — desktop */}
         <div className="hidden md:flex items-center gap-0.5 px-1">
-          {(['en', 'pt'] as const).map((loc, i) => (
+          {(['en', 'pt', 'es', 'fr'] as const).map((loc, i, arr) => (
             <button
               key={loc}
               onClick={() => switchLocale(loc)}
@@ -97,7 +97,7 @@ export default function Header() {
               }}
             >
               {loc.toUpperCase()}
-              {i === 0 && <span style={{ color: 'rgba(10,10,15,0.2)', marginLeft: '2px' }}> |</span>}
+              {i < arr.length - 1 && <span style={{ color: 'rgba(10,10,15,0.2)', marginLeft: '2px' }}> |</span>}
             </button>
           ))}
         </div>
@@ -196,7 +196,7 @@ export default function Header() {
 
             {/* Language switcher — mobile */}
             <div className="flex gap-1 px-4 py-1.5">
-              {(['en', 'pt'] as const).map((loc) => (
+              {(['en', 'pt', 'es', 'fr'] as const).map((loc) => (
                 <button
                   key={loc}
                   onClick={() => { switchLocale(loc); setMobileOpen(false) }}
