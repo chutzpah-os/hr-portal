@@ -5,18 +5,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useLocale } from 'next-intl'
 import CVDownloadModal from '@/components/ui/CVDownloadModal'
-
-const MARQUEE_ITEMS = [
-  'Penetration Testing', 'Zero Trust', 'Threat Modeling', 'SIEM',
-  'Network Security', 'AI / ML', 'Data Engineering', 'Cloud Security',
-  'Python', 'Kubernetes', 'Cybersecurity', 'BigQuery', 'TensorFlow',
-]
-
-const MARQUEE_ITEMS_PT = [
-  'Testes de Intrusão', 'Zero Trust', 'Modelagem de Ameaças', 'SIEM',
-  'Segurança de Redes', 'IA / ML', 'Engenharia de Dados', 'Segurança em Nuvem',
-  'Python', 'Kubernetes', 'Cibersegurança', 'BigQuery', 'TensorFlow',
-]
+import { getUiStrings } from '@/i18n/uiStrings'
 
 const fadeUp = (delay = 0) => ({
   hidden:  { opacity: 0, y: 28 },
@@ -26,8 +15,8 @@ const fadeUp = (delay = 0) => ({
 export default function Hero() {
   const [cvOpen, setCvOpen] = useState(false)
   const locale = useLocale()
-  const isPt = locale === 'pt'
-  const marqueeItems = isPt ? MARQUEE_ITEMS_PT : MARQUEE_ITEMS
+  const ui = getUiStrings(locale)
+  const [h1, h2, h3] = ui.heroHeadline
 
   return (
     <section
@@ -68,11 +57,7 @@ export default function Hero() {
               marginBottom: '2rem',
             }}
           >
-            {isPt ? (
-              <>Pesquisar.<br /><mark>Construir.</mark><br />Proteger.</>
-            ) : (
-              <>Research.<br /><mark>Build.</mark><br />Secure.</>
-            )}
+            {h1}<br /><mark>{h2}</mark><br />{h3}
           </motion.h1>
 
           {/* Description */}
@@ -81,9 +66,7 @@ export default function Hero() {
             style={{ color: 'var(--white-65)' }}
             initial="hidden" animate="visible" variants={fadeUp(0.28)}
           >
-            {isPt
-              ? <>IA. Dados. Segurança. P&amp;D. Problemas difíceis em várias disciplinas — eu encontro o que está quebrado e construo a versão que se sustenta.</>
-              : <>AI. Data. Security. R&amp;D. Hard problems across disciplines — I find what&apos;s broken and build the version that holds.</>}
+            {ui.heroDescription}
           </motion.p>
 
           {/* CTAs */}
@@ -102,7 +85,7 @@ export default function Hero() {
               onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.85' }}
               onMouseLeave={(e) => { e.currentTarget.style.opacity = '1' }}
             >
-              {isPt ? 'Baixar CV' : 'Download CV'}
+              {ui.downloadCv}
             </button>
             <a
               href="https://calendly.com/hanielrolemberg"
@@ -119,7 +102,7 @@ export default function Hero() {
                 e.currentTarget.style.color = 'var(--white-60)'
               }}
             >
-              {isPt ? 'Agendar Reunião' : 'Book a Call'}
+              {ui.bookCall}
             </a>
           </motion.div>
         </div>
@@ -155,7 +138,7 @@ export default function Hero() {
               />
             </div>
 
-            {/* Eyebrow badge — top of portrait */}
+            {/* Eyebrow badge */}
             <motion.div
               initial={{ opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -178,7 +161,7 @@ export default function Hero() {
               </p>
             </motion.div>
 
-            {/* Stats badge — bottom-left of portrait */}
+            {/* Stats badge */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -196,18 +179,11 @@ export default function Hero() {
                 gap: '16px',
               }}
             >
-              {(isPt
-                ? [
-                    { value: '6+',  label: 'Anos'      },
-                    { value: '6',   label: 'Pesquisas' },
-                    { value: '30+', label: 'Projetos'  },
-                  ]
-                : [
-                    { value: '6+',  label: 'Years'    },
-                    { value: '6',   label: 'Research' },
-                    { value: '30+', label: 'Projects' },
-                  ]
-              ).map(({ value, label }) => (
+              {[
+                { value: '6+',  label: ui.statsYears    },
+                { value: '6',   label: ui.statsResearch },
+                { value: '30+', label: ui.statsProjects },
+              ].map(({ value, label }) => (
                 <div key={label} className="text-center">
                   <p
                     className="text-lg font-bold leading-none mb-0.5"
@@ -242,7 +218,7 @@ export default function Hero() {
         }}
       >
         <div className="marquee-track">
-          {[...marqueeItems, ...marqueeItems].map((item, i) => (
+          {[...ui.marqueeItems, ...ui.marqueeItems].map((item, i) => (
             <span
               key={i}
               className="flex-shrink-0 flex items-center"

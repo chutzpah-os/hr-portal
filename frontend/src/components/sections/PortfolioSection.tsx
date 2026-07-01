@@ -4,23 +4,24 @@ import { useState, type ReactNode } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLocale } from 'next-intl'
 import { getPortfolioData } from '@/data/portfolio'
+import { getUiStrings } from '@/i18n/uiStrings'
 
 export default function PortfolioSection({ children }: { children: ReactNode }) {
   const [expanded, setExpanded] = useState(false)
   const locale = useLocale()
+  const ui = getUiStrings(locale)
   const portfolioData = getPortfolioData(locale)
-  const isPt = locale === 'pt'
 
   const SUMMARY = [
-    { label: isPt ? 'Histórico Profissional' : 'Work History', count: portfolioData.experience.length },
-    { label: isPt ? 'Voluntariado' : 'Volunteering', count: portfolioData.volunteering.length },
-    { label: isPt ? 'Projetos' : 'Projects', count: Object.values(portfolioData.projects).flat().length },
-    { label: isPt ? 'Pesquisas' : 'Researches', count: portfolioData.researches.length },
-    { label: isPt ? 'Educação' : 'Education', count: portfolioData.education.length },
-    { label: isPt ? 'Idiomas' : 'Languages', count: portfolioData.languages.length },
-    { label: isPt ? 'Certificações' : 'Certifications', count: portfolioData.certifications.length },
-    { label: isPt ? 'Habilidades' : 'Skills', count: portfolioData.skills.reduce((s, c) => s + c.items.length, 0) },
-    { label: isPt ? 'Premiações' : 'Awards', count: portfolioData.awards.length },
+    { label: ui.workHistory,    count: portfolioData.experience.length },
+    { label: ui.volunteering,   count: portfolioData.volunteering.length },
+    { label: ui.projects,       count: Object.values(portfolioData.projects).flat().length },
+    { label: ui.researches,     count: portfolioData.researches.length },
+    { label: ui.education,      count: portfolioData.education.length },
+    { label: ui.languages,      count: portfolioData.languages.length },
+    { label: ui.certifications, count: portfolioData.certifications.length },
+    { label: ui.skills,         count: portfolioData.skills.reduce((s, c) => s + c.items.length, 0) },
+    { label: ui.awards,         count: portfolioData.awards.length },
   ]
 
   const total = SUMMARY.reduce((s, { count }) => s + count, 0)
@@ -39,7 +40,7 @@ export default function PortfolioSection({ children }: { children: ReactNode }) 
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          {isPt ? 'Portfólio' : 'Portfolio'}
+          {ui.portfolio}
         </motion.p>
 
         <motion.button
@@ -63,9 +64,9 @@ export default function PortfolioSection({ children }: { children: ReactNode }) 
           }}
         >
           {expanded ? (
-            <><span>{isPt ? 'Recolher' : 'Collapse'}</span><span>↑</span></>
+            <><span>{ui.collapse}</span><span>↑</span></>
           ) : (
-            <><span>{isPt ? 'Expandir' : 'Expand'}</span><span>↓</span></>
+            <><span>{ui.expand}</span><span>↓</span></>
           )}
         </motion.button>
       </div>
@@ -73,7 +74,6 @@ export default function PortfolioSection({ children }: { children: ReactNode }) 
       {/* ── States ── */}
       <AnimatePresence mode="wait">
         {!expanded ? (
-          /* ── Collapsed: editorial index card ── */
           <motion.div
             key="summary"
             initial={{ opacity: 0, y: 10 }}
@@ -90,7 +90,6 @@ export default function PortfolioSection({ children }: { children: ReactNode }) 
                 backgroundColor: 'rgba(10,10,15,0.025)',
               }}
             >
-              {/* Index rows */}
               {SUMMARY.map(({ label, count }, i) => (
                 <motion.div
                   key={label}
@@ -116,7 +115,6 @@ export default function PortfolioSection({ children }: { children: ReactNode }) 
                     {label}
                   </span>
 
-                  {/* Dot leader */}
                   <span
                     className="flex-1 mx-4"
                     style={{
@@ -138,7 +136,6 @@ export default function PortfolioSection({ children }: { children: ReactNode }) 
                 </motion.div>
               ))}
 
-              {/* Total row */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -164,7 +161,6 @@ export default function PortfolioSection({ children }: { children: ReactNode }) 
             </div>
           </motion.div>
         ) : (
-          /* ── Expanded: full content ── */
           <motion.div
             key="content"
             initial={{ opacity: 0 }}

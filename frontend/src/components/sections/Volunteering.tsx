@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { useLocale } from 'next-intl'
 import { getPortfolioData, type Volunteering } from '@/data/portfolio'
+import { getUiStrings } from '@/i18n/uiStrings'
 
 const LIMIT = 3
 
@@ -13,13 +14,13 @@ function VolunteeringTimelineItem({
   index,
   isLast,
   onClick,
-  isPt,
+  viewDetails,
 }: {
   vol: Volunteering
   index: number
   isLast: boolean
   onClick: () => void
-  isPt: boolean
+  viewDetails: string
 }) {
   return (
     <motion.div
@@ -52,7 +53,6 @@ function VolunteeringTimelineItem({
       {/* Clickable content */}
       <button onClick={onClick} className="group text-left pb-8 flex-1">
         <div className="flex items-start gap-4">
-          {/* Image thumbnail */}
           <div
             className="shrink-0 rounded-xl overflow-hidden"
             style={{ width: '68px', height: '68px', backgroundColor: 'rgba(212,119,90,0.10)' }}
@@ -75,7 +75,6 @@ function VolunteeringTimelineItem({
             )}
           </div>
 
-          {/* Text */}
           <div className="min-w-0 pt-1">
             <h3
               className="leading-snug mb-1 transition-colors duration-200 group-hover:text-[var(--accent)]"
@@ -94,7 +93,7 @@ function VolunteeringTimelineItem({
               className="inline-flex items-center gap-1 text-[0.6rem] uppercase tracking-widest mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
               style={{ color: 'var(--accent)' }}
             >
-              {isPt ? 'Ver detalhes →' : 'View details →'}
+              {viewDetails}
             </span>
           </div>
         </div>
@@ -106,12 +105,13 @@ function VolunteeringTimelineItem({
 function VolunteeringModal({
   vol,
   onClose,
-  isPt,
+  locale,
 }: {
   vol: Volunteering | null
   onClose: () => void
-  isPt: boolean
+  locale: string
 }) {
+  const ui = getUiStrings(locale)
   const scrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -161,7 +161,6 @@ function VolunteeringModal({
               backgroundColor: 'rgb(248,248,252)',
             }}
           >
-            {/* Cover image banner */}
             {vol.image && (
               <div className="relative w-full shrink-0" style={{ height: '200px' }}>
                 <Image
@@ -221,7 +220,7 @@ function VolunteeringModal({
                 onClick={onClose}
                 className="shrink-0 flex items-center justify-center w-9 h-9 rounded-xl transition-colors duration-200 text-xl font-light"
                 style={{ backgroundColor: 'rgba(10,10,15,0.08)', color: 'var(--white-60)' }}
-                aria-label={isPt ? 'Fechar' : 'Close'}
+                aria-label={ui.close}
               >
                 ×
               </button>
@@ -243,7 +242,7 @@ function VolunteeringModal({
                 {vol.details.focusAreas && (
                   <>
                     <p className="text-[0.6rem] uppercase tracking-widest mb-3" style={{ color: 'var(--white-35)' }}>
-                      {isPt ? 'Áreas de Foco' : 'Focus Areas'}
+                      {ui.focusAreas}
                     </p>
                     <ul className="space-y-2 mb-8">
                       {vol.details.focusAreas.map((area, i) => (
@@ -259,7 +258,7 @@ function VolunteeringModal({
                 {vol.details.responsibilities && (
                   <>
                     <p className="text-[0.6rem] uppercase tracking-widest mb-3" style={{ color: 'var(--white-35)' }}>
-                      {isPt ? 'Responsabilidades' : 'Responsibilities'}
+                      {ui.responsibilities}
                     </p>
                     <ul className="space-y-2 mb-8">
                       {vol.details.responsibilities.map((resp, i) => (
@@ -273,7 +272,7 @@ function VolunteeringModal({
                 )}
 
                 <p className="text-[0.6rem] uppercase tracking-widest mb-2" style={{ color: 'var(--white-35)' }}>
-                  {isPt ? 'Categoria' : 'Category'}
+                  {ui.category}
                 </p>
                 <p className="text-sm" style={{ color: 'var(--white-65)' }}>
                   {vol.details.category}
@@ -291,7 +290,7 @@ export default function VolunteeringSection() {
   const [active, setActive] = useState<Volunteering | null>(null)
   const [expanded, setExpanded] = useState(false)
   const locale = useLocale()
-  const isPt = locale === 'pt'
+  const ui = getUiStrings(locale)
 
   const all = getPortfolioData(locale).volunteering
   const displayed = expanded ? all : all.slice(0, LIMIT)
@@ -307,7 +306,7 @@ export default function VolunteeringSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          {isPt ? 'Voluntariado' : 'Volunteering'}
+          {ui.volunteering}
         </motion.p>
 
         <div>
@@ -318,7 +317,7 @@ export default function VolunteeringSection() {
               index={i}
               isLast={i === displayed.length - 1}
               onClick={() => setActive(vol)}
-              isPt={isPt}
+              viewDetails={ui.viewDetails}
             />
           ))}
         </div>
@@ -336,16 +335,16 @@ export default function VolunteeringSection() {
               style={{ color: 'var(--accent)' }}
             >
               {expanded ? (
-                <><span>{isPt ? 'Mostrar menos' : 'Show less'}</span><span>↑</span></>
+                <><span>{ui.showLess}</span><span>↑</span></>
               ) : (
-                <><span>{isPt ? `Mostrar todas as ${all.length}` : `Show all ${all.length}`}</span><span>↓</span></>
+                <><span>{ui.showAll(all.length)}</span><span>↓</span></>
               )}
             </button>
           </motion.div>
         )}
       </div>
 
-      <VolunteeringModal vol={active} onClose={() => setActive(null)} isPt={isPt} />
+      <VolunteeringModal vol={active} onClose={() => setActive(null)} locale={locale} />
     </section>
   )
 }

@@ -6,29 +6,25 @@ import Image from 'next/image'
 import { useLocale } from 'next-intl'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import { getPortfolioData, type Research } from '@/data/portfolio'
+import { getUiStrings } from '@/i18n/uiStrings'
 import { AREA_LABELS } from '@/utils/cvAreaMap'
 
 const LIMIT = 4
-
-const STATUS_LABELS_PT: Record<Research['status'], string> = {
-  'in development': 'em desenvolvimento',
-  'published': 'publicado',
-  'under review': 'em revisão',
-}
 
 function ResearchRow({
   research,
   index,
   onClick,
   isLast,
-  isPt,
+  locale,
 }: {
   research: Research
   index: number
   onClick: () => void
   isLast: boolean
-  isPt: boolean
+  locale: string
 }) {
+  const ui = getUiStrings(locale)
   return (
     <motion.button
       onClick={onClick}
@@ -42,7 +38,6 @@ function ResearchRow({
         className="flex items-start gap-5 py-5 transition-colors duration-200"
         style={{ borderBottom: isLast ? 'none' : '1px solid rgba(10,10,15,0.07)' }}
       >
-        {/* Image / fallback */}
         <div
           className="shrink-0 rounded-lg overflow-hidden"
           style={{ width: '52px', height: '52px', backgroundColor: 'rgba(212,119,90,0.10)' }}
@@ -65,7 +60,6 @@ function ResearchRow({
           )}
         </div>
 
-        {/* Content */}
         <div className="flex-1 min-w-0">
           <h3
             className="leading-snug mb-2 transition-colors duration-200 group-hover:text-[var(--accent)]"
@@ -93,12 +87,11 @@ function ResearchRow({
                 letterSpacing: '0.15em',
               }}
             >
-              {isPt ? STATUS_LABELS_PT[research.status] : research.status}
+              {ui.researchStatusLabel[research.status] ?? research.status}
             </span>
           </div>
         </div>
 
-        {/* Arrow */}
         <span
           className="shrink-0 text-base mt-0.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200"
           style={{ color: 'var(--accent)' }}
@@ -113,12 +106,13 @@ function ResearchRow({
 function ResearchModal({
   research,
   onClose,
-  isPt,
+  locale,
 }: {
   research: Research | null
   onClose: () => void
-  isPt: boolean
+  locale: string
 }) {
+  const ui = getUiStrings(locale)
   const scrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -206,7 +200,7 @@ function ResearchModal({
                 onClick={onClose}
                 className="shrink-0 flex items-center justify-center w-9 h-9 rounded-xl transition-colors duration-200 text-xl font-light"
                 style={{ backgroundColor: 'rgba(10,10,15,0.08)', color: 'var(--white-60)' }}
-                aria-label={isPt ? 'Fechar' : 'Close'}
+                aria-label={ui.close}
               >
                 ×
               </button>
@@ -220,7 +214,7 @@ function ResearchModal({
                 className="text-[0.65rem] font-medium px-2.5 py-1 rounded-full"
                 style={{ backgroundColor: 'rgba(255,255,255,0.85)', color: 'var(--white-50)', border: '1px solid var(--white-10)' }}
               >
-                {isPt ? STATUS_LABELS_PT[research.status] : research.status}
+                {ui.researchStatusLabel[research.status] ?? research.status}
               </span>
               {research.cvAreas.map((area) => (
                 <span
@@ -253,7 +247,7 @@ function ResearchModal({
                     className="text-xs uppercase tracking-widest transition-opacity duration-200 hover:opacity-60"
                     style={{ color: 'var(--accent)' }}
                   >
-                    {isPt ? 'Ver Publicação →' : 'View Publication →'}
+                    {ui.viewPublication}
                   </a>
                 )}
               </div>
@@ -269,7 +263,7 @@ export default function ResearchesSection() {
   const [active, setActive] = useState<Research | null>(null)
   const [expanded, setExpanded] = useState(false)
   const locale = useLocale()
-  const isPt = locale === 'pt'
+  const ui = getUiStrings(locale)
 
   const all = getPortfolioData(locale).researches
   const displayed = expanded ? all : all.slice(0, LIMIT)
@@ -285,7 +279,7 @@ export default function ResearchesSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
         >
-          {isPt ? 'Pesquisas' : 'Researches'}
+          {ui.researches}
         </motion.p>
 
         <div
@@ -303,7 +297,7 @@ export default function ResearchesSection() {
               index={i}
               isLast={i === displayed.length - 1}
               onClick={() => setActive(research)}
-              isPt={isPt}
+              locale={locale}
             />
           ))}
         </div>
@@ -321,16 +315,16 @@ export default function ResearchesSection() {
               style={{ color: 'var(--accent)' }}
             >
               {expanded ? (
-                <><span>{isPt ? 'Mostrar menos' : 'Show less'}</span><span>↑</span></>
+                <><span>{ui.showLess}</span><span>↑</span></>
               ) : (
-                <><span>{isPt ? `Mostrar todas as ${all.length} pesquisas` : `Show all ${all.length} researches`}</span><span>↓</span></>
+                <><span>{ui.showAllResearches(all.length)}</span><span>↓</span></>
               )}
             </button>
           </motion.div>
         )}
       </div>
 
-      <ResearchModal research={active} onClose={() => setActive(null)} isPt={isPt} />
+      <ResearchModal research={active} onClose={() => setActive(null)} locale={locale} />
     </SectionWrapper>
   )
 }

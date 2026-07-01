@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLocale } from 'next-intl'
 import { getPortfolioData, type Language } from '@/data/portfolio'
+import { getUiStrings } from '@/i18n/uiStrings'
 
 function getYouTubeEmbedUrl(url: string): string | null {
   const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/)
@@ -64,12 +65,13 @@ function LanguageRow({
 function LanguageModal({
   lang,
   onClose,
-  isPt,
+  locale,
 }: {
   lang: Language | null
   onClose: () => void
-  isPt: boolean
+  locale: string
 }) {
+  const ui = getUiStrings(locale)
   const scrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -116,7 +118,6 @@ function LanguageModal({
             className="fixed flex flex-col rounded-3xl overflow-hidden"
             style={{ top: 72, left: 8, right: 8, bottom: 16, zIndex: 50, backgroundColor: 'rgb(248,248,252)' }}
           >
-            {/* Header */}
             <div
               className="flex items-start justify-between px-6 py-5 shrink-0"
               style={{ borderBottom: '1px solid rgba(10,10,15,0.08)', backgroundColor: 'rgb(248,248,252)' }}
@@ -139,13 +140,12 @@ function LanguageModal({
                 onClick={onClose}
                 className="shrink-0 flex items-center justify-center w-9 h-9 rounded-xl transition-colors duration-200 text-xl font-light"
                 style={{ backgroundColor: 'rgba(10,10,15,0.08)', color: 'var(--white-60)' }}
-                aria-label={isPt ? 'Fechar' : 'Close'}
+                aria-label={ui.close}
               >
                 ×
               </button>
             </div>
 
-            {/* Body */}
             <div
               ref={scrollRef}
               className="flex-1 min-h-0 overflow-y-auto overscroll-contain"
@@ -163,7 +163,7 @@ function LanguageModal({
                 {lang.details.certifications.length > 0 && (
                   <>
                     <p className="text-[0.6rem] uppercase tracking-widest mb-3" style={{ color: 'var(--white-35)' }}>
-                      {isPt ? 'Certificações & Notas' : 'Certifications & Notes'}
+                      {ui.certificationsNotes}
                     </p>
                     <ul className="space-y-2 mb-8">
                       {lang.details.certifications.map((cert, i) => (
@@ -176,11 +176,10 @@ function LanguageModal({
                   </>
                 )}
 
-                {/* YouTube embed */}
                 {embedUrl && (
                   <div className="mt-2">
                     <p className="text-[0.6rem] uppercase tracking-widest mb-3" style={{ color: 'var(--white-35)' }}>
-                      {isPt ? 'Verificação' : 'Verification'}
+                      {ui.verification}
                     </p>
                     <div
                       className="w-full rounded-2xl overflow-hidden"
@@ -198,7 +197,6 @@ function LanguageModal({
                   </div>
                 )}
 
-                {/* Fallback: plain link if not YouTube */}
                 {!embedUrl && lang.details.verificationLink && lang.details.verificationLink !== '#' && (
                   <a
                     href={lang.details.verificationLink}
@@ -207,7 +205,7 @@ function LanguageModal({
                     className="text-xs uppercase tracking-widest transition-opacity duration-200 hover:opacity-60"
                     style={{ color: 'var(--accent)' }}
                   >
-                    {isPt ? 'Verificar Proficiência →' : 'Verify Proficiency →'}
+                    {ui.verifyProficiency}
                   </a>
                 )}
 
@@ -223,7 +221,7 @@ function LanguageModal({
 export default function LanguagesSection() {
   const [active, setActive] = useState<Language | null>(null)
   const locale = useLocale()
-  const isPt = locale === 'pt'
+  const ui = getUiStrings(locale)
 
   const all = getPortfolioData(locale).languages
 
@@ -238,7 +236,7 @@ export default function LanguagesSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          {isPt ? 'Idiomas' : 'Languages'}
+          {ui.languages}
         </motion.p>
 
         <div
@@ -261,7 +259,7 @@ export default function LanguagesSection() {
         </div>
       </div>
 
-      <LanguageModal lang={active} onClose={() => setActive(null)} isPt={isPt} />
+      <LanguageModal lang={active} onClose={() => setActive(null)} locale={locale} />
     </section>
   )
 }

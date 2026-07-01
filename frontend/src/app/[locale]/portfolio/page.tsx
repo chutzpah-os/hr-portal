@@ -14,7 +14,7 @@ import AwardsSection from '@/components/sections/AwardsSection'
 
 const BASE_URL = 'https://hanielrolemberg.com'
 
-const METADATA_BY_LOCALE = {
+const METADATA_BY_LOCALE: Record<string, { title: string; description: string; ogDescription: string }> = {
   en: {
     title: 'Portfolio — Haniel Rolemberg',
     description: '6+ years of experience across cybersecurity, software engineering, data engineering, and AI/ML. 30+ projects, 22 certifications, and research across 6 initiatives. Full professional history and skills.',
@@ -25,13 +25,18 @@ const METADATA_BY_LOCALE = {
     description: 'Mais de 6 anos de experiência em cibersegurança, engenharia de software, engenharia de dados e IA/ML. 30+ projetos, 22 certificações e pesquisas em 6 iniciativas. Histórico profissional completo e habilidades.',
     ogDescription: 'Cibersegurança, engenharia de software, dados e IA/ML. 6+ anos de experiência, 30+ projetos, 22 certificações.',
   },
+  es: {
+    title: 'Portafolio — Haniel Rolemberg',
+    description: 'Más de 6 años de experiencia en ciberseguridad, ingeniería de software, ingeniería de datos e IA/ML. 30+ proyectos, 22 certificaciones e investigaciones en 6 iniciativas. Historial profesional completo y habilidades.',
+    ogDescription: 'Ciberseguridad, ingeniería de software, datos e IA/ML. 6+ años de experiencia, 30+ proyectos, 22 certificaciones.',
+  },
 }
 
 export async function generateMetadata(
   { params }: { params: Promise<{ locale: string }> }
 ): Promise<Metadata> {
   const { locale } = await params
-  const m = locale === 'pt' ? METADATA_BY_LOCALE.pt : METADATA_BY_LOCALE.en
+  const m = METADATA_BY_LOCALE[locale] ?? METADATA_BY_LOCALE.en
 
   return {
     title: m.title,

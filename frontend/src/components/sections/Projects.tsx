@@ -5,42 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { useLocale } from 'next-intl'
 import { getPortfolioData, type PortfolioData, type Project, type ProjectCategory } from '@/data/portfolio'
+import { getUiStrings } from '@/i18n/uiStrings'
 
 type FilterKey = 'all' | ProjectCategory
-
-const FILTERS: { key: FilterKey; label: string }[] = [
-  { key: 'all',                 label: 'All'       },
-  { key: 'aiml',                label: 'AI / ML'   },
-  { key: 'softwareDevelopment', label: 'Software'  },
-  { key: 'dataEngineering',     label: 'Data'      },
-  { key: 'cybersecurity',       label: 'Cyber'     },
-  { key: 'challenges',          label: 'Challenges'},
-]
-
-const FILTERS_PT: { key: FilterKey; label: string }[] = [
-  { key: 'all',                 label: 'Todos'     },
-  { key: 'aiml',                label: 'IA / ML'   },
-  { key: 'softwareDevelopment', label: 'Software'  },
-  { key: 'dataEngineering',     label: 'Dados'      },
-  { key: 'cybersecurity',       label: 'Cyber'     },
-  { key: 'challenges',          label: 'Desafios'  },
-]
-
-const CATEGORY_LABEL: Record<string, string> = {
-  aiml:                'AI / ML',
-  softwareDevelopment: 'Software',
-  dataEngineering:     'Data',
-  cybersecurity:       'Cyber',
-  challenges:          'Challenges',
-}
-
-const CATEGORY_LABEL_PT: Record<string, string> = {
-  aiml:                'IA / ML',
-  softwareDevelopment: 'Software',
-  dataEngineering:     'Dados',
-  cybersecurity:       'Cyber',
-  challenges:          'Desafios',
-}
 
 const LIMIT = 5
 
@@ -59,15 +26,15 @@ function ProjectRow({
   index,
   onClick,
   isLast,
-  isPt,
+  locale,
 }: {
   project: Project
   index: number
   onClick: () => void
   isLast: boolean
-  isPt: boolean
+  locale: string
 }) {
-  const categoryLabel = isPt ? CATEGORY_LABEL_PT : CATEGORY_LABEL
+  const ui = getUiStrings(locale)
   return (
     <motion.button
       onClick={onClick}
@@ -98,7 +65,7 @@ function ProjectRow({
           ) : (
             <div className="w-full h-full flex items-center justify-center">
               <span className="text-[0.6rem] font-semibold uppercase text-center px-1" style={{ color: 'var(--accent)' }}>
-                {categoryLabel[project.category].slice(0, 2)}
+                {ui.projectCategoryLabel[project.category].slice(0, 2)}
               </span>
             </div>
           )}
@@ -124,7 +91,7 @@ function ProjectRow({
               letterSpacing: '0.15em',
             }}
           >
-            {categoryLabel[project.category]}
+            {ui.projectCategoryLabel[project.category]}
           </span>
         </div>
 
@@ -144,16 +111,15 @@ function ProjectRow({
 function ProjectModal({
   project,
   onClose,
-  isPt,
+  locale,
 }: {
   project: Project | null
   onClose: () => void
-  isPt: boolean
+  locale: string
 }) {
-  const categoryLabel = isPt ? CATEGORY_LABEL_PT : CATEGORY_LABEL
+  const ui = getUiStrings(locale)
   const scrollRef = useRef<HTMLDivElement>(null)
 
-  // Lock body scroll while open
   useEffect(() => {
     if (project) {
       document.body.style.overflow = 'hidden'
@@ -164,7 +130,6 @@ function ProjectModal({
     return () => { document.body.style.overflow = '' }
   }, [project])
 
-  // Keyboard close
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
     window.addEventListener('keydown', handler)
@@ -175,7 +140,6 @@ function ProjectModal({
     <AnimatePresence>
       {project && (
         <>
-          {/* Backdrop */}
           <motion.div
             key="backdrop"
             initial={{ opacity: 0 }}
@@ -187,7 +151,6 @@ function ProjectModal({
             onClick={onClose}
           />
 
-          {/* Sliding panel — slides up from bottom */}
           <motion.div
             key="panel"
             initial={{ y: '100%', opacity: 0.6 }}
@@ -217,7 +180,7 @@ function ProjectModal({
                   className="text-[0.6rem] uppercase tracking-widest block mb-1"
                   style={{ color: 'var(--white-35)' }}
                 >
-                  {categoryLabel[project.category]}
+                  {ui.projectCategoryLabel[project.category]}
                 </span>
                 <h2
                   className="font-bold leading-tight mb-1.5"
@@ -249,7 +212,7 @@ function ProjectModal({
                   backgroundColor: 'rgba(10,10,15,0.08)',
                   color: 'var(--white-60)',
                 }}
-                aria-label={isPt ? 'Fechar' : 'Close'}
+                aria-label={ui.close}
               >
                 ×
               </button>
@@ -285,18 +248,15 @@ function ProjectModal({
               onTouchMove={(e) => e.stopPropagation()}
             >
               <div className="px-6 sm:px-10 py-8 max-w-2xl mx-auto w-full">
-
-                {/* Overview */}
                 <p className="text-sm leading-relaxed mb-8" style={{ color: 'var(--white-70)' }}>
                   {project.details.overview}
                 </p>
 
-                {/* Features */}
                 <p
                   className="text-[0.6rem] uppercase tracking-widest mb-3"
                   style={{ color: 'var(--white-35)' }}
                 >
-                  {isPt ? 'Funcionalidades' : 'Features'}
+                  {ui.features}
                 </p>
                 <ul className="space-y-2 mb-8">
                   {project.details.features.map((feat, i) => (
@@ -307,18 +267,16 @@ function ProjectModal({
                   ))}
                 </ul>
 
-                {/* Tech stack */}
                 <p
                   className="text-[0.6rem] uppercase tracking-widest mb-2"
                   style={{ color: 'var(--white-35)' }}
                 >
-                  {isPt ? 'Stack Tecnológica' : 'Tech Stack'}
+                  {ui.techStack}
                 </p>
                 <p className="text-sm mb-8" style={{ color: 'var(--white-65)' }}>
                   {project.details.techStack}
                 </p>
 
-                {/* GitHub */}
                 {project.details.githubLink !== '#' && (
                   <a
                     href={project.details.githubLink}
@@ -327,10 +285,9 @@ function ProjectModal({
                     className="text-xs uppercase tracking-widest transition-opacity duration-200 hover:opacity-60"
                     style={{ color: 'var(--accent)' }}
                   >
-                    {isPt ? 'Ver no GitHub →' : 'View on GitHub →'}
+                    {ui.viewOnGitHub}
                   </a>
                 )}
-
               </div>
             </div>
           </motion.div>
@@ -346,9 +303,8 @@ export default function ProjectsSection() {
   const [active, setActive] = useState<Project | null>(null)
   const [expanded, setExpanded] = useState(false)
   const locale = useLocale()
-  const isPt = locale === 'pt'
+  const ui = getUiStrings(locale)
   const portfolioData = getPortfolioData(locale)
-  const filters = isPt ? FILTERS_PT : FILTERS
 
   const filtered = getFilteredProjects(portfolioData, filter)
   const displayed = expanded ? filtered : filtered.slice(0, LIMIT)
@@ -372,14 +328,14 @@ export default function ProjectsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            {isPt ? 'Projetos' : 'Projects'}
+            {ui.projects}
           </motion.p>
 
           <div className="flex flex-wrap gap-2">
-            {filters.map((f) => (
+            {ui.projectFilters.map((f) => (
               <button
                 key={f.key}
-                onClick={() => handleFilter(f.key)}
+                onClick={() => handleFilter(f.key as FilterKey)}
                 className="text-[0.65rem] uppercase tracking-widest px-3 py-1.5 rounded-full transition-all duration-200"
                 style={{
                   border: '1px solid',
@@ -410,7 +366,7 @@ export default function ProjectsSection() {
               index={i}
               isLast={i === displayed.length - 1}
               onClick={() => setActive(project)}
-              isPt={isPt}
+              locale={locale}
             />
           ))}
         </div>
@@ -428,9 +384,9 @@ export default function ProjectsSection() {
               style={{ color: 'var(--accent)' }}
             >
               {expanded ? (
-                <><span>{isPt ? 'Mostrar menos' : 'Show less'}</span><span>↑</span></>
+                <><span>{ui.showLess}</span><span>↑</span></>
               ) : (
-                <><span>{isPt ? `Mostrar todos os ${filtered.length} projetos` : `Show all ${filtered.length} projects`}</span><span>↓</span></>
+                <><span>{ui.showAllProjects(filtered.length)}</span><span>↓</span></>
               )}
             </button>
           </motion.div>
@@ -438,7 +394,7 @@ export default function ProjectsSection() {
 
       </div>
 
-      <ProjectModal project={active} onClose={() => setActive(null)} isPt={isPt} />
+      <ProjectModal project={active} onClose={() => setActive(null)} locale={locale} />
     </section>
   )
 }

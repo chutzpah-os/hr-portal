@@ -4,17 +4,16 @@ import { motion } from 'framer-motion'
 import { useLocale } from 'next-intl'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 import { getPortfolioData } from '@/data/portfolio'
+import { getUiStrings } from '@/i18n/uiStrings'
 
-// Indexed by skill category position (locale-invariant, since category
-// labels are translated in portfolio.pt.ts and can't be used as keys).
 const ACCENT_BY_INDEX = [
-  '#D4775A', // Programming Languages
-  '#c9a96e', // Web/Mobile Development
-  '#a78bfa', // AI / ML
-  '#fb923c', // Data Engineering
-  '#fb923c', // Databases
-  '#D4775A', // Cybersecurity & Network
-  '#60a5fa', // Cloud & DevOps
+  '#D4775A',
+  '#c9a96e',
+  '#a78bfa',
+  '#fb923c',
+  '#fb923c',
+  '#D4775A',
+  '#60a5fa',
 ]
 
 function SkillRow({
@@ -37,7 +36,6 @@ function SkillRow({
       className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-8 py-6"
       style={{ borderTop: '1px solid rgba(10,10,15,0.07)' }}
     >
-      {/* Category label */}
       <div className="sm:w-48 flex-shrink-0 flex items-center gap-2.5 pt-0.5">
         <span
           className="w-2 h-2 rounded-full flex-shrink-0"
@@ -51,7 +49,6 @@ function SkillRow({
         </span>
       </div>
 
-      {/* Skill pills */}
       <div className="flex flex-wrap gap-2">
         {items.map((skill) => (
           <span
@@ -73,6 +70,7 @@ function SkillRow({
 
 export default function SkillsSection() {
   const locale = useLocale()
+  const ui = getUiStrings(locale)
   const portfolioData = getPortfolioData(locale)
 
   return (
@@ -86,7 +84,7 @@ export default function SkillsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          {locale === 'pt' ? 'Habilidades' : 'Skills'}
+          {ui.skills}
         </motion.p>
 
         <div>

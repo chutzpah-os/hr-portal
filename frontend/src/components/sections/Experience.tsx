@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { useLocale } from 'next-intl'
 import { getPortfolioData, type Experience } from '@/data/portfolio'
+import { getUiStrings } from '@/i18n/uiStrings'
 
 const LIMIT = 3
 
@@ -13,13 +14,13 @@ function ExperienceTimelineItem({
   index,
   isLast,
   onClick,
-  isPt,
+  viewDetails,
 }: {
   exp: Experience
   index: number
   isLast: boolean
   onClick: () => void
-  isPt: boolean
+  viewDetails: string
 }) {
   return (
     <motion.div
@@ -94,7 +95,7 @@ function ExperienceTimelineItem({
               className="inline-flex items-center gap-1 text-[0.6rem] uppercase tracking-widest mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
               style={{ color: 'var(--accent)' }}
             >
-              {isPt ? 'Ver detalhes →' : 'View details →'}
+              {viewDetails}
             </span>
           </div>
         </div>
@@ -107,12 +108,13 @@ function ExperienceTimelineItem({
 function ExperienceModal({
   exp,
   onClose,
-  isPt,
+  locale,
 }: {
   exp: Experience | null
   onClose: () => void
-  isPt: boolean
+  locale: string
 }) {
+  const ui = getUiStrings(locale)
   const scrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -220,7 +222,7 @@ function ExperienceModal({
                 onClick={onClose}
                 className="shrink-0 flex items-center justify-center w-9 h-9 rounded-xl transition-colors duration-200 text-xl font-light"
                 style={{ backgroundColor: 'rgba(10,10,15,0.08)', color: 'var(--white-60)' }}
-                aria-label={isPt ? 'Fechar' : 'Close'}
+                aria-label={ui.close}
               >
                 ×
               </button>
@@ -261,7 +263,7 @@ function ExperienceModal({
                 </p>
 
                 <p className="text-[0.6rem] uppercase tracking-widest mb-3" style={{ color: 'var(--white-35)' }}>
-                  {isPt ? 'Principais Áreas de Foco' : 'Key Focus Areas'}
+                  {ui.keyFocusAreas}
                 </p>
                 <ul className="space-y-2 mb-8">
                   {exp.details.keyAreas.map((area, i) => (
@@ -273,7 +275,7 @@ function ExperienceModal({
                 </ul>
 
                 <p className="text-[0.6rem] uppercase tracking-widest mb-2" style={{ color: 'var(--white-35)' }}>
-                  {isPt ? 'Tecnologias' : 'Technologies'}
+                  {ui.technologies}
                 </p>
                 <p className="text-sm" style={{ color: 'var(--white-65)' }}>
                   {exp.details.technologies}
@@ -292,7 +294,7 @@ export default function ExperienceSection() {
   const [active, setActive] = useState<Experience | null>(null)
   const [showAll, setShowAll] = useState(false)
   const locale = useLocale()
-  const isPt = locale === 'pt'
+  const ui = getUiStrings(locale)
 
   const all = getPortfolioData(locale).experience
   const displayed = showAll ? all : all.slice(0, LIMIT)
@@ -308,7 +310,7 @@ export default function ExperienceSection() {
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           style={{ color: 'var(--white-35)' }}
         >
-          {isPt ? 'Histórico Profissional' : 'Work History'}
+          {ui.workHistory}
         </motion.p>
 
         <div>
@@ -319,7 +321,7 @@ export default function ExperienceSection() {
               index={i}
               isLast={i === displayed.length - 1}
               onClick={() => setActive(exp)}
-              isPt={isPt}
+              viewDetails={ui.viewDetails}
             />
           ))}
         </div>
@@ -337,16 +339,16 @@ export default function ExperienceSection() {
               style={{ color: 'var(--accent)' }}
             >
               {showAll ? (
-                <><span>{isPt ? 'Mostrar menos' : 'Show less'}</span><span>↑</span></>
+                <><span>{ui.showLess}</span><span>↑</span></>
               ) : (
-                <><span>{isPt ? `Mostrar todas as ${all.length}` : `Show all ${all.length}`}</span><span>↓</span></>
+                <><span>{ui.showAll(all.length)}</span><span>↓</span></>
               )}
             </button>
           </motion.div>
         )}
       </div>
 
-      <ExperienceModal exp={active} onClose={() => setActive(null)} isPt={isPt} />
+      <ExperienceModal exp={active} onClose={() => setActive(null)} locale={locale} />
     </section>
   )
 }

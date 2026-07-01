@@ -5,6 +5,7 @@ import { useLocale } from 'next-intl'
 import Modal from '@/components/ui/Modal'
 import { type CVAreaOrAll, AREA_LABELS } from '@/utils/cvAreaMap'
 import { downloadTex, downloadPdf } from '@/utils/cvGenerator'
+import { getUiStrings } from '@/i18n/uiStrings'
 
 const AREA_OPTIONS: CVAreaOrAll[] = ['cyber', 'aiml', 'data', 'software', 'all']
 
@@ -17,7 +18,7 @@ export default function CVDownloadModal({ isOpen, onClose }: CVDownloadModalProp
   const [selectedArea, setSelectedArea] = useState<CVAreaOrAll | null>(null)
   const [loading, setLoading] = useState(false)
   const locale = useLocale()
-  const isPt = locale === 'pt'
+  const ui = getUiStrings(locale)
 
   const handleClose = () => {
     setSelectedArea(null)
@@ -40,9 +41,9 @@ export default function CVDownloadModal({ isOpen, onClose }: CVDownloadModalProp
   return (
     <Modal isOpen={isOpen} onClose={handleClose}>
       {/* Header */}
-      <p className="section-label mb-1">{isPt ? 'Baixar CV' : 'Download CV'}</p>
+      <p className="section-label mb-1">{ui.downloadCv}</p>
       <p className="text-[0.75rem] mb-8" style={{ color: 'var(--white-45)' }}>
-        {isPt ? 'Selecione uma área de foco e escolha o formato.' : 'Select a focus area, then choose your format.'}
+        {ui.cvSelectArea}
       </p>
 
       {/* Area selection */}
@@ -77,7 +78,7 @@ export default function CVDownloadModal({ isOpen, onClose }: CVDownloadModalProp
               </span>
               {area === 'all' && (
                 <p className="text-[0.6rem] mt-0.5" style={{ color: 'var(--white-35)' }}>
-                  {isPt ? 'Uma página por área' : 'One page per area'}
+                  {ui.cvOnePagePerArea}
                 </p>
               )}
             </button>
@@ -99,7 +100,7 @@ export default function CVDownloadModal({ isOpen, onClose }: CVDownloadModalProp
             onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.85' }}
             onMouseLeave={(e) => { e.currentTarget.style.opacity = '1' }}
           >
-            {isPt ? 'Baixar .tex' : 'Download .tex'}
+            {ui.cvDownloadTex}
           </button>
 
           <button
@@ -124,7 +125,7 @@ export default function CVDownloadModal({ isOpen, onClose }: CVDownloadModalProp
               }
             }}
           >
-            {loading ? (isPt ? 'Gerando...' : 'Generating...') : (isPt ? 'Baixar .pdf' : 'Download .pdf')}
+            {loading ? ui.cvGenerating : ui.cvDownloadPdf}
           </button>
         </div>
       )}
