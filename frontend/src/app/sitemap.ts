@@ -125,7 +125,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),
-    ...posts.map((post) => ({
+    // Only canonical (en) slugs — avoids duplicates when translated posts exist
+    ...posts.filter((p) => p.lang === 'en').map((post) => ({
       path: `/blog/${post.slug}`,
       lastModified: new Date(post.date),
       changeFrequency: 'yearly' as const,

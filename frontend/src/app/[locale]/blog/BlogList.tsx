@@ -5,8 +5,16 @@ import Link from 'next/link'
 import type { PostMeta, PostCategory } from '@/lib/blog'
 import { useTranslations, useLocale } from 'next-intl'
 
+const LOCALE_FORMATS: Record<string, string> = {
+  en: 'en-US',
+  pt: 'pt-BR',
+  es: 'es-ES',
+  fr: 'fr-FR',
+  ca: 'ca-ES',
+}
+
 function formatDate(dateStr: string, locale: string): string {
-  return new Date(dateStr).toLocaleDateString(locale === 'pt' ? 'pt-BR' : 'en-US', {
+  return new Date(dateStr).toLocaleDateString(LOCALE_FORMATS[locale] ?? 'en-US', {
     month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC',
   })
 }
@@ -38,6 +46,73 @@ function FilterButton({ active, onClick, children, small }: { active: boolean; o
   )
 }
 
+function GlobeIcon() {
+  return (
+    <svg
+      width="10"
+      height="10"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      style={{ flexShrink: 0 }}
+    >
+      <circle cx="12" cy="12" r="10" />
+      <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </svg>
+  )
+}
+
+function LangTabs({
+  langs,
+  active,
+  onChange,
+}: {
+  langs: string[]
+  active: string | null
+  onChange: (l: string | null) => void
+}) {
+  function tabStyle(isActive: boolean) {
+    return {
+      fontSize: '0.55rem',
+      letterSpacing: '0.18em',
+      textTransform: 'uppercase' as const,
+      color: isActive ? 'var(--accent)' : 'var(--white-30)',
+      fontWeight: isActive ? 600 : 400,
+      boxShadow: isActive ? 'inset 0 -1.5px 0 var(--accent)' : 'none',
+      paddingBottom: '3px',
+      padding: '0 4px 3px',
+      transition: 'color 0.2s, box-shadow 0.2s',
+      background: 'none',
+      border: 'none',
+      cursor: 'pointer',
+    }
+  }
+
+  return (
+    <div
+      className="flex items-center gap-3 mt-1 pt-4"
+      style={{ borderTop: '1px solid rgba(10,10,15,0.06)', color: 'var(--white-25)' }}
+    >
+      <GlobeIcon />
+      <button style={tabStyle(active === null)} onClick={() => onChange(null)}>
+        All
+      </button>
+      {langs.map((lang) => (
+        <button
+          key={lang}
+          style={tabStyle(active === lang)}
+          onClick={() => onChange(active === lang ? null : lang)}
+        >
+          {lang}
+        </button>
+      ))}
+    </div>
+  )
+}
+
 function buildGroupTree(posts: PostMeta[]): Map<string, Set<string>> {
   const tree = new Map<string, Set<string>>()
   for (const post of posts) {
@@ -60,9 +135,15 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
   const [category, setCategory] = useState<CategoryFilter>('all')
   const [selectedParent, setSelectedParent] = useState<string | null>(null)
   const [selectedChild, setSelectedChild] = useState<string | null>(null)
+  const [langFilter, setLangFilter] = useState<string | null>(null)
   const [visible, setVisible] = useState(PAGE_SIZE)
 
   const reset = () => setVisible(PAGE_SIZE)
+
+  const availableLangs = useMemo(
+    () => Array.from(new Set(posts.map((p) => p.lang))).sort(),
+    [posts]
+  )
 
   const groupTree = useMemo(() => buildGroupTree(posts), [posts])
   const parents = useMemo(() => Array.from(groupTree.keys()).sort(), [groupTree])
@@ -88,6 +169,7 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
   }
 
   const filtered = posts.filter((p) => {
+    if (langFilter && p.lang !== langFilter) return false
     if (category !== 'all' && p.category !== category) return false
     if (!selectedParent) return true
     const fullPath = selectedChild ? `${selectedParent}/${selectedChild}` : null
@@ -143,6 +225,15 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
             )}
           </div>
         )}
+
+        {/* Language tabs — only when posts exist in multiple languages */}
+        {availableLangs.length > 1 && (
+          <LangTabs
+            langs={availableLangs}
+            active={langFilter}
+            onChange={(l) => { setLangFilter(l); reset() }}
+          />
+        )}
       </div>
 
       {/* Post list */}
@@ -152,7 +243,7 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
         )}
         {shown.map((post, i) => (
           <article
-            key={post.slug}
+            key={`${post.slug}-${post.lang}`}
             style={{
               borderTop: i === 0 ? '1px solid rgba(10,10,15,0.08)' : undefined,
               borderBottom: '1px solid rgba(10,10,15,0.08)',

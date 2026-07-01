@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
-  const posts = getAllPosts(locale)
+  const posts = getAllPosts()
   const t = await getTranslations('blog')
 
   return (
