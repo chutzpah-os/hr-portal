@@ -135,18 +135,25 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
   const [category, setCategory] = useState<CategoryFilter>('all')
   const [selectedParent, setSelectedParent] = useState<string | null>(null)
   const [selectedChild, setSelectedChild] = useState<string | null>(null)
-  const [langFilter, setLangFilter] = useState<string | null>(() => {
-    const langs = new Set(posts.map((p) => p.lang))
-    return langs.has(locale) ? locale : langs.has('en') ? 'en' : null
-  })
+  // Default to the site locale — if no posts in it, user sees the empty state
+  // and can switch to EN (or any other lang) via LangTabs.
+  const [langFilter, setLangFilter] = useState<string | null>(locale)
   const [visible, setVisible] = useState(PAGE_SIZE)
 
   const reset = () => setVisible(PAGE_SIZE)
 
+  // Langs that actually have posts
   const availableLangs = useMemo(
     () => Array.from(new Set(posts.map((p) => p.lang))).sort(),
     [posts]
   )
+
+  // Tabs = langs with posts + current locale (even if it has 0 posts)
+  const tabLangs = useMemo(() => {
+    const all = new Set(availableLangs)
+    all.add(locale)
+    return Array.from(all).sort()
+  }, [availableLangs, locale])
 
   const groupTree = useMemo(() => buildGroupTree(posts), [posts])
   const parents = useMemo(() => Array.from(groupTree.keys()).sort(), [groupTree])
@@ -229,10 +236,10 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
           </div>
         )}
 
-        {/* Language tabs — only when posts exist in multiple languages */}
-        {availableLangs.length > 1 && (
+        {/* Language tabs — show whenever user's locale differs from available langs */}
+        {tabLangs.length > 1 && (
           <LangTabs
-            langs={availableLangs}
+            langs={tabLangs}
             active={langFilter}
             onChange={(l) => { setLangFilter(l); reset() }}
           />
