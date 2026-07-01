@@ -16,23 +16,16 @@ interface YTVideo {
   url: string
 }
 
-type Filter = 'all' | 'haniel' | 'psf'
+type Filter = 'all' | 'haniel_pt' | 'haniel_en' | 'psf'
 
 const CHANNEL_LINKS: Record<string, string> = {
-  haniel: 'https://www.youtube.com/@hanielrolemberg',
+  haniel_pt: 'https://www.youtube.com/@hanielrolemberg',
+  haniel_en: 'https://www.youtube.com/@hanielrolemberg',
   psf: 'https://www.youtube.com/@ProblemSolverFoundation',
 }
 
 const VIDEOS: YTVideo[] = [
-  {
-    id: 'FYU0XuAOmcM',
-    title: "How R&D in Israel Actually Works: Startups, Multinationals & the Innovation Authority",
-    thumbnail: 'https://i.ytimg.com/vi/FYU0XuAOmcM/hqdefault.jpg',
-    publishedAt: '',
-    channelName: 'Problem Solver Foundation',
-    channelId: 'psf',
-    url: 'https://www.youtube.com/watch?v=FYU0XuAOmcM',
-  },
+  // PSF
   {
     id: 'P24KDOH8mNI',
     title: 'One Billion People Can Solve This | The 2035 Plan',
@@ -52,31 +45,51 @@ const VIDEOS: YTVideo[] = [
     url: 'https://www.youtube.com/watch?v=Vdzc9GZaJvk',
   },
   {
-    id: 'I5nnFQl8O5c',
+    id: 'FYU0XuAOmcM',
+    title: 'How R&D in Israel Actually Works: Startups, Multinationals & the Innovation Authority',
+    thumbnail: 'https://i.ytimg.com/vi/FYU0XuAOmcM/hqdefault.jpg',
+    publishedAt: '',
+    channelName: 'Problem Solver Foundation',
+    channelId: 'psf',
+    url: 'https://www.youtube.com/watch?v=FYU0XuAOmcM',
+  },
+  // Haniel Rolemberg (PT-BR)
+  {
+    id: 'XW-PPAL0m7Q',
+    title: 'Eu decidi correr contra o câncer',
+    thumbnail: 'https://i.ytimg.com/vi/XW-PPAL0m7Q/hqdefault.jpg',
+    publishedAt: '',
+    channelName: 'Haniel Rolemberg',
+    channelId: 'haniel_pt',
+    url: 'https://www.youtube.com/watch?v=XW-PPAL0m7Q',
+  },
+  // Haniel Rolemberg (EN)
+  {
+    id: 'iCRzdi6TlWY',
     title: "1K Miles of Hope: I'm Running 1,000 Miles to Raise Money for Cancer Research",
-    thumbnail: 'https://i.ytimg.com/vi/I5nnFQl8O5c/hqdefault.jpg',
+    thumbnail: 'https://i.ytimg.com/vi/iCRzdi6TlWY/hqdefault.jpg',
     publishedAt: '',
     channelName: 'Haniel Rolemberg',
-    channelId: 'haniel',
-    url: 'https://www.youtube.com/watch?v=I5nnFQl8O5c',
+    channelId: 'haniel_en',
+    url: 'https://www.youtube.com/watch?v=iCRzdi6TlWY',
   },
   {
-    id: 'z_RI0YRuNGg',
-    title: 'Memento Mori | What Marcus Aurelius Actually Meant',
-    thumbnail: 'https://i.ytimg.com/vi/z_RI0YRuNGg/hqdefault.jpg',
+    id: '0gsa4VxkNQw',
+    title: 'Memento Mori: What Marcus Aurelius Actually Meant',
+    thumbnail: 'https://i.ytimg.com/vi/0gsa4VxkNQw/hqdefault.jpg',
     publishedAt: '',
     channelName: 'Haniel Rolemberg',
-    channelId: 'haniel',
-    url: 'https://www.youtube.com/watch?v=z_RI0YRuNGg',
+    channelId: 'haniel_en',
+    url: 'https://www.youtube.com/watch?v=0gsa4VxkNQw',
   },
   {
-    id: 'WtmbDEZowAU',
+    id: 'l-vBjkI9evE',
     title: "Before It's Too Late: A Reflection on Time",
-    thumbnail: 'https://i.ytimg.com/vi/WtmbDEZowAU/hqdefault.jpg',
+    thumbnail: 'https://i.ytimg.com/vi/l-vBjkI9evE/hqdefault.jpg',
     publishedAt: '',
     channelName: 'Haniel Rolemberg',
-    channelId: 'haniel',
-    url: 'https://www.youtube.com/watch?v=WtmbDEZowAU',
+    channelId: 'haniel_en',
+    url: 'https://www.youtube.com/watch?v=l-vBjkI9evE',
   },
 ]
 
@@ -87,8 +100,9 @@ function FeaturedContent() {
 
   const FILTERS: { key: Filter; label: string }[] = [
     { key: 'all', label: t('videoFilterAll') },
-    { key: 'haniel', label: 'Haniel Rolemberg' },
     { key: 'psf', label: 'PSF' },
+    { key: 'haniel_pt', label: 'Haniel Rolemberg (PT)' },
+    { key: 'haniel_en', label: 'Haniel Rolemberg (EN)' },
   ]
 
   const displayed = filter === 'all' ? VIDEOS : VIDEOS.filter((v) => v.channelId === filter)
