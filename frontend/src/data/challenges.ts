@@ -64,6 +64,18 @@ El cáncer toca casi todas las familias. Esta campaña es una forma de convertir
 Si quieres contribuir, cada donación hace la diferencia.`,
       tags: ['Impacto Social', 'Salud', 'Carrera'],
     },
+    fr: {
+      tagline: 'Courir pour un remède.',
+      shortDescription: 'Une campagne de collecte de fonds pour financer la recherche contre le cancer — chaque mille compte.',
+      fullDescription: `1k Miles of Hope est une initiative de collecte de fonds créée pour soutenir la recherche contre le cancer à travers la Terry Fox Foundation — l\'un des programmes de recherche oncologique les plus impactants au monde.
+
+L\'objectif est simple : courir 1 000 miles et collecter des fonds qui vont directement financer la recherche scientifique visant à trouver un remède. Chaque kilomètre se traduit en ressources réelles pour de vrais scientifiques travaillant sur de vraies avancées.
+
+Le cancer touche presque toutes les familles. Cette campagne est une façon de transformer le mouvement en sens — de faire compter chaque course, chaque mile et chaque pas pour quelque chose de plus grand que la ligne d\'arrivée.
+
+Si vous souhaitez contribuer, chaque don fait la différence.`,
+      tags: ['Impact Social', 'Santé', 'Course'],
+    },
   },
 ]
 

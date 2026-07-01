@@ -33,6 +33,7 @@ const RECS: {
     translations: {
       pt: 'Haniel é uma pessoa extremamente determinada que sempre mira no topo. Tive o prazer de acompanhar de perto o desenvolvimento de seus projetos, e suas habilidades de liderança e qualidade técnica são definitivamente perceptíveis. Ele é um excelente profissional!',
       es: 'Haniel es una persona sumamente determinada que siempre apunta a lo más alto. Tuve el placer de seguir de cerca el desarrollo de sus proyectos, y sus habilidades de liderazgo y su calidad técnica son definitivamente notables. ¡Es un excelente profesional!',
+      fr: 'Haniel est une personne extrêmement déterminée qui vise toujours le sommet. J\'ai eu le plaisir de suivre de près le développement de ses projets, et ses compétences en leadership et sa qualité technique sont définitivement remarquables. C\'est un excellent professionnel !',
     },
   },
   {
@@ -45,6 +46,7 @@ const RECS: {
     translations: {
       pt: 'Conheci Haniel através da comunidade Google Developers Aracaju quando me tornei voluntária. Suas principais habilidades incluem comunicação, liderança e iniciativa. Durante o tempo que trabalhamos juntos, tive a oportunidade de observar de perto como Hani é uma pessoa que se destaca no trabalho em equipe, contribuindo para o crescimento de seus colegas e trazendo o melhor das pessoas ao alinhar suas habilidades com as necessidades da comunidade. Um agradecimento especial por tudo que aprendi com você e por inspirar tantas pessoas a fazer a diferença com o conhecimento que adquiriram. Você verdadeiramente causa impacto onde quer que vá.',
       es: 'Conocí a Haniel a través de la comunidad Google Developers Aracaju cuando me convertí en voluntaria. Sus principales habilidades incluyen la comunicación, el liderazgo y la iniciativa. Durante el tiempo que hemos trabajado juntos, he tenido la oportunidad de observar de cerca cómo Hani es una persona que sobresale en el trabajo en equipo, contribuyendo al crecimiento de sus colegas y sacando lo mejor de las personas al alinear sus habilidades con las necesidades de la comunidad. Un agradecimiento especial por todo lo que he aprendido de ti y por inspirar a tantas personas a marcar la diferencia con el conocimiento que han adquirido. Verdaderamente generas un impacto dondequiera que vas.',
+      fr: 'J\'ai rencontré Haniel à travers la communauté Google Developers Aracaju lorsque je suis devenue bénévole. Ses principales compétences sont la communication, le leadership et l\'initiative. Tout au long du temps où nous avons travaillé ensemble, j\'ai eu l\'opportunité d\'observer de près comment Hani est une personne qui excelle dans le travail d\'équipe, contribuant à la croissance de ses collègues et tirant le meilleur des gens en alignant leurs compétences avec les besoins de la communauté. Un grand merci pour tout ce que j\'ai appris de toi et pour avoir inspiré tant de personnes à faire la différence avec les connaissances qu\'ils ont acquises. Tu génères vraiment un impact partout où tu vas.',
     },
   },
   {
@@ -57,6 +59,7 @@ const RECS: {
     translations: {
       pt: 'Tive a oportunidade de trabalhar com Haniel no GDG Aracaju, e posso dizer que ele é uma das pessoas mais comprometidas e inspiradoras com quem já colaborei. Ele se destaca por sua liderança, iniciativa e habilidades de comunicação excepcionais. Sempre que um desafio surgia, ele estava na frente, encontrando as melhores soluções para garantir que os eventos do GDG fossem sempre um sucesso.',
       es: 'Tuve la oportunidad de trabajar con Haniel en GDG Aracaju, y puedo decir que es una de las personas más comprometidas e inspiradoras con las que he colaborado. Se distingue por su liderazgo, iniciativa y excepcionales habilidades de comunicación. Cada vez que surgía un desafío, estaba al frente, encontrando las mejores soluciones para garantizar que los eventos de GDG siempre fueran un éxito.',
+      fr: 'J\'ai eu l\'opportunité de travailler avec Haniel au GDG Aracaju, et je peux dire qu\'il est l\'une des personnes les plus engagées et inspirantes avec qui j\'ai collaboré. Il se distingue par son leadership, son initiative et ses exceptionnelles compétences en communication. À chaque défi, il était en première ligne, trouvant les meilleures solutions pour garantir que les événements GDG soient toujours un succès.',
     },
   },
   {
@@ -69,6 +72,7 @@ const RECS: {
     translations: {
       pt: 'Tive a oportunidade de trabalhar com Haniel Rolemberg em vários projetos e posso dizer com confiança que ele é excepcional — tanto em habilidades técnicas quanto no trato com as pessoas. Haniel desempenhou um papel crucial na gestão de projetos inovadores, sempre mantendo o foco nos resultados e garantindo que as equipes estivessem alinhadas e motivadas. Ele tem uma capacidade única de identificar os pontos fortes de cada projeto e maximizar os resultados. Recomendo fortemente Haniel para qualquer desafio que exija liderança, inovação e excelência técnica.',
       es: 'Tuve la oportunidad de trabajar con Haniel Rolemberg en varios proyectos y puedo decir con confianza que es excepcional — tanto en habilidades técnicas como en el trato con las personas. Haniel desempeñó un papel crucial en la gestión de proyectos innovadores, siempre manteniendo el enfoque en los resultados y asegurando que los equipos estuvieran alineados y motivados. Tiene una capacidad única para identificar los puntos fuertes de cada proyecto y maximizar los resultados. Recomiendo ampliamente a Haniel para cualquier desafío que requiera liderazgo, innovación y excelencia técnica.',
+      fr: 'J\'ai eu l\'opportunité de travailler avec Haniel Rolemberg sur plusieurs projets et je peux dire en toute confiance qu\'il est exceptionnel — tant sur le plan des compétences techniques que dans ses relations avec les gens. Haniel a joué un rôle crucial dans la gestion de projets innovants, en maintenant toujours le focus sur les résultats et en s\'assurant que les équipes étaient alignées et motivées. Il a une capacité unique à identifier les points forts de chaque projet et à maximiser les résultats. Je recommande vivement Haniel pour tout défi nécessitant du leadership, de l\'innovation et de l\'excellence technique.',
     },
   },
 ]
