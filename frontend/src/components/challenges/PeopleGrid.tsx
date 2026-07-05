@@ -29,8 +29,8 @@ function Initials({ name, accent }: { name: string; accent: boolean }) {
     <div
       className="w-full h-full flex items-center justify-center text-[0.55rem] font-bold uppercase"
       style={{
-        backgroundColor: accent ? 'rgba(212,119,90,0.1)' : 'rgba(10,10,15,0.06)',
-        color: accent ? 'var(--accent)' : 'var(--white-35)',
+        backgroundColor: accent ? 'var(--chart-track)' : 'var(--white-8)',
+        color: accent ? 'var(--accent)' : 'var(--white-55)',
         fontFamily: 'var(--font-syne)',
       }}
     >
@@ -69,7 +69,7 @@ export default function PeopleGrid({
               style={{
                 width: 44,
                 height: 44,
-                border: `1.5px solid ${accent ? 'rgba(212,119,90,0.25)' : 'rgba(10,10,15,0.12)'}`,
+                border: `1.5px solid ${accent ? 'var(--chart-secondary)' : 'var(--divider)'}`,
                 cursor: p.photo ? 'zoom-in' : 'default',
               }}
               onClick={() => p.photo && setExpanded({ src: p.photo, name: p.name })}
@@ -106,11 +106,11 @@ export default function PeopleGrid({
         {/* Survived */}
         <div
           className="rounded-2xl p-6"
-          style={{ border: '1px solid rgba(212,119,90,0.2)', backgroundColor: 'rgba(212,119,90,0.04)' }}
+          style={{ border: '1px solid var(--chart-secondary)', backgroundColor: 'var(--chart-track)' }}
         >
           <div
             className="text-[0.55rem] uppercase tracking-widest mb-5 pb-3"
-            style={{ color: 'var(--accent)', borderBottom: '1px solid rgba(212,119,90,0.12)' }}
+            style={{ color: 'var(--accent)', borderBottom: '1px solid var(--divider)' }}
           >
             {narrative.survivorsTitle}
           </div>
@@ -120,11 +120,11 @@ export default function PeopleGrid({
         {/* Lost */}
         <div
           className="rounded-2xl p-6"
-          style={{ border: '1px solid rgba(10,10,15,0.1)', backgroundColor: 'rgba(10,10,15,0.025)' }}
+          style={{ border: '1px solid var(--divider)', backgroundColor: 'var(--white-5)' }}
         >
           <div
             className="text-[0.55rem] uppercase tracking-widest mb-5 pb-3"
-            style={{ color: 'var(--white-40)', borderBottom: '1px solid rgba(10,10,15,0.07)' }}
+            style={{ color: 'var(--white-55)', borderBottom: '1px solid var(--divider)' }}
           >
             {narrative.lostTitle}
           </div>

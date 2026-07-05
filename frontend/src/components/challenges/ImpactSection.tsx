@@ -43,11 +43,11 @@ export default function ImpactSection({
         {narrative.impactSectionTitle}
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-px" style={{ backgroundColor: 'var(--divider)' }}>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3" style={{ backgroundColor: 'transparent' }}>
         {metrics.map((m, i) => (
           <div
             key={i}
-            className="p-5 card-light"
+            className="p-5 card-light rounded-xl"
             style={{ backgroundColor: 'rgb(255,255,255)' }}
           >
             <div
@@ -67,7 +67,7 @@ export default function ImpactSection({
               {m.label}
             </div>
             {m.sublabel && (
-              <div className="text-[0.48rem] uppercase tracking-widest" style={{ color: 'var(--white-28)' }}>
+              <div className="text-[0.48rem] uppercase tracking-widest" style={{ color: 'var(--white-45)' }}>
                 {m.sublabel}
               </div>
             )}

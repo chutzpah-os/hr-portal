@@ -53,12 +53,12 @@ export async function TerryFox({ narrative }: { narrative: KMilesNarrative }) {
   return (
     <div
       className="rounded-2xl overflow-hidden"
-      style={{ border: '1px solid rgba(212,119,90,0.15)', backgroundColor: 'rgba(212,119,90,0.025)' }}
+      style={{ border: '1px solid var(--chart-secondary)', backgroundColor: 'var(--chart-track)' }}
     >
       {terryPhoto && (
         <div
           className="relative w-full overflow-hidden"
-          style={{ aspectRatio: '16/7', backgroundColor: 'rgba(10,10,15,0.06)' }}
+          style={{ aspectRatio: '16/7', backgroundColor: 'var(--white-8)' }}
         >
           <Image
             src={terryPhoto}
@@ -70,7 +70,7 @@ export async function TerryFox({ narrative }: { narrative: KMilesNarrative }) {
           />
           <div
             className="absolute bottom-2 right-4 text-[0.4rem] uppercase tracking-widest"
-            style={{ color: 'rgba(240,240,250,0.55)', textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}
+            style={{ color: 'rgba(240,240,250,0.85)', textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}
           >
             Toronto · 1980 · Wikimedia Commons
           </div>
@@ -78,7 +78,7 @@ export async function TerryFox({ narrative }: { narrative: KMilesNarrative }) {
       )}
       <div className="p-7">
         <SectionLabel>{narrative.terryFoxTitle}</SectionLabel>
-        <div className="space-y-0 divide-y divide-[rgba(212,119,90,0.1)]">
+        <div className="space-y-0 divide-y divide-[var(--divider)]">
           {narrative.terryFoxBlocks.map((block, i) => (
             <p
               key={i}

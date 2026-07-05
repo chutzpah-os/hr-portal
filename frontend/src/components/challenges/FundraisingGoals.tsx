@@ -71,7 +71,7 @@ export default function FundraisingGoals({
         </div>
 
         {/* Thin divider */}
-        <div style={{ height: '1px', backgroundColor: 'rgba(212,119,90,0.08)', marginLeft: '1.75rem', marginRight: '1.75rem' }} />
+        <div style={{ height: '1px', backgroundColor: 'var(--divider)', marginLeft: '1.75rem', marginRight: '1.75rem' }} />
 
         {/* Impact paragraphs */}
         <div className="px-7 py-5 space-y-3">
@@ -89,7 +89,7 @@ export default function FundraisingGoals({
         {/* Country callout */}
         <div
           className="mx-5 mb-5 px-5 py-4 rounded-xl"
-          style={{ backgroundColor: 'rgba(212,119,90,0.06)', border: '1px solid rgba(212,119,90,0.12)' }}
+          style={{ backgroundColor: 'var(--chart-track)', border: '1px solid var(--chart-secondary)' }}
         >
           <p
             className="text-sm font-semibold mb-3"

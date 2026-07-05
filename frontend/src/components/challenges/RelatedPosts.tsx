@@ -84,15 +84,15 @@ export default async function RelatedPosts({
 
             {/* Meta row */}
             <div className="flex flex-wrap items-center gap-2.5 mb-2.5">
-              <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--white-35)' }}>
+              <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--white-55)' }}>
                 {formatDate(post.date, locale)}
               </span>
               <span
                 className="text-[0.48rem] uppercase tracking-widest px-2 py-0.5 rounded-full"
                 style={{
-                  backgroundColor: 'rgba(147,197,253,0.06)',
-                  color: 'rgba(147,197,253,0.55)',
-                  border: '1px solid rgba(147,197,253,0.14)',
+                  backgroundColor: 'rgba(147,197,253,0.10)',
+                  color: 'rgba(147,197,253,0.90)',
+                  border: '1px solid rgba(147,197,253,0.30)',
                 }}
               >
                 {post.lang}
