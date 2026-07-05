@@ -63,12 +63,21 @@ function NavIndicator({
   )
 }
 
+export type PanelTheme = 'white' | 'terra'
+
+const PANEL_BG: Record<PanelTheme, string> = {
+  white: 'rgb(255,255,255)',
+  terra: 'rgb(212,119,90)',
+}
+
 export default function SectionScroller({
   children,
   names = [],
+  panelThemes = [],
 }: {
   children: React.ReactNode
   names?: string[]
+  panelThemes?: PanelTheme[]
 }) {
   const [current, setCurrent] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -159,23 +168,29 @@ export default function SectionScroller({
             backgroundColor: 'rgb(255,255,255)',
           }}
         >
-          {sections.map((section, i) => (
-            <div
-              key={i}
-              ref={(el) => { panelRefs.current[i] = el }}
-              className="ss-panel"
-              style={{
-                height: '100vh',
-                overflowY: 'auto',
-                overflowX: 'hidden',
-                position: 'relative',
-                scrollSnapAlign: 'start',
-                scrollbarWidth: 'none',
-              }}
-            >
-              {section}
-            </div>
-          ))}
+          {sections.map((section, i) => {
+            const theme = panelThemes[i] ?? 'white'
+            return (
+              <div
+                key={i}
+                ref={(el) => { panelRefs.current[i] = el }}
+                className="ss-panel"
+                data-theme={theme === 'terra' ? 'terra' : undefined}
+                style={{
+                  height: '100vh',
+                  overflowY: 'auto',
+                  overflowX: 'hidden',
+                  position: 'relative',
+                  scrollSnapAlign: 'start',
+                  scrollbarWidth: 'none',
+                  backgroundColor: PANEL_BG[theme],
+                  transition: 'background-color 0s',
+                }}
+              >
+                {section}
+              </div>
+            )
+          })}
         </div>
 
         <NavIndicator

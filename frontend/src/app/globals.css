@@ -78,6 +78,40 @@
   --gray-40:   rgba(240, 240, 245, 0.4);
 }
 
+/* ─── Terra panels: invert ink scale to cold white on terracotta ─── */
+[data-theme="terra"] {
+  --accent:     rgba(240, 240, 250, 0.95);
+  --accent-dim: rgba(240, 240, 250, 0.12);
+  --accent-mid: rgba(240, 240, 250, 0.50);
+  --white-100:  rgba(240, 240, 250, 1);
+  --white-95:   rgba(240, 240, 250, 0.95);
+  --white-90:   rgba(240, 240, 250, 0.90);
+  --white-85:   rgba(240, 240, 250, 0.85);
+  --white-82:   rgba(240, 240, 250, 0.82);
+  --white-80:   rgba(240, 240, 250, 0.80);
+  --white-75:   rgba(240, 240, 250, 0.75);
+  --white-72:   rgba(240, 240, 250, 0.72);
+  --white-70:   rgba(240, 240, 250, 0.70);
+  --white-65:   rgba(240, 240, 250, 0.65);
+  --white-60:   rgba(240, 240, 250, 0.60);
+  --white-55:   rgba(240, 240, 250, 0.55);
+  --white-50:   rgba(240, 240, 250, 0.50);
+  --white-45:   rgba(240, 240, 250, 0.45);
+  --white-40:   rgba(240, 240, 250, 0.40);
+  --white-38:   rgba(240, 240, 250, 0.38);
+  --white-35:   rgba(240, 240, 250, 0.35);
+  --white-30:   rgba(240, 240, 250, 0.30);
+  --white-25:   rgba(240, 240, 250, 0.25);
+  --white-22:   rgba(240, 240, 250, 0.22);
+  --white-20:   rgba(240, 240, 250, 0.20);
+  --white-15:   rgba(240, 240, 250, 0.15);
+  --white-10:   rgba(240, 240, 250, 0.10);
+  --white-8:    rgba(240, 240, 250, 0.08);
+  --white-5:    rgba(240, 240, 250, 0.05);
+  --black-50:   rgba(240, 240, 250, 0.08);
+  --black-80:   rgba(240, 240, 250, 0.70);
+}
+
 /* ─── Base Styles ─── */
 html {
   scroll-behavior: smooth;
