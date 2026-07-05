@@ -150,27 +150,28 @@ export default async function ChallengePage(
 
   // ── PRESENTATION MODE — section-snap pitch deck ──
   if (isPresentation) {
+    const nl = narrative.navLabels
     const sectionNames: string[] = [
-      'Intro',
-      'Index',
-      'Problem',
-      'Lives',
-      'Why I Run',
-      'Terry Fox',
-      'World',
-      'About',
-      'Rhythm',
-      ...(challenge.impactMetrics && challenge.impactMetrics.length > 0 ? ['Impact'] : []),
-      ...(challenge.fundraisingGoals ? ['Donate'] : []),
-      ...(challenge.transparency && challenge.transparency.length > 0 ? ['Funds'] : []),
-      ...(challenge.fundraisingGoals ? ['Tiers'] : []),
-      ...(rawChallenge.faqs && rawChallenge.faqs.length > 0 ? ['FAQ'] : []),
-      ...(challenge.roadmap && challenge.roadmap.length > 0 ? ['Road'] : []),
-      'Partners',
-      ...(challenge.benefits && challenge.benefits.length > 0 ? ['Benefits'] : []),
-      'Updates',
-      ...(rawChallenge.videos && rawChallenge.videos.length > 0 ? ['Videos'] : []),
-      'Act',
+      nl.intro,
+      nl.index,
+      nl.problem,
+      nl.lives,
+      nl.whyIRun,
+      nl.terryFox,
+      nl.world,
+      nl.about,
+      nl.rhythm,
+      ...(challenge.impactMetrics && challenge.impactMetrics.length > 0 ? [nl.impact] : []),
+      ...(challenge.fundraisingGoals ? [nl.donate] : []),
+      ...(challenge.transparency && challenge.transparency.length > 0 ? [nl.funds] : []),
+      ...(challenge.fundraisingGoals ? [nl.tiers] : []),
+      ...(rawChallenge.faqs && rawChallenge.faqs.length > 0 ? [nl.faq] : []),
+      ...(challenge.roadmap && challenge.roadmap.length > 0 ? [nl.road] : []),
+      nl.partners,
+      ...(challenge.benefits && challenge.benefits.length > 0 ? [nl.benefits] : []),
+      nl.updates,
+      ...(rawChallenge.videos && rawChallenge.videos.length > 0 ? [nl.videos] : []),
+      nl.act,
     ]
 
     const tocEntries = sectionNames

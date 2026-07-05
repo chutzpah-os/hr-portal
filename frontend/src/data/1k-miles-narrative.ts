@@ -56,6 +56,28 @@ export interface KMilesNarrative {
   finalCtaPartner: string
   introStatement: string
   tocTitle: string
+  navLabels: {
+    intro: string
+    index: string
+    problem: string
+    lives: string
+    whyIRun: string
+    terryFox: string
+    world: string
+    about: string
+    rhythm: string
+    impact: string
+    donate: string
+    funds: string
+    tiers: string
+    faq: string
+    road: string
+    partners: string
+    benefits: string
+    updates: string
+    videos: string
+    act: string
+  }
 }
 
 export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
@@ -173,6 +195,7 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
     finalCtaPartner: 'Become a Partner',
     introStatement: 'We were taught that prevention is the best approach — but the truth is harder: any one of us is in cancer\'s crosshairs for reasons science is still trying to decode. I run because prevention failed people I love. I am running 1,000 miles to raise funds for cancer research. If prevention doesn\'t save us, research must.',
     tocTitle: 'Contents',
+    navLabels: { intro: 'Intro', index: 'Index', problem: 'Problem', lives: 'Lives', whyIRun: 'Why I Run', terryFox: 'Terry Fox', world: 'World', about: 'About', rhythm: 'Rhythm', impact: 'Impact', donate: 'Donate', funds: 'Funds', tiers: 'Tiers', faq: 'FAQ', road: 'Road', partners: 'Partners', benefits: 'Benefits', updates: 'Updates', videos: 'Videos', act: 'Act' },
   },
 
   pt: {
@@ -289,6 +312,7 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
     finalCtaPartner: 'Torne-se um Parceiro',
     introStatement: 'Nos ensinaram que se prevenir é a melhor atitude, mas a verdade é mais dura: qualquer um de nós está na mira do câncer por razões que a ciência ainda tenta decifrar. Eu corro porque a prevenção falhou com pessoas que eu amo. Estou correndo 1.000 milhas para levantar fundos para pesquisas contra o câncer. Se a prevenção não nos salva, a pesquisa precisa salvar.',
     tocTitle: 'Sumário',
+    navLabels: { intro: 'Intro', index: 'Sumário', problem: 'Problema', lives: 'Vidas', whyIRun: 'Por Que Corro', terryFox: 'Terry Fox', world: 'Mundo', about: 'Sobre', rhythm: 'Ritmo', impact: 'Impacto', donate: 'Doação', funds: 'Fundos', tiers: 'Apoio', faq: 'FAQ', road: 'Etapas', partners: 'Parceiros', benefits: 'Benefícios', updates: 'Novidades', videos: 'Vídeos', act: 'Agir' },
   },
 
   es: {
@@ -405,6 +429,7 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
     finalCtaPartner: 'Convertirse en Socio',
     introStatement: 'Nos enseñaron que la prevención es la mejor actitud, pero la verdad es más dura: cualquiera de nosotros está en el punto de mira del cáncer por razones que la ciencia aún intenta descifrar. Corro porque la prevención falló a personas que amo. Estoy corriendo 1.000 millas para recaudar fondos para la investigación contra el cáncer. Si la prevención no nos salva, la investigación debe hacerlo.',
     tocTitle: 'Índice',
+    navLabels: { intro: 'Intro', index: 'Índice', problem: 'Problema', lives: 'Vidas', whyIRun: 'Por Qué Corro', terryFox: 'Terry Fox', world: 'Mundo', about: 'Sobre', rhythm: 'Ritmo', impact: 'Impacto', donate: 'Donar', funds: 'Fondos', tiers: 'Apoyo', faq: 'FAQ', road: 'Etapas', partners: 'Socios', benefits: 'Beneficios', updates: 'Novedades', videos: 'Videos', act: 'Actuar' },
   },
 
   fr: {
@@ -521,6 +546,7 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
     finalCtaPartner: 'Devenir Partenaire',
     introStatement: "On nous a appris que la prévention est la meilleure attitude, mais la vérité est plus dure : n'importe lequel d'entre nous est dans la ligne de mire du cancer pour des raisons que la science tente encore de déchiffrer. Je cours parce que la prévention a échoué à des personnes que j'aime. Je cours 1 000 miles pour lever des fonds pour la recherche contre le cancer. Si la prévention ne nous sauve pas, la recherche doit le faire.",
     tocTitle: 'Sommaire',
+    navLabels: { intro: 'Intro', index: 'Sommaire', problem: 'Problème', lives: 'Vies', whyIRun: 'Pourquoi Je Cours', terryFox: 'Terry Fox', world: 'Monde', about: 'À propos', rhythm: 'Rythme', impact: 'Impact', donate: 'Don', funds: 'Fonds', tiers: 'Soutien', faq: 'FAQ', road: 'Étapes', partners: 'Partenaires', benefits: 'Avantages', updates: 'Actualités', videos: 'Vidéos', act: 'Agir' },
   },
 
   ca: {
@@ -637,5 +663,6 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
     finalCtaPartner: 'Convertiu-vos en Soci',
     introStatement: "Ens van ensenyar que la prevenció és la millor actitud, però la veritat és més dura: qualsevol de nosaltres és al punt de mira del càncer per raons que la ciència encara intenta desxifrar. Corro perquè la prevenció va fallar a persones que estimo. Estic corrent 1.000 milles per recaptar fons per a la recerca contra el càncer. Si la prevenció no ens salva, la recerca ha de fer-ho.",
     tocTitle: 'Sumari',
+    navLabels: { intro: 'Intro', index: 'Sumari', problem: 'Problema', lives: 'Vides', whyIRun: 'Per Què Corro', terryFox: 'Terry Fox', world: 'Món', about: 'Sobre', rhythm: 'Ritme', impact: 'Impacte', donate: 'Donar', funds: 'Fons', tiers: 'Suport', faq: 'FAQ', road: 'Etapes', partners: 'Socis', benefits: 'Beneficis', updates: 'Novetats', videos: 'Vídeos', act: 'Actuar' },
   },
 }
