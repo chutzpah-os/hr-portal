@@ -178,28 +178,7 @@ export default async function ChallengePage(
       .map((label, i) => ({ label, index: i }))
       .filter(e => e.index !== 0 && e.index !== 1)
 
-    const panelThemes: PanelTheme[] = [
-      'white', // Intro
-      'white', // Index/TOC
-      'white', // Problem
-      'white', // Lives
-      'terra', // Why I Run — emotional core
-      'terra', // Terry Fox — continuation
-      'white', // World
-      'white', // About
-      'white', // Rhythm
-      ...(challenge.impactMetrics && challenge.impactMetrics.length > 0 ? ['white'] : []) as PanelTheme[],
-      ...(challenge.fundraisingGoals ? ['white'] : []) as PanelTheme[],
-      ...(challenge.transparency && challenge.transparency.length > 0 ? ['white'] : []) as PanelTheme[],
-      ...(challenge.fundraisingGoals ? ['white'] : []) as PanelTheme[],
-      ...(rawChallenge.faqs && rawChallenge.faqs.length > 0 ? ['white'] : []) as PanelTheme[],
-      ...(challenge.roadmap && challenge.roadmap.length > 0 ? ['white'] : []) as PanelTheme[],
-      'white', // Partners
-      ...(challenge.benefits && challenge.benefits.length > 0 ? ['white'] : []) as PanelTheme[],
-      'white', // Updates
-      ...(rawChallenge.videos && rawChallenge.videos.length > 0 ? ['white'] : []) as PanelTheme[],
-      'terra', // Act — closing CTA
-    ]
+    const panelThemes: PanelTheme[] = sectionNames.map((_, i) => i % 2 === 0 ? 'white' : 'terra')
 
     return (
       <>
