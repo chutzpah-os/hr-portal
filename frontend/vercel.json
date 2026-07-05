@@ -14,6 +14,8 @@
     { "source": "/press", "destination": "/en/press", "permanent": true },
     { "source": "/researches", "destination": "/en/researches", "permanent": true },
     { "source": "/writing", "destination": "/en/writing", "permanent": true },
-    { "source": "/contact", "destination": "/en/#contact", "permanent": true }
+    { "source": "/contact", "destination": "/en/#contact", "permanent": true },
+    { "source": "/category/:slug", "destination": "/en/blog", "permanent": true },
+    { "source": "/category/:slug/", "destination": "/en/blog", "permanent": true }
   ]
 }
