@@ -6,9 +6,6 @@ interface ScrollerCtx { goTo: (i: number) => void }
 const SectionScrollerContext = createContext<ScrollerCtx>({ goTo: () => {} })
 export function useSectionScroller() { return useContext(SectionScrollerContext) }
 
-const DURATION = 800
-const EASING = 'cubic-bezier(0.65, 0, 0.35, 1)'
-
 function NavIndicator({
   current,
   total,
@@ -21,7 +18,6 @@ function NavIndicator({
   onNavigate: (i: number) => void
 }) {
   const [hovered, setHovered] = useState<number | null>(null)
-
   return (
     <div
       className="hidden md:flex fixed flex-col items-end z-[9999]"
@@ -57,7 +53,7 @@ function NavIndicator({
               height: i === current ? 32 : 12,
               borderRadius: 1,
               backgroundColor: i === current ? 'var(--accent)' : 'rgba(10,10,15,0.15)',
-              transition: `all ${DURATION}ms cubic-bezier(0.16, 1, 0.3, 1)`,
+              transition: 'all 350ms cubic-bezier(0.16, 1, 0.3, 1)',
               flexShrink: 0,
             }}
           />
@@ -75,78 +71,38 @@ export default function SectionScroller({
   names?: string[]
 }) {
   const [current, setCurrent] = useState(0)
-  const innerRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   const panelRefs = useRef<(HTMLDivElement | null)[]>([])
-  const isAnimating = useRef(false)
-  const lastScrollAt = useRef(0)
 
   const sections = Children.toArray(children).filter(Boolean)
   const total = sections.length
 
+  // Navigate to a section by index — browser handles smooth animation
   const goTo = useCallback(
     (idx: number) => {
       if (idx < 0 || idx >= total) return
-      if (isAnimating.current) return
-      const now = Date.now()
-      if (now - lastScrollAt.current < DURATION + 50) return
-      lastScrollAt.current = now
-      isAnimating.current = true
-      setCurrent(idx)
-      if (innerRef.current) {
-        innerRef.current.style.transform = `translateY(calc(${-idx} * 100vh))`
+      const container = containerRef.current
+      const panel = panelRefs.current[idx]
+      if (container && panel) {
+        container.scrollTo({ top: panel.offsetTop, behavior: 'smooth' })
       }
-      setTimeout(() => {
-        isAnimating.current = false
-      }, DURATION + 150)
     },
     [total]
   )
 
+  // Sync current indicator from scroll position (passive — no blocking)
   useEffect(() => {
-    const onWheel = (e: WheelEvent) => {
-      e.preventDefault()
-      if (isAnimating.current) return
-      const now = Date.now()
-      if (now - lastScrollAt.current < DURATION + 50) return
-
-      const panel = panelRefs.current[current]
-      const isScrollable = panel ? panel.scrollHeight > panel.clientHeight + 4 : false
-      const atBottom =
-        !isScrollable ||
-        (panel != null && panel.scrollTop + panel.clientHeight >= panel.scrollHeight - 4)
-      const atTop = !panel || panel.scrollTop <= 0
-
-      if (e.deltaY > 5) {
-        if (atBottom) goTo(current + 1)
-        else if (panel) panel.scrollTop += e.deltaY
-      } else if (e.deltaY < -5) {
-        if (atTop) goTo(current - 1)
-        else if (panel) panel.scrollTop += e.deltaY
-      }
+    const container = containerRef.current
+    if (!container) return
+    const onScroll = () => {
+      const idx = Math.round(container.scrollTop / window.innerHeight)
+      setCurrent(Math.max(0, Math.min(idx, total - 1)))
     }
-    window.addEventListener('wheel', onWheel, { passive: false })
-    return () => window.removeEventListener('wheel', onWheel)
-  }, [current, goTo])
+    container.addEventListener('scroll', onScroll, { passive: true })
+    return () => container.removeEventListener('scroll', onScroll)
+  }, [total])
 
-  useEffect(() => {
-    let startY = 0
-    const onStart = (e: TouchEvent) => {
-      startY = e.touches[0].clientY
-    }
-    const onEnd = (e: TouchEvent) => {
-      const diff = startY - e.changedTouches[0].clientY
-      if (Math.abs(diff) < 50) return
-      if (diff > 0) goTo(current + 1)
-      else goTo(current - 1)
-    }
-    window.addEventListener('touchstart', onStart, { passive: true })
-    window.addEventListener('touchend', onEnd, { passive: true })
-    return () => {
-      window.removeEventListener('touchstart', onStart)
-      window.removeEventListener('touchend', onEnd)
-    }
-  }, [current, goTo])
-
+  // Keyboard: arrows still jump one section at a time
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'ArrowDown' || e.key === 'PageDown') {
@@ -161,74 +117,72 @@ export default function SectionScroller({
     return () => window.removeEventListener('keydown', onKey)
   }, [current, goTo])
 
+  // Hide body scrollbar so only the container scrolls
   useEffect(() => {
     const prev = document.body.style.overflow
     document.body.style.overflow = 'hidden'
-    return () => {
-      document.body.style.overflow = prev
-    }
+    return () => { document.body.style.overflow = prev }
   }, [])
 
   return (
     <SectionScrollerContext.Provider value={{ goTo }}>
-    <>
-      {/* Dot grid — above panels, below header */}
-      <div
-        className="pointer-events-none"
-        style={{
-          position: 'fixed',
-          inset: 0,
-          backgroundImage:
-            'radial-gradient(circle, rgba(10,10,15,0.04) 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-          zIndex: 12,
-        }}
-      />
-
-      {/* Scroller container */}
-      <div
-        style={{
-          position: 'fixed',
-          inset: 0,
-          overflow: 'hidden',
-          zIndex: 10,
-          backgroundColor: 'rgb(255,255,255)',
-        }}
-      >
+      <>
+        {/* Dot grid */}
         <div
-          ref={innerRef}
+          className="pointer-events-none"
           style={{
-            transform: 'translateY(0)',
-            transition: `transform ${DURATION}ms ${EASING}`,
-            willChange: 'transform',
+            position: 'fixed',
+            inset: 0,
+            backgroundImage: 'radial-gradient(circle, rgba(10,10,15,0.04) 1px, transparent 1px)',
+            backgroundSize: '28px 28px',
+            zIndex: 12,
+          }}
+        />
+
+        {/*
+          CSS-native scroll container.
+          scroll-snap-type: y mandatory  → browser snaps naturally after momentum,
+                                           no JS wheel handling, no cooldown, no transforms.
+          overflowY: scroll              → receives wheel/touch events natively.
+          Each panel: height: 100vh + scroll-snap-align: start + overflowY: auto
+          → inner panels scroll their own overflow before advancing to the next section.
+        */}
+        <div
+          ref={containerRef}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            overflowY: 'scroll',
+            scrollSnapType: 'y mandatory',
+            WebkitOverflowScrolling: 'touch',
+            zIndex: 10,
+            backgroundColor: 'rgb(255,255,255)',
           }}
         >
           {sections.map((section, i) => (
             <div
               key={i}
-              ref={(el) => {
-                panelRefs.current[i] = el
-              }}
+              ref={(el) => { panelRefs.current[i] = el }}
               style={{
                 height: '100vh',
                 overflowY: 'auto',
                 overflowX: 'hidden',
                 position: 'relative',
+                scrollSnapAlign: 'start',
               }}
             >
               {section}
             </div>
           ))}
         </div>
-      </div>
 
-      <NavIndicator
-        current={current}
-        total={total}
-        names={names}
-        onNavigate={goTo}
-      />
-    </>
+        <NavIndicator
+          current={current}
+          total={total}
+          names={names}
+          onNavigate={goTo}
+        />
+      </>
     </SectionScrollerContext.Provider>
   )
 }
