@@ -47,12 +47,6 @@ export default function Narrative({ narrative }: { narrative: KMilesNarrative })
             </p>
           ))}
         </div>
-        <p
-          className="mt-4 text-sm font-semibold italic"
-          style={{ color: 'var(--white-75)', fontFamily: 'var(--font-syne)' }}
-        >
-          {narrative.terryFoxClosing}
-        </p>
       </div>
 
       {/* World with cure */}

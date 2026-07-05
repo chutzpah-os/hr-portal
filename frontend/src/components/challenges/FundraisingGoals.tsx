@@ -6,6 +6,17 @@ import type { KMilesNarrative as Narrative } from '@/data/1k-miles-narrative'
 
 const DONATE_HREF = 'https://international.terryfox.ca/page/1k-miles-of-hope'
 
+const COUNTRY_EXAMPLES = [
+  { country: 'Brasil', org: 'INCA — Instituto Nacional de Câncer' },
+  { country: 'Canada', org: 'Terry Fox Research Institute' },
+  { country: 'USA', org: 'Dana-Farber Cancer Institute' },
+  { country: 'UK', org: 'Institute of Cancer Research, London' },
+  { country: 'India', org: 'TATA Memorial Centre, Mumbai' },
+  { country: 'Australia', org: "Sydney Children's Hospital" },
+  { country: 'Japan', org: 'National Cancer Center Japan' },
+  { country: 'Germany', org: 'German Cancer Research Center (DKFZ)' },
+]
+
 function formatAmount(n: number) {
   if (n >= 1_000_000) return `US$${(n / 1_000_000).toFixed(0)}M`
   if (n >= 1_000) return `US$${(n / 1_000).toFixed(0)}K`
@@ -26,60 +37,85 @@ export default function FundraisingGoals({
 
   return (
     <div className="mb-12 space-y-8">
-      {/* Donation impact */}
+      {/* Donation impact block */}
       <div
-        className="rounded-2xl p-7"
-        style={{ border: '1px solid rgba(212,119,90,0.18)', backgroundColor: 'rgba(212,119,90,0.03)' }}
+        className="rounded-2xl overflow-hidden"
+        style={{ border: '1px solid rgba(212,119,90,0.18)', backgroundColor: 'rgba(212,119,90,0.025)' }}
       >
+        {/* Section label */}
         <div
-          className="text-[0.55rem] uppercase tracking-widest mb-5"
-          style={{ color: 'var(--white-30)', borderBottom: '1px solid rgba(212,119,90,0.1)', paddingBottom: '0.5rem' }}
+          className="px-7 pt-6 pb-3 text-[0.55rem] uppercase tracking-widest"
+          style={{ color: 'var(--white-30)', borderBottom: '1px solid rgba(212,119,90,0.1)' }}
         >
           {narrative.donationTitle}
         </div>
-        <div className="space-y-2 mb-5">
-          {narrative.donationLines.map((line, i) => (
+
+        {/* Hero stat row */}
+        <div className="px-7 pt-6 pb-5 flex items-end gap-5">
+          <div>
+            <div
+              className="font-bold leading-none"
+              style={{
+                fontSize: 'clamp(3rem, 9vw, 5.5rem)',
+                color: 'var(--accent)',
+                fontFamily: 'var(--font-syne)',
+              }}
+            >
+              78%
+            </div>
+            <div
+              className="mt-2 text-sm leading-snug"
+              style={{ color: 'var(--white-55)', fontFamily: 'var(--font-syne)' }}
+            >
+              {narrative.donationLines[0]}
+            </div>
+            <div
+              className="mt-1.5 text-[0.48rem] uppercase tracking-widest"
+              style={{ color: 'var(--white-28)' }}
+            >
+              Terry Fox Foundation · Annual Report 2024
+            </div>
+          </div>
+        </div>
+
+        {/* Thin divider */}
+        <div style={{ height: '1px', backgroundColor: 'rgba(212,119,90,0.08)', marginLeft: '1.75rem', marginRight: '1.75rem' }} />
+
+        {/* Impact paragraphs */}
+        <div className="px-7 py-5 space-y-3">
+          {narrative.donationLines.slice(1).map((line, i) => (
             <p
               key={i}
               className="text-base leading-relaxed"
-              style={{
-                color: i === 0 ? 'var(--white-85)' : 'var(--white-60)',
-                fontWeight: i === 0 ? 600 : 400,
-                fontFamily: i === 0 ? 'var(--font-syne)' : undefined,
-              }}
+              style={{ color: i === narrative.donationLines.length - 2 ? 'var(--white-80)' : 'var(--white-60)', fontWeight: i === narrative.donationLines.length - 2 ? 500 : 400 }}
             >
               {line}
             </p>
           ))}
         </div>
-        <p
-          className="text-sm py-3 px-4 rounded-xl"
-          style={{
-            color: 'var(--white-65)',
-            backgroundColor: 'rgba(212,119,90,0.06)',
-            border: '1px solid rgba(212,119,90,0.12)',
-          }}
-        >
-          {narrative.donationCountry}
-        </p>
 
-        {/* Terry Fox International examples */}
-        <div className="mt-4 space-y-1">
-          {[
-            { country: 'India', org: 'TATA Memorial Centre' },
-            { country: 'UK', org: 'Institute of Cancer Research, London' },
-            { country: 'Australia', org: "Sydney Children's Hospital" },
-          ].map((ex) => (
-            <div key={ex.country} className="flex items-baseline gap-2">
-              <span className="text-[0.5rem] uppercase tracking-widest" style={{ color: 'var(--accent)' }}>
-                {ex.country}
-              </span>
-              <span className="text-[0.5rem]" style={{ color: 'var(--white-30)' }}>→</span>
-              <span className="text-xs" style={{ color: 'var(--white-50)' }}>
+        {/* Country callout */}
+        <div
+          className="mx-5 mb-5 px-5 py-4 rounded-xl"
+          style={{ backgroundColor: 'rgba(212,119,90,0.06)', border: '1px solid rgba(212,119,90,0.12)' }}
+        >
+          <p
+            className="text-sm font-semibold mb-3"
+            style={{ color: 'var(--white-75)', fontFamily: 'var(--font-syne)' }}
+          >
+            {narrative.donationCountry}
+          </p>
+          <div className="space-y-1.5">
+            {COUNTRY_EXAMPLES.map((ex) => (
+              <div key={ex.country} className="text-xs" style={{ color: 'var(--white-45)' }}>
+                <span className="font-semibold" style={{ color: 'var(--accent)', fontFamily: 'var(--font-syne)' }}>
+                  {ex.country}
+                </span>
+                <span style={{ color: 'var(--white-25)' }}> · </span>
                 {ex.org}
-              </span>
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -95,7 +131,6 @@ export default function FundraisingGoals({
           {t('fundGoalLabel')}
         </div>
 
-        {/* Tier steps */}
         <div className="relative">
           <div
             className="absolute left-[11px] top-3 bottom-3"
@@ -151,7 +186,6 @@ export default function FundraisingGoals({
           </div>
         </div>
 
-        {/* CTA */}
         <div className="mt-7 flex justify-center">
           <a
             href={DONATE_HREF}

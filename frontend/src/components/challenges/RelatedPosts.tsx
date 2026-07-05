@@ -39,9 +39,10 @@ export default async function RelatedPosts({
     p.groups.some((g) => g === group || g.startsWith(`${group}/`))
   )
 
-  /* Show posts in the current locale first; fall back to EN if none */
+  /* Show posts in the current locale first; fall back to EN if none. Cap at 3. */
   const byLocale = grouped.filter((p) => p.lang === locale)
-  const posts = byLocale.length > 0 ? byLocale : grouped.filter((p) => p.lang === 'en')
+  const all = byLocale.length > 0 ? byLocale : grouped.filter((p) => p.lang === 'en')
+  const posts = all.slice(0, 3)
 
   if (posts.length === 0) return null
 
