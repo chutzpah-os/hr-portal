@@ -55,9 +55,11 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
     statsTitle: 'The Number That Changes Everything',
     cancerStatsItems: [
       { stat: '20M', label: 'new cancer cases diagnosed per year worldwide' },
-      { stat: '698', label: 'Brazilians die from cancer every single day' },
+      { stat: '9.7M', label: 'cancer deaths per year — more than HIV, malaria and tuberculosis combined' },
+      { stat: '26,500', label: 'people die from cancer every single day worldwide' },
       { stat: '1 in 5', label: 'people develop cancer in their lifetime' },
       { stat: '400K', label: 'children and adolescents diagnosed every year' },
+      { stat: '70%', label: 'of cancer deaths occur in low- and middle-income countries' },
     ],
     whyHardTitle: 'Why the Cure Is Difficult',
     whyHard:
@@ -154,9 +156,11 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
     statsTitle: 'O Número Que Muda Tudo',
     cancerStatsItems: [
       { stat: '20M', label: 'novos casos de câncer diagnosticados por ano no mundo' },
-      { stat: '698', label: 'brasileiros morrem de câncer por dia' },
+      { stat: '9,7M', label: 'mortes por câncer por ano — mais do que HIV, malária e tuberculose juntos' },
+      { stat: '26.500', label: 'pessoas morrem de câncer por dia no mundo' },
       { stat: '1 em cada 5', label: 'pessoas desenvolvem câncer ao longo da vida' },
       { stat: '400 mil', label: 'crianças e adolescentes diagnosticados por ano' },
+      { stat: '70%', label: 'das mortes por câncer ocorrem em países de baixa e média renda' },
     ],
     whyHardTitle: 'Por Que a Cura É Difícil',
     whyHard:
@@ -253,9 +257,11 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
     statsTitle: 'El Número Que lo Cambia Todo',
     cancerStatsItems: [
       { stat: '20M', label: 'nuevos casos de cáncer diagnosticados por año en el mundo' },
-      { stat: '698', label: 'brasileños mueren de cáncer cada día' },
+      { stat: '9,7M', label: 'muertes por cáncer al año — más que el VIH, la malaria y la tuberculosis juntos' },
+      { stat: '26.500', label: 'personas mueren de cáncer cada día en el mundo' },
       { stat: '1 de cada 5', label: 'personas desarrollan cáncer a lo largo de su vida' },
       { stat: '400K', label: 'niños y adolescentes diagnosticados cada año' },
+      { stat: '70%', label: 'de las muertes por cáncer ocurren en países de ingresos bajos y medios' },
     ],
     whyHardTitle: 'Por Qué la Cura Es Difícil',
     whyHard:
@@ -352,9 +358,11 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
     statsTitle: 'Le Chiffre Qui Change Tout',
     cancerStatsItems: [
       { stat: '20M', label: 'nouveaux cas de cancer diagnostiqués par an dans le monde' },
-      { stat: '698', label: 'Brésiliens meurent du cancer chaque jour' },
+      { stat: '9,7M', label: 'décès par cancer par an — plus que le VIH, le paludisme et la tuberculose réunis' },
+      { stat: '26 500', label: 'personnes meurent du cancer chaque jour dans le monde' },
       { stat: '1 sur 5', label: 'personnes développent un cancer au cours de leur vie' },
       { stat: '400K', label: 'enfants et adolescents diagnostiqués chaque année' },
+      { stat: '70%', label: 'des décès par cancer surviennent dans les pays à revenus faibles et intermédiaires' },
     ],
     whyHardTitle: 'Pourquoi le Remède Est Difficile',
     whyHard:
@@ -451,9 +459,11 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
     statsTitle: 'El Número Que ho Canvia Tot',
     cancerStatsItems: [
       { stat: '20M', label: 'nous casos de càncer diagnosticats per any al món' },
-      { stat: '698', label: 'brasilers moren de càncer cada dia' },
+      { stat: '9,7M', label: 'morts per càncer a l\'any — més que el VIH, la malària i la tuberculosi junts' },
+      { stat: '26.500', label: 'persones moren de càncer cada dia al món' },
       { stat: '1 de cada 5', label: 'persones desenvolupen càncer al llarg de la vida' },
       { stat: '400K', label: 'nens i adolescents diagnosticats cada any' },
+      { stat: '70%', label: 'de les morts per càncer es produeixen en països de renda baixa i mitjana' },
     ],
     whyHardTitle: 'Per Què la Cura És Difícil',
     whyHard:
