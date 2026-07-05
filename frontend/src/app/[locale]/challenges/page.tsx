@@ -128,22 +128,6 @@ function ChallengeModal({ challenge, onClose }: { challenge: Challenge; onClose:
           )}
         </div>
 
-        {/* Modal photo */}
-        {challenge.modalImage && (
-          <div
-            className="rounded-2xl overflow-hidden mb-7"
-            style={{ aspectRatio: '4/3', position: 'relative', border: '1px solid rgba(10,10,15,0.07)' }}
-          >
-            <Image
-              src={challenge.modalImage}
-              alt={`${challenge.name} — photo`}
-              fill
-              sizes="(max-width: 768px) 100vw, 672px"
-              className="object-cover object-top"
-            />
-          </div>
-        )}
-
         {/* View full page */}
         <div
           className="pt-5 flex items-center justify-between flex-wrap gap-3"
