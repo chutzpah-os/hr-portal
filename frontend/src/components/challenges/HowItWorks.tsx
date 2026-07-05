@@ -1,9 +1,14 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useLocale } from 'next-intl'
 import type { ChallengeProgress } from '@/data/challenges'
 import type { KMilesNarrative } from '@/data/1k-miles-narrative'
 import ProgressTracker from './ProgressTracker'
+
+const LIVE_LABELS: Record<string, string> = {
+  en: 'Live', pt: 'Ao Vivo', es: 'En Vivo', fr: 'En Direct', ca: 'En Directe',
+}
 
 export default function HowItWorks({
   narrative,
@@ -12,6 +17,7 @@ export default function HowItWorks({
   narrative: KMilesNarrative
   progress: ChallengeProgress
 }) {
+  const locale = useLocale()
   const steps = narrative.howItWorksSteps
 
   return (
@@ -113,7 +119,7 @@ export default function HowItWorks({
         className="text-[0.42rem] uppercase tracking-widest mb-3"
         style={{ color: 'rgba(212,119,90,0.5)', paddingTop: '0.75rem', borderTop: '1px solid rgba(212,119,90,0.1)' }}
       >
-        Live
+        {LIVE_LABELS[locale] ?? LIVE_LABELS.en}
       </div>
       <ProgressTracker progress={progress} />
     </div>

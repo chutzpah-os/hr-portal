@@ -19,7 +19,9 @@ export interface KMilesNarrative {
   terryFoxTitle: string
   terryFoxBlocks: string[]
   worldTitle: string
+  worldContext: string
   worldStat: string
+  worldStats: { value: string; label: string }[]
   worldHuman: string[]
   donationTitle: string
   donationLines: string[]
@@ -34,20 +36,26 @@ export interface KMilesNarrative {
   howItWorksSteps: { title: string; description: string }[]
   impactSectionTitle: string
   roadmapSectionTitle: string
+  roadmapActiveLabel: string
   partnersSectionTitle: string
+  partnersFirstLabel: string
   partnersEmptyState: string
   partnersBecome: string
+  goalsSectionTitle: string
   benefitsSectionTitle: string
   benefitsSubtitle: string
   benefitsTabCompany: string
   benefitsTabIndividual: string
   transparencySectionTitle: string
   transparencySubtitle: string
+  transparencySourceLabel: string
   finalCtaTitle: string
   finalCtaSubtitle: string
   finalCtaBlocks: string[]
   finalCtaDonate: string
   finalCtaPartner: string
+  introStatement: string
+  tocTitle: string
 }
 
 export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
@@ -98,11 +106,20 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
       'Since 1981, the Terry Fox Foundation has raised over C$900 million. The Terry Fox Research Institute — founded in 2007 — funds cancer research programs across Canada and internationally, in 60+ countries. The annual Terry Fox Run is the world\'s largest single-day fundraiser for cancer research. 78% of every dollar donated goes directly to scientists.',
     ],
     worldTitle: 'What the World Looks Like With a Cure',
+    worldContext: 'Curing cancer would not be a medical event. It would be one of the greatest turning points in human history — economic, social, and deeply personal.',
     worldStat: 'US$185 trillion — estimated economic gain of curing cancer.',
+    worldStats: [
+      { value: '19.3M', label: 'new cancer cases diagnosed per year' },
+      { value: '10M', label: 'deaths annually — 1 in every 6 worldwide' },
+      { value: '$1.16T', label: 'spent on cancer treatment globally each year' },
+    ],
     worldHuman: [
       'A father who comes home.',
       'A mother who watches her child grow.',
-      'Someone who doesn\'t receive the call I received on my birthday.',
+      'A person who hears "cancer" — and "curable" in the same sentence.',
+      'A child who grows up knowing a grandparent who, in another world, would have died too soon.',
+      'A researcher who spent decades building toward this — and lives to see it work.',
+      'A generation that inherits a world where cancer is treatable, not a sentence.',
     ],
     donationTitle: 'Your Donation. Real Results.',
     donationLines: [
@@ -132,15 +149,19 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
     ],
     impactSectionTitle: 'Live Impact',
     roadmapSectionTitle: 'The Road Ahead',
+    roadmapActiveLabel: 'Active',
     partnersSectionTitle: 'Partners',
+    partnersFirstLabel: 'Be the first.',
     partnersEmptyState: 'No partners yet. The first one changes everything.',
     partnersBecome: 'Become a Partner',
+    goalsSectionTitle: 'Target Goal',
     benefitsSectionTitle: 'Why Partner With Us',
     benefitsSubtitle: 'Not advertising. Alignment — with impact, with purpose, with people.',
     benefitsTabCompany: 'Companies',
     benefitsTabIndividual: 'Individuals',
     transparencySectionTitle: 'Where Every Dollar Goes',
     transparencySubtitle: 'Every allocation is public. Every dollar is tracked.',
+    transparencySourceLabel: 'Source: Terry Fox Foundation Annual Report · terryfox.ca',
     finalCtaTitle: 'Become Part of the Journey',
     finalCtaSubtitle: 'Every mile carries hope.',
     finalCtaBlocks: [
@@ -150,6 +171,8 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
     ],
     finalCtaDonate: 'Donate Now',
     finalCtaPartner: 'Become a Partner',
+    introStatement: 'We were taught that prevention is the best approach — but the truth is harder: any one of us is in cancer\'s crosshairs for reasons science is still trying to decode. I run because prevention failed people I love. I am running 1,000 miles to raise funds for cancer research. If prevention doesn\'t save us, research must.',
+    tocTitle: 'Contents',
   },
 
   pt: {
@@ -199,11 +222,20 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
       'Desde 1981, a Terry Fox Foundation arrecadou mais de C$ 900 milhões. O Terry Fox Research Institute — fundado em 2007 — financia pesquisas oncológicas no Canadá e em mais de 60 países. A corrida anual Terry Fox Run é o maior arrecadador de um único dia para pesquisa do câncer no mundo. 78% de cada dólar doado vai diretamente para os cientistas.',
     ],
     worldTitle: 'Como o Mundo Muda com a Cura',
+    worldContext: 'A cura do câncer não seria apenas uma vitória médica. Seria uma das maiores transformações da história humana — econômica, social e profundamente pessoal.',
     worldStat: 'US$ 185 trilhões — estimativa do ganho econômico de uma cura para o câncer.',
+    worldStats: [
+      { value: '19,3M', label: 'novos casos de câncer diagnosticados por ano' },
+      { value: '10M', label: 'mortes anuais — 1 a cada 6 no mundo' },
+      { value: 'US$ 1,16T', label: 'gastos globais com tratamento oncológico por ano' },
+    ],
     worldHuman: [
       'Um pai que chega em casa.',
       'Uma mãe que vê o filho crescer.',
-      'Alguém que não recebe a ligação que eu recebi no meu aniversário.',
+      'Uma pessoa que ouve "câncer" — e "curável" na mesma frase.',
+      'Uma criança que cresce conhecendo um avô que, em outro mundo, teria morrido cedo demais.',
+      'Um pesquisador que passou décadas construindo em direção a isso — e vive para ver funcionar.',
+      'Uma geração que herda um mundo onde câncer é tratável — não sentença.',
     ],
     donationTitle: 'Sua Doação. Resultado Real.',
     donationLines: [
@@ -233,15 +265,19 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
     ],
     impactSectionTitle: 'Impacto em Tempo Real',
     roadmapSectionTitle: 'O Caminho à Frente',
+    roadmapActiveLabel: 'Ativo',
     partnersSectionTitle: 'Parceiros',
+    partnersFirstLabel: 'Seja o primeiro.',
     partnersEmptyState: 'Ainda sem parceiros. O primeiro muda tudo.',
     partnersBecome: 'Torne-se um Parceiro',
+    goalsSectionTitle: 'Meta de Arrecadação',
     benefitsSectionTitle: 'Por Que Ser Parceiro',
     benefitsSubtitle: 'Não é publicidade. É alinhamento — com impacto, com propósito, com pessoas.',
     benefitsTabCompany: 'Empresas',
     benefitsTabIndividual: 'Pessoas',
     transparencySectionTitle: 'Para Onde Vai Cada Dólar',
     transparencySubtitle: 'Cada alocação é pública. Cada dólar é rastreado.',
+    transparencySourceLabel: 'Fonte: Relatório Anual da Terry Fox Foundation · terryfox.ca',
     finalCtaTitle: 'Faça Parte da Jornada',
     finalCtaSubtitle: 'Cada milha carrega esperança.',
     finalCtaBlocks: [
@@ -251,6 +287,8 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
     ],
     finalCtaDonate: 'Doe Agora',
     finalCtaPartner: 'Torne-se um Parceiro',
+    introStatement: 'Nos ensinaram que se prevenir é a melhor atitude, mas a verdade é mais dura: qualquer um de nós está na mira do câncer por razões que a ciência ainda tenta decifrar. Eu corro porque a prevenção falhou com pessoas que eu amo. Estou correndo 1.000 milhas para levantar fundos para pesquisas contra o câncer. Se a prevenção não nos salva, a pesquisa precisa salvar.',
+    tocTitle: 'Sumário',
   },
 
   es: {
@@ -300,11 +338,20 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
       'Desde 1981, la Terry Fox Foundation ha recaudado más de C$900 millones. El Terry Fox Research Institute — fundado en 2007 — financia investigaciones oncológicas en Canadá y en más de 60 países. La carrera anual Terry Fox Run es el mayor recaudador de un solo día para la investigación del cáncer en el mundo. El 78% de cada dólar donado va directamente a los científicos.',
     ],
     worldTitle: 'Cómo Cambia el Mundo con una Cura',
+    worldContext: 'Curar el cáncer no sería solo un logro médico. Sería uno de los mayores puntos de inflexión de la historia humana — económico, social y profundamente personal.',
     worldStat: 'US$185 billones — beneficio económico estimado de curar el cáncer.',
+    worldStats: [
+      { value: '19,3M', label: 'nuevos casos de cáncer diagnosticados por año' },
+      { value: '10M', label: 'muertes anuales — 1 de cada 6 en el mundo' },
+      { value: 'US$1,16B', label: 'gasto mundial en tratamiento oncológico por año' },
+    ],
     worldHuman: [
       'Un padre que llega a casa.',
       'Una madre que ve crecer a su hijo.',
-      'Alguien que no recibe la llamada que yo recibí en mi cumpleaños.',
+      'Una persona que escucha "cáncer" — y "curable" en la misma frase.',
+      'Un niño que crece conociendo a un abuelo que, en otro mundo, habría muerto demasiado pronto.',
+      'Un investigador que pasó décadas construyendo hacia esto — y vive para verlo funcionar.',
+      'Una generación que hereda un mundo donde el cáncer es tratable — no una sentencia.',
     ],
     donationTitle: 'Tu Donación. Resultados Reales.',
     donationLines: [
@@ -334,15 +381,19 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
     ],
     impactSectionTitle: 'Impacto en Tiempo Real',
     roadmapSectionTitle: 'El Camino por Delante',
+    roadmapActiveLabel: 'Activo',
     partnersSectionTitle: 'Socios',
+    partnersFirstLabel: 'Sé el primero.',
     partnersEmptyState: 'Aún sin socios. El primero lo cambia todo.',
     partnersBecome: 'Conviértete en Socio',
+    goalsSectionTitle: 'Meta de Recaudación',
     benefitsSectionTitle: 'Por Qué Ser Socio',
     benefitsSubtitle: 'No es publicidad. Es alineación — con impacto, con propósito, con personas.',
     benefitsTabCompany: 'Empresas',
     benefitsTabIndividual: 'Personas',
     transparencySectionTitle: 'A Dónde Va Cada Dólar',
     transparencySubtitle: 'Cada asignación es pública. Cada dólar se rastrea.',
+    transparencySourceLabel: 'Fuente: Informe Anual de la Terry Fox Foundation · terryfox.ca',
     finalCtaTitle: 'Sé Parte del Camino',
     finalCtaSubtitle: 'Cada milla lleva esperanza.',
     finalCtaBlocks: [
@@ -352,6 +403,8 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
     ],
     finalCtaDonate: 'Donar Ahora',
     finalCtaPartner: 'Convertirse en Socio',
+    introStatement: 'Nos enseñaron que la prevención es la mejor actitud, pero la verdad es más dura: cualquiera de nosotros está en el punto de mira del cáncer por razones que la ciencia aún intenta descifrar. Corro porque la prevención falló a personas que amo. Estoy corriendo 1.000 millas para recaudar fondos para la investigación contra el cáncer. Si la prevención no nos salva, la investigación debe hacerlo.',
+    tocTitle: 'Índice',
   },
 
   fr: {
@@ -401,11 +454,20 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
       "Depuis 1981, la Terry Fox Foundation a collecté plus de C$900 millions. Le Terry Fox Research Institute — fondé en 2007 — finance des recherches oncologiques au Canada et dans plus de 60 pays. La course annuelle Terry Fox Run est le plus grand collecteur de fonds en une seule journée pour la recherche sur le cancer au monde. 78% de chaque dollar donné va directement aux scientifiques.",
     ],
     worldTitle: 'Comment le Monde Change avec un Remède',
-    worldStat: '185 000 milliards USD — gain économique estimé d\'un remède contre le cancer.',
+    worldContext: "Guérir le cancer ne serait pas seulement une victoire médicale. Ce serait l'un des plus grands tournants de l'histoire humaine — économique, social et profondément personnel.",
+    worldStat: "185 000 milliards USD — gain économique estimé d'un remède contre le cancer.",
+    worldStats: [
+      { value: '19,3M', label: 'nouveaux cas de cancer diagnostiqués par an' },
+      { value: '10M', label: 'décès annuels — 1 sur 6 dans le monde' },
+      { value: '1 160Mds $', label: 'dépenses mondiales en traitement oncologique par an' },
+    ],
     worldHuman: [
       'Un père qui rentre à la maison.',
       'Une mère qui regarde son enfant grandir.',
-      "Quelqu'un qui ne reçoit pas l'appel que j'ai reçu le jour de mon anniversaire.",
+      'Une personne qui entend "cancer" — et "guérissable" dans la même phrase.',
+      "Un enfant qui grandit en connaissant un grand-parent qui, dans un autre monde, serait mort trop tôt.",
+      "Un chercheur qui a passé des décennies à construire vers cela — et vit pour le voir fonctionner.",
+      "Une génération qui hérite d'un monde où le cancer est traitable — pas une sentence.",
     ],
     donationTitle: 'Votre Don. Des Résultats Réels.',
     donationLines: [
@@ -435,15 +497,19 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
     ],
     impactSectionTitle: 'Impact en Direct',
     roadmapSectionTitle: 'La Route à Venir',
+    roadmapActiveLabel: 'Actif',
     partnersSectionTitle: 'Partenaires',
+    partnersFirstLabel: 'Soyez le premier.',
     partnersEmptyState: "Pas encore de partenaires. Le premier change tout.",
     partnersBecome: 'Devenir Partenaire',
+    goalsSectionTitle: 'Objectif de Collecte',
     benefitsSectionTitle: 'Pourquoi Devenir Partenaire',
     benefitsSubtitle: "Ce n'est pas de la publicité. C'est un alignement — avec l'impact, le sens, les gens.",
     benefitsTabCompany: 'Entreprises',
     benefitsTabIndividual: 'Personnes',
     transparencySectionTitle: 'Où Va Chaque Dollar',
     transparencySubtitle: 'Chaque allocation est publique. Chaque dollar est suivi.',
+    transparencySourceLabel: 'Source : Rapport annuel de la Terry Fox Foundation · terryfox.ca',
     finalCtaTitle: 'Faites Partie du Voyage',
     finalCtaSubtitle: "Chaque mile porte de l'espoir.",
     finalCtaBlocks: [
@@ -453,6 +519,8 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
     ],
     finalCtaDonate: 'Faire un Don',
     finalCtaPartner: 'Devenir Partenaire',
+    introStatement: "On nous a appris que la prévention est la meilleure attitude, mais la vérité est plus dure : n'importe lequel d'entre nous est dans la ligne de mire du cancer pour des raisons que la science tente encore de déchiffrer. Je cours parce que la prévention a échoué à des personnes que j'aime. Je cours 1 000 miles pour lever des fonds pour la recherche contre le cancer. Si la prévention ne nous sauve pas, la recherche doit le faire.",
+    tocTitle: 'Sommaire',
   },
 
   ca: {
@@ -502,11 +570,20 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
       "Des del 1981, la Terry Fox Foundation ha recaptat més de C$900 milions. El Terry Fox Research Institute — fundat el 2007 — finança recerques oncològiques al Canadà i en més de 60 països. La cursa anual Terry Fox Run és el major recaptador d'un sol dia per a la recerca del càncer al món. El 78% de cada dòlar donat va directament als científics.",
     ],
     worldTitle: 'Com Canvia el Món amb una Cura',
+    worldContext: "Curar el càncer no seria només una victòria mèdica. Seria un dels majors punts d'inflexió de la història humana — econòmic, social i profundament personal.",
     worldStat: '185 bilions de dòlars — benefici econòmic estimat de curar el càncer.',
+    worldStats: [
+      { value: '19,3M', label: 'nous casos de càncer diagnosticats per any' },
+      { value: '10M', label: 'morts anuals — 1 de cada 6 al món' },
+      { value: 'US$1,16B', label: 'despesa mundial en tractament oncològic per any' },
+    ],
     worldHuman: [
       'Un pare que torna a casa.',
       'Una mare que veu créixer el seu fill.',
-      "Algú que no rep la trucada que jo vaig rebre el dia del meu aniversari.",
+      'Una persona que escolta "càncer" — i "curable" en la mateixa frase.',
+      "Un nen que creix coneixent un avi que, en un altre món, hauria mort massa aviat.",
+      "Un investigador que va passar dècades construint cap a això — i viu per veure-ho funcionar.",
+      "Una generació que hereta un món on el càncer és tractable — no una sentència.",
     ],
     donationTitle: 'La Vostra Donació. Resultats Reals.',
     donationLines: [
@@ -536,15 +613,19 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
     ],
     impactSectionTitle: 'Impacte en Temps Real',
     roadmapSectionTitle: 'El Camí per Endavant',
+    roadmapActiveLabel: 'Actiu',
     partnersSectionTitle: 'Socis',
+    partnersFirstLabel: 'Sigueu el primer.',
     partnersEmptyState: "Encara sense socis. El primer ho canvia tot.",
     partnersBecome: 'Convertiu-vos en Soci',
+    goalsSectionTitle: 'Objectiu de Recaptació',
     benefitsSectionTitle: 'Per Què Ser Soci',
     benefitsSubtitle: "No és publicitat. És alineació — amb impacte, amb propòsit, amb persones.",
     benefitsTabCompany: 'Empreses',
     benefitsTabIndividual: 'Persones',
     transparencySectionTitle: 'On Va Cada Dòlar',
     transparencySubtitle: 'Cada assignació és pública. Cada dòlar es rastreja.',
+    transparencySourceLabel: 'Font: Informe Anual de la Terry Fox Foundation · terryfox.ca',
     finalCtaTitle: 'Formeu Part del Viatge',
     finalCtaSubtitle: 'Cada milla porta esperança.',
     finalCtaBlocks: [
@@ -554,5 +635,7 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
     ],
     finalCtaDonate: 'Donar Ara',
     finalCtaPartner: 'Convertiu-vos en Soci',
+    introStatement: "Ens van ensenyar que la prevenció és la millor actitud, però la veritat és més dura: qualsevol de nosaltres és al punt de mira del càncer per raons que la ciència encara intenta desxifrar. Corro perquè la prevenció va fallar a persones que estimo. Estic corrent 1.000 milles per recaptar fons per a la recerca contra el càncer. Si la prevenció no ens salva, la recerca ha de fer-ho.",
+    tocTitle: 'Sumari',
   },
 }

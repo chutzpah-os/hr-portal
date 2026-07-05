@@ -6,8 +6,8 @@ import { CHALLENGES, getChallenge, getLocalizedChallenge } from '@/data/challeng
 import { getTranslations } from 'next-intl/server'
 import { NARRATIVE } from '@/data/1k-miles-narrative'
 import type { NarrativeLocale } from '@/data/1k-miles-narrative'
-import CancerStats from '@/components/challenges/CancerStats'
-import Narrative from '@/components/challenges/Narrative'
+import CancerStats, { PeopleSection } from '@/components/challenges/CancerStats'
+import { WhyIRun, TerryFox, WorldWithCure } from '@/components/challenges/Narrative'
 import FundraisingGoals from '@/components/challenges/FundraisingGoals'
 import VideoGrid from '@/components/challenges/VideoGrid'
 import RelatedPosts from '@/components/challenges/RelatedPosts'
@@ -20,10 +20,33 @@ import Partners from '@/components/challenges/Partners'
 import Benefits from '@/components/challenges/Benefits'
 import Transparency from '@/components/challenges/Transparency'
 import FinalCTA from '@/components/challenges/FinalCTA'
+import FundraisingTiers from '@/components/challenges/FundraisingTiers'
+import SectionScroller from '@/components/challenges/SectionScroller'
+import TOCSummary from '@/components/challenges/TOCSummary'
 
 const BASE_URL = 'https://hanielrolemberg.com'
 
 const SUPPORTED_NARRATIVE_LOCALES: NarrativeLocale[] = ['en', 'pt', 'es', 'fr', 'ca']
+
+// Vertically centers content within the 100vh panel for short sections.
+// For tall sections, margin auto resolves to 0 and content flows from the top naturally.
+function PanelFrame({ children, top = false }: { children: React.ReactNode; top?: boolean }) {
+  const inner = 'max-w-3xl mx-auto px-6 md:px-10 w-full'
+  if (top) {
+    return (
+      <div style={{ minHeight: '100%', paddingTop: '7rem', paddingBottom: '3rem' }}>
+        <div className={inner}>{children}</div>
+      </div>
+    )
+  }
+  return (
+    <div style={{ minHeight: '100%', display: 'flex', flexDirection: 'column', paddingTop: '5rem', paddingBottom: '3rem' }}>
+      <div className={inner} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+        {children}
+      </div>
+    </div>
+  )
+}
 
 export async function generateStaticParams() {
   return CHALLENGES.map((c) => ({ slug: c.id }))
@@ -112,7 +135,7 @@ export default async function ChallengePage(
     ],
   }
 
-  return (
+  const jsonLd = (
     <>
       <script
         type="application/ld+json"
@@ -122,6 +145,305 @@ export default async function ChallengePage(
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+    </>
+  )
+
+  // ── PRESENTATION MODE — section-snap pitch deck ──
+  if (isPresentation) {
+    const sectionNames: string[] = [
+      'Intro',
+      'Index',
+      'Problem',
+      'Lives',
+      'Why I Run',
+      'Terry Fox',
+      'World',
+      'About',
+      'Rhythm',
+      ...(challenge.impactMetrics && challenge.impactMetrics.length > 0 ? ['Impact'] : []),
+      ...(challenge.fundraisingGoals ? ['Donate'] : []),
+      ...(challenge.transparency && challenge.transparency.length > 0 ? ['Funds'] : []),
+      ...(challenge.fundraisingGoals ? ['Tiers'] : []),
+      ...(rawChallenge.faqs && rawChallenge.faqs.length > 0 ? ['FAQ'] : []),
+      ...(challenge.roadmap && challenge.roadmap.length > 0 ? ['Road'] : []),
+      'Partners',
+      ...(challenge.benefits && challenge.benefits.length > 0 ? ['Benefits'] : []),
+      'Updates',
+      ...(rawChallenge.videos && rawChallenge.videos.length > 0 ? ['Videos'] : []),
+      'Act',
+    ]
+
+    const tocEntries = sectionNames
+      .map((label, i) => ({ label, index: i }))
+      .filter(e => e.index !== 0 && e.index !== 1)
+
+    return (
+      <>
+        {jsonLd}
+        <main>
+          <SectionScroller names={sectionNames}>
+
+            {/* ── 0: INTRO — top-aligned (cover image fills the space) ── */}
+            <PanelFrame top>
+              <nav className="mb-8">
+                <Link
+                  href="/challenges"
+                  className="text-xs uppercase tracking-widest transition-opacity hover:opacity-60"
+                  style={{ color: 'var(--white-40)' }}
+                >
+                  {t('backChallenges')}
+                </Link>
+              </nav>
+
+              <div className="flex flex-wrap gap-2 mb-5">
+                {challenge.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-[0.55rem] uppercase tracking-widest px-2.5 py-0.5 rounded-full"
+                    style={{
+                      backgroundColor: 'rgba(212,119,90,0.08)',
+                      color: 'var(--accent)',
+                      border: '1px solid rgba(212,119,90,0.18)',
+                    }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <h1
+                className="mb-3"
+                style={{
+                  color: 'var(--white-100)',
+                  fontSize: 'clamp(2rem, 5vw, 3.2rem)',
+                  fontFamily: 'var(--font-syne)',
+                  fontWeight: 700,
+                  lineHeight: 1.05,
+                  letterSpacing: '-0.025em',
+                }}
+              >
+                {challenge.name}
+              </h1>
+
+              <div className="flex items-center gap-4 flex-wrap mb-8">
+                <p className="text-base italic" style={{ color: 'var(--white-50)' }}>
+                  &ldquo;{challenge.tagline}&rdquo;
+                </p>
+                {challenge.cta && (
+                  <a
+                    href={challenge.cta.href}
+                    target={challenge.cta.external ? '_blank' : undefined}
+                    rel={challenge.cta.external ? 'noopener noreferrer' : undefined}
+                    className="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest px-4 py-2 rounded-full transition-opacity duration-200 shrink-0"
+                    style={{ backgroundColor: 'var(--accent)', color: 'rgb(255,255,255)', fontWeight: 600 }}
+                  >
+                    {challenge.cta.label} →
+                  </a>
+                )}
+              </div>
+
+              {challenge.image && (
+                <div
+                  className="rounded-2xl overflow-hidden"
+                  style={{
+                    aspectRatio: '16/7',
+                    backgroundColor: 'rgba(10,10,15,0.03)',
+                    border: '1px solid rgba(10,10,15,0.07)',
+                    position: 'relative',
+                  }}
+                >
+                  <Image
+                    src={challenge.image}
+                    alt={challenge.name}
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 100vw, 768px"
+                    className={challenge.imageFit === 'cover' ? 'object-cover' : 'object-contain'}
+                    style={challenge.imageFit !== 'cover' ? { padding: '1.5rem' } : undefined}
+                  />
+                </div>
+              )}
+
+              {narrative.introStatement && (
+                <p
+                  className="mt-7 text-sm leading-relaxed"
+                  style={{
+                    color: 'var(--white-60)',
+                    borderLeft: '2px solid rgba(212,119,90,0.4)',
+                    paddingLeft: '1rem',
+                    fontStyle: 'italic',
+                  }}
+                >
+                  {narrative.introStatement}
+                </p>
+              )}
+            </PanelFrame>
+
+            {/* ── 1: INDEX / TOC ── */}
+            <PanelFrame>
+              <TOCSummary entries={tocEntries} title={narrative.tocTitle} />
+            </PanelFrame>
+
+            {/* ── 2: PROBLEM ── */}
+            <PanelFrame>
+              <div
+                className="text-[0.55rem] uppercase tracking-widest mb-4"
+                style={{ color: 'var(--white-30)', borderBottom: '1px solid rgba(10,10,15,0.06)', paddingBottom: '0.5rem' }}
+              >
+                {narrative.problemSectionTitle}
+              </div>
+              <p className="text-base leading-relaxed mb-8" style={{ color: 'var(--white-65)' }}>
+                {narrative.problemIntro}
+              </p>
+              <CancerStats
+                narrative={narrative}
+                locale={narrativeLocale}
+                survivalLabel={t('survivalRate5yr')}
+                sourceLabel={t('sourceLabel')}
+              />
+            </PanelFrame>
+
+            {/* ── 2: LIVES — survivors / lost grid ── */}
+            <PanelFrame>
+              <PeopleSection narrative={narrative} />
+            </PanelFrame>
+
+            {/* ── 3: WHY I RUN ── */}
+            <PanelFrame>
+              <WhyIRun narrative={narrative} />
+            </PanelFrame>
+
+            {/* ── 3: TERRY FOX ── */}
+            <PanelFrame>
+              <TerryFox narrative={narrative} />
+            </PanelFrame>
+
+            {/* ── 4: WORLD WITH CURE ── */}
+            <PanelFrame>
+              <WorldWithCure narrative={narrative} />
+            </PanelFrame>
+
+            {/* ── 5: ABOUT ── */}
+            <PanelFrame>
+              <AboutProject narrative={narrative} />
+            </PanelFrame>
+
+            {/* ── 6: HOW IT WORKS + LIVE PROGRESS ── */}
+            <PanelFrame>
+              <HowItWorks narrative={narrative} progress={rawChallenge.progress!} />
+            </PanelFrame>
+
+            {/* ── 7: IMPACT (conditional) ── */}
+            {challenge.impactMetrics && challenge.impactMetrics.length > 0 && (
+              <PanelFrame>
+                <ImpactSection metrics={challenge.impactMetrics} narrative={narrative} />
+              </PanelFrame>
+            )}
+
+            {/* ── 6: FUNDRAISING GOALS (conditional) ── */}
+            {challenge.fundraisingGoals && (
+              <PanelFrame>
+                <FundraisingGoals goals={challenge.fundraisingGoals} narrative={narrative} />
+              </PanelFrame>
+            )}
+
+            {/* ── 7: TRANSPARENCY (conditional) ── */}
+            {challenge.transparency && challenge.transparency.length > 0 && (
+              <PanelFrame>
+                <Transparency items={challenge.transparency} narrative={narrative} />
+              </PanelFrame>
+            )}
+
+            {/* ── 8: TIERS (conditional) ── */}
+            {challenge.fundraisingGoals && (
+              <PanelFrame>
+                <FundraisingTiers goals={challenge.fundraisingGoals} narrative={narrative} />
+              </PanelFrame>
+            )}
+
+            {/* ── 9: FAQ (conditional) ── */}
+            {rawChallenge.faqs && rawChallenge.faqs.length > 0 && (
+              <PanelFrame>
+                <FAQ faqs={rawChallenge.faqs} locale={locale} label={t('faqLabel')} />
+              </PanelFrame>
+            )}
+
+            {/* ── 10: ROADMAP (conditional) ── */}
+            {challenge.roadmap && challenge.roadmap.length > 0 && (
+              <PanelFrame>
+                <Roadmap phases={challenge.roadmap} narrative={narrative} />
+              </PanelFrame>
+            )}
+
+            {/* ── 11: PARTNERS ── */}
+            <PanelFrame>
+              <Partners narrative={narrative} />
+            </PanelFrame>
+
+            {/* ── 12: BENEFITS (conditional) ── */}
+            {challenge.benefits && challenge.benefits.length > 0 && (
+              <PanelFrame>
+                <Benefits benefits={challenge.benefits} narrative={narrative} />
+              </PanelFrame>
+            )}
+
+            {/* ── 13: UPDATES ── */}
+            <PanelFrame>
+              {challenge.modalImage && (
+                <div
+                  className="rounded-2xl overflow-hidden mb-10"
+                  style={{
+                    aspectRatio: '16/6',
+                    maxHeight: '260px',
+                    position: 'relative',
+                    border: '1px solid rgba(10,10,15,0.07)',
+                  }}
+                >
+                  <Image
+                    src={challenge.modalImage}
+                    alt={`${challenge.name} — photo`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 768px"
+                    className="object-cover object-top"
+                  />
+                </div>
+              )}
+              <RelatedPosts
+                group="Live Projects/1K Miles of Hope Project"
+                locale={locale}
+                label={t('runningLogLabel')}
+                seeAllLabel={t('seeRelatedPosts')}
+              />
+            </PanelFrame>
+
+            {/* ── 14: VIDEOS (conditional) ── */}
+            {rawChallenge.videos && rawChallenge.videos.length > 0 && (
+              <PanelFrame>
+                <div
+                  className="text-[0.55rem] uppercase tracking-widest mb-4"
+                  style={{ color: 'var(--white-30)', borderBottom: '1px solid rgba(10,10,15,0.06)', paddingBottom: '0.5rem' }}
+                >
+                  {t('videosLabel')}
+                </div>
+                <VideoGrid videos={rawChallenge.videos} locale={locale} />
+              </PanelFrame>
+            )}
+
+            {/* ── 15: ACT ── */}
+            <PanelFrame>
+              <FinalCTA narrative={narrative} />
+            </PanelFrame>
+
+          </SectionScroller>
+        </main>
+      </>
+    )
+  }
+
+  // ── STANDARD MODE ── (no progress data — simple layout)
+  return (
+    <>
+      {jsonLd}
 
       <main
         style={{
@@ -141,7 +463,6 @@ export default async function ChallengePage(
         />
 
         <div className="relative max-w-3xl mx-auto px-6 md:px-10" style={{ zIndex: 1 }}>
-          {/* Breadcrumb */}
           <nav className="mb-10">
             <Link
               href="/challenges"
@@ -152,7 +473,6 @@ export default async function ChallengePage(
             </Link>
           </nav>
 
-          {/* ── HERO ── */}
           <div className="mb-10">
             <div className="flex flex-wrap gap-2 mb-5">
               {challenge.tags.map((tag) => (
@@ -202,7 +522,6 @@ export default async function ChallengePage(
             </div>
           </div>
 
-          {/* Cover image */}
           {challenge.image && (
             <div
               className="rounded-2xl overflow-hidden mb-10"
@@ -225,138 +544,19 @@ export default async function ChallengePage(
             </div>
           )}
 
-          {/* Non-presentation fallback */}
-          {!isPresentation && (
-            <div className="mb-10">
-              {challenge.fullDescription.split('\n\n').map((para, i) => (
-                <p
-                  key={i}
-                  className="text-base leading-relaxed mb-5"
-                  style={{ color: 'var(--white-70)' }}
-                >
-                  {para}
-                </p>
-              ))}
-            </div>
-          )}
+          <div className="mb-10">
+            {challenge.fullDescription.split('\n\n').map((para, i) => (
+              <p
+                key={i}
+                className="text-base leading-relaxed mb-5"
+                style={{ color: 'var(--white-70)' }}
+              >
+                {para}
+              </p>
+            ))}
+          </div>
 
-          {/* ── PITCH DECK SECTIONS — presentation mode only ── */}
-
-          {isPresentation && (
-            <>
-              {/* ── PROBLEM ── */}
-              <div className="mb-16">
-                <div
-                  className="text-[0.55rem] uppercase tracking-widest mb-4"
-                  style={{ color: 'var(--white-30)', borderBottom: '1px solid rgba(10,10,15,0.06)', paddingBottom: '0.5rem' }}
-                >
-                  {narrative.problemSectionTitle}
-                </div>
-                <p className="text-base leading-relaxed mb-8" style={{ color: 'var(--white-65)' }}>
-                  {narrative.problemIntro}
-                </p>
-                <CancerStats
-                  narrative={narrative}
-                  locale={narrativeLocale}
-                  survivalLabel={t('survivalRate5yr')}
-                  sourceLabel={t('sourceLabel')}
-                />
-              </div>
-
-              {/* ── STORY ── */}
-              <Narrative narrative={narrative} />
-
-              {/* ── ABOUT THE PROJECT ── */}
-              <AboutProject narrative={narrative} />
-
-              {/* ── HOW IT WORKS + LIVE PROGRESS ── */}
-              <HowItWorks narrative={narrative} progress={rawChallenge.progress!} />
-
-              {/* ── IMPACT ── */}
-              {rawChallenge.impactMetrics && rawChallenge.impactMetrics.length > 0 && (
-                <ImpactSection metrics={rawChallenge.impactMetrics} narrative={narrative} />
-              )}
-
-              {/* ── FUNDRAISING GOALS ── */}
-              {rawChallenge.fundraisingGoals && (
-                <FundraisingGoals
-                  goals={rawChallenge.fundraisingGoals}
-                  narrative={narrative}
-                />
-              )}
-
-              {/* ── FAQ ── */}
-              {rawChallenge.faqs && rawChallenge.faqs.length > 0 && (
-                <FAQ faqs={rawChallenge.faqs} locale={locale} label={t('faqLabel')} />
-              )}
-
-              {/* ── ROADMAP ── */}
-              {rawChallenge.roadmap && rawChallenge.roadmap.length > 0 && (
-                <Roadmap phases={rawChallenge.roadmap} narrative={narrative} />
-              )}
-
-              {/* ── PARTNERS ── */}
-              <Partners narrative={narrative} />
-
-              {/* ── BENEFITS ── */}
-              {rawChallenge.benefits && rawChallenge.benefits.length > 0 && (
-                <Benefits benefits={rawChallenge.benefits} narrative={narrative} />
-              )}
-
-              {/* ── TRANSPARENCY ── */}
-              {rawChallenge.transparency && rawChallenge.transparency.length > 0 && (
-                <Transparency items={rawChallenge.transparency} narrative={narrative} />
-              )}
-
-              {/* Running log photo */}
-              {challenge.modalImage && (
-                <div
-                  className="rounded-2xl overflow-hidden mb-10"
-                  style={{
-                    aspectRatio: '16/6',
-                    maxHeight: '260px',
-                    position: 'relative',
-                    border: '1px solid rgba(10,10,15,0.07)',
-                  }}
-                >
-                  <Image
-                    src={challenge.modalImage}
-                    alt={`${challenge.name} — photo`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 768px"
-                    className="object-cover object-top"
-                  />
-                </div>
-              )}
-
-              {/* ── RUNNING LOG POSTS ── */}
-              <RelatedPosts
-                group="Live Projects/1K Miles of Hope Project"
-                locale={locale}
-                label={t('runningLogLabel')}
-                seeAllLabel={t('seeRelatedPosts')}
-              />
-
-              {/* ── VIDEOS ── */}
-              {rawChallenge.videos && rawChallenge.videos.length > 0 && (
-                <>
-                  <div
-                    className="text-[0.55rem] uppercase tracking-widest mb-4"
-                    style={{ color: 'var(--white-30)', borderBottom: '1px solid rgba(10,10,15,0.06)', paddingBottom: '0.5rem' }}
-                  >
-                    {t('videosLabel')}
-                  </div>
-                  <VideoGrid videos={rawChallenge.videos} locale={locale} />
-                </>
-              )}
-
-              {/* ── FINAL CTA ── */}
-              <FinalCTA narrative={narrative} />
-            </>
-          )}
-
-          {/* Donate CTA — non-presentation mode */}
-          {!isPresentation && challenge.cta && (
+          {challenge.cta && (
             <div
               className="rounded-2xl p-8 mb-10 text-center"
               style={{
@@ -379,7 +579,6 @@ export default async function ChallengePage(
             </div>
           )}
 
-          {/* Back */}
           <div
             className="pt-8"
             style={{ borderTop: '1px solid rgba(10,10,15,0.07)' }}

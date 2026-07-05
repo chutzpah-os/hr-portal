@@ -2,7 +2,15 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { motion, useInView, animate } from 'framer-motion'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
+
+const OF_LABELS: Record<string, string> = {
+  en: 'of', pt: 'de', es: 'de', fr: 'sur', ca: 'de',
+}
+
+const DATE_LOCALES: Record<string, string> = {
+  en: 'en-US', pt: 'pt-BR', es: 'es-ES', fr: 'fr-FR', ca: 'ca-ES',
+}
 import type { ChallengeProgress } from '@/data/challenges'
 
 function AnimatedCounter({ to, duration = 1.8 }: { to: number; duration?: number }) {
@@ -23,15 +31,17 @@ function AnimatedCounter({ to, duration = 1.8 }: { to: number; duration?: number
   return <span ref={ref}>{value.toLocaleString()}</span>
 }
 
-function formatDate(iso: string): string {
+function formatDate(iso: string, locale: string): string {
   const [y, m, d] = iso.split('-').map(Number)
-  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString('en-US', {
+  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString(DATE_LOCALES[locale] ?? 'en-US', {
     month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC',
   })
 }
 
 export default function ProgressTracker({ progress }: { progress: ChallengeProgress }) {
   const t = useTranslations('challenges')
+  const locale = useLocale()
+  const of = OF_LABELS[locale] ?? OF_LABELS.en
   const milesPercent = Math.min((progress.milesRun / progress.goalMiles) * 100, 100)
 
   return (
@@ -59,7 +69,7 @@ export default function ProgressTracker({ progress }: { progress: ChallengeProgr
             {t('progressDays')}
           </div>
           <div className="text-[0.48rem] uppercase tracking-widest mt-1" style={{ color: 'var(--white-28)' }}>
-            of {progress.goalDays}
+            {of} {progress.goalDays}
           </div>
         </div>
 
@@ -78,7 +88,7 @@ export default function ProgressTracker({ progress }: { progress: ChallengeProgr
             {t('progressMiles')}
           </div>
           <div className="text-[0.48rem] uppercase tracking-widest mt-1" style={{ color: 'var(--white-28)' }}>
-            of {progress.goalMiles.toLocaleString()}
+            {of} {progress.goalMiles.toLocaleString()}
           </div>
         </div>
 
@@ -88,7 +98,7 @@ export default function ProgressTracker({ progress }: { progress: ChallengeProgr
             className="font-medium"
             style={{ fontSize: 'clamp(0.7rem, 1.8vw, 0.85rem)', color: 'var(--white-55)', fontFamily: 'var(--font-syne)' }}
           >
-            {formatDate(progress.lastUpdated)}
+            {formatDate(progress.lastUpdated, locale)}
           </div>
           <div className="text-[0.48rem] uppercase tracking-widest" style={{ color: 'var(--white-28)' }}>
             {t('progressLastUpdated')}

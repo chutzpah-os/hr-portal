@@ -3,6 +3,11 @@ interface ChallengeTranslation {
   shortDescription: string
   fullDescription: string
   tags: string[]
+  benefits?: BenefitItem[]
+  roadmap?: RoadmapPhase[]
+  transparency?: TransparencyItem[]
+  fundraisingGoals?: FundraisingGoals
+  impactMetrics?: ImpactMetric[]
 }
 
 export interface ChallengeProgress {
@@ -219,6 +224,46 @@ O câncer toca quase todas as famílias. Esta campanha é uma forma de transform
 
 Se você quiser contribuir, toda doação faz diferença.`,
       tags: ['Impacto Social', 'Saúde', 'Corrida'],
+      impactMetrics: [
+        { value: '8', label: 'Dias Corridos', sublabel: 'de 100 planejados' },
+        { value: '52', label: 'Milhas Percorridas', sublabel: 'de 1.000' },
+        { value: '4', label: 'Episódios', sublabel: 'EN + PT' },
+        { value: '3', label: 'Continentes', sublabel: 'Américas · Europa · Ásia' },
+        { value: '1K+', label: 'Pessoas Inspiradas', sublabel: 'em todas as plataformas' },
+        { value: '0', label: 'USD Arrecadados', sublabel: 'primeira meta: US$10K' },
+      ],
+      roadmap: [
+        { phase: '01', label: 'Início', description: 'Primeiras corridas, primeiros episódios, primeiros doadores. A Maratona da Esperança está ao vivo.', year: '2026', status: 'active' },
+        { phase: '02', label: 'América do Sul', description: 'Parcerias corporativas e comunidade de corredores no Brasil, Argentina, Chile e Colômbia.', year: '2026', status: 'upcoming' },
+        { phase: '03', label: 'América do Norte', description: 'Integração com a Terry Fox Run. Fundos universitários e programas de matching de empresas de tecnologia nos EUA e Canadá.', year: '2027', status: 'upcoming' },
+        { phase: '04', label: 'Europa', description: 'Alianças com ONGs internacionais e cofinanciamento de institutos de pesquisa no Reino Unido, Alemanha e França.', year: '2027', status: 'upcoming' },
+        { phase: '05', label: 'Global', description: 'Uma iniciativa verdadeiramente planetária — mais de 60 países, milhões arrecadados e uma geração inspirada a correr por uma cura.', year: '2028', status: 'upcoming' },
+      ],
+      transparency: [
+        { percent: 78, category: 'Pesquisa', detail: 'Direcionado a cientistas do câncer via Terry Fox Foundation — verificado anualmente por auditores independentes.' },
+        { percent: 14, category: 'Operações', detail: 'Plataforma, logística, equipamentos e coordenação do projeto.' },
+        { percent: 8, category: 'Comunicação', detail: 'Produção de conteúdo, canais sociais e divulgação pública.' },
+      ],
+      fundraisingGoals: {
+        current: 0,
+        currency: 'USD',
+        tiers: [
+          { label: 'Primeira meta', amount: 10000 },
+          { label: 'Expansão', amount: 50000 },
+          { label: 'Acelerar', amount: 100000 },
+          { label: 'Impacto total', amount: 1000000 },
+        ],
+      },
+      benefits: [
+        { type: 'company', title: 'Visibilidade de Marca', description: 'Logo em todos os materiais do projeto, thumbnails de episódios, posts nas redes sociais e vídeos ao vivo das corridas.' },
+        { type: 'company', title: 'Relatório de Impacto ESG', description: 'Relatórios trimestrais com métricas certificadas para portfólios de sustentabilidade e certificações B Corp.' },
+        { type: 'company', title: 'Engajamento de Equipe', description: 'Desafios de corrida com a marca da empresa e programas de doação em dobro para toda a equipe.' },
+        { type: 'company', title: 'Exposição nas Redes Sociais', description: 'Posts e stories com co-branding alcançando audiências nas Américas, Europa e Ásia.' },
+        { type: 'company', title: 'Oportunidades de Palestra', description: 'Convites para eventos do projeto, encontros de parceiros e apresentações de pesquisa em câncer.' },
+        { type: 'company', title: 'Atualizações Exclusivas de Impacto', description: 'Acesso direto a resultados de pesquisa, marcos de arrecadação e dados de impacto antes da divulgação pública.' },
+        { type: 'individual', title: 'Seu Nome no Projeto', description: 'Listado como apoiador na página do projeto — um registro permanente da sua contribuição.' },
+        { type: 'individual', title: 'Parte da História', description: 'Cada milha e cada doação são documentadas. Seu apoio se torna parte do registro público deste projeto.' },
+      ],
     },
     es: {
       tagline: 'Corriendo por una cura.',
@@ -231,6 +276,46 @@ El cáncer toca casi todas las familias. Esta campaña es una forma de convertir
 
 Si quieres contribuir, cada donación hace la diferencia.`,
       tags: ['Impacto Social', 'Salud', 'Carrera'],
+      impactMetrics: [
+        { value: '8', label: 'Días Corridos', sublabel: 'de 100 planificados' },
+        { value: '52', label: 'Millas Recorridas', sublabel: 'de 1.000' },
+        { value: '4', label: 'Episodios', sublabel: 'EN + PT' },
+        { value: '3', label: 'Continentes', sublabel: 'Américas · Europa · Asia' },
+        { value: '1K+', label: 'Personas Inspiradas', sublabel: 'en todas las plataformas' },
+        { value: '0', label: 'USD Recaudados', sublabel: 'primera meta: US$10K' },
+      ],
+      roadmap: [
+        { phase: '01', label: 'Lanzamiento', description: 'Primeras carreras, primeros episodios, primeros donantes. La Maratón de la Esperanza está en vivo.', year: '2026', status: 'active' },
+        { phase: '02', label: 'América del Sur', description: 'Alianzas corporativas y comunidad de corredores en Brasil, Argentina, Chile y Colombia.', year: '2026', status: 'upcoming' },
+        { phase: '03', label: 'América del Norte', description: 'Integración con la Terry Fox Run. Fondos universitarios y programas de matching de empresas tecnológicas en EE.UU. y Canadá.', year: '2027', status: 'upcoming' },
+        { phase: '04', label: 'Europa', description: 'Alianzas con ONG internacionales y cofinanciamiento de institutos de investigación en el Reino Unido, Alemania y Francia.', year: '2027', status: 'upcoming' },
+        { phase: '05', label: 'Global', description: 'Una iniciativa verdaderamente planetaria — más de 60 países, millones recaudados y una generación inspirada a correr por una cura.', year: '2028', status: 'upcoming' },
+      ],
+      transparency: [
+        { percent: 78, category: 'Investigación', detail: 'Dirigido a científicos del cáncer a través de la Terry Fox Foundation — verificado anualmente por auditores independientes.' },
+        { percent: 14, category: 'Operaciones', detail: 'Plataforma, logística, equipamiento y coordinación del proyecto.' },
+        { percent: 8, category: 'Comunicación', detail: 'Producción de contenido, canales sociales y divulgación pública.' },
+      ],
+      fundraisingGoals: {
+        current: 0,
+        currency: 'USD',
+        tiers: [
+          { label: 'Primera meta', amount: 10000 },
+          { label: 'Escalar', amount: 50000 },
+          { label: 'Acelerar', amount: 100000 },
+          { label: 'Impacto total', amount: 1000000 },
+        ],
+      },
+      benefits: [
+        { type: 'company', title: 'Visibilidad de Marca', description: 'Logo en todos los materiales del proyecto, miniaturas de episodios, publicaciones en redes sociales y videos en vivo de las carreras.' },
+        { type: 'company', title: 'Informe de Impacto ESG', description: 'Informes trimestrales con métricas certificadas para portafolios de sostenibilidad y presentaciones ante B Corp.' },
+        { type: 'company', title: 'Compromiso de Empleados', description: 'Desafíos de carrera con la marca de la empresa y programas de donación equivalente para todo tu equipo.' },
+        { type: 'company', title: 'Exposición en Redes Sociales', description: 'Publicaciones y stories co-brandados llegando a audiencias en las Américas, Europa y Asia.' },
+        { type: 'company', title: 'Oportunidades de Ponencia', description: 'Invitaciones a eventos del proyecto, cumbres de socios y exposiciones de investigación oncológica.' },
+        { type: 'company', title: 'Actualizaciones Exclusivas de Impacto', description: 'Acceso directo a resultados de investigación, hitos de financiamiento y datos de impacto antes de su publicación.' },
+        { type: 'individual', title: 'Tu Nombre en el Proyecto', description: 'Listado como colaborador en la página del proyecto — un registro permanente de tu contribución.' },
+        { type: 'individual', title: 'Parte de la Historia', description: 'Cada milla y cada donación están documentadas. Tu apoyo se convierte en parte del registro público de este proyecto.' },
+      ],
     },
     fr: {
       tagline: 'Courir pour un remède.',
@@ -243,6 +328,46 @@ Le cancer touche presque toutes les familles. Cette campagne est une façon de t
 
 Si vous souhaitez contribuer, chaque don fait la différence.`,
       tags: ['Impact Social', 'Santé', 'Course'],
+      impactMetrics: [
+        { value: '8', label: 'Jours de Course', sublabel: 'sur 100 prévus' },
+        { value: '52', label: 'Miles Parcourus', sublabel: 'sur 1 000' },
+        { value: '4', label: 'Épisodes', sublabel: 'EN + PT' },
+        { value: '3', label: 'Continents', sublabel: 'Amériques · Europe · Asie' },
+        { value: '1K+', label: 'Personnes Inspirées', sublabel: 'sur toutes les plateformes' },
+        { value: '0', label: 'USD Collectés', sublabel: 'premier palier : US$10K' },
+      ],
+      roadmap: [
+        { phase: '01', label: 'Lancement', description: "Premières courses, premiers épisodes, premiers donateurs. Le Marathon de l'Espoir est en direct.", year: '2026', status: 'active' },
+        { phase: '02', label: 'Amérique du Sud', description: 'Partenariats d\'entreprises et communauté de coureurs au Brésil, en Argentine, au Chili et en Colombie.', year: '2026', status: 'upcoming' },
+        { phase: '03', label: 'Amérique du Nord', description: 'Intégration à la Course Terry Fox. Dotations universitaires et programmes de matching d\'entreprises technologiques aux États-Unis et au Canada.', year: '2027', status: 'upcoming' },
+        { phase: '04', label: 'Europe', description: 'Alliances avec des ONG internationales et cofinancement d\'instituts de recherche au Royaume-Uni, en Allemagne et en France.', year: '2027', status: 'upcoming' },
+        { phase: '05', label: 'Global', description: "Une initiative véritablement planétaire — plus de 60 pays, des millions collectés et une génération inspirée à courir pour un remède.", year: '2028', status: 'upcoming' },
+      ],
+      transparency: [
+        { percent: 78, category: 'Recherche', detail: 'Dirigé vers des scientifiques spécialisés dans le cancer via la Terry Fox Foundation — vérifié annuellement par des auditeurs indépendants.' },
+        { percent: 14, category: 'Opérations', detail: 'Plateforme, logistique, équipement et coordination du projet.' },
+        { percent: 8, category: 'Communication', detail: 'Production de contenu, canaux sociaux et sensibilisation publique.' },
+      ],
+      fundraisingGoals: {
+        current: 0,
+        currency: 'USD',
+        tiers: [
+          { label: 'Premier objectif', amount: 10000 },
+          { label: 'Monter en puissance', amount: 50000 },
+          { label: 'Accélérer', amount: 100000 },
+          { label: 'Impact total', amount: 1000000 },
+        ],
+      },
+      benefits: [
+        { type: 'company', title: 'Visibilité de Marque', description: "Logo sur tous les supports du projet, vignettes d'épisodes, publications sur les réseaux sociaux et vidéos en direct des courses." },
+        { type: 'company', title: "Rapport d'Impact ESG", description: 'Rapports trimestriels avec des métriques certifiées pour les portefeuilles de durabilité et les dossiers B Corp.' },
+        { type: 'company', title: 'Engagement des Employés', description: "Défis de course à pied avec votre marque et programmes de dons abondés pour toute votre équipe." },
+        { type: 'company', title: 'Exposition sur les Réseaux Sociaux', description: "Publications et stories co-brandés atteignant des audiences sur les Amériques, l'Europe et l'Asie." },
+        { type: 'company', title: 'Opportunités de Conférence', description: 'Invitations aux événements du projet, sommets partenaires et présentations de recherche sur le cancer.' },
+        { type: 'company', title: "Mises à Jour Exclusives sur l'Impact", description: "Accès direct aux résultats de recherche, jalons de financement et données d'impact avant leur publication." },
+        { type: 'individual', title: 'Votre Nom sur le Projet', description: "Mentionné comme soutien sur la page du projet — une trace permanente de votre contribution." },
+        { type: 'individual', title: "Partie de l'Histoire", description: "Chaque mile et chaque don sont documentés. Votre soutien devient partie intégrante du dossier public de ce projet." },
+      ],
     },
     ca: {
       tagline: 'Corrent per una cura.',
@@ -255,6 +380,46 @@ El càncer toca gairebé totes les famílies. Aquesta campanya és una manera de
 
 Si vols contribuir, cada donació fa la diferència.`,
       tags: ['Impacte Social', 'Salut', 'Cursa'],
+      impactMetrics: [
+        { value: '8', label: 'Dies Corrent', sublabel: 'de 100 planificats' },
+        { value: '52', label: 'Milles Recorregudes', sublabel: 'de 1.000' },
+        { value: '4', label: 'Episodis', sublabel: 'EN + PT' },
+        { value: '3', label: 'Continents', sublabel: 'Amèriques · Europa · Àsia' },
+        { value: '1K+', label: 'Persones Inspirades', sublabel: 'a totes les plataformes' },
+        { value: '0', label: 'USD Recaptats', sublabel: 'primera fita: US$10K' },
+      ],
+      roadmap: [
+        { phase: '01', label: 'Llançament', description: "Primeres curses, primers episodis, primers donants. La Marató de l'Esperança és en directe.", year: '2026', status: 'active' },
+        { phase: '02', label: 'Amèrica del Sud', description: 'Aliances corporatives i comunitat de corredors al Brasil, Argentina, Xile i Colòmbia.', year: '2026', status: 'upcoming' },
+        { phase: '03', label: 'Amèrica del Nord', description: "Integració amb la Terry Fox Run. Fons universitaris i programes de matching d'empreses tecnològiques als EUA i el Canadà.", year: '2027', status: 'upcoming' },
+        { phase: '04', label: 'Europa', description: 'Aliances amb ONG internacionals i cofinançament d\'instituts de recerca al Regne Unit, Alemanya i França.', year: '2027', status: 'upcoming' },
+        { phase: '05', label: 'Global', description: "Una iniciativa veritablement planetària — més de 60 països, milions recaptats i una generació inspirada a córrer per una cura.", year: '2028', status: 'upcoming' },
+      ],
+      transparency: [
+        { percent: 78, category: 'Recerca', detail: 'Dirigit a científics del càncer a través de la Terry Fox Foundation — verificat anualment per auditors independents.' },
+        { percent: 14, category: 'Operacions', detail: 'Plataforma, logística, equipament i coordinació del projecte.' },
+        { percent: 8, category: 'Comunicació', detail: 'Producció de contingut, canals socials i divulgació pública.' },
+      ],
+      fundraisingGoals: {
+        current: 0,
+        currency: 'USD',
+        tiers: [
+          { label: 'Primera fita', amount: 10000 },
+          { label: 'Escalar', amount: 50000 },
+          { label: 'Accelerar', amount: 100000 },
+          { label: 'Impacte total', amount: 1000000 },
+        ],
+      },
+      benefits: [
+        { type: 'company', title: 'Visibilitat de Marca', description: "Logo en tots els materials del projecte, miniatures d'episodis, publicacions a les xarxes socials i vídeos en directe de les curses." },
+        { type: 'company', title: "Informe d'Impacte ESG", description: "Informes trimestrals amb mètriques certificades per a carteres de sostenibilitat i acreditacions B Corp." },
+        { type: 'company', title: "Compromís dels Empleats", description: "Reptes de cursa amb la marca de l'empresa i programes de donació equiparada per a tot l'equip." },
+        { type: 'company', title: 'Exposició a les Xarxes Socials', description: "Publicacions i stories amb co-branding arribant a audiències a les Amèriques, Europa i Àsia." },
+        { type: 'company', title: 'Oportunitats de Ponència', description: "Invitacions als esdeveniments del projecte, cimeres de socis i exposicions de recerca oncològica." },
+        { type: 'company', title: "Actualitzacions Exclusives d'Impacte", description: "Accés directe als resultats de recerca, fites de finançament i dades d'impacte abans de la seva publicació." },
+        { type: 'individual', title: 'El Teu Nom al Projecte', description: "Llistat com a col·laborador a la pàgina del projecte — un registre permanent de la teva contribució." },
+        { type: 'individual', title: 'Part de la Història', description: "Cada milla i cada donació es documenten. El teu suport es converteix en part del registre públic d'aquest projecte." },
+      ],
     },
   },
 ]

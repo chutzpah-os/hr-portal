@@ -32,6 +32,7 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'i.ibb.co' },
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: '*.ytimg.com' },
+      { protocol: 'https', hostname: 'upload.wikimedia.org' },
     ],
   },
   // Increase timeout for API calls during build

@@ -87,7 +87,7 @@ export default function Transparency({
       </div>
 
       <div className="mt-6 text-[0.45rem] uppercase tracking-widest text-right" style={{ color: 'var(--white-22)' }}>
-        Source: Terry Fox Foundation Annual Report · terryfox.ca
+        {narrative.transparencySourceLabel}
       </div>
     </div>
   )

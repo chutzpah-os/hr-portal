@@ -30,7 +30,7 @@ export default function Partners({ narrative }: { narrative: KMilesNarrative }) 
             letterSpacing: '-0.03em',
           }}
         >
-          Be the first.
+          {narrative.partnersFirstLabel}
         </p>
         <p
           className="text-sm leading-relaxed mb-8 max-w-xs mx-auto"

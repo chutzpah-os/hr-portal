@@ -1,8 +1,61 @@
 import type { NarrativeLocale, KMilesNarrative } from '@/data/1k-miles-narrative'
+import PeopleGrid from './PeopleGrid'
 
 const LETHALITY_RATES = [98, 98, 90, 65, 60, 36, 28, 3]
 
-export default function CancerStats({
+const WIKI_TITLES: Record<string, string> = {
+  'Kylie Minogue': 'Kylie_Minogue',
+  'Shannon Miller': 'Shannon_Miller',
+  'Robin Roberts': 'Robin_Roberts_(journalist)',
+  'Fran Drescher': 'Fran_Drescher',
+  'Pau Donés': 'Pau_Donés',
+  'Chadwick Boseman': 'Chadwick_Boseman',
+  'Patrick Swayze': 'Patrick_Swayze',
+  'David Bowie': 'David_Bowie',
+}
+
+async function getWikiPhoto(name: string): Promise<string | null> {
+  const title = WIKI_TITLES[name]
+  if (!title) return null
+  try {
+    const res = await fetch(
+      `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`,
+      { next: { revalidate: 604800 } }
+    )
+    if (!res.ok) return null
+    const data = await res.json()
+    return (data.thumbnail?.source as string) ?? null
+  } catch {
+    return null
+  }
+}
+
+// ── Separate panel: survivors / lost grid + closing quote ──
+export async function PeopleSection({ narrative }: { narrative: KMilesNarrative }) {
+  const allPeople = [...narrative.survivorsList, ...narrative.lostList]
+  const photoResults = await Promise.all(allPeople.map((p) => getWikiPhoto(p.name)))
+  const photoMap: Record<string, string | null> = {}
+  allPeople.forEach((p, i) => { photoMap[p.name] = photoResults[i] })
+
+  return (
+    <div className="space-y-8">
+      <PeopleGrid
+        survivors={narrative.survivorsList.map((p) => ({ ...p, photo: photoMap[p.name] ?? null }))}
+        lost={narrative.lostList.map((p) => ({ ...p, photo: photoMap[p.name] ?? null }))}
+        narrative={narrative}
+      />
+      <p
+        className="text-sm leading-relaxed italic"
+        style={{ color: 'var(--white-55)', borderLeft: '2px solid rgba(212,119,90,0.3)', paddingLeft: '1rem' }}
+      >
+        {narrative.survivorsOutro}
+      </p>
+    </div>
+  )
+}
+
+// ── Stats panel: cancer data + lethality table (no people grid) ──
+export default async function CancerStats({
   narrative,
   locale,
   survivalLabel,
@@ -47,7 +100,7 @@ export default function CancerStats({
           })}
         </div>
         <div className="text-[0.45rem] mt-2 text-right uppercase tracking-widest" style={{ color: 'var(--white-25)' }}>
-          {sourceLabel}: WHO 2024 · INCA 2026
+          {sourceLabel}: WHO 2024 · IARC 2022
         </div>
       </div>
 
@@ -64,7 +117,7 @@ export default function CancerStats({
         </p>
       </div>
 
-      {/* Lethality table — system palette only */}
+      {/* Lethality table */}
       <div>
         <div
           className="text-[0.55rem] uppercase tracking-widest mb-5"
@@ -75,18 +128,12 @@ export default function CancerStats({
         <div className="space-y-3">
           {narrative.lethalityTypes.map((typeName, i) => {
             const rate = LETHALITY_RATES[i]
-            /* Opacity scales with danger: low survival = more vivid accent bar */
             const barOpacity = 0.28 + (1 - rate / 100) * 0.72
             return (
               <div key={typeName} className="flex items-center gap-3">
                 <div
                   className="font-medium shrink-0"
-                  style={{
-                    color: 'var(--white-65)',
-                    fontFamily: 'var(--font-syne)',
-                    width: '7.5rem',
-                    fontSize: '0.8rem',
-                  }}
+                  style={{ color: 'var(--white-65)', fontFamily: 'var(--font-syne)', width: '7.5rem', fontSize: '0.8rem' }}
                 >
                   {typeName}
                 </div>
@@ -96,19 +143,12 @@ export default function CancerStats({
                 >
                   <div
                     className="h-full rounded-full"
-                    style={{
-                      width: `${rate}%`,
-                      backgroundColor: `rgba(212,119,90,${barOpacity.toFixed(2)})`,
-                    }}
+                    style={{ width: `${rate}%`, backgroundColor: `rgba(212,119,90,${barOpacity.toFixed(2)})` }}
                   />
                 </div>
                 <div
                   className="text-xs font-semibold shrink-0 text-right"
-                  style={{
-                    color: `rgba(212,119,90,${Math.max(0.45, barOpacity).toFixed(2)})`,
-                    fontFamily: 'var(--font-syne)',
-                    width: '2.5rem',
-                  }}
+                  style={{ color: `rgba(212,119,90,${Math.max(0.45, barOpacity).toFixed(2)})`, fontFamily: 'var(--font-syne)', width: '2.5rem' }}
                 >
                   {rate}%
                 </div>
@@ -123,78 +163,6 @@ export default function CancerStats({
           {narrative.lethalityClosing}
         </p>
       </div>
-
-      {/* Survivors / Lost — terracotta palette */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {/* Survived */}
-        <div
-          className="rounded-2xl p-6"
-          style={{
-            border: '1px solid rgba(212,119,90,0.2)',
-            backgroundColor: 'rgba(212,119,90,0.04)',
-          }}
-        >
-          <div
-            className="text-[0.55rem] uppercase tracking-widest mb-5 pb-3"
-            style={{
-              color: 'var(--accent)',
-              borderBottom: '1px solid rgba(212,119,90,0.12)',
-            }}
-          >
-            {narrative.survivorsTitle}
-          </div>
-          <ul className="space-y-3.5">
-            {narrative.survivorsList.map((p) => (
-              <li key={p.name}>
-                <div className="text-sm font-semibold" style={{ color: 'var(--white-82)', fontFamily: 'var(--font-syne)' }}>
-                  {p.name}
-                </div>
-                <div className="text-xs mt-0.5 leading-snug" style={{ color: 'var(--white-48)' }}>
-                  {p.detail}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Lost */}
-        <div
-          className="rounded-2xl p-6"
-          style={{
-            border: '1px solid rgba(10,10,15,0.1)',
-            backgroundColor: 'rgba(10,10,15,0.025)',
-          }}
-        >
-          <div
-            className="text-[0.55rem] uppercase tracking-widest mb-5 pb-3"
-            style={{
-              color: 'var(--white-40)',
-              borderBottom: '1px solid rgba(10,10,15,0.07)',
-            }}
-          >
-            {narrative.lostTitle}
-          </div>
-          <ul className="space-y-3.5">
-            {narrative.lostList.map((p) => (
-              <li key={p.name}>
-                <div className="text-sm font-semibold" style={{ color: 'var(--white-82)', fontFamily: 'var(--font-syne)' }}>
-                  {p.name}
-                </div>
-                <div className="text-xs mt-0.5 leading-snug" style={{ color: 'var(--white-48)' }}>
-                  {p.detail}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <p
-        className="text-sm leading-relaxed italic"
-        style={{ color: 'var(--white-55)', borderLeft: '2px solid rgba(212,119,90,0.3)', paddingLeft: '1rem' }}
-      >
-        {narrative.survivorsOutro}
-      </p>
     </div>
   )
 }

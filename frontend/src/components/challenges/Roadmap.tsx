@@ -82,7 +82,7 @@ export default function Roadmap({
                           border: '1px solid rgba(212,119,90,0.2)',
                         }}
                       >
-                        Active
+                        {narrative.roadmapActiveLabel}
                       </span>
                     )}
                   </div>
