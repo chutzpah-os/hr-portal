@@ -6,11 +6,15 @@ const PARTNER_HREF = 'mailto:hrolemberg.engineer@gmail.com?subject=Partnership%2
 export default function FinalCTA({ narrative }: { narrative: KMilesNarrative }) {
   return (
     <div
-      className="rounded-2xl mb-12 overflow-hidden"
-      style={{ backgroundColor: 'rgb(10,10,15)' }}
+      className="rounded-2xl overflow-hidden"
+      style={{
+        backgroundColor: 'rgb(255,255,255)',
+        border: '1px solid rgba(10,10,15,0.10)',
+        boxShadow: '0 2px 32px rgba(10,10,15,0.06)',
+      }}
     >
       {/* Terracotta top accent */}
-      <div style={{ height: '2px', backgroundColor: 'var(--accent)' }} />
+      <div style={{ height: '3px', backgroundColor: '#D4775A' }} />
 
       <div className="px-8 py-14 text-center">
         <h2
@@ -18,7 +22,7 @@ export default function FinalCTA({ narrative }: { narrative: KMilesNarrative }) 
           style={{
             fontFamily: 'var(--font-syne)',
             fontSize: 'clamp(1.6rem, 4.5vw, 2.6rem)',
-            color: 'rgba(240,240,250,0.92)',
+            color: 'rgba(10,10,15,0.92)',
             letterSpacing: '-0.04em',
             lineHeight: 1.05,
           }}
@@ -28,7 +32,7 @@ export default function FinalCTA({ narrative }: { narrative: KMilesNarrative }) 
 
         <p
           className="text-base mb-8"
-          style={{ color: 'rgba(240,240,250,0.45)', fontStyle: 'italic' }}
+          style={{ color: 'rgba(10,10,15,0.45)', fontStyle: 'italic' }}
         >
           {narrative.finalCtaSubtitle}
         </p>
@@ -38,7 +42,7 @@ export default function FinalCTA({ narrative }: { narrative: KMilesNarrative }) 
             <p
               key={i}
               className="text-sm"
-              style={{ color: 'rgba(240,240,250,0.5)' }}
+              style={{ color: 'rgba(10,10,15,0.50)' }}
             >
               {line}
             </p>
