@@ -11,11 +11,16 @@ const LOCALE_FORMATS: Record<string, string> = {
 
 function formatDate(dateStr: string, locale: string): string {
   return new Date(dateStr).toLocaleDateString(LOCALE_FORMATS[locale] ?? 'en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-    timeZone: 'UTC',
+    month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC',
   })
+}
+
+const READ_MORE: Record<string, string> = {
+  en: 'Read more →',
+  pt: 'Ler mais →',
+  es: 'Leer más →',
+  fr: 'Lire la suite →',
+  ca: 'Llegir més →',
 }
 
 export default async function RelatedPosts({
@@ -30,13 +35,17 @@ export default async function RelatedPosts({
   seeAllLabel: string
 }) {
   const allPosts = getAllPosts()
-  const related = allPosts
-    .filter((p) =>
-      p.groups.some((g) => g === group || g.startsWith(`${group}/`))
-    )
-    .slice(0, 6)
+  const grouped = allPosts.filter((p) =>
+    p.groups.some((g) => g === group || g.startsWith(`${group}/`))
+  )
 
-  if (related.length === 0) return null
+  /* Show posts in the current locale first; fall back to EN if none */
+  const byLocale = grouped.filter((p) => p.lang === locale)
+  const posts = byLocale.length > 0 ? byLocale : grouped.filter((p) => p.lang === 'en')
+
+  if (posts.length === 0) return null
+
+  const readMoreLabel = READ_MORE[locale] ?? READ_MORE.en
 
   return (
     <div className="mb-12">
@@ -46,35 +55,71 @@ export default async function RelatedPosts({
       >
         {label}
       </div>
-      <div className="space-y-0 divide-y divide-[rgba(10,10,15,0.06)]">
-        {related.map((post) => (
-          <Link
+
+      <div>
+        {posts.map((post, i) => (
+          <article
             key={`${post.slug}-${post.lang}`}
-            href={`/blog/${post.slug}`}
-            locale={post.lang}
-            className="group flex items-baseline justify-between py-4 transition-opacity hover:opacity-70"
+            style={{
+              borderTop: i === 0 ? '1px solid rgba(10,10,15,0.08)' : undefined,
+              borderBottom: '1px solid rgba(10,10,15,0.08)',
+              padding: '1.5rem 0',
+            }}
           >
-            <div className="flex-1 mr-4">
-              <div
-                className="text-sm font-medium line-clamp-1"
-                style={{ color: 'var(--white-80)', fontFamily: 'var(--font-syne)' }}
+            {/* Title */}
+            <Link href={`/blog/${post.slug}`} locale={post.lang} className="group block mb-2">
+              <h3
+                className="font-semibold transition-opacity duration-200 group-hover:opacity-60"
+                style={{
+                  color: 'var(--white-100)',
+                  fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+                  letterSpacing: '-0.02em',
+                  fontFamily: 'var(--font-syne)',
+                }}
               >
                 {post.title}
-              </div>
-              <div className="text-xs mt-0.5" style={{ color: 'var(--white-40)' }}>
+              </h3>
+            </Link>
+
+            {/* Meta row */}
+            <div className="flex flex-wrap items-center gap-2.5 mb-2.5">
+              <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--white-35)' }}>
                 {formatDate(post.date, locale)}
-              </div>
+              </span>
+              <span
+                className="text-[0.48rem] uppercase tracking-widest px-2 py-0.5 rounded-full"
+                style={{
+                  backgroundColor: 'rgba(147,197,253,0.06)',
+                  color: 'rgba(147,197,253,0.55)',
+                  border: '1px solid rgba(147,197,253,0.14)',
+                }}
+              >
+                {post.lang}
+              </span>
             </div>
-            <span
-              className="text-[0.5rem] uppercase tracking-widest shrink-0 px-2 py-0.5 rounded-full"
-              style={{ backgroundColor: 'rgba(147,197,253,0.06)', color: 'rgba(147,197,253,0.55)', border: '1px solid rgba(147,197,253,0.14)' }}
+
+            {/* Excerpt */}
+            <p
+              className="text-sm leading-relaxed mb-3 line-clamp-2"
+              style={{ color: 'var(--white-58)' }}
             >
-              {post.lang}
-            </span>
-          </Link>
+              {post.excerpt}
+            </p>
+
+            {/* Read more */}
+            <Link
+              href={`/blog/${post.slug}`}
+              locale={post.lang}
+              className="text-xs uppercase tracking-widest transition-opacity hover:opacity-60"
+              style={{ color: 'var(--accent)' }}
+            >
+              {readMoreLabel}
+            </Link>
+          </article>
         ))}
       </div>
-      <div className="mt-4">
+
+      <div className="mt-5">
         <Link
           href="/blog"
           className="text-[0.55rem] uppercase tracking-widest transition-opacity hover:opacity-70"

@@ -87,7 +87,7 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
       'It is a treatment that does not yet exist — one that may save someone you know.',
     ],
     donationCountry:
-      'Every dollar raised in Brazil goes to Brazilian cancer researchers. Not abroad.',
+      'Every dollar raised in a country stays in that country — funding local cancer researchers. Not sent abroad.',
     runningLogTitle: 'Running Log',
     videosTitle: 'Videos',
   },
@@ -149,7 +149,7 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
       'É um tratamento que ainda não existe — e que pode salvar alguém que você conhece.',
     ],
     donationCountry:
-      'Cada real doado no Brasil fica no Brasil — para pesquisadores brasileiros. Não para fora.',
+      'Todo valor doado em um país fica naquele mesmo país — para pesquisadores de câncer locais. Não vai para fora.',
     runningLogTitle: 'Diário de Corrida',
     videosTitle: 'Vídeos',
   },
@@ -211,7 +211,7 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
       'Es un tratamiento que aún no existe — y que puede salvar a alguien que conoces.',
     ],
     donationCountry:
-      'Cada dólar recaudado en Brasil va a investigadores brasileños de cáncer. No al extranjero.',
+      'Cada dólar recaudado en un país se queda en ese mismo país — para investigadores de cáncer locales. No se envía al extranjero.',
     runningLogTitle: 'Diario de Carrera',
     videosTitle: 'Vídeos',
   },
@@ -273,7 +273,7 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
       "C'est un traitement qui n'existe pas encore — et qui pourrait sauver quelqu'un que vous connaissez.",
     ],
     donationCountry:
-      'Chaque dollar levé au Brésil va à des chercheurs brésiliens en cancérologie. Pas à l\'étranger.',
+      "Chaque dollar collecté dans un pays reste dans ce pays — pour financer les chercheurs locaux en cancérologie. Pas envoyé à l'étranger.",
     runningLogTitle: 'Journal de Course',
     videosTitle: 'Vidéos',
   },
@@ -335,7 +335,7 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
       "És un tractament que encara no existeix — i que podria salvar algú que coneixeu.",
     ],
     donationCountry:
-      'Cada dòlar recaptat al Brasil va a investigadors brasilers de càncer. No a l\'estranger.',
+      "Cada dòlar recaptat en un país resta en aquell mateix país — per finançar investigadors locals de càncer. No s'envia a l'estranger.",
     runningLogTitle: 'Diari de Cursa',
     videosTitle: 'Vídeos',
   },

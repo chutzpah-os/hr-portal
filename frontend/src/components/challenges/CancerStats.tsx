@@ -2,13 +2,6 @@ import type { NarrativeLocale, KMilesNarrative } from '@/data/1k-miles-narrative
 
 const LETHALITY_RATES = [98, 98, 90, 65, 60, 36, 28, 3]
 
-function rateColor(rate: number): string {
-  if (rate >= 85) return '#4ade80'
-  if (rate >= 55) return '#fde047'
-  if (rate >= 35) return '#fb923c'
-  return '#ef4444'
-}
-
 export default function CancerStats({
   narrative,
   locale,
@@ -31,19 +24,27 @@ export default function CancerStats({
           {narrative.statsTitle}
         </div>
         <div className="grid grid-cols-2 gap-px" style={{ backgroundColor: 'rgba(10,10,15,0.06)' }}>
-          {narrative.cancerStatsItems.map((item, i) => (
-            <div key={i} className="p-6" style={{ backgroundColor: 'rgb(255,255,255)' }}>
-              <div
-                className="font-bold leading-none mb-2"
-                style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', color: 'var(--accent)', fontFamily: 'var(--font-syne)' }}
-              >
-                {item.stat}
+          {narrative.cancerStatsItems.map((item, i) => {
+            const isLong = item.stat.length > 5
+            return (
+              <div key={i} className="p-6" style={{ backgroundColor: 'rgb(255,255,255)' }}>
+                <div
+                  className="font-bold leading-tight mb-2"
+                  style={{
+                    fontSize: isLong ? 'clamp(1.5rem, 3.5vw, 2.2rem)' : 'clamp(2rem, 5vw, 3rem)',
+                    color: 'var(--accent)',
+                    fontFamily: 'var(--font-syne)',
+                    whiteSpace: isLong ? 'nowrap' : undefined,
+                  }}
+                >
+                  {item.stat}
+                </div>
+                <div className="text-sm leading-snug" style={{ color: 'var(--white-60)' }}>
+                  {item.label}
+                </div>
               </div>
-              <div className="text-sm leading-snug" style={{ color: 'var(--white-60)' }}>
-                {item.label}
-              </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
         <div className="text-[0.45rem] mt-2 text-right uppercase tracking-widest" style={{ color: 'var(--white-25)' }}>
           {sourceLabel}: WHO 2024 · INCA 2026
@@ -63,7 +64,7 @@ export default function CancerStats({
         </p>
       </div>
 
-      {/* Lethality table */}
+      {/* Lethality table — system palette only */}
       <div>
         <div
           className="text-[0.55rem] uppercase tracking-widest mb-5"
@@ -74,12 +75,18 @@ export default function CancerStats({
         <div className="space-y-3">
           {narrative.lethalityTypes.map((typeName, i) => {
             const rate = LETHALITY_RATES[i]
-            const color = rateColor(rate)
+            /* Opacity scales with danger: low survival = more vivid accent bar */
+            const barOpacity = 0.28 + (1 - rate / 100) * 0.72
             return (
               <div key={typeName} className="flex items-center gap-3">
                 <div
                   className="font-medium shrink-0"
-                  style={{ color: 'var(--white-65)', fontFamily: 'var(--font-syne)', width: '7.5rem', fontSize: '0.8rem' }}
+                  style={{
+                    color: 'var(--white-65)',
+                    fontFamily: 'var(--font-syne)',
+                    width: '7.5rem',
+                    fontSize: '0.8rem',
+                  }}
                 >
                   {typeName}
                 </div>
@@ -89,12 +96,19 @@ export default function CancerStats({
                 >
                   <div
                     className="h-full rounded-full"
-                    style={{ width: `${rate}%`, backgroundColor: color, opacity: 0.75 }}
+                    style={{
+                      width: `${rate}%`,
+                      backgroundColor: `rgba(212,119,90,${barOpacity.toFixed(2)})`,
+                    }}
                   />
                 </div>
                 <div
                   className="text-xs font-semibold shrink-0 text-right"
-                  style={{ color, fontFamily: 'var(--font-syne)', width: '2.5rem' }}
+                  style={{
+                    color: `rgba(212,119,90,${Math.max(0.45, barOpacity).toFixed(2)})`,
+                    fontFamily: 'var(--font-syne)',
+                    width: '2.5rem',
+                  }}
                 >
                   {rate}%
                 </div>
@@ -110,16 +124,22 @@ export default function CancerStats({
         </p>
       </div>
 
-      {/* Survivors / Lost */}
+      {/* Survivors / Lost — terracotta palette */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {/* Survived */}
         <div
           className="rounded-2xl p-6"
-          style={{ border: '1px solid rgba(74,222,128,0.2)', backgroundColor: 'rgba(74,222,128,0.03)' }}
+          style={{
+            border: '1px solid rgba(212,119,90,0.2)',
+            backgroundColor: 'rgba(212,119,90,0.04)',
+          }}
         >
           <div
             className="text-[0.55rem] uppercase tracking-widest mb-5 pb-3"
-            style={{ color: 'rgba(74,222,128,0.7)', borderBottom: '1px solid rgba(74,222,128,0.12)' }}
+            style={{
+              color: 'var(--accent)',
+              borderBottom: '1px solid rgba(212,119,90,0.12)',
+            }}
           >
             {narrative.survivorsTitle}
           </div>
@@ -140,11 +160,17 @@ export default function CancerStats({
         {/* Lost */}
         <div
           className="rounded-2xl p-6"
-          style={{ border: '1px solid rgba(239,68,68,0.18)', backgroundColor: 'rgba(239,68,68,0.02)' }}
+          style={{
+            border: '1px solid rgba(10,10,15,0.1)',
+            backgroundColor: 'rgba(10,10,15,0.025)',
+          }}
         >
           <div
             className="text-[0.55rem] uppercase tracking-widest mb-5 pb-3"
-            style={{ color: 'rgba(239,68,68,0.6)', borderBottom: '1px solid rgba(239,68,68,0.1)' }}
+            style={{
+              color: 'var(--white-40)',
+              borderBottom: '1px solid rgba(10,10,15,0.07)',
+            }}
           >
             {narrative.lostTitle}
           </div>
