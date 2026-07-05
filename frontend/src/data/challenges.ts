@@ -16,6 +16,8 @@ export interface Challenge {
   imageFit?: 'contain' | 'cover'
   modalImage?: string
   cta?: { label: string; href: string; external?: boolean }
+  startDate?: string
+  endDate?: string
   pt?: ChallengeTranslation
   es?: ChallengeTranslation
   fr?: ChallengeTranslation
@@ -40,6 +42,8 @@ If you want to contribute, every donation makes a difference.`,
     imageFit: 'cover',
     modalImage: '/images/hanielrunning.jpeg',
     cta: { label: 'Donate', href: 'https://international.terryfox.ca/page/1k-miles-of-hope', external: true },
+    startDate: '2026-06-27',
+    endDate: '2026-10-05',
     pt: {
       tagline: 'Correndo por uma cura.',
       shortDescription: 'Uma campanha de arrecadação para financiar pesquisas contra o câncer — cada milha importa.',

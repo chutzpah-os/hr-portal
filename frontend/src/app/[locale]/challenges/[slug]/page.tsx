@@ -53,7 +53,27 @@ export default async function ChallengePage(
     name: challenge.name,
     description: challenge.shortDescription,
     url: `${BASE_URL}/challenges/${challenge.id}`,
+    ...(rawChallenge.startDate && { startDate: rawChallenge.startDate }),
+    ...(rawChallenge.endDate && { endDate: rawChallenge.endDate }),
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
+    location: {
+      '@type': 'VirtualLocation',
+      url: rawChallenge.cta?.href ?? `${BASE_URL}/challenges/${challenge.id}`,
+    },
+    ...(rawChallenge.image && { image: `${BASE_URL}${rawChallenge.image}` }),
     organizer: { '@type': 'Person', name: 'Haniel Rolemberg', url: BASE_URL },
+    performer: { '@type': 'Person', name: 'Haniel Rolemberg', url: BASE_URL },
+    ...(rawChallenge.cta && {
+      offers: {
+        '@type': 'Offer',
+        name: rawChallenge.cta.label,
+        url: rawChallenge.cta.href,
+        price: '0',
+        priceCurrency: 'USD',
+        availability: 'https://schema.org/InStock',
+      },
+    }),
     keywords: challenge.tags.join(', '),
   }
 
