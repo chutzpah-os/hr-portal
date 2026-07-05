@@ -28,7 +28,7 @@ export default function FundraisingGoals({
   narrative: Narrative
 }) {
   return (
-    <div className="mb-12">
+    <div>
       {/* Donation impact block */}
       <div
         className="rounded-2xl overflow-hidden"

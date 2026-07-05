@@ -2,9 +2,9 @@ import type { KMilesNarrative } from '@/data/1k-miles-narrative'
 
 export default function AboutProject({ narrative }: { narrative: KMilesNarrative }) {
   return (
-    <div className="mb-16">
+    <div>
       <div
-        className="text-[0.55rem] uppercase tracking-widest mb-7"
+        className="text-[0.55rem] uppercase tracking-widest mb-5"
         style={{ color: 'var(--white-30)', borderBottom: '1px solid rgba(10,10,15,0.06)', paddingBottom: '0.5rem' }}
       >
         {narrative.aboutTitle}

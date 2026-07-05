@@ -22,7 +22,7 @@ export default function FAQ({
   const [open, setOpen] = useState<number | null>(null)
 
   return (
-    <div className="mb-12">
+    <div>
       <div
         className="text-[0.55rem] uppercase tracking-widest mb-6"
         style={{ color: 'var(--white-30)', borderBottom: '1px solid rgba(10,10,15,0.06)', paddingBottom: '0.5rem' }}

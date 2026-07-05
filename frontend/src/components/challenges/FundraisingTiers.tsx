@@ -25,9 +25,9 @@ export default function FundraisingTiers({
   const activeTierIdx = currentTierIdx === -1 ? goals.tiers.length - 1 : currentTierIdx
 
   return (
-    <div className="mb-16">
+    <div>
       <div
-        className="text-[0.55rem] uppercase tracking-widest mb-7"
+        className="text-[0.55rem] uppercase tracking-widest mb-5"
         style={{ color: 'var(--white-30)', borderBottom: '1px solid rgba(10,10,15,0.06)', paddingBottom: '0.5rem' }}
       >
         {narrative.goalsSectionTitle}

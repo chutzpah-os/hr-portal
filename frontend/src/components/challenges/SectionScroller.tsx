@@ -12,15 +12,6 @@ const PANEL_BG: Record<PanelTheme, string> = {
   terra: 'rgb(212,119,90)',
 }
 
-// Cinematic easing — fast start, slow settle (like SpaceX countdowns)
-const DURATION = 650
-const EASING   = 'cubic-bezier(0.76, 0, 0.24, 1)'
-const COOLDOWN = DURATION + 60   // 710ms — tight but not jarring
-
-function easeInOutQuart(t: number) {
-  return t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2
-}
-
 function NavIndicator({
   current, total, names, onNavigate,
 }: {
@@ -56,7 +47,7 @@ function NavIndicator({
             height: i === current ? 32 : 12,
             borderRadius: 1,
             backgroundColor: i === current ? 'var(--accent)' : 'rgba(10,10,15,0.15)',
-            transition: `all ${DURATION}ms cubic-bezier(0.16, 1, 0.3, 1)`,
+            transition: 'all 400ms cubic-bezier(0.16, 1, 0.3, 1)',
             flexShrink: 0,
           }} />
         </button>
@@ -74,161 +65,110 @@ export default function SectionScroller({
   names?: string[]
   panelThemes?: PanelTheme[]
 }) {
-  const [current, setCurrent]   = useState(0)
-  const innerRef                = useRef<HTMLDivElement>(null)
-  const panelRefs               = useRef<(HTMLDivElement | null)[]>([])
-  const currentRef              = useRef(0)   // mutable — safe to read inside passive listeners
-  const isAnimating             = useRef(false)
-  const lastScrollAt            = useRef(0)
-  const animFrame               = useRef(0)
+  const [current, setCurrent] = useState(0)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const panelRefs    = useRef<(HTMLDivElement | null)[]>([])
 
   const sections = Children.toArray(children).filter(Boolean)
   const total    = sections.length
 
-  // ── Core animation — JS-driven transform, custom easing, no CSS transition ──
+  // Jump to section — smooth, no interception required
   const goTo = useCallback((idx: number) => {
     if (idx < 0 || idx >= total) return
-    if (isAnimating.current) return
-    const now = Date.now()
-    if (now - lastScrollAt.current < COOLDOWN) return
-    lastScrollAt.current = now
-    isAnimating.current  = true
-
-    const fromIdx = currentRef.current
-    const fromY   = fromIdx * window.innerHeight
-    const toY     = idx    * window.innerHeight
-    const start   = performance.now()
-
-    cancelAnimationFrame(animFrame.current)
-
-    function step(ts: number) {
-      const t    = Math.min((ts - start) / DURATION, 1)
-      const ease = easeInOutQuart(t)
-      const y    = fromY + (toY - fromY) * ease
-
-      if (innerRef.current) {
-        innerRef.current.style.transform = `translateY(${-y}px)`
-      }
-
-      if (t < 1) {
-        animFrame.current = requestAnimationFrame(step)
-      } else {
-        isAnimating.current   = false
-        currentRef.current    = idx
-        setCurrent(idx)
-      }
+    const container = containerRef.current
+    const panel     = panelRefs.current[idx]
+    if (container && panel) {
+      container.scrollTo({ top: panel.offsetTop, behavior: 'smooth' })
     }
-
-    animFrame.current = requestAnimationFrame(step)
   }, [total])
 
-  // ── Wheel — passive listener, no preventDefault, no reload risk ──
+  // Track current section from scroll position (passive, never blocks input)
   useEffect(() => {
-    const onWheel = (e: WheelEvent) => {
-      if (isAnimating.current) return
-      const now = Date.now()
-      if (now - lastScrollAt.current < COOLDOWN) return
+    const container = containerRef.current
+    if (!container) return
 
-      const panel = panelRefs.current[currentRef.current]
-      const atBottom = !panel || (panel.scrollHeight <= panel.clientHeight + 4)
-        || panel.scrollTop + panel.clientHeight >= panel.scrollHeight - 4
-      const atTop = !panel || panel.scrollTop <= 0
-
-      if (e.deltaY > 8) {
-        if (atBottom) goTo(currentRef.current + 1)
-        else if (panel) panel.scrollTop += e.deltaY
-      } else if (e.deltaY < -8) {
-        if (atTop) goTo(currentRef.current - 1)
-        else if (panel) panel.scrollTop += e.deltaY
+    const onScroll = () => {
+      const scrollMid = container.scrollTop + container.clientHeight * 0.4
+      let active = 0
+      for (let i = 0; i < panelRefs.current.length; i++) {
+        const panel = panelRefs.current[i]
+        if (panel && panel.offsetTop <= scrollMid) active = i
       }
+      setCurrent(active)
     }
-    // passive: true — browser never blocks; overscroll-behavior handles the rest
-    window.addEventListener('wheel', onWheel, { passive: true })
-    return () => window.removeEventListener('wheel', onWheel)
-  }, [goTo])
 
-  // ── Touch swipe ──
-  useEffect(() => {
-    let startY = 0
-    const onStart = (e: TouchEvent) => { startY = e.touches[0].clientY }
-    const onEnd   = (e: TouchEvent) => {
-      const diff = startY - e.changedTouches[0].clientY
-      if (Math.abs(diff) < 55) return
-      goTo(currentRef.current + (diff > 0 ? 1 : -1))
-    }
-    window.addEventListener('touchstart', onStart, { passive: true })
-    window.addEventListener('touchend',   onEnd,   { passive: true })
-    return () => {
-      window.removeEventListener('touchstart', onStart)
-      window.removeEventListener('touchend',   onEnd)
-    }
-  }, [goTo])
+    container.addEventListener('scroll', onScroll, { passive: true })
+    return () => container.removeEventListener('scroll', onScroll)
+  }, [total])
 
-  // ── Keyboard ──
+  // Keyboard: arrows jump one section (deliberate action, fine to preventDefault here)
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowDown' || e.key === 'PageDown') goTo(currentRef.current + 1)
-      else if (e.key === 'ArrowUp' || e.key === 'PageUp') goTo(currentRef.current - 1)
+      // Only intercept when no input/textarea is focused
+      const tag = (document.activeElement as HTMLElement)?.tagName
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return
+      if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); goTo(current + 1) }
+      else if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); goTo(current - 1) }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [goTo])
+  }, [current, goTo])
 
-  // ── Lock body scroll + kill overscroll navigation (fixes macOS page-reload) ──
+  // Body: hidden overflow so only the fixed container scrolls (no double scrollbar)
   useEffect(() => {
-    const prevOverflow  = document.body.style.overflow
-    const prevOverscroll = (document.body.style as CSSStyleDeclaration & { overscrollBehavior: string }).overscrollBehavior
-    document.body.style.overflow = 'hidden';
-    (document.body.style as CSSStyleDeclaration & { overscrollBehavior: string }).overscrollBehavior = 'none'
-    return () => {
-      document.body.style.overflow = prevOverflow;
-      (document.body.style as CSSStyleDeclaration & { overscrollBehavior: string }).overscrollBehavior = prevOverscroll
-    }
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = prev }
   }, [])
 
   return (
     <SectionScrollerContext.Provider value={{ goTo }}>
       <>
-        {/* Hide inner-panel scrollbars */}
-        <style>{`.ss-panel::-webkit-scrollbar { display: none; }`}</style>
+        <style>{`
+          .ss-container::-webkit-scrollbar { display: none; }
+        `}</style>
 
-        {/* Dot grid */}
+        {/* Dot texture — fixed, above panels */}
         <div className="pointer-events-none" style={{
           position: 'fixed', inset: 0,
           backgroundImage: 'radial-gradient(circle, rgba(10,10,15,0.04) 1px, transparent 1px)',
           backgroundSize: '28px 28px', zIndex: 12,
         }} />
 
-        {/* Fixed viewport — overflow hidden so browser can't scroll it */}
-        <div style={{ position: 'fixed', inset: 0, overflow: 'hidden', zIndex: 10 }}>
-
-          {/* Animatable strip — transform drives section transitions */}
-          <div
-            ref={innerRef}
-            style={{ transform: 'translateY(0)', willChange: 'transform' }}
-          >
-            {sections.map((section, i) => {
-              const theme = panelThemes[i] ?? 'white'
-              return (
-                <div
-                  key={i}
-                  ref={(el) => { panelRefs.current[i] = el }}
-                  className="ss-panel"
-                  data-theme={theme === 'terra' ? 'terra' : undefined}
-                  style={{
-                    height: '100vh',
-                    overflowY: 'auto',
-                    overflowX: 'hidden',
-                    position: 'relative',
-                    scrollbarWidth: 'none',
-                    backgroundColor: PANEL_BG[theme],
-                  }}
-                >
-                  {section}
-                </div>
-              )
-            })}
-          </div>
+        {/*
+          Free-scroll container.
+          - overflow-y: scroll  → natural browser scroll, no interception
+          - no scroll-snap      → user controls pace entirely
+          - scrollbar-width: none → no visible scrollbar (hides double-bar issue)
+        */}
+        <div
+          ref={containerRef}
+          className="ss-container"
+          style={{
+            position: 'fixed', inset: 0,
+            overflowY: 'scroll',
+            overflowX: 'hidden',
+            scrollbarWidth: 'none',
+            zIndex: 10,
+          }}
+        >
+          {sections.map((section, i) => {
+            const theme = panelThemes[i] ?? 'white'
+            return (
+              <div
+                key={i}
+                ref={(el) => { panelRefs.current[i] = el }}
+                data-theme={theme === 'terra' ? 'terra' : undefined}
+                style={{
+                  minHeight: '100vh',
+                  position: 'relative',
+                  backgroundColor: PANEL_BG[theme],
+                }}
+              >
+                {section}
+              </div>
+            )
+          })}
         </div>
 
         <NavIndicator

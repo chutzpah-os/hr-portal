@@ -67,7 +67,7 @@ export default async function CancerStats({
   sourceLabel: string
 }) {
   return (
-    <div className="mb-12 space-y-12">
+    <div className="space-y-10">
       {/* Stats grid */}
       <div>
         <div

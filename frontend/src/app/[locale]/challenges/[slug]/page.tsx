@@ -34,13 +34,13 @@ function PanelFrame({ children, top = false }: { children: React.ReactNode; top?
   const inner = 'max-w-3xl mx-auto px-6 md:px-10 w-full'
   if (top) {
     return (
-      <div style={{ minHeight: '100%', paddingTop: '7rem', paddingBottom: '3rem' }}>
+      <div style={{ minHeight: '100vh', paddingTop: '5.5rem', paddingBottom: '2rem' }}>
         <div className={inner}>{children}</div>
       </div>
     )
   }
   return (
-    <div style={{ minHeight: '100%', display: 'flex', flexDirection: 'column', paddingTop: '5rem', paddingBottom: '3rem' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', paddingTop: '4.5rem', paddingBottom: '2rem' }}>
       <div className={inner} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
         {children}
       </div>

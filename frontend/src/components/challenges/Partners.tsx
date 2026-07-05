@@ -4,9 +4,9 @@ const CONTACT_HREF = 'mailto:contact@hanielrolemberg.com?subject=Partnership%20I
 
 export default function Partners({ narrative }: { narrative: KMilesNarrative }) {
   return (
-    <div className="mb-16">
+    <div>
       <div
-        className="text-[0.55rem] uppercase tracking-widest mb-8"
+        className="text-[0.55rem] uppercase tracking-widest mb-6"
         style={{ color: 'var(--white-30)', borderBottom: '1px solid rgba(10,10,15,0.06)', paddingBottom: '0.5rem' }}
       >
         {narrative.partnersSectionTitle}
