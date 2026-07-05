@@ -127,6 +127,12 @@ export default function SectionScroller({
   return (
     <SectionScrollerContext.Provider value={{ goTo }}>
       <>
+        {/* Hide scrollbars on container and panels (scroll still works) */}
+        <style>{`
+          .ss-container::-webkit-scrollbar,
+          .ss-panel::-webkit-scrollbar { display: none; }
+        `}</style>
+
         {/* Dot grid */}
         <div
           className="pointer-events-none"
@@ -139,22 +145,16 @@ export default function SectionScroller({
           }}
         />
 
-        {/*
-          CSS-native scroll container.
-          scroll-snap-type: y mandatory  → browser snaps naturally after momentum,
-                                           no JS wheel handling, no cooldown, no transforms.
-          overflowY: scroll              → receives wheel/touch events natively.
-          Each panel: height: 100vh + scroll-snap-align: start + overflowY: auto
-          → inner panels scroll their own overflow before advancing to the next section.
-        */}
         <div
           ref={containerRef}
+          className="ss-container"
           style={{
             position: 'fixed',
             inset: 0,
             overflowY: 'scroll',
             scrollSnapType: 'y mandatory',
             WebkitOverflowScrolling: 'touch',
+            scrollbarWidth: 'none',
             zIndex: 10,
             backgroundColor: 'rgb(255,255,255)',
           }}
@@ -163,12 +163,14 @@ export default function SectionScroller({
             <div
               key={i}
               ref={(el) => { panelRefs.current[i] = el }}
+              className="ss-panel"
               style={{
                 height: '100vh',
                 overflowY: 'auto',
                 overflowX: 'hidden',
                 position: 'relative',
                 scrollSnapAlign: 'start',
+                scrollbarWidth: 'none',
               }}
             >
               {section}
