@@ -7,8 +7,11 @@ export interface KMilesNarrative {
   whyHard: string
   lethalityTitle: string
   lethalityClosing: string
+  lethalityTypes: string[]
   survivorsTitle: string
   lostTitle: string
+  survivorsList: { name: string; detail: string }[]
+  lostList: { name: string; detail: string }[]
   survivorsIntro: string
   survivorsOutro: string
   whyIRunTitle: string
@@ -40,8 +43,19 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
       'Cancer is not one disease. It is more than 200. Each tumor carries unique mutations that evolve as treatment progresses. The target moves. Treatments stop working. That is why research never ends.',
     lethalityTitle: '5-Year Survival Rate by Cancer Type',
     lethalityClosing: 'The difference between 98% and 3% is called research.',
+    lethalityTypes: ['Thyroid', 'Prostate', 'Breast', 'Colorectal', 'Leukemia', 'Brain', 'Lung', 'Pancreas (IV)'],
     survivorsTitle: 'They Survived',
     lostTitle: 'They Were Lost',
+    survivorsList: [
+      { name: 'Shannon Miller', detail: 'Olympic gymnast — ovarian cancer (2011)' },
+      { name: 'Robin Roberts', detail: 'Journalist — breast cancer + myelodysplastic syndrome' },
+      { name: 'Fran Drescher', detail: 'Actress — uterine cancer, now research advocate' },
+    ],
+    lostList: [
+      { name: 'Chadwick Boseman', detail: 'Actor — colon cancer, age 43' },
+      { name: 'Patrick Swayze', detail: 'Actor — pancreatic cancer' },
+      { name: 'David Bowie', detail: 'Musician — liver cancer, 18 months after diagnosis' },
+    ],
     survivorsIntro: 'These names carry the same diagnosis — and different outcomes.',
     survivorsOutro:
       'What separates both groups is not always willpower. Often it is access to research that existed — or that did not yet.',
@@ -91,8 +105,19 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
       'O câncer não é uma doença. São mais de 200. Cada tumor carrega mutações únicas que evoluem à medida que o tratamento avança. O alvo muda. Os tratamentos param de funcionar. É por isso que a pesquisa nunca termina.',
     lethalityTitle: 'Taxa de Sobrevivência em 5 Anos por Tipo de Câncer',
     lethalityClosing: 'A diferença entre 98% e 3% chama-se pesquisa.',
+    lethalityTypes: ['Tireoide', 'Próstata', 'Mama', 'Colorretal', 'Leucemia', 'Cérebro', 'Pulmão', 'Pâncreas (IV)'],
     survivorsTitle: 'Sobreviveram',
     lostTitle: 'Não Voltaram',
+    survivorsList: [
+      { name: 'Shannon Miller', detail: 'Ginasta olímpica — câncer de ovário (2011)' },
+      { name: 'Robin Roberts', detail: 'Jornalista — câncer de mama + síndrome mielodisplásica' },
+      { name: 'Fran Drescher', detail: 'Atriz — câncer uterino, hoje ativista de pesquisa' },
+    ],
+    lostList: [
+      { name: 'Chadwick Boseman', detail: 'Ator — câncer de cólon, 43 anos' },
+      { name: 'Patrick Swayze', detail: 'Ator — câncer pancreático' },
+      { name: 'David Bowie', detail: 'Músico — câncer de fígado, 18 meses após o diagnóstico' },
+    ],
     survivorsIntro: 'Esses nomes carregam o mesmo diagnóstico — e desfechos diferentes.',
     survivorsOutro:
       'O que separa os dois grupos nem sempre é força de vontade. Muitas vezes, é acesso a pesquisa que existia — ou que ainda não existia.',
@@ -142,8 +167,19 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
       'El cáncer no es una enfermedad. Son más de 200. Cada tumor lleva mutaciones únicas que evolucionan a medida que avanza el tratamiento. El objetivo cambia. Los tratamientos dejan de funcionar. Por eso la investigación nunca termina.',
     lethalityTitle: 'Tasa de Supervivencia a 5 Años por Tipo de Cáncer',
     lethalityClosing: 'La diferencia entre el 98% y el 3% se llama investigación.',
+    lethalityTypes: ['Tiroides', 'Próstata', 'Mama', 'Colorrectal', 'Leucemia', 'Cerebro', 'Pulmón', 'Páncreas (IV)'],
     survivorsTitle: 'Sobrevivieron',
     lostTitle: 'No Regresaron',
+    survivorsList: [
+      { name: 'Shannon Miller', detail: 'Gimnasta olímpica — cáncer de ovario (2011)' },
+      { name: 'Robin Roberts', detail: 'Periodista — cáncer de mama + síndrome mielodisplásico' },
+      { name: 'Fran Drescher', detail: 'Actriz — cáncer uterino, hoy defensora de la investigación' },
+    ],
+    lostList: [
+      { name: 'Chadwick Boseman', detail: 'Actor — cáncer de colon, 43 años' },
+      { name: 'Patrick Swayze', detail: 'Actor — cáncer pancreático' },
+      { name: 'David Bowie', detail: 'Músico — cáncer de hígado, 18 meses tras el diagnóstico' },
+    ],
     survivorsIntro: 'Estos nombres llevan el mismo diagnóstico — y resultados diferentes.',
     survivorsOutro:
       'Lo que separa a ambos grupos no siempre es la fuerza de voluntad. A menudo es el acceso a una investigación que existía — o que aún no existía.',
@@ -193,8 +229,19 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
       "Le cancer n'est pas une maladie. C'est plus de 200 maladies. Chaque tumeur porte des mutations uniques qui évoluent à mesure que le traitement progresse. La cible bouge. Les traitements cessent de fonctionner. C'est pourquoi la recherche ne s'arrête jamais.",
     lethalityTitle: 'Taux de Survie à 5 Ans par Type de Cancer',
     lethalityClosing: "La différence entre 98% et 3% s'appelle recherche.",
+    lethalityTypes: ['Thyroïde', 'Prostate', 'Sein', 'Colorectal', 'Leucémie', 'Cerveau', 'Poumon', 'Pancréas (IV)'],
     survivorsTitle: 'Ils ont Survécu',
     lostTitle: 'Ils ne sont pas Revenus',
+    survivorsList: [
+      { name: 'Shannon Miller', detail: 'Gymnaste olympique — cancer des ovaires (2011)' },
+      { name: 'Robin Roberts', detail: 'Journaliste — cancer du sein + syndrome myélodysplasique' },
+      { name: 'Fran Drescher', detail: "Actrice — cancer de l'utérus, aujourd'hui militante pour la recherche" },
+    ],
+    lostList: [
+      { name: 'Chadwick Boseman', detail: 'Acteur — cancer du côlon, 43 ans' },
+      { name: 'Patrick Swayze', detail: 'Acteur — cancer du pancréas' },
+      { name: 'David Bowie', detail: 'Musicien — cancer du foie, 18 mois après le diagnostic' },
+    ],
     survivorsIntro: 'Ces noms portent le même diagnostic — et des résultats différents.',
     survivorsOutro:
       "Ce qui sépare les deux groupes n'est pas toujours la force de volonté. C'est souvent l'accès à une recherche qui existait — ou qui n'existait pas encore.",
@@ -244,8 +291,19 @@ export const NARRATIVE: Record<NarrativeLocale, KMilesNarrative> = {
       "El càncer no és una malaltia. Són més de 200. Cada tumor porta mutacions úniques que evolucionen a mesura que el tractament avança. L'objectiu canvia. Els tractaments deixen de funcionar. Per això la recerca mai no s'acaba.",
     lethalityTitle: 'Taxa de Supervivència a 5 Anys per Tipus de Càncer',
     lethalityClosing: "La diferència entre el 98% i el 3% s'anomena recerca.",
+    lethalityTypes: ['Tiroide', 'Pròstata', 'Mama', 'Colorectal', 'Leucèmia', 'Cervell', 'Pulmó', 'Pàncrees (IV)'],
     survivorsTitle: 'Van Sobreviure',
     lostTitle: 'No Van Tornar',
+    survivorsList: [
+      { name: 'Shannon Miller', detail: "Gimnasta olímpica — càncer d'ovari (2011)" },
+      { name: 'Robin Roberts', detail: 'Periodista — càncer de mama + síndrome mielodisplàsica' },
+      { name: 'Fran Drescher', detail: 'Actriu — càncer uterí, ara activista per la recerca' },
+    ],
+    lostList: [
+      { name: 'Chadwick Boseman', detail: 'Actor — càncer de còlon, 43 anys' },
+      { name: 'Patrick Swayze', detail: 'Actor — càncer pancreàtic' },
+      { name: 'David Bowie', detail: 'Músic — càncer de fetge, 18 mesos després del diagnòstic' },
+    ],
     survivorsIntro: 'Aquests noms porten el mateix diagnòstic — i resultats diferents.',
     survivorsOutro:
       "El que separa els dos grups no sempre és la força de voluntat. Sovint és l'accés a una recerca que existia — o que encara no existia.",
