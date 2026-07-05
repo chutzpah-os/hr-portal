@@ -100,7 +100,20 @@
     "backAll": "← Back to all challenges",
     "backChallenges": "← Challenges",
     "donateNote": "Every donation goes directly to cancer research. No minimum. Every amount matters.",
-    "donateCta": "Donate to Terry Fox Foundation →"
+    "donateCta": "Donate to Terry Fox Foundation →",
+    "progressDays": "DAYS",
+    "progressMiles": "MILES",
+    "progressGoal": "GOAL",
+    "progressLastUpdated": "Last updated",
+    "runningLogLabel": "Running Log",
+    "videosLabel": "Videos",
+    "faqLabel": "FAQ",
+    "donateNow": "Donate now →",
+    "fundGoalLabel": "Current goal",
+    "fundNextTier": "Next milestone",
+    "survivalRate5yr": "5-year survival rate",
+    "sourceLabel": "Source",
+    "seeRelatedPosts": "See all running log posts →"
   },
   "press": {
     "sectionLabel": "Press",

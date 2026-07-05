@@ -100,7 +100,20 @@
     "backAll": "← Retour à tous les défis",
     "backChallenges": "← Défis",
     "donateNote": "Chaque don va directement à la recherche sur le cancer. Sans minimum. Chaque montant compte.",
-    "donateCta": "Faire un don à la Fondation Terry Fox →"
+    "donateCta": "Faire un don à la Fondation Terry Fox →",
+    "progressDays": "JOURS",
+    "progressMiles": "MILES",
+    "progressGoal": "OBJECTIF",
+    "progressLastUpdated": "Dernière mise à jour",
+    "runningLogLabel": "Journal de Course",
+    "videosLabel": "Vidéos",
+    "faqLabel": "FAQ",
+    "donateNow": "Faire un don maintenant →",
+    "fundGoalLabel": "Objectif actuel",
+    "fundNextTier": "Prochain jalon",
+    "survivalRate5yr": "Taux de survie à 5 ans",
+    "sourceLabel": "Source",
+    "seeRelatedPosts": "Voir tous les épisodes →"
   },
   "press": {
     "sectionLabel": "Presse",

@@ -4,8 +4,19 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { CHALLENGES, getChallenge, getLocalizedChallenge } from '@/data/challenges'
 import { getTranslations } from 'next-intl/server'
+import { NARRATIVE } from '@/data/1k-miles-narrative'
+import type { NarrativeLocale } from '@/data/1k-miles-narrative'
+import ProgressTracker from '@/components/challenges/ProgressTracker'
+import CancerStats from '@/components/challenges/CancerStats'
+import Narrative from '@/components/challenges/Narrative'
+import FundraisingGoals from '@/components/challenges/FundraisingGoals'
+import VideoGrid from '@/components/challenges/VideoGrid'
+import RelatedPosts from '@/components/challenges/RelatedPosts'
+import FAQ from '@/components/challenges/FAQ'
 
 const BASE_URL = 'https://hanielrolemberg.com'
+
+const SUPPORTED_NARRATIVE_LOCALES: NarrativeLocale[] = ['en', 'pt', 'es', 'fr', 'ca']
 
 export async function generateStaticParams() {
   return CHALLENGES.map((c) => ({ slug: c.id }))
@@ -46,6 +57,13 @@ export default async function ChallengePage(
   if (!rawChallenge) notFound()
   const challenge = getLocalizedChallenge(rawChallenge, locale)
   const t = await getTranslations('challenges')
+
+  const narrativeLocale: NarrativeLocale = SUPPORTED_NARRATIVE_LOCALES.includes(locale as NarrativeLocale)
+    ? (locale as NarrativeLocale)
+    : 'en'
+  const narrative = NARRATIVE[narrativeLocale]
+
+  const isPresentation = !!rawChallenge.progress
 
   const schema = {
     '@context': 'https://schema.org',
@@ -200,18 +218,48 @@ export default async function ChallengePage(
             </div>
           )}
 
-          {/* Full description */}
-          <div className="mb-10">
-            {challenge.fullDescription.split('\n\n').map((para, i) => (
-              <p
-                key={i}
-                className="text-base leading-relaxed mb-5"
-                style={{ color: 'var(--white-70)' }}
-              >
-                {para}
-              </p>
-            ))}
-          </div>
+          {/* Progress tracker — presentation mode only */}
+          {isPresentation && rawChallenge.progress && (
+            <ProgressTracker progress={rawChallenge.progress} />
+          )}
+
+          {/* Brief description — always */}
+          {!isPresentation && (
+            <div className="mb-10">
+              {challenge.fullDescription.split('\n\n').map((para, i) => (
+                <p
+                  key={i}
+                  className="text-base leading-relaxed mb-5"
+                  style={{ color: 'var(--white-70)' }}
+                >
+                  {para}
+                </p>
+              ))}
+            </div>
+          )}
+
+          {/* Cancer stats — presentation mode only */}
+          {isPresentation && (
+            <CancerStats
+              narrative={narrative}
+              locale={narrativeLocale}
+              survivalLabel={t('survivalRate5yr')}
+              sourceLabel={t('sourceLabel')}
+            />
+          )}
+
+          {/* Personal narrative — presentation mode only */}
+          {isPresentation && (
+            <Narrative narrative={narrative} />
+          )}
+
+          {/* Fundraising goals + donation impact — presentation mode only */}
+          {isPresentation && rawChallenge.fundraisingGoals && (
+            <FundraisingGoals
+              goals={rawChallenge.fundraisingGoals}
+              narrative={narrative}
+            />
+          )}
 
           {/* Modal photo */}
           {challenge.modalImage && (
@@ -231,6 +279,34 @@ export default async function ChallengePage(
                 className="object-cover object-top"
               />
             </div>
+          )}
+
+          {/* Related blog posts — presentation mode only */}
+          {isPresentation && (
+            <RelatedPosts
+              group="Live Projects/1K Miles of Hope Project"
+              locale={locale}
+              label={t('runningLogLabel')}
+              seeAllLabel={t('seeRelatedPosts')}
+            />
+          )}
+
+          {/* Video grid — presentation mode only */}
+          {isPresentation && rawChallenge.videos && rawChallenge.videos.length > 0 && (
+            <>
+              <div
+                className="text-[0.55rem] uppercase tracking-widest mb-4"
+                style={{ color: 'var(--white-30)', borderBottom: '1px solid rgba(10,10,15,0.06)', paddingBottom: '0.5rem' }}
+              >
+                {t('videosLabel')}
+              </div>
+              <VideoGrid videos={rawChallenge.videos} locale={locale} />
+            </>
+          )}
+
+          {/* FAQ — presentation mode only */}
+          {isPresentation && rawChallenge.faqs && rawChallenge.faqs.length > 0 && (
+            <FAQ faqs={rawChallenge.faqs} locale={locale} label={t('faqLabel')} />
           )}
 
           {/* Donate CTA block */}

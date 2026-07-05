@@ -100,7 +100,20 @@
     "backAll": "← Tornar a tots els reptes",
     "backChallenges": "← Reptes",
     "donateNote": "Cada donació va directament a la recerca del càncer. Sense mínim. Cada quantitat importa.",
-    "donateCta": "Donar a la Terry Fox Foundation →"
+    "donateCta": "Donar a la Terry Fox Foundation →",
+    "progressDays": "DIES",
+    "progressMiles": "MILLES",
+    "progressGoal": "OBJECTIU",
+    "progressLastUpdated": "Darrera actualització",
+    "runningLogLabel": "Diari de Cursa",
+    "videosLabel": "Vídeos",
+    "faqLabel": "FAQ",
+    "donateNow": "Donar ara →",
+    "fundGoalLabel": "Objectiu actual",
+    "fundNextTier": "Propera fita",
+    "survivalRate5yr": "Taxa de supervivència a 5 anys",
+    "sourceLabel": "Font",
+    "seeRelatedPosts": "Veure tots els episodis →"
   },
   "press": {
     "sectionLabel": "Premsa",
