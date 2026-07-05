@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import type { PostMeta, PostCategory } from '@/lib/blog'
 import { useTranslations, useLocale } from 'next-intl'
 
@@ -251,7 +251,7 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
               padding: '2rem 0',
             }}
           >
-            <Link href={`/blog/${post.slug}`} className="group block">
+            <Link href={`/blog/${post.slug}`} locale={post.lang} className="group block">
               <h2
                 className="font-semibold mb-1.5 transition-colors duration-200 group-hover:opacity-70 line-clamp-2"
                 style={{
@@ -297,6 +297,7 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
             </p>
             <Link
               href={`/blog/${post.slug}`}
+              locale={post.lang}
               className="text-xs uppercase tracking-widest transition-colors duration-200"
               style={{ color: 'var(--accent)' }}
               onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.7')}
