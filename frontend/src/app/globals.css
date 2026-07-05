@@ -56,6 +56,7 @@
   --white-70:  rgba(10, 10, 15, 0.7);
   --white-65:  rgba(10, 10, 15, 0.65);
   --white-60:  rgba(10, 10, 15, 0.6);
+  --white-58:  rgba(10, 10, 15, 0.58);
   --white-55:  rgba(10, 10, 15, 0.55);
   --white-50:  rgba(10, 10, 15, 0.5);
   --white-45:  rgba(10, 10, 15, 0.45);
@@ -63,6 +64,7 @@
   --white-38:  rgba(10, 10, 15, 0.38);
   --white-35:  rgba(10, 10, 15, 0.35);
   --white-30:  rgba(10, 10, 15, 0.3);
+  --white-28:  rgba(10, 10, 15, 0.28);
   --white-25:  rgba(10, 10, 15, 0.25);
   --white-22:  rgba(10, 10, 15, 0.22);
   --white-20:  rgba(10, 10, 15, 0.20);
@@ -76,6 +78,16 @@
   --gray-80:   rgba(240, 240, 245, 0.8);
   --gray-60:   rgba(240, 240, 245, 0.6);
   --gray-40:   rgba(240, 240, 245, 0.4);
+
+  /* Semantic: section labels — readable on both white and terra */
+  --label:     rgba(10, 10, 15, 0.42);
+  --divider:   rgba(10, 10, 15, 0.08);
+
+  /* Chart / data-viz — accent-toned on white, cold-white on terra */
+  --chart-primary:   rgba(212, 119, 90, 1);
+  --chart-secondary: rgba(212, 119, 90, 0.45);
+  --chart-tertiary:  rgba(212, 119, 90, 0.28);
+  --chart-track:     rgba(212, 119, 90, 0.08);
 }
 
 /* ─── Terra panels: invert ink scale to cold white on terracotta ─── */
@@ -94,6 +106,7 @@
   --white-70:   rgba(240, 240, 250, 0.70);
   --white-65:   rgba(240, 240, 250, 0.65);
   --white-60:   rgba(240, 240, 250, 0.60);
+  --white-58:   rgba(240, 240, 250, 0.58);
   --white-55:   rgba(240, 240, 250, 0.55);
   --white-50:   rgba(240, 240, 250, 0.50);
   --white-45:   rgba(240, 240, 250, 0.45);
@@ -101,6 +114,7 @@
   --white-38:   rgba(240, 240, 250, 0.38);
   --white-35:   rgba(240, 240, 250, 0.35);
   --white-30:   rgba(240, 240, 250, 0.30);
+  --white-28:   rgba(240, 240, 250, 0.28);
   --white-25:   rgba(240, 240, 250, 0.25);
   --white-22:   rgba(240, 240, 250, 0.22);
   --white-20:   rgba(240, 240, 250, 0.20);
@@ -110,6 +124,44 @@
   --white-5:    rgba(240, 240, 250, 0.05);
   --black-50:   rgba(240, 240, 250, 0.08);
   --black-80:   rgba(240, 240, 250, 0.70);
+  --label:      rgba(240, 240, 250, 0.55);
+  --divider:    rgba(240, 240, 250, 0.15);
+  --chart-primary:   rgba(240, 240, 250, 0.92);
+  --chart-secondary: rgba(240, 240, 250, 0.50);
+  --chart-tertiary:  rgba(240, 240, 250, 0.28);
+  --chart-track:     rgba(240, 240, 250, 0.12);
+}
+
+/* ─── White cards inside terra panels — restore dark ink scale ─── */
+[data-theme="terra"] .card-light {
+  --accent:          #D4775A;
+  --white-100:       rgba(10, 10, 15, 1);
+  --white-95:        rgba(10, 10, 15, 0.95);
+  --white-90:        rgba(10, 10, 15, 0.9);
+  --white-80:        rgba(10, 10, 15, 0.8);
+  --white-70:        rgba(10, 10, 15, 0.7);
+  --white-65:        rgba(10, 10, 15, 0.65);
+  --white-60:        rgba(10, 10, 15, 0.6);
+  --white-58:        rgba(10, 10, 15, 0.58);
+  --white-55:        rgba(10, 10, 15, 0.55);
+  --white-50:        rgba(10, 10, 15, 0.5);
+  --white-45:        rgba(10, 10, 15, 0.45);
+  --white-40:        rgba(10, 10, 15, 0.4);
+  --white-35:        rgba(10, 10, 15, 0.35);
+  --white-30:        rgba(10, 10, 15, 0.3);
+  --white-28:        rgba(10, 10, 15, 0.28);
+  --white-25:        rgba(10, 10, 15, 0.25);
+  --white-22:        rgba(10, 10, 15, 0.22);
+  --white-20:        rgba(10, 10, 15, 0.20);
+  --white-15:        rgba(10, 10, 15, 0.15);
+  --white-10:        rgba(10, 10, 15, 0.1);
+  --white-8:         rgba(10, 10, 15, 0.08);
+  --white-5:         rgba(10, 10, 15, 0.05);
+  --label:           rgba(10, 10, 15, 0.42);
+  --chart-primary:   rgba(212, 119, 90, 1);
+  --chart-secondary: rgba(212, 119, 90, 0.45);
+  --chart-tertiary:  rgba(212, 119, 90, 0.28);
+  --chart-track:     rgba(212, 119, 90, 0.08);
 }
 
 /* ─── Base Styles ─── */

@@ -38,16 +38,16 @@ export default function ImpactSection({
     <div>
       <div
         className="text-[0.55rem] uppercase tracking-widest mb-5"
-        style={{ color: 'var(--white-30)', borderBottom: '1px solid rgba(10,10,15,0.06)', paddingBottom: '0.5rem' }}
+        style={{ color: 'var(--label)', borderBottom: '1px solid var(--divider)', paddingBottom: '0.5rem' }}
       >
         {narrative.impactSectionTitle}
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-px" style={{ backgroundColor: 'rgba(10,10,15,0.06)' }}>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-px" style={{ backgroundColor: 'var(--divider)' }}>
         {metrics.map((m, i) => (
           <div
             key={i}
-            className="p-5"
+            className="p-5 card-light"
             style={{ backgroundColor: 'rgb(255,255,255)' }}
           >
             <div

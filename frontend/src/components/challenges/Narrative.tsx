@@ -19,7 +19,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <div
       className="text-[0.55rem] uppercase tracking-widest mb-5"
-      style={{ color: 'var(--white-30)', borderBottom: '1px solid rgba(10,10,15,0.06)', paddingBottom: '0.5rem' }}
+      style={{ color: 'var(--label)', borderBottom: '1px solid var(--divider)', paddingBottom: '0.5rem' }}
     >
       {children}
     </div>
@@ -107,7 +107,7 @@ export function WorldWithCure({ narrative }: { narrative: KMilesNarrative }) {
       {/* Anchor stat */}
       <div
         className="text-center py-7 rounded-2xl"
-        style={{ backgroundColor: 'rgba(212,119,90,0.04)', border: '1px solid rgba(212,119,90,0.14)' }}
+        style={{ backgroundColor: 'var(--chart-track)', border: '1px solid var(--chart-secondary)' }}
       >
         <div
           className="font-bold leading-none mb-2"
@@ -126,7 +126,7 @@ export function WorldWithCure({ narrative }: { narrative: KMilesNarrative }) {
           <div
             key={i}
             className="rounded-xl py-4 px-3 text-center"
-            style={{ backgroundColor: 'rgba(10,10,15,0.03)', border: '1px solid rgba(10,10,15,0.07)' }}
+            style={{ backgroundColor: 'var(--white-5)', border: '1px solid var(--divider)' }}
           >
             <div
               className="font-bold leading-none mb-1.5"
@@ -148,8 +148,8 @@ export function WorldWithCure({ narrative }: { narrative: KMilesNarrative }) {
             key={i}
             className="py-3 px-4 rounded-xl"
             style={{
-              borderLeft: '2px solid rgba(212,119,90,0.25)',
-              backgroundColor: 'rgba(10,10,15,0.02)',
+              borderLeft: '2px solid var(--chart-secondary)',
+              backgroundColor: 'var(--white-5)',
             }}
           >
             <p

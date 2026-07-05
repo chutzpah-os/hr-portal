@@ -7,7 +7,7 @@ export default function Partners({ narrative }: { narrative: KMilesNarrative }) 
     <div>
       <div
         className="text-[0.55rem] uppercase tracking-widest mb-6"
-        style={{ color: 'var(--white-30)', borderBottom: '1px solid rgba(10,10,15,0.06)', paddingBottom: '0.5rem' }}
+        style={{ color: 'var(--label)', borderBottom: '1px solid var(--divider)', paddingBottom: '0.5rem' }}
       >
         {narrative.partnersSectionTitle}
       </div>
@@ -15,18 +15,18 @@ export default function Partners({ narrative }: { narrative: KMilesNarrative }) 
       {/* Empty state — invitation design */}
       <div
         className="rounded-2xl px-8 py-14 text-center"
-        style={{ border: '1px solid rgba(212,119,90,0.12)', backgroundColor: 'rgba(212,119,90,0.02)' }}
+        style={{ border: '1px solid var(--white-15)', backgroundColor: 'var(--white-5)' }}
       >
         <div
           className="w-10 h-px mx-auto mb-8"
-          style={{ backgroundColor: 'rgba(212,119,90,0.4)' }}
+          style={{ backgroundColor: 'var(--white-40)' }}
         />
         <p
           className="font-bold mb-4"
           style={{
             fontFamily: 'var(--font-syne)',
             fontSize: 'clamp(1.3rem, 3.5vw, 1.8rem)',
-            color: 'var(--white-88)',
+            color: 'var(--white-90)',
             letterSpacing: '-0.03em',
           }}
         >
@@ -41,7 +41,11 @@ export default function Partners({ narrative }: { narrative: KMilesNarrative }) 
         <a
           href={CONTACT_HREF}
           className="inline-flex items-center gap-2 text-xs uppercase tracking-widest px-7 py-3 rounded-full font-semibold transition-opacity hover:opacity-80"
-          style={{ backgroundColor: 'var(--accent)', color: 'rgb(255,255,255)' }}
+          style={{
+            border: '1.5px solid var(--white-60)',
+            color: 'var(--white-90)',
+            backgroundColor: 'var(--white-8)',
+          }}
         >
           {narrative.partnersBecome} →
         </a>

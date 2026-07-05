@@ -49,10 +49,10 @@ export default async function RelatedPosts({
   const readMoreLabel = READ_MORE[locale] ?? READ_MORE.en
 
   return (
-    <div className="mb-12">
+    <div>
       <div
         className="text-[0.55rem] uppercase tracking-widest mb-6"
-        style={{ color: 'var(--white-30)', borderBottom: '1px solid rgba(10,10,15,0.06)', paddingBottom: '0.5rem' }}
+        style={{ color: 'var(--label)', borderBottom: '1px solid var(--divider)', paddingBottom: '0.5rem' }}
       >
         {label}
       </div>
@@ -62,8 +62,8 @@ export default async function RelatedPosts({
           <article
             key={`${post.slug}-${post.lang}`}
             style={{
-              borderTop: i === 0 ? '1px solid rgba(10,10,15,0.08)' : undefined,
-              borderBottom: '1px solid rgba(10,10,15,0.08)',
+              borderTop: i === 0 ? '1px solid var(--divider)' : undefined,
+              borderBottom: '1px solid var(--divider)',
               padding: '1.5rem 0',
             }}
           >
@@ -102,7 +102,7 @@ export default async function RelatedPosts({
             {/* Excerpt */}
             <p
               className="text-sm leading-relaxed mb-3 line-clamp-2"
-              style={{ color: 'var(--white-58)' }}
+              style={{ color: 'var(--white-60)' }}
             >
               {post.excerpt}
             </p>

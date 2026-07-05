@@ -18,7 +18,7 @@ export default function Benefits({
     <div>
       <div
         className="text-[0.55rem] uppercase tracking-widest mb-2"
-        style={{ color: 'var(--white-30)', borderBottom: '1px solid rgba(10,10,15,0.06)', paddingBottom: '0.5rem' }}
+        style={{ color: 'var(--label)', borderBottom: '1px solid var(--divider)', paddingBottom: '0.5rem' }}
       >
         {narrative.benefitsSectionTitle}
       </div>
@@ -52,11 +52,11 @@ export default function Benefits({
       </div>
 
       {/* Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ backgroundColor: 'rgba(10,10,15,0.06)' }}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ backgroundColor: 'var(--divider)' }}>
         {filtered.map((item) => (
           <div
             key={item.title}
-            className="p-6"
+            className="p-6 card-light"
             style={{ backgroundColor: 'rgb(255,255,255)' }}
           >
             <div

@@ -46,7 +46,7 @@ export async function PeopleSection({ narrative }: { narrative: KMilesNarrative 
       />
       <p
         className="text-sm leading-relaxed italic"
-        style={{ color: 'var(--white-55)', borderLeft: '2px solid rgba(212,119,90,0.3)', paddingLeft: '1rem' }}
+        style={{ color: 'var(--white-55)', borderLeft: '2px solid var(--chart-secondary)', paddingLeft: '1rem' }}
       >
         {narrative.survivorsOutro}
       </p>
@@ -72,15 +72,15 @@ export default async function CancerStats({
       <div>
         <div
           className="text-[0.55rem] uppercase tracking-widest mb-6"
-          style={{ color: 'var(--white-30)', borderBottom: '1px solid rgba(10,10,15,0.06)', paddingBottom: '0.5rem' }}
+          style={{ color: 'var(--label)', borderBottom: '1px solid var(--divider)', paddingBottom: '0.5rem' }}
         >
           {narrative.statsTitle}
         </div>
-        <div className="grid grid-cols-2 gap-px" style={{ backgroundColor: 'rgba(10,10,15,0.06)' }}>
+        <div className="grid grid-cols-2 gap-px" style={{ backgroundColor: 'var(--divider)' }}>
           {narrative.cancerStatsItems.map((item, i) => {
             const isLong = item.stat.length > 5
             return (
-              <div key={i} className="p-6" style={{ backgroundColor: 'rgb(255,255,255)' }}>
+              <div key={i} className="p-6 card-light" style={{ backgroundColor: 'rgb(255,255,255)' }}>
                 <div
                   className="font-bold leading-tight mb-2"
                   style={{
@@ -107,9 +107,9 @@ export default async function CancerStats({
       {/* Why hard */}
       <div
         className="rounded-2xl p-7"
-        style={{ border: '1px solid rgba(10,10,15,0.07)', backgroundColor: 'rgba(10,10,15,0.015)' }}
+        style={{ border: '1px solid var(--divider)', backgroundColor: 'var(--white-5)' }}
       >
-        <div className="text-[0.55rem] uppercase tracking-widest mb-4" style={{ color: 'var(--white-30)' }}>
+        <div className="text-[0.55rem] uppercase tracking-widest mb-4" style={{ color: 'var(--label)' }}>
           {narrative.whyHardTitle}
         </div>
         <p className="text-base leading-relaxed" style={{ color: 'var(--white-70)', fontStyle: 'italic' }}>
@@ -121,14 +121,15 @@ export default async function CancerStats({
       <div>
         <div
           className="text-[0.55rem] uppercase tracking-widest mb-5"
-          style={{ color: 'var(--white-30)', borderBottom: '1px solid rgba(10,10,15,0.06)', paddingBottom: '0.5rem' }}
+          style={{ color: 'var(--label)', borderBottom: '1px solid var(--divider)', paddingBottom: '0.5rem' }}
         >
           {narrative.lethalityTitle}
         </div>
         <div className="space-y-3">
           {narrative.lethalityTypes.map((typeName, i) => {
             const rate = LETHALITY_RATES[i]
-            const barOpacity = 0.28 + (1 - rate / 100) * 0.72
+            // Opacity: high lethality = high opacity (most dangerous = most visible bar)
+            const opacity = 0.28 + (rate / 100) * 0.72
             return (
               <div key={typeName} className="flex items-center gap-3">
                 <div
@@ -139,16 +140,25 @@ export default async function CancerStats({
                 </div>
                 <div
                   className="flex-1 rounded-full overflow-hidden"
-                  style={{ height: '6px', backgroundColor: 'rgba(10,10,15,0.07)' }}
+                  style={{ height: '6px', backgroundColor: 'var(--chart-track)' }}
                 >
                   <div
                     className="h-full rounded-full"
-                    style={{ width: `${rate}%`, backgroundColor: `rgba(212,119,90,${barOpacity.toFixed(2)})` }}
+                    style={{
+                      width: `${rate}%`,
+                      backgroundColor: 'var(--chart-primary)',
+                      opacity: opacity.toFixed(2),
+                    }}
                   />
                 </div>
                 <div
                   className="text-xs font-semibold shrink-0 text-right"
-                  style={{ color: `rgba(212,119,90,${Math.max(0.45, barOpacity).toFixed(2)})`, fontFamily: 'var(--font-syne)', width: '2.5rem' }}
+                  style={{
+                    color: 'var(--chart-primary)',
+                    opacity: Math.max(0.45, opacity).toFixed(2),
+                    fontFamily: 'var(--font-syne)',
+                    width: '2.5rem',
+                  }}
                 >
                   {rate}%
                 </div>

@@ -291,7 +291,7 @@ export default async function ChallengePage(
             <PanelFrame>
               <div
                 className="text-[0.55rem] uppercase tracking-widest mb-4"
-                style={{ color: 'var(--white-30)', borderBottom: '1px solid rgba(10,10,15,0.06)', paddingBottom: '0.5rem' }}
+                style={{ color: 'var(--label)', borderBottom: '1px solid var(--divider)', paddingBottom: '0.5rem' }}
               >
                 {narrative.problemSectionTitle}
               </div>
@@ -424,7 +424,7 @@ export default async function ChallengePage(
               <PanelFrame>
                 <div
                   className="text-[0.55rem] uppercase tracking-widest mb-4"
-                  style={{ color: 'var(--white-30)', borderBottom: '1px solid rgba(10,10,15,0.06)', paddingBottom: '0.5rem' }}
+                  style={{ color: 'var(--label)', borderBottom: '1px solid var(--divider)', paddingBottom: '0.5rem' }}
                 >
                   {t('videosLabel')}
                 </div>

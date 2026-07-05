@@ -51,7 +51,7 @@ export default function FinalCTA({ narrative }: { narrative: KMilesNarrative }) 
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-xs uppercase tracking-widest px-8 py-3.5 rounded-full font-semibold transition-opacity hover:opacity-85"
-            style={{ backgroundColor: 'var(--accent)', color: 'rgb(255,255,255)' }}
+            style={{ backgroundColor: '#D4775A', color: 'rgb(255,255,255)' }}
           >
             {narrative.finalCtaDonate}
           </a>
@@ -60,7 +60,7 @@ export default function FinalCTA({ narrative }: { narrative: KMilesNarrative }) 
             className="inline-flex items-center gap-2 text-xs uppercase tracking-widest px-8 py-3.5 rounded-full font-semibold transition-opacity hover:opacity-85"
             style={{
               border: '1px solid rgba(212,119,90,0.4)',
-              color: 'var(--accent)',
+              color: '#D4775A',
               backgroundColor: 'transparent',
             }}
           >

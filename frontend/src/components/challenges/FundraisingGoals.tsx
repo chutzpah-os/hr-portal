@@ -32,12 +32,12 @@ export default function FundraisingGoals({
       {/* Donation impact block */}
       <div
         className="rounded-2xl overflow-hidden"
-        style={{ border: '1px solid rgba(212,119,90,0.18)', backgroundColor: 'rgba(212,119,90,0.025)' }}
+        style={{ border: '1px solid var(--chart-secondary)', backgroundColor: 'var(--chart-track)' }}
       >
         {/* Section label */}
         <div
           className="px-7 pt-6 pb-3 text-[0.55rem] uppercase tracking-widest"
-          style={{ color: 'var(--white-30)', borderBottom: '1px solid rgba(212,119,90,0.1)' }}
+          style={{ color: 'var(--label)', borderBottom: '1px solid var(--chart-track)' }}
         >
           {narrative.donationTitle}
         </div>

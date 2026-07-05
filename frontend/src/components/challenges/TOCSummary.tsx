@@ -23,8 +23,8 @@ export default function TOCSummary({
       <div
         className="text-[0.55rem] uppercase tracking-widest mb-8"
         style={{
-          color: 'var(--white-30)',
-          borderBottom: '1px solid rgba(10,10,15,0.06)',
+          color: 'var(--label)',
+          borderBottom: '1px solid var(--divider)',
           paddingBottom: '0.5rem',
         }}
       >
@@ -41,13 +41,13 @@ export default function TOCSummary({
               onMouseEnter={() => setHovered(entry.index)}
               onMouseLeave={() => setHovered(null)}
               className="flex items-center gap-3 w-full text-left bg-transparent border-0 cursor-pointer py-2.5"
-              style={{ borderBottom: '1px solid rgba(10,10,15,0.06)' }}
+              style={{ borderBottom: '1px solid var(--divider)' }}
             >
               <span
                 className="text-[0.55rem] font-bold tabular-nums shrink-0"
                 style={{
                   fontFamily: 'var(--font-syne)',
-                  color: isHovered ? 'var(--accent)' : 'rgba(10,10,15,0.2)',
+                  color: isHovered ? 'var(--accent)' : 'var(--white-22)',
                   transition: 'color 0.15s ease',
                   width: '1.4rem',
                   letterSpacing: '0.06em',
