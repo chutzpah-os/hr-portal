@@ -205,10 +205,10 @@ export default function Header() {
           <span className="text-sm font-bold uppercase tracking-widest" style={{ color: 'var(--accent)' }}>HR</span>
         </Link>
 
-        <div className="hidden md:block w-px h-4 mx-1" style={{ backgroundColor: 'rgba(10,10,15,0.1)' }} />
+        <div className="hidden xl:block w-px h-4 mx-1" style={{ backgroundColor: 'rgba(10,10,15,0.1)' }} />
 
         {/* Desktop nav items */}
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden xl:flex items-center gap-1">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
@@ -229,21 +229,21 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="hidden md:block w-px h-4 mx-1" style={{ backgroundColor: 'rgba(10,10,15,0.1)' }} />
+        <div className="hidden xl:block w-px h-4 mx-1" style={{ backgroundColor: 'rgba(10,10,15,0.1)' }} />
 
         {/* Language picker — desktop */}
-        <div className="hidden md:block">
+        <div className="hidden xl:block">
           <LanguagePicker locale={locale} onSwitch={switchLocale} align="right" />
         </div>
 
-        <div className="hidden md:block w-px h-4 mx-1" style={{ backgroundColor: 'rgba(10,10,15,0.1)' }} />
+        <div className="hidden xl:block w-px h-4 mx-1" style={{ backgroundColor: 'rgba(10,10,15,0.1)' }} />
 
         {/* Book a Call — desktop */}
         <a
           href="https://calendly.com/hanielrolemberg"
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden md:flex text-xs uppercase tracking-widest px-4 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap"
+          className="hidden xl:flex text-xs uppercase tracking-widest px-4 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap"
           style={{ border: '1px solid var(--accent)', color: 'var(--accent)' }}
           onMouseEnter={(e) => {
             e.currentTarget.style.backgroundColor = 'var(--accent)'
@@ -257,9 +257,9 @@ export default function Header() {
           {t('bookCall')}
         </a>
 
-        {/* Hamburger — mobile */}
+        {/* Hamburger — mobile/tablet */}
         <button
-          className="md:hidden flex flex-col gap-1.5 px-3 py-1.5 rounded-full transition-colors duration-200"
+          className="xl:hidden flex flex-col gap-1.5 px-3 py-1.5 rounded-full transition-colors duration-200"
           onClick={() => setMobileOpen((v) => !v)}
           aria-label="Toggle menu"
           style={{ color: 'var(--white-100)' }}
