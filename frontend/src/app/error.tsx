@@ -10,6 +10,12 @@ export default function Error({
   reset: () => void
 }) {
   useEffect(() => {
+    // ChunkLoadError = stale browser cache after a new deploy.
+    // Reloading fetches fresh HTML with correct chunk hashes.
+    if (error?.name === 'ChunkLoadError' || error?.message?.includes('Loading chunk')) {
+      window.location.reload()
+      return
+    }
     console.error(error)
   }, [error])
 
