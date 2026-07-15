@@ -1,11 +1,17 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
+import { buildAlternates } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: 'Press — Haniel Rolemberg',
-  description: 'Media appearances, podcast interviews, and press coverage featuring Haniel Rolemberg.',
-  alternates: { canonical: 'https://hanielrolemberg.com/press' },
-  robots: { index: false, follow: true },
+export async function generateMetadata(
+  { params }: { params: Promise<{ locale: string }> }
+): Promise<Metadata> {
+  const { locale } = await params
+  return {
+    title: 'Press — Haniel Rolemberg',
+    description: 'Media appearances, podcast interviews, and press coverage featuring Haniel Rolemberg.',
+    alternates: buildAlternates(locale, '/press'),
+    robots: { index: false, follow: true },
+  }
 }
 
 export default async function PressPage() {

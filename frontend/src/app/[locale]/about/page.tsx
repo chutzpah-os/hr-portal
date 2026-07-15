@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import AboutSection from '@/components/sections/AboutSection'
+import { buildAlternates } from '@/lib/metadata'
 
 const BASE_URL = 'https://hanielrolemberg.com'
 
@@ -45,11 +46,11 @@ export async function generateMetadata(
   return {
     title: m.title,
     description: m.description,
-    alternates: { canonical: `${BASE_URL}/about` },
+    alternates: buildAlternates(locale, '/about'),
     openGraph: {
       title: m.ogTitle,
       description: m.ogDescription,
-      url: `${BASE_URL}/about`,
+      url: `${BASE_URL}/${locale}/about`,
       type: 'profile',
     },
   }

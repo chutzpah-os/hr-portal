@@ -1,11 +1,17 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
+import { buildAlternates } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: 'Writing — Haniel Rolemberg',
-  description: 'Long-form books and essays on technology, problem-solving, and the future of society by Haniel Rolemberg.',
-  alternates: { canonical: 'https://hanielrolemberg.com/writing' },
-  robots: { index: false, follow: true },
+export async function generateMetadata(
+  { params }: { params: Promise<{ locale: string }> }
+): Promise<Metadata> {
+  const { locale } = await params
+  return {
+    title: 'Writing — Haniel Rolemberg',
+    description: 'Long-form books and essays on technology, problem-solving, and the future of society by Haniel Rolemberg.',
+    alternates: buildAlternates(locale, '/writing'),
+    robots: { index: false, follow: true },
+  }
 }
 
 export default async function WritingPage() {

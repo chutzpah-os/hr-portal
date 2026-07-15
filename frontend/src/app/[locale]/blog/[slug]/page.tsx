@@ -1,4 +1,4 @@
-import { getAllPosts, getPostBySlug, formatDate } from '@/lib/blog'
+import { getAllPosts, getPostBySlug, getPostLangs, formatDate } from '@/lib/blog'
 import { notFound, redirect } from 'next/navigation'
 import Link from 'next/link'
 import type { Metadata } from 'next'
@@ -113,13 +113,23 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug, locale } = await params
   const post = getPostBySlug(slug, locale)
   if (!post) return {}
-  const url = `${BASE_URL}/blog/${slug}`
+
+  // Canonical points to the locale that actually has the file; fallback posts point to EN
+  const canonicalLocale = post.lang === locale ? locale : 'en'
+  const url = `${BASE_URL}/${canonicalLocale}/blog/${slug}`
+
+  // hreflang alternates only for locales that have the post file
+  const postLangs = getPostLangs(slug)
+  const languages: Record<string, string> = Object.fromEntries(
+    postLangs.map((l) => [l, `${BASE_URL}/${l}/blog/${slug}`])
+  )
+  if (postLangs.includes('en')) languages['x-default'] = `${BASE_URL}/en/blog/${slug}`
 
   return {
     title: `${post.title} — Haniel Rolemberg`,
     description: post.excerpt,
     keywords: post.tags,
-    alternates: { canonical: url },
+    alternates: { canonical: url, languages },
     openGraph: {
       title: post.title,
       description: post.excerpt,

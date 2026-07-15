@@ -113,6 +113,14 @@ const LOCALE_FORMATS: Record<string, string> = {
   ca: 'ca-ES',
 }
 
+// Returns which locales have a file for this slug (not fallbacks)
+export function getPostLangs(slug: string): string[] {
+  const root = BLOG_ROOT()
+  return getAvailableBlogLangs().filter((lang) =>
+    fs.existsSync(path.join(root, lang, `${slug}.mdx`))
+  )
+}
+
 export function formatDate(dateStr: string, locale = 'en'): string {
   return new Date(dateStr).toLocaleDateString(LOCALE_FORMATS[locale] ?? 'en-US', {
     month: 'long',

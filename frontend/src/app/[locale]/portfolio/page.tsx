@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { buildAlternates } from '@/lib/metadata'
 import Hero from '@/components/sections/Hero'
 import RecommendationsCarousel from '@/components/sections/RecommendationsCarousel'
 import PortfolioSection from '@/components/sections/PortfolioSection'
@@ -51,11 +52,11 @@ export async function generateMetadata(
   return {
     title: m.title,
     description: m.description,
-    alternates: { canonical: `${BASE_URL}/portfolio` },
+    alternates: buildAlternates(locale, '/portfolio'),
     openGraph: {
       title: m.title,
       description: m.ogDescription,
-      url: `${BASE_URL}/portfolio`,
+      url: `${BASE_URL}/${locale}/portfolio`,
       type: 'website',
     },
   }

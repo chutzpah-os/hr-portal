@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
 import { PRODUCTS, getProduct, getLocalizedProduct } from '@/data/solutions'
+import { buildAlternates } from '@/lib/metadata'
 
 const BASE_URL = 'https://hanielrolemberg.com'
 
@@ -19,11 +20,11 @@ export async function generateMetadata(
   if (!rawProduct) return {}
   const product = getLocalizedProduct(rawProduct, locale)
 
-  const url = `${BASE_URL}/solutions/${product.id}`
+  const url = `${BASE_URL}/${locale}/solutions/${product.id}`
   return {
     title: `${product.name} — ${product.tagline}`,
     description: product.shortDescription,
-    alternates: { canonical: url },
+    alternates: buildAlternates(locale, `/solutions/${product.id}`),
     openGraph: {
       title: `${product.name} — Haniel Rolemberg`,
       description: product.shortDescription,

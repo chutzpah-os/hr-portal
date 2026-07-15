@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { CHALLENGES, getChallenge, getLocalizedChallenge } from '@/data/challenges'
+import { buildAlternates } from '@/lib/metadata'
 import { getTranslations } from 'next-intl/server'
 import { NARRATIVE } from '@/data/1k-miles-narrative'
 import type { NarrativeLocale } from '@/data/1k-miles-narrative'
@@ -60,11 +61,11 @@ export async function generateMetadata(
   if (!rawChallenge) return {}
   const challenge = getLocalizedChallenge(rawChallenge, locale)
 
-  const url = `${BASE_URL}/challenges/${challenge.id}`
+  const url = `${BASE_URL}/${locale}/challenges/${challenge.id}`
   return {
     title: `${challenge.name} — ${challenge.tagline}`,
     description: challenge.shortDescription,
-    alternates: { canonical: url },
+    alternates: buildAlternates(locale, `/challenges/${challenge.id}`),
     openGraph: {
       title: `${challenge.name} — Haniel Rolemberg`,
       description: challenge.shortDescription,

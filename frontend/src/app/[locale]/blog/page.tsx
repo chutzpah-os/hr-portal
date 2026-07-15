@@ -1,18 +1,24 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import { getAllPosts } from '@/lib/blog'
+import { buildAlternates } from '@/lib/metadata'
 import BlogList from './BlogList'
 
-export const metadata: Metadata = {
-  title: 'Blog — Haniel Rolemberg',
-  description: 'Articles on cybersecurity, AI, data engineering, health, philosophy, and personal challenges. Technical guides, reflections, and live project updates.',
-  alternates: { canonical: 'https://hanielrolemberg.com/blog' },
-  openGraph: {
+export async function generateMetadata(
+  { params }: { params: Promise<{ locale: string }> }
+): Promise<Metadata> {
+  const { locale } = await params
+  return {
     title: 'Blog — Haniel Rolemberg',
-    description: 'Articles on cybersecurity, AI, data engineering, health, philosophy, and personal challenges.',
-    url: 'https://hanielrolemberg.com/blog',
-    type: 'website',
-  },
+    description: 'Articles on cybersecurity, AI, data engineering, health, philosophy, and personal challenges. Technical guides, reflections, and live project updates.',
+    alternates: buildAlternates(locale, '/blog'),
+    openGraph: {
+      title: 'Blog — Haniel Rolemberg',
+      description: 'Articles on cybersecurity, AI, data engineering, health, philosophy, and personal challenges.',
+      url: `https://hanielrolemberg.com/${locale}/blog`,
+      type: 'website',
+    },
+  }
 }
 
 export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
