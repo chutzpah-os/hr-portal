@@ -7,44 +7,44 @@ tags: ["DLP", "Prevenció de Pèrdua de Dades", "Ciberseguretat", "DSPM", "CASB"
 groups: ["Cybersecurity/DLP"]
 faqs:
   - question: "Què és la Prevenció de Pèrdua de Dades (DLP)?"
-    answer: "DLP és un conjunt de controls — persones, processos i tecnologia — dissenyat per detectar i impedir que dades sensibles surtin d'un entorn controlat sense autorització. Cobreix tres estats de dades: dades en repòs (fitxers emmagatzemats), dades en moviment (trànsit de xarxa) i dades en ús (processament actiu, porta-retalls, impressió)."
-  - question: "Quins són els tres estats de dades en DLP?"
-    answer: "Dades en Repòs: dades emmagatzemades en bases de dades, servidors de fitxers, emmagatzematge al núvol i endpoints. Dades en Moviment: dades que travessen la xarxa per correu electrònic, pujades web, crides API o sincronització SaaS. Dades en Ús: dades processades activament — obertes en aplicacions, copiades al porta-retalls, impreses o capturades. Un programa DLP madur requereix visibilitat i aplicació en els tres."
-  - question: "Què és l'Exact Data Matching (EDM) en DLP?"
-    answer: "L'Exact Data Matching (EDM) és una tècnica de detecció DLP on els registres sensibles (com PII en una base de dades) es converteixen en hashes en una base de dades d'empremtes. Quan les dades en moviment o en repòs es comparen amb aquests hashes, fins i tot coincidències parcials generen alertes. EDM redueix dràsticament els falsos positius respecte al regex perquè només es dispara amb dades reals."
-  - question: "Què és DSPM i com es relaciona amb DLP?"
-    answer: "Data Security Posture Management (DSPM) és una disciplina cloud-native centrada en descobrir, classificar i protegir dades en entorns multi-cloud i SaaS. Mentre el DLP tradicional aplica polítiques al punt de sortida, el DSPM proporciona visibilitat contínua sobre on resideixen les dades sensibles i qui hi té accés. En 2025–2026, les plataformes DLP i DSPM estan convergint — el DSPM proporciona el mapa de dades; el DLP aplica els controls."
-  - question: "Com crea GenAI nous desafiaments per a DLP?"
-    answer: "Les eines GenAI com ChatGPT, GitHub Copilot i assistents d'IA empresarials creen nous vectors d'exfiltració: empleats enganxen codi font o PII en prompts (exfiltració via navegador), agents d'IA recuperen i sintetitzen dades de múltiples sistemes, i els LLM poden ser manipulats via injecció de prompts per filtrar dades processades. Les regles DLP tradicionals tenen dificultats amb aquests vectors perquè l'exfiltració sembla trànsit d'API normal."
+    answer: "El DLP és un conjunt de controls — persones, processos i tecnologia — dissenyat per detectar i impedir que les dades sensibles surtin d'un entorn controlat sense autorització. Cobreix tres estats de les dades: dades en repòs (arxius emmagatzemats), dades en trànsit (tràfic de xarxa) i dades en ús (processament actiu, porta-retalls, impressió)."
+  - question: "Quins són els tres estats de les dades al DLP?"
+    answer: "Dades en Repòs: dades emmagatzemades en bases de dades, servidors d'arxius, emmagatzematge al núvol i endpoints. Dades en Trànsit: dades que travessen la xarxa via correu electrònic, pujades web, crides API o sincronització SaaS. Dades en Ús: dades que s'estan processant activament — obertes en aplicacions, copiades al porta-retalls, impreses o capturades. Un programa DLP madur requereix visibilitat i aplicació en els tres estats."
+  - question: "Què és l'Exact Data Matching (EDM) al DLP?"
+    answer: "L'Exact Data Matching (EDM) és una tècnica de detecció DLP on els registres sensibles (com ara PII en una base de dades) es converteixen en hashes en una base de dades d'empremtes. Quan les dades en trànsit o en repòs es comparen amb aquests hashes, fins i tot les coincidències parcials disparen alertes. EDM redueix dràsticament els falsos positius en comparació amb regex perquè només es dispara amb dades reals, no amb patrons que s'hi assemblen."
+  - question: "Què és el DSPM i com es relaciona amb el DLP?"
+    answer: "El Data Security Posture Management (DSPM) és una disciplina cloud-native centrada en descobrir, classificar i protegir dades en entorns multi-cloud i SaaS. Mentre que el DLP tradicional aplica polítiques al punt de sortida, el DSPM proporciona visibilitat contínua sobre on resideixen les dades sensibles i qui hi té accés. El 2025–2026, les plataformes DLP i DSPM estan convergint — el DSPM proporciona el mapa de dades; el DLP aplica els controls."
+  - question: "Com crea la GenAI nous reptes per al DLP?"
+    answer: "Les eines GenAI com ChatGPT, GitHub Copilot i els assistents d'IA empresarials creen nous vectors d'exfiltració: els empleats enganxen codi font o PII en prompts (exfiltració via navegador), els agents d'IA recuperen i sintetitzen dades de múltiples sistemes, i els LLMs poden ser manipulats via injecció de prompt per filtrar dades que han processat. Les regles DLP tradicionals tenen dificultats amb aquests vectors perquè l'«exfiltració» sembla tràfic d'API normal."
   - question: "Quina és la diferència entre DLP de xarxa i DLP d'endpoint?"
-    answer: "DLP de xarxa inspecciona el trànsit al perímetre de xarxa — passarel·les de correu, proxies web, passarel·les d'API — i pot bloquejar o posar en quarantena dades en moviment. DLP d'endpoint s'executa com a agent en els dispositius i controla accions com còpia al porta-retalls, transferència USB, impressió i accés de dades per aplicacions. DLP d'endpoint pot veure dades en ús; DLP de xarxa no pot. Tots dos són necessaris per a una cobertura integral."
-  - question: "Què és UEBA i per què importa per a la detecció d'amenaces internes?"
-    answer: "User and Entity Behavior Analytics (UEBA) estableix línies de base de comportament normal per a cada usuari i dispositiu, després senyala anomalies estadístiques — un empleat de finances que de cop baixa 10.000 registres de clients, o un desenvolupador accedint a sistemes de RRHH a les 2 AM. UEBA no detecta coincidències específiques de dades; detecta patrons de comportament anormal que precedeixen el robatori de dades, essencial per detectar amenaces internes sofisticades."
+    answer: "El DLP de xarxa inspecciona el tràfic al perímetre de la xarxa — passarel·les de correu electrònic, proxies web, passarel·les d'API — i pot bloquejar o posar en quarantena dades en trànsit. El DLP d'endpoint s'executa com a agent als dispositius i controla accions com la còpia al porta-retalls, la transferència USB, la impressió i l'accés de dades per aplicacions. El DLP d'endpoint pot veure dades en ús; el DLP de xarxa no pot. Tots dos són necessaris per a una cobertura completa."
+  - question: "Què és l'UEBA i per què importa per a la detecció d'amenaces internes?"
+    answer: "L'User and Entity Behavior Analytics (UEBA) estableix línies base de comportament normal per a cada usuari i dispositiu, i després marca anomalies estadístiques — un empleat de finances que de sobte baixa 10.000 registres de clients, o un desenvolupador accedint als sistemes de RRHH a les 2 del matí. L'UEBA no detecta coincidències específiques de dades; detecta patrons de comportament anòmals que precedeixen el robatori de dades, essent essencial per detectar amenaces internes sofisticades que s'escapen del DLP basat en contingut."
 ---
 
-La Prevenció de Pèrdua de Dades és una de les disciplines més antigues en seguretat empresarial — i una de les més mal enteses. La majoria de les organitzacions té *alguna* forma de DLP. La majoria d'aquestes implementacions a penes funciona: una pila de regles regex generant milers d'alertes que ningú llegeix, ajustada tan malament que bloquejar un correu legítim requereix tres aprovacions i un tiquet de suport.
+La Prevenció de Pèrdua de Dades és una de les disciplines més antigues de la seguretat empresarial — i una de les més incompreses. La majoria de les organitzacions tenen *alguna* forma de DLP. La majoria d'aquestes implementacions amb prou feines funcionen: una pila de regles regex que genera milers d'alertes que ningú llegeix, tan mal ajustades que bloquejar un correu legítim requereix tres aprovacions i un tiquet de suport.
 
-Aquesta guia va dels principis fonamentals a la frontera. Si sou nous en DLP, comenceu des del principi. Si ja coneixeu les bases, avanceu — les seccions sobre convergència DSPM, risc de la IA agèntica i vectors d'exfiltració GenAI cobreixen el que va canviar en 2025–2026 i per què importa.
+Aquesta guia va des dels principis fonamentals fins a la frontera del domini. Si sou nous en DLP, comenceu per l'inici. Si ja coneixeu els conceptes bàsics, avanceu — les seccions sobre convergència DSPM, risc d'IA agèntica i vectors d'exfiltració GenAI cobreixen el que va canviar el 2025–2026 i per què importa.
 
 ---
 
 ## Part I: Què és Realment el DLP
 
-### El Problema Central
+### El Problema Fonamental
 
-Les organitzacions generen, processen i transmeten dades sensibles constantment. Algunes d'aquestes dades mai haurien de sortir d'un entorn controlat: codi font, PII de clients, registres financers, informació de salut, fórmules propietàries, plans de fusions i adquisicions. DLP és el conjunt de controls dissenyat per detectar quan les dades sensibles es mouen cap a on no haurien — i aturar-les.
+Les organitzacions generen, processen i transmeten dades sensibles constantment. Part d'aquestes dades mai hauria de sortir d'un entorn controlat: codi font, PII de clients, registres financers, informació de salut, fórmules propietàries, plans de fusions i adquisicions. El DLP és el conjunt de controls dissenyat per detectar quan les dades sensibles es mouen on no haurien de fer-ho — i aturar-les.
 
-La paraula operativa és *controls*. DLP no és un producte únic. És una arquitectura que abasta persones, processos i tecnologia en tres estats de dades distincts:
+La paraula clau és *controls*. El DLP no és un producte únic. És una arquitectura que abasta persones, processos i tecnologia en tres estats de dades diferenciats:
 
-- **Dades en Repòs** — emmagatzemades en bases de dades, servidors de fitxers, emmagatzematge al núvol, endpoints
-- **Dades en Moviment** — travessant la xarxa (correu electrònic, pujades web, crides API, sincronització SaaS)
+- **Dades en Repòs** — emmagatzemades en bases de dades, servidors d'arxius, emmagatzematge al núvol, endpoints
+- **Dades en Trànsit** — travessant la xarxa (correu electrònic, pujades web, crides API, sincronització SaaS)
 - **Dades en Ús** — processades activament per aplicacions, copiades al porta-retalls, impreses, capturades
 
-Un programa DLP complet necessita visibilitat i aplicació en els tres. La majoria de les implementacions heretades cobreix només un o dos.
+Un programa DLP complet necessita visibilitat i aplicació en els tres estats. La majoria de les implementacions llegades en cobreix només un o dos.
 
 ### Per Què Surten les Dades
 
-Abans de dissenyar controls, enteneu els canals. L'exfiltració de dades — intencionada o accidental — es produeix a través de:
+Abans de dissenyar controls, cal comprendre els canals. L'exfiltració de dades — intencional o accidental — es produeix a través de:
 
 | Vector | Exemples |
 |--------|---------|
@@ -52,140 +52,152 @@ Abans de dissenyar controls, enteneu els canals. L'exfiltració de dades — int
 | Pujada web | Enganxar codi font a ChatGPT, pujar un full de càlcul a Dropbox |
 | Sincronització al núvol | Clients d'escriptori OneDrive/Dropbox sincronitzant carpetes restringides |
 | Suports extraïbles | Memòries USB, SSD externs |
-| Impressió/captura | Captura física de dades en pantalla |
-| Sortida d'API | Aplicacions enviant dades a endpoints externs |
-| SaaS a SaaS | Integracions Slack/Jira/GitHub copiant dades entre tenants |
-| Eines d'IA | Prompts enviats a LLMs amb documents confidencials |
+| Impressió/captura | Captura física de dades a la pantalla |
+| Sortida API | Aplicacions enviant dades a endpoints externs |
+| SaaS a SaaS | Integracions de Slack/Jira/GitHub copiant dades entre tenants |
+| Eines d'IA | Prompts enviats a LLMs que contenen documents confidencials |
 
-Un model d'amenaces construït només al voltant del correu electrònic ignora la majoria dels canals moderns de sortida.
+Un model d'amenaces construït únicament al voltant del correu electrònic ignora la majoria dels canals moderns d'exfiltració.
 
 ---
 
 ## Part II: Tècniques de Detecció
 
-Aquí és on DLP es torna tècnic. Tot the reste — política, aplicació, resposta — depèn de que la detecció sigui precisa. La indústria utilitza diverses aproximacions, cadascuna amb perfils de precisió i cost diferents.
+Aquí és on el DLP es torna tècnic. Tot el demés — política, aplicació, resposta — depèn que la detecció sigui precisa. La indústria utilitza diverses aproximacions, cadascuna amb perfils diferents de precisió i cost.
 
-### 1. Coincidència per Paraules Clau i Regex
+### 1. Coincidència de Paraules Clau i Regex
 
-La tècnica més antiga. Definiu patrons — expressions regulars — que coincideixen amb estructures de dades conegudes.
+La tècnica més antiga. Es defineixen patrons — expressions regulars — que coincideixen amb estructures de dades conegudes.
 
 **Exemples:**
-- Números de Seguretat Social dels EUA: `\b\d{3}-\d{2}-\d{4}\b`
+- Números de la Seguretat Social dels EUA: `\b\d{3}-\d{2}-\d{4}\b`
 - Números de targeta de crèdit (vàlids per Luhn): `\b(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})\b`
 - CPF brasiler: `\b\d{3}\.\d{3}\.\d{3}-\d{2}\b`
 
-Regex és barat computacionalment i fàcil d'auditar. També és fràgil. Produeix taxes massives de falsos positius en dades que *semblen* sensibles però no ho són, i falla completament en text no estructurat.
+El regex és econòmic computacionalment i fàcil d'auditar. També és fràgil. Produeix taxes massives de falsos positius en dades que *semblen* sensibles però no ho són, i falla completament amb text no estructurat (un paràgraf que menciona detalls financers sense format estructurat).
+
+La majoria dels productes DLP empresarials inclouen centenars de regles regex predefinides. La majoria d'elles necessiten un ajust significatiu abans del desplegament — i la majoria de les organitzacions mai les ajusten.
 
 ### 2. Etiquetes de Classificació de Dades
 
-En lloc de detectar les dades sensibles a la sortida, classificar en la creació. Els fitxers s'etiqueten amb nivells de sensibilitat (Confidencial, Restringit, Intern, Públic) manualment pels usuaris o automàticament per motors de classificació.
+En lloc de detectar dades sensibles a la sortida, classificar-les en el moment de la creació. Els arxius s'etiqueten amb nivells de sensibilitat (Confidencial, Restringit, Intern, Públic) manualment pels usuaris o automàticament per motors de classificació.
 
-Les polítiques DLP llavors s'apliquen basant-se en l'etiqueta, no en el contingut del fitxer. Aquesta aproximació és significativament més fiable que la inspecció de contingut sola — però requereix un programa de classificació funcionant.
+Les polítiques DLP apliquen llavors basant-se en l'etiqueta, no en el contingut de l'arxiu. Un arxiu etiquetat com `Confidencial` no es pot pujar a un domini extern, punt. Aquesta aproximació és significativament més fiable que la inspecció de contingut sola — però requereix un programa de classificació que funcioni, que és el seu propi projecte.
+
+Microsoft Purview Information Protection i Forcepoint implementen tots dos aquest model. El repte: si la classificació és incorrecta a la font (o simplement no s'aplica), l'aplicació del DLP queda cega.
 
 ### 3. Exact Data Matching (EDM)
 
-EDM crea empremtes d'un conjunt de dades estructurades específic — una base de dades de registres de clients, per exemple — i detecta quan qualsevol porció d'aquestes dades exactes apareix en un canal de sortida.
+L'EDM genera empremtes d'un conjunt de dades estructurat específic — una base de dades de registres de clients, per exemple — i detecta quan qualsevol porció d'aquestes dades exactes apareix en un canal de sortida.
 
 **Com funciona:**
 1. L'organització proporciona un conjunt de dades font (CSV de noms de clients, SSNs, números de compte)
 2. El motor DLP genera hashes de tokens per a cada camp i combinació de camps
-3. En el moment de la inspecció, el contingut es tokenitza i es fa un hash de la mateixa manera
-4. Una coincidència en qualsevol token amb hash dispara una política
+3. En el moment de la inspecció, el contingut es tokenitza i s'aplica el mateix hash
+4. Una coincidència en qualsevol token hasheiat dispara una política
 
-EDM redueix dràsticament els falsos positius perquè detecta dades *exactes*, no patrons que *semblen* dades.
+L'EDM redueix dràsticament els falsos positius perquè detecta dades *exactes*, no patrons que *semblen* dades. També gestiona variacions menors de format (espais, guions, canvis de majúscules) si el pas de tokenització les normalitza.
 
-**Limitacions:** EDM requereix que el conjunt de dades font es mantingui i actualitzi. Les dades no incloses queden invisibles fins a la pròxima reconstrucció de l'índex.
+**Limitacions:** L'EDM requereix que el conjunt de dades font sigui mantingut i actualitzat. Les dades no incloses al conjunt — nous registres de clients afegits després de l'última actualització — són invisibles fins a la propera reconstrucció de l'índex.
 
 ### 4. Fingerprinting de Documents / Indexed Document Matching (IDM)
 
-On EDM gestiona dades estructurades (files i columnes), IDM gestiona documents no estructurats. Un document font s'ingereix i es genera una empremta del seu contingut — no un hash de fitxer, sinó una empremta semàntica basada en seqüències de paraules i n-grames.
+On l'EDM gestiona dades estructurades (files i columnes), l'IDM gestiona documents no estructurats. S'ingereix un document font i es genera una empremta a partir del seu contingut — no un hash d'arxiu, sinó una empremta semàntica basada en seqüències de paraules i n-grames.
 
-Quan un document de sortida coincideix amb l'empremta en un percentatge llindar (diguem 60% de similitud), una política s'activa. Això detecta còpies modificades.
+Quan un document sortint coincideix amb l'empremta en un percentatge llindar (diguem, 60% de similitud), es dispara una política. Això detecta còpies modificades: un document Word on s'ha canviat la capçalera, un PDF amb dos paràgrafs eliminats, una captura de pantalla d'una diapositiva específica.
 
-IDM és eficaç per a la protecció de la propietat intel·lectual — detectar quan un document de disseny confidencial o presentació de M&A s'està transmetent fins i tot en forma modificada.
+L'IDM és eficaç per a la protecció de la propietat intel·lectual — detectar quan un document de disseny confidencial o una presentació de M&A s'està transmetent fins i tot en forma modificada.
 
 ### 5. Classificació per Machine Learning
 
-Les plataformes DLP modernes entrenen models de ML en conjunts de dades etiquetats per classificar contingut en categories sensibles: dades financeres, registres de salut, documents legals, codi font, PII, credencials.
+Les plataformes DLP modernes entrenen models de ML en conjunts de dades etiquetades per classificar el contingut en categories sensibles: dades financeres, registres de salut, documents legals, codi font, PII, credencials.
 
-Els classificadors ML gestionen text no estructurat que regex no pot, generalitzen més enllà de coincidències exactes i s'adapten al context.
+Els classificadors ML gestionen text no estructurat que el regex no pot, generalitzen més enllà de coincidències exactes i s'adapten al context. Un classificador entrenat amb dades de salut reconeix una nota mèdica com a sensible fins i tot si no conté camps estructurats.
 
-**Benchmarks de precisió actuals:** El conjunt de classificadors de Nightfall AI reporta un 95% de precisió en més de 100 models pre-construïts.
+**Benchmarks de precisió actuals:** El conjunt de classificadors de Nightfall AI reporta una precisió del 95% en més de 100 models predefinits. Les taxes de falsos positius amb classificadors ML són significativament menors que les aproximacions basades únicament en regex — però els models requereixen monitoratge continu i reentrenament a mesura que les distribucions de dades canvien.
 
 ### 6. Anàlisi de Comportament / User Entity Behavior Analytics (UEBA)
 
-En lloc d'inspeccionar contingut, UEBA construeix línies de base de comportament normal i senyala anomalies. Un empleat que normalment puja 50 MB/dia que de sobte envia 4 GB un divendres a la tarda abans del seu últim dia dispara una alerta — independentment de quines siguin les dades.
+En lloc d'inspeccionar el contingut, l'UEBA construeix línies base de comportament normal i marca anomalies. Un empleat que normalment puja 50 MB/dia que de sobte envia 4 GB un divendres a la tarda abans del seu últim dia dispara una alerta — independentment del que siguin les dades.
 
-UEBA és essencial per a la detecció d'amenaces internes perquè captura comportaments que la inspecció de contingut no veu: arxius comprimits de fitxers legítims, sortida xifrada, sessions de captura de pantalla, descàrregues massives d'unitats compartides.
+L'UEBA és essencial per a la detecció d'amenaces internes perquè captura comportaments que la inspecció de contingut no veu: arxius comprimits d'arxius legítims, sortida xifrada, sessions de captura de pantalla, descàrregues massives d'unitats compartides.
+
+L'UEBA típicament s'integra amb el DLP en lloc de ser una tècnica DLP autònoma. Eines com Microsoft Purview Insider Risk Management combinen senyals UEBA amb resultats d'inspecció de contingut per puntuar el risc.
 
 ---
 
 ## Part III: Arquitectura DLP
 
-Una arquitectura DLP funcional té tres pilars d'aplicació. Les llacunes en qualsevol d'ells creen canals de sortida que les polítiques no poden veure.
+Una arquitectura DLP funcional té tres pilars d'aplicació. Les llacunes en qualsevol d'ells creen canals d'exfiltració que les polítiques no poden veure.
 
 ### Pilar 1 — DLP de Xarxa
 
-DLP de xarxa inspecciona el trànsit que surt de l'organització al perímetre o en línia via proxy. Captura:
+El DLP de xarxa inspecciona el tràfic que surt de l'organització al perímetre o en línia via proxy. Captura:
 
-- Trànsit web (HTTP/HTTPS) mitjançant inspecció SSL
+- Tràfic web (HTTP/HTTPS) via inspecció SSL
 - Correu electrònic (SMTP) abans del lliurament
-- FTP, SFTP i trànsit de protocol personalitzat mitjançant inspecció profunda de paquets
+- FTP, SFTP i tràfic de protocol personalitzat via inspecció profunda de paquets
 
-**La inspecció SSL** és innegociable per al DLP de xarxa modern. Aproximadament el 90% del trànsit web empresarial està xifrat. Sense desxifrat SSL en línia, un proxy DLP només veu metadades TLS.
+**La inspecció SSL** és innegociable per al DLP de xarxa modern. Aproximadament el 90% del tràfic web empresarial està xifrat. Sense desxifrat SSL en línia, un proxy DLP només veu metadades TLS — IP de destinació, hostname SNI, certificat — no el payload. Això requereix desplegar un certificat CA als endpoints perquè el proxy pugui realitzar man-in-the-middle a les connexions HTTPS.
 
-**Desafiament:** La inspecció SSL trenca el mTLS, el certificate pinning i genera preocupacions de privacitat per al trànsit personal en dispositius gestionats.
+**Repte:** La inspecció SSL trenca el mTLS (mutual TLS), l'ancorament de certificat (aplicacions bancàries mòbils, alguns SaaS) i genera preocupacions de privadesa per al tràfic personal en dispositius gestionats. La majoria de les organitzacions necessiten llistes de bypass per a destinacions de confiança coneguda.
+
+El DLP de xarxa s'està tornant menys rellevant com a control independent. Quan les dades transiten de SaaS a SaaS (Slack → Google Drive, Salesforce → correu electrònic), pot ser que mai travessin la infraestructura corporativa. Aquí és on el CASB i el DLP al núvol tanquen la bretxa.
 
 ### Pilar 2 — DLP d'Endpoint
 
-Agents DLP d'endpoint desplegats en dispositius gestionats monitoren i apliquen polítiques a la font del moviment de dades:
+Els agents DLP d'endpoint desplegats en dispositius gestionats monitoren i apliquen polítiques en l'origen del moviment de dades:
 
-- Operacions de fitxers (copiar, moure, eliminar, comprimir)
+- Operacions d'arxiu (copiar, moure, eliminar, comprimir)
 - Suports extraïbles (bloqueig USB o permís per número de sèrie del dispositiu)
 - Impressió i captura de pantalla
 - Operacions de porta-retalls (copiar-enganxar entre aplicacions)
-- Pujades en el navegador (via extensió o hooks en nivell de nucli)
+- Pujades al navegador (via extensió de navegador o hooks a nivell de nucli)
 - Comportament del client de sincronització al núvol
 
-**Profunditat tècnica:** DLP d'endpoint utilitza hooks de l'API del SO en nivell de nucli o espai d'usuari. A Windows, utilitza filter drivers (mode nucli) o API hooking estil Detours (mode usuari). A macOS, utilitza extensions del sistema (post-Catalina) i esdeveniments de l'Endpoint Security Framework (ESF).
+Els agents d'endpoint funcionen independentment de la connectivitat de xarxa, cosa que és crítica per als treballadors en remot i els escenaris amb air gap.
 
-**Desafiament:** Els agents en nivell de nucli són complexos de desplegar i mantenir. Poden causar inestabilitat del sistema i conflictar amb altres eines de seguretat (agents EDR).
+**Profunditat tècnica:** El DLP d'endpoint utilitza hooks d'API del SO a nivell de nucli o espai d'usuari. A Windows, això típicament utilitza filter drivers (mode nucli) o hooking d'API estil Detours (mode usuari). El DLP d'endpoint a macOS utilitza extensions del sistema (post-Catalina) i events del marc Endpoint Security (ESF) — `ES_EVENT_TYPE_AUTH_OPEN`, `ES_EVENT_TYPE_AUTH_WRITE`, etc. L'agent intercepta les operacions d'E/S d'arxius abans que es completin i aplica la política.
+
+**Repte:** Els agents a nivell de nucli són complexos de desplegar i mantenir. Poden causar inestabilitat del sistema, conflictes amb altres eines de seguretat (agents EDR) i requereixen extensions de nucli signades en macOS modern. Existeixen llacunes de cobertura en endpoints Linux, dispositius BYOD i infraestructura de virtualització d'escriptori (VDI) amb sessions no persistents.
 
 ### Pilar 3 — DLP al Núvol / SaaS
 
-DLP al núvol opera a través de dos modes d'integració:
+El DLP al núvol opera a través de dos modes d'integració:
 
-**Mode API (out-of-band):** S'integra directament amb les API de plataformes SaaS (Microsoft 365, Google Workspace, Slack, Salesforce, Box) per escanejar dades en repòs i en trànsit. Detecta violacions de polítiques retroactivament.
+**Mode API (fora de banda):** S'integra directament amb les APIs de plataformes SaaS (Microsoft 365, Google Workspace, Slack, Salesforce, Box) per escanejar dades en repòs i en trànsit dins d'aquestes plataformes. Detecta violacions de política de manera retroactiva — després que un arxiu ha estat compartit — i pot posar-lo en quarantena, revocar l'accés o notificar.
 
-**Mode proxy en línia (in-band):** Enruta el trànsit SaaS a través d'un Cloud Access Security Broker (CASB) o Security Service Edge (SSE) que inspeciona els payloads en temps real. Permet bloquejar al punt de transmissió.
+**Mode proxy en línia (en banda):** Encamina el tràfic SaaS a través d'un Cloud Access Security Broker (CASB) o Security Service Edge (SSE) que inspecciona els payloads en temps real abans d'arribar a la destinació SaaS. Permet el bloqueig en el punt de transmissió en lloc de la remediació posterior.
+
+El mode API és més fàcil de desplegar però no pot bloquejar en temps real. El mode en línia bloqueja però introdueix latència i requereix inspecció SSL.
 
 ---
 
 ## Part IV: Disseny de Polítiques
 
-### L'Anatomia de la Política
+### L'Anatomia d'una Política
 
 Una política DLP consisteix en:
 
-1. **Condició** — quin contingut la dispara (classificació de dades, coincidència regex, etiqueta, tipus de fitxer, coincidència EDM)
+1. **Condició** — quin contingut la dispara (classificació de dades, coincidència regex, etiqueta, tipus d'arxiu, coincidència EDM)
 2. **Abast** — a qui s'aplica (tots els usuaris, departaments específics, rols específics, dispositius específics)
 3. **Canal** — on s'aplica (correu electrònic, web, endpoint, núvol)
-4. **Acció** — el que passa quan es dispara (bloquejar, permetre amb justificació, quarantena, notificar, només registrar)
+4. **Acció** — què passa quan es dispara (bloquejar, permetre amb justificació, quarantena, notificar, només registrar)
 5. **Excepcions** — destinacions o usuaris aprovats exempts de la regla
 
-### El Problema d'Ajustament
+### El Problema de l'Ajust
 
-Les implementacions DLP fallen per l'ajustament — o la seva absència. La seqüència d'implementació recomanada:
+Les implementacions DLP fracassen a causa de l'ajust — o la seva absència. La seqüència d'implementació recomanada:
 
-**Fase 1 — Només mode d'auditoria.** Desplegueu polítiques només en mode de registre. Sense bloqueig. Executeu durant 2–4 setmanes.
+**Fase 1 — Només mode d'auditoria.** Desplegar polítiques només en mode de registre. Sense bloqueig. Executar durant 2–4 setmanes. Analitzar les alertes: Quantes? Quin percentatge són veritables positius? On es troben les fonts de major volum de falsos positius?
 
-**Fase 2 — Aplicació progressiva.** Activeu el bloqueig en les polítiques de major confiança i menor volum primer. Regles de divulgació de credencials tenen baixes taxes de falsos positius. Regles àmplies de "PII en correu" tenen taxes altes.
+**Fase 2 — Aplicació progressiva.** Activar el bloqueig en les polítiques de més confiança i menor volum primer. Les regles de divulgació de credencials (claus d'API, contrasenyes en correu electrònic) tenen baixes taxes de falsos positius. Les regles àmplies de "PII en correu electrònic" en tenen d'altes. L'ordre importa.
 
-**Fase 3 — Refinament de llindars.** Ajusteu llindars de confiança, recomptes mínims de coincidències i destinacions en llista blanca.
+**Fase 3 — Refinament dels llindars.** Ajustar els llindars de confiança, els recomptes mínims de coincidències i la llista blanca de destinacions aprovades. Una sola ocurrència d'un patró que coincideix amb un SSN en un document de 10.000 paraules és diferent d'un full de càlcul amb 50.000 SSNs.
 
-**Fase 4 — EDM i fingerprinting.** Afegiu dades estructurades i fingerprinting de documents després que la classificació sigui estable.
+**Fase 4 — EDM i fingerprinting.** Afegir dades estructurades i fingerprinting de documents després que la classificació sigui estable. Aquests tenen les taxes de falsos positius més baixes però el cost d'implementació més alt.
 
-Les organitzacions que salten la Fase 1 i van directament al bloqueig destrueixen la productivitat dels usuaris i erosionen la confiança en el programa DLP.
+Les organitzacions que s'ometen la Fase 1 i van directament al bloqueig destrueixen la productivitat dels usuaris i erosionen la confiança en el programa DLP.
 
 ---
 
@@ -193,165 +205,177 @@ Les organitzacions que salten la Fase 1 i van directament al bloqueig destrueixe
 
 ### CASB (Cloud Access Security Broker)
 
-CASB es posiciona entre usuaris i serveis al núvol, proporcionant visibilitat del shadow IT, aplicant polítiques d'accés i aplicant DLP al trànsit al núvol. El 2019, Gartner va incorporar CASB al seu framework SSE.
+El CASB es posiciona entre els usuaris i els serveis al núvol, proporcionant visibilitat del shadow IT, aplicant polítiques d'accés i aplicant DLP al tràfic al núvol. El 2019, Gartner va incorporar el CASB al seu framework SSE.
 
-Els quatre pilars de CASB:
-- **Visibilitat** — quins serveis al núvol estan fent servir realment els empleats (descoberta de shadow IT)
-- **Compliment** — aplicar regulaments de protecció de dades en l'ús del núvol
+Els quatre pilars del CASB:
+- **Visibilitat** — quins serveis al núvol estan fent servir realment els empleats (descobriment del shadow IT)
+- **Compliment** — aplicar regulacions de protecció de dades en l'ús del núvol
 - **Seguretat de Dades** — polítiques DLP aplicades a la sortida del núvol i dades SaaS
 - **Protecció contra Amenaces** — detectar comptes compromesos i activitat maliciosa al núvol
 
 ### SSE i SASE
 
-Security Service Edge (SSE) consolida CASB, SWG (Secure Web Gateway) i ZTNA (Zero Trust Network Access) en una única plataforma de seguretat lliurada al núvol. SASE afegeix SD-WAN a l'stack SSE.
+Security Service Edge (SSE) consolida el CASB, el SWG (Secure Web Gateway) i el ZTNA (Zero Trust Network Access) en una única plataforma de seguretat lliurada al núvol. SASE afegeix SD-WAN a l'stack SSE.
 
-Principals proveïdors: Netskope, Zscaler, Palo Alto Prisma Access, Cloudflare One.
+El DLP lliurat via SSE inspecciona tot el tràfic de sortida — web, núvol i aplicació — a través d'un únic motor de política en línia sense necessitar proxies per endpoint. Principals proveïdors: Netskope, Zscaler, Palo Alto Prisma Access, Cloudflare One. El 2025, Cato Networks va adquirir Aim Security i va integrar DLP específic per a IA a la seva plataforma SASE.
+
+L'avantatge del DLP natiu SSE: aplicació consistent de polítiques independentment de la xarxa en la qual es trobi l'endpoint. Un portàtil en una cafeteria i un portàtil a l'oficina corporativa reben la mateixa inspecció DLP.
 
 ### Zero Trust i DLP
 
-ZTNA controla *qui* pot accedir a *quin* recurs. DLP controla *quines dades* poden sortir d'un recurs. Un usuari amb accés legítim a una base de dades pot igualment exfiltrar el seu contingut — ZTNA no ho impedeix. DLP a la capa de sortida sí.
+Zero Trust Network Access (ZTNA) i DLP són complementaris però distints. El ZTNA controla *qui* pot accedir a *quin* recurs. El DLP controla *quines dades* poden sortir d'un recurs. Un usuari amb accés legítim a una base de dades pot igualment exfiltrar el seu contingut — el ZTNA no ho impedeix. El DLP a la capa de sortida, sí.
 
-L'arquitectura correcta: ZTNA controla l'accés. DLP controla el moviment de dades. Cap dels dos substitueix l'altre.
+L'arquitectura correcta: el ZTNA controla l'accés (autenticació + autorització). El DLP controla el moviment de dades (inspecció de contingut + aplicació de polítiques). Cap dels dos substitueix l'altre.
 
 ---
 
 ## Part VI: DSPM — La Capa Per Sobre del DLP
 
-### Què és DSPM
+### Què és el DSPM
 
-Data Security Posture Management (DSPM) és la disciplina de descobrir, classificar i avaluar contínuament la postura de risc de totes les dades sensibles en l'entorn d'una organització — núvol, SaaS, on-premises.
+El Data Security Posture Management (DSPM) és la disciplina de descobrir, classificar i avaluar contínuament la postura de risc de totes les dades sensibles en l'entorn d'una organització — núvol, SaaS, on-premises.
 
-On DLP aplica polítiques als canals de sortida, DSPM respon la pregunta que ha de venir primer: *on resideixen realment les dades sensibles, i qui hi té accés?*
+On el DLP aplica polítiques als canals de sortida, el DSPM respon a la pregunta que ha de venir primer: *on resideixen realment les dades sensibles, i qui hi té accés?*
 
-Sense DSPM, les polítiques DLP s'escriuen a les fosques. Una organització pot tenir regles DLP impedint que PII surti per correu mentre un bucket S3 mal configurat amb el mateix PII és accessible públicament — i cap política DLP el veu mai.
+Sense DSPM, les polítiques DLP s'escriuen a les fosques. Una organització pot tenir regles DLP que impedeixin que el PII surti via correu electrònic mentre un bucket S3 mal configurat que conté el mateix PII és accessible públicament — i cap política DLP el veu mai perquè surt via descàrrega HTTP directa.
 
-Capacitats DSPM:
-- Descoberta automatitzada d'emmagatzemaments de dades
+Capacitats del DSPM:
+- Descobriment automatitzat d'emmagatzematges de dades (emmagatzematge al núvol, bases de dades, SaaS, repositoris de codi)
 - Classificació de contingut de les dades descobertes
-- Anàlisi de camí d'accés (qui pot arribar a aquestes dades i via quins permisos)
-- Puntuació de risc (dades sensibles + permisos amplis + sense xifratge = alt risc)
-- Detecció contínua de desviacions (nous emmagatzemaments de dades, canvis de permisos, configuracions incorrectes)
+- Anàlisi de camins d'accés (qui pot arribar a aquestes dades i amb quins permisos)
+- Puntuació de risc (dades sensibles + permisos amplis + sense xifrat = risc alt)
+- Detecció contínua de desviacions (nous emmagatzematges de dades, canvis de permisos, configuracions incorrectes)
 
 ### Convergència DSPM + DLP
 
-El 2026, la indústria està convergint DSPM i DLP en plataformes unificades de seguretat de dades. El DLP Augmentat per DSPM de BigID (anunciat el març de 2026) utilitza intel·ligència de dades en viu de DSPM per validar i millorar contínuament les polítiques DLP.
+El 2026, la indústria està convergint el DSPM i el DLP en plataformes unificades de seguretat de dades. El DLP Augmentat per DSPM de BigID (anunciat el març de 2026) utilitza intel·ligència de dades en viu del DSPM per validar i millorar contínuament les polítiques DLP — detectant automàticament falsos positius creuant el contingut de l'alerta amb el catàleg de dades DSPM, i recomanant canvis de política basats en senyals contextuals.
 
-La plataforma unificada de Cyberhaven combina DSPM, DLP, gestió de risc intern i seguretat d'IA sota un únic pla de control.
+La Plataforma Unificada d'IA i Seguretat de Dades de Cyberhaven combina DSPM, DLP, gestió de riscos interns i seguretat d'IA sota un únic pla de control. La lògica: els controls de seguretat de dades que no saben on viuen les dades, com es classifiquen i com circulen són operativament cecs.
 
 ---
 
 ## Part VII: El Problema d'Exfiltració via GenAI
 
-Aquest és el desenvolupament més significatiu en DLP en 2025–2026. El DLP tradicional no va ser dissenyat per a interfícies d'IA conversacionals, i es nota.
+Aquest és el desenvolupament més significatiu en DLP el 2025–2026. El DLP tradicional no va ser dissenyat per a interfícies d'IA conversacional, i es nota.
 
 ### La Superfície d'Atac
 
 Els empleats ara interactuen rutinàriament amb LLMs — ChatGPT, Claude, Microsoft Copilot, Google Gemini — i enganxen dades organitzacionals en aquestes interfícies:
 
 - Codi font per depurar una funció
-- Fils de correu de clients per redactar una resposta
+- Fils de correu electrònic de clients per redactar una resposta
 - Fulls de càlcul financers per resumir xifres
 - Documents interns per extreure punts clau
 - Esquemes de bases de dades per escriure una consulta
 
-Les solucions DLP tradicionals inspeccionen canals de sortida coneguts — correu electrònic, pujades web, USB. Un enganxament de text en un camp d'entrada web que travessa HTTPS a un proveïdor d'IA sembla idèntic a escriure una consulta de cerca. Sense inspecció SSL i anàlisi semàntica de contingut de cossos de peticions HTTP, és invisible.
+Cadascuna d'aquestes interaccions pot transmetre dades sensibles a la infraestructura d'inferència d'un proveïdor d'IA extern. Les dades poden ser retingudes, usades per a entrenament (depenent dels termes del proveïdor) i potencialment recuperables per altres parts.
 
-### Injecció de Prompts com a Problema DLP
+Les solucions DLP tradicionals inspeccionen canals de sortida coneguts — correu electrònic, pujades web, USB. Un enganxament de text en un camp d'entrada web via HTTPS a un proveïdor d'IA és idèntic a escriure una consulta de cerca. Sense inspecció SSL i anàlisi semàntica de contingut dels cossos de les sol·licituds HTTP, és invisible.
 
-La injecció de prompts afegeix un segon vector d'atac: dades sensibles extretes *per* un model d'IA que ha estat manipulat.
+### Injecció de Prompt com a Problema DLP
 
-El 2026, l'atac "Reprompt" (descobert per Varonis) va demostrar exfiltració de dades amb un sol clic des de Microsoft Copilot Personal. Un prompt maliciós incrustat en un correu electrònic va entrar en una base de dades RAG (Retrieval-Augmented Generation) a través de l'assistent d'IA de correu. L'agent va generar llavors respostes que contenien el prompt maliciós juntament amb dades organitzacionals sensibles extretes de la seva finestra de context.
+La injecció de prompt afegeix un segon vector d'atac: dades sensibles extretes *per* un model d'IA que ha estat manipulat.
+
+El 2026, l'atac "Reprompt" (descobert per Varonis) va demostrar l'exfiltració de dades amb un sol clic des de Microsoft Copilot Personal. Un prompt maliciós incrustat en un correu electrònic va entrar en una base de dades RAG (Retrieval-Augmented Generation) a través de l'assistent d'IA de missatgeria. L'agent va generar llavors respostes que contenien el prompt maliciós juntament amb dades organitzacionals sensibles extretes de la seva finestra de context.
 
 Això representa una nova categoria: exfiltració de dades *indirecta* on l'usuari humà no és l'actor — l'agent d'IA ho és.
 
+El cuc Morris II (demostrat per investigadors) va estendre això als sistemes multi-agent: un prompt maliciós incrustat en un correu electrònic va fer que un assistent d'IA de missatgeria generés correus sortints que contenien el mateix prompt maliciós *i* informació sensible recuperada de fonts de dades organitzacionals, propagant-se de manera autònoma.
+
 ### Controls DLP per a GenAI
 
-**Inspecció de contingut al nivell del navegador:** Nightfall AI i Microsoft Purview DLP per a Edge ara realitzen inspecció en línia de contingut enganxat en camps d'entrada de navegadors web, incloent interfícies de xat d'IA.
+**Inspecció de contingut a nivell de navegador:** Nightfall AI i Microsoft Purview DLP per a Edge ara realitzen inspecció en línia del contingut enganxat en camps d'entrada de navegadors web, incloses les interfícies de xat d'IA. L'agent intercepta events de teclat i porta-retalls a la capa del navegador, classifica el contingut abans de transmetre'l i aplica la política (bloquejar, advertir, redactar).
 
-**API d'escaneig de prompts:** El Firewall for AI de Nightfall proporciona una API que es posiciona entre una aplicació i un proveïdor LLM, inspeccionant prompts i respostes bidireccionalment.
+**API d'escaneig de prompts:** El Firewall for AI de Nightfall proporciona una API posicionada entre una aplicació i un proveïdor LLM, inspeccionant prompts i respostes de manera bidireccional. Les dades sensibles en els prompts es detecten i es bloquegen o redacten abans d'arribar al LLM. El PII, les credencials i el contingut confidencial en les respostes del model es marquen abans del lliurament a l'usuari.
 
-**Inspecció de trànsit GenAI via SASE/SSE:** Zscaler, Netskope i Cato Networks van afegir polítiques DLP específiques per a GenAI el 2025 — detectant pujades a dominis de proveïdors d'IA i aplicant inspecció de contingut al cos de la petició HTTP.
+**Inspecció de tràfic GenAI via SASE/SSE:** Zscaler, Netskope i Cato Networks van afegir polítiques DLP específiques per a GenAI el 2025 — detectant pujades a dominis de proveïdors d'IA (openai.com, claude.ai, gemini.google.com) i aplicant inspecció de contingut al cos de la sol·licitud HTTP.
 
-**Microsoft Purview per a Copilot:** Les polítiques DLP de Microsoft Purview ara s'estenen a les interaccions de Microsoft 365 Copilot, amb Copilot heretant la mateixa aplicació basada en etiquetes de sensibilitat dels documents subjacents als quals accedeix.
+**Microsoft Purview per a Copilot:** Les polítiques de Microsoft Purview DLP ara s'estenen a les interaccions de Microsoft 365 Copilot, amb Copilot heretant la mateixa aplicació basada en etiqueta de sensibilitat aplicada als documents subjacents als quals accedeix. Un empleat no pot demanar a Copilot que resumeixi un document etiquetat com "Altament Confidencial" i rebre una sortida que violi la política DLP de l'etiqueta.
 
 ---
 
-## Part VIII: IA Agèntica i la Pròxima Frontera
+## Part VIII: IA Agèntica i la Propera Frontera
 
 ### El Problema amb els Agents d'IA
 
 Els agents d'IA — sistemes d'IA autònoms que planifiquen, executen tasques de múltiples passos, criden eines externes i modifiquen l'estat sense confirmació humana per pas — representen l'evolució més significativa en la superfície d'amenaces DLP des de la computació al núvol.
 
-Característiques de risc dels agents:
-- Els agents tenen **accés ampli, sovint supraprovisionat** atorgat en el moment de configuració
-- Els agents s'executen a **velocitat de màquina** — moviment de dades que trigaria hores a un humà succeeix en segons
-- Els agents **no estan vinculats a controls en nivell d'UI** — criden API directament, evitant DLP basat en navegador
-- El comportament dels agents és **depenent del context i no determinístic**
+Un usuari humà que exfiltra dades ha de realitzar una acció intencional: escriure text, fer clic en un botó, arrossegar un arxiu. Un agent d'IA que opera en nom d'un usuari (o de manera autònoma via un flux de treball programat) pot accedir a dades, transformar-les i transmetre-les a endpoints externs com a subproducte de completar una tasca — sense que l'usuari en sigui conscient.
+
+Les característiques de risc dels agents difereixen del risc d'usuari humà:
+- Els agents tenen **accés ampli, sovint sobre-provisionat** concedit en el moment de la configuració
+- Els agents s'executen a **velocitat de màquina** — el moviment de dades que li portaria hores a un humà succeeix en segons
+- Els agents **no estan lligats per controls a nivell d'interfície d'usuari** — criden les APIs directament, eludint el DLP basat en navegador
+- El comportament de l'agent és **dependent del context i no determinista** — el mateix agent pot comportar-se de manera diferent amb entrades diferents
 
 ### Shadow AI Agents
 
-Shadow IT s'ha convertit en shadow AI: empleats i desenvolupadors desplegant agents d'IA sense revisió formal de seguretat.
+El shadow IT va esdevenir shadow AI: empleats i desenvolupadors desplegant agents d'IA sense revisió de seguretat formal. Aquests agents poden tenir accés a credencials organitzacionals, APIs SaaS i emmagatzematges de dades. Quan fallen, es comprometen o es fan servir malament deliberadament, les implicacions per al DLP són greus.
 
-El 2026, només el 20% de les organitzacions té la maduresa de seguretat de dades necessària per a l'adopció segura d'agents d'IA.
+El 2026, només el 20% de les organitzacions tenen la maduresa de seguretat de dades necessària per a l'adopció segura d'agents d'IA, segons un estudi de convergència DSPM citat per GovInfoSecurity. La resta opera agents sense visibilitat sobre quines dades accedeixen o transmeten aquests agents.
 
 ### Controls DLP per a Agents
 
-**Gestió d'identitat i accés d'agents:** Cada agent d'IA rep una identitat i permisos mínims necessaris — no els permisos de l'usuari que el va desplegar.
+La resposta de la indústria està convergint cap a diverses aproximacions tècniques:
 
-**Registre d'activitat de l'agent:** Totes les crides d'API de l'agent, lectures de dades i transmissions externes es registren en un SIEM.
+**Gestió d'identitat i accés d'agents:** A cada agent d'IA se li assigna una identitat (service principal, clau d'API, client OAuth) i se li concedeixen els permisos mínims necessaris — no els permisos de l'usuari que el va desplegar. L'accés es limita a emmagatzematges de dades específics, finestres temporals i operacions.
 
-**Anàlisi de camí d'accés basada en DSPM:** Abans que un agent sigui autoritzat a operar en un emmagatzemament de dades, el DSPM mapeja quines dades sensibles conté aquest emmagatzemament.
+**Registre d'activitat de l'agent:** Totes les crides API de l'agent, lectures de dades i transmissions externes es registren en un SIEM. Les polítiques DLP es disparen en el tràfic generat per l'agent usant el mateix pipeline d'inspecció de contingut que el tràfic generat per humans, amb la identitat de l'agent com a clau de correlació.
 
-**Inspecció de comunicació multi-agent:** Recerca publicada el 2026 sobre millora del protocol A2A (Agent-to-Agent) de Google proposa inspecció DLP de missatges entre agents en sistemes multi-agent.
+**Anàlisi de camins d'accés basada en DSPM:** Abans que un agent sigui autoritzat a operar en un emmagatzematge de dades, el DSPM cartografia quines dades sensibles conté aquest emmagatzematge i quins permisos necessitaria l'agent. L'accés excessivament ampli (agent sol·licitant accés de lectura a un tenant sencer de SharePoint per recuperar un document) es marca per a revisió.
+
+**Inspecció de comunicació multi-agent:** Una recerca publicada el 2026 sobre la millora del protocol A2A (Agent-to-Agent) de Google proposa la inspecció DLP dels missatges entre agents en sistemes multi-agent — impedint que les dades sensibles recuperades per un agent es passin a un agent downstream que opera en un entorn no de confiança.
 
 ---
 
 ## Part IX: Amenaça Interna — La Variable Humana
 
-DLP existeix per als insiders tant com pels atacants externs. Les amenaces internes es divideixen en dues categories:
+El DLP existeix pels insiders tant com pels atacants externs. Les amenaces internes es divideixen en dues categories amb aproximacions de detecció diferents:
 
-**Insiders maliciosos** actuen amb intenció: un empleat que marxa baixant la base de dades de clients, un contractista venent codi font, un administrador privilegiat cobrint rastres mentre exfiltra dades financeres. UEBA detecta anomalies en el volum i timing del comportament.
+**Els insiders maliciosos** actuen amb intenció: un empleat que se'n va descarregant la base de dades de clients, un contractista venent codi font, un administrador privilegiat cobrint rastres mentre exfiltra dades financeres. L'UEBA detecta anomalies en el volum i el moment dels comportaments. L'EDM i el fingerprinting detecten conjunts de dades específics. El DLP d'endpoint captura suports extraïbles i sincronització al núvol.
 
-**Insiders accidentals** no tenen intenció maliciosa però causen bretxes igualment: una llista de distribució de correu mal configurada, un fitxer adjunt enviat al destinatari equivocat, un enllaç compartit amb permisos definits com "qualsevol amb l'enllaç".
+**Els insiders accidentals** no tenen intenció maliciosa però causen violacions igualment: una llista de distribució de correu electrònic mal configurada, un adjunt enviat al destinatari equivocat, un enllaç compartit amb permisos establerts en "qualsevol persona amb l'enllaç". Aquesta categoria representa la majoria dels incidents reportats i requereix controls diferents — classificació de dades per prevenir el compartiment excessiu, capacitats de retard + recuperació de correu electrònic i governança de permisos de compartiment.
 
-**Empleats que marxen** representen la població de major risc. Mimecast Incydr correlaciona senyals del sistema de RRHH (data de dimissió, data de cessament) amb telemetria DLP d'endpoint per puntuar el risc i prioritzar la investigació.
+**Els empleats que se'n van** representen la població de més alt risc. Mimecast Incydr (una plataforma de gestió de riscos interns de propòsit específic) correlaciona senyals del sistema de RRHH (data de dimissió, data de cessament) amb la telemetria DLP d'endpoint per puntuar el risc i prioritzar la investigació. Un empleat en les seves dues últimes setmanes que sobtadament accedeix a arxius fora del seu conjunt de treball habitual i puja a emmagatzematge personal al núvol es puntua com a alt risc sense requerir triatge humà de cada alerta.
 
 ---
 
 ## Part X: Full de Ruta d'Implementació
 
-Si esteu construint o reconstruint un programa DLP, la seqüència següent redueix el risc de fallada:
+Si esteu construint o reconstruint un programa DLP, la seqüència següent redueix el risc de fracàs:
 
-**Pas 1 — Descoberta de Dades.** Abans de qualsevol aplicació, coneixeu quines dades sensibles teniu i on resideixen. Desplegeu DSPM per escanejar emmagatzemament al núvol, plataformes SaaS, bases de dades i endpoints.
+**Pas 1 — Descobriment de Dades.** Abans de qualsevol aplicació, conegueu quines dades sensibles teniu i on resideixen. Desplegueu DSPM per escanejar emmagatzematge al núvol, plataformes SaaS, bases de dades i endpoints. El resultat és un inventari de dades amb classificacions de sensibilitat i puntuacions de risc.
 
-**Pas 2 — Definiu una Política de Classificació de Dades.** Establiu quatre a cinc capes de sensibilitat (Públic, Intern, Confidencial, Restringit, Regulat).
+**Pas 2 — Definiu una Política de Classificació de Dades.** Establiu quatre a cinc nivells de sensibilitat (Públic, Intern, Confidencial, Restringit, Regulat). Definiu quines dades pertanyen a cada nivell. Apliqueu etiquetes — classificació automàtica via ML, aplicada per etiquetes de sensibilitat a Microsoft Purview o equivalent.
 
-**Pas 3 — Mapeig de Canals de Sortida.** Instrumenteu el vostre entorn per entendre per quins canals es mouen les dades.
+**Pas 3 — Mapegeu els Canals de Sortida.** Instrumenteu el vostre entorn per entendre per quins canals es mouen les dades: volums de correu electrònic, destinacions de pujada web, integracions SaaS, endpoints d'API, clients de sincronització al núvol, ús d'USB. Això identifica on col·locar els controls DLP.
 
-**Pas 4 — Desplegueu en Mode d'Auditoria.** Comenceu registrant només — zero aplicació. Recolliu 2–4 setmanes de dades.
+**Pas 4 — Desplegueu en Mode d'Auditoria.** Comenceu només registrant — zero aplicació. Recolliu 2–4 setmanes de dades. Analitzeu el volum d'alertes, la taxa de falsos positius i els events de màxim risc.
 
-**Pas 5 — Construïu Polítiques per Capes.** Comenceu amb les polítiques de major confiança, menor volum i major impacte.
+**Pas 5 — Construïu Política per Nivells.** Comenceu amb les polítiques de més confiança, menor volum i major impacte. Credencials en correu electrònic. Descàrregues massives de recursos compartits d'arxius. Suports extraïbles en rols d'alt risc. Amplieu incrementalment.
 
-**Pas 6 — Integreu UEBA.** Afegiu anàlisi de comportament per complementar la inspecció de contingut.
+**Pas 6 — Integreu UEBA.** Afegiu anàlisi de comportament per complementar la inspecció de contingut. L'UEBA captura el que la inspecció de contingut no veu: arxius comprimits, sortida xifrada, anomalies en patrons d'accés, operacions massives fora d'horari.
 
-**Pas 7 — Tracteu GenAI i Agents.** Esteniu DLP a l'ús d'eines d'IA via extensió de navegador o proxy SSE. Establiu governança d'identitat d'agents.
+**Pas 7 — Abordeu GenAI i els Agents.** Esteneu el DLP a l'ús d'eines d'IA via extensió de navegador o proxy SSE. Establiu governança d'identitat d'agents. Desplegueu APIs d'inspecció de prompts si la vostra organització construeix aplicacions integrades amb IA.
 
-**Pas 8 — Millora Contínua.** DLP no és un sistema per desplegar i oblidar. Establiu un cicle de revisió mensual per a qualitat d'alertes, ajustament de polítiques i llacunes de cobertura.
+**Pas 8 — Millora Contínua.** El DLP no és un sistema per desplegar i oblidar. Els falsos positius s'acumulen, els fluxos de dades canvien, sorgeixen nous canals de sortida. Establiu un cicle de revisió mensual per a la qualitat de les alertes, l'ajust de polítiques i les llacunes de cobertura.
 
 ---
 
 ## Cap On Va el DLP
 
-**Les plataformes unificades** substitueixen les solucions puntuals. DLP de xarxa independent, CASB independent i DLP d'endpoint independent estan convergint en plataformes unificades de seguretat de dades (Cyberhaven, Netskope, Microsoft Purview, BigID).
+La direcció és clara a partir d'on estan fluint les inversions el 2025–2026:
 
-**DSPM com a fonament.** No podeu protegir el que no podeu veure. DSPM s'està convertint en el prerequisit per al DLP.
+**Les plataformes unificades** reemplacen les solucions puntuals. El DLP de xarxa independent, el CASB independent i el DLP d'endpoint independent estan convergint en plataformes unificades de seguretat de dades (Cyberhaven, Netskope, Microsoft Purview, BigID) amb classificació, política i telemetria compartides.
 
-**GenAI com a principal superfície d'amenaca.** El canal de sortida més perillós el 2026 no és el correu electrònic o USB — són els empleats enganxant dades organitzacionals en interfícies LLM i agents d'IA accedint a emmagatzemaments de dades amb credencials supraproveïdes.
+**El DSPM com a fonament.** No podeu protegir el que no podeu veure. El DSPM s'està convertint en el prerequisit per al DLP — proporcionant el catàleg de dades i el context de risc que fa que les polítiques DLP siguin significatives en lloc d'arbitràries.
 
-**Aplicació comportamental i contextual** en lloc del bloqueig per paraules clau. La propera generació de DLP s'allunya de les decisions binàries bloquejar/permetre cap a l'aplicació contextual.
+**La GenAI com a principal superfície d'amenaça.** El canal de sortida més perillós el 2026 no és el correu electrònic ni l'USB — són els empleats que enganxen dades organitzacionals en interfícies LLM i els agents d'IA que accedeixen a emmagatzematges de dades amb credencials sobre-provisionades. Les arquitectures DLP que no aborden això estan protegint el perímetre equivocat.
 
-Les organitzacions que encertaran amb DLP el 2026 no són les que tenen més regles. Són les que saben on estan les seves dades, entenen com es mouen i han construït una aplicació prou precisa per aturar amenaces reals sense fer que el negoci deixi de funcionar.
+**Aplicació comportamental i contextual** en lloc del bloqueig per paraules clau. La propera generació de DLP s'allunya de les decisions binàries de bloqueig/permís cap a l'aplicació contextual — entenent *per què* un usuari fa alguna cosa, no només *què* fa. Un empleat que exfiltra dades el seu últim dia abans del cessament és diferent d'un empleat que envia les mateixes dades a un soci comercial conegut. El context canvia la resposta.
+
+Les organitzacions que encertaran amb el DLP el 2026 no són les que tenen més regles. Són les que saben on estan les seves dades, entenen com es mouen, i han construït una aplicació prou precisa per aturar les amenaces reals sense fer que el negoci deixi de funcionar.
 
 ---
 
-*Aquest article cobreix arquitectura DLP, tècniques de detecció, convergència DSPM i superfícies d'amenaces GenAI/agèntiques fins a mitjans de 2026. El panorama evoluciona ràpidament — tracteu-lo com una base, no com una paraula final.*
+*Aquest article cobreix l'arquitectura DLP, les tècniques de detecció, la convergència DSPM i les superfícies d'amenaces GenAI/agèntiques fins a mitjan 2026. El paisatge evoluciona ràpidament — tracteu-lo com una base, no com una paraula definitiva.*
