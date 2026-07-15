@@ -15,6 +15,8 @@
     { "source": "/researches", "destination": "/en/researches", "permanent": true },
     { "source": "/writing", "destination": "/en/writing", "permanent": true },
     { "source": "/:locale/solutions/etz", "destination": "/:locale/solutions", "permanent": true },
+    { "source": "/:locale/solutions/etz-defense", "destination": "/:locale/solutions", "permanent": true },
+    { "source": "/:locale/solutions/shemesh", "destination": "/:locale/solutions", "permanent": true },
     { "source": "/:locale/solutions/shoresh", "destination": "/:locale/solutions", "permanent": true },
     { "source": "/:locale/solutions/psf-portal", "destination": "/:locale/solutions", "permanent": true },
     { "source": "/:locale/solutions/data-aggregator", "destination": "/:locale/solutions", "permanent": true },
