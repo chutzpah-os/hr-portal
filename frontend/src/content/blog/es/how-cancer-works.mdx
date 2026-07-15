@@ -1,0 +1,393 @@
+---
+title: "Cómo Funcionan las Cosas: El Cáncer — La Guía Completa"
+date: "2026-06-20"
+excerpt: "Desde la biología de una sola célula mutada hasta el diagnóstico, tratamiento, investigación y vida después — una guía completa para entender el cáncer: qué es, cómo funciona, cómo detectarlo y qué hacer cuando llega cerca."
+category: "technical"
+tags: ["Cáncer", "Biología", "Salud", "Oncología", "Prevención", "Tratamiento", "Cómo Funcionan las Cosas"]
+groups: ["How Things Work/Cancer"]
+faqs:
+  - question: "¿Qué es el cáncer, exactamente?"
+    answer: "El cáncer es una enfermedad causada por la división celular incontrolada. Las células normales se dividen de forma regulada, cumplen su función y mueren. Las células cancerosas acumulan mutaciones genéticas que desactivan los frenos de la división celular, permitiéndoles multiplicarse indefinidamente, invadir tejidos circundantes y dispersarse a otros órganos."
+  - question: "¿Cómo empieza el cáncer?"
+    answer: "El cáncer comienza cuando una sola célula acumula suficientes mutaciones en genes críticos — usualmente oncogenes (que promueven el crecimiento) y supresores tumorales (que lo previenen). Estas mutaciones pueden ser heredadas, causadas por carcinógenos (como el humo de tabaco o la radiación UV), desencadenadas por inflamación crónica o causadas por infecciones virales como el VPH o la hepatitis B."
+  - question: "¿Cuáles son las características del cáncer?"
+    answer: "Las 10 características del cáncer (Hanahan & Weinberg) son: señalización proliferativa sostenida, evasión de supresores de crecimiento, resistencia a la muerte celular, potencial replicativo ilimitado, angiogénesis inducida, invasión y metástasis, reprogramación del metabolismo energético, evasión de la destrucción inmune, inflamación promotora de tumor e inestabilidad genómica."
+  - question: "¿Qué es la metástasis?"
+    answer: "La metástasis es el proceso por el cual las células cancerosas se desprenden del tumor original, entran al torrente sanguíneo o sistema linfático, viajan a órganos distantes y forman nuevos tumores. El cáncer metastásico es la principal causa de muerte por cáncer."
+  - question: "¿Cuáles son las señales de alerta del cáncer?"
+    answer: "Señales de alerta clave (acrónimo CAUTION en inglés): Cambio en hábitos intestinales o vesicales, llaga que no sana, sangrado o secreción inusuales, engrosamiento o bulto en la mama u otro lugar, indigestión o dificultad para tragar, cambio obvio en un lunar o verruga, tos persistente o ronquera. Para el cáncer de piel, use la regla ABCDE: Asimetría, Borde irregular, Color variado, Diámetro mayor a 6mm, Evolución."
+  - question: "¿Cómo se estadifica el cáncer?"
+    answer: "El cáncer se estadifica usando el sistema TNM: T (tamaño del tumor, 0–4), N (afectación de ganglios linfáticos, 0–3), M (metástasis, 0 o 1). Estos se combinan en estadios I–IV. El estadio I es localizado y muy tratable; el estadio IV significa que el cáncer se ha dispersado a órganos distantes."
+  - question: "¿Qué tratamientos están disponibles para el cáncer?"
+    answer: "Los principales tratamientos incluyen: cirugía (para extirpar tumores), radioterapia (radiación ionizante para destruir el ADN), quimioterapia (fármacos citotóxicos que matan células de división rápida), terapia dirigida (fármacos que bloquean impulsores moleculares específicos), inmunoterapia (inhibidores de puntos de control como anticuerpos PD-1/PD-L1, células CAR-T), terapia hormonal y enfoques emergentes como vacunas de ARNm y CRISPR."
+  - question: "¿Se puede prevenir el cáncer?"
+    answer: "Cerca del 40–50% de los cánceres son atribuibles a factores de riesgo modificables. Las acciones preventivas más impactantes: dejar de fumar (causa ~30% de las muertes por cáncer), mantener un peso saludable, limitar el alcohol, proteger la piel del UV, vacunarse (VPH, VHB), comer una dieta rica en fibra y vegetales, hacer ejercicio regularmente y seguir las guías de cribado."
+  - question: "¿Qué hacer cuando alguien que amas es diagnosticado con cáncer?"
+    answer: "Pasos prácticos: ayudar a coordinar una segunda opinión, acompañar a las consultas de oncología, tomar notas, ayudar a organizar medicamentos y horarios, investigar el tipo y estadio específico del cáncer, manejar la logística (comidas, transporte, tareas del hogar) y simplemente estar presente."
+  - question: "¿Cuáles son las áreas de investigación oncológica más prometedoras en 2026?"
+    answer: "Las fronteras más prometedoras incluyen: vacunas terapéuticas de ARNm (personalizadas para las mutaciones del tumor del paciente), biopsias líquidas de detección temprana de múltiples cánceres (MCED), terapia de células CAR-T expandiéndose más allá de los cánceres sanguíneos hacia tumores sólidos, patología y radiología impulsadas por IA y tratamientos basados en CRISPR."
+---
+
+El cáncer es una de las enfermedades más antiguas de la historia humana. Se han encontrado restos de tumores óseos en momias egipcias de hace 3.000 años. La propia palabra proviene del griego *karkinos* — cangrejo — porque el médico antiguo Hipócrates observó que los tumores se extendían al tejido circundante como las patas de un cangrejo.
+
+Y sin embargo, a pesar de miles de años de historia humana con esta enfermedad, la mayoría de las personas que reciben un diagnóstico de cáncer — o que aman a alguien que lo recibe — solo tienen una vaga idea de lo que está pasando dentro del cuerpo.
+
+Esta guía es para ellas.
+
+---
+
+## Parte I: Qué es Realmente el Cáncer
+
+### El Cuerpo está Hecho de Células
+
+Tu cuerpo contiene aproximadamente 37 billones de células. Cada célula tiene un trabajo específico. Todas ellas contienen el mismo ADN completo — aproximadamente 3.000 millones de pares de bases de código genético que codifican unos 20.000 genes.
+
+Las células no viven para siempre. Nacen, cumplen su función y mueren. El proceso de división celular — una célula dividiéndose en dos — sucede billones de veces a lo largo de una vida humana. Este es el **ciclo celular**, y está estrictamente regulado.
+
+### Qué Sale Mal
+
+El cáncer comienza cuando los sistemas de control interno de una célula fallan. El ciclo celular tiene puntos de control — compuertas de control de calidad que verifican que todo esté en orden antes de permitir que la división proceda. Cuando esos genes se dañan (mutan), los puntos de control fallan. Una célula que debería dejar de dividirse no lo hace. Una célula que debería morir no muere.
+
+El resultado es una célula rebelde que se divide sin control, produce copias de sí misma con los mismos defectos, y eventualmente forma una masa de tejido anormal: un **tumor**.
+
+No todos los tumores son cancerosos:
+- **Tumor benigno** — crece localmente, no invade tejido circundante, no se dispersa. Generalmente extirpable por cirugía.
+- **Tumor maligno** — esto es cáncer. Invade el tejido circundante, puede desprender células que viajan por el torrente sanguíneo y puede establecer nuevos tumores en órganos distantes (metástasis).
+
+### El Cáncer No Es Una Enfermedad
+
+Esta es la cosa más importante a entender desde el principio. El cáncer no es una única enfermedad. Es una colección de más de **200 enfermedades distintas**, cada una con biología, comportamiento, factores de riesgo, enfoques de tratamiento y pronóstico diferentes.
+
+---
+
+## Parte II: La Biología del Cáncer — Cómo Funciona a Nivel Molecular
+
+### ADN, Mutaciones y Qué las Causa
+
+El ADN es el manual de instrucciones dentro de cada célula. Cuando la secuencia se altera — una letra sustituida, eliminada o insertada — la proteína producida puede no funcionar correctamente. Esta alteración se llama **mutación**.
+
+Agentes externos aceleran este proceso:
+
+| Agente | Mecanismo |
+|--------|-----------|
+| Humo de tabaco | Contiene 70+ carcinógenos; daña el ADN |
+| Radiación UV (sol) | Crea enlaces cruzados en el ADN |
+| Radiación ionizante | Rompe cadenas dobles de ADN |
+| Ciertos químicos (benceno, amianto, formaldehído) | Alquilación y enlaces cruzados del ADN |
+| Alcohol | Se convierte en acetaldehído, que forma aductos de ADN |
+| Inflamación crónica | Especies reactivas de oxígeno (ROS) dañan el ADN cercano |
+| Ciertos virus (VPH, Hepatitis B/C, EBV, HTLV-1) | Insertan ADN viral que altera la regulación génica normal |
+
+### Oncogenes: El Acelerador Atascado
+
+Cuando un proto-oncogén se muta de la manera correcta, se convierte en un **oncogén**: un gen que impulsa la división celular incluso sin recibir una señal adecuada.
+
+Ejemplos clásicos:
+- **RAS** — mutado en ~30% de todos los cánceres
+- **MYC** — amplificado en cáncer de mama, pulmón y otros
+- **HER2** — sobreexpresado en ~20% de los cánceres de mama; objetivo de trastuzumab (Herceptin)
+- **BCR-ABL** — gen de fusión en leucemia mieloide crónica (LMC); imatinib (Gleevec) lo bloquea específicamente
+
+### Genes Supresores de Tumores: Los Frenos Rotos
+
+**TP53** — mutado en más del **50% de todos los cánceres humanos**.
+
+**BRCA1 y BRCA2** — mutaciones heredadas aumentan dramáticamente el riesgo de cáncer de mama (hasta 72% de riesgo a lo largo de la vida), ovario y otros.
+
+**RB1** — el primer gen supresor de tumor descubierto.
+
+**PTEN** — bloquea la vía PI3K/AKT. Cuando PTEN se pierde, esa vía se vuelve constitutivamente activa.
+
+### Las Características del Cáncer
+
+Hanahan y Weinberg describieron diez capacidades fundamentales:
+
+1. Autosuficiencia en señales de crecimiento
+2. Insensibilidad a señales anti-crecimiento
+3. Evasión de la apoptosis
+4. Potencial replicativo ilimitado — las células cancerosas reactivan la telomerasa
+5. Angiogénesis sostenida
+6. Invasión de tejidos y metástasis
+7. Reprogramación del metabolismo energético — el efecto Warburg
+8. Evasión de la destrucción inmune
+9. Inflamación promotora de tumor
+10. Inestabilidad genómica y mutación
+
+---
+
+## Parte III: Dentro del Tumor — Un Mundo Propio
+
+### El Microambiente Tumoral
+
+Un tumor no es solo una masa de células cancerosas. Es un ecosistema complejo — el **microambiente tumoral (TME)** — donde fibroblastos asociados al cáncer (CAFs), macrófagos asociados al tumor (TAMs), células supresoras derivadas de mieloides (MDSCs) y células T reguladoras (Tregs) pueden ser corrompidos por el tumor.
+
+### Angiogénesis
+
+Un tumor más grande que ~2mm no puede sobrevivir sin su propio suministro sanguíneo. Las células cancerosas secretan principalmente **VEGF** para inducir el crecimiento de nuevos vasos. Fármacos anti-angiogénicos como bevacizumab (Avastin) bloquean esta señalización.
+
+### Metástasis: Cómo se Dispersa el Cáncer
+
+1. **Invasión local** — las células sufren Transición Epitelial-Mesenquimal (EMT) y se vuelven móviles
+2. **Intravasación** — penetran paredes de vasos como **células tumorales circulantes (CTCs)**
+3. **Transporte** — las CTCs supervivientes son protegidas por plaquetas
+4. **Extravasación** — se adhieren a paredes de capilares en órganos distantes
+5. **Colonización** — pueden permanecer **dormidas** por meses o años antes de reactivarse
+
+---
+
+## Parte IV: Tipos de Cáncer
+
+**Carcinomas** — de células epiteliales; ~80-90% de todos los cánceres.
+
+**Sarcomas** — de tejido conectivo; raros en adultos (~1%), pero ~20% de cánceres infantiles.
+
+**Leucemias** — de células formadoras de sangre en la médula ósea.
+
+**Linfomas** — de linfocitos; divididos en Hodgkin y no-Hodgkin.
+
+**Mieloma Múltiple** — de células plasmáticas.
+
+**Melanoma** — de melanocitos; altamente responsivo a la inmunoterapia.
+
+### Datos Globales
+
+Según GLOBOCAN 2022:
+- **~20 millones de nuevos casos** en 2022
+- **~9,7 millones de muertes** por cáncer en 2022
+- Aproximadamente **1 de cada 5 personas** desarrollará cáncer en su vida
+
+---
+
+## Parte V: Factores de Riesgo y Causas
+
+### Factores Genéticos y Hereditarios
+
+Solo **5-10% de los cánceres** son impulsados principalmente por mutaciones hereditarias.
+
+| Síndrome | Gen(es) | Cánceres Asociados |
+|----------|---------|-------------------|
+| HBOC | BRCA1, BRCA2 | Mama, ovario, páncreas, próstata |
+| Síndrome de Lynch | MLH1, MSH2, MSH6, PMS2 | Colorrectal, endometrial |
+| Li-Fraumeni | TP53 | Mama, sarcoma, leucemia |
+| Poliposis Adenomatosa Familiar | APC | Colorrectal |
+
+### Factores de Estilo de Vida
+
+**Tabaco:** La mayor causa prevenible de cáncer; responsable de ~22% de todas las muertes por cáncer.
+
+**Alcohol:** Clasificado como carcinógeno Grupo 1. No hay nivel seguro para el riesgo de cáncer.
+
+**Obesidad:** Asociada con al menos 13 tipos de cáncer.
+
+**Exposición solar:** La radiación UV es la principal causa del cáncer de piel, incluyendo el melanoma.
+
+### Agentes Infecciosos
+
+Aproximadamente **15-20% de todos los cánceres** son atribuibles a agentes infecciosos.
+
+| Agente | Cáncer Causado |
+|--------|---------------|
+| VPH | Cervical, anal, orofaríngeo |
+| VHB | Hígado |
+| VHC | Hígado |
+| Helicobacter pylori | Estómago |
+
+---
+
+## Parte VI: Señales de Alerta
+
+El acrónimo **PRECAUCIÓN** (CAUTION en inglés) resume las señales de alerta:
+
+- Cambio en hábitos intestinales o vesicales
+- Llaga que no sana
+- Sangrado o secreción inusuales
+- Engrosamiento o bulto en la mama u otro lugar
+- Indigestión o dificultad para tragar
+- Cambio obvio en un lunar o verruga
+- Tos persistente o ronquera
+
+Para melanoma, la regla **ABCDE**: Asimetría, Borde, Color, Diámetro >6mm, Evolución.
+
+---
+
+## Parte VII: Prevención — Qué Realmente Funciona
+
+**Dejar de fumar** es la acción de prevención de cáncer de mayor impacto. Diez años después de dejar de fumar, el riesgo de cáncer de pulmón cae ~50%.
+
+**Limitar el alcohol.** No beber es mejor que beber moderadamente específicamente para el riesgo de cáncer.
+
+**Mantener un peso saludable.** La obesidad es la segunda causa prevenible más importante de cáncer.
+
+**Ejercitarse regularmente.** Al menos 150-300 minutos de actividad moderada por semana.
+
+**Vacunas que previenen el cáncer:**
+- **Vacuna VPH:** Protege contra las cepas responsables de ~90% de los cánceres cervicales.
+- **Vacuna Hepatitis B:** Previene la infección crónica por VHB.
+
+---
+
+## Parte VIII: Diagnóstico
+
+### Marcadores Tumorales
+
+| Marcador | Cáncer(es) | Uso Clínico |
+|---------|-----------|-------------|
+| PSA | Próstata | Monitoreo |
+| CA-125 | Ovario | Monitoreo |
+| AFP | Hígado, testicular | Diagnóstico |
+| CEA | Colorrectal | Monitoreo de recurrencia |
+| CA 19-9 | Páncreas | Monitoreo |
+
+### Biopsia — La Prueba Definitiva
+
+**Ningún diagnóstico de cáncer está completo sin examen de tejido.** Tipos: aspiración con aguja fina (PAAF), biopsia de aguja gruesa, biopsia incisional, excisional, de ganglio linfático centinela y de médula ósea.
+
+### Pruebas Moleculares y Genómicas
+
+Secuenciación de próxima generación (NGS), FISH, estado de inestabilidad de microsatélites (MSI), expresión de PD-L1, mutaciones en KRAS/NRAS/BRAF, EGFR, ALK/ROS1.
+
+### Biopsia Líquida
+
+Analiza sangre para ADN tumoral circulante (ctDNA), células tumorales circulantes y exosomas. Los tests MCED como Galleri de Grail detectan señales de más de 50 tipos de cáncer.
+
+---
+
+## Parte IX: Estadificación
+
+### El Sistema TNM
+
+**T (Tumor):** Tamaño y extensión local (T1–T4)
+**N (Ganglios):** Afectación ganglionar (N0–N3)
+**M (Metástasis):** Dispersión a órganos distantes (M0 o M1)
+
+| Estadio | Significado General | Supervivencia a 5 años |
+|---------|--------------------|-----------------------|
+| Estadio 0 | Carcinoma in situ | Cerca del 100% |
+| Estadio I | Pequeño, localizado | Generalmente >80-90% |
+| Estadio II | Mayor o con extensión local limitada | Variable, frecuentemente 60-80% |
+| Estadio III | Extensión local significativa | Variable, frecuentemente 30-60% |
+| Estadio IV | Metástasis distante | Generalmente <20% |
+
+---
+
+## Parte X: Tratamiento
+
+### Cirugía
+
+La cirugía es el tratamiento más antiguo del cáncer y sigue siendo esencial para la mayoría de los tumores sólidos.
+
+### Radioterapia
+
+Técnicas modernas: IMRT, SBRT/SABR, terapia de protones, braquiterapia.
+
+### Quimioterapia
+
+| Clase | Mecanismo | Ejemplos |
+|-------|-----------|---------|
+| Agentes alquilantes | Crean enlaces cruzados en el ADN | Ciclofosfamida, cisplatino, carboplatino |
+| Antimetabolitos | Bloquean la síntesis de ADN | Metotrexato, 5-fluorouracilo, gemcitabina |
+| Inhibidores de topoisomerasa | Previenen el desenrollamiento del ADN | Irinotecán, doxorrubicina |
+| Inhibidores mitóticos | Bloquean la división celular | Paclitaxel, docetaxel, vincristina |
+
+### Terapia Dirigida
+
+- Inhibidores de tirosina quinasa (ITK): imatinib transformó la LMC de una enfermedad casi universalmente fatal a una condición crónica manejable
+- Anticuerpos monoclonales: trastuzumab, bevacizumab, rituximab
+- Conjugados anticuerpo-fármaco (ADC)
+- Inhibidores de PARP (para tumores con mutaciones BRCA)
+- Inhibidores de CDK4/6 (para cáncer de mama ER+)
+
+### Inmunoterapia
+
+**Inhibidores de Puntos de Control:** Pembrolizumab (Keytruda), nivolumab (Opdivo). El melanoma, antes rápidamente fatal cuando metastásico, ahora tiene >50% de pacientes vivos a los 5 años.
+
+**Terapia de Células CAR-T:** Las células T del paciente se modifican genéticamente para expresar un receptor que reconoce una proteína específica en las células cancerosas.
+
+**Vacunas contra el Cáncer:** La mARN-4157 (V940) + pembrolizumab para melanoma redujo el riesgo de recurrencia o muerte en 44% en el ensayo KEYNOTE-942 Fase 2.
+
+### Terapia Hormonal
+
+- **Cáncer de mama ER+:** Tamoxifeno, inhibidores de aromatasa (anastrozol, letrozol, exemestano)
+- **Cáncer de próstata:** Terapia de privación de andrógenos (TPA), inhibidores del receptor de andrógeno (enzalutamida, apalutamida)
+
+### Cuidados Paliativos
+
+Los cuidados paliativos no son hospicio. **Son cuidados médicos especializados enfocados en el alivio de síntomas, dolor y el estrés de enfermedades graves** — proporcionados junto al tratamiento curativo.
+
+---
+
+## Parte XI: Gestionar la Vida Durante el Tratamiento
+
+**Nutrición:** No hay evidencia de que "dietas alcalinas", jugos específicos o eliminación de azúcar puedan curar o prevenir la recurrencia.
+
+**Actividad Física:** Reduce la fatiga relacionada con el cáncer (el hallazgo más contraintuitivo — el ejercicio trata la fatiga). Incluso 15-30 minutos de actividad moderada diaria tiene beneficios medibles.
+
+**Salud Mental:** ~30-40% de los pacientes experimentan depresión o ansiedad clínicamente significativas. La terapia cognitivo-conductual (TCC), grupos de apoyo y mindfulness (MBSR) son eficaces.
+
+---
+
+## Parte XII: Qué Hacer Cuando Tú o Alguien que Amas es Diagnosticado
+
+### Las Primeras 72 Horas
+
+1. **Anota todo.** Diagnóstico, estadio, las palabras exactas del médico.
+2. **Pregunta: ¿qué tan urgente es el tratamiento?**
+3. **Obtén copia de todos los informes.**
+4. **Lleva a alguien a las consultas.**
+
+### Buscar una Segunda Opinión
+
+En oncología, las segundas opiniones son práctica estándar. Busca en centros de cáncer de referencia nacional.
+
+### Qué NO Hacer
+
+- No retrasar la atención médica ante señales de alerta
+- No interrumpir el tratamiento por sentirse mejor
+- No tomar suplementos sin informar al oncólogo
+- No consumir alimentos crudos durante la neutropenia
+- No confiar en fuentes no verificadas o afirmaciones de "curas del cáncer"
+
+---
+
+## Parte XIII: Apoyar a Alguien con Cáncer
+
+**Cosas útiles que decir:**
+- "Estoy aquí para ti."
+- "¿Puedo llevarte la cena el martes?" (Las ofertas específicas son más útiles que las genéricas)
+
+**Cosas que evitar:**
+- "¡Mantente positivo!" (invalidante)
+- "Todo pasa por una razón" (platitud dañina)
+- Consejos no solicitados sobre dieta o tratamientos alternativos
+
+---
+
+## Parte XIV: La Frontera — Hacia Dónde Va la Investigación
+
+### IA en el Diagnóstico
+
+Modelos de aprendizaje profundo analizan biopsias de tejido con precisión comparable a patólogos expertos. Sistemas de IA detectan cáncer de mama en mamografías y nódulos pulmonares en TCs.
+
+### Tecnología ARNm Aplicada al Cáncer
+
+Vacunas de ARNm personalizadas identifican los neoantigenos únicos del tumor de cada paciente. La mARN-4157 + pembrolizumab está en ensayos de Fase 3 para melanoma.
+
+### Biopsia Líquida y Detección Ultra-temprana
+
+El ensayo **SERENA6** (2025) demostró que monitorear ctDNA durante el tratamiento del cáncer de mama para detectar resistencia emergente antes de la progresión clínica dobló la supervivencia en algunos pacientes.
+
+### CRISPR y Edición Génica
+
+Edición de células T para crear células CAR-T mejoradas; creación de células CAR-T alogénicas ("listas para usar") eliminando proteínas que causarían enfermedad de injerto contra huésped.
+
+---
+
+## Una Palabra Final
+
+El cáncer no es un enemigo único. Es millones de versiones de tus propias células que se han liberado de las reglas, han acumulado daños y han aprendido a evadir cada sistema diseñado para detenerlas. Entender esto no hace la enfermedad menos aterradora — pero la hace menos misteriosa.
+
+Si estás enfrentando esto — para ti mismo o para alguien que amas — las cosas más importantes son: actúa rápidamente ante los síntomas, busca atención en un centro con experiencia relevante, haz todas las preguntas que tengas, y mantén espacio tanto para la dificultad como para la posibilidad.
+
+---
+
+*Esta guía refleja el conocimiento médico actual a mediados de 2026. La medicina evoluciona continuamente — consulta a profesionales de salud calificados para decisiones de diagnóstico y tratamiento específicas a tu situación.*
