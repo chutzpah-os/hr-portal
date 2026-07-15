@@ -18,13 +18,13 @@ faqs:
     answer: "Os métodos de detecção incluem monitorar anomalias de intensidade de sinal (satélites reais têm potência baixa consistente; spoofers são frequentemente mais fortes), verificar saltos grandes e repentinos de posição, comparar com outros sistemas de posicionamento (torres de celular, Wi-Fi) e usar receptores de dupla frequência (L1+L5). Receptores militares usam sinais de código P(Y) criptografados que spoofers civis não conseguem replicar. O sinal GPS L5 mais recente inclui recursos de integridade adicionais que tornam o spoofing significativamente mais difícil."
   - question: "Quais países têm sistemas de alerta de emergência usando Cell Broadcast?"
     answer: "Sistemas de emergência baseados em Cell Broadcast existem nos Estados Unidos (WEA — Wireless Emergency Alerts), União Europeia (EU-Alert via ETWS), Israel (sistema Tzeva Adom/Alerta Vermelho do Pikud HaOref), Japão (J-Alert), Coreia do Sul, Países Baixos (NL-Alert) e muitos outros. A União Internacional de Telecomunicações recomenda o Cell Broadcast como padrão global para sistemas de aviso público."
-  - question: "Como os serviços de emergência me localizam quando ligo para o 190/192?"
-    answer: "O despacho de emergência usa um sistema de múltiplos estágios. A fase I fornece a localização da torre de celular pela qual sua chamada é roteada (área aproximada). A fase II usa coordenadas GPS do seu celular, se disponíveis, ou triangulação baseada na rede usando medições de temporização de múltiplas torres. O Google Emergency Location Service (ELS) transmite automaticamente sua localização precisa quando você disca números de emergência em países compatíveis. O Emergency SOS via Satélite da Apple funciona mesmo sem cobertura celular roteando por satélites Globalstar."
+  - question: "Como os serviços de emergência me localizam quando ligo para o número de emergência?"
+    answer: "O despacho de emergência usa um sistema de múltiplos estágios. A Fase I fornece a localização da torre de celular pela qual sua chamada é roteada (área aproximada). A Fase II usa coordenadas GPS do seu celular, se disponíveis, ou triangulação baseada na rede usando medições de temporização de múltiplas torres. O Google Emergency Location Service (ELS) transmite automaticamente sua localização precisa quando você disca números de emergência em países compatíveis. O Emergency SOS via Satélite da Apple funciona mesmo sem cobertura celular, roteando por satélites Globalstar."
 ---
 
 Você está relaxando em casa em **Tel Aviv**. Você abre o Google Maps para verificar uma rota, e o ponto azul te coloca firmemente no **Aeroporto Internacional Rainha Alia em Amã, Jordânia** — um país que você não visitou. É desconcertante. Você não se moveu. Seu celular está mentindo.
 
-Então a situação escala. Um míssil entrando é detectado. Seu celular explode com um alarme estridente, exibindo um alerta em tela cheia nomeando a zona de perigo exata perto do seu bairro real.
+Então a situação escala. Um míssil entrante é detectado. Seu celular explode com um alarme estridente, exibindo um alerta em tela cheia nomeando a zona de perigo exata perto do seu bairro real.
 
 A pergunta que se segue é genuinamente desconcertante: **se seu celular acreditava que você estava na Jordânia, como sabia para te avisar sobre uma ameaça em Tel Aviv?**
 
@@ -38,27 +38,27 @@ Seu celular não usa um único método para determinar sua localização. Usa at
 
 ### 1. GPS / GNSS — A Camada de Satélite
 
-O método mais famoso. Seu celular escuta sinais transmitidos por satélites orbitando aproximadamente **20.200 quilômetros acima da Terra** e usa o timing desses sinais para calcular sua posição.
+O método mais famoso. Seu celular escuta sinais transmitidos por satélites orbitando aproximadamente **20.200 quilômetros acima da Terra** e usa o timing desses sinais para calcular sua posição. Vamos aprofundar muito mais nisso na Parte II.
 
 ### 2. Posicionamento por Torre de Celular — A Camada de Rede
 
-Cada vez que seu celular se conecta a uma torre celular, a rede registra qual torre você está conectado. Medindo intensidade de sinal, diferenças de timing e a sobreposição entre múltiplas torres, a rede pode estimar sua localização mesmo que o GPS esteja desligado ou indisponível.
+Cada vez que seu celular se conecta a uma torre celular, a rede registra qual torre você está conectado. Medindo intensidade de sinal, diferenças de timing e a sobreposição entre múltiplas torres, a rede pode estimar sua localização mesmo que o GPS esteja desligado ou indisponível. Isso é menos preciso que o GPS, mas mais confiável em ambientes internos e áreas urbanas.
 
 ### 3. Posicionamento Wi-Fi — A Camada de Impressão Digital
 
-Empresas como Google e Apple passaram anos catalogando as coordenadas GPS de cada roteador Wi-Fi que detectavam. Quando seu celular vê o SSID "JoaoSilva-5G" e o combina com um banco de dados, pode estimar sua localização sem tocar em um satélite.
+Empresas como Google e Apple passaram anos percorrendo bairros catalogando as coordenadas GPS de cada roteador Wi-Fi que detectavam. Quando seu celular vê o SSID "JoaoSilva-5G" e o combina com uma entrada de banco de dados posicionando esse roteador em um endereço específico, ele pode estimar sua localização sem tocar em um satélite. É por isso que seu celular parece saber onde você está no instante em que você o liga em ambiente interno — ele detectou redes Wi-Fi familiares antes que o GPS tivesse tempo de travar.
 
 ### 4. Geolocalização por IP — A Estimativa Grosseira
 
-Seu endereço IP é registrado em uma região geográfica através do seu provedor de internet. A geolocalização por IP pode tipicamente identificar sua cidade, mas é o método menos preciso — frequentemente impreciso por vários quilômetros.
+Seu endereço IP é registrado em uma região geográfica através do seu provedor de internet. A geolocalização por IP pode tipicamente identificar sua cidade e às vezes seu bairro, mas é o método menos preciso — frequentemente impreciso por vários quilômetros. É usada como um fallback grosseiro e para localização de conteúdo, não para navegação.
 
 ### 5. Beacons Bluetooth — A Camada Indoor
 
-Beacons Bluetooth de baixa energia colocados dentro de shoppings, aeroportos e grandes locais transmitem um identificador único. Seu celular pode detectar a que distância está de cada beacon e estimar sua posição com poucos metros de precisão.
+Beacons Bluetooth de baixa energia colocados dentro de shoppings, aeroportos e grandes locais transmitem um identificador único. Seu celular pode detectar a que distância está de cada beacon e estimar sua posição com poucos metros de precisão. Essa é a tecnologia por trás da navegação indoor em aeroportos e dos recursos "encontre este item no corredor 7" em aplicativos de varejo.
 
 ### 6. Fusão de Sensores — A Combinação
 
-O sistema operacional executa um **algoritmo de fusão de sensores** que mistura continuamente sinais GPS, dados de torres, impressões digitais Wi-Fi, leituras de acelerômetro, dados de giroscópio e pressão barométrica em uma única estimativa de posição ponderada dinamicamente.
+Nenhum desses seis métodos funciona sozinho em um smartphone moderno. O sistema operacional executa um **algoritmo de fusão de sensores** (no iOS ele vive dentro do Location Manager; no Android, dentro do Fused Location Provider). Ele mistura continuamente sinais GPS, dados de torres, impressões digitais Wi-Fi, leituras de acelerômetro, dados de giroscópio e pressão barométrica (para estimar em qual andar de um prédio você está) em uma única estimativa de posição ponderada dinamicamente. Quando uma fonte degrada ou falha, o algoritmo se apoia mais nas outras.
 
 > O paradoxo com o qual começamos fica mais claro: a camada GPS foi comprometida. Mas a camada de torre de celular — e o sistema de alerta de emergência construído sobre ela — não foi.
 
@@ -66,64 +66,82 @@ O sistema operacional executa um **algoritmo de fusão de sensores** que mistura
 
 ## Parte II: Como o GPS Realmente Funciona
 
-### O GPS é um Sistema Passivo
+Entender por que o GPS pode ser enganado requer entender o que o GPS está realmente fazendo. A maioria das pessoas assume que o GPS funciona como um radar — que seu celular envia um sinal para os satélites, que o devolvem e calculam a distância. Isso está errado.
 
 **O GPS é um sistema puramente passivo, apenas de recepção.** Seu celular não transmite nada para os satélites. Ele escuta.
 
 ### A Constelação
 
-O sistema GPS mantém uma constelação de pelo menos 31 satélites operacionais em **Órbita Média da Terra (MEO)** a uma altitude de aproximadamente 20.200 km. Eles são dispostos de modo que pelo menos 4 satélites sejam visíveis de virtualmente qualquer ponto na Terra a qualquer momento.
+O sistema GPS (operado pela Força Aérea dos EUA) mantém uma constelação de pelo menos 31 satélites operacionais em **Órbita Média da Terra (MEO)** a uma altitude de aproximadamente 20.200 km. Eles são dispostos de modo que pelo menos 4 satélites sejam visíveis de virtualmente qualquer ponto na Terra a qualquer momento. Outros sistemas (cobertos na Parte III) acrescentam centenas a mais.
 
 ### Trilateração, Não Triangulação
 
-O GPS usa **trilateração** — determinando posição a partir de distâncias, não ângulos. Cada satélite transmite continuamente duas coisas: sua própria localização precisa no espaço e o exato momento em que o sinal foi enviado. Seu celular registra o exato momento em que recebeu o sinal. A diferença entre o tempo de envio e de recepção, multiplicada pela velocidade da luz, dá a distância para aquele satélite.
+O termo "triangulação" é comumente usado, mas tecnicamente errado. O GPS usa **trilateração** — determinando posição a partir de distâncias, não ângulos.
+
+Veja como funciona. Cada satélite transmite continuamente duas coisas: sua própria localização precisa no espaço e o exato momento em que o sinal foi enviado (usando um relógio atômico a bordo preciso até nanossegundos). Seu celular registra o exato momento em que recebeu o sinal. A diferença entre o tempo de envio e o tempo de recepção, multiplicada pela velocidade da luz (299.792.458 m/s), dá a distância para aquele satélite.
+
+Uma medição de distância dá a você uma esfera de posições possíveis. Dois satélites dão um círculo (onde duas esferas se intersectam). Três satélites dão dois pontos (onde três esferas se intersectam). Um quarto satélite resolve qual dos dois pontos está correto — e, crucialmente, também corrige a imprecisão do relógio do seu celular, que não é atômico.
 
 **Quatro satélites são o mínimo para uma solução de posição 3D confiável.**
 
 ### O Sinal e Por Que É Fraco
 
-Os sinais GPS chegam ao seu celular em aproximadamente **-130 dBm** — muito abaixo do piso de ruído da maioria dos ambientes de rádio. Para comparação, um sinal Wi-Fi típico é de cerca de -65 dBm, cerca de 30 milhões de vezes mais forte.
+Os sinais GPS percorrem 20.200 km pelo espaço. Quando chegam à antena do seu celular, chegam em aproximadamente **-130 dBm** — muito abaixo do piso de ruído da maioria dos ambientes de rádio. Para comparação, um sinal Wi-Fi típico é de cerca de -65 dBm, cerca de 30 milhões de vezes mais forte.
+
+Essa extrema fraqueza é a raiz de quase todos os problemas com GPS. Qualquer transmissor próximo transmitindo na mesma frequência ou próximo a ela pode superar o sinal do satélite sem muito esforço.
 
 ### As Frequências da Banda L
 
-- **L1 (1575,42 MHz)** — o sinal civil original, não criptografado, publicamente documentado. O principal alvo para spoofing.
-- **L2 (1227,60 MHz)** — originalmente apenas militar. Receptores civis de dupla frequência usam L1+L2 para corrigir atrasos ionosféricos.
-- **L5 (1176,45 MHz)** — o sinal civil mais novo. Maior potência, melhor estrutura de sinal, projetado para aplicações críticas de segurança. Muito mais difícil de fazer spoofing.
+Os sinais GPS são transmitidos na **banda L** do espectro de rádio. As principais frequências civis são:
 
-O fato de que o L1 é **não criptografado** e sua estrutura de sinal é **publicamente documentada** é o que torna possível o spoofing GPS civil.
+* **L1 (1575,42 MHz)** — o sinal civil original, não criptografado, publicamente documentado. Carregado por todos os receptores GPS do mundo. Também o principal alvo para spoofing.
+* **L2 (1227,60 MHz)** — originalmente apenas militar. Receptores civis de dupla frequência usam L1+L2 para corrigir erros de atraso ionosférico.
+* **L5 (1176,45 MHz)** — o sinal civil mais novo, parte dos satélites GPS III. Maior potência, melhor estrutura de sinal, projetado para aplicações críticas de segurança (aviação, veículos autônomos). Muito mais difícil de fazer spoofing.
+
+O fato de que o L1 é **não criptografado** e sua estrutura de sinal é **publicamente documentada** é o que torna possível o spoofing GPS civil. Qualquer pessoa com o hardware certo e a especificação pública pode construir um dispositivo que imita perfeitamente como um satélite soa.
 
 ---
 
 ## Parte III: A Família GNSS Completa — Além do GPS
 
-**GNSS — Sistemas Globais de Navegação por Satélite** é o termo guarda-chuva para todos os sistemas de posicionamento por satélite:
+"GPS" é um sistema americano. Mas seu celular não usa apenas satélites americanos.
 
-* **GPS** — Estados Unidos. 31 satélites.
-* **GLONASS** — Rússia. 24 satélites.
-* **Galileo** — União Europeia. 30 satélites.
-* **BeiDou** — China. 35+ satélites. Cobertura global desde 2020.
-* **NavIC** — Índia. 7 satélites. Sistema regional.
-* **QZSS** — Japão. 4 satélites. Aumento regional para Leste Asiático e Oceania.
+**GNSS — Sistemas Globais de Navegação por Satélite** é o termo guarda-chuva para todos os sistemas de posicionamento por satélite. Smartphones modernos recebem de múltiplas constelações simultaneamente:
 
-Quando um celular moderno usa GPS, GLONASS e Galileo simultaneamente, pode ter acesso a 60+ satélites visíveis de uma vez.
+* **GPS** — Estados Unidos. 31 satélites. O mais antigo e mais amplamente integrado.
+* **GLONASS** — Rússia. 24 satélites. Usa frequências ligeiramente diferentes (L1: 1598,0625–1605,375 MHz, variando por satélite). Fornece redundância, especialmente em latitudes altas.
+* **Galileo** — União Europeia. 30 satélites. Projetado com navegação civil como propósito primário. Oferece maior precisão que o GPS para usuários civis e inclui um serviço de alta precisão criptografado.
+* **BeiDou** — China. 35+ satélites. Cobertura global desde 2020. Inclui satélites geoestacionários para melhor cobertura na região Ásia-Pacífico.
+* **NavIC** — Índia. 7 satélites. Sistema regional cobrindo a Índia e áreas circundantes até 1.500 km de suas fronteiras.
+* **QZSS** — Japão. 4 satélites. Aumento regional para o Leste Asiático e Oceania.
+
+Quando um celular moderno usa GPS, GLONASS e Galileo simultaneamente, pode ter acesso a 60+ satélites visíveis de uma vez. Isso melhora dramaticamente a precisão, reduz o tempo para a primeira localização e torna mais difícil — embora não impossível — falsificar todos os sistemas simultaneamente. Um spoofer visando o GPS L1 pode não conseguir falsificar corretamente o GLONASS L1 ou o Galileo E1 ao mesmo tempo, o que receptores avançados podem detectar como uma inconsistência.
 
 ---
 
 ## Parte IV: Quando o GPS Falha — Jamming, Multipercurso e Cânions Urbanos
 
+O GPS falha regularmente na vida cotidiana. Entender os diferentes modos de falha é importante, porque nem todos são maliciosos.
+
 ### Cânions Urbanos
 
-Em uma cidade densa, prédios altos bloqueiam sinais de satélite de baixos ângulos. Erros de 50–100 metros são comuns no centro de grandes cidades.
+Em uma cidade densa, prédios altos bloqueiam os sinais de satélite de chegarem ao seu celular em ângulos baixos. Você pode receber sinais apenas de satélites diretamente acima. Com menos satélites visíveis, a precisão da posição piora — erros de 50–100 metros são comuns no centro de Manhattan ou no centro de Hong Kong. É por isso que o Google Maps às vezes coloca seu ponto azul na rua errada no centro de uma cidade.
 
 ### Erros de Multipercurso
 
-Quando um sinal de satélite reflete em um prédio antes de alcançar sua antena, o receptor interpreta o tempo extra de viagem como distância extra e calcula uma posição errada.
+Quando um sinal de satélite reflete em um prédio antes de chegar à sua antena, o sinal refletido percorre um caminho mais longo do que o direto. Seu receptor interpreta esse tempo de viagem extra como distância extra e calcula uma posição errada. O multipercurso é por isso que o GPS é pouco confiável perto de grandes estruturas e dentro de estacionamentos cobertos.
+
+### Atrasos Ionosféricos e Troposféricos
+
+Os sinais GPS passam pela atmosfera terrestre (a caminho de você). A ionosfera (60–1.000 km de altitude) e a troposfera (0–12 km) ambas desaceleram os sinais, introduzindo erros de timing que se traduzem em erros de posição. Receptores de dupla frequência podem corrigir isso comparando o quanto a ionosfera desacelera L1 vs L2 (a atmosfera desacelera frequências diferentes em quantidades diferentes). Receptores de frequência única aplicam modelos matemáticos, que são menos precisos.
 
 ### Jamming vs Spoofing — Uma Distinção Crítica
 
-**Jamming GPS** inunda a frequência L1 com ruído, fazendo o receptor parar de funcionar — sem fix de GPS. É contundente e detectável.
+Esses termos são frequentemente confundidos, mas descrevem ataques fundamentalmente diferentes:
 
-**Spoofing GPS** é mais sofisticado. Em vez de bloquear o sinal, ele o *substitui*. Um spoofer transmite um sinal L1 falso estruturalmente idêntico ao real — mas com coordenadas fabricadas. O usuário tipicamente não tem aviso. O dispositivo parece estar funcionando normalmente.
+**Jamming GPS** inunda a frequência L1 com ruído, superando os sinais dos satélites. O receptor não consegue ouvir nada e simplesmente para de funcionar — ele não reporta nenhuma localização GPS. É contundente, detectável e ilegal na maioria dos contextos civis, mas tem sido usado extensivamente em zonas de conflito e perto de instalações sensíveis.
+
+**Spoofing GPS** é mais sofisticado. Em vez de bloquear o sinal, ele o *substitui*. Um spoofer transmite um sinal L1 falso que é estruturalmente idêntico a um sinal GPS real — mas contém coordenadas fabricadas. O receptor ouve o que parece um satélite legítimo, aceita o sinal como válido e reporta uma localização que não existe. O usuário tipicamente não tem nenhum aviso. O dispositivo parece estar funcionando normalmente.
 
 > Jamming faz seu GPS dizer "não sei onde estou." Spoofing o faz dizer confidentemente "estou na Jordânia" — quando você está em Israel.
 
@@ -131,137 +149,225 @@ Quando um sinal de satélite reflete em um prédio antes de alcançar sua antena
 
 ## Parte V: GPS Spoofing — A Arte do Engano Eletrônico
 
+O GPS spoofing não é uma vulnerabilidade teórica. Ele foi ativamente implantado em conflitos militares, documentado por pesquisadores e incidentalmente experimentado por milhões de civis que não tinham ideia do que estava acontecendo com seus mapas.
+
 ### Como Funciona Tecnicamente
 
 Um sistema de spoofing consiste em três componentes:
 
-**Um gerador de sinal** que produz um sinal de rádio no L1 modulado com os mesmos códigos pseudoaleatórios (PRN) que os satélites GPS reais usam.
+**Um gerador de sinal** que produz um sinal de rádio no L1 (1575,42 MHz) modulado com os mesmos códigos pseudoaleatórios (PRN) que os satélites GPS reais usam. Como os códigos PRN são publicados e o esquema de modulação é documentado, isso é alcançável com hardware de rádio definido por software (SDR) disponível comercialmente.
 
-**Uma antena transmissora** que transmite o sinal falso em maior potência do que os satélites reais.
+**Uma antena transmissora** que transmite o sinal falso em maior potência do que os satélites reais. Como os sinais GPS reais chegam em -130 dBm e o receptor do seu celular é otimizado para esse sinal fraco, um spoofer transmitindo mesmo em níveis de potência modestos facilmente supera o sinal autêntico.
 
-**Um sistema de injeção de coordenadas** que diz ao sinal falso qual localização reportar.
+**Um sistema de injeção de coordenadas** que diz ao sinal falso qual localização reportar. O operador pode comandar o spoofer para fazer todos os receptores dentro do alcance reportarem quaisquer coordenadas no mundo — Amã, Beirute, Chipre, Teerã ou qualquer outro lugar.
+
+As verificações de validação de sinal embutidas do receptor (que verificam timing, relações sinal-ruído e estrutura de código) passam, porque o sinal falso é estruturalmente correto. O dispositivo não tem como distingui-lo de um satélite real, a menos que use métodos de verificação adicionais.
 
 ### Guerra Eletrônica e o Cenário de Tel Aviv
 
-O principal objetivo militar é a **defesa contra drones e mísseis**. Um drone Shahed, um míssil de cruzeiro ou uma ogiva balística pode depender do GPS para orientação terminal. Se um sistema de spoofing no solo faz o computador de navegação do armamento acreditar que está centenas de quilômetros fora do curso, a arma pode desviar do alvo.
+No contexto de conflitos recentes no Oriente Médio, o GPS spoofing foi implantado por múltiplos atores como medida de **guerra eletrônica (EW)**.
 
-O efeito colateral é que todo receptor GPS civil dentro do alcance do mesmo transmissor de spoofing recebe as mesmas coordenadas falsas.
+O principal objetivo militar é a **defesa contra drones e mísseis**. Um drone Shahed entrante, um míssil de cruzeiro ou uma ogiva balística pode depender do GPS para orientação terminal — a fase final de navegação em direção a um alvo. Se um sistema de spoofing no solo faz o computador de navegação do armamento acreditar que está centenas de quilômetros fora do curso, a arma pode desviar de seu alvo ou acionar seus protocolos de segurança.
 
-### Spoofing GPS ao Redor do Mundo
+O efeito colateral é que todo receptor GPS civil dentro do alcance do mesmo transmissor de spoofing recebe as mesmas coordenadas falsas. O Waze te roteia para o mar. O Google Maps te coloca em um país vizinho. Entregadores se perdem. Pilotos de aviões comerciais recebem avisos de GPS. Navios no Mediterrâneo reportam posições fantasmas.
 
-* **Mediterrâneo Oriental e Oriente Médio** — spoofing extenso afetando voos de Tel Aviv, Beirute, Chipre e Cairo.
-* **Mar Negro** — documentado desde pelo menos 2017, com navios reportando posições GPS os colocando no Aeroporto de Gelendzhik na Rússia.
-* **Ucrânia** — perturbação GPS generalizada em todo o teatro de conflito.
-* **China** — spoofing relatado em múltiplas cidades, com navios aparecendo se movendo em círculos perfeitos.
-* **Finlândia e países nórdicos** — perturbações atribuídas a sistemas de guerra eletrônica russos.
+Isso não é um mau funcionamento. É o comportamento correto — se não intencional — de um receptor encontrando um sinal que é mais forte e estruturalmente idêntico ao que ele espera de um satélite.
+
+### GPS Spoofing ao Redor do Mundo
+
+Eventos de spoofing foram documentados em um número crescente de locais:
+
+* **Mediterrâneo Oriental e Oriente Médio** — spoofing extenso afetando voos de Tel Aviv, Beirute, Chipre e Cairo, particularmente desde 2019 e se intensificando durante o período de conflito 2023–2024. A organização de segurança de aviação OPSGROUP rastreou centenas de aeronaves afetadas.
+* **Mar Negro** — documentado desde pelo menos 2017, com navios reportando posições GPS os colocando no Aeroporto de Gelendzhik na Rússia. Atribuído a sistemas de guerra eletrônica russos.
+* **Ucrânia** — perturbação GPS generalizada em todo o teatro de conflito, afetando dispositivos militares e civis.
+* **China** — spoofing relatado em múltiplas cidades (Xangai, Chengdu) afetando particularmente dados de posição AIS marítima, com navios aparecendo se movendo em círculos perfeitos — um padrão consistente com spoofing de um transmissor terrestre fixo.
+* **Finlândia e países nórdicos** — perturbações atribuídas a sistemas de guerra eletrônica russos operando em Kaliningrado e ao longo da fronteira finlandesa, afetando aviação comercial e navegação marítima.
+
+### Detectando Spoofing
+
+Várias abordagens técnicas podem detectar que um sinal GPS foi falsificado:
+
+**Saltos súbitos de posição** — um receptor real se aproxima de uma cidade gradualmente. Um receptor falsificado pode subitamente se teletransportar 500 km quando o spoofer é ativado.
+
+**Anomalias de intensidade de sinal** — satélites reais chegam com potência consistente e muito baixa. Um spoofer transmitindo em maior potência produz sinais anormalmente fortes que receptores avançados podem sinalizar.
+
+**Inconsistência entre sistemas** — um receptor sofisticado comparando coordenadas GPS com coordenadas GLONASS ou Galileo pode detectar que os três sistemas discordam, indicando que um está sendo falsificado.
+
+**Validação de dupla frequência** — o GPS L5 usa uma estrutura de sinal diferente que é mais complexa de falsificar. Um receptor usando L1+L5 pode detectar inconsistências entre os dois.
+
+**Medição inercial** — um dispositivo com uma boa IMU (unidade de medição inercial — acelerômetros e giroscópios) pode detectar quando a mudança de posição implícita pelo GPS não corresponde ao que os sensores sentem. Se o GPS diz que você se moveu 400 km em 2 segundos, o acelerômetro sabe que você não se moveu.
+
+Smartphones de consumo não fazem nenhuma dessas verificações. Receptores de aviação e marítimos fazem, cada vez mais.
 
 ---
 
 ## Parte VI: Posicionamento por Torre de Celular — A Rede Que Sempre Sabe
 
-Cada vez que seu celular está ligado, ele está em comunicação constante com uma ou mais torres de celular. Essa comunicação acontece independentemente de qualquer aplicativo de navegação.
+Enquanto o GPS depende de satélites, o posicionamento por torre de celular depende da infraestrutura de rádio física ao seu redor. Cada vez que seu celular está ligado, ele está em comunicação constante com uma ou mais torres de celular. Essa comunicação acontece independentemente de qualquer aplicativo de navegação.
 
 ### Cell ID e CGI
 
-A forma mais simples de localização baseada em celular é a pesquisa de **Identidade Global de Célula (CGI)**. Seu celular está registrado em uma torre específica, e a localização física da torre é conhecida.
+A forma mais simples de localização baseada em celular é a pesquisa de **Identidade Global de Célula (CGI)**. Seu celular está registrado em uma torre específica (identificada por um código CGI único), e a localização física da torre é conhecida. A rede sabe que seu celular está "em algum lugar dentro da área de cobertura da torre X." Para uma torre rural com raio de 10 km, isso dá uma estimativa grosseira. Para uma microcelular urbana com raio de 100 metros, é surpreendentemente precisa.
 
 ### Timing Advance
 
-Quando seu celular fala com uma torre, a rede mede quanto tempo o sinal leva para viajar. Isso revela sua distância aproximada da torre.
+Quando seu celular fala com uma torre, a rede mede quanto tempo o sinal leva para viajar do seu celular à torre. Esse valor de **Timing Advance (TA)** é usado para ajustar a sincronização, mas também revela sua distância aproximada da torre — cada unidade TA corresponde a aproximadamente 550 metros em redes GSM.
 
-### O ponto crítico
+### Enhanced Cell ID e Multilateração
 
-**Esse sistema de posicionamento é completamente independente do chip GPS do seu celular.** A rede não precisa que seu celular reporte uma localização — ela calcula uma a partir de suas próprias medições.
+Quando múltiplas torres podem ouvir seu celular simultaneamente, a rede aplica **multilateração** — medindo a diferença de timing da chegada do seu sinal em cada torre e resolvendo geometricamente sua posição. Isso é similar em conceito à trilateração GPS, mas usa torres terrestres em vez de satélites. A precisão varia de 50 metros em áreas urbanas densas a várias centenas de metros em áreas suburbanas.
+
+O ponto crítico: **esse sistema de posicionamento é completamente independente do chip GPS do seu celular**. A rede não precisa que seu celular reporte uma localização — ela calcula uma a partir de suas próprias medições. Mesmo um celular com um chip GPS completamente quebrado tem uma posição baseada na rede.
 
 ---
 
 ## Parte VII: Cell Broadcast — Como Alertas de Emergência Bypassam o GPS
 
+Quando o Comando de Frente Interna (autoridade de defesa civil de Israel), a FEMA ou a agência de aviso do Japão precisa alcançar todas as pessoas em uma área específica em segundos, elas não pesquisam números de telefone. Não verificam bancos de dados GPS. Não enviam mensagens SMS. Usam **Cell Broadcast**.
+
 ### Um-para-Muitos vs Um-para-Um
 
-SMS padrão funciona em um modelo **um-para-um**. Cell Broadcast funciona em um modelo **um-para-muitos**. Uma única mensagem é transmitida uma vez de uma torre, para fora, para todos os dispositivos compatíveis dentro do alcance físico — simultaneamente, sem endereçamento individual.
+O SMS padrão funciona em um modelo **um-para-um**. Enviar uma mensagem para 3 milhões de pessoas requer estabelecer 3 milhões de conexões separadas, compor 3 milhões de pacotes individuais e roteá-los pela rede para 3 milhões de endereços específicos. O custo computacional e de largura de banda escala linearmente com o número de destinatários.
+
+O Cell Broadcast funciona em um modelo **um-para-muitos**. Uma única mensagem é transmitida uma vez de uma torre, para fora, para todos os dispositivos compatíveis dentro do alcance físico — simultaneamente, sem endereçamento individual. A torre não sabe nem se importa com quantos dispositivos estão ouvindo. É análogo a uma transmissão de rádio: a estação transmite uma vez, e todo receptor sintonizado ouve.
+
+É por isso que um alerta de emergência pode alcançar milhões de pessoas em milissegundos. A escala da rede é irrelevante — a transmissão acontece uma vez por torre independentemente da densidade populacional.
 
 ### A Âncora Física
 
-Um spoofer GPS pode fazer o chip de navegação do seu celular acreditar que está na Jordânia. Mas não pode mudar com qual torre de celular seu celular está fisicamente se comunicando. Seu rádio está mantendo uma conexão ativa com uma torre no centro de Tel Aviv.
+Aqui está o conceito que resolve todo o paradoxo com o qual começamos.
 
-Quando o sistema de aviso é ativado, ele instrui as torres de celular específicas cobrindo aquela área a transmitir uma mensagem de emergência. Cada dispositivo fisicamente dentro do alcance dessas torres — independentemente das coordenadas GPS que acham ter — recebe a transmissão.
+Um spoofer GPS pode fazer o chip de navegação do seu celular acreditar que está na Jordânia. Mas não pode mudar com qual torre de celular seu celular está fisicamente se comunicando. O rádio do seu celular está mantendo uma conexão ativa com uma torre no centro de Tel Aviv. A localização física dessa torre está fixada em concreto e aço. Ela não pode ser deslocada eletronicamente.
+
+Quando o sistema de aviso é ativado, ele identifica a área geográfica em risco e instrui as torres de celular específicas cobrindo aquela área a transmitir uma mensagem de emergência. Essas torres o fazem. Cada dispositivo fisicamente dentro do alcance dessas torres — independentemente das coordenadas GPS que acham ter — recebe a transmissão.
 
 **O sistema de alerta não pergunta ao seu celular onde ele acha que está. Ele usa onde você realmente está — determinado por qual torre você está próximo o suficiente para ouvir.**
 
+### O Caminho do Alerta
+
+Quando uma ameaça é detectada e um alerta precisa ser emitido:
+
+* Sistemas de radar ou inteligência identificam uma ameaça entrante e calculam sua trajetória provável e zona de impacto.
+* A autoridade de aviso (em Israel: Pikud HaOref; nos EUA: FEMA via IPAWS) identifica as áreas geográficas específicas em risco.
+* Um comando é emitido para as torres de celular fisicamente localizadas dentro — ou adjacentes a — essa área de risco.
+* Essas torres imediatamente começam a transmitir uma mensagem Cell Broadcast em um canal dedicado (Canal 919 em muitas implementações WEA; o ETWS usa canais 4370–4399 na Europa).
+* A mensagem contém um **flag EAS** (identificador do Sistema de Alerta de Emergência) que sinaliza ao sistema operacional do celular: isso não é uma notificação regular. Trate-o com o mais alto nível de prioridade.
+* Cada dispositivo compatível dentro do alcance dessas torres recebe a mensagem, independentemente de sua localização GPS reportada, independentemente de qual operadora ele pertence (dispositivos em roaming também a recebem) e independentemente de quais aplicativos estão sendo executados.
+
 ### Bypassando o Não Perturbe — Por Design
 
-O Cell Broadcast é implementado no **nível do sistema operacional**, abaixo da camada de aplicativo. No Android, o `CellBroadcastService` decodifica mensagens e o `CellBroadcastReceiver` lida com o display do alerta, som e vibração. Esse stack roda com permissões do sistema que nenhum aplicativo de terceiros pode substituir.
+O Cell Broadcast não é tratado por um sistema de notificação. Ele é implementado no **nível do sistema operacional**, abaixo da camada de aplicativo.
 
-"Não Perturbe" instrui aplicativos a suprimir notificações. Mas o alerta de emergência não é uma notificação de aplicativo — é uma interrupção do sistema. A analogia: pedir silêncio em uma sala funciona para conversas, mas não para o alarme de incêndio.
+No Android, a arquitetura consiste em **CellBroadcastService** (que decodifica mensagens Cell Broadcast entrantes e aplica regras de geofencing) e **CellBroadcastReceiver** (um aplicativo de sistema privilegiado que lida com a exibição real do alerta, som e vibração). Esse stack roda com permissões do sistema que nenhum aplicativo de terceiros pode substituir.
+
+No iOS, a implementação da Apple trata igualmente os alertas Cell Broadcast como eventos do sistema, não notificações de aplicativos.
+
+O modo "Não Perturbe" instrui aplicativos a suprimir suas notificações. Mas o alerta de emergência não é uma notificação de aplicativo — é uma interrupção do sistema. A analogia: pedir silêncio em uma sala funcionará para conversas, mas não para o alarme de incêndio. O alarme não está pedindo permissão.
 
 ---
 
 ## Parte VIII: Sistemas de Alerta de Emergência ao Redor do Mundo
 
+Cell Broadcast é a fundação, mas cada país construiu sua própria arquitetura sobre ela.
+
 ### Estados Unidos — WEA (Wireless Emergency Alerts)
 
-O sistema WEA da FCC define três categorias: **Alertas Presidenciais** (não podem ser desativados), **Alertas de Ameaça Iminente** e **Alertas de Segurança Pública**.
+O sistema de Alerta de Emergência Sem Fio da FCC, parte do Sistema Integrado de Alerta e Aviso Público (IPAWS), define três categorias: **Alertas Presidenciais** (não podem ser desativados), **Alertas de Ameaça Iminente** (clima extremo e severo, atos de terrorismo, alertas AMBER — o usuário pode desativar alguns) e **Alertas de Segurança Pública** (eventos locais). As mensagens WEA são limitadas a 360 caracteres (estendido dos 90 originais em 2019) e podem incluir números de telefone e URLs embutidos. A FCC exige que todos os prestadores de serviços móveis comerciais participem.
 
 ### União Europeia — EU-Alert e ETWS
 
-Desde 2022, os estados membros da UE são obrigados a ter um sistema de notificação em massa capaz de alcançar dispositivos móveis — o Cell Broadcast é a tecnologia principal.
+O framework de aviso público da UE, **EU-Alert**, é implementado via o padrão **Earthquake and Tsunami Warning System (ETWS)** definido pelo 3GPP. Os estados membros não são obrigados por lei da UE a usar Cell Broadcast, mas muitos o fazem. Os Países Baixos foram um adotante precoce com o **NL-Alert**. A Alemanha ativou seu sistema (DE-Alert) após um dia de aviso nacional de 2020 que expôs que seu sistema legado baseado em pager alcançou quase ninguém. Desde 2022, os estados membros da UE são obrigados a ter um sistema de notificação em massa capaz de alcançar dispositivos móveis — o Cell Broadcast é a tecnologia principal.
 
 ### Israel — Pikud HaOref e Tzeva Adom
 
-O sistema **Tzeva Adom** (Cor Vermelha / Alerta Vermelho) é acompanhado por uma contagem regressiva para abrigo — tipicamente 15 a 90 segundos dependendo de quão próximo você está da origem da ameaça. O componente Cell Broadcast alcança todos os dispositivos celulares na zona de ameaça relevante independentemente de nacionalidade ou operadora.
+A autoridade de defesa civil de Israel (**Pikud HaOref**, literalmente "Comando de Frente Interna") opera o sistema **Tzeva Adom** (Cor Vermelha / Alerta Vermelho). Em regiões próximas a Gaza ou à fronteira norte, o alerta é acompanhado por uma contagem regressiva para abrigo — tipicamente 15 a 90 segundos dependendo de quão próximo você está da origem da ameaça. O sistema foi refinado ao longo de décadas de uso operacional e é considerado um dos sistemas de aviso público mais testados em combate do mundo. O componente Cell Broadcast alcança todos os dispositivos celulares na zona de ameaça relevante independentemente de nacionalidade ou operadora, razão pela qual turistas com SIMs estrangeiros recebem os mesmos alertas que os locais.
 
 ### Japão — J-Alert
 
-O **J-Alert** é um dos sistemas de aviso nacional mais sofisticados existentes. Ele simultaneamente aciona alertas Cell Broadcast, alto-falantes externos, interrupções de televisão e rádio e receptores de aviso dedicados. A aplicação de terremoto é particularmente impressionante — o sistema pode emitir alertas segundos antes da chegada dos tremores.
+O **J-Alert (全国瞬時警戒システム)** do Japão é um dos sistemas de aviso nacional mais sofisticados existentes. Ele aciona simultaneamente alertas Cell Broadcast, alto-falantes externos em cidades e municípios, interrupções de televisão e rádio e receptores de aviso dedicados instalados em prédios governamentais. O J-Alert foi ativado para lançamentos de mísseis balísticos da Coreia do Norte, terremotos (o Japão o usa em conjunto com seu sistema de Alerta Antecipado de Terremoto) e avisos de tsunami. A aplicação de terremoto é particularmente impressionante — o sistema pode emitir alertas segundos antes da chegada dos tremores porque as ondas P sísmicas (que são detectadas, mas causam pouco dano) viajam mais rápido do que as ondas S destrutivas. Esses segundos importam.
+
+### Coreia do Sul e Outros
+
+O sistema **CBS (Cell Broadcast Service)** da Coreia do Sul opera sob o Ministério do Interior e Segurança. Foi usado para avisos de tufão, restrições de mobilidade por COVID-19 e exercícios de defesa civil. O desastre de esmagamento de multidão de Itaewon de 2023 destacou as limitações dos sistemas de aviso existentes e desencadeou investimento em alertas mais granulares e específicos por zona. Outras implementações significativas existem na Nova Zelândia (Emergency Mobile Alert), Austrália (Emergency Alert) e Canadá (Alert Ready), todas construídas sobre fundações de Cell Broadcast.
 
 ---
 
 ## Parte IX: Como os Serviços de Emergência Realmente Te Localizam
 
+Quando você liga para o 112 (UE), 911 (EUA) ou qualquer número de emergência, como os socorristas sabem para onde ir — especialmente se você não consegue falar?
+
 ### E911 — Enhanced 911
 
-**Fase I** — a rede fornece ao despachante a localização da torre de celular pela qual sua chamada está sendo roteada.
+O padrão Enhanced 911 da FCC dos Estados Unidos define duas fases:
 
-**Fase II** — a rede fornece sua latitude e longitude, seja do GPS do seu celular ou de multilateration baseada na rede.
+**Fase I** — a rede fornece ao despachante a localização da torre de celular pela qual sua chamada está sendo roteada, mais o setor da antena da torre com a qual você está se comunicando. Isso fornece uma área aproximada de algumas centenas de metros a alguns quilômetros.
+
+**Fase II** — a rede fornece sua latitude e longitude, seja do GPS do seu celular ou de multilateração baseada na rede. A FCC exige que as operadoras entreguem localização precisa a 50 metros para 80% das chamadas. Na prática, isso é frequentemente alcançado através de uma combinação de GPS, posicionamento Wi-Fi e triangulação de torres.
 
 ### Google Emergency Location Service (ELS)
 
-Quando você disca um número de emergência em um Android em um país compatível, o ELS aciona automaticamente uma solução de localização de alta precisão e envia as coordenadas ao centro de despacho de emergência via internet — independentemente da chamada de voz.
+Quando você disca um número de emergência em um telefone Android em um país compatível, o **Emergency Location Service** do Google aciona automaticamente uma solução de localização de alta precisão usando todos os métodos disponíveis (GPS, Wi-Fi, torres de celular) e envia as coordenadas ao centro de despacho de emergência via internet — independentemente da chamada de voz. Isso acontece sem nenhuma ação do usuário e funciona mesmo que o chamador não consiga falar. O ELS está ativo em 30+ países.
 
 ### Apple Emergency SOS via Satélite
 
-Introduzido com o iPhone 14, permite que usuários em áreas sem cobertura celular ou Wi-Fi se conectem a serviços de emergência via satélites **Globalstar** em órbita baixa.
+Introduzido com o iPhone 14, o **Emergency SOS via Satélite** permite que usuários em áreas sem cobertura celular ou Wi-Fi se conectem a serviços de emergência apontando seu celular para o céu para alcançar satélites em órbita baixa da **Globalstar**. O sistema usa um protocolo de mensagens comprimido (porque a largura de banda por satélite é limitada) e roteia a localização e situação do usuário através dos centros de retransmissão da Apple para os serviços de emergência locais. Requer visibilidade clara do céu e leva alguns minutos para estabelecer, mas foi creditado por salvar vidas em situações remotas de natureza selvagem onde nenhuma outra comunicação era possível.
+
+### RapidSOS
+
+Muitos centros de despacho de emergência nos EUA integraram o **RapidSOS**, uma plataforma que agrega dados de localização de sensores de celular, aplicativos e dispositivos vestíveis e os entrega aos despachantes em tempo real. Quando você liga para o 911 de um iPhone ou telefone Android em uma jurisdição habilitada para RapidSOS, o despachante pode ver um pin de localização ao vivo atualizando em sua tela durante toda a chamada — não apenas uma coordenada estática da Fase II.
 
 ---
 
 ## Parte X: Dispositivos Que Você Não Esperava Receber Alertas de Emergência
 
-Cell Broadcast transmite para todos os dispositivos celulares compatíveis dentro do alcance. Isso inclui:
+O sistema Cell Broadcast transmite para todos os dispositivos celulares compatíveis dentro do alcance. "Dispositivo celular" é uma categoria mais ampla do que a maioria das pessoas percebe.
 
 ### Terminais de Pagamento
 
-Sistemas modernos de ponto de venda como o **Sunmi P2 Pro** ou **PAX A920** são computadores Android com cartões SIM integrados e modems 4G/LTE. Quando uma torre transmite uma mensagem de emergência, o sistema Android do terminal de pagamento a recebe.
+Sistemas modernos de ponto de venda como o **Sunmi P2 Pro** ou **PAX A920** são computadores Android com cartões SIM integrados e modems 4G/LTE. Eles existem na rede celular assim como um smartphone. Quando uma torre de celular transmite uma mensagem de emergência, o sistema Android do terminal de pagamento a recebe, eleva ao nível de prioridade do sistema e a exibe na tela — interrompendo qualquer transação de pagamento em andamento. Caixas em Tel Aviv relataram ver alertas de emergência aparecerem em seus terminais POS durante períodos de conflito.
 
 ### Máquinas de Venda e Quiosques
 
-Máquinas de venda em locais públicos que aceitam pagamento sem contato frequentemente incluem um modem celular. Um terminal **Nayax**, comum em máquinas de venda israelenses, inclui um módulo LTE.
+Máquinas de venda em espaços públicos (estações de trem, aeroportos, esquinas) que aceitam pagamento sem contato frequentemente incluem um modem celular para processar transações. Um terminal **Nayax**, comumente encontrado em máquinas de venda israelenses, inclui um módulo LTE. Quando a torre transmite um alerta, o sistema da máquina o recebe — razão pela qual surgiram relatos durante o conflito 2023–2024 de máquinas de venda exibindo avisos de emergência.
 
 ### Apple Watch GPS (sem celular)
 
-O Apple Watch GPS-only não tem cartão SIM e não pode receber sinais de uma torre de celular diretamente. No entanto, está quase sempre pareado com um iPhone via **Bluetooth** ou **Wi-Fi** local. Quando o iPhone recebe um alerta de emergência Cell Broadcast, ele o espelha para o Watch.
+O Apple Watch GPS-only (ao contrário do modelo Cellular) não tem cartão SIM e nenhum modem celular independente. Ele não pode receber sinais de uma torre de celular diretamente. No entanto, está quase sempre pareado com um iPhone via **Bluetooth** ou **Wi-Fi** local. Quando o iPhone recebe um alerta de emergência Cell Broadcast, ele o espelha para o Watch pareado, que o exibe em sua própria tela e aciona feedback háptico. O usuário é avisado em ambos os dispositivos — mas o Watch depende do iPhone estar presente e pareado.
+
+### Tablets e Outros Dispositivos
+
+Tablets com capacidades de dados celulares (iPad com celular, Samsung Galaxy Tab com LTE) recebem alertas Cell Broadcast identicamente aos smartphones. Tablets Wi-Fi apenas não recebem. Laptops com cartões SIM embutidos (alguns ThinkPads e dispositivos Surface Pro têm opções LTE) também podem receber alertas se estiverem conectados a uma rede celular. Dispositivos IoT que incluem modems celulares (certos monitores industriais, hardware de rastreamento de frota) também podem receber a transmissão dependendo se executam um SO compatível e têm o stack de decodificação Cell Broadcast habilitado.
 
 ---
 
 ## Parte XI: Sua Localização, Sua Privacidade
 
+A localização está entre os dados pessoais mais sensíveis que seu celular gera. Entender quem pode vê-la — e quando — é importante.
+
 ### O Que Sua Operadora Sabe
 
-Sua operadora tem visibilidade contínua de sua localização baseada na rede. A cada poucos segundos, seu celular reporta para a torre mais próxima. Isso é um requisito técnico do protocolo celular.
+Sua operadora tem visibilidade contínua de sua localização baseada na rede. A cada poucos segundos, seu celular reporta para a torre mais próxima. Isso é um requisito técnico do protocolo celular e não pode ser desabilitado sem desligar o celular. As operadoras retêm registros de localização por períodos variando de alguns dias a vários anos, dependendo da regulamentação nacional.
 
 ### Permissões de Localização de Aplicativos
 
-iOS 14+ e Android 12+ permitem que usuários concedam aos aplicativos apenas **localização aproximada** — uma área grosseira, tipicamente precisa em alguns quilômetros, sem expor a correção GPS precisa.
+Os sistemas operacionais modernos oferecem dois níveis de permissão de localização:
+
+**Localização precisa** — suas coordenadas GPS, tipicamente precisas com poucos metros.
+**Localização aproximada** — uma área grosseira, tipicamente precisa com alguns quilômetros, gerada pelo SO a partir de dados celulares e Wi-Fi sem expor a localização GPS precisa.
+
+O iOS 14+ e o Android 12+ permitem que os usuários concedam aos aplicativos apenas localização aproximada. Esta é uma proteção de privacidade significativa para aplicativos que não precisam do seu endereço exato — um aplicativo de previsão do tempo precisa da sua cidade, não da sua janela do quarto.
+
+**O acesso à localização em segundo plano** (acesso enquanto o aplicativo não está em uso) é agora uma permissão separadamente concedível em ambas as plataformas e requer consentimento explícito do usuário.
+
+### Mandados de Geofencing
+
+As autoridades em diversas jurisdições usaram **mandados de geofencing** (também chamados de "mandados de localização reversa") para obrigar empresas como o Google a fornecer uma lista de todos os dispositivos em uma área geográfica específica durante uma janela de tempo específica. Esses dados vêm do Sensorvault do Google — o banco de dados de histórico de localização construído a partir de dados de localização Android. Os tribunais emitiram esses mandados para investigações que vão de roubo ao ataque ao Capitólio de 6 de janeiro. Vários tribunais federais dos EUA os consideraram inconstitucionais sob a Quarta Emenda; outros os permitiram. O panorama legal ainda está evoluindo.
+
+### Quando as Operadoras Compartilham Localização
+
+Nos Estados Unidos, as regras de **CPNI (Customer Proprietary Network Information)** da FCC restringem as operadoras de vender dados de localização precisos a terceiros sem consentimento. Uma investigação de 2018 do *Motherboard* revelou que as principais operadoras estavam vendendo dados de localização em tempo real a caçadores de recompensas via empresas agregadoras, violando essas regras. A FCC multou AT&T, Verizon, T-Mobile e Sprint em um total combinado de aproximadamente US$ 200 milhões em 2024 por essas violações.
+
+Em zonas de conflito, a questão do acesso a dados de operadoras se torna uma questão de segurança nacional. Forças militares com acesso à infraestrutura de operadoras podem determinar a localização em tempo real de qualquer dispositivo registrado na rede — independentemente do GPS spoofing — usando os métodos de posicionamento por torre de celular descritos na Parte VI.
 
 ---
 
@@ -269,8 +375,20 @@ iOS 14+ e Android 12+ permitem que usuários concedam aos aplicativos apenas **l
 
 Seu celular carrega dois sistemas de localização fundamentalmente diferentes que servem a propósitos diferentes.
 
-O primeiro — GPS e seus equivalentes de satélite — responde à pergunta *"Onde a infraestrutura de posicionamento global acha que estou?"* É poderoso e altamente preciso em boas condições. Mas é vulnerável porque escuta sinais fracos de 20.000 km de distância, e qualquer transmissor próximo pode gritar sobre esses sinais.
+O primeiro — GPS e seus equivalentes de satélite — responde à pergunta *"Onde a infraestrutura de posicionamento global acha que estou?"* É poderoso, globalmente consistente e altamente preciso em boas condições. Mas é vulnerável porque escuta sinais fracos de 20.000 km de distância, e qualquer transmissor próximo com o transmissor certo pode gritar sobre esses sinais.
 
-O segundo — posicionamento por torre de celular e Cell Broadcast — responde à pergunta *"Onde está este dispositivo em relação à infraestrutura de rádio física que o rodeia?"* Não pode te dizer em qual rua você está com a mesma confiança que o GPS. Mas está fundamentado na física que não pode ser falsificada eletronicamente: seu celular está próximo o suficiente de uma torre para se comunicar com ela, ou não está.
+O segundo — posicionamento por torre de celular e Cell Broadcast — responde à pergunta *"Onde está este dispositivo em relação à infraestrutura de rádio física que o rodeia?"* É menos glamouroso. Não pode te dizer em qual rua você está com a mesma confiança que o GPS. Mas está fundamentado na física que não pode ser falsificada eletronicamente: seu celular está próximo o suficiente de uma torre para se comunicar com ela, ou não está.
 
 O paradoxo com o qual começamos — perdido no mapa, precisamente avisado de perigo — só é um paradoxo se você assume que esses dois sistemas são a mesma coisa. Não são. Nunca foram projetados para ser. Um foi construído para te ajudar a navegar. O outro foi construído para te manter vivo quando a navegação não importa mais.
+
+---
+
+## Referências
+
+* Shwajsophia, "How does my phone think I'm in Jordan, but still knows when I have a rocket near me in TLV?" *Medium*, 2 de março de 2026. [Artigo original](https://medium.com/@shwajsophia/iran-don-t-shoot-how-does-my-phone-think-im-in-jordan-but-still-knows-when-i-have-a-rocket-ab2b4cce6661)
+* European Space Agency — Navipedia, "GPS Signal Plan." [ESA Navipedia](https://gssc.esa.int/navipedia/index.php/GPS_Signal_Plan)
+* Federal Communications Commission, "Wireless Emergency Alerts (WEA)." [FCC](https://www.fcc.gov/consumers/guides/wireless-emergency-alerts)
+* Android Open Source Project, "CellBroadcast." [Android Source](https://source.android.com/docs/core/ota/modular-system/cellbroadcast)
+* OPSGROUP, "GPS/GNSS Jamming and Spoofing — Middle East and Ukraine." Publicações de aviso de segurança de aviação, 2023–2024.
+* 3GPP TS 23.041 — Realização técnica do Cell Broadcast Service (CBS).
+* National Institute of Standards and Technology (NIST), "Global Navigation Satellite Systems." Recursos de cibersegurança, 2024.

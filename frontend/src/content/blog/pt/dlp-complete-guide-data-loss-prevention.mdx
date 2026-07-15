@@ -70,9 +70,9 @@ Um modelo de ameaças construído apenas em torno de e-mail ignora a maioria dos
 A técnica mais antiga. Você define padrões — expressões regulares — que correspondem a estruturas de dados conhecidas.
 
 **Exemplos:**
-- Números de CPF brasileiro: `\b\d{3}\.\d{3}\.\d{3}-\d{2}\b`
+- Números de Seguro Social americano: `\b\d{3}-\d{2}-\d{4}\b`
 - Números de cartão de crédito (válidos por Luhn): `\b(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})\b`
-- SSN americano: `\b\d{3}-\d{2}-\d{4}\b`
+- CPF brasileiro: `\b\d{3}\.\d{3}\.\d{3}-\d{2}\b`
 
 Regex é barato computacionalmente e fácil de auditar. Também é frágil. Produz taxas massivas de falsos positivos em dados que *parecem* sensíveis mas não são, e falha completamente em texto não estruturado (um parágrafo que menciona detalhes financeiros sem formatação estruturada).
 
@@ -84,6 +84,8 @@ Em vez de detectar dados sensíveis na saída, classificar na criação. Os arqu
 
 As políticas DLP então aplicam baseadas no rótulo, não no conteúdo do arquivo. Um arquivo rotulado como `Confidencial` não pode ser enviado para um domínio externo, ponto final. Essa abordagem é significativamente mais confiável do que inspeção de conteúdo isolada — mas requer um programa de classificação funcionando, que é seu próprio projeto.
 
+O Microsoft Purview Information Protection e o Forcepoint implementam esse modelo. O desafio: se a classificação estiver errada na origem (ou simplesmente não aplicada), a aplicação do DLP fica cega.
+
 ### 3. Exact Data Matching (EDM)
 
 EDM cria impressões digitais de um conjunto de dados estruturado específico — um banco de dados de registros de clientes, por exemplo — e detecta quando qualquer parte desses dados exatos aparece em um canal de saída.
@@ -94,9 +96,9 @@ EDM cria impressões digitais de um conjunto de dados estruturado específico �
 3. No momento da inspeção, o conteúdo é tokenizado e hasheado da mesma forma
 4. Uma correspondência em qualquer token hasheado dispara uma política
 
-EDM reduz drasticamente os falsos positivos porque detecta dados *exatos*, não padrões que *parecem* com dados.
+EDM reduz drasticamente os falsos positivos porque detecta dados *exatos*, não padrões que *parecem* com dados. Também lida com variações menores de formatação (espaços, hífens, mudanças de capitalização) se a etapa de tokenização as normalizar.
 
-**Limitações:** EDM requer que o conjunto de dados fonte seja mantido e atualizado. Dados não incluídos — novos registros de clientes adicionados após a última atualização — ficam invisíveis até a próxima reconstrução do índice.
+**Limitações:** EDM requer que o conjunto de dados fonte seja mantido e atualizado. Dados não incluídos no conjunto — novos registros de clientes adicionados após a última atualização — ficam invisíveis até a próxima reconstrução do índice.
 
 ### 4. Fingerprinting de Documentos / Indexed Document Matching (IDM)
 
@@ -112,13 +114,15 @@ Plataformas DLP modernas treinam modelos de ML em conjuntos de dados rotulados p
 
 Classificadores ML lidam com texto não estruturado que regex não consegue, generalizam além de correspondências exatas e se adaptam ao contexto. Um classificador treinado em dados de saúde reconhece uma nota médica como sensível mesmo que não contenha campos estruturados.
 
-**Benchmarks de precisão atuais:** O conjunto de classificadores do Nightfall AI reporta 95% de precisão em mais de 100 modelos pré-construídos.
+**Benchmarks de precisão atuais:** O conjunto de classificadores do Nightfall AI reporta 95% de precisão em mais de 100 modelos pré-construídos. As taxas de falsos positivos com classificadores ML são significativamente menores do que as abordagens baseadas apenas em regex — mas os modelos exigem monitoramento contínuo e retreinamento à medida que as distribuições de dados mudam.
 
 ### 6. Análise Comportamental / User Entity Behavior Analytics (UEBA)
 
 Em vez de inspecionar conteúdo, UEBA constrói baselines de comportamento normal e sinaliza anomalias. Um funcionário que normalmente faz upload de 50 MB/dia que de repente envia 4 GB em uma sexta-feira à tarde antes do último dia dispara um alerta — independentemente do que são os dados.
 
 UEBA é essencial para detecção de ameaças internas porque captura comportamentos que a inspeção de conteúdo não vê: arquivos comprimidos de arquivos legítimos, saída criptografada, sessões de captura de tela, downloads em massa de unidades compartilhadas.
+
+UEBA é tipicamente integrado ao DLP em vez de ser uma técnica DLP autônoma. Ferramentas como o Microsoft Purview Insider Risk Management combinam sinais UEBA com resultados de inspeção de conteúdo para pontuar risco.
 
 ---
 
@@ -134,11 +138,11 @@ DLP de rede inspeciona tráfego saindo da organização no perímetro ou inline 
 - E-mail (SMTP) antes da entrega
 - FTP, SFTP e tráfego de protocolo personalizado via inspeção profunda de pacotes
 
-**Inspeção SSL** é inegociável para DLP de rede moderno. Aproximadamente 90% do tráfego web empresarial é criptografado. Sem descriptografia SSL inline, um proxy DLP vê apenas metadados TLS — IP de destino, hostname SNI, certificado — não o payload.
+**Inspeção SSL** é inegociável para DLP de rede moderno. Aproximadamente 90% do tráfego web empresarial é criptografado. Sem descriptografia SSL inline, um proxy DLP vê apenas metadados TLS — IP de destino, hostname SNI, certificado — não o payload. Isso exige a implantação de um certificado CA nos endpoints para que o proxy possa realizar o man-in-the-middle das conexões HTTPS.
 
-**Desafio:** A inspeção SSL quebra mTLS, certificate pinning e levanta preocupações de privacidade para tráfego pessoal em dispositivos gerenciados.
+**Desafio:** A inspeção SSL quebra mTLS (mutual TLS), certificate pinning (aplicativos de banco móvel, alguns SaaS) e levanta preocupações de privacidade para tráfego pessoal em dispositivos gerenciados. A maioria das organizações precisa de listas de bypass para destinos conhecidamente seguros.
 
-DLP de rede está se tornando menos relevante como controle isolado. Quando os dados transitam SaaS-para-SaaS (Slack → Google Drive), podem nunca cruzar a infraestrutura corporativa. É aqui que CASB e DLP em nuvem fecham a lacuna.
+DLP de rede está se tornando menos relevante como controle isolado. Quando os dados transitam SaaS-para-SaaS (Slack → Google Drive, Salesforce → e-mail), podem nunca cruzar a infraestrutura corporativa. É aqui que CASB e DLP em nuvem fecham a lacuna.
 
 ### Pilar 2 — DLP de Endpoint
 
@@ -148,20 +152,20 @@ Agentes DLP de endpoint implantados em dispositivos gerenciados monitoram e apli
 - Mídias removíveis (bloqueio USB ou permissão por serial do dispositivo)
 - Impressão e captura de tela
 - Operações de área de transferência (copiar-colar entre aplicações)
-- Uploads no navegador (via extensão ou hooks em nível de kernel)
+- Uploads no navegador (via extensão de navegador ou hooks em nível de kernel)
 - Comportamento do cliente de sincronização em nuvem
 
-Agentes de endpoint operam independentemente da conectividade de rede, o que é crítico para trabalhadores remotos.
+Agentes de endpoint operam independentemente da conectividade de rede, o que é crítico para trabalhadores remotos e cenários com air gap.
 
-**Profundidade técnica:** DLP de endpoint usa hooks de API do SO em nível de kernel ou espaço de usuário. No Windows, isso tipicamente usa filter drivers (modo kernel) ou hooking de API estilo Detours (modo usuário). No macOS, usa extensões do sistema (pós-Catalina) e eventos do Endpoint Security Framework (ESF) — `ES_EVENT_TYPE_AUTH_OPEN`, `ES_EVENT_TYPE_AUTH_WRITE`, etc.
+**Profundidade técnica:** DLP de endpoint usa hooks de API do SO em nível de kernel ou espaço de usuário. No Windows, isso tipicamente usa filter drivers (modo kernel) ou hooking de API estilo Detours (modo usuário). No macOS, DLP de endpoint usa extensões do sistema (pós-Catalina) e eventos do Endpoint Security Framework (ESF) — `ES_EVENT_TYPE_AUTH_OPEN`, `ES_EVENT_TYPE_AUTH_WRITE`, etc. O agente intercepta operações de I/O de arquivo antes que sejam concluídas e aplica a política.
 
-**Desafio:** Agentes em nível de kernel são complexos de implantar e manter. Podem causar instabilidade do sistema, conflitar com outras ferramentas de segurança (agentes EDR) e exigir extensões de kernel assinadas no macOS moderno.
+**Desafio:** Agentes em nível de kernel são complexos de implantar e manter. Podem causar instabilidade do sistema, conflitar com outras ferramentas de segurança (agentes EDR) e exigir extensões de kernel assinadas no macOS moderno. Lacunas de cobertura existem em endpoints Linux, dispositivos BYOD e infraestrutura de desktop virtual (VDI) com sessões não persistentes.
 
 ### Pilar 3 — DLP em Nuvem / SaaS
 
 DLP em nuvem opera por dois modos de integração:
 
-**Modo API (out-of-band):** Integra-se diretamente com APIs de plataformas SaaS (Microsoft 365, Google Workspace, Slack, Salesforce, Box) para varredura de dados em repouso e em trânsito. Detecta violações de política retroativamente — após um arquivo ter sido compartilhado — e pode colocar em quarentena, revogar acesso ou notificar.
+**Modo API (out-of-band):** Integra-se diretamente com APIs de plataformas SaaS (Microsoft 365, Google Workspace, Slack, Salesforce, Box) para varredura de dados em repouso e em trânsito nessas plataformas. Detecta violações de política retroativamente — após um arquivo ter sido compartilhado — e pode colocar em quarentena, revogar acesso ou notificar.
 
 **Modo proxy inline (in-band):** Roteia tráfego SaaS por um Cloud Access Security Broker (CASB) ou Security Service Edge (SSE) que inspeciona payloads em tempo real antes de chegarem ao destino SaaS. Permite bloqueio no ponto de transmissão em vez de remediação posterior.
 
@@ -189,7 +193,7 @@ Implantações DLP falham por causa do ajuste — ou pela ausência dele. A sequ
 
 **Fase 2 — Aplicação progressiva.** Ative o bloqueio nas políticas de maior confiança e menor volume primeiro. Regras de divulgação de credenciais (chaves de API, senhas em e-mail) têm baixas taxas de falsos positivos. Regras amplas de "PII em e-mail" têm altas taxas. A sequência importa.
 
-**Fase 3 — Refinamento de limiares.** Ajuste limiares de confiança, contagens mínimas de correspondências e destinos aprovados. Uma única ocorrência de um padrão correspondendo a um CPF em um documento de 10.000 palavras é diferente de uma planilha com 50.000 CPFs.
+**Fase 3 — Refinamento de limiares.** Ajuste limiares de confiança, contagens mínimas de correspondências e destinos aprovados (whitelist). Uma única ocorrência de um padrão correspondendo a um SSN em um documento de 10.000 palavras é diferente de uma planilha com 50.000 SSNs.
 
 **Fase 4 — EDM e fingerprinting.** Adicione dados estruturados e fingerprinting de documentos após a classificação estar estável. Estes têm as menores taxas de falsos positivos mas o maior custo de implementação.
 
@@ -213,7 +217,9 @@ Os quatro pilares do CASB:
 
 Security Service Edge (SSE) consolida CASB, SWG (Secure Web Gateway) e ZTNA (Zero Trust Network Access) em uma única plataforma de segurança entregue em nuvem. SASE adiciona SD-WAN ao stack SSE.
 
-DLP entregue via SSE inspeciona todo o tráfego de saída — web, nuvem e aplicação — por um único mecanismo de política inline sem exigir proxies por endpoint. Fornecedores principais: Netskope, Zscaler, Palo Alto Prisma Access, Cloudflare One.
+DLP entregue via SSE inspeciona todo o tráfego de saída — web, nuvem e aplicação — por um único mecanismo de política inline sem exigir proxies por endpoint. Fornecedores principais: Netskope, Zscaler, Palo Alto Prisma Access, Cloudflare One. Em 2025, a Cato Networks adquiriu a Aim Security e integrou DLP específico para IA à sua plataforma SASE.
+
+A vantagem do DLP nativo de SSE: aplicação consistente de políticas independentemente de qual rede o endpoint está. Um laptop em uma cafeteria e um laptop no escritório corporativo recebem a mesma inspeção DLP.
 
 ### Zero Trust e DLP
 
@@ -242,9 +248,9 @@ Capacidades DSPM:
 
 ### Convergência DSPM + DLP
 
-Em 2026, a indústria está convergindo DSPM e DLP em plataformas unificadas de segurança de dados. O DLP Aprimorado por DSPM da BigID (anunciado em março de 2026) usa inteligência de dados ao vivo do DSPM para validar e melhorar continuamente as políticas DLP — detectando automaticamente falsos positivos ao cruzar o conteúdo do alerta com o catálogo de dados do DSPM.
+Em 2026, a indústria está convergindo DSPM e DLP em plataformas unificadas de segurança de dados. O DLP Aprimorado por DSPM da BigID (anunciado em março de 2026) usa inteligência de dados ao vivo do DSPM para validar e melhorar continuamente as políticas DLP — detectando automaticamente falsos positivos ao cruzar o conteúdo do alerta com o catálogo de dados do DSPM, e recomendando mudanças de política baseadas em sinais contextuais.
 
-A plataforma unificada da Cyberhaven combina DSPM, DLP, gerenciamento de risco interno e segurança de IA sob um único plano de controle.
+A Plataforma Unificada de IA e Segurança de Dados da Cyberhaven combina DSPM, DLP, gerenciamento de risco interno e segurança de IA sob um único plano de controle. A lógica: controles de segurança de dados que não sabem onde os dados residem, como são classificados e como fluem são operacionalmente cegos.
 
 ---
 
@@ -262,7 +268,7 @@ Funcionários agora interagem rotineiramente com LLMs — ChatGPT, Claude, Micro
 - Documentos internos para extrair pontos-chave
 - Esquemas de banco de dados para escrever uma consulta
 
-Cada uma dessas interações pode transmitir dados sensíveis para a infraestrutura de inferência de um provedor externo de IA.
+Cada uma dessas interações pode transmitir dados sensíveis para a infraestrutura de inferência de um provedor externo de IA. Os dados podem ser retidos, usados para treinamento (dependendo dos termos do provedor) e potencialmente recuperáveis por outras partes.
 
 Soluções DLP tradicionais inspecionam canais de saída conhecidos — e-mail, uploads web, USB. Uma colagem de texto em um campo de entrada web via HTTPS para um provedor de IA parece idêntica a digitar uma consulta de pesquisa. Sem inspeção SSL e análise semântica de conteúdo de corpos de requisições HTTP, ela é invisível.
 
@@ -278,13 +284,13 @@ O worm Morris II (demonstrado por pesquisadores) estendeu isso para sistemas mul
 
 ### Controles DLP para GenAI
 
-**Inspeção de conteúdo no nível do navegador:** Nightfall AI e Microsoft Purview DLP para Edge agora realizam inspeção inline de conteúdo colado em campos de entrada de navegadores web, incluindo interfaces de chat de IA.
+**Inspeção de conteúdo no nível do navegador:** Nightfall AI e Microsoft Purview DLP para Edge agora realizam inspeção inline de conteúdo colado em campos de entrada de navegadores web, incluindo interfaces de chat de IA. O agente intercepta eventos de teclado e área de transferência na camada do navegador, classifica o conteúdo antes de ser transmitido e aplica a política (bloquear, alertar, redigir).
 
-**API de varredura de prompt:** O Firewall for AI da Nightfall fornece uma API que fica entre uma aplicação e um provedor LLM, inspecionando prompts e respostas bidirecionalmente.
+**API de varredura de prompt:** O Firewall for AI da Nightfall fornece uma API que fica entre uma aplicação e um provedor LLM, inspecionando prompts e respostas bidirecionalmente. Dados sensíveis em prompts são detectados e bloqueados ou redigidos antes de chegarem ao LLM. PII, credenciais e conteúdo confidencial nas respostas do modelo são sinalizados antes de serem entregues ao usuário.
 
 **Inspeção de tráfego GenAI via SASE/SSE:** Zscaler, Netskope e Cato Networks adicionaram políticas DLP específicas para GenAI em 2025 — detectando uploads para domínios de provedores de IA (openai.com, claude.ai, gemini.google.com) e aplicando inspeção de conteúdo ao corpo da requisição HTTP.
 
-**Microsoft Purview para Copilot:** Políticas Microsoft Purview DLP agora se estendem às interações do Microsoft 365 Copilot, com o Copilot herdando a mesma aplicação baseada em rótulo de sensibilidade dos documentos subjacentes que acessa.
+**Microsoft Purview para Copilot:** Políticas Microsoft Purview DLP agora se estendem às interações do Microsoft 365 Copilot, com o Copilot herdando a mesma aplicação baseada em rótulo de sensibilidade dos documentos subjacentes que acessa. Um funcionário não pode pedir ao Copilot para resumir um documento rotulado como "Altamente Confidencial" e receber uma saída que viole a política DLP do rótulo.
 
 ---
 
@@ -306,15 +312,17 @@ Características de risco dos agentes diferem do risco de usuário humano:
 
 Shadow IT tornou-se shadow AI: funcionários e desenvolvedores implantando agentes de IA sem revisão formal de segurança. Esses agentes podem ter acesso a credenciais organizacionais, APIs SaaS e armazenamentos de dados. Quando falham, são comprometidos ou deliberadamente mal utilizados, as implicações de DLP são severas.
 
-Em 2026, apenas 20% das organizações têm a maturidade de segurança de dados necessária para adoção segura de agentes de IA, segundo estudo de convergência DSPM citado pela GovInfoSecurity.
+Em 2026, apenas 20% das organizações têm a maturidade de segurança de dados necessária para adoção segura de agentes de IA, segundo estudo de convergência DSPM citado pela GovInfoSecurity. O restante opera agentes sem visibilidade sobre quais dados esses agentes acessam ou transmitem.
 
 ### Controles DLP para Agentes
 
-**Gerenciamento de identidade e acesso de agentes:** Cada agente de IA recebe uma identidade (service principal, chave de API, cliente OAuth) e recebe permissões mínimas necessárias — não as permissões do usuário que o implantou.
+A resposta da indústria está convergindo para várias abordagens técnicas:
 
-**Registro de atividade do agente:** Todas as chamadas de API do agente, leituras de dados e transmissões externas são registradas em um SIEM. Políticas DLP disparam em tráfego gerado pelo agente usando o mesmo pipeline de inspeção de conteúdo que o tráfego gerado por humanos.
+**Gerenciamento de identidade e acesso de agentes:** Cada agente de IA recebe uma identidade (service principal, chave de API, cliente OAuth) e recebe permissões mínimas necessárias — não as permissões do usuário que o implantou. O acesso é limitado a armazenamentos de dados específicos, janelas de tempo e operações.
 
-**Análise de caminho de acesso baseada em DSPM:** Antes de um agente ser autorizado a operar em um armazenamento de dados, o DSPM mapeia quais dados sensíveis esse armazenamento contém e quais permissões o agente precisaria.
+**Registro de atividade do agente:** Todas as chamadas de API do agente, leituras de dados e transmissões externas são registradas em um SIEM. Políticas DLP disparam em tráfego gerado pelo agente usando o mesmo pipeline de inspeção de conteúdo que o tráfego gerado por humanos, com a identidade do agente como chave de correlação.
+
+**Análise de caminho de acesso baseada em DSPM:** Antes de um agente ser autorizado a operar em um armazenamento de dados, o DSPM mapeia quais dados sensíveis esse armazenamento contém e quais permissões o agente precisaria. Acesso excessivamente amplo (agente solicitando acesso de leitura a um tenant inteiro do SharePoint para recuperar um documento) é sinalizado para revisão.
 
 **Inspeção de comunicação multi-agente:** Pesquisa publicada em 2026 sobre melhoria do protocolo A2A (Agent-to-Agent) do Google propõe inspeção DLP de mensagens entre agentes em sistemas multi-agente — impedindo dados sensíveis recuperados por um agente de serem passados a um agente downstream operando em um ambiente não confiável.
 
@@ -328,7 +336,7 @@ DLP existe por causa de insiders tanto quanto de atacantes externos. Ameaças in
 
 **Insiders acidentais** não têm intenção maliciosa mas causam violações assim mesmo: uma lista de distribuição de e-mail mal configurada, um anexo enviado ao destinatário errado, um link compartilhado com permissões definidas como "qualquer pessoa com o link". Esta categoria representa a maioria dos incidentes reportados e requer controles diferentes — classificação de dados para prevenir compartilhamento excessivo, capacidades de atraso + recall de e-mail e governança de permissões de compartilhamento.
 
-**Funcionários saindo** representam a população de maior risco. O Mimecast Incydr (uma plataforma de gerenciamento de risco interno de propósito específico) correlaciona sinais do sistema de RH (data de demissão, data de encerramento) com telemetria DLP de endpoint para pontuar risco e priorizar investigação.
+**Funcionários saindo** representam a população de maior risco. O Mimecast Incydr (uma plataforma de gerenciamento de risco interno de propósito específico) correlaciona sinais do sistema de RH (data de demissão, data de encerramento) com telemetria DLP de endpoint para pontuar risco e priorizar investigação. Um funcionário nas suas últimas duas semanas que subitamente acessa arquivos fora do seu conjunto normal de trabalho e faz upload para armazenamento pessoal na nuvem é pontuado como alto risco sem exigir triagem humana de cada alerta.
 
 ---
 
@@ -336,17 +344,17 @@ DLP existe por causa de insiders tanto quanto de atacantes externos. Ameaças in
 
 Se você está construindo ou reconstruindo um programa DLP, a seguinte sequência reduz o risco de falha:
 
-**Passo 1 — Descoberta de Dados.** Antes de qualquer aplicação, conheça quais dados sensíveis você tem e onde residem. Implante DSPM para varrer armazenamento em nuvem, plataformas SaaS, bancos de dados e endpoints.
+**Passo 1 — Descoberta de Dados.** Antes de qualquer aplicação, conheça quais dados sensíveis você tem e onde residem. Implante DSPM para varrer armazenamento em nuvem, plataformas SaaS, bancos de dados e endpoints. O resultado é um inventário de dados com classificações de sensibilidade e pontuações de risco.
 
-**Passo 2 — Defina uma Política de Classificação de Dados.** Estabeleça quatro a cinco camadas de sensibilidade (Público, Interno, Confidencial, Restrito, Regulamentado). Defina quais dados pertencem a cada camada.
+**Passo 2 — Defina uma Política de Classificação de Dados.** Estabeleça quatro a cinco camadas de sensibilidade (Público, Interno, Confidencial, Restrito, Regulamentado). Defina quais dados pertencem a cada camada. Aplique rótulos — classificação automática via ML, aplicada por rótulos de sensibilidade no Microsoft Purview ou equivalente.
 
-**Passo 3 — Mapeie Canais de Saída.** Instrumente seu ambiente para entender por quais canais os dados se movem: volumes de e-mail, destinos de upload web, integrações SaaS, endpoints de API, clientes de sincronização em nuvem, uso de USB.
+**Passo 3 — Mapeie Canais de Saída.** Instrumente seu ambiente para entender por quais canais os dados se movem: volumes de e-mail, destinos de upload web, integrações SaaS, endpoints de API, clientes de sincronização em nuvem, uso de USB. Isso identifica onde colocar os controles DLP.
 
 **Passo 4 — Implante em Modo de Auditoria.** Comece apenas registrando — zero de aplicação. Colete 2–4 semanas de dados. Analise o volume de alertas, taxa de falsos positivos e eventos de maior risco.
 
-**Passo 5 — Construa Políticas em Camadas.** Comece com as políticas de maior confiança, menor volume e maior impacto. Credenciais em e-mail. Downloads em massa de compartilhamentos de arquivos. Mídias removíveis em funções de alto risco.
+**Passo 5 — Construa Políticas em Camadas.** Comece com as políticas de maior confiança, menor volume e maior impacto. Credenciais em e-mail. Downloads em massa de compartilhamentos de arquivos. Mídias removíveis em funções de alto risco. Expanda incrementalmente.
 
-**Passo 6 — Integre UEBA.** Adicione análise comportamental para complementar a inspeção de conteúdo. UEBA captura o que a inspeção de conteúdo não vê: arquivos comprimidos, saída criptografada, anomalias de padrão de acesso, operações em massa fora do horário.
+**Passo 6 — Integre UEBA.** Adicione análise comportamental para complementar a inspeção de conteúdo. UEBA captura o que a inspeção de conteúdo não vê: arquivos comprimidos, anomalias de padrão de acesso, operações em massa fora do horário.
 
 **Passo 7 — Trate GenAI e Agentes.** Estenda DLP para uso de ferramentas de IA via extensão de navegador ou proxy SSE. Estabeleça governança de identidade de agentes. Implante APIs de inspeção de prompt se sua organização constrói aplicações integradas com IA.
 
@@ -362,9 +370,9 @@ A direção é clara a partir de onde o investimento está fluindo em 2025–202
 
 **DSPM como fundação.** Você não pode proteger o que não pode ver. DSPM está se tornando o pré-requisito para DLP — fornecendo o catálogo de dados e o contexto de risco que tornam as políticas DLP significativas em vez de arbitrárias.
 
-**GenAI como principal superfície de ameaça.** O canal de saída mais perigoso em 2026 não é e-mail ou USB — são funcionários colando dados organizacionais em interfaces LLM e agentes de IA acessando armazenamentos de dados com credenciais superprovisionadas.
+**GenAI como principal superfície de ameaça.** O canal de saída mais perigoso em 2026 não é e-mail ou USB — são funcionários colando dados organizacionais em interfaces LLM e agentes de IA acessando armazenamentos de dados com credenciais superprovisionadas. Arquiteturas DLP que não abordam isso estão protegendo o perímetro errado.
 
-**Aplicação comportamental e contextual** em vez de bloqueio de palavras-chave. A próxima geração de DLP se afasta de decisões binárias de bloqueio/permissão em direção a aplicação contextual — entendendo *por que* um usuário está fazendo algo, não apenas *o que* está fazendo.
+**Aplicação comportamental e contextual** em vez de bloqueio de palavras-chave. A próxima geração de DLP se afasta de decisões binárias de bloqueio/permissão em direção a aplicação contextual — entendendo *por que* um usuário está fazendo algo, não apenas *o que* está fazendo. Um funcionário exfiltrando dados no último dia antes da demissão é diferente de um funcionário enviando os mesmos dados para um parceiro de negócios conhecido. O contexto muda a resposta.
 
 As organizações que acertarão no DLP em 2026 não são as que têm mais regras. São as que sabem onde seus dados estão, entendem como se movem, e construíram aplicação precisa o suficiente para parar ameaças reais sem fazer o negócio parar de funcionar.
 
