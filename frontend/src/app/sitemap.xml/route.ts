@@ -65,6 +65,7 @@ export async function GET() {
 
   const HIGH_PRIORITY_SLUGS = new Set([
     'how-cancer-works',
+    'the-day-cancer-stopped-being-a-word-and-became-my-mission',
     'dlp-complete-guide-data-loss-prevention',
     'the-clock-is-dead-offensive-ai-killed-time-variable-cybersecurity',
     'phone-gps-spoofing-emergency-alerts',
