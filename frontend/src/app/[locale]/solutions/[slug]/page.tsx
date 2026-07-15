@@ -6,7 +6,7 @@ import { getTranslations } from 'next-intl/server'
 import { PRODUCTS, getProduct, getLocalizedProduct } from '@/data/solutions'
 import { buildAlternates } from '@/lib/metadata'
 
-const BASE_URL = 'https://hanielrolemberg.com'
+const BASE_URL = 'https://www.hanielrolemberg.com'
 
 export async function generateStaticParams() {
   return PRODUCTS.map((p) => ({ slug: p.id }))

@@ -1,4 +1,4 @@
-const BASE_URL = 'https://hanielrolemberg.com'
+const BASE_URL = 'https://www.hanielrolemberg.com'
 const LOCALES = ['en', 'pt', 'es', 'fr', 'ca'] as const
 
 export function buildAlternates(locale: string, path: string) {

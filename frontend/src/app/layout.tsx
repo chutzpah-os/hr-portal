@@ -26,7 +26,7 @@ const playfair = Playfair_Display({
   display: 'swap',
 })
 
-const BASE_URL = 'https://hanielrolemberg.com'
+const BASE_URL = 'https://www.hanielrolemberg.com'
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

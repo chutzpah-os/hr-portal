@@ -13,7 +13,7 @@ export async function generateMetadata(
     openGraph: {
       title: 'Lab — Haniel Rolemberg',
       description: 'R&D showcase — software, AI/ML, and systems built end-to-end by Haniel Rolemberg.',
-      url: `https://hanielrolemberg.com/${locale}/solutions`,
+      url: `https://www.hanielrolemberg.com/${locale}/solutions`,
       type: 'website',
     },
   }

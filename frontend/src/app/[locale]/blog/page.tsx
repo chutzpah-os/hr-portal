@@ -15,7 +15,7 @@ export async function generateMetadata(
     openGraph: {
       title: 'Blog — Haniel Rolemberg',
       description: 'Articles on cybersecurity, AI, data engineering, health, philosophy, and personal challenges.',
-      url: `https://hanielrolemberg.com/${locale}/blog`,
+      url: `https://www.hanielrolemberg.com/${locale}/blog`,
       type: 'website',
     },
   }

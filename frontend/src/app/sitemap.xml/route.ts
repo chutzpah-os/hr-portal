@@ -7,7 +7,7 @@ import { routing } from '@/i18n/routing'
 export const runtime = 'nodejs'
 export const dynamic = 'force-static'
 
-const BASE_URL = 'https://hanielrolemberg.com'
+const BASE_URL = 'https://www.hanielrolemberg.com'
 
 type ChangeFreq = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never'
 

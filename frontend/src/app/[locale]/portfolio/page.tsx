@@ -13,7 +13,7 @@ import CertificationsSection from '@/components/sections/Certifications'
 import SkillsSection from '@/components/sections/SkillsSection'
 import AwardsSection from '@/components/sections/AwardsSection'
 
-const BASE_URL = 'https://hanielrolemberg.com'
+const BASE_URL = 'https://www.hanielrolemberg.com'
 
 const METADATA_BY_LOCALE: Record<string, { title: string; description: string; ogDescription: string }> = {
   en: {

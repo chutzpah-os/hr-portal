@@ -13,7 +13,7 @@ export async function generateMetadata(
     openGraph: {
       title: 'Challenges — Haniel Rolemberg',
       description: 'Personal and professional challenges — from running 1,000 miles against cancer to frontier research projects.',
-      url: `https://hanielrolemberg.com/${locale}/challenges`,
+      url: `https://www.hanielrolemberg.com/${locale}/challenges`,
       type: 'website',
     },
   }

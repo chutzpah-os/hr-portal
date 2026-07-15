@@ -137,7 +137,7 @@ function buildLatexForArea(cv: FilteredCV, locale: string): string {
   lines.push(`  {\\small ${e(areaLabel)}} \\\\[2pt]`)
   lines.push(`  {\\Large\\scshape ${e(personalName)}} \\\\[4pt]`)
   lines.push(`  \\href{mailto:contact@hanielrolemberg.com}{contact@hanielrolemberg.com} $|$`)
-  lines.push(`  \\href{https://hanielrolemberg.com}{hanielrolemberg.com} $|$`)
+  lines.push(`  \\href{https://www.hanielrolemberg.com}{hanielrolemberg.com} $|$`)
   lines.push(`  +55 (79) 99999-9999`)
   lines.push('\\end{center}')
   lines.push('\\vspace{-6pt}')
@@ -366,7 +366,7 @@ function buildHtmlForArea(cv: FilteredCV, locale: string): string {
       <div class="heading-contact">
         <a href="mailto:contact@hanielrolemberg.com">contact@hanielrolemberg.com</a>
         &nbsp;|&nbsp;
-        <a href="https://hanielrolemberg.com">hanielrolemberg.com</a>
+        <a href="https://www.hanielrolemberg.com">hanielrolemberg.com</a>
       </div>
     </div>`
 

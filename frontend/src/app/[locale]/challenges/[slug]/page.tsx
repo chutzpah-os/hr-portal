@@ -25,7 +25,7 @@ import FundraisingTiers from '@/components/challenges/FundraisingTiers'
 import SectionScroller, { type PanelTheme } from '@/components/challenges/SectionScroller'
 import TOCSummary from '@/components/challenges/TOCSummary'
 
-const BASE_URL = 'https://hanielrolemberg.com'
+const BASE_URL = 'https://www.hanielrolemberg.com'
 
 const SUPPORTED_NARRATIVE_LOCALES: NarrativeLocale[] = ['en', 'pt', 'es', 'fr', 'ca']
 
