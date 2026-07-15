@@ -71,19 +71,17 @@ export async function GET() {
     '1k-miles-of-hope-ep-01-this-is-how-it-starts',
   ])
 
-  // Live series posts get 'monthly' regardless of age
-  const LIVE_SERIES_SLUGS = new Set([
-    '1k-miles-of-hope-ep-01-this-is-how-it-starts',
-    '1k-miles-of-hope-ep-01-first-day',
-    '1k-miles-of-hope-ep-02-second-day',
-    '1k-miles-of-hope-ep-03-third-day',
-  ])
+  const LIVE_SERIES_PREFIXES = ['1k-miles-of-hope-']
 
   const threeMonthsAgo = new Date()
   threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3)
 
+  function isLiveSeries(slug: string): boolean {
+    return LIVE_SERIES_PREFIXES.some((prefix) => slug.startsWith(prefix))
+  }
+
   function blogChangefreq(post: { slug: string; date: string }): ChangeFreq {
-    if (LIVE_SERIES_SLUGS.has(post.slug)) return 'monthly'
+    if (isLiveSeries(post.slug)) return 'weekly'
     return new Date(post.date) >= threeMonthsAgo ? 'monthly' : 'yearly'
   }
 
@@ -100,7 +98,7 @@ export async function GET() {
     // Translated dynamic pages
     ...localeEntries('/blog', latestPostDate, 'weekly', 0.8),
     ...PRODUCTS.flatMap((p) =>
-      localeEntries(`/solutions/${p.id}`, '2026-07-01', 'monthly', 0.8),
+      localeEntries(`/solutions/${p.id}`, '2026-07-06', 'monthly', 0.8),
     ),
     ...CHALLENGES.flatMap((c) =>
       localeEntries(`/challenges/${c.id}`, '2026-07-01', 'monthly', 0.8),
