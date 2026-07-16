@@ -7,176 +7,388 @@ tags: ["GPS", "Geolocalització", "GPS Spoofing", "Cell Broadcast", "Alertes d'E
 groups: ["Cybersecurity/Geolocation"]
 faqs:
   - question: "Com sap el meu telèfon on soc sense GPS?"
-    answer: "El teu telèfon utilitza fins a sis tecnologies de posicionament simultàniament: satèl·lits GPS/GNSS, triangulació d'antenes de mòbil, posicionament Wi-Fi, geolocalització per IP, proximitat de balises Bluetooth i pressió barométrica per a l'altitud per planta."
+    answer: "El teu telèfon utilitza fins a sis tecnologies de posicionament simultàniament: satèl·lits GPS/GNSS, triangulació d'antenes de mòbil, posicionament Wi-Fi (comparant les xarxes properes amb una base de dades mundial), geolocalització per IP, proximitat de balises Bluetooth i pressió barométrica per a l'altitud per planta. El sistema operatiu fusiona tots els senyals disponibles per produir l'estimació de posició més precisa possible."
   - question: "Què és el GPS spoofing i com funciona?"
-    answer: "El GPS spoofing és quan un transmissor terrestre emet senyals GPS falses més fortes que les reals dels satèl·lits a 20.000 km. Com el GPS civil (freqüència L1, 1575,42 MHz) no està xifrat i està documentat públicament, un spoofer pot imitar exactament l'estructura del senyal."
+    answer: "El GPS spoofing és quan un transmissor terrestre emet senyals GPS falses més fortes que les reals dels satèl·lits a 20.000 km. Com el GPS civil (freqüència L1, 1575,42 MHz) no està xifrat i està documentat públicament, un spoofer pot imitar exactament l'estructura del senyal i convèncer un receptor que es troba en un lloc completament diferent — com fer creure als telèfons de Tel Aviv que estan a Amman, Jordània."
   - question: "Per què vaig rebre una alerta d'emergència tot i que el meu GPS mostrava un lloc incorrecte?"
-    answer: "Les alertes d'emergència utilitzen Cell Broadcast, no GPS. Cell Broadcast funciona com una emissora de ràdio localitzada: una antena transmet un missatge cap a fora, i tots els dispositius compatibles físicament dins del rang el reben, independentment del que mostri el seu GPS."
-  - question: "Què és Cell Broadcast i en què difereix del SMS?"
-    answer: "El SMS envia missatges individuals a números específics. Cell Broadcast transmet un únic missatge des d'una antena a tots els dispositius compatibles dins del rang físic simultàniament, sense adreçament individual. Milions de telèfons reben l'alerta en mil·lisegons."
+    answer: "Les alertes d'emergència utilitzen Cell Broadcast, no GPS. Cell Broadcast funciona com una emissora de ràdio localitzada: una antena mòbil transmet un missatge cap a fora, i tots els dispositius compatibles físicament dins del rang el reben. El teu xip GPS pot ser enganyat per creure que ets en un altre país, però l'antena mòbil amb la qual el teu telèfon es comunica físicament és al teu emplaçament real — per tant l'alerta t'arriba independentment del que mostri la teva aplicació de mapes."
+  - question: "Què és Cell Broadcast i en què difereix dels SMS?"
+    answer: "El SMS envia missatges individuals a números de telèfon específics — una connexió per destinatari. Cell Broadcast transmet un únic missatge des d'una antena a tots els dispositius compatibles dins del rang físic simultàniament, sense adreçament individual. Això significa que milions de telèfons reben un avís en mil·lisegons sense sobrecarregar la xarxa, i l'antena no necessita conèixer cap número de telèfon."
   - question: "Es pot detectar o bloquejar el GPS spoofing?"
-    answer: "Els mètodes de detecció inclouen monitorar anomalies d'intensitat del senyal, verificar salts grans i sobtats de posició, comparar amb altres sistemes de posicionament i usar receptors de doble freqüència (L1+L5)."
+    answer: "Els mètodes de detecció inclouen monitorar anomalies d'intensitat del senyal (els satèl·lits reals tenen una potència baixa i constant; els spoofers sovint són més potents), verificar salts de posició sobtats i grans, creuar dades amb altres sistemes de posicionament (antenes mòbils, Wi-Fi) i usar receptors de doble freqüència (L1+L5). Els receptors militars utilitzen senyals a codi P(Y) xifrats que els spoofers civils no poden reproduir. El nou senyal GPS L5 inclou funcions d'integritat addicionals que fan el spoofing significativament més difícil."
   - question: "Quins països tenen sistemes d'alerta d'emergència amb Cell Broadcast?"
-    answer: "Sistemes basats en Cell Broadcast existeixen als EUA (WEA), Unió Europea (EU-Alert via ETWS), Israel (Tzeva Adom), Japó (J-Alert), Corea del Sud, Països Baixos (NL-Alert) i molts més."
+    answer: "Sistemes d'emergència basats en Cell Broadcast existeixen als Estats Units (WEA — Wireless Emergency Alerts), Unió Europea (EU-Alert via ETWS), Israel (Tzeva Adom/Alerta Roja del Pikud HaOref), Japó (J-Alert), Corea del Sud, Països Baixos (NL-Alert) i molts d'altres. La Unió Internacional de Telecomunicacions recomana Cell Broadcast com a estàndard mundial per als sistemes d'alerta pública."
   - question: "Com em localitzen els serveis d'emergència quan truco al 112?"
-    answer: "El centre d'emergències utilitza un sistema de múltiples etapes. La fase I proporciona la ubicació de l'antena que encamina la teva trucada. La fase II utilitza les coordenades GPS del teu telèfon o triangulació de xarxa. El Google Emergency Location Service (ELS) transmet automàticament la teva ubicació precisa."
+    answer: "El centre d'emergències utilitza un sistema de múltiples etapes. La fase I proporciona la ubicació de l'antena mòbil per la qual s'encamina la teva trucada (àrea aproximada). La fase II utilitza les coordenades GPS del teu telèfon si estan disponibles, o la triangulació de xarxa. El Google Emergency Location Service (ELS) transmet automàticament la teva ubicació precisa en marcar números d'emergència als països compatibles. L'Emergency SOS via Satèl·lit d'Apple funciona fins i tot sense cobertura mòbil a través dels satèl·lits Globalstar."
 ---
 
-Et relaxes a casa teva a **Tel Aviv**. Obres Google Maps i el punt blau et col·loca a l'**Aeroport Internacional Reina Alia a Amman, Jordània** — un país que no has visitat. És desconcertant. No t'has mogut. El teu telèfon t'està mentint.
+Et relaxes a casa teva a **Tel Aviv**. Obres Google Maps per comprovar un itinerari, i el punt blau et situa fermament a l'**Aeroport Internacional Reina Alia a Amman, Jordània** — un país que no has visitat. És desconcertant. No t'has mogut. El teu telèfon t'està mentint.
 
-Llavors la situació s'escala. Es detecta un míssil entrant. El teu telèfon esclata amb una alarma estrident, mostrant una alerta a pantalla completa que nombra la zona de perill exacta prop del teu barri real.
+Llavors la situació s'agreuja. Es detecta un míssil entrant. El teu telèfon esclata amb una alarma d'emergència estrident, mostrant una alerta a pantalla completa que nombra la zona de perill exacta prop del teu barri real.
 
 La pregunta que segueix és genuïnament desconcertant: **si el teu telèfon creia que estaves a Jordània, com sabia avisar-te d'una amenaça a Tel Aviv?**
 
-La resposta revela quelcom fonamental sobre com el teu telèfon entén el món — i per què el sistema dissenyat per salvar la teva vida opera sobre principis completament diferents al que t'ajuda a navegar pel trànsit.
+La resposta revela quelcom fonamental sobre com el teu telèfon entén el món que l'envolta — i per què el sistema dissenyat per salvar la teva vida opera sobre principis completament diferents al que t'ajuda a navegar pel trànsit.
 
 ---
 
 ## Part I: Sis Maneres en Què el Teu Telèfon Descobreix On Ets
 
-El teu telèfon no usa un sol mètode. En usa fins a sis simultàniament, i el sistema operatiu els pondera constantment per produir la millor estimació.
+El teu telèfon no utilitza un únic mètode per determinar la seva ubicació. En fa servir fins a sis simultàniament, i el sistema operatiu els pondera constantment entre ells per produir la millor estimació.
 
 ### 1. GPS / GNSS — La Capa Satelitar
 
-El mètode més famós. El teu telèfon escolta senyals emeses per satèl·lits que orbiten aproximadament **20.200 quilòmetres sobre la Terra**.
+El mètode més famós. El teu telèfon escolta els senyals emesos per satèl·lits que orbiten aproximadament **20.200 quilòmetres sobre la Terra** i utilitza el temporitzat d'aquests senyals per calcular la seva posició. Aprofundirem molt més en aquest tema a la Part II.
 
 ### 2. Posicionament per Antena Mòbil — La Capa de Xarxa
 
-Mesurant la intensitat del senyal, diferències de temporització i la superposició entre múltiples antenes, la xarxa pot estimar la teva ubicació fins i tot sense GPS.
+Cada vegada que el teu telèfon es connecta a una antena mòbil, la xarxa registra a quina antena estàs connectat. Mesurant la intensitat del senyal, les diferències de temporitzat i la superposició entre múltiples antenes, la xarxa pot estimar la teva ubicació fins i tot si el GPS està desactivat o no disponible. Això és menys precís que el GPS però més fiable en interiors i en zones urbanes.
 
 ### 3. Posicionament Wi-Fi — La Capa d'Empremta Digital
 
-Empreses com Google i Apple han catalogat les coordenades GPS de milions de routers Wi-Fi. Quan el teu telèfon veu una xarxa coneguda, pot estimar la teva ubicació sense usar un satèl·lit.
+Empreses com Google i Apple han passat anys recorrent barris per catalogar les coordenades GPS de cada router Wi-Fi que podien detectar. Quan el teu telèfon veu el SSID "JohnDoe-5G" i el fa coincidir amb una entrada de base de dades que situa aquell router en una adreça específica, pot estimar la teva ubicació sense tocar cap satèl·lit. Per això el teu telèfon sembla saber on ets en el moment en què l'encens en interiors — ha detectat xarxes Wi-Fi familiars abans que el GPS tingués temps de bloquejar-se.
 
-### 4. Geolocalització per IP — L'Estimació Grossera
+### 4. Geolocalització per IP — L'Estimació Aproximada
 
-La teva adreça IP està registrada en una regió geogràfica. Pot identificar la teva ciutat, però és el mètode menys precís.
+La teva adreça IP està registrada en una regió geogràfica a través del teu proveïdor de serveis d'internet. La geolocalització per IP normalment pot identificar la teva ciutat i de vegades el teu barri, però és el mètode menys precís — sovint amb un error de diversos quilòmetres. S'utilitza com a recurs de reserva aproximat i per a la localització de contingut, no per a la navegació.
 
 ### 5. Balises Bluetooth — La Capa Interior
 
-Balises BLE col·locades en centres comercials i aeroports transmeten identificadors únics. El teu telèfon pot estimar la seva posició dins de pocs metres.
+Les balises Bluetooth Low Energy col·locades dins de centres comercials, aeroports i grans recintes transmeten un identificador únic. El teu telèfon pot detectar a quina distància es troba de cada balisa i estimar la seva posició a uns pocs metres. Aquesta és la tecnologia darrere de la navegació interior als aeroports i les funcions "troba aquest article al passadís 7" de les aplicacions de comerç minorista.
 
 ### 6. Fusió de Sensors — La Combinació
 
-El sistema operatiu executa un **algorisme de fusió de sensors** que barreja contínuament GPS, dades d'antenes, empremtes Wi-Fi, lectures de l'acceleròmetre, giroscopi i pressió barométrica.
+Cap d'aquests sis mètodes funciona sol en un smartphone modern. El sistema operatiu executa un **algorisme de fusió de sensors** (a iOS, viu dins del Location Manager; a Android, dins del Fused Location Provider). Barreja contínuament senyals GPS, dades d'antenes, empremtes digitals Wi-Fi, lectures de l'acceleròmetre, dades del giroscopi i pressió barométrica (per estimar a quin pis d'un edifici et trobes) en una única estimació de posició ponderada dinàmicament. Quan una font es degrada o falla, l'algorisme s'inclina més en les altres.
 
-> La paradoxa amb la qual vam començar es torna més clara: la capa GPS va ser compromesa. Però la capa d'antena mòbil — i el sistema d'alerta d'emergència construït sobre ella — no ho va ser.
+> La paradoxa amb la qual vam començar ja es torna més clara: la capa GPS estava compromesa. Però la capa d'antena mòbil — i el sistema d'alerta d'emergència construït sobre ella — no ho estava.
 
 ---
 
 ## Part II: Com Funciona Realment el GPS
 
-### El GPS és un Sistema Passiu
+Entendre per què el GPS pot ser enganyat requereix entendre el que el GPS fa realment. La majoria de la gent assumeix que el GPS funciona com un radar — que el teu telèfon envia un senyal cap als satèl·lits, que el reboten i calculen la distància. Això és incorrecte.
 
 **El GPS és un sistema purament passiu, només de recepció.** El teu telèfon no transmet res als satèl·lits. Escolta.
 
+### La Constel·lació
+
+El sistema GPS (operat per la Força Aèria dels EUA) manté una constel·lació d'almenys 31 satèl·lits operatius en **Òrbita Terrestre Mitjana (MEO)** a una altitud d'aproximadament 20.200 km. Estan disposats de manera que almenys 4 satèl·lits siguin visibles des de pràcticament qualsevol punt de la Terra en qualsevol moment. Altres sistemes (coberts a la Part III) en afegeixen centenars més.
+
 ### Trilateració, No Triangulació
 
-El GPS usa **trilateració** — determinant posició a partir de distàncies. Quatre satèl·lits són el mínim per a una solució de posició 3D fiable.
+El terme "triangulació" s'utilitza habitualment però és tècnicament incorrecte. El GPS utilitza la **trilateració** — determinar la posició a partir de distàncies, no d'angles.
+
+Aquí s'explica com funciona. Cada satèl·lit transmet contínuament dues coses: la seva pròpia ubicació precisa a l'espai, i l'hora exacta en què es va enviar el senyal (usant un rellotge atòmic de bord precís fins a nanosegons). El teu telèfon registra l'hora exacta en què va rebre el senyal. La diferència entre l'hora d'enviament i l'hora de recepció, multiplicada per la velocitat de la llum (299.792.458 m/s), dóna la distància a aquell satèl·lit.
+
+Una mesura de distància et dóna una esfera de posicions possibles. Dos satèl·lits et donen un cercle (on dues esferes s'intersecten). Tres satèl·lits et donen dos punts (on tres esferes s'intersecten). Un quart satèl·lit resol quin dels dos punts és correcte — i de manera crucial, també corregeix la imprecisió del rellotge del teu telèfon, que no és atòmic.
+
+**Quatre satèl·lits són el mínim per a una solució de posició 3D fiable.**
 
 ### El Senyal i Per Què és Feble
 
-Els senyals GPS arriben al teu telèfon a aproximadament **-130 dBm** — molt per sota del soroll de fons. Un senyal Wi-Fi típic és de -65 dBm, uns 30 milions de vegades més fort.
+Els senyals GPS viatgen 20.200 km per l'espai. Quan arriben a l'antena del teu telèfon, arriben a aproximadament **-130 dBm** — molt per sota del nivell de soroll de la majoria d'entorns de ràdio. Per comparar, un senyal Wi-Fi típic és d'uns -65 dBm, aproximadament 30 milions de vegades més fort.
+
+Aquesta extrema feblesa és l'arrel de gairebé tots els problemes GPS. Qualsevol transmissor proper que emeti sobre o prop de la mateixa freqüència pot superar el senyal del satèl·lit sense gaire esforç.
 
 ### Les Freqüències de la Banda L
 
-- **L1 (1575,42 MHz)** — senyal civil original, sense xifrar, documentat públicament. El principal objectiu per al spoofing.
-- **L2 (1227,60 MHz)** — originalment només militar.
-- **L5 (1176,45 MHz)** — nou senyal civil, molt més difícil de falsificar.
+Els senyals GPS s'emeten en la **banda L** de l'espectre de ràdio. Les freqüències civils clau són:
+
+* **L1 (1575,42 MHz)** — el senyal civil original, sense xifrar, documentat públicament. Utilitzat per tots els receptors GPS del món. També l'objectiu principal per al spoofing.
+* **L2 (1227,60 MHz)** — originalment només per a militars. Els receptors civils de doble freqüència utilitzen L1+L2 per corregir els errors de retard ionosfèric.
+* **L5 (1176,45 MHz)** — el nou senyal civil, part dels satèl·lits GPS III. Més potència, millor estructura de senyal, dissenyat per a aplicacions crítiques de seguretat (aviació, vehicles autònoms). Molt més difícil de falsificar.
+
+El fet que L1 sigui **sense xifrar** i que la seva estructura de senyal estigui **documentada públicament** és el que fa possible el GPS spoofing civil. Qualsevol persona amb el maquinari adequat i l'especificació pública pot construir un dispositiu que imiti perfectament el que sona un satèl·lit.
 
 ---
 
-## Part III: La Família GNSS Completa
+## Part III: La Família GNSS Completa — Més Enllà del GPS
 
-* **GPS** — Estats Units. 31 satèl·lits.
-* **GLONASS** — Rússia. 24 satèl·lits.
-* **Galileo** — Unió Europea. 30 satèl·lits.
-* **BeiDou** — Xina. 35+ satèl·lits. Cobertura global des del 2020.
-* **NavIC** — Índia. 7 satèl·lits. Sistema regional.
-* **QZSS** — Japó. 4 satèl·lits. Augment regional.
+"GPS" és un sistema americà. Però el teu telèfon no utilitza només satèl·lits americans.
+
+**GNSS — Sistemes Globals de Navegació per Satèl·lit** és el terme genèric per a tots els sistemes de posicionament per satèl·lit. Els smartphones moderns reben de múltiples constel·lacions simultàniament:
+
+* **GPS** — Estats Units. 31 satèl·lits. El més antic i més àmpliament integrat.
+* **GLONASS** — Rússia. 24 satèl·lits. Utilitza freqüències lleugerament diferents (L1: 1598,0625–1605,375 MHz, variant per satèl·lit). Proporciona redundància, especialment a latituds altes.
+* **Galileo** — Unió Europea. 30 satèl·lits. Dissenyat amb la navegació civil com a propòsit principal. Ofereix major precisió que el GPS per als usuaris civils i inclou un servei d'alta precisió xifrat.
+* **BeiDou** — Xina. 35+ satèl·lits. Cobertura global des del 2020. Inclou satèl·lits geoestacionaris per a una millor cobertura a la regió de l'Àsia-Pacífic.
+* **NavIC** — Índia. 7 satèl·lits. Sistema regional que cobreix l'Índia i les zones circumdants fins a 1.500 km de les seves fronteres.
+* **QZSS** — Japó. 4 satèl·lits. Augment regional per a l'Àsia Oriental i Oceania.
+
+Quan un telèfon modern utilitza simultàniament GPS, GLONASS i Galileo, pot tenir accés a 60+ satèl·lits visibles alhora. Això millora dràsticament la precisió, redueix el temps fins al primer fix i fa més difícil — tot i que no impossible — falsificar tots els sistemes simultàniament. Un spoofer que apunta al GPS L1 pot no falsificar correctament GLONASS L1 o Galileo E1 al mateix temps, cosa que els receptors avançats poden detectar com a inconsistència.
 
 ---
 
-## Part IV: Quan el GPS Falla
+## Part IV: Quan el GPS Falla — Interferències, Trajectòries Múltiples i Canons Urbans
 
-### Jamming vs Spoofing — Una Distinció Crítica
+El GPS falla regularment en la vida quotidiana. Entendre els diferents modes de fallada és important, perquè no tots ells són maliciosos.
 
-**El jamming GPS** inunda la freqüència L1 amb soroll. El receptor no pot sentir res. És contundent i detectable.
+### Canons Urbans
 
-**El spoofing GPS** és més sofisticat. En comptes de bloquejar el senyal, el *substitueix*. Un spoofer transmet un fals senyal L1 estructuralment idèntic — però amb coordenades fabricades. L'usuari típicament no té cap avís.
+En una ciutat densa, els edificis alts bloquegen els senyals del satèl·lit d'arribar al teu telèfon a angles baixos. Potser només rebis senyals dels satèl·lits directament sobre teu. Amb menys satèl·lits visibles, la precisió de posició es degrada — errors de 50–100 metres són habituals al centre de Manhattan o al centre de Hong Kong. Per això Google Maps de vegades situa el teu punt blau al carrer equivocat en un centre de ciutat.
 
-> El jamming fa que el teu GPS digui "no sé on estic." El spoofing el fa dir amb confiança "estic a Jordània" — quan ets a Israel.
+### Errors de Trajectòries Múltiples
+
+Quan un senyal de satèl·lit rebota en un edifici abans d'arribar a la teva antena, el senyal reflectit recorre un camí més llarg que el directe. El teu receptor interpreta aquest temps de viatge extra com a distància extra i calcula una posició incorrecta. Les trajectòries múltiples expliquen per què el GPS no és fiable prop de grans estructures i dins dels aparcaments.
+
+### Retards Ionosfèrics i Troposfèrics
+
+Els senyals GPS passen dues vegades per l'atmosfera terrestre (en el camí cap a tu). La ionosfera (60–1.000 km d'altitud) i la troposfera (0–12 km) tots dos alenteixen els senyals, introduint errors de temporitzat que es tradueixen en errors de posició. Els receptors de doble freqüència poden corregir-ho comparant quant la ionosfera alenteix L1 respecte a L2 (l'atmosfera alenteix les diferents freqüències en quantitats diferents). Els receptors de freqüència única apliquen models matemàtics, que són menys precisos.
+
+### Interferències vs Spoofing — Una Distinció Crítica
+
+Aquests termes sovint es confonen però descriuen atacs fonamentalment diferents:
+
+**Les interferències GPS** inunden la freqüència L1 amb soroll, sobrepassant els senyals del satèl·lit. El receptor no pot sentir res i simplement deixa de funcionar — informa que no hi ha fix GPS. És contundent, detectable i il·legal en la majoria dels contextos civils, però s'ha utilitzat extensament en zones de conflicte i prop d'instal·lacions sensibles.
+
+**El GPS spoofing** és més sofisticat. En comptes de bloquejar el senyal, el *substitueix*. Un spoofer emet un fals senyal L1 estructuralment idèntic a un senyal GPS real — però conté coordenades fabricades. El receptor sent el que sembla un satèl·lit legítim, accepta el senyal com a vàlid i informa d'una ubicació que no existeix. L'usuari normalment no té cap advertiment. El dispositiu sembla funcionar normalment.
+
+> Les interferències fan que el teu GPS digui "no sé on estic". El spoofing el fa dir amb confiança "estic a Jordània" — quan ets a Israel.
 
 ---
 
 ## Part V: GPS Spoofing — L'Art de l'Engany Electrònic
 
-Un sistema de spoofing consisteix en un **generador de senyal** emetent en L1 amb els mateixos codis pseudoaleatoris que els satèl·lits GPS reals, una **antena transmissora** que emet més fort que els satèl·lits reals, i un **sistema d'injecció de coordenades**.
+El GPS spoofing no és una vulnerabilitat teòrica. Ha estat activament desplegat en conflictes militars, documentat per investigadors i experimentat accidentalment per milions de civils que no tenien ni idea del que estava passant als seus mapes.
 
-### Spoofing GPS al Món
+### Com Funciona, Tècnicament
 
-* **Mediterrani oriental i Orient Mitjà** — spoofing extensiu afectant vols de Tel Aviv, Beirut, Xipre i el Caire.
-* **Mar Negre** — documentat des del 2017, amb vaixells informant de posicions a l'aeroport de Gelendzhik a Rússia.
-* **Ucraïna** — pertorbació GPS generalitzada a tot el teatre de conflicte.
-* **Xina** — vaixells apareixent movent-se en cercles perfectes.
-* **Finlàndia i països nòrdics** — pertorbacions atribuïdes als sistemes de guerra electrònica russos.
+Un sistema de spoofing consta de tres components:
+
+**Un generador de senyals** que produeix un senyal de ràdio en L1 (1575,42 MHz) modulat amb els mateixos codis pseudoaleatoris (PRN) que utilitzen els satèl·lits GPS reals. Com els codis PRN estan publicats i l'esquema de modulació està documentat, això és assequible amb maquinari de ràdio definit per programari (SDR) disponible comercialment.
+
+**Una antena transmissora** que emet el fals senyal a una potència més alta que els satèl·lits reals. Com els senyals GPS reals arriben a -130 dBm i el receptor del teu telèfon està optimitzat per a aquell senyal feble, un spoofer que transmet fins i tot a nivells de potència modestos supera fàcilment el senyal autèntic.
+
+**Un sistema d'injecció de coordenades** que indica al fals senyal quina ubicació ha d'informar. L'operador pot ordenar al spoofer que faci que tots els receptors dins del rang informin de qualsevol coordenada del món — Amman, Beirut, Xipre, Teheran, o qualsevol altre lloc.
+
+Les verificacions de validació de senyal integrades al receptor (que verifiquen el temporitzat, les relacions senyal-soroll i l'estructura del codi) passen, perquè el fals senyal és estructuralment correcte. El dispositiu no té cap manera de distingir-lo d'un satèl·lit real tret que usi mètodes de verificació addicionals.
+
+### Guerra Electrònica i l'Escenari de Tel Aviv
+
+En el context dels recents conflictes a l'Orient Mitjà, el GPS spoofing ha estat desplegat per múltiples actors com a mesura de **guerra electrònica (GE)**.
+
+L'objectiu militar principal és la **defensa contra drons i míssils**. Un dron Shahed entrant, un míssil de creuer o una ogiva balística pot dependre del GPS per a la guia terminal — la fase final de navegació cap a un objectiu. Si un sistema de spoofing terrestre fa creure a l'ordinador de navegació de l'arma que es troba a centenars de quilòmetres de la seva trajectòria, l'arma pot desviar-se del seu objectiu o activar els seus protocols de seguretat.
+
+L'efecte secundari és que cada receptor GPS civil dins del rang del mateix transmissor de spoofing rep les mateixes coordenades falses. Waze et guia cap al mar. Google Maps et situa en un país veí. Els conductors de repartiment es perden. Els pilots d'avions comercials reben avisos GPS. Els vaixells de la Mediterrània informen de posicions fantasmes.
+
+Això no és un mal funcionament. És el comportament correcte — si bé no intencionat — d'un receptor que troba un senyal que és més fort i estructuralment idèntic al que espera d'un satèl·lit.
+
+### GPS Spoofing al Món
+
+S'han documentat esdeveniments de spoofing en un nombre creixent de llocs:
+
+* **Mediterrani oriental i Orient Mitjà** — spoofing extensiu que afecta els vols de Tel Aviv, Beirut, Xipre i el Caire, especialment des del 2019 i intensificant-se durant el període de conflicte 2023–2024. L'organització de seguretat aèria OPSGROUP va fer el seguiment de centenars d'avions afectats.
+* **Mar Negre** — documentat des d'almenys el 2017, amb vaixells informant de posicions GPS que els situaven a l'aeroport de Gelendzhik a Rússia. Atribuït als sistemes de guerra electrònica russos.
+* **Ucraïna** — pertorbació GPS generalitzada a tot el teatre del conflicte, que afecta tant dispositius militars com civils.
+* **Xina** — spoofing documentat en múltiples ciutats (Shanghai, Chengdu) que afecta especialment les dades de posició AIS marítima, amb vaixells que sembla que es mouen en cercles perfectes — un patró coherent amb el spoofing des d'un transmissor fixe a terra.
+* **Finlàndia i països nòrdics** — pertorbacions atribuïdes als sistemes de GE russos que operen a Kaliningrad i al llarg de la frontera finlandesa, que afecten l'aviació comercial i el transport marítim.
+
+### Detectar el Spoofing
+
+Diversos enfocaments tècnics poden detectar que un senyal GPS ha estat falsificat:
+
+**Salts de posició sobtats** — un receptor real s'apropa gradualment a una ciutat. Un receptor falsificat pot teletransportar-se de cop 500 km quan el spoofer s'activa.
+
+**Anomalies d'intensitat del senyal** — els satèl·lits reals arriben a una potència molt baixa i constant. Un spoofer que emet a una potència més alta produeix senyals anormalment forts que els receptors avançats poden marcar.
+
+**Inconsistència entre sistemes** — un receptor sofisticat que compara les coordenades GPS amb les coordenades GLONASS o Galileo pot detectar que els tres sistemes no coincideixen, indicant que un està sent falsificat.
+
+**Validació de doble freqüència** — el GPS L5 utilitza una estructura de senyal diferent que és més complexa de falsificar. Un receptor que utilitza L1+L5 pot detectar inconsistències entre els dos.
+
+**Mesura inercial** — un dispositiu amb una bona IMU (unitat de mesura inercial — acceleròmetres i giroscopis) pot detectar quan el canvi de posició implicat pel GPS no coincideix amb el que senten els sensors. Si el GPS diu que t'has mogut 400 km en 2 segons, l'acceleròmetre sap que no és cert.
+
+Els smartphones de consum no fan cap d'aquestes comprovacions. Els receptors d'aviació i marítims ho fan cada vegada més.
 
 ---
 
-## Part VI: Posicionament per Antena Mòbil — La Xarxa que Sempre Sap
+## Part VI: Posicionament per Antena Mòbil — La Xarxa Que Sempre Sap
 
-El punt crucial: **aquest sistema de posicionament és completament independent del xip GPS del teu telèfon.** La xarxa no necessita que el teu telèfon informi d'una posició — la calcula a partir de les seves pròpies mesures.
+Mentre el GPS depèn de satèl·lits, el posicionament per antena mòbil depèn de la infraestructura de ràdio física que t'envolta. Cada vegada que el teu telèfon està encès, es troba en comunicació constant amb una o més antenes mòbils. Aquesta comunicació es produeix independentment de qualsevol aplicació de navegació.
+
+### Cell ID i CGI
+
+La forma més simple de localització basada en cel·la és la cerca del **Cell Global Identity (CGI)**. El teu telèfon està registrat en una antena específica (identificada per un codi CGI únic), i la ubicació física de l'antena és coneguda. La xarxa sap que el teu telèfon es troba "en algun lloc dins de la zona de cobertura de l'antena X". Per a una antena rural amb un radi de 10 km, això dóna una estimació aproximada. Per a una microcel·la urbana amb un radi de 100 metres, és sorprenentment precís.
+
+### Avançament de Temporitzat
+
+Quan el teu telèfon parla amb una antena, la xarxa mesura quant temps triga el senyal a viatjar des del teu telèfon fins a l'antena. Aquest valor de **Timing Advance (TA)** s'utilitza per ajustar la sincronització però també revela la teva distància aproximada a l'antena — cada unitat TA correspon a aproximadament 550 metres en xarxes GSM.
+
+### Enhanced Cell ID i Multilateració
+
+Quan múltiples antenes poden escoltar el teu telèfon simultàniament, la xarxa aplica la **multilateració** — mesurant la diferència de temporitzat de l'arribada del teu senyal a cada antena i resolent geomètricament la teva posició. Conceptualment és similar a la trilateració GPS però utilitza antenes terrestres en comptes de satèl·lits. La precisió oscil·la entre 50 metres en zones urbanes denses i diversos centenars de metres en zones suburbanes.
+
+El punt crucial: **aquest sistema de posicionament és completament independent del xip GPS del teu telèfon**. La xarxa no necessita que el teu telèfon informi d'una ubicació — en calcula una a partir de les seves pròpies mesures. Fins i tot un telèfon amb un xip GPS completament trencat té una posició basada en la xarxa.
 
 ---
 
 ## Part VII: Cell Broadcast — Com les Alertes d'Emergència Eviten el GPS
 
+Quan el Comandament del Front Interior (l'autoritat de defensa civil d'Israel), la FEMA o l'agència d'alerta del Japó necessita arribar a cada persona en una zona específica en qüestió de segons, no busquen números de telèfon. No comproven bases de dades GPS. No envien missatges SMS. Utilitzen **Cell Broadcast**.
+
+### Un-a-molts vs Un-a-un
+
+Els SMS estàndard funcionen en un model **un-a-un**. Enviar un missatge a 3 milions de persones requereix establir 3 milions de connexions separades, compondre 3 milions de paquets individuals i encaminar-los a través de la xarxa cap a 3 milions d'adreces específiques. El cost computacional i d'amplada de banda s'escala linealment amb el nombre de destinataris.
+
+Cell Broadcast funciona en un model **un-a-molts**. Un únic missatge es transmet una vegada des d'una antena, cap a fora, a tots els dispositius compatibles dins del rang físic — simultàniament, sense adreçament individual. L'antena no sap ni li importa quants dispositius estan escoltant. És anàleg a una emissió de ràdio: l'estació transmet una vegada, i cada receptor sintonitzat l'escolta.
+
+Per això una alerta d'emergència pot arribar a milions de persones en mil·lisegons. L'escala de la xarxa és irrellevant — la difusió es produeix una vegada per antena independentment de la densitat de població.
+
 ### L'Àncora Física
 
-Un spoofer GPS pot fer creure al xip de navegació del teu telèfon que és a Jordània. Però no pot canviar amb quina antena mòbil el teu telèfon es comunica físicament.
+Aquí hi ha el concepte que resol tota la paradoxa amb la qual vam començar.
 
-Quan el sistema d'avís s'activa, instrueix les antenes mòbils específiques que cobreixen la zona de risc a transmetre un missatge d'emergència. Cada dispositiu físicament dins del rang d'aquestes antenes — independentment de les coordenades GPS que cregui tenir — rep la transmissió.
+Un spoofer GPS pot fer creure al xip de navegació del teu telèfon que és a Jordània. Però no pot canviar amb quina antena mòbil el teu telèfon es comunica físicament. La ràdio del teu telèfon manté una connexió activa amb una antena al centre de Tel Aviv. La ubicació física d'aquesta antena està fixada en formigó i acer. No es pot desplaçar electrònicament.
 
-**El sistema d'alerta no li pregunta al teu telèfon on creu que és. Usa on realment ets — determinat per quina antena ets prou a prop per escoltar.**
+Quan el sistema d'alerta s'activa, identifica la zona geogràfica en risc i instrueix les antenes mòbils específiques que cobreixen aquella zona per difondre un missatge d'emergència. Aquestes antenes ho fan. Cada dispositiu físicament dins del rang d'aquestes antenes — independentment de les coordenades GPS que creuen tenir — rep la difusió.
+
+**El sistema d'alerta no li pregunta al teu telèfon on creu que és. Utilitza on ets realment — determinat per quina antena ets prou a prop per escoltar.**
+
+### El Camí de l'Alerta
+
+Quan es detecta una amenaça i cal emetre una alerta:
+
+* Els sistemes de radar o d'intel·ligència identifiquen una amenaça entrant i calculen la seva trajectòria probable i la zona d'impacte.
+* L'autoritat d'alerta (a Israel: Pikud HaOref; als EUA: FEMA via IPAWS) identifica les zones geogràfiques específiques en risc.
+* S'emet una ordre a les antenes mòbils físicament situades dins de — o adjacents a — aquella zona de risc.
+* Aquelles antenes comencen immediatament a difondre un missatge Cell Broadcast en un canal dedicat (Canal 919 en moltes implementacions WEA; ETWS utilitza els canals 4370–4399 a Europa).
+* El missatge conté un **indicador EAS** (identificador del Sistema d'Alerta d'Emergència) que indica al sistema operatiu del telèfon: no es tracta d'una notificació normal. Tracta-la amb el nivell de prioritat més alt.
+* Cada dispositiu compatible dins del rang d'aquestes antenes rep el missatge, independentment de la seva ubicació GPS informada, independentment de l'operador que tingui (els dispositius en itinerància també el reben), i independentment de les aplicacions en execució.
 
 ### Ignorant No Molestis — Per Disseny
 
-Cell Broadcast s'implementa al **nivell del sistema operatiu**, per sota de la capa d'aplicació. "No Molestis" instrueix les aplicacions a suprimir les seves notificacions. Però l'alerta d'emergència no és una notificació d'aplicació — és una interrupció del sistema.
+Cell Broadcast no és gestionat per un sistema de notificació. Està implementat al **nivell del sistema operatiu**, per sota de la capa d'aplicació.
+
+A Android, l'arquitectura consisteix en el **CellBroadcastService** (que descodifica els missatges Cell Broadcast entrants i aplica les regles de geofencing) i el **CellBroadcastReceiver** (una aplicació del sistema privilegiada que gestiona la visualització real de l'alerta, el so i la vibració). Aquesta pila s'executa amb permisos del sistema que cap aplicació de tercers pot anul·lar.
+
+A iOS, la implementació d'Apple tracta de manera similar les alertes Cell Broadcast com a esdeveniments del sistema, no com a notificacions d'aplicació.
+
+El mode "No Molestis" instrueix les aplicacions a suprimir les seves notificacions. Però l'alerta d'emergència no és una notificació d'aplicació — és una interrupció del sistema. L'analogia: demanar silenci en una sala funcionarà per a les converses, però no per a l'alarma d'incendis. L'alarma no demana permís.
 
 ---
 
 ## Part VIII: Sistemes d'Alerta d'Emergència al Món
 
-### Estats Units — WEA
-Tres categories: Alertes Presidencials (no desactivables), Alertes d'Amenaça Imminent i Alertes de Seguretat Pública.
+Cell Broadcast és la base, però cada país ha construït la seva pròpia arquitectura al seu damunt.
+
+### Estats Units — WEA (Wireless Emergency Alerts)
+
+El sistema Wireless Emergency Alert de la FCC, part del Integrated Public Alert and Warning System (IPAWS), defineix tres categories: **Alertes Presidencials** (no es poden desactivar), **Alertes d'Amenaça Imminent** (meteorologia extrema i severa, actes de terrorisme, alertes AMBER — l'usuari pot desactivar-ne algunes) i **Alertes de Seguretat Pública** (esdeveniments locals). Els missatges WEA estan limitats a 360 caràcters (ampliats dels 90 originals el 2019) i poden incloure números de telèfon i URLs incrustats. La FCC requereix que tots els proveïdors de serveis mòbils comercials hi participin.
 
 ### Unió Europea — EU-Alert i ETWS
-Des del 2022, els estats membres de la UE han de tenir un sistema de notificació massiva capaç d'arribar als dispositius mòbils.
+
+El marc d'alerta pública de la UE, **EU-Alert**, s'implementa a través de l'estàndard **Earthquake and Tsunami Warning System (ETWS)** definit per 3GPP. Els estats membres no estan obligats a utilitzar Cell Broadcast per llei de la UE, però molts ho fan. Els Països Baixos van ser un dels primers en adoptar-lo amb **NL-Alert**. Alemanya va activar el seu sistema (DE-Alert) després que un dia nacional d'alerta el 2020 exposés que el seu sistema legacy basat en paginadors no havia arribat pràcticament a ningú. Des del 2022, els estats membres de la UE han de disposar d'un sistema de notificació massiva capaç d'arribar als dispositius mòbils — Cell Broadcast és la tecnologia principal.
 
 ### Israel — Pikud HaOref i Tzeva Adom
-El **Tzeva Adom** inclou un compte enrere per refugiar-se de 15 a 90 segons. Arriba a tots els dispositius mòbils a la zona d'amenaça independentment de la nacionalitat.
+
+L'autoritat de defensa civil d'Israel (**Pikud HaOref**, literalment "Comandament del Front Interior") opera el sistema **Tzeva Adom** (Color Vermell / Alerta Roja). En regions properes a Gaza o la frontera nord, l'alerta va acompanyada d'un compte enrere per refugiar-se — normalment de 15 a 90 segons depenent de com a prop ets de l'origen de l'amenaça. El sistema s'ha refinat durant dècades d'ús operacional i es considera un dels sistemes d'alerta pública més provats en combat del món. El component Cell Broadcast arriba a tots els dispositius mòbils a la zona d'amenaça pertinent independentment de la nacionalitat o l'operador, per això els turistes amb SIM estrangeres reben les mateixes alertes que els residents locals.
 
 ### Japó — J-Alert
-Un dels més sofisticats del món. Activa simultàniament alertes Cell Broadcast, altaveus externs, interrupcions de televisió i ràdio. Pot emetre alertes sísmiques uns segons abans de l'arribada de les sacsejades destructives.
+
+El **J-Alert** del Japó (全国瞬時警戒システム) és un dels sistemes d'alerta nacional més sofisticats del món. Activa simultàniament alertes Cell Broadcast, altaveus exteriors a ciutats i pobles, interrupcions de televisió i ràdio, i receptors d'alerta dedicats instal·lats en edificis governamentals. J-Alert s'ha activat per llançaments de míssils balístics de Corea del Nord, terratrèmols (el Japó l'utilitza conjuntament amb el seu sistema d'Alerta Primerenca de Terratrèmols) i alertes de tsunami. L'aplicació sísmica és particularment impressionant — el sistema pot emetre alertes uns segons abans que arribin les sacsejades perquè les ones sísmiques P (que es detecten però causen poc dany) viatgen més ràpid que les ones S destructores. Aquests segons importen.
+
+### Corea del Sud i Altres
+
+El sistema **CBS (Cell Broadcast Service)** de Corea del Sud funciona sota el Ministeri de l'Interior i la Seguretat. S'ha utilitzat per als avisos de tifons, les restriccions de mobilitat per la COVID-19 i els exercicis de defensa civil. El desastre de l'aglomeració d'Itaewon el 2023 va posar de manifest les limitacions dels sistemes d'alerta existents i va desencadenar inversions en alertes més granulars i específiques per zones. Existeixen altres implementacions significatives a Nova Zelanda (Emergency Mobile Alert), Austràlia (Emergency Alert) i el Canadà (Alertes i Emergències), totes construïdes sobre bases Cell Broadcast.
 
 ---
 
 ## Part IX: Com els Serveis d'Emergència et Localitzen Realment
 
-**Fase I** — la xarxa proporciona la ubicació de l'antena que encamina la teva trucada.
+Quan truques al 112 (UE), al 911 (EUA) o a qualsevol número d'emergència, com saben els primers intervinents on anar — especialment si no pots parlar?
 
-**Fase II** — la xarxa proporciona les teves coordenades GPS o una triangulació de xarxa.
+### E911 — Enhanced 911
 
-El Google ELS transmet automàticament la teva ubicació precisa en marcar números d'emergència. L'Emergency SOS via Satèl·lit d'Apple (iPhone 14+) funciona sense cobertura mòbil utilitzant satèl·lits Globalstar.
+L'estàndard Enhanced 911 de la FCC dels EUA defineix dues fases:
+
+**Fase I** — la xarxa proporciona al regulador la ubicació de l'antena mòbil per la qual s'encamina la teva trucada, més el sector de l'antena amb el qual t'estàs comunicant. Això dóna una àrea aproximada de pocs centenars de metres a uns quilòmetres.
+
+**Fase II** — la xarxa proporciona la teva latitud i longitud, ja sigui des del GPS del teu telèfon o de la multilateració basada en xarxa. La FCC requereix als operadors que proporcionin una ubicació precisa a 50 metres per al 80% de les trucades. En la pràctica, sovint s'aconsegueix a través d'una combinació de GPS, posicionament Wi-Fi i triangulació per antenes.
+
+### Google Emergency Location Service (ELS)
+
+Quan marques un número d'emergència en un telèfon Android en un país compatible, el **Emergency Location Service** de Google activa automàticament una localització d'alta precisió utilitzant tots els mètodes disponibles (GPS, Wi-Fi, antenes mòbils) i envia les coordenades al centre de regulació d'emergències a través d'internet — independent de la trucada de veu. Això es produeix sense cap acció de l'usuari i funciona fins i tot si la persona que truca no pot parlar. ELS és actiu en 30+ països.
+
+### Apple Emergency SOS via Satèl·lit
+
+Introduït amb l'iPhone 14, **Emergency SOS via Satèl·lit** permet als usuaris en zones sense cobertura mòbil ni Wi-Fi connectar-se als serveis d'emergència apuntant el telèfon al cel per arribar als satèl·lits d'òrbita baixa terrestre **Globalstar**. El sistema utilitza un protocol de missatgeria comprimit (perquè l'amplada de banda de satèl·lit és limitada) i encamina la ubicació i la situació de l'usuari a través dels centres de relé d'Apple cap als serveis d'emergència locals. Requereix visibilitat clara del cel i triga uns minuts a establir-se, però s'ha acreditat per salvar vides en situacions de medi natural aïllat on cap altra comunicació era possible.
+
+### RapidSOS
+
+Molts centres de regulació d'emergències dels EUA han integrat **RapidSOS**, una plataforma que agrega dades de localització des de sensors del telèfon, aplicacions i wearables i les lliura als reguladors en temps real. Quan truques al 911 des d'un iPhone o un telèfon Android en una jurisdicció compatible amb RapidSOS, el regulador pot veure un pin de localització en viu actualitzant-se a la seva pantalla durant tota la trucada — no només una coordenada estàtica de la Fase II.
+
+---
+
+## Part X: Dispositius que No Esperaves que Rebessin Alertes d'Emergència
+
+El sistema Cell Broadcast difon a tots els dispositius mòbils compatibles dins del rang. "Dispositiu mòbil" és una categoria més àmplia del que la majoria de la gent s'adona.
+
+### Terminals de Pagament
+
+Els sistemes moderns de punt de venda com el **Sunmi P2 Pro** o el **PAX A920** són ordinadors basats en Android amb targetes SIM integrades i mòdems 4G/LTE. Existeixen a la xarxa mòbil igual que un smartphone. Quan una antena mòbil difon un missatge d'emergència, el sistema Android del terminal de pagament el rep, l'eleva a prioritat de sistema i el mostra a la pantalla — interrompent qualsevol transacció de pagament en curs. Cajers de Tel Aviv van informar que veien alertes d'emergència aparèixer als seus terminals PDV durant els períodes de conflicte.
+
+### Màquines d'Expenedoria i Quioscs
+
+Les màquines d'expenedoria en espais públics (estacions de tren, aeroports, cantonades) que accepten pagament sense contacte sovint inclouen un mòdem mòbil per processar transaccions. Un terminal **Nayax**, habitualment trobat a les màquines d'expenedoria israelianes, inclou un mòdul LTE. Quan la seva antena difon una alerta, el sistema de la màquina la rep — per això van sorgir informes durant el conflicte 2023–2024 de màquines d'expenedoria mostrant avisos d'emergència.
+
+### Apple Watch GPS
+
+L'Apple Watch GPS (a diferència del model Cellular) no té targeta SIM ni mòdem mòbil independent. No pot rebre directament senyals d'una antena mòbil. No obstant això, gairebé sempre està emparellat amb un iPhone a través de **Bluetooth** o **Wi-Fi** local. Quan l'iPhone rep una alerta d'emergència Cell Broadcast, la replica al Watch emparellat, que la mostra a la seva pròpia pantalla i activa el feedback tàctil. L'usuari rep un avís en ambdós dispositius — però el Watch depèn de que l'iPhone sigui present i emparellat.
+
+### Tauletes i Altres Dispositius
+
+Les tauletes amb capacitats de dades mòbils (iPad amb mòbil, Samsung Galaxy Tab amb LTE) reben alertes Cell Broadcast de manera idèntica als smartphones. Les tauletes només Wi-Fi no les reben. Els ordinadors portàtils amb targetes SIM integrades (alguns ThinkPads i dispositius Surface Pro tenen opcions LTE) també poden rebre alertes si estan connectats a una xarxa mòbil. Els dispositius IoT que inclouen mòdems mòbils (certs monitors industrials, maquinari de seguiment de flota) també poden rebre la difusió depenent de si executen un SO compatible i tenen activada la pila de descodificació Cell Broadcast.
+
+---
+
+## Part XI: La Teva Ubicació, La Teva Privadesa
+
+La ubicació és una de les dades personals més sensibles que genera el teu telèfon. Entendre qui la pot veure — i quan — és important.
+
+### Què Sap el Teu Operador
+
+El teu operador té visibilitat contínua sobre la teva ubicació basada en la xarxa. Cada pocs segons, el teu telèfon informa a l'antena més propera. Això és un requisit tècnic del protocol mòbil i no es pot desactivar sense apagar el telèfon. Els operadors conserven els registres d'ubicació durant períodes que van de pocs dies a diversos anys, depenent de la regulació nacional.
+
+### Permisos de Ubicació de les Aplicacions
+
+Els sistemes operatius moderns ofereixen dos nivells de permís d'ubicació:
+
+**Ubicació precisa** — les teves coordenades GPS, normalment precises a pocs metres.
+**Ubicació aproximada** — una zona aproximada, normalment precisa a pocs quilòmetres, generada pel sistema operatiu a partir de dades mòbils i Wi-Fi sense exposar el fix GPS precís.
+
+iOS 14+ i Android 12+ permeten als usuaris atorgar a les aplicacions només la ubicació aproximada. Aquesta és una protecció de privadesa significativa per a les aplicacions que no necessiten la teva adreça exacta — una aplicació meteorològica necessita la teva ciutat, no la finestra del teu dormitori.
+
+**L'accés a la ubicació en segon pla** (accés mentre l'aplicació no s'utilitza) és ara un permís atorgable per separat en ambdues plataformes i requereix el consentiment explícit de l'usuari.
+
+### Mandats de Geofencing
+
+Les forces de l'ordre en diverses jurisdiccions han utilitzat **mandats de geofencing** (també anomenats "mandats de localització inversa") per obligar empreses com Google a proporcionar una llista de tots els dispositius en una zona geogràfica específica durant una finestra de temps específica. Aquestes dades provenen del Sensorvault de Google — la base de dades d'historial d'ubicació construïda a partir de les dades d'ubicació d'Android. Els tribunals han emès aquests mandats per a investigacions que van des del robatori fins al 6 de gener. Diversos tribunals federals dels EUA els han declarat inconstitucionals en virtut de la Quarta Esmena; d'altres els han permès. El panorama legal encara evoluciona.
+
+### Quan els Operadors Comparteixen la Ubicació
+
+Als Estats Units, les regles **CPNI (Customer Proprietary Network Information)** de la FCC restringeixen els operadors de vendre dades d'ubicació precises a tercers sense consentiment. Una investigació de *Motherboard* el 2018 va revelar que els principals operadors estaven venent dades d'ubicació en temps real a caçadors de recompenses a través d'empreses agregadores, violant aquestes regles. La FCC va multar AT&T, Verizon, T-Mobile i Sprint amb un total combinat d'uns 200 milions de dòlars el 2024 per aquestes violacions.
+
+En zones de conflicte, la qüestió de l'accés a les dades dels operadors es converteix en un assumpte de seguretat nacional. Les forces militars amb accés a la infraestructura dels operadors poden determinar la ubicació en temps real de qualsevol dispositiu registrat a la xarxa — independentment del GPS spoofing — utilitzant els mètodes de posicionament per antena mòbil descrits a la Part VI.
 
 ---
 
 ## Conclusió: Dos Sistemes, Dos Treballs, Un Dispositiu
 
-El teu telèfon porta dos sistemes de localització fonamentalment diferents.
+El teu telèfon porta dos sistemes de localització fonamentalment diferents que serveixen amos diferents.
 
-El primer — GPS — respon a la pregunta *"On creu la infraestructura de posicionament global que estic?"* Poderós i precís, però vulnerable perquè escolta senyals febles a 20.000 km de distància.
+El primer — el GPS i els seus homòlegs de satèl·lit — respon a la pregunta *"On creu la infraestructura de posicionament global que estic?"* És potent, globalment consistent i molt precís en bones condicions. Però és vulnerable perquè escolta senyals febles des de 20.000 km, i qualsevol persona de peu al teu costat amb el transmissor adequat pot superar aquests senyals.
 
-El segon — posicionament per antena i Cell Broadcast — respon a la pregunta *"On es troba aquest dispositiu en relació a la infraestructura de ràdio física que l'envolta?"* Ancorat en física que no pot ser falsificada electrònicament.
+El segon — el posicionament per antena mòbil i Cell Broadcast — respon a la pregunta *"On es troba aquest dispositiu en relació a la infraestructura de ràdio física que l'envolta?"* És menys glamurós. No pot dir-te en quin carrer ets amb la mateixa confiança que el GPS. Però està ancorat en una física que no es pot falsificar electrònicament: el teu telèfon és prou a prop d'una antena per comunicar-se amb ella, o no ho és.
 
-La paradoxa amb la qual vam començar — perdut en el mapa, precisament advertit d'un perill — només és una paradoxa si assumes que aquests dos sistemes són la mateixa cosa. No ho són. Mai van ser dissenyats per ser-ho.
+La paradoxa amb la qual vam començar — perdut al mapa, alertat amb precisió d'un perill — només és una paradoxa si assumes que aquests dos sistemes són la mateixa cosa. No ho són. Mai van ser dissenyats per ser-ho. Un va ser construït per ajudar-te a navegar. L'altre va ser construït per mantenir-te en vida quan la navegació ja no importa.
+
+---
+
+## Referències
+
+* Shwajsophia, "How does my phone think I'm in Jordan, but still knows when I have a rocket near me in TLV?" *Medium*, 2 de març de 2026. [Article original](https://medium.com/@shwajsophia/iran-don-t-shoot-how-does-my-phone-think-im-in-jordan-but-still-knows-when-i-have-a-rocket-ab2b4cce6661)
+* European Space Agency — Navipedia, "GPS Signal Plan." [ESA Navipedia](https://gssc.esa.int/navipedia/index.php/GPS_Signal_Plan)
+* Federal Communications Commission, "Wireless Emergency Alerts (WEA)." [FCC](https://www.fcc.gov/consumers/guides/wireless-emergency-alerts)
+* Android Open Source Project, "CellBroadcast." [Android Source](https://source.android.com/docs/core/ota/modular-system/cellbroadcast)
+* OPSGROUP, "GPS/GNSS Jamming and Spoofing — Middle East and Ukraine." Publicacions de seguretat aèria, 2023–2024.
+* 3GPP TS 23.041 — Realització tècnica del Cell Broadcast Service (CBS).
+* National Institute of Standards and Technology (NIST), "Global Navigation Satellite Systems." Recursos de ciberseguretat, 2024.
