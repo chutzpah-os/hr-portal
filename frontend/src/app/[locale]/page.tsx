@@ -63,6 +63,33 @@ const VIDEOS: YTVideo[] = [
     channelId: 'haniel_pt',
     url: 'https://www.youtube.com/watch?v=XW-PPAL0m7Q',
   },
+  {
+    id: 'LmMR1CEPeF8',
+    title: 'Eu decidi correr 1700 km contra o câncer',
+    thumbnail: 'https://i.ytimg.com/vi/LmMR1CEPeF8/hqdefault.jpg',
+    publishedAt: '',
+    channelName: 'Haniel Rolemberg',
+    channelId: 'haniel_pt',
+    url: 'https://www.youtube.com/watch?v=LmMR1CEPeF8',
+  },
+  {
+    id: 'xPbOHYZqWZM',
+    title: '3 curiosidades sobre a cura do câncer',
+    thumbnail: 'https://i.ytimg.com/vi/xPbOHYZqWZM/hqdefault.jpg',
+    publishedAt: '',
+    channelName: 'Haniel Rolemberg',
+    channelId: 'haniel_pt',
+    url: 'https://www.youtube.com/watch?v=xPbOHYZqWZM',
+  },
+  {
+    id: 'YqcvOwaeOKY',
+    title: 'O câncer não pode mais ser uma sentença',
+    thumbnail: 'https://i.ytimg.com/vi/YqcvOwaeOKY/hqdefault.jpg',
+    publishedAt: '',
+    channelName: 'Haniel Rolemberg',
+    channelId: 'haniel_pt',
+    url: 'https://www.youtube.com/watch?v=YqcvOwaeOKY',
+  },
   // Haniel Rolemberg (EN)
   {
     id: 'iCRzdi6TlWY',
