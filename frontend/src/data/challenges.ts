@@ -131,6 +131,9 @@ If you want to contribute, every donation makes a difference.`,
     },
     videos: [
       { id: 'XW-PPAL0m7Q', lang: 'pt', title: 'Haniel Rolemberg — PT' },
+      { id: 'LmMR1CEPeF8', lang: 'pt', title: 'Eu decidi correr 1700 km contra o câncer' },
+      { id: 'xPbOHYZqWZM', lang: 'pt', title: '3 curiosidades sobre a cura do câncer' },
+      { id: 'YqcvOwaeOKY', lang: 'pt', title: 'O câncer não pode mais ser uma sentença' },
       { id: 'iCRzdi6TlWY', lang: 'en', title: 'Haniel Rolemberg — EN' },
     ],
     faqs: [
