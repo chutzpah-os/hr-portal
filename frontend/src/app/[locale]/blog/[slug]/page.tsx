@@ -45,10 +45,15 @@ function renderBlock(block: string, i: number): ReactNode {
     return <hr key={i} style={{ border: 'none', borderTop: '1px solid rgba(10,10,15,0.08)', margin: '2.5rem 0' }} />
   }
   if (text.startsWith('#### ')) {
+    const [firstLine, ...rest] = text.split('\n')
+    const answer = rest.join('\n').trim()
     return (
-      <h4 key={i} style={{ color: 'var(--white-90)', fontFamily: 'var(--font-syne)', fontSize: '0.92rem', fontWeight: 700, letterSpacing: '-0.01em', marginBottom: '0.4rem', marginTop: '1.5rem' }}>
-        {renderInline(text.replace(/^#### /, ''))}
-      </h4>
+      <div key={i}>
+        <h4 style={{ color: 'var(--white-90)', fontFamily: 'var(--font-syne)', fontSize: '0.92rem', fontWeight: 700, letterSpacing: '-0.01em', marginBottom: '0.5rem', marginTop: '1.5rem' }}>
+          {renderInline(firstLine.replace(/^#### /, ''))}
+        </h4>
+        {answer && <p style={{ textTransform: 'none', lineHeight: 1.75, marginBottom: '1rem', fontWeight: 'normal' }}>{renderInline(answer)}</p>}
+      </div>
     )
   }
   if (text.startsWith('### ')) {
