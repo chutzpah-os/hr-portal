@@ -1,0 +1,232 @@
+---
+title: "Comment l'IA Guérit le Cancer : Protéines, Molécules et Données Derrière la Prochaine Percée"
+date: "2026-07-26"
+excerpt: "D'AlphaFold aux cellules T conçues par IA, découvrez comment l'intelligence artificielle et l'apprentissage automatique accélèrent la recherche sur le cancer, le diagnostic et la découverte de médicaments sur huit fronts majeurs."
+category: "technical"
+tags: ["IA", "Recherche sur le Cancer", "Apprentissage Automatique", "Découverte de Médicaments", "Médecine de Précision", "AlphaFold", "Immunothérapie"]
+groups: ["How Things Work/Cancer"]
+faqs:
+  - question: "L'intelligence artificielle peut-elle guérir le cancer ?"
+    answer: "Pas à elle seule. L'IA accélère des étapes spécifiques de la recherche sur le cancer — prédiction de structure protéique, conception de médicaments, diagnostic et correspondance d'essais cliniques — mais elle ne remplace pas les essais cliniques, les approbations réglementaires ni le jugement du médecin. La plupart des technologies décrites ici sont encore en phase de recherche, préclinique ou d'essais cliniques de phase initiale."
+  - question: "À quoi sert AlphaFold dans la recherche sur le cancer ?"
+    answer: "AlphaFold prédit la structure tridimensionnelle des protéines à partir de leur séquence d'acides aminés en quelques minutes au lieu d'années. En oncologie, cela aide les chercheurs à comprendre comment se comportent structurellement les protéines liées au cancer et à concevoir des candidats médicaments qui s'y lient avec précision."
+  - question: "Que sont les cellules IMPAC-T ?"
+    answer: "Les cellules IMPAC-T sont des lymphocytes T génétiquement modifiés avec des protéines conçues par IA appelées miniligands (ou minibinders), qui aident le système immunitaire à reconnaître et à attaquer les cellules tumorales avec plus de précision. La technique a été développée par des chercheurs de l'Université Technique du Danemark (DTU) et du Scripps Research Institute, publiée dans Science en 2025."
+  - question: "Comment l'IA aide-t-elle à détecter le cancer plus tôt ?"
+    answer: "Les outils basés sur l'IA analysent des images de pathologie et des analyses de sang (biopsies liquides) à la recherche de patterns moléculaires invisibles à l'œil nu, détectant souvent des signes de cancer des mois ou des années avant ce que ferait un diagnostic clinique traditionnel."
+  - question: "Combien de personnes auront le cancer selon l'OMS ?"
+    answer: "Selon le Rapport sur la situation mondiale du cancer 2026 de l'OMS/CIRC, 1 personne sur 5 développera un cancer au cours de sa vie, et environ 92 % de la population mondiale sera touchée directement ou indirectement. Le nombre annuel de nouveaux cas devrait passer de 20,6 millions en 2024 à 35 millions d'ici 2050."
+  - question: "La découverte de médicaments par IA est-elle déjà testée sur des humains ?"
+    answer: "Oui. Des entreprises comme Insilico Medicine ont déjà fait progresser des candidats médicaments générés par IA vers des essais cliniques chez l'homme, et les chercheurs de la DTU/Scripps visent les premiers essais chez l'homme pour des immunothérapies oncologiques conçues par IA dans les prochaines années."
+---
+
+**En bref :** L'intelligence artificielle remodèle la recherche sur le cancer sur huit grands fronts — des cellules immunitaires conçues par IA et la prédiction de structure protéique de type AlphaFold aux biomarqueurs de détection précoce et aux réseaux mondiaux de partage de données. Aucune de ces technologies ne guérit le cancer à elle seule, mais ensemble, elles compriment des délais qui prenaient autrefois des années en quelques semaines. Ci-dessous, chaque percée est expliquée en langage courant, avec des sources.
+
+**Accéder à une section :**
+1. [Les "Missiles Guidés" Moléculaires Conçus par IA : les Cellules IMPAC-T](#1-concevoir-des-missiles-guides-moleculaires-les-cellules-impac-t)
+2. [Prédiction du Repliement des Protéines : l'Héritage d'AlphaFold](#2-prediction-du-repliement-des-proteines-lheritage-dalphafold)
+3. [Criblage Virtuel pour la Sécurité Moléculaire](#3-criblage-virtuel-pour-la-securite-moleculaire)
+4. [Médecine de Précision Multimodale](#4-medecine-de-precision-multimodale)
+5. [Biomarqueurs Numériques pour le Diagnostic Précoce](#5-biomarqueurs-numeriques-pour-le-diagnostic-precoce)
+6. [Découverte Accélérée de Médicaments (Conception De Novo)](#6-decouverte-acceleree-de-medicaments-conception-de-novo)
+7. [Plateformes de Correspondance pour les Essais Cliniques](#7-plateformes-de-correspondance-pour-les-essais-cliniques)
+8. [Un Écosystème Mondial d'Intelligence Oncologique](#8-un-ecosysteme-mondial-dintelligence-oncologique)
+9. [FAQ : Questions Fréquentes sur l'IA et le Cancer](#faq-questions-frequentes-sur-lia-et-le-cancer)
+
+> **1 personne sur 5 développera un cancer au cours de sa vie. Lorsque l'impact sur les membres de la famille et les aidants est inclus, environ 92 % de la population mondiale sera touchée par la maladie, directement ou indirectement, à un moment ou un autre.** En 2024, le monde a enregistré 20,6 millions de nouveaux cas — et si les tendances actuelles se maintiennent, ce nombre devrait atteindre 35 millions de nouveaux cas par an d'ici 2050.
+>
+> *Source : [Rapport sur la situation mondiale du cancer 2026](https://www.who.int/publications/i/item/9789240123977), Organisation mondiale de la Santé (OMS) et Centre international de Recherche sur le Cancer (CIRC), juillet 2026.*
+
+Le cancer n'est pas une maladie unique, et c'est peut-être précisément pour cela qu'aucune solution isolée ne suffit à le vaincre. Ce qui s'est accéléré ces dernières années est tout à fait différent : une convergence de l'Intelligence Artificielle, de l'Apprentissage Automatique et de l'analyse de données à grande échelle attaquant le problème sur plusieurs fronts simultanément — de la structure moléculaire des protéines à la façon dont les essais cliniques trouvent des patients.
+
+Il s'agit d'un méta-article — une carte du territoire, pas une plongée technique approfondie dans chaque ligne de code ou formule chimique. L'objectif est simple : rassembler les fronts les plus prometteurs où l'IA, l'Apprentissage Automatique et le Big Data se croisent avec la biologie du cancer, et expliquer chacun dans un langage que toute personne curieuse peut suivre, même sans formation en biochimie.
+
+Parcourons-les, un à la fois.
+
+---
+
+## 1. Concevoir des "Missiles Guidés" Moléculaires : les Cellules IMPAC-T
+
+![Cellule T conçue par IA attaquant une cellule cancéreuse dans la recherche en immunothérapie oncologique](https://commons.wikimedia.org/wiki/Special:FilePath/T-cell_killing_cancer_cell.gif)
+
+Imaginez le système immunitaire comme une armée extrêmement capable qui parfois ne peut tout simplement pas *voir* l'ennemi. Les lymphocytes T — les soldats de cette armée — circulent dans le corps capables de détruire presque toutes les cellules malades, mais ils échouent souvent à reconnaître le cancer comme une menace, car les cellules tumorales sont expertes dans l'art du camouflage.
+
+En 2025, des chercheurs de l'Université Technique du Danemark (DTU), en partenariat avec le Scripps Research Institute aux États-Unis, ont publié un article dans la revue *Science* décrivant une solution élégante à ce problème. Au lieu de scruter la nature à la recherche de récepteurs reconnaissant déjà une tumeur donnée — un processus pouvant prendre des années d'essais et d'erreurs —, ils ont utilisé l'IA pour *concevoir de toutes pièces* de petites protéines appelées **miniligands** (également connus sous le nom de minibinders). Ces protéines agissent comme une "étiquette d'identification" collée sur la cellule tumorale, quelque chose que le système immunitaire peut reconnaître avec une précision chirurgicale.
+
+L'étape suivante consistait à modifier génétiquement les lymphocytes T pour qu'ils puissent "voir" cette étiquette — et c'est ainsi que sont nées les **cellules IMPAC-T**. Lors de tests en laboratoire, ces cellules se sont révélées très efficaces contre NY-ESO-1, un marqueur présent dans plusieurs types de cancer, et les scientifiques ont même pu adapter la technique à un cas individuel de mélanome métastatique. L'un des chercheurs a bien résumé le moment : il était frappant de voir quelque chose construit entièrement à l'intérieur d'un ordinateur aussi bien fonctionner une fois testé en laboratoire.
+
+Ce qui est le plus fascinant ici, c'est la *compression du temps* : ce qui prenait autrefois des années de recherche de récepteurs naturels, l'IA le comprime en quelques semaines de conception computationnelle. C'est la différence entre chercher une aiguille dans une botte de foin et simplement imprimer l'aiguille exacte dont vous avez besoin.
+
+L'équipe de recherche vise déjà les premiers essais chez l'homme pour les prochaines années, suivant un processus similaire aux thérapies CAR-T déjà approuvées : du sang est prélevé sur le patient, les cellules T sont modifiées en laboratoire et réintroduites dans le patient — mais guidées désormais par un "GPS biologique" conçu par des algorithmes.
+
+### Pourquoi c'est important
+- Réduit le temps de développement d'une immunothérapie ciblée de plusieurs années à quelques semaines.
+- Peut être personnalisé jusqu'à la tumeur spécifique du patient individuel.
+- Utilise l'IA générative non pas pour chercher dans une bibliothèque de molécules existante, mais pour en inventer une entièrement nouvelle.
+
+---
+
+## 2. Prédiction du Repliement des Protéines : l'Héritage d'AlphaFold
+
+![Prédiction de structure protéique par AlphaFold utilisée dans la découverte de médicaments contre le cancer](https://commons.wikimedia.org/wiki/Special:FilePath/AlphaFold_2.png)
+
+Pour comprendre pourquoi cela est si important, il aide de comprendre un problème qui a hanté la biologie pendant des décennies : une protéine est, en son cœur, une séquence d'acides aminés — comme un collier de perles. Mais cette séquence se replie sur elle-même en une forme tridimensionnelle très spécifique, et c'est *cette forme* qui détermine ce que la protéine fait réellement dans le corps. Déterminer cette forme expérimentalement, par cristallographie aux rayons X, pouvait prendre des années et coûter des fortunes.
+
+AlphaFold, développé par DeepMind, a complètement changé la donne en utilisant des réseaux de neurones profonds pour prédire cette structure tridimensionnelle directement à partir de la séquence d'acides aminés, avec une précision qui se rapproche de ce qui est obtenu dans un laboratoire physique — mais en quelques minutes plutôt qu'en années.
+
+Appliqué au cancer, cela signifie que les chercheurs peuvent rapidement visualiser comment se comportent structurellement les protéines oncogènes (celles qui, lorsqu'elles sont mutées ou dérégulées, contribuent au développement de tumeurs). Cela accélère deux choses à la fois : comprendre *pourquoi* une mutation spécifique rend une cellule cancéreuse, et concevoir des molécules (comme les miniligands ci-dessus) qui s'ajustent parfaitement à ces structures, comme une clé dans une serrure.
+
+C'est essentiellement rendre disponible, gratuitement et à l'échelle mondiale, une carte structurelle qui n'était auparavant accessible qu'aux laboratoires disposant de budgets de plusieurs millions — ce qui démocratise la recherche sur le cancer pour les instituts plus petits, les universités publiques et les chercheurs dans les pays en développement.
+
+### Pourquoi c'est important
+- A réduit le temps de prédiction de la structure 3D d'une protéine de plusieurs années à quelques minutes.
+- Sous-tend la conception des miniligands et d'autres molécules ciblées décrites dans cet article.
+- Sa base de données structurelle est publique et gratuite, abaissant la barrière d'entrée pour les groupes de recherche plus petits dans le monde entier.
+
+---
+
+## 3. Criblage Virtuel pour la Sécurité Moléculaire
+
+![Simulation d'amarrage moléculaire utilisée pour le criblage de sécurité des médicaments piloté par IA](https://commons.wikimedia.org/wiki/Special:FilePath/Overview_docking.png)
+
+Avant qu'une molécule n'approche d'un être humain, elle doit passer un test crucial : attaque-t-elle *uniquement* les cellules malades, ou nuit-elle aussi aux cellules saines ? Traditionnellement, cette question ne pouvait être répondue qu'après des mois, voire des années, de tests en laboratoire et sur des animaux.
+
+Les algorithmes d'Apprentissage Automatique simulent désormais cette interaction *avant* que toute synthèse chimique ne se produise. Le modèle reçoit la structure de la molécule candidate et la structure des protéines cibles (saines et cancéreuses) et prédit statistiquement les probabilités de réactions indésirables — toxicité, effets hors cible, interactions non désirées.
+
+En pratique, cela fonctionne comme un filtre géant : parmi des milliers de molécules candidates, l'IA écarte rapidement celles présentant un risque élevé d'effets secondaires, ne laissant passer au laboratoire que les candidates les plus prometteuses et les plus sûres. C'est une logique de criblage similaire à celle des systèmes de détection d'anomalies : au lieu d'attendre que le problème se produise réellement, on simule le comportement et on neutralise le risque avant qu'il ne se matérialise.
+
+### Pourquoi c'est important
+- Déplace les tests de toxicité plus tôt dans le processus, avant la synthèse coûteuse ou les essais sur animaux.
+- Réduit le nombre de molécules nécessitant des tests physiques, économisant du temps et de l'argent.
+- Améliore le profil de sécurité des candidats avant qu'ils n'atteignent un patient.
+
+---
+
+## 4. Médecine de Précision Multimodale
+
+![Double hélice d'ADN représentant des données génomiques utilisées en oncologie de précision avec l'IA](https://commons.wikimedia.org/wiki/Special:FilePath/DNA_Double_Helix_by_NHGRI.jpg)
+
+Une erreur courante est de penser au "cancer" comme à une seule maladie. En réalité, chaque tumeur a sa propre "empreinte digitale" moléculaire — et c'est là qu'intervient la médecine de précision.
+
+Les systèmes d'IA peuvent aujourd'hui intégrer différentes couches de données biologiques d'un même patient : la génomique (l'ADN de la tumeur), la protéomique (quelles protéines sont produites) et la radiomique (les patterns extraits des examens d'imagerie comme les scanners et les IRM). Seule, chacune de ces couches ne raconte qu'une partie de l'histoire. Combinées par un modèle d'IA capable de croiser des milliards de points de données, elles révèlent des patterns qu'aucun médecin ne pourrait repérer à l'œil nu.
+
+Le résultat pratique est un "cocktail" thérapeutique suggéré et adapté à la biologie spécifique de cette tumeur chez ce patient spécifique — au lieu du protocole générique qui domine encore une grande partie de l'oncologie aujourd'hui. C'est de la médecine sur mesure, au sens le plus littéral de l'expression.
+
+### Pourquoi c'est important
+- Éloigne les décisions de traitement des moyennes populationnelles vers la tumeur individuelle.
+- Combine génomique, protéomique et imagerie en une seule couche d'aide à la décision.
+- Pose les bases de "cocktails" de traitement adaptés à la biologie spécifique d'un patient.
+
+---
+
+## 5. Biomarqueurs Numériques pour le Diagnostic Précoce
+
+![Comparaison entre la structure des cellules normales et cancéreuses utilisée dans la détection précoce du cancer par IA](https://commons.wikimedia.org/wiki/Special:FilePath/Normal_and_cancer_cells_structure.jpg)
+
+S'il y a un consensus quasi universel en oncologie, c'est celui-ci : plus le cancer est détecté tôt, plus les chances de guérison sont élevées. Le problème est que les premiers signes tendent à être trop subtils pour l'œil humain.
+
+Les outils de Deep Learning ont été entraînés à parcourir des images de pathologie (lames de biopsie) et des analyses de sang à la recherche de patterns moléculaires pratiquement invisibles — de petites altérations qui précèdent, de mois ou d'années, un diagnostic clinique traditionnel. Une branche particulièrement prometteuse est la **biopsie liquide** : au lieu d'une biopsie invasive, une analyse de sang détecte des fragments d'ADN tumoral circulant, permettant de dépister plusieurs types de cancer avec un seul examen.
+
+D'un point de vue des données, il est fascinant de penser à cela comme un problème de détection de signal noyé dans le bruit : le corps humain génère une énorme quantité de "bruit biologique" normal, et le défi de l'IA est d'isoler, dans ce bruit, le signal faible et spécifique d'une cellule qui a commencé à se comporter de manière anormale.
+
+### Pourquoi c'est important
+- Les biopsies liquides peuvent dépister plusieurs types de cancer à partir d'une seule prise de sang.
+- Le deep learning peut repérer des patterns dans les lames de pathologie invisibles à l'œil humain.
+- La détection précoce se corrèle systématiquement avec des taux de survie nettement meilleurs.
+
+---
+
+## 6. Découverte Accélérée de Médicaments (Conception De Novo)
+
+![Criblage virtuel de molécules candidates à des médicaments pour le traitement du cancer par IA](https://commons.wikimedia.org/wiki/Special:FilePath/Virtual_screening.png)
+
+Ici, l'IA cesse d'être simplement un outil de recherche et devient, très littéralement, un **architecte chimique**. Au lieu de tester des millions de composés déjà connus (une approche lente et coûteuse), les modèles génératifs créent des molécules entièrement nouvelles — qui n'ont jamais existé dans la nature — optimisées dès le départ pour bloquer une protéine spécifique liée au cancer.
+
+C'est un peu comme demander à un système non pas de chercher la bonne clé parmi des millions de clés existantes, mais de *concevoir* la clé parfaite, en connaissant déjà la forme exacte de la serrure. Des entreprises comme Insilico Medicine ont déjà amené des molécules entièrement générées par IA à des essais cliniques chez l'homme — une étape qui, il y a dix ans, ressemblait à de la science-fiction.
+
+Cette approche réduit drastiquement le processus de découverte : parmi des milliards de combinaisons chimiques théoriquement possibles, l'IA concentre l'attention humaine et des laboratoires uniquement sur les dizaines de candidats ayant la plus grande probabilité mathématique de succès.
+
+### Pourquoi c'est important
+- Génère des molécules entièrement nouvelles plutôt que de chercher dans des bibliothèques chimiques existantes.
+- A déjà produit des candidats médicaments conçus par IA qui ont atteint des essais cliniques chez l'homme.
+- Réduit un espace de recherche de milliards de composés à une liste restreinte de dizaines.
+
+---
+
+## 7. Plateformes de Correspondance pour les Essais Cliniques
+
+![Image de cellule cancéreuse utilisée pour mettre en relation des patients avec des essais cliniques via l'IA](https://commons.wikimedia.org/wiki/Special:FilePath/Breast_cancer_cell_(2).jpg)
+
+L'un des goulots d'étranglement les moins évoqués — mais d'une importance brutale — dans la recherche sur le cancer est simplement de connecter le bon patient au bon essai clinique. Il existe des milliers d'études actives dans le monde, chacune avec des critères d'éligibilité extrêmement spécifiques (type de mutation, stade de la maladie, traitements antérieurs), et à ce jour, une grande partie de cette mise en correspondance est encore effectuée manuellement par des oncologues surchargés.
+
+Les algorithmes de Traitement du Langage Naturel (TLN) et d'Apprentissage Automatique croisent désormais automatiquement le profil génétique et clinique d'un patient avec les critères de milliers d'essais en temps réel — y compris pour les patients dans des régions éloignées qui normalement passeraient complètement sous le radar. Cela accélère non seulement l'accès aux thérapies expérimentales de pointe, mais améliore aussi la qualité de la recherche elle-même : plus les données incluses dans les essais sont génétiquement diversifiées, meilleurs seront les traitements résultants pour différentes populations — plutôt que de fonctionner uniquement pour le groupe démographique historiquement le plus représenté dans les études.
+
+### Pourquoi c'est important
+- Automatise un processus de mise en correspondance qui dépend aujourd'hui en grande partie du temps et de la conscience individuelle des oncologues.
+- Étend l'accès aux essais aux patients dans les régions éloignées ou mal desservies.
+- Améliore la diversité génétique des populations des essais, ce qui améliore la généralisation des traitements.
+
+---
+
+## 8. Un Écosystème Mondial d'Intelligence Oncologique
+
+![Carte mondiale des données de santé représentant un réseau mondial d'intelligence oncologique par IA](https://commons.wikimedia.org/wiki/Special:FilePath/World_Health_Organization_membership_status_map.png)
+
+C'est, sans conteste, la pièce qui relie toutes les précédentes — et aussi la plus ambitieuse, du point de vue de l'infrastructure de données.
+
+L'idée est un écosystème avec deux composantes complémentaires :
+
+- Une **Plateforme Personnelle de Surveillance Oncologique** : une application qui centralise et suit en continu l'historique de santé complet d'un patient — examens, traitements, médicaments, progression — unifiant des informations qui sont aujourd'hui dispersées entre différents hôpitaux, laboratoires et systèmes qui communiquent rarement entre eux.
+- Un **Réseau Mondial d'Intelligence Thérapeutique** : un environnement analytique où les données agrégées de millions de patients, de traitements et de résultats dans le monde entier sont traitées par l'IA pour identifier statistiquement ce qui fonctionne réellement pour chaque type de tumeur et stade de la maladie.
+
+Cela soulève un double défi, à la fois technique et éthique : comment construire cette "intelligence collective" à l'échelle mondiale sans centraliser dangereusement des données sensibles ? Une réponse qui existe déjà dans la recherche aujourd'hui est l'**apprentissage fédéré** — une technique qui entraîne des modèles d'IA en utilisant des données de plusieurs hôpitaux *sans* que ces données ne quittent physiquement l'endroit où elles sont stockées, préservant la confidentialité des patients tout en bénéficiant de la puissance statistique d'un ensemble de données combiné massif. C'est particulièrement précieux pour les cancers rares, où aucun hôpital isolé n'a suffisamment de patients pour tirer des conclusions fiables par lui-même.
+
+### Pourquoi c'est important
+- Unifie l'historique médical fragmenté d'un patient entre hôpitaux et systèmes.
+- L'apprentissage fédéré permet des insights à l'échelle mondiale sans centraliser les données sensibles des patients.
+- Particulièrement précieux pour les cancers rares, où aucune institution isolée ne dispose de données suffisantes.
+
+---
+
+## Une mise en garde nécessaire
+
+Il vaut la peine de dire à voix haute ce que tout chercheur sérieux doit reconnaître : rien de tout cela ne remplace le jugement clinique humain aujourd'hui, et la plupart de ces technologies en sont encore aux stades de recherche, de tests précliniques ou d'essais cliniques de phase initiale — pas en usage hospitalier courant. Le même rapport de l'OMS cité ci-dessus note que les résultats de survie restent "extrêmement inégaux" à l'échelle mondiale : les taux de survie à cinq ans dépassent 85 % dans les pays à hauts revenus avec un diagnostic précoce, mais tombent en dessous de 30 à 45 % dans les pays à faibles revenus, selon le type de cancer. En d'autres termes : le progrès technique ne se traduit en vies sauvées que s'il s'accompagne d'un accès équitable — quelque chose qu'aucun algorithme ne résout à lui seul.
+
+## Conclusion
+
+Ce qui ressort le plus, en regardant cet ensemble de huit fronts, c'est qu'aucun d'entre eux ne résout le cancer isolément. C'est la combinaison — structure protéique + conception moléculaire + criblage de sécurité + données multimodales + diagnostic précoce + découverte de médicaments + accès aux essais + infrastructure mondiale de données — qui commence à ressembler, véritablement, à une machine capable de changer la donne. Ce n'est pas une seule "cure magique", c'est une pile de technologies, donnée sur donnée, couche sur couche — un problème de systèmes complexes attaqué sur plusieurs fronts à la fois.
+
+---
+
+## FAQ : Questions Fréquentes sur l'IA et le Cancer
+
+#### L'intelligence artificielle peut-elle guérir le cancer ?
+Pas à elle seule. L'IA accélère des étapes spécifiques de la recherche sur le cancer — prédiction de structure protéique, conception de médicaments, diagnostic et correspondance d'essais cliniques — mais elle ne remplace pas les essais cliniques, les approbations réglementaires ni le jugement du médecin. La plupart des technologies décrites dans cet article sont encore en phase de recherche, préclinique ou d'essais cliniques de phase initiale.
+
+#### À quoi sert AlphaFold dans la recherche sur le cancer ?
+AlphaFold prédit la structure tridimensionnelle des protéines à partir de leur séquence d'acides aminés en quelques minutes au lieu d'années. En oncologie, cela aide les chercheurs à comprendre comment se comportent les protéines liées au cancer et à concevoir des candidats médicaments qui s'y lient avec précision.
+
+#### Que sont les cellules IMPAC-T ?
+Les cellules IMPAC-T sont des lymphocytes T génétiquement modifiés avec des protéines conçues par IA appelées miniligands (ou minibinders), qui aident le système immunitaire à reconnaître et à attaquer les cellules tumorales avec plus de précision. La technique a été développée par des chercheurs de l'Université Technique du Danemark (DTU) et du Scripps Research Institute, publiée dans *Science* en 2025.
+
+#### Comment l'IA aide-t-elle à détecter le cancer plus tôt ?
+Les outils basés sur l'IA analysent des images de pathologie et des analyses de sang (biopsies liquides) à la recherche de patterns moléculaires invisibles à l'œil nu, détectant souvent des signes de cancer des mois ou des années avant ce que ferait un diagnostic clinique traditionnel.
+
+#### Combien de personnes auront le cancer selon l'OMS ?
+Selon le *Rapport sur la situation mondiale du cancer 2026* de l'OMS/CIRC, 1 personne sur 5 développera un cancer au cours de sa vie, et environ 92 % de la population mondiale sera touchée directement ou indirectement. Le nombre annuel de nouveaux cas devrait passer de 20,6 millions en 2024 à 35 millions d'ici 2050.
+
+#### La découverte de médicaments par IA est-elle déjà testée sur des humains ?
+Oui. Des entreprises comme Insilico Medicine ont déjà fait progresser des candidats médicaments générés par IA vers des essais cliniques chez l'homme, et les chercheurs de la DTU/Scripps visent les premiers essais chez l'homme pour des immunothérapies oncologiques conçues par IA dans les prochaines années.
+
+---
+
+### Références
+
+- OMS / CIRC — [*Rapport sur la situation mondiale du cancer 2026*](https://www.who.int/publications/i/item/9789240123977) (juillet 2026)
+- Abrale — [L'IA conçoit le système immunitaire pour attaquer le cancer avec précision](https://abrale.org.br/noticias/ia-projeta-sistema-imunologico-para-atacar-o-cancer-com-precisao/)
+- Olhar Digital — [L'IA est un nouvel allié dans les traitements contre les tumeurs](https://olhardigital.com.br/2025/07/27/medicina-e-saude/ia-e-nova-aliada-nos-tratamentos-conta-tumores/)
+- ND Mais — [L'IA aide les cellules T à localiser les tumeurs avec plus de précision](https://ndmais.com.br/ciencia-e-espaco/celulas-t-sistema-enxerga-cancer-ia/)
+- Hardware.com.br — [L'IA permet un traitement contre le cancer sans effets secondaires](https://www.hardware.com.br/noticias/inteligencia-artificial-permite-tratamento-contra-cancer-sem-efeitos-colaterais/)
+- Nature — L'impact de l'IA sur l'oncologie moderne : de la détection précoce aux soins personnalisés
+- PMC (NIH) — L'intelligence artificielle assiste la médecine de précision dans le traitement du cancer
+- Roche — L'IA en oncologie de précision : solutions numériques pour les soins oncologiques

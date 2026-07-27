@@ -1,0 +1,232 @@
+---
+title: "Com la IA Està Curant el Càncer: Proteïnes, Molècules i les Dades Darrere el Proper Avenç"
+date: "2026-07-26"
+excerpt: "Des d'AlphaFold fins a les cèl·lules T dissenyades per IA, descobreix com la intel·ligència artificial i l'aprenentatge automàtic estan accelerant la recerca del càncer, el diagnòstic i el descobriment de medicaments en vuit fronts majors."
+category: "technical"
+tags: ["IA", "Recerca contra el Càncer", "Aprenentatge Automàtic", "Descoberta de Medicaments", "Medicina de Precisió", "AlphaFold", "Immunoteràpia"]
+groups: ["How Things Work/Cancer"]
+faqs:
+  - question: "Pot la intel·ligència artificial curar el càncer?"
+    answer: "No per si sola. La IA accelera passos específics en la recerca del càncer — predicció d'estructura proteica, disseny de medicaments, diagnòstic i correspondència d'assajos clínics — però no substitueix els assajos clínics, les aprovacions regulatòries ni el judici del metge. La majoria de les tecnologies descrites aquí encara es troben en fases de recerca, preclínica o assajos clínics de fase inicial."
+  - question: "Per a què s'utilitza AlphaFold en la recerca del càncer?"
+    answer: "AlphaFold prediu l'estructura tridimensional de les proteïnes a partir de la seva seqüència d'aminoàcids en minuts en lloc d'anys. En oncologia, això ajuda els investigadors a entendre com es comporten estructuralment les proteïnes relacionades amb el càncer i a dissenyar candidats a medicaments que s'hi uneixin amb precisió."
+  - question: "Què són les cèl·lules IMPAC-T?"
+    answer: "Les cèl·lules IMPAC-T són limfòcits T modificats genèticament amb proteïnes dissenyades per IA anomenades miniligands (o minibinders), que ajuden el sistema immunitari a reconèixer i atacar les cèl·lules tumorals amb més precisió. La tècnica va ser desenvolupada per investigadors de la Universitat Tècnica de Dinamarca (DTU) i el Scripps Research Institute, publicada a Science el 2025."
+  - question: "Com ajuda la IA a detectar el càncer més aviat?"
+    answer: "Les eines basades en IA analitzen imatges de patologia i anàlisis de sang (biòpsies líquides) a la recerca de patrons moleculars invisibles a l'ull humà, detectant sovint signes de càncer mesos o anys abans del que ho faria un diagnòstic clínic tradicional."
+  - question: "Quantes persones tindran càncer segons l'OMS?"
+    answer: "Segons l'Informe sobre la situació mundial del càncer 2026 de l'OMS/IARC, 1 de cada 5 persones desenvoluparà càncer al llarg de la seva vida, i aproximadament el 92% de la població mundial es veurà afectada directament o indirectament. Es preveu que el nombre anual de nous casos creixi de 20,6 milions el 2024 a 35 milions per al 2050."
+  - question: "El descobriment de medicaments per IA ja s'està provant en humans?"
+    answer: "Sí. Empreses com Insilico Medicine ja han avançat candidats a medicaments generats per IA cap a assajos clínics en humans, i els investigadors de la DTU/Scripps tenen com a objectiu els primers assajos en humans per a immunoteràpies oncològiques dissenyades per IA en els propers anys."
+---
+
+**Resum:** La intel·ligència artificial està reformant la recerca del càncer en vuit grans fronts — des de cèl·lules immunitàries dissenyades per IA i predicció d'estructura proteica a l'estil AlphaFold fins a biomarcadors de detecció precoç i xarxes globals d'intercanvi de dades. Cap d'aquestes tecnologies cura el càncer per si sola, però juntes estan comprimint terminis que abans prenien anys en setmanes. A continuació, cada avenç s'explica en un llenguatge accessible, amb fonts.
+
+**Navega per les seccions:**
+1. [Els "Míssils Guiats" Moleculars Dissenyats per IA: les Cèl·lules IMPAC-T](#1-dissenyant-missils-guiats-moleculars-les-cellules-impac-t)
+2. [Predicció del Plegament de Proteïnes: l'Herència d'AlphaFold](#2-prediccio-del-plegament-de-proteines-lherencia-dalphafold)
+3. [Cribratge Virtual per a la Seguretat Molecular](#3-cribratge-virtual-per-a-la-seguretat-molecular)
+4. [Medicina de Precisió Multimodal](#4-medicina-de-precisio-multimodal)
+5. [Biomarcadors Digitals per al Diagnòstic Precoç](#5-biomarcadors-digitals-per-al-diagnostic-precoc)
+6. [Descoberta Accelerada de Medicaments (Disseny De Novo)](#6-descoberta-accelerada-de-medicaments-disseny-de-novo)
+7. [Plataformes de Correspondència per a Assajos Clínics](#7-plataformes-de-correspondencia-per-a-assajos-clinics)
+8. [Un Ecosistema Global d'Intel·ligència Oncològica](#8-un-ecosistema-global-dintelligencia-oncologica)
+9. [FAQ: Preguntes Freqüents sobre IA i Càncer](#faq-preguntes-frequents-sobre-ia-i-cancer)
+
+> **1 de cada 5 persones desenvoluparà càncer al llarg de la seva vida. Quan s'inclou l'impacte en familiars i cuidadors, aproximadament el 92% de la població mundial es veurà afectada per la malaltia, directament o indirectament, en algun moment.** El 2024, el món va registrar 20,6 milions de nous casos — i si les tendències actuals es mantenen, aquest nombre es projecta en 35 milions de nous casos per any per al 2050.
+>
+> *Font: [Informe sobre la situació mundial del càncer 2026](https://www.who.int/publications/i/item/9789240123977), Organització Mundial de la Salut (OMS) i Agència Internacional de Recerca sobre el Càncer (IARC), juliol de 2026.*
+
+El càncer no és una sola malaltia, i potser és exactament per això que cap solució aïllada és suficient per vèncer-lo. El que s'ha accelerat en els darrers anys és quelcom completament diferent: una convergència d'Intel·ligència Artificial, Aprenentatge Automàtic i anàlisi de dades a gran escala atacant el problema en múltiples fronts simultàniament — de l'estructura molecular de les proteïnes a la manera com els assajos clínics troben pacients.
+
+Aquest és un meta-article — un mapa del territori, no una immersió tècnica profunda en cada línia de codi o fórmula química. L'objectiu és simple: reunir els fronts més prometedors on la IA, l'Aprenentatge Automàtic i el Big Data es creuen amb la biologia del càncer, i explicar cadascun en un llenguatge que qualsevol persona curiosa pugui seguir, fins i tot sense formació en bioquímica.
+
+Anem-hi, un pas a la vegada.
+
+---
+
+## 1. Dissenyant "Míssils Guiats" Moleculars: les Cèl·lules IMPAC-T
+
+![Cèl·lula T dissenyada per IA atacant una cèl·lula cancerosa en recerca d'immunoteràpia oncològica](https://commons.wikimedia.org/wiki/Special:FilePath/T-cell_killing_cancer_cell.gif)
+
+Imagina el sistema immunitari com un exèrcit extremadament capaç que de vegades simplement no pot *veure* l'enemic. Els limfòcits T — els soldats d'aquest exèrcit — circulen pel cos capaços de destruir gairebé qualsevol cèl·lula malalta, però sovint no aconsegueixen reconèixer el càncer com una amenaça, perquè les cèl·lules tumorals són expertes a camuflar-se.
+
+El 2025, investigadors de la Universitat Tècnica de Dinamarca (DTU), en associació amb el Scripps Research Institute als Estats Units, van publicar un article a la revista *Science* descrivint una solució elegant a aquest problema. En lloc d'escrutar la natura a la recerca de receptors que ja reconeguin un tumor determinat — un procés que pot durar anys d'assaig i error —, van utilitzar IA per *dissenyar des de zero* petites proteïnes anomenades **miniligands** (també coneguts com a minibinders). Aquestes proteïnes actuen com una "etiqueta d'identificació" enganxada a la cèl·lula tumoral, quelcom que el sistema immunitari pot reconèixer amb precisió quirúrgica.
+
+El següent pas va ser modificar genèticament els limfòcits T perquè poguessin "veure" aquesta etiqueta — i així van néixer les anomenades **cèl·lules IMPAC-T**. En proves de laboratori, aquestes cèl·lules van demostrar ser molt efectives contra NY-ESO-1, un marcador present en diversos tipus de càncer, i els científics fins i tot van poder adaptar la tècnica a un cas individual de melanoma metastàtic. Un dels investigadors va resumir bé el moment: va ser sorprenent veure alguna cosa construïda completament dins d'un ordinador tenir un rendiment tan bo quan es va provar al laboratori.
+
+El que és més fascinant aquí és la *compressió del temps*: el que abans prenia anys de cerca de receptors naturals, la IA ho comprimeix en setmanes de disseny computacional. És la diferència entre buscar una agulla en un paller i simplement imprimir l'agulla exacta que necessites.
+
+L'equip de recerca ja té com a objectiu els primers assajos en humans per als propers anys, seguint un procés similar a les teràpies CAR-T ja aprovades: es pren sang del pacient, els limfòcits T es modifiquen al laboratori i es reintrodueixen en el pacient — però ara guiats per un "GPS biològic" dissenyat per algoritmes.
+
+### Per què és important
+- Redueix el temps de desenvolupament d'una immunoteràpia dirigida de diversos anys a setmanes.
+- Es pot personalitzar fins al tumor específic del pacient individual.
+- Utilitza la IA generativa no per cercar en una biblioteca existent de molècules, sinó per inventar-ne una de completament nova.
+
+---
+
+## 2. Predicció del Plegament de Proteïnes: l'Herència d'AlphaFold
+
+![Predicció d'estructura proteica per AlphaFold utilitzada en el descobriment de medicaments contra el càncer](https://commons.wikimedia.org/wiki/Special:FilePath/AlphaFold_2.png)
+
+Per entendre per què això és tan important, ajuda entendre un problema que va assetjar la biologia durant dècades: una proteïna és, en la seva essència, una seqüència d'aminoàcids — com un collaret de comptes. Però aquesta seqüència es plega sobre si mateixa en una forma tridimensional molt específica, i és *aquesta forma* la que determina el que la proteïna realment fa al cos. Esbrinar aquesta forma experimentalment, mitjançant cristal·lografia de raigs X, podia prendre anys i costar fortunes.
+
+AlphaFold, desenvolupat per DeepMind, va canviar completament aquest panorama utilitzant xarxes neuronals profundes per predir aquesta estructura tridimensional directament a partir de la seqüència d'aminoàcids, amb una precisió que s'aproxima al que s'aconsegueix en un laboratori físic — però en minuts en lloc d'anys.
+
+Aplicat al càncer, això significa que els investigadors poden visualitzar ràpidament com es comporten estructuralment les proteïnes oncogèniques (les que, quan estan mutades o desregulades, contribueixen al desenvolupament de tumors). Això accelera dues coses alhora: entendre *per què* una mutació específica fa cancerosa una cèl·lula, i dissenyar molècules (com els miniligands anteriors) que s'ajusten perfectament a aquestes estructures, com una clau en un pany.
+
+És essencialment posar a disposició, de manera gratuïta i a escala global, un mapa estructural que abans només era accessible per a laboratoris amb pressupostos de milions — la qual cosa democratitza la recerca del càncer per a instituts més petits, universitats públiques i investigadors en països en desenvolupament.
+
+### Per què és important
+- Va reduir el temps de predicció de l'estructura 3D d'una proteïna de diversos anys a minuts.
+- Sustenta el disseny dels miniligands i altres molècules dirigides descrites en aquest article.
+- La seva base de dades estructural és pública i gratuïta, reduint la barrera d'entrada per a grups de recerca més petits arreu del món.
+
+---
+
+## 3. Cribratge Virtual per a la Seguretat Molecular
+
+![Simulació d'acoblament molecular utilitzada per al cribratge de seguretat de medicaments impulsat per IA](https://commons.wikimedia.org/wiki/Special:FilePath/Overview_docking.png)
+
+Abans que cap molècula s'aproximi a un ésser humà, ha de superar una prova crucial: ataca *només* les cèl·lules malaltes, o també perjudica les sanes? Tradicionalment, aquesta pregunta només podia respondre's després de mesos, o anys, de proves en laboratori i en animals.
+
+Els algoritmes d'Aprenentatge Automàtic ara simulen aquesta interacció *abans* que es produeixi cap síntesi química. El model rep l'estructura de la molècula candidata i l'estructura de les proteïnes objectiu (tant sanes com canceroses) i prediu estadísticament les probabilitats de reaccions adverses — toxicitat, efectes fora de l'objectiu, interaccions no desitjades.
+
+A la pràctica, això funciona com un filtre gegant: de milers de molècules candidates, la IA descarta ràpidament les que tenen un alt risc d'efectes secundaris, deixant passar al laboratori només les candidates més prometedores i segures. És una lògica de cribratge similar a la dels sistemes de detecció d'anomalies: en lloc d'esperar que el problema realment passi, es simula el comportament i es neutralitza el risc abans que es materialitzi.
+
+### Per què és important
+- Avança les proves de toxicitat en el procés, abans de la síntesi costosa o els assajos en animals.
+- Redueix el nombre de molècules que necessiten proves físiques, estalviant temps i diners.
+- Millora el perfil de seguretat dels candidats abans que arribin a cap pacient.
+
+---
+
+## 4. Medicina de Precisió Multimodal
+
+![Doble hèlix d'ADN que representa dades genòmiques utilitzades en oncologia de precisió amb IA](https://commons.wikimedia.org/wiki/Special:FilePath/DNA_Double_Helix_by_NHGRI.jpg)
+
+Un error comú és pensar en el "càncer" com una sola malaltia. En realitat, cada tumor té la seva pròpia "empremta digital" molecular — i és aquí on entra la medicina de precisió.
+
+Els sistemes d'IA avui poden integrar diferents capes de dades biològiques del mateix pacient: genòmica (l'ADN del tumor), proteòmica (quines proteïnes s'estan produint) i radiòmica (patrons extrets d'exàmens d'imatge com tomografies i ressonàncies magnètiques). Per separat, cadascuna d'aquestes capes explica només part de la història. Combinades per un model d'IA capaç de creuar milers de milions de punts de dades, revelen patrons que cap metge podria detectar a simple vista.
+
+El resultat pràctic és un "còctel" terapèutic suggerit i adaptat a la biologia específica d'aquell tumor en aquell pacient específic — en lloc del protocol genèric que encara domina gran part de l'oncologia avui. És medicina a mida, en el sentit més literal de l'expressió.
+
+### Per què és important
+- Allunya les decisions de tractament de les mitjanes poblacionals cap al tumor individual.
+- Combina genòmica, proteòmica i imatges en una sola capa de suport a la decisió.
+- Estableix les bases per a "còctels" de tractament adaptats a la biologia específica del pacient.
+
+---
+
+## 5. Biomarcadors Digitals per al Diagnòstic Precoç
+
+![Comparació entre l'estructura de cèl·lules normals i canceroses utilitzada en la detecció precoç del càncer per IA](https://commons.wikimedia.org/wiki/Special:FilePath/Normal_and_cancer_cells_structure.jpg)
+
+Si hi ha un consens gairebé universal en oncologia, és aquest: com més aviat es detecta el càncer, més gran és la probabilitat de curació. El problema és que els primers signes tendeixen a ser massa subtils per a l'ull humà.
+
+Les eines de Deep Learning han estat entrenades per passar per imatges de patologia (portaobjectes de biòpsia) i anàlisis de sang a la recerca de patrons moleculars pràcticament invisibles — petites alteracions que precedeixen, per mesos o anys, un diagnòstic clínic tradicional. Una branca particularment prometedora és l'anomenada **biòpsia líquida**: en lloc d'una biòpsia invasiva, una anàlisi de sang detecta fragments d'ADN tumoral circulant, permetent cribar múltiples tipus de càncer amb un sol examen.
+
+Des d'una perspectiva de dades, és fascinant pensar en això com un problema de detecció de senyal enterrat en soroll: el cos humà genera una enorme quantitat de "soroll biològic" normal, i el repte de la IA és aïllar, dins d'aquest soroll, el senyal feble i específic d'una cèl·lula que ha començat a comportar-se malament.
+
+### Per què és important
+- Les biòpsies líquides poden cribar múltiples tipus de càncer a partir d'una sola extracció de sang.
+- El deep learning pot detectar patrons en portaobjectes de patologia invisibles a l'ull humà.
+- La detecció més precoç es correlaciona consistentment amb taxes de supervivència dramàticament millors.
+
+---
+
+## 6. Descoberta Accelerada de Medicaments (Disseny De Novo)
+
+![Cribratge virtual de molècules candidates a medicaments per al tractament del càncer per IA](https://commons.wikimedia.org/wiki/Special:FilePath/Virtual_screening.png)
+
+Aquí, la IA deixa de ser simplement una eina de cerca i es converteix, literalment, en un **arquitecte químic**. En lloc de provar milions de compostos ja coneguts (un enfocament lent i costós), els models generatius creen molècules completament noves — que mai han existit a la natura — optimitzades des del principi per bloquejar una proteïna específica relacionada amb el càncer.
+
+És una mica com demanar a un sistema no que cerqui la clau correcta entre milions de claus existents, sinó que *dissenyi* la clau perfecta, sabent ja la forma exacta del pany. Empreses com Insilico Medicine ja han portat molècules generades íntegrament per IA a assajos clínics en humans — una fita que, fa una dècada, sonava a ciència-ficció.
+
+Aquest enfocament redueix dràsticament l'embut de descoberta: de milers de milions de combinacions químiques teòricament possibles, la IA concentra l'atenció humana i dels laboratoris únicament en les desenes de candidats amb major probabilitat matemàtica d'èxit.
+
+### Per què és important
+- Genera molècules completament noves en lloc de cercar en biblioteques químiques existents.
+- Ja ha produït candidats a medicaments dissenyats per IA que han arribat a assajos clínics en humans.
+- Redueix un espai de cerca de milers de milions de compostos a una llista curta de desenes.
+
+---
+
+## 7. Plataformes de Correspondència per a Assajos Clínics
+
+![Imatge de cèl·lula cancerosa utilitzada per connectar pacients amb assajos clínics mitjançant IA](https://commons.wikimedia.org/wiki/Special:FilePath/Breast_cancer_cell_(2).jpg)
+
+Un dels colls d'ampolla menys comentats — però brutalment importants — en la recerca del càncer és simplement connectar el pacient adequat amb l'assaig clínic adequat. Hi ha milers d'estudis actius arreu del món, cadascun amb criteris d'elegibilitat extremadament específics (tipus de mutació, estadi de la malaltia, tractaments previs), i fins avui gran part d'aquesta correspondència es fa manualment per oncòlegs sobrecarregats.
+
+Els algoritmes de Processament del Llenguatge Natural (PLN) i Aprenentatge Automàtic ara creuen automàticament el perfil genètic i clínic d'un pacient amb els criteris de milers d'assajos en temps real — fins i tot per a pacients en regions remotes que normalment quedarien completament fora d'aquest radar. Això no només accelera l'accés a teràpies experimentals d'avantguarda, sinó que també millora la qualitat de la pròpia recerca: com més genèticament diversa sigui la dada inclosa als assajos, millors seran els tractaments resultants per a diferents poblacions — en lloc de funcionar únicament per al grup demogràfic històricament més representat als estudis.
+
+### Per què és important
+- Automatitza un procés de correspondència que avui depèn en gran mesura del temps i el coneixement individual dels oncòlegs.
+- Amplia l'accés als assajos per a pacients en regions remotes o desateses.
+- Millora la diversitat genètica de les poblacions dels assajos, la qual cosa millora la generalització dels tractaments.
+
+---
+
+## 8. Un Ecosistema Global d'Intel·ligència Oncològica
+
+![Mapa global de dades de salut que representa una xarxa mundial d'intel·ligència oncològica per IA](https://commons.wikimedia.org/wiki/Special:FilePath/World_Health_Organization_membership_status_map.png)
+
+Aquesta és, sens dubte, la peça que connecta totes les anteriors — i també la més ambiciosa, des del punt de vista de la infraestructura de dades.
+
+La idea és un ecosistema amb dos components complementaris:
+
+- Una **Plataforma Personal de Monitoratge Oncològic**: una aplicació que centralitza i fa un seguiment continu de l'historial complet de salut d'un pacient — exàmens, tractaments, medicaments, progressió — unificant informació que avui es troba dispersa entre diferents hospitals, laboratoris i sistemes que rarament es comuniquen entre si.
+- Una **Xarxa Global d'Intel·ligència Terapèutica**: un entorn analític on les dades agregades de milions de pacients, tractaments i resultats arreu del món són processades per IA per identificar estadísticament el que realment funciona per a cada tipus de tumor i estadi de la malaltia.
+
+Això planteja un doble repte, alhora tècnic i ètic: com construir aquesta "intel·ligència col·lectiva" a escala global sense centralitzar perilloses dades sensibles? Una resposta que ja existeix en la recerca avui és l'**aprenentatge federat** — una tècnica que entrena models d'IA utilitzant dades de múltiples hospitals *sense* que aquestes dades surtin físicament d'on estan emmagatzemades, preservant la privacitat del pacient alhora que s'obté el poder estadístic d'un conjunt de dades combinat massiu. És especialment valuós per als càncers rars, on cap hospital aïllat té prou pacients per treure conclusions fiables per si sol.
+
+### Per què és important
+- Unifica l'historial mèdic fragmentat d'un pacient entre hospitals i sistemes.
+- L'aprenentatge federat permet obtenir coneixements a escala global sense centralitzar dades sensibles dels pacients.
+- Especialment valuós per als càncers rars, on cap institució aïllada disposa de dades suficients.
+
+---
+
+## Un advertiment necessari
+
+Val la pena dir en veu alta el que qualsevol investigador seriós necessita reconèixer: res d'això substitueix el judici clínic humà avui, i la majoria d'aquestes tecnologies encara es troben en fases de recerca, proves preclíniques o assajos clínics de fase inicial — no en ús hospitalari rutinari. El mateix informe de l'OMS citat anteriorment assenyala que els resultats de supervivència continuen sent "extremadament desiguals" a nivell mundial: les taxes de supervivència a cinc anys superen el 85% en països d'alts ingressos amb diagnòstic precoç, però cauen per sota del 30-45% en països de baixos ingressos, depenent del tipus de càncer. En altres paraules: el progrès tècnic només es tradueix en vides salvades si va acompanyat d'accés equitatiu — quelcom que cap algoritme resol per si sol.
+
+## Conclusió
+
+El que més destaca, en mirar aquest conjunt de vuit fronts, és que cap d'ells resol el càncer de manera aïllada. És la combinació — estructura proteica + disseny molecular + cribratge de seguretat + dades multimodals + diagnòstic precoç + descoberta de medicaments + accés a assajos + infraestructura global de dades — la que comença a semblar, genuïnament, una màquina capaç de canviar el joc. Això no és una única "cura màgica", és una pila de tecnologia, dada sobre dada, capa sobre capa — un problema de sistemes complexos que s'ataca en múltiples fronts alhora.
+
+---
+
+## FAQ: Preguntes Freqüents sobre IA i Càncer
+
+#### Pot la intel·ligència artificial curar el càncer?
+No per si sola. La IA accelera passos específics en la recerca del càncer — predicció d'estructura proteica, disseny de medicaments, diagnòstic i correspondència d'assajos clínics — però no substitueix els assajos clínics, les aprovacions regulatòries ni el judici del metge. La majoria de les tecnologies descrites en aquest article encara es troben en fases de recerca, preclínica o assajos clínics de fase inicial.
+
+#### Per a què s'utilitza AlphaFold en la recerca del càncer?
+AlphaFold prediu l'estructura tridimensional de les proteïnes a partir de la seva seqüència d'aminoàcids en minuts en lloc d'anys. En oncologia, això ajuda els investigadors a entendre com es comporten les proteïnes relacionades amb el càncer i a dissenyar candidats a medicaments que s'hi uneixin amb precisió.
+
+#### Què són les cèl·lules IMPAC-T?
+Les cèl·lules IMPAC-T són limfòcits T modificats genèticament amb proteïnes dissenyades per IA anomenades miniligands (o minibinders), que ajuden el sistema immunitari a reconèixer i atacar les cèl·lules tumorals amb més precisió. La tècnica va ser desenvolupada per investigadors de la Universitat Tècnica de Dinamarca (DTU) i el Scripps Research Institute, publicada a *Science* el 2025.
+
+#### Com ajuda la IA a detectar el càncer més aviat?
+Les eines basades en IA analitzen imatges de patologia i anàlisis de sang (biòpsies líquides) a la recerca de patrons moleculars invisibles a l'ull humà, detectant sovint signes de càncer mesos o anys abans del que ho faria un diagnòstic clínic tradicional.
+
+#### Quantes persones tindran càncer segons l'OMS?
+Segons l'*Informe sobre la situació mundial del càncer 2026* de l'OMS/IARC, 1 de cada 5 persones desenvoluparà càncer al llarg de la seva vida, i aproximadament el 92% de la població mundial es veurà afectada directament o indirectament. Es preveu que el nombre anual de nous casos creixi de 20,6 milions el 2024 a 35 milions per al 2050.
+
+#### El descobriment de medicaments per IA ja s'està provant en humans?
+Sí. Empreses com Insilico Medicine ja han avançat candidats a medicaments generats per IA cap a assajos clínics en humans, i els investigadors de la DTU/Scripps tenen com a objectiu els primers assajos en humans per a immunoteràpies oncològiques dissenyades per IA en els propers anys.
+
+---
+
+### Referències
+
+- OMS / IARC — [*Informe sobre la situació mundial del càncer 2026*](https://www.who.int/publications/i/item/9789240123977) (juliol de 2026)
+- Abrale — [La IA dissenya el sistema immunitari per atacar el càncer amb precisió](https://abrale.org.br/noticias/ia-projeta-sistema-imunologico-para-atacar-o-cancer-com-precisao/)
+- Olhar Digital — [La IA és un nou aliat en els tractaments contra tumors](https://olhardigital.com.br/2025/07/27/medicina-e-saude/ia-e-nova-aliada-nos-tratamentos-conta-tumores/)
+- ND Mais — [La IA ajuda les cèl·lules T a localitzar tumors amb més precisió](https://ndmais.com.br/ciencia-e-espaco/celulas-t-sistema-enxerga-cancer-ia/)
+- Hardware.com.br — [La IA permet el tractament contra el càncer sense efectes secundaris](https://www.hardware.com.br/noticias/inteligencia-artificial-permite-tratamento-contra-cancer-sem-efeitos-colaterais/)
+- Nature — L'impacte de la IA en l'oncologia moderna: de la detecció precoç a l'atenció personalitzada
+- PMC (NIH) — La intel·ligència artificial assisteix la medicina de precisió en el tractament del càncer
+- Roche — IA en oncologia de precisió: solucions digitals per a l'atenció oncològica
