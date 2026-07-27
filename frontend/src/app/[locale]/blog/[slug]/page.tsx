@@ -6,35 +6,50 @@ import type { ReactNode } from 'react'
 import { getTranslations } from 'next-intl/server'
 
 function renderInline(text: string): ReactNode {
-  const segments = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/)
-  return segments.map((part, i) => {
-    if (part.startsWith('**') && part.endsWith('**')) {
-      return <strong key={i}>{part.slice(2, -2)}</strong>
-    }
-    if (part.startsWith('*') && part.endsWith('*')) {
-      return <em key={i}>{part.slice(1, -1)}</em>
-    }
-    const linkMatch = part.match(/\[([^\]]+)\]\(([^)]+)\)/)
-    if (linkMatch) {
-      const before = part.slice(0, part.indexOf('['))
-      const after = part.slice(part.indexOf(')') + 1)
-      return (
-        <span key={i}>
-          {before}
-          <a href={linkMatch[2]} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>{linkMatch[1]}</a>
-          {after}
-        </span>
+  const regex = /\*\*([^*]+)\*\*|\*([^*]+)\*|\[([^\]]+)\]\(([^)]+)\)/g
+  const parts: ReactNode[] = []
+  let lastIndex = 0
+  let key = 0
+  let match = regex.exec(text)
+  while (match !== null) {
+    if (match.index > lastIndex) parts.push(text.slice(lastIndex, match.index))
+    if (match[1] !== undefined) {
+      parts.push(<strong key={key++}>{match[1]}</strong>)
+    } else if (match[2] !== undefined) {
+      parts.push(<em key={key++}>{match[2]}</em>)
+    } else {
+      const href = match[4]
+      const isAnchor = href.startsWith('#')
+      parts.push(
+        <a key={key++} href={href}
+           target={isAnchor ? '_self' : '_blank'}
+           rel={isAnchor ? undefined : 'noopener noreferrer'}
+           style={{ color: 'var(--accent)', textDecoration: 'underline' }}>
+          {match[3]}
+        </a>
       )
     }
-    return part
-  })
+    lastIndex = match.index + match[0].length
+    match = regex.exec(text)
+  }
+  if (lastIndex < text.length) parts.push(text.slice(lastIndex))
+  if (parts.length === 0) return text
+  if (parts.length === 1) return parts[0]
+  return <>{parts}</>
 }
 
 function renderBlock(block: string, i: number): ReactNode {
   const text = block.trim()
 
-  if (text === '***' || text === '---' || text === '___') {
+  if (/^[\*\-\_]{3,}$/.test(text)) {
     return <hr key={i} style={{ border: 'none', borderTop: '1px solid rgba(10,10,15,0.08)', margin: '2.5rem 0' }} />
+  }
+  if (text.startsWith('#### ')) {
+    return (
+      <h4 key={i} style={{ color: 'var(--white-90)', fontFamily: 'var(--font-syne)', fontSize: '0.92rem', fontWeight: 700, letterSpacing: '-0.01em', marginBottom: '0.4rem', marginTop: '1.5rem' }}>
+        {renderInline(text.replace(/^#### /, ''))}
+      </h4>
+    )
   }
   if (text.startsWith('### ')) {
     return (
@@ -50,10 +65,29 @@ function renderBlock(block: string, i: number): ReactNode {
       </h2>
     )
   }
-  if (text.startsWith('> ')) {
+  if (text.startsWith('![')) {
+    const imgMatch = text.match(/^!\[([^\]]*)\]\(([^)]+)\)/)
+    if (imgMatch) {
+      return (
+        <figure key={i} style={{ margin: '2rem 0', textAlign: 'center' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={imgMatch[2]} alt={imgMatch[1]} style={{ maxWidth: '100%', borderRadius: '6px', display: 'inline-block' }} />
+          {imgMatch[1] && (
+            <figcaption style={{ fontSize: '0.7rem', color: 'var(--white-35)', marginTop: '0.5rem', fontStyle: 'italic' }}>
+              {imgMatch[1]}
+            </figcaption>
+          )}
+        </figure>
+      )
+    }
+  }
+  if (text.startsWith('>')) {
+    const innerLines = text.split('\n').map((l) => l.replace(/^>\s?/, '')).filter((l) => l.trim())
     return (
       <blockquote key={i} style={{ borderLeft: '3px solid var(--accent)', paddingLeft: '1rem', margin: '1.5rem 0', color: 'var(--white-60)', fontStyle: 'italic' }}>
-        {renderInline(text.replace(/^> /, ''))}
+        {innerLines.map((line, j) => (
+          <p key={j} style={{ margin: j > 0 ? '0.5rem 0 0' : '0' }}>{renderInline(line)}</p>
+        ))}
       </blockquote>
     )
   }
@@ -86,6 +120,18 @@ function renderBlock(block: string, i: number): ReactNode {
           </tbody>
         </table>
       </div>
+    )
+  }
+  if (/^\d+\. /.test(text)) {
+    const items = text.split('\n').filter((l) => /^\d+\./.test(l.trim()))
+    return (
+      <ol key={i} style={{ paddingLeft: '1.5rem', marginBottom: '1.6rem', color: 'rgba(10,10,15,0.72)', listStyleType: 'decimal' }}>
+        {items.map((item, j) => (
+          <li key={j} style={{ marginBottom: '0.4rem', lineHeight: 1.75 }}>
+            {renderInline(item.replace(/^\d+\.\s+/, ''))}
+          </li>
+        ))}
+      </ol>
     )
   }
   if (/^[\*\-] /.test(text)) {
