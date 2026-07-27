@@ -66,14 +66,14 @@ function renderBlock(block: string, i: number): ReactNode {
     )
   }
   if (text.startsWith('![')) {
-    const imgMatch = text.match(/^!\[([^\]]*)\]\(([^)]+)\)/)
+    const imgMatch = text.match(/^!\[([^\]]*)\]\((.+)\)$/)
     if (imgMatch) {
       return (
         <figure key={i} style={{ margin: '2rem 0', textAlign: 'center' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={imgMatch[2]} alt={imgMatch[1]} style={{ maxWidth: '100%', borderRadius: '6px', display: 'inline-block' }} />
           {imgMatch[1] && (
-            <figcaption style={{ fontSize: '0.7rem', color: 'var(--white-35)', marginTop: '0.5rem', fontStyle: 'italic' }}>
+            <figcaption style={{ fontSize: '0.7rem', color: 'var(--white-40)', marginTop: '0.5rem', fontStyle: 'italic', textTransform: 'none' }}>
               {imgMatch[1]}
             </figcaption>
           )}
@@ -125,9 +125,9 @@ function renderBlock(block: string, i: number): ReactNode {
   if (/^\d+\. /.test(text)) {
     const items = text.split('\n').filter((l) => /^\d+\./.test(l.trim()))
     return (
-      <ol key={i} style={{ paddingLeft: '1.5rem', marginBottom: '1.6rem', color: 'rgba(10,10,15,0.72)', listStyleType: 'decimal' }}>
+      <ol key={i} style={{ paddingLeft: '1.5rem', marginBottom: '1.6rem', color: 'var(--white-60)', listStyleType: 'decimal', textTransform: 'none' }}>
         {items.map((item, j) => (
-          <li key={j} style={{ marginBottom: '0.4rem', lineHeight: 1.75 }}>
+          <li key={j} style={{ marginBottom: '0.4rem', lineHeight: 1.75, textTransform: 'none', fontFamily: 'inherit', fontWeight: 'normal' }}>
             {renderInline(item.replace(/^\d+\.\s+/, ''))}
           </li>
         ))}
@@ -137,16 +137,16 @@ function renderBlock(block: string, i: number): ReactNode {
   if (/^[\*\-] /.test(text)) {
     const items = text.split('\n').filter((l) => l.trim())
     return (
-      <ul key={i} style={{ paddingLeft: '1.25rem', marginBottom: '1.6rem', color: 'rgba(10,10,15,0.72)' }}>
+      <ul key={i} style={{ paddingLeft: '1.25rem', marginBottom: '1.6rem', color: 'var(--white-60)', textTransform: 'none' }}>
         {items.map((item, j) => (
-          <li key={j} style={{ marginBottom: '0.4rem', lineHeight: 1.75 }}>
+          <li key={j} style={{ marginBottom: '0.4rem', lineHeight: 1.75, textTransform: 'none', fontFamily: 'inherit', fontWeight: 'normal' }}>
             {renderInline(item.replace(/^[\*\-]\s+/, ''))}
           </li>
         ))}
       </ul>
     )
   }
-  return <p key={i}>{renderInline(text)}</p>
+  return <p key={i} style={{ textTransform: 'none', lineHeight: 1.75, marginBottom: '1rem' }}>{renderInline(text)}</p>
 }
 
 export async function generateStaticParams() {
