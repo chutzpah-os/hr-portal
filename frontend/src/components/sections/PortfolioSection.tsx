@@ -7,7 +7,7 @@ import { getPortfolioData } from '@/data/portfolio'
 import { getUiStrings } from '@/i18n/uiStrings'
 
 export default function PortfolioSection({ children }: { children: ReactNode }) {
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(true)
   const locale = useLocale()
   const ui = getUiStrings(locale)
   const portfolioData = getPortfolioData(locale)

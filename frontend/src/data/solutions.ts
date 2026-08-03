@@ -202,6 +202,86 @@ La fórmula: input estructurat + output en el món real + cicles de responsabili
       tags: ['R+D', 'Programari', 'Educació'],
     },
   },
+  {
+    id: 'shoresh',
+    name: 'Shoresh',
+    tagline: 'Governance, rooted in infrastructure.',
+    shortDescription: 'Enterprise governance and compliance SaaS platform for mid-sized/large organizations and scaling startups — built end-to-end across 8 integrated modules.',
+    fullDescription: `Shoresh is an enterprise governance and compliance platform built for organizations that have outgrown spreadsheets and ad-hoc controls. The name comes from the Hebrew word for root — because governance isn't a feature you bolt on later, it's the foundation everything else grows from.
+
+The premise: as organizations scale, governance, risk, and compliance data end up scattered across disconnected tools — access requests in one system, audit trails in another, policy documents somewhere else entirely. Shoresh unifies these into a single platform with strict role-based access control and organizational isolation.
+
+Built end-to-end across 8 integrated modules, with secure architecture, data encryption, and a full API layer for third-party integration — designed for mid-sized/large organizations and scaling startups that need governance infrastructure without a governance team.`,
+    metrics: [
+      { label: 'Modules', value: '8 Integrated' },
+      { label: 'Focus', value: 'Governance & Compliance' },
+      { label: 'Model', value: 'Enterprise SaaS' },
+    ],
+    tags: ['R&D', 'Software', 'Governance'],
+    status: 'MVP',
+    image: '/images/shoresh-cover.png',
+    imageFit: 'contain',
+    pt: {
+      tagline: 'Governança, enraizada em infraestrutura.',
+      shortDescription: 'Plataforma SaaS empresarial de governança e compliance para organizações médias/grandes e startups em crescimento — construída ponta a ponta em 8 módulos integrados.',
+      fullDescription: `Shoresh é uma plataforma de governança e compliance empresarial construída para organizações que já superaram planilhas e controles improvisados. O nome vem da palavra hebraica para raiz — porque governança não é um recurso que se adiciona depois, é a base de onde tudo o mais cresce.
+
+A premissa: à medida que as organizações crescem, os dados de governança, risco e compliance acabam espalhados em ferramentas desconectadas — solicitações de acesso em um sistema, trilhas de auditoria em outro, documentos de política em um lugar totalmente diferente. Shoresh unifica tudo isso em uma única plataforma com controle de acesso baseado em função rigoroso e isolamento organizacional.
+
+Construída ponta a ponta em 8 módulos integrados, com arquitetura segura, criptografia de dados e uma camada completa de API para integração com terceiros — projetada para organizações médias/grandes e startups em crescimento que precisam de infraestrutura de governança sem precisar de uma equipe de governança.`,
+      metrics: [
+        { label: 'Módulos', value: '8 Integrados' },
+        { label: 'Foco', value: 'Governança & Compliance' },
+        { label: 'Modelo', value: 'SaaS Empresarial' },
+      ],
+      tags: ['P&D', 'Software', 'Governança'],
+    },
+    es: {
+      tagline: 'Gobernanza, con raíces en la infraestructura.',
+      shortDescription: 'Plataforma SaaS empresarial de gobernanza y cumplimiento para organizaciones medianas/grandes y startups en crecimiento — construida de extremo a extremo en 8 módulos integrados.',
+      fullDescription: `Shoresh es una plataforma de gobernanza y cumplimiento empresarial construida para organizaciones que ya han superado las hojas de cálculo y los controles improvisados. El nombre viene de la palabra hebrea para raíz — porque la gobernanza no es una función que se añade después, es la base sobre la que crece todo lo demás.
+
+La premisa: a medida que las organizaciones crecen, los datos de gobernanza, riesgo y cumplimiento terminan dispersos en herramientas desconectadas — solicitudes de acceso en un sistema, registros de auditoría en otro, documentos de política en un lugar completamente distinto. Shoresh unifica todo esto en una única plataforma con control de acceso basado en roles estricto y aislamiento organizacional.
+
+Construida de extremo a extremo en 8 módulos integrados, con arquitectura segura, cifrado de datos y una capa completa de API para integración con terceros — diseñada para organizaciones medianas/grandes y startups en crecimiento que necesitan infraestructura de gobernanza sin necesitar un equipo de gobernanza.`,
+      metrics: [
+        { label: 'Módulos', value: '8 Integrados' },
+        { label: 'Enfoque', value: 'Gobernanza y Cumplimiento' },
+        { label: 'Modelo', value: 'SaaS Empresarial' },
+      ],
+      tags: ['I+D', 'Software', 'Gobernanza'],
+    },
+    fr: {
+      tagline: 'La gouvernance, enracinée dans l\'infrastructure.',
+      shortDescription: 'Plateforme SaaS de gouvernance et de conformité d\'entreprise pour les organisations moyennes/grandes et les startups en croissance — construite de bout en bout sur 8 modules intégrés.',
+      fullDescription: `Shoresh est une plateforme de gouvernance et de conformité d\'entreprise conçue pour les organisations qui ont dépassé les tableurs et les contrôles improvisés. Le nom vient du mot hébreu pour racine — parce que la gouvernance n\'est pas une fonctionnalité qu\'on ajoute plus tard, c\'est la base sur laquelle tout le reste pousse.
+
+La prémisse : à mesure que les organisations grandissent, les données de gouvernance, de risque et de conformité finissent dispersées dans des outils déconnectés — demandes d\'accès dans un système, pistes d\'audit dans un autre, documents de politique ailleurs. Shoresh unifie tout cela dans une seule plateforme avec un contrôle d\'accès basé sur les rôles strict et un isolement organisationnel.
+
+Construite de bout en bout sur 8 modules intégrés, avec une architecture sécurisée, un chiffrement des données et une couche API complète pour l\'intégration tierce — conçue pour les organisations moyennes/grandes et les startups en croissance qui ont besoin d\'une infrastructure de gouvernance sans avoir besoin d\'une équipe de gouvernance.`,
+      metrics: [
+        { label: 'Modules', value: '8 Intégrés' },
+        { label: 'Focus', value: 'Gouvernance & Conformité' },
+        { label: 'Modèle', value: 'SaaS d\'Entreprise' },
+      ],
+      tags: ['R&D', 'Logiciel', 'Gouvernance'],
+    },
+    ca: {
+      tagline: 'Governança, arrelada en la infraestructura.',
+      shortDescription: 'Plataforma SaaS empresarial de governança i compliment per a organitzacions mitjanes/grans i startups en creixement — construïda de principi a fi en 8 mòduls integrats.',
+      fullDescription: `Shoresh és una plataforma de governança i compliment empresarial construïda per a organitzacions que ja han superat els fulls de càlcul i els controls improvisats. El nom prové de la paraula hebrea per a arrel — perquè la governança no és una funció que s\'afegeix més tard, és la base sobre la qual creix tota la resta.
+
+La premissa: a mesura que les organitzacions creixen, les dades de governança, risc i compliment acaben disperses en eines desconnectades — sol·licituds d\'accés en un sistema, rastres d\'auditoria en un altre, documents de política en un lloc totalment diferent. Shoresh unifica tot això en una única plataforma amb control d\'accés basat en rols estricte i aïllament organitzatiu.
+
+Construïda de principi a fi en 8 mòduls integrats, amb arquitectura segura, xifratge de dades i una capa completa d\'API per a la integració amb tercers — dissenyada per a organitzacions mitjanes/grans i startups en creixement que necessiten infraestructura de governança sense necessitar un equip de governança.`,
+      metrics: [
+        { label: 'Mòduls', value: '8 Integrats' },
+        { label: 'Focus', value: 'Governança i Compliment' },
+        { label: 'Model', value: 'SaaS Empresarial' },
+      ],
+      tags: ['R+D', 'Programari', 'Governança'],
+    },
+  },
 ]
 
 export function getProduct(slug: string): Product | undefined {

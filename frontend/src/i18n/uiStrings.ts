@@ -161,7 +161,7 @@ const UI: Record<LocaleKey, UiStrings> = {
     goToRecommendation: (n) => `Anar a la recomanació ${n}`,
     downloadCv: 'Descarregar CV',
     bookCall: 'Reservar una Reunió',
-    heroDescription: 'IA. Dades. Seguretat. R+D. Problemes difícils en múltiples disciplines — trobo el que està trencat i construeixo la versió que aguanta.',
+    heroDescription: 'Programari. IA. Dades. Seguretat. R+D. Problemes difícils en múltiples disciplines — construeixo i mantinc solucions robustes.',
     heroHeadline: ['Investigar.', 'Construir.', 'Protegir.'],
     marqueeItems: [
       'Proves d\'Intrusió', 'Zero Trust', 'Modelat d\'Amenaces', 'SIEM',
@@ -248,7 +248,7 @@ const UI: Record<LocaleKey, UiStrings> = {
     goToRecommendation: (n) => `Aller à la recommandation ${n}`,
     downloadCv: 'Télécharger le CV',
     bookCall: 'Prendre un Rendez-vous',
-    heroDescription: 'IA. Données. Sécurité. R&D. Des problèmes difficiles à travers les disciplines — je trouve ce qui est cassé et je construis la version qui tient.',
+    heroDescription: 'Logiciel. IA. Données. Sécurité. R&D. Des problèmes difficiles à travers les disciplines — je construis et maintiens des solutions robustes.',
     heroHeadline: ['Rechercher.', 'Construire.', 'Sécuriser.'],
     marqueeItems: [
       'Tests d\'Intrusion', 'Zero Trust', 'Modélisation des Menaces', 'SIEM',
@@ -336,7 +336,7 @@ const UI: Record<LocaleKey, UiStrings> = {
     goToRecommendation: (n) => `Go to recommendation ${n}`,
     downloadCv: 'Download CV',
     bookCall: 'Book a Call',
-    heroDescription: "AI. Data. Security. R&D. Hard problems across disciplines — I find what's broken and build the version that holds.",
+    heroDescription: 'Software. AI. Data. Security. R&D. Hard problems across disciplines — I build and maintain robust solutions.',
     heroHeadline: ['Research.', 'Build.', 'Secure.'],
     marqueeItems: [
       'Penetration Testing', 'Zero Trust', 'Threat Modeling', 'SIEM',
@@ -424,7 +424,7 @@ const UI: Record<LocaleKey, UiStrings> = {
     goToRecommendation: (n) => `Ir para recomendação ${n}`,
     downloadCv: 'Baixar CV',
     bookCall: 'Agendar Reunião',
-    heroDescription: 'IA. Dados. Segurança. P&D. Problemas difíceis em várias disciplinas — eu encontro o que está quebrado e construo a versão que se sustenta.',
+    heroDescription: 'Software. IA. Dados. Segurança. P&D. Problemas difíceis em várias disciplinas — construo e mantenho soluções robustas.',
     heroHeadline: ['Pesquisar.', 'Construir.', 'Proteger.'],
     marqueeItems: [
       'Testes de Intrusão', 'Zero Trust', 'Modelagem de Ameaças', 'SIEM',
@@ -512,7 +512,7 @@ const UI: Record<LocaleKey, UiStrings> = {
     goToRecommendation: (n) => `Ir a la recomendación ${n}`,
     downloadCv: 'Descargar CV',
     bookCall: 'Reservar una Reunión',
-    heroDescription: 'IA. Datos. Seguridad. I+D. Problemas difíciles en múltiples disciplinas — encuentro lo que está roto y construyo la versión que funciona.',
+    heroDescription: 'Software. IA. Datos. Seguridad. I+D. Problemas difíciles en múltiples disciplinas — construyo y mantengo soluciones robustas.',
     heroHeadline: ['Investigar.', 'Construir.', 'Proteger.'],
     marqueeItems: [
       'Pruebas de Intrusión', 'Zero Trust', 'Modelado de Amenazas', 'SIEM',
