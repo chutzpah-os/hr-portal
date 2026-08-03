@@ -6,6 +6,16 @@ import { useLocale } from 'next-intl'
 import { getPortfolioData, type Language } from '@/data/portfolio'
 import { getUiStrings } from '@/i18n/uiStrings'
 
+const PRIMARY_LANGUAGE_COUNT = 3
+
+const MORE_LANGS_CTA: Record<string, { label: string; names: string; button: string }> = {
+  en: { label: 'More languages available upon request', names: 'French · Catalan · Hebrew · Russian', button: 'Schedule a meeting' },
+  pt: { label: 'Mais idiomas disponíveis sob consulta', names: 'Francês · Catalão · Hebraico · Russo', button: 'Agendar reunião' },
+  es: { label: 'Más idiomas disponibles bajo consulta', names: 'Francés · Catalán · Hebreo · Ruso', button: 'Agendar reunión' },
+  fr: { label: 'Plus de langues disponibles sur demande', names: 'Français · Catalan · Hébreu · Russe', button: 'Planifier un entretien' },
+  ca: { label: 'Més idiomes disponibles sota petició', names: 'Francès · Català · Hebreu · Rus', button: 'Concertar una reunió' },
+}
+
 function getYouTubeEmbedUrl(url: string): string | null {
   const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/)
   return match ? `https://www.youtube.com/embed/${match[1]}` : null
@@ -224,6 +234,8 @@ export default function LanguagesSection() {
   const ui = getUiStrings(locale)
 
   const all = getPortfolioData(locale).languages
+  const primary = all.slice(0, PRIMARY_LANGUAGE_COUNT)
+  const cta = MORE_LANGS_CTA[locale] ?? MORE_LANGS_CTA['en']
 
   return (
     <section id="languages">
@@ -247,15 +259,43 @@ export default function LanguagesSection() {
             padding: '0 28px',
           }}
         >
-          {all.map((lang, i) => (
+          {primary.map((lang, i) => (
             <LanguageRow
               key={lang.id}
               lang={lang}
               index={i}
-              isLast={i === all.length - 1}
+              isLast={false}
               onClick={() => setActive(lang)}
             />
           ))}
+
+          <motion.a
+            href="mailto:hrolemberg.engineer@gmail.com?subject=Language%20Skills%20Inquiry"
+            className="flex items-center gap-4 py-5 group w-full"
+            style={{ borderTop: '1px solid rgba(10,10,15,0.07)', textDecoration: 'none' }}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1], delay: PRIMARY_LANGUAGE_COUNT * 0.06 }}
+          >
+            <div className="flex-1 min-w-0">
+              <p
+                className="leading-snug mb-0.5 transition-colors duration-200 group-hover:text-[var(--accent)]"
+                style={{ color: 'var(--white-50)', fontSize: 'clamp(0.85rem, 1.6vw, 0.95rem)', fontWeight: 500 }}
+              >
+                {cta.label}
+              </p>
+              <p className="text-[0.65rem] uppercase tracking-widest" style={{ color: 'var(--white-30)' }}>
+                {cta.names}
+              </p>
+            </div>
+            <span
+              className="shrink-0 text-[0.65rem] uppercase tracking-widest px-3 py-1.5 rounded-lg transition-all duration-200 group-hover:opacity-80"
+              style={{ color: 'var(--white-60)', border: '1px solid var(--white-15)', whiteSpace: 'nowrap' }}
+            >
+              {cta.button} →
+            </span>
+          </motion.a>
         </div>
       </div>
 
