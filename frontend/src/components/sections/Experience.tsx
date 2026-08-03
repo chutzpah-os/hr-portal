@@ -7,7 +7,7 @@ import { useLocale } from 'next-intl'
 import { getPortfolioData, type Experience } from '@/data/portfolio'
 import { getUiStrings } from '@/i18n/uiStrings'
 
-const LIMIT = 3
+const LIMIT = 5
 
 function ExperienceTimelineItem({
   exp,
