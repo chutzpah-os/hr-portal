@@ -646,6 +646,28 @@ export const portfolioDataCa: PortfolioData = {
   projects: {
     softwareDevelopment: [
       {
+        id: 'proj-etz',
+        gradient: 'from-blue-950 to-indigo-950',
+        title: 'ETZ — Plataforma de Gestió Empresarial',
+        description: 'Plataforma de gestió empresarial en producció amb 2.000+ empleats i 5.000+ DAU, construïda en monorepo Turborepo + pnpm amb Firebase serverless i infraestructura AWS.',
+        category: 'softwareDevelopment',
+        tags: ['Next.js', 'Firebase', 'Turborepo', 'RBAC', 'AWS'],
+        cvAreas: ['software'],
+        details: {
+          overview: 'ETZ és una plataforma de gestió empresarial a gran escala desplegada a SSP, amb 2.000+ empleats i 5.000+ usuaris actius diaris. Construïda en un monorepo Turborepo + pnpm amb frontend Next.js 16 (App Router) i backend Firebase serverless (Firestore, Auth, Storage), sobre infraestructura gestionada per AWS.',
+          features: [
+            'Arquitectura monorepo Turborepo + pnpm amb frontend Next.js 16 (App Router)',
+            'RBAC amb aïllament estricte per unitat organitzacional — cada unitat té límits d\'accés independents',
+            'Pista d\'auditoria en cada operació per a traçabilitat completa i compliment normatiu',
+            'Classificació jeràrquica d\'accés amb xifrat de dades sensibles',
+            'Backend Firebase serverless (Firestore, Auth, Storage) en infraestructura gestionada per AWS',
+            'Escala de producció: 2.000+ empleats, 5.000+ DAU des de l\'activació',
+          ],
+          techStack: 'Next.js 16, Turborepo, pnpm, Firebase Firestore, Firebase Auth, Firebase Storage, RBAC, AWS',
+          githubLink: 'https://github.com/hanielrolemberg',
+        },
+      },
+      {
         id: 'proj-sw3',
         gradient: 'from-slate-900 to-zinc-900',
         title: 'Shoresh — Plataforma Empresarial de Governança i Compliment',

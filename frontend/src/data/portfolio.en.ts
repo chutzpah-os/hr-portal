@@ -947,6 +947,28 @@ export const portfolioDataEn: PortfolioData = {
   projects: {
     softwareDevelopment: [
       {
+        id: 'proj-etz',
+        gradient: 'from-blue-950 to-indigo-950',
+        title: 'ETZ — Enterprise Management Platform',
+        description: 'Production-grade enterprise management platform serving 2,000+ employees with 5,000+ DAU, built on a Turborepo + pnpm monorepo with serverless Firebase and AWS infrastructure.',
+        category: 'softwareDevelopment',
+        tags: ['Next.js', 'Firebase', 'Turborepo', 'RBAC', 'AWS'],
+        cvAreas: ['software'],
+        details: {
+          overview: 'ETZ is a large-scale enterprise management platform deployed at SSP, serving 2,000+ employees with 5,000+ daily active users. Built on a Turborepo + pnpm monorepo with a Next.js 16 (App Router) frontend and a serverless Firebase backend (Firestore, Auth, Storage), running on AWS-managed infrastructure.',
+          features: [
+            'Turborepo + pnpm monorepo architecture with Next.js 16 (App Router) frontend',
+            'RBAC with strict per-unit isolation — each organizational unit has independent access boundaries',
+            'Audit trail on every operation for full traceability and compliance',
+            'Hierarchical access classification with encryption for sensitive data',
+            'Serverless Firebase backend (Firestore, Auth, Storage) on AWS-managed infrastructure',
+            'Production scale: 2,000+ employees, 5,000+ DAU since activation',
+          ],
+          techStack: 'Next.js 16, Turborepo, pnpm, Firebase Firestore, Firebase Auth, Firebase Storage, RBAC, AWS',
+          githubLink: 'https://github.com/hanielrolemberg',
+        },
+      },
+      {
         id: 'proj-sw3',
         gradient: 'from-slate-900 to-zinc-900',
         title: 'Shoresh — Enterprise Governance & Compliance Platform',
