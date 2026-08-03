@@ -15,7 +15,7 @@ export const portfolioDataCa: PortfolioData = {
     {
       id: 'exp1',
       title: 'Machine Learning Engineer',
-      company: 'SSP',
+      company: 'Stealth',
       period: 'Sep 2025 - Present',
       description:
         'Va construir SentinelAI, un sistema impulsat per IA per detectar i analitzar incidents urbans, millorant la consciència situacional als sectors de mobilitat, seguretat i gestió urbana. Operant 24/7, registrant més de 100 persones diàriament i més de 200 objectes rastrejos simultàniament.',
@@ -37,7 +37,7 @@ export const portfolioDataCa: PortfolioData = {
     {
       id: 'exp4',
       title: 'Data Analyst',
-      company: 'SSP',
+      company: 'Stealth',
       period: 'Sep 2024 - Sep 2025',
       description:
         'Va transformar dades brutes en insights de negoci accionables, impactant més de 2.000 empleats en més de 11 unitats i aproximadament 1 milió de persones en la població atesa.',
@@ -59,7 +59,7 @@ export const portfolioDataCa: PortfolioData = {
     {
       id: 'exp2',
       title: 'Cyber Security Engineer',
-      company: 'SSP',
+      company: 'Stealth',
       period: 'Apr 2023 - Sep 2024',
       description:
         'Va dissenyar i assegurar la infraestructura de xarxa empresarial a la seu central i més de 30 subunitats regionals. Va donar suport a sistemes de missió crítica per a més de 5.000 usuaris actius diaris com a part d\'un equip reduït de 2 a 3 persones.',
@@ -86,7 +86,7 @@ export const portfolioDataCa: PortfolioData = {
     {
       id: 'exp3',
       title: 'Software Engineer',
-      company: 'SSP',
+      company: 'Stealth',
       period: 'Apr 2022 - Apr 2023',
       description:
         'Va desenvolupar aplicacions web i mòbils full-stack. Va lliurar l\'abast de sprint en el 25% del temps assignat de mitjana. Projecte notable: ETZ — plataforma empresarial en monorepo Turborepo + pnpm amb backend Firebase serverless, RBAC, rastre d\'auditoria i infraestructura AWS.',
@@ -654,7 +654,7 @@ export const portfolioDataCa: PortfolioData = {
         tags: ['Next.js', 'Firebase', 'Turborepo', 'RBAC', 'AWS'],
         cvAreas: ['software'],
         details: {
-          overview: 'ETZ és una plataforma de gestió empresarial a gran escala desplegada a SSP, amb 2.000+ empleats i 5.000+ usuaris actius diaris. Construïda en un monorepo Turborepo + pnpm amb frontend Next.js 16 (App Router) i backend Firebase serverless (Firestore, Auth, Storage), sobre infraestructura gestionada per AWS.',
+          overview: 'ETZ és una plataforma de gestió empresarial a gran escala desplegada en una empresa stealth, amb 2.000+ empleats i 5.000+ usuaris actius diaris. Construïda en un monorepo Turborepo + pnpm amb frontend Next.js 16 (App Router) i backend Firebase serverless (Firestore, Auth, Storage), sobre infraestructura gestionada per AWS.',
           features: [
             'Arquitectura monorepo Turborepo + pnpm amb frontend Next.js 16 (App Router)',
             'RBAC amb aïllament estricte per unitat organitzacional — cada unitat té límits d\'accés independents',
@@ -966,7 +966,7 @@ export const portfolioDataCa: PortfolioData = {
     {
       id: 'award1',
       title: 'Top 1.2% — Examen de Selecció Competitiu',
-      issuer: 'SSP Selection Process',
+      issuer: 'Stealth Selection Process',
       year: '2022',
       description:
         'Va superar amb èxit un examen altament competitiu de quatre fases, classificant-se entre el 1,2% superior.',

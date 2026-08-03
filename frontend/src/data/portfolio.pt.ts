@@ -15,7 +15,7 @@ export const portfolioDataPt: PortfolioData = {
     {
       id: 'exp1',
       title: 'Machine Learning Engineer',
-      company: 'SSP',
+      company: 'Stealth',
       period: 'Sep 2025 - Present',
       description:
         'Construiu o SentinelAI, um sistema orientado por IA para detectar e analisar incidentes urbanos, aprimorando a consciência situacional nos setores de mobilidade, segurança e gestão urbana. Operando 24/7, registrando mais de 100 pessoas diariamente e mais de 200 objetos rastreados simultaneamente.',
@@ -37,7 +37,7 @@ export const portfolioDataPt: PortfolioData = {
     {
       id: 'exp4',
       title: 'Data Analyst',
-      company: 'SSP',
+      company: 'Stealth',
       period: 'Sep 2024 - Sep 2025',
       description:
         'Transformou dados brutos em insights de negócio acionáveis, impactando mais de 2.000 funcionários em mais de 11 unidades e aproximadamente 1 milhão de pessoas na população atendida.',
@@ -59,7 +59,7 @@ export const portfolioDataPt: PortfolioData = {
     {
       id: 'exp2',
       title: 'Cyber Security Engineer',
-      company: 'SSP',
+      company: 'Stealth',
       period: 'Apr 2023 - Sep 2024',
       description:
         'Projetou e protegeu infraestrutura de rede corporativa na matriz e em mais de 30 subunidades regionais. Suportou sistemas críticos para mais de 5.000 usuários ativos diários como parte de uma equipe enxuta de 2 a 3 pessoas.',
@@ -86,7 +86,7 @@ export const portfolioDataPt: PortfolioData = {
     {
       id: 'exp3',
       title: 'Software Engineer',
-      company: 'SSP',
+      company: 'Stealth',
       period: 'Apr 2022 - Apr 2023',
       description: 'Desenvolveu aplicações web e mobile full-stack. Entregou o escopo de sprint em 25% do prazo alocado em média. Projeto notável: ETZ — plataforma empresarial em monorepo Turborepo + pnpm com backend Firebase serverless, RBAC, trilha de auditoria e infraestrutura AWS.',
       tags: ['React', 'Next.js', 'NestJS', 'Node.js', 'TypeScript', 'Java', 'Kotlin'],
@@ -653,7 +653,7 @@ export const portfolioDataPt: PortfolioData = {
         tags: ['Next.js', 'Firebase', 'Turborepo', 'RBAC', 'AWS'],
         cvAreas: ['software'],
         details: {
-          overview: 'ETZ é uma plataforma de gestão empresarial de grande porte implantada na SSP, atendendo a 2.000+ colaboradores com 5.000+ usuários ativos diários. Construída em um monorepo Turborepo + pnpm com frontend Next.js 16 (App Router) e backend Firebase serverless (Firestore, Auth, Storage), rodando em infraestrutura gerenciada pela AWS.',
+          overview: 'ETZ é uma plataforma de gestão empresarial de grande porte implantada em uma empresa stealth, atendendo a 2.000+ colaboradores com 5.000+ usuários ativos diários. Construída em um monorepo Turborepo + pnpm com frontend Next.js 16 (App Router) e backend Firebase serverless (Firestore, Auth, Storage), rodando em infraestrutura gerenciada pela AWS.',
           features: [
             'Arquitetura monorepo Turborepo + pnpm com frontend Next.js 16 (App Router)',
             'RBAC com isolamento estrito por unidade organizacional — cada unidade possui fronteiras de acesso independentes',
@@ -971,7 +971,7 @@ export const portfolioDataPt: PortfolioData = {
     {
       id: 'award1',
       title: 'Top 1,2% — Exame de Seleção Competitivo',
-      issuer: 'SSP Selection Process',
+      issuer: 'Stealth Selection Process',
       year: '2022',
       description:
         'Aprovado com sucesso em um exame altamente competitivo de quatro fases, incluindo testes escritos e de aptidão física, classificando-se entre os 1,2% melhores.',
