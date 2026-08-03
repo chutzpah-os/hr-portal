@@ -282,6 +282,86 @@ Construïda de principi a fi en 8 mòduls integrats, amb arquitectura segura, xi
       tags: ['R+D', 'Programari', 'Governança'],
     },
   },
+  {
+    id: 'psf',
+    name: 'PSF',
+    tagline: 'Solving real-world problems, at scale.',
+    shortDescription: 'Nonprofit R&D in production, building the Data Aggregator — intelligence infrastructure that unifies multi-source data to detect patterns, predict risks, and accelerate humanitarian decision-making.',
+    fullDescription: `The Problem Solver Foundation (PSF) is a nonprofit currently in production, building technologies that solve real-world problems at scale. Its admin panel already manages blog content, projects, users, applications, and community access — the operational backbone for problems solved in public.
+
+One system in active development is the Data Aggregator — an intelligence infrastructure that collects, unifies, and analyzes data from multiple sources (APIs, databases, IoT, public datasets, AI models) into a centralized ecosystem. It detects patterns, predicts risks, supports research, and accelerates decision-making.
+
+Built for humanitarian response first: the same infrastructure that flags an anomaly in a dataset can support a healthcare study or a social impact program — one system, many use cases.`,
+    metrics: [
+      { label: 'Status', value: 'In Production' },
+      { label: 'Focus', value: 'Data Intelligence' },
+      { label: 'Model', value: 'Nonprofit R&D' },
+    ],
+    tags: ['R&D', 'Software', 'Social Impact'],
+    status: 'Early Traction',
+    image: '/images/psf-admin.png',
+    imageFit: 'contain',
+    pt: {
+      tagline: 'Resolvendo problemas reais, em escala.',
+      shortDescription: 'Fundação sem fins lucrativos em produção construindo o Data Aggregator — infraestrutura de inteligência que unifica dados multi-fonte para detectar padrões, prever riscos e acelerar decisões humanitárias.',
+      fullDescription: `A Problem Solver Foundation (PSF) é uma organização sem fins lucrativos atualmente em produção, construindo tecnologias para resolver problemas reais em escala. Seu painel administrativo já gerencia conteúdo de blog, projetos, usuários, candidaturas e acesso comunitário — a espinha dorsal operacional para problemas resolvidos publicamente.
+
+Um dos sistemas em desenvolvimento ativo é o Data Aggregator — uma infraestrutura de inteligência que coleta, unifica e analisa dados de múltiplas fontes (APIs, bancos de dados, IoT, datasets públicos, modelos de IA) em um ecossistema centralizado. Ele detecta padrões, prevê riscos, apoia pesquisas e acelera a tomada de decisão.
+
+Construído primeiro para resposta humanitária: a mesma infraestrutura que sinaliza uma anomalia em um dataset pode apoiar um estudo de saúde ou um programa de impacto social — um único sistema, muitos casos de uso.`,
+      metrics: [
+        { label: 'Status', value: 'Em Produção' },
+        { label: 'Foco', value: 'Inteligência de Dados' },
+        { label: 'Modelo', value: 'P&D Sem Fins Lucrativos' },
+      ],
+      tags: ['P&D', 'Software', 'Impacto Social'],
+    },
+    es: {
+      tagline: 'Resolviendo problemas reales, a escala.',
+      shortDescription: 'Fundación sin fines de lucro en producción construyendo el Data Aggregator — infraestructura de inteligencia que unifica datos multi-fuente para detectar patrones, predecir riesgos y acelerar decisiones humanitarias.',
+      fullDescription: `La Problem Solver Foundation (PSF) es una organización sin fines de lucro actualmente en producción, construyendo tecnologías para resolver problemas reales a escala. Su panel de administración ya gestiona contenido de blog, proyectos, usuarios, solicitudes y acceso comunitario — la columna vertebral operativa para problemas resueltos públicamente.
+
+Uno de los sistemas en desarrollo activo es el Data Aggregator — una infraestructura de inteligencia que recopila, unifica y analiza datos de múltiples fuentes (APIs, bases de datos, IoT, conjuntos de datos públicos, modelos de IA) en un ecosistema centralizado. Detecta patrones, predice riesgos, apoya la investigación y acelera la toma de decisiones.
+
+Construido primero para la respuesta humanitaria: la misma infraestructura que señala una anomalía en un conjunto de datos puede apoyar un estudio de salud o un programa de impacto social — un único sistema, muchos casos de uso.`,
+      metrics: [
+        { label: 'Estado', value: 'En Producción' },
+        { label: 'Enfoque', value: 'Inteligencia de Datos' },
+        { label: 'Modelo', value: 'I+D Sin Fines de Lucro' },
+      ],
+      tags: ['I+D', 'Software', 'Impacto Social'],
+    },
+    fr: {
+      tagline: 'Résoudre des problèmes réels, à grande échelle.',
+      shortDescription: 'Fondation à but non lucratif en production construisant le Data Aggregator — une infrastructure d\'intelligence unifiant des données multi-sources pour détecter des schémas, prédire des risques et accélérer les décisions humanitaires.',
+      fullDescription: `La Problem Solver Foundation (PSF) est une organisation à but non lucratif actuellement en production, construisant des technologies pour résoudre des problèmes réels à grande échelle. Son panneau d\'administration gère déjà le contenu du blog, les projets, les utilisateurs, les candidatures et l\'accès communautaire — l\'épine dorsale opérationnelle pour des problèmes résolus publiquement.
+
+L\'un des systèmes en développement actif est le Data Aggregator — une infrastructure d\'intelligence qui collecte, unifie et analyse des données provenant de sources multiples (API, bases de données, IoT, jeux de données publics, modèles d\'IA) dans un écosystème centralisé. Il détecte des schémas, prédit des risques, soutient la recherche et accélère la prise de décision.
+
+Conçu d\'abord pour la réponse humanitaire : la même infrastructure qui signale une anomalie dans un jeu de données peut soutenir une étude de santé ou un programme d\'impact social — un seul système, de nombreux cas d\'usage.`,
+      metrics: [
+        { label: 'Statut', value: 'En Production' },
+        { label: 'Focus', value: 'Intelligence des Données' },
+        { label: 'Modèle', value: 'R&D à But Non Lucratif' },
+      ],
+      tags: ['R&D', 'Logiciel', 'Impact Social'],
+    },
+    ca: {
+      tagline: 'Resolent problemes reals, a escala.',
+      shortDescription: 'Fundació sense ànim de lucre en producció construint el Data Aggregator — infraestructura d\'intel·ligència que unifica dades multi-font per detectar patrons, predir riscos i accelerar decisions humanitàries.',
+      fullDescription: `La Problem Solver Foundation (PSF) és una organització sense ànim de lucre actualment en producció, construint tecnologies per resoldre problemes reals a escala. El seu panell d\'administració ja gestiona contingut de blog, projectes, usuaris, sol·licituds i accés comunitari — la columna vertebral operativa per a problemes resolts públicament.
+
+Un dels sistemes en desenvolupament actiu és el Data Aggregator — una infraestructura d\'intel·ligència que recull, unifica i analitza dades de múltiples fonts (APIs, bases de dades, IoT, conjunts de dades públics, models d\'IA) en un ecosistema centralitzat. Detecta patrons, prediu riscos, dona suport a la recerca i accelera la presa de decisions.
+
+Construït primer per a la resposta humanitària: la mateixa infraestructura que senyala una anomalia en un conjunt de dades pot donar suport a un estudi de salut o a un programa d\'impacte social — un únic sistema, molts casos d\'ús.`,
+      metrics: [
+        { label: 'Estat', value: 'En Producció' },
+        { label: 'Focus', value: 'Intel·ligència de Dades' },
+        { label: 'Model', value: 'R+D Sense Ànim de Lucre' },
+      ],
+      tags: ['R+D', 'Programari', 'Impacte Social'],
+    },
+  },
 ]
 
 export function getProduct(slug: string): Product | undefined {
