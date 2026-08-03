@@ -8,12 +8,12 @@ import { getUiStrings } from '@/i18n/uiStrings'
 
 const PRIMARY_LANGUAGE_COUNT = 3
 
-const MORE_LANGS_CTA: Record<string, { label: string; names: string; button: string }> = {
-  en: { label: 'More languages available upon request', names: 'French · Catalan · Hebrew · Russian', button: 'Schedule a meeting' },
-  pt: { label: 'Mais idiomas disponíveis sob consulta', names: 'Francês · Catalão · Hebraico · Russo', button: 'Agendar reunião' },
-  es: { label: 'Más idiomas disponibles bajo consulta', names: 'Francés · Catalán · Hebreo · Ruso', button: 'Agendar reunión' },
-  fr: { label: 'Plus de langues disponibles sur demande', names: 'Français · Catalan · Hébreu · Russe', button: 'Planifier un entretien' },
-  ca: { label: 'Més idiomes disponibles sota petició', names: 'Francès · Català · Hebreu · Rus', button: 'Concertar una reunió' },
+const MORE_LANGS_CTA: Record<string, { label: string; button: string }> = {
+  en: { label: 'More languages available upon request', button: 'Schedule a meeting' },
+  pt: { label: 'Mais idiomas disponíveis sob consulta', button: 'Agendar reunião' },
+  es: { label: 'Más idiomas disponibles bajo consulta', button: 'Agendar reunión' },
+  fr: { label: 'Plus de langues disponibles sur demande', button: 'Planifier un entretien' },
+  ca: { label: 'Més idiomes disponibles sota petició', button: 'Concertar una reunió' },
 }
 
 function getYouTubeEmbedUrl(url: string): string | null {
@@ -284,9 +284,6 @@ export default function LanguagesSection() {
                 style={{ color: 'var(--white-50)', fontSize: 'clamp(0.85rem, 1.6vw, 0.95rem)', fontWeight: 500 }}
               >
                 {cta.label}
-              </p>
-              <p className="text-[0.65rem] uppercase tracking-widest" style={{ color: 'var(--white-30)' }}>
-                {cta.names}
               </p>
             </div>
             <span

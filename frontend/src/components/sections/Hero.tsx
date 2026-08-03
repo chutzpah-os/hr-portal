@@ -180,9 +180,9 @@ export default function Hero() {
               }}
             >
               {[
-                { value: '6+',  label: ui.statsYears    },
-                { value: '6',   label: ui.statsResearch },
-                { value: '30+', label: ui.statsProjects },
+                { value: '6+',                    label: ui.statsYears    },
+                { value: ui.statsResearchValue,    label: ui.statsResearch },
+                { value: '15+',                    label: ui.statsProjects },
               ].map(({ value, label }) => (
                 <div key={label} className="text-center">
                   <p

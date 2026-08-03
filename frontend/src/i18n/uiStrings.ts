@@ -80,6 +80,7 @@ interface UiStrings {
   marqueeItems: string[]
   statsYears: string
   statsResearch: string
+  statsResearchValue: string
   statsProjects: string
   // ── cv modal ──────────────────────────────────────────────────────────────
   cvSelectArea: string
@@ -170,6 +171,7 @@ const UI: Record<LocaleKey, UiStrings> = {
     ],
     statsYears: 'Anys',
     statsResearch: 'Recerca',
+    statsResearchValue: 'En curs',
     statsProjects: 'Projectes',
     cvSelectArea: 'Selecciona una àrea de focus i tria el format.',
     cvOnePagePerArea: 'Una pàgina per àrea',
@@ -257,6 +259,7 @@ const UI: Record<LocaleKey, UiStrings> = {
     ],
     statsYears: 'Années',
     statsResearch: 'Recherches',
+    statsResearchValue: 'En cours',
     statsProjects: 'Projets',
     cvSelectArea: 'Sélectionnez un domaine de focus, puis choisissez votre format.',
     cvOnePagePerArea: 'Une page par domaine',
@@ -345,6 +348,7 @@ const UI: Record<LocaleKey, UiStrings> = {
     ],
     statsYears: 'Years',
     statsResearch: 'Research',
+    statsResearchValue: 'Ongoing',
     statsProjects: 'Projects',
     cvSelectArea: 'Select a focus area, then choose your format.',
     cvOnePagePerArea: 'One page per area',
@@ -433,6 +437,7 @@ const UI: Record<LocaleKey, UiStrings> = {
     ],
     statsYears: 'Anos',
     statsResearch: 'Pesquisas',
+    statsResearchValue: 'Em curso',
     statsProjects: 'Projetos',
     cvSelectArea: 'Selecione uma área de foco e escolha o formato.',
     cvOnePagePerArea: 'Uma página por área',
@@ -521,6 +526,7 @@ const UI: Record<LocaleKey, UiStrings> = {
     ],
     statsYears: 'Años',
     statsResearch: 'Investigación',
+    statsResearchValue: 'En curso',
     statsProjects: 'Proyectos',
     cvSelectArea: 'Selecciona un área de enfoque y elige tu formato.',
     cvOnePagePerArea: 'Una página por área',
