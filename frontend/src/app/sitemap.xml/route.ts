@@ -101,7 +101,7 @@ export async function GET() {
     ...PRODUCTS.flatMap((p) =>
       localeEntries(`/solutions/${p.id}`, '2026-07-06', 'monthly', 0.8),
     ),
-    ...CHALLENGES.flatMap((c) =>
+    ...CHALLENGES.filter((c) => c.active !== false).flatMap((c) =>
       localeEntries(`/challenges/${c.id}`, '2026-07-01', 'monthly', 0.8),
     ),
     // Blog posts — one entry per locale that has the post, with hreflang alternates

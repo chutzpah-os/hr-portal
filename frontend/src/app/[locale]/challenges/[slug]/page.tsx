@@ -50,7 +50,7 @@ function PanelFrame({ children, top = false }: { children: React.ReactNode; top?
 }
 
 export async function generateStaticParams() {
-  return CHALLENGES.map((c) => ({ slug: c.id }))
+  return CHALLENGES.filter((c) => c.active !== false).map((c) => ({ slug: c.id }))
 }
 
 export async function generateMetadata(
@@ -58,7 +58,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { locale, slug } = await params
   const rawChallenge = getChallenge(slug)
-  if (!rawChallenge) return {}
+  if (!rawChallenge || rawChallenge.active === false) return {}
   const challenge = getLocalizedChallenge(rawChallenge, locale)
 
   const url = `${BASE_URL}/${locale}/challenges/${challenge.id}`
@@ -85,7 +85,7 @@ export default async function ChallengePage(
 ) {
   const { locale, slug } = await params
   const rawChallenge = getChallenge(slug)
-  if (!rawChallenge) notFound()
+  if (!rawChallenge || rawChallenge.active === false) notFound()
   const challenge = getLocalizedChallenge(rawChallenge, locale)
   const t = await getTranslations('challenges')
 

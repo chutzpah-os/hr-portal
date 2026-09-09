@@ -67,6 +67,7 @@ export interface BenefitItem {
 
 export interface Challenge {
   id: string
+  active?: boolean
   name: string
   tagline: string
   shortDescription: string
@@ -95,6 +96,7 @@ export interface Challenge {
 export const CHALLENGES: Challenge[] = [
   {
     id: '1k-miles-of-hope',
+    active: false,
     name: '1k Miles of Hope',
     tagline: 'Running for a cure.',
     shortDescription: 'A fundraising campaign to finance cancer research — every mile matters.',

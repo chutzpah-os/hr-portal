@@ -251,7 +251,7 @@ function ChallengeCard({ challenge, onClick }: { challenge: Challenge; onClick: 
 export default function ChallengesPage() {
   const t = useTranslations('challenges')
   const locale = useLocale()
-  const challenges = CHALLENGES.map((c) => getLocalizedChallenge(c, locale))
+  const challenges = CHALLENGES.filter((c) => c.active !== false).map((c) => getLocalizedChallenge(c, locale))
   const [selected, setSelected] = useState<Challenge | null>(null)
   const handleClose = useCallback(() => setSelected(null), [])
 
@@ -288,23 +288,42 @@ export default function ChallengesPage() {
           </motion.div>
 
           {/* Cards */}
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-20"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            {challenges.map((challenge, i) => (
-              <motion.div
-                key={challenge.id}
-                initial={{ opacity: 0, y: 16, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.3, delay: i * 0.06, ease: 'easeOut' }}
+          {challenges.length > 0 ? (
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-20"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              {challenges.map((challenge, i) => (
+                <motion.div
+                  key={challenge.id}
+                  initial={{ opacity: 0, y: 16, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.3, delay: i * 0.06, ease: 'easeOut' }}
+                >
+                  <ChallengeCard challenge={challenge} onClick={() => setSelected(challenge)} />
+                </motion.div>
+              ))}
+            </motion.div>
+          ) : (
+            <div
+              className="flex flex-col items-center justify-center py-20 rounded-2xl mb-20"
+              style={{ border: '1px dashed rgba(10,10,15,0.12)' }}
+            >
+              <div
+                className="w-10 h-10 rounded-full flex items-center justify-center mb-5"
+                style={{ backgroundColor: 'rgba(212,119,90,0.08)', border: '1px solid rgba(212,119,90,0.18)' }}
               >
-                <ChallengeCard challenge={challenge} onClick={() => setSelected(challenge)} />
-              </motion.div>
-            ))}
-          </motion.div>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
+                </svg>
+              </div>
+              <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--white-35)' }}>
+                {t('empty')}
+              </p>
+            </div>
+          )}
         </div>
       </main>
     </>
