@@ -98,7 +98,7 @@ export async function GET() {
     ...localeEntries('/writing', '2026-05-01', 'monthly', 0.7),
     // Translated dynamic pages
     ...localeEntries('/blog', latestPostDate, 'weekly', 0.8),
-    ...PRODUCTS.flatMap((p) =>
+    ...PRODUCTS.filter((p) => p.active !== false).flatMap((p) =>
       localeEntries(`/solutions/${p.id}`, '2026-07-06', 'monthly', 0.8),
     ),
     ...CHALLENGES.filter((c) => c.active !== false).flatMap((c) =>

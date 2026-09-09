@@ -9,7 +9,7 @@ import { buildAlternates } from '@/lib/metadata'
 const BASE_URL = 'https://www.hanielrolemberg.com'
 
 export async function generateStaticParams() {
-  return PRODUCTS.map((p) => ({ slug: p.id }))
+  return PRODUCTS.filter((p) => p.active !== false).map((p) => ({ slug: p.id }))
 }
 
 export async function generateMetadata(
@@ -17,7 +17,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { locale, slug } = await params
   const rawProduct = getProduct(slug)
-  if (!rawProduct) return {}
+  if (!rawProduct || rawProduct.active === false) return {}
   const product = getLocalizedProduct(rawProduct, locale)
 
   const url = `${BASE_URL}/${locale}/solutions/${product.id}`
@@ -44,7 +44,7 @@ export default async function ProductPage(
 ) {
   const { locale, slug } = await params
   const rawProduct = getProduct(slug)
-  if (!rawProduct) notFound()
+  if (!rawProduct || rawProduct.active === false) notFound()
   const product = getLocalizedProduct(rawProduct, locale)
   const t = await getTranslations('common')
 

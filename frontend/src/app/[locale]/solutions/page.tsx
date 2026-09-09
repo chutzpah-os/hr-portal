@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations, useLocale } from 'next-intl'
 import { PRODUCTS, getLocalizedProduct, type Product } from '@/data/solutions'
+import { useGetInTouch } from '@/components/providers/GetInTouchProvider'
 
 function ProductModal({ product, onClose }: { product: Product; onClose: () => void }) {
   const tc = useTranslations('common')
@@ -280,9 +281,10 @@ export default function SolutionsPage() {
   const t = useTranslations('lab')
   const tc = useTranslations('common')
   const locale = useLocale()
-  const products = PRODUCTS.map((p) => getLocalizedProduct(p, locale))
+  const products = PRODUCTS.filter((p) => p.active !== false).map((p) => getLocalizedProduct(p, locale))
   const [selected, setSelected] = useState<Product | null>(null)
   const handleClose = useCallback(() => setSelected(null), [])
+  const { openGetInTouch } = useGetInTouch()
 
   return (
     <>
@@ -394,17 +396,16 @@ export default function SolutionsPage() {
             >
               {tc('haveProblemSub')}
             </p>
-            <a
-              href="https://calendly.com/hanielrolemberg"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={openGetInTouch}
               className="inline-flex items-center gap-2 text-xs uppercase tracking-widest px-6 py-3 rounded-full transition-all duration-200"
               style={{ backgroundColor: 'var(--accent)', color: 'rgb(255,255,255)', fontWeight: 600 }}
               onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.85' }}
               onMouseLeave={(e) => { e.currentTarget.style.opacity = '1' }}
             >
               {tc('bookCallCta')}
-            </a>
+            </button>
           </motion.div>
         </div>
       </main>

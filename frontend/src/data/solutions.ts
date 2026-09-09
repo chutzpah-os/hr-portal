@@ -20,6 +20,7 @@ interface ProductTranslation {
 
 export interface Product {
   id: string
+  active?: boolean
   name: string
   tagline: string
   shortDescription: string
@@ -114,6 +115,7 @@ Construït per a persones ambicioses que volen moure\'s més ràpid sense perdre
   },
   {
     id: 'hofshilang',
+    active: false,
     name: 'HofShiLang',
     tagline: 'Empowering youth through languages.',
     shortDescription: 'Language learning with a proprietary formula designed to turn ambition into measurable fluency.',
@@ -204,6 +206,7 @@ La fórmula: input estructurat + output en el món real + cicles de responsabili
   },
   {
     id: 'shoresh',
+    active: false,
     name: 'Shoresh',
     tagline: 'Governance, rooted in infrastructure.',
     shortDescription: 'Enterprise governance and compliance SaaS platform for mid-sized/large organizations and scaling startups — built end-to-end across 8 integrated modules.',
@@ -284,6 +287,7 @@ Construïda de principi a fi en 8 mòduls integrats, amb arquitectura segura, xi
   },
   {
     id: 'psf',
+    active: false,
     name: 'PSF',
     tagline: 'Solving real-world problems, at scale.',
     shortDescription: 'Nonprofit R&D in production, building the Data Aggregator — intelligence infrastructure that unifies multi-source data to detect patterns, predict risks, and accelerate humanitarian decision-making.',
