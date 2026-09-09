@@ -49,10 +49,13 @@ export default function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  // /lp also works directly on the main domain/localhost (testing, and so it
-  // doesn't get caught by the TOP_LEVEL_ROUTES/locale checks below).
+  // /lp is exclusively reached via the lp.hanielrolemberg.com rewrite above.
+  // Only bypass that on localhost, for local testing without DNS set up;
+  // anywhere else (including the main production domain) it doesn't exist.
   if (pathname === '/lp') {
-    return NextResponse.next()
+    const isLocalhost = hostname.startsWith('localhost') || hostname.startsWith('127.0.0.1')
+    if (isLocalhost) return NextResponse.next()
+    return NextResponse.redirect(new URL('/', request.url), { status: 302 })
   }
 
   // Normalize: lowercase + strip trailing slash
