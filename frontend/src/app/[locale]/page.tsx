@@ -1,10 +1,11 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
+import { useGetInTouch } from '@/components/providers/GetInTouchProvider'
 
 interface YTVideo {
   id: string
@@ -27,15 +28,6 @@ const VIDEOS: YTVideo[] = [
     channelName: 'Problem Solver Foundation',
     channelId: 'psf',
     url: 'https://www.youtube.com/watch?v=P24KDOH8mNI',
-  },
-  {
-    id: 'Vdzc9GZaJvk',
-    title: 'Why 1 Billion Problem Solvers? The Movement Changing Everything',
-    thumbnail: 'https://i.ytimg.com/vi/Vdzc9GZaJvk/hqdefault.jpg',
-    publishedAt: '',
-    channelName: 'Problem Solver Foundation',
-    channelId: 'psf',
-    url: 'https://www.youtube.com/watch?v=Vdzc9GZaJvk',
   },
   {
     id: 'FYU0XuAOmcM',
@@ -151,161 +143,71 @@ function FeaturedContent() {
 
 export default function Home() {
   const t = useTranslations('home')
-  const [email, setEmail] = useState('')
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!email || status === 'loading') return
-    setStatus('loading')
-    try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/newsletter/subscribe`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      })
-      if (res.ok || res.status === 409) {
-        setStatus('success')
-        setEmail('')
-      } else {
-        setStatus('error')
-      }
-    } catch {
-      setStatus('error')
-    }
-  }
+  const { openGetInTouch } = useGetInTouch()
 
   return (
     <>
       <main style={{ paddingTop: '5.5rem', minHeight: '100svh', display: 'flex', flexDirection: 'column' }}>
         <section className="flex-1 flex flex-col max-w-content mx-auto px-6 md:px-10 py-10 md:py-14 w-full">
-          <div className="flex flex-col-reverse md:flex-row gap-10 md:gap-14 items-start flex-1 mb-10 md:mb-12">
-            <motion.div
-              className="flex-1 min-w-0"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, ease: 'easeOut' }}
+          <motion.div
+            className="max-w-xl w-full mx-auto flex-1 mb-10 md:mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, ease: 'easeOut' }}
+          >
+            <h1
+              className="mb-2 font-bold leading-tight"
+              style={{ color: 'var(--white-100)', fontSize: 'clamp(2rem, 5vw, 3rem)', letterSpacing: '-0.03em', fontFamily: 'var(--font-syne)' }}
             >
-              <h1
-                className="mb-2 font-bold leading-tight"
-                style={{ color: 'var(--white-100)', fontSize: 'clamp(2rem, 5vw, 3rem)', letterSpacing: '-0.03em', fontFamily: 'var(--font-syne)' }}
-              >
-                Haniel Rolemberg
-              </h1>
-              <p className="mb-8 text-xs uppercase tracking-widest" style={{ color: 'var(--accent)' }}>
-                {t('tagline')}
-              </p>
+              Haniel Rolemberg
+            </h1>
+            <p className="mb-8 text-xs uppercase tracking-widest" style={{ color: 'var(--accent)' }}>
+              {t('tagline')}
+            </p>
 
-              <div className="space-y-5 max-w-xl">
-                <p className="text-base leading-relaxed" style={{ color: 'var(--white-70)' }}>{t('bio1')}</p>
-                <p className="text-base leading-relaxed" style={{ color: 'var(--white-70)' }}>{t('bio2')}</p>
-                <p className="text-base leading-relaxed" style={{ color: 'var(--white-70)' }}>
-                  {t.rich('bio3', {
-                    psf: (chunks) => (
-                      <a
-                        href="https://problemsolverfoundation.vercel.app/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="transition-colors duration-200"
-                        style={{ color: 'var(--white-90)', textDecoration: 'underline', textUnderlineOffset: '3px' }}
-                      >
-                        {chunks}
-                      </a>
-                    ),
-                    mission: (chunks) => <span style={{ color: 'var(--white-50)' }}>{chunks}</span>,
-                  })}
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-3 mt-10">
-                <a
-                  href="https://calendly.com/hanielrolemberg"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs uppercase tracking-widest px-5 py-2.5 rounded-full transition-all duration-200"
-                  style={{ border: '1px solid rgba(10,10,15,0.15)', color: 'var(--white-65)' }}
-                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent)' }}
-                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(10,10,15,0.15)'; e.currentTarget.style.color = 'var(--white-65)' }}
-                >
-                  {t('bookCall')}
-                </a>
-                <Link
-                  href="/about"
-                  className="text-xs uppercase tracking-widest px-5 py-2.5 rounded-full transition-all duration-200"
-                  style={{ color: 'var(--white-45)' }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--white-80)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--white-45)')}
-                >
-                  {t('aboutLink')}
-                </Link>
-              </div>
-            </motion.div>
-
-            <motion.div
-              className="w-full md:w-[380px] flex-shrink-0"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.12, ease: 'easeOut' }}
-              style={{
-                borderRadius: '18px',
-                border: '1px solid rgba(10,10,15,0.08)',
-                backgroundColor: 'rgba(10,10,15,0.02)',
-                padding: '1.75rem',
-              }}
-            >
-              <p className="text-[0.6rem] uppercase tracking-[0.22em] mb-3 font-medium" style={{ color: 'var(--white-35)' }}>
-                {t('newsletterLabel')}
-              </p>
-              <p className="text-sm leading-relaxed mb-6" style={{ color: 'var(--white-55)' }}>
-                {t('newsletterSubtitle')}
-              </p>
-
-              {status === 'success' ? (
-                <p className="text-sm font-medium" style={{ color: 'var(--accent)' }}>
-                  {t('newsletterSuccess')}
-                </p>
-              ) : (
-                <>
-                  <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => { setEmail(e.target.value); if (status === 'error') setStatus('idle') }}
-                      placeholder={t('newsletterPlaceholder')}
-                      required
-                      disabled={status === 'loading'}
-                      className="text-sm px-4 py-2.5 rounded-xl outline-none transition-all duration-200 placeholder:opacity-35 disabled:opacity-50"
-                      style={{ border: '1px solid rgba(10,10,15,0.12)', backgroundColor: 'rgb(255,255,255)', color: 'var(--white-90)' }}
-                      onFocus={(e) => (e.currentTarget.style.border = '1px solid rgba(212,119,90,0.45)')}
-                      onBlur={(e) => (e.currentTarget.style.border = '1px solid rgba(10,10,15,0.12)')}
-                    />
-                    <button
-                      type="submit"
-                      disabled={status === 'loading'}
-                      className="text-xs uppercase tracking-widest px-5 py-2.5 rounded-xl transition-all duration-200 whitespace-nowrap disabled:opacity-60"
-                      style={{ backgroundColor: 'var(--accent)', color: '#fff' }}
-                      onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.85')}
-                      onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+            <div className="space-y-5 max-w-xl">
+              <p className="text-base leading-relaxed" style={{ color: 'var(--white-70)' }}>{t('bio1')}</p>
+              <p className="text-base leading-relaxed" style={{ color: 'var(--white-70)' }}>{t('bio2')}</p>
+              <p className="text-base leading-relaxed" style={{ color: 'var(--white-70)' }}>
+                {t.rich('bio3', {
+                  psf: (chunks) => (
+                    <a
+                      href="https://problemsolverfoundation.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-colors duration-200"
+                      style={{ color: 'var(--white-90)', textDecoration: 'underline', textUnderlineOffset: '3px' }}
                     >
-                      {status === 'loading' ? '...' : t('newsletterSubmit')}
-                    </button>
-                  </form>
-                  {status === 'error' && (
-                    <p className="text-xs mt-2" style={{ color: 'rgba(180,60,40,0.8)' }}>
-                      {t('newsletterError')}
-                    </p>
-                  )}
-                </>
-              )}
-
-              <p
-                className="text-xs leading-relaxed mt-6 pt-5"
-                style={{ color: 'var(--white-40)', borderTop: '1px solid rgba(10,10,15,0.08)' }}
-              >
-                {t('noSocialNote')}
+                      {chunks}
+                    </a>
+                  ),
+                  mission: (chunks) => <span style={{ color: 'var(--white-50)' }}>{chunks}</span>,
+                })}
               </p>
-            </motion.div>
-          </div>
+            </div>
+
+            <div className="flex flex-wrap gap-3 mt-10">
+              <button
+                type="button"
+                onClick={openGetInTouch}
+                className="text-xs uppercase tracking-widest px-5 py-2.5 rounded-full transition-all duration-200"
+                style={{ border: '1px solid rgba(10,10,15,0.15)', color: 'var(--white-65)' }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent)' }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(10,10,15,0.15)'; e.currentTarget.style.color = 'var(--white-65)' }}
+              >
+                {t('bookCall')}
+              </button>
+              <Link
+                href="/about"
+                className="text-xs uppercase tracking-widest px-5 py-2.5 rounded-full transition-all duration-200"
+                style={{ color: 'var(--white-45)' }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--white-80)')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--white-45)')}
+              >
+                {t('aboutLink')}
+              </Link>
+            </div>
+          </motion.div>
         </section>
 
         <FeaturedContent />

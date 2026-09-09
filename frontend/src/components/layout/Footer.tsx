@@ -1,5 +1,7 @@
 'use client'
 
+import { useGetInTouch } from '@/components/providers/GetInTouchProvider'
+
 const SOCIAL_LINKS = [
   {
     label: 'LinkedIn',
@@ -11,8 +13,8 @@ const SOCIAL_LINKS = [
     ),
   },
   {
-    label: 'Book a Meeting',
-    href: 'https://calendly.com/hanielrolemberg',
+    label: 'Book a 1:1',
+    action: 'getInTouch' as const,
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
@@ -30,8 +32,27 @@ const SOCIAL_LINKS = [
   },
 ]
 
+const iconButtonStyle = {
+  width: '52px',
+  height: '52px',
+  borderRadius: '32px',
+  backgroundColor: 'var(--white-10)',
+  color: 'var(--white-60)',
+}
+
+const handleIconHoverEnter = (e: React.MouseEvent<HTMLElement>) => {
+  e.currentTarget.style.backgroundColor = 'var(--white-15)'
+  e.currentTarget.style.color = 'var(--white-100)'
+}
+
+const handleIconHoverLeave = (e: React.MouseEvent<HTMLElement>) => {
+  e.currentTarget.style.backgroundColor = 'var(--white-10)'
+  e.currentTarget.style.color = 'var(--white-60)'
+}
 
 export default function Footer() {
+  const { openGetInTouch } = useGetInTouch()
+
   return (
     <footer
       className="no-print"
@@ -40,33 +61,36 @@ export default function Footer() {
       <div className="flex flex-col md:flex-row items-center justify-between gap-6 max-w-content mx-auto px-5 py-6 md:px-10">
         {/* Social icons */}
         <div className="flex items-center gap-3">
-          {SOCIAL_LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={link.label}
-              className="flex items-center justify-center transition-colors duration-200"
-              style={{
-                width: '52px',
-                height: '52px',
-                borderRadius: '32px',
-                backgroundColor: 'var(--white-10)',
-                color: 'var(--white-60)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'var(--white-15)'
-                e.currentTarget.style.color = 'var(--white-100)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'var(--white-10)'
-                e.currentTarget.style.color = 'var(--white-60)'
-              }}
-            >
-              {link.icon}
-            </a>
-          ))}
+          {SOCIAL_LINKS.map((link) =>
+            link.action === 'getInTouch' ? (
+              <button
+                key={link.label}
+                type="button"
+                onClick={openGetInTouch}
+                aria-label={link.label}
+                className="flex items-center justify-center transition-colors duration-200"
+                style={iconButtonStyle}
+                onMouseEnter={handleIconHoverEnter}
+                onMouseLeave={handleIconHoverLeave}
+              >
+                {link.icon}
+              </button>
+            ) : (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={link.label}
+                className="flex items-center justify-center transition-colors duration-200"
+                style={iconButtonStyle}
+                onMouseEnter={handleIconHoverEnter}
+                onMouseLeave={handleIconHoverLeave}
+              >
+                {link.icon}
+              </a>
+            )
+          )}
         </div>
 
         {/* Copyright */}

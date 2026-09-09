@@ -47,10 +47,16 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
           {t('title')}
         </h1>
         <p
-          className="text-base leading-relaxed mb-10 max-w-xl"
+          className="text-base leading-relaxed mb-3 max-w-xl"
           style={{ color: 'var(--white-55)' }}
         >
           {t('subtitle')}
+        </p>
+        <p
+          className="text-xs uppercase tracking-widest mb-10"
+          style={{ color: 'var(--white-35)' }}
+        >
+          {t('noAiNote')}
         </p>
         <BlogList posts={posts} />
       </div>

@@ -120,7 +120,6 @@ const UI: Record<LocaleKey, UiStrings> = {
       { key: 'softwareDevelopment', label: 'Programari'   },
       { key: 'dataEngineering',     label: 'Dades'        },
       { key: 'cybersecurity',       label: 'Ciber'        },
-      { key: 'challenges',          label: 'Reptes'       },
     ],
     projectCategoryLabel: {
       aiml: 'IA / ML', softwareDevelopment: 'Programari',
@@ -161,7 +160,7 @@ const UI: Record<LocaleKey, UiStrings> = {
     nextRecommendation: 'Recomanació següent',
     goToRecommendation: (n) => `Anar a la recomanació ${n}`,
     downloadCv: 'Descarregar CV',
-    bookCall: 'Reservar una Reunió',
+    bookCall: 'Reservar un 1:1',
     heroDescription: 'Programari. IA. Dades. Seguretat. R+D. Problemes difícils en múltiples disciplines — construeixo i mantinc solucions robustes.',
     heroHeadline: ['Investigar.', 'Construir.', 'Protegir.'],
     marqueeItems: [
@@ -208,7 +207,6 @@ const UI: Record<LocaleKey, UiStrings> = {
       { key: 'softwareDevelopment', label: 'Logiciel'  },
       { key: 'dataEngineering',     label: 'Données'   },
       { key: 'cybersecurity',       label: 'Cyber'     },
-      { key: 'challenges',          label: 'Défis'     },
     ],
     projectCategoryLabel: {
       aiml: 'IA / ML', softwareDevelopment: 'Logiciel',
@@ -249,7 +247,7 @@ const UI: Record<LocaleKey, UiStrings> = {
     nextRecommendation: 'Recommandation suivante',
     goToRecommendation: (n) => `Aller à la recommandation ${n}`,
     downloadCv: 'Télécharger le CV',
-    bookCall: 'Prendre un Rendez-vous',
+    bookCall: 'Réserver un 1:1',
     heroDescription: 'Logiciel. IA. Données. Sécurité. R&D. Des problèmes difficiles à travers les disciplines — je construis et maintiens des solutions robustes.',
     heroHeadline: ['Rechercher.', 'Construire.', 'Sécuriser.'],
     marqueeItems: [
@@ -297,7 +295,6 @@ const UI: Record<LocaleKey, UiStrings> = {
       { key: 'softwareDevelopment', label: 'Software'   },
       { key: 'dataEngineering',     label: 'Data'       },
       { key: 'cybersecurity',       label: 'Cyber'      },
-      { key: 'challenges',          label: 'Challenges' },
     ],
     projectCategoryLabel: {
       aiml: 'AI / ML', softwareDevelopment: 'Software',
@@ -338,7 +335,7 @@ const UI: Record<LocaleKey, UiStrings> = {
     nextRecommendation: 'Next recommendation',
     goToRecommendation: (n) => `Go to recommendation ${n}`,
     downloadCv: 'Download CV',
-    bookCall: 'Book a Call',
+    bookCall: 'Book a 1:1',
     heroDescription: 'Software. AI. Data. Security. R&D. Hard problems across disciplines — I build and maintain robust solutions.',
     heroHeadline: ['Research.', 'Build.', 'Secure.'],
     marqueeItems: [
@@ -386,7 +383,6 @@ const UI: Record<LocaleKey, UiStrings> = {
       { key: 'softwareDevelopment', label: 'Software' },
       { key: 'dataEngineering',     label: 'Dados'    },
       { key: 'cybersecurity',       label: 'Cyber'    },
-      { key: 'challenges',          label: 'Desafios' },
     ],
     projectCategoryLabel: {
       aiml: 'IA / ML', softwareDevelopment: 'Software',
@@ -427,7 +423,7 @@ const UI: Record<LocaleKey, UiStrings> = {
     nextRecommendation: 'Próxima recomendação',
     goToRecommendation: (n) => `Ir para recomendação ${n}`,
     downloadCv: 'Baixar CV',
-    bookCall: 'Agendar Reunião',
+    bookCall: 'Agendar 1:1',
     heroDescription: 'Software. IA. Dados. Segurança. P&D. Problemas difíceis em várias disciplinas — construo e mantenho soluções robustas.',
     heroHeadline: ['Pesquisar.', 'Construir.', 'Proteger.'],
     marqueeItems: [
@@ -475,7 +471,6 @@ const UI: Record<LocaleKey, UiStrings> = {
       { key: 'softwareDevelopment', label: 'Software' },
       { key: 'dataEngineering',     label: 'Datos'    },
       { key: 'cybersecurity',       label: 'Ciber'    },
-      { key: 'challenges',          label: 'Desafíos' },
     ],
     projectCategoryLabel: {
       aiml: 'IA / ML', softwareDevelopment: 'Software',
@@ -516,7 +511,7 @@ const UI: Record<LocaleKey, UiStrings> = {
     nextRecommendation: 'Siguiente recomendación',
     goToRecommendation: (n) => `Ir a la recomendación ${n}`,
     downloadCv: 'Descargar CV',
-    bookCall: 'Reservar una Reunión',
+    bookCall: 'Agendar 1:1',
     heroDescription: 'Software. IA. Datos. Seguridad. I+D. Problemas difíciles en múltiples disciplinas — construyo y mantengo soluciones robustas.',
     heroHeadline: ['Investigar.', 'Construir.', 'Proteger.'],
     marqueeItems: [

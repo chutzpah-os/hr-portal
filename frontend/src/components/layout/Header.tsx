@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations, useLocale } from 'next-intl'
 import { usePathname, useRouter } from '@/navigation'
+import { useGetInTouch } from '@/components/providers/GetInTouchProvider'
 
 const LOCALES = [
   { code: 'en', name: 'English' },
@@ -158,6 +159,7 @@ function LanguagePicker({
 
 export default function Header() {
   const t = useTranslations('nav')
+  const { openGetInTouch } = useGetInTouch()
   const locale = useLocale()
   const pathname = usePathname()
   const router = useRouter()
@@ -238,11 +240,10 @@ export default function Header() {
 
         <div className="hidden xl:block w-px h-4 mx-1" style={{ backgroundColor: 'rgba(10,10,15,0.1)' }} />
 
-        {/* Book a Call — desktop */}
-        <a
-          href="https://calendly.com/hanielrolemberg"
-          target="_blank"
-          rel="noopener noreferrer"
+        {/* Book a 1:1 — desktop */}
+        <button
+          type="button"
+          onClick={openGetInTouch}
           className="hidden xl:flex text-xs uppercase tracking-widest px-4 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap"
           style={{ border: '1px solid var(--accent)', color: 'var(--accent)' }}
           onMouseEnter={(e) => {
@@ -255,7 +256,7 @@ export default function Header() {
           }}
         >
           {t('bookCall')}
-        </a>
+        </button>
 
         {/* Hamburger — mobile/tablet */}
         <button
@@ -339,13 +340,11 @@ export default function Header() {
 
             <div className="mx-3 my-1 h-px" style={{ backgroundColor: 'rgba(10,10,15,0.08)' }} />
 
-            <a
-              href="https://calendly.com/hanielrolemberg"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs uppercase tracking-widest px-4 py-2.5 rounded-xl transition-all duration-200"
+            <button
+              type="button"
+              className="text-left text-xs uppercase tracking-widest px-4 py-2.5 rounded-xl transition-all duration-200"
               style={{ color: 'var(--accent)' }}
-              onClick={() => setMobileOpen(false)}
+              onClick={() => { setMobileOpen(false); openGetInTouch() }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.opacity = '0.7'
                 e.currentTarget.style.backgroundColor = 'rgba(212,119,90,0.08)'
@@ -356,7 +355,7 @@ export default function Header() {
               }}
             >
               {t('bookCall')}
-            </a>
+            </button>
           </motion.div>
         )}
       </AnimatePresence>

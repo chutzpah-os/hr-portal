@@ -6,6 +6,7 @@ import { routing } from '@/i18n/routing'
 import { buildAlternates } from '@/lib/metadata'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import { GetInTouchProvider } from '@/components/providers/GetInTouchProvider'
 
 // Provides canonical for the homepage (client component — can't export generateMetadata itself)
 // All other pages override this via their own generateMetadata
@@ -38,9 +39,11 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider messages={messages}>
       <script dangerouslySetInnerHTML={{ __html: `document.documentElement.lang='${locale}'` }} />
-      <Header />
-      {children}
-      <Footer />
+      <GetInTouchProvider>
+        <Header />
+        {children}
+        <Footer />
+      </GetInTouchProvider>
     </NextIntlClientProvider>
   )
 }
