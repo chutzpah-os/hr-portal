@@ -36,19 +36,19 @@
     "aboutLink": "Sobre mi →",
     "featuredContent": "Contingut Destacat",
     "videos": "Vídeos",
-    "videoFilterAll": "Tots",
     "viewAllVideos": "Veure tots els vídeos →",
     "newsletterLabel": "Newsletter",
-    "newsletterSubtitle": "Notes ocasionals sobre ciberseguretat, treball profund i el que estic construint. Sense spam — només contingut rellevant.",
+    "newsletterSubtitle": "Aquí és on explico com evoluciona la Problem Solver Foundation, a més de notes ocasionals sobre ciberseguretat i treball profund. Sense spam — només contingut rellevant.",
     "newsletterPlaceholder": "el-teu@email.com",
     "newsletterSubmit": "Subscriure's",
     "newsletterSuccess": "Ja ets dins. Em posaré en contacte aviat.",
-    "newsletterError": "Alguna cosa ha anat malament. Si us plau, torna-ho a intentar."
+    "newsletterError": "Alguna cosa ha anat malament. Si us plau, torna-ho a intentar.",
+    "noSocialNote": "No sóc a les xarxes socials. Si vols parlar, el correu electrònic és la millor manera de contactar-me."
   },
   "about": {
     "sectionLabel": "Sobre mi",
     "title": "Sobre Mi",
-    "tagline": "Solucionador de Problemes · Aracaju, Brasil"
+    "tagline": "Solucionador de Problemes · Aracaju, Sergipe, Brasil"
   },
   "portfolio": {
     "sectionLabel": "Portfolio",
@@ -113,7 +113,8 @@
     "fundNextTier": "Propera fita",
     "survivalRate5yr": "Taxa de supervivència a 5 anys",
     "sourceLabel": "Font",
-    "seeRelatedPosts": "Veure tots els episodis →"
+    "seeRelatedPosts": "Veure tots els episodis →",
+    "empty": "Cap repte actiu de moment — torna aviat"
   },
   "press": {
     "sectionLabel": "Premsa",

@@ -16,16 +16,9 @@ interface YTVideo {
   url: string
 }
 
-type Filter = 'all' | 'haniel_pt' | 'haniel_en' | 'psf'
-
-const CHANNEL_LINKS: Record<string, string> = {
-  haniel_pt: 'https://www.youtube.com/@hanielrolemberg',
-  haniel_en: 'https://www.youtube.com/@hanielrolemberg',
-  psf: 'https://www.youtube.com/@ProblemSolverFoundation',
-}
+const PSF_CHANNEL_LINK = 'https://www.youtube.com/@ProblemSolverFoundation'
 
 const VIDEOS: YTVideo[] = [
-  // PSF
   {
     id: 'P24KDOH8mNI',
     title: 'One Billion People Can Solve This | The 2035 Plan',
@@ -53,86 +46,11 @@ const VIDEOS: YTVideo[] = [
     channelId: 'psf',
     url: 'https://www.youtube.com/watch?v=FYU0XuAOmcM',
   },
-  // Haniel Rolemberg (PT-BR)
-  {
-    id: 'XW-PPAL0m7Q',
-    title: 'Eu decidi correr contra o câncer',
-    thumbnail: 'https://i.ytimg.com/vi/XW-PPAL0m7Q/hqdefault.jpg',
-    publishedAt: '',
-    channelName: 'Haniel Rolemberg',
-    channelId: 'haniel_pt',
-    url: 'https://www.youtube.com/watch?v=XW-PPAL0m7Q',
-  },
-  {
-    id: 'LmMR1CEPeF8',
-    title: 'Eu decidi correr 1700 km contra o câncer',
-    thumbnail: 'https://i.ytimg.com/vi/LmMR1CEPeF8/hqdefault.jpg',
-    publishedAt: '',
-    channelName: 'Haniel Rolemberg',
-    channelId: 'haniel_pt',
-    url: 'https://www.youtube.com/watch?v=LmMR1CEPeF8',
-  },
-  {
-    id: 'xPbOHYZqWZM',
-    title: '3 curiosidades sobre a cura do câncer',
-    thumbnail: 'https://i.ytimg.com/vi/xPbOHYZqWZM/hqdefault.jpg',
-    publishedAt: '',
-    channelName: 'Haniel Rolemberg',
-    channelId: 'haniel_pt',
-    url: 'https://www.youtube.com/watch?v=xPbOHYZqWZM',
-  },
-  {
-    id: 'YqcvOwaeOKY',
-    title: 'O câncer não pode mais ser uma sentença',
-    thumbnail: 'https://i.ytimg.com/vi/YqcvOwaeOKY/hqdefault.jpg',
-    publishedAt: '',
-    channelName: 'Haniel Rolemberg',
-    channelId: 'haniel_pt',
-    url: 'https://www.youtube.com/watch?v=YqcvOwaeOKY',
-  },
-  // Haniel Rolemberg (EN)
-  {
-    id: 'iCRzdi6TlWY',
-    title: "1K Miles of Hope: I'm Running 1,000 Miles to Raise Money for Cancer Research",
-    thumbnail: 'https://i.ytimg.com/vi/iCRzdi6TlWY/hqdefault.jpg',
-    publishedAt: '',
-    channelName: 'Haniel Rolemberg',
-    channelId: 'haniel_en',
-    url: 'https://www.youtube.com/watch?v=iCRzdi6TlWY',
-  },
-  {
-    id: '0gsa4VxkNQw',
-    title: 'Memento Mori: What Marcus Aurelius Actually Meant',
-    thumbnail: 'https://i.ytimg.com/vi/0gsa4VxkNQw/hqdefault.jpg',
-    publishedAt: '',
-    channelName: 'Haniel Rolemberg',
-    channelId: 'haniel_en',
-    url: 'https://www.youtube.com/watch?v=0gsa4VxkNQw',
-  },
-  {
-    id: 'l-vBjkI9evE',
-    title: "Before It's Too Late: A Reflection on Time",
-    thumbnail: 'https://i.ytimg.com/vi/l-vBjkI9evE/hqdefault.jpg',
-    publishedAt: '',
-    channelName: 'Haniel Rolemberg',
-    channelId: 'haniel_en',
-    url: 'https://www.youtube.com/watch?v=l-vBjkI9evE',
-  },
 ]
 
 function FeaturedContent() {
   const t = useTranslations('home')
-  const [filter, setFilter] = useState<Filter>('all')
   const trackRef = useRef<HTMLDivElement>(null)
-
-  const FILTERS: { key: Filter; label: string }[] = [
-    { key: 'all', label: t('videoFilterAll') },
-    { key: 'psf', label: 'PSF' },
-    { key: 'haniel_pt', label: 'Haniel Rolemberg (PT)' },
-    { key: 'haniel_en', label: 'Haniel Rolemberg (EN)' },
-  ]
-
-  const displayed = filter === 'all' ? VIDEOS : VIDEOS.filter((v) => v.channelId === filter)
 
   const scroll = (dir: 'left' | 'right') => {
     if (!trackRef.current) return
@@ -140,8 +58,6 @@ function FeaturedContent() {
     const amount = card ? card.offsetWidth + 16 : 280
     trackRef.current.scrollBy({ left: dir === 'right' ? amount : -amount, behavior: 'smooth' })
   }
-
-  const channelLink = filter === 'all' ? null : CHANNEL_LINKS[filter]
 
   return (
     <section style={{ borderTop: '1px solid rgba(10,10,15,0.08)' }}>
@@ -160,25 +76,6 @@ function FeaturedContent() {
           </div>
 
           <div className="flex items-center gap-3 flex-wrap">
-            <div className="flex gap-1">
-              {FILTERS.map(({ key, label }) => (
-                <button
-                  key={key}
-                  onClick={() => setFilter(key)}
-                  className="text-[0.65rem] uppercase tracking-widest px-3 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap"
-                  style={filter === key ? {
-                    backgroundColor: 'var(--accent)',
-                    color: '#fff',
-                  } : {
-                    border: '1px solid rgba(10,10,15,0.12)',
-                    color: 'var(--white-50)',
-                    backgroundColor: 'transparent',
-                  }}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
             <div className="flex gap-2">
               <button
                 onClick={() => scroll('left')}
@@ -205,7 +102,7 @@ function FeaturedContent() {
           className="flex gap-4 overflow-x-auto pb-2"
           style={{ scrollSnapType: 'x mandatory', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {displayed.map((video) => (
+          {VIDEOS.map((video) => (
             <a
               key={video.id}
               data-card
@@ -242,13 +139,11 @@ function FeaturedContent() {
           ))}
         </div>
 
-        {channelLink && (
-          <div className="mt-6 flex justify-end">
-            <a href={channelLink} target="_blank" rel="noopener noreferrer" className="text-xs uppercase tracking-widest transition-opacity duration-200 hover:opacity-60" style={{ color: 'var(--accent)' }}>
-              {t('viewAllVideos')}
-            </a>
-          </div>
-        )}
+        <div className="mt-6 flex justify-end">
+          <a href={PSF_CHANNEL_LINK} target="_blank" rel="noopener noreferrer" className="text-xs uppercase tracking-widest transition-opacity duration-200 hover:opacity-60" style={{ color: 'var(--accent)' }}>
+            {t('viewAllVideos')}
+          </a>
+        </div>
       </div>
     </section>
   )
@@ -347,84 +242,70 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              className="flex-shrink-0 self-center md:self-start mx-auto md:mx-0"
+              className="w-full md:w-[380px] flex-shrink-0"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.12, ease: 'easeOut' }}
               style={{
-                width: 'min(80vw, 300px)',
-                height: 'clamp(300px, 40vw, 420px)',
-                position: 'relative',
                 borderRadius: '18px',
-                overflow: 'hidden',
-                boxShadow: '0 20px 60px rgba(10,10,15,0.10), 0 4px 16px rgba(10,10,15,0.06)',
+                border: '1px solid rgba(10,10,15,0.08)',
+                backgroundColor: 'rgba(10,10,15,0.02)',
+                padding: '1.75rem',
               }}
             >
-              <Image
-                src="/images/Haniel-Rolemberg.jpeg"
-                alt="Haniel Rolemberg"
-                fill
-                sizes="(max-width: 768px) 90vw, 320px"
-                quality={85}
-                className="object-cover"
-                style={{ objectPosition: 'center 30%' }}
-                priority
-              />
+              <p className="text-[0.6rem] uppercase tracking-[0.22em] mb-3 font-medium" style={{ color: 'var(--white-35)' }}>
+                {t('newsletterLabel')}
+              </p>
+              <p className="text-sm leading-relaxed mb-6" style={{ color: 'var(--white-55)' }}>
+                {t('newsletterSubtitle')}
+              </p>
+
+              {status === 'success' ? (
+                <p className="text-sm font-medium" style={{ color: 'var(--accent)' }}>
+                  {t('newsletterSuccess')}
+                </p>
+              ) : (
+                <>
+                  <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => { setEmail(e.target.value); if (status === 'error') setStatus('idle') }}
+                      placeholder={t('newsletterPlaceholder')}
+                      required
+                      disabled={status === 'loading'}
+                      className="text-sm px-4 py-2.5 rounded-xl outline-none transition-all duration-200 placeholder:opacity-35 disabled:opacity-50"
+                      style={{ border: '1px solid rgba(10,10,15,0.12)', backgroundColor: 'rgb(255,255,255)', color: 'var(--white-90)' }}
+                      onFocus={(e) => (e.currentTarget.style.border = '1px solid rgba(212,119,90,0.45)')}
+                      onBlur={(e) => (e.currentTarget.style.border = '1px solid rgba(10,10,15,0.12)')}
+                    />
+                    <button
+                      type="submit"
+                      disabled={status === 'loading'}
+                      className="text-xs uppercase tracking-widest px-5 py-2.5 rounded-xl transition-all duration-200 whitespace-nowrap disabled:opacity-60"
+                      style={{ backgroundColor: 'var(--accent)', color: '#fff' }}
+                      onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.85')}
+                      onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+                    >
+                      {status === 'loading' ? '...' : t('newsletterSubmit')}
+                    </button>
+                  </form>
+                  {status === 'error' && (
+                    <p className="text-xs mt-2" style={{ color: 'rgba(180,60,40,0.8)' }}>
+                      {t('newsletterError')}
+                    </p>
+                  )}
+                </>
+              )}
+
+              <p
+                className="text-xs leading-relaxed mt-6 pt-5"
+                style={{ color: 'var(--white-40)', borderTop: '1px solid rgba(10,10,15,0.08)' }}
+              >
+                {t('noSocialNote')}
+              </p>
             </motion.div>
           </div>
-
-          <motion.div
-            className="mx-auto text-center"
-            style={{ maxWidth: '480px', paddingTop: '1.5rem', borderTop: '1px solid rgba(10,10,15,0.08)' }}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
-          >
-            <p className="text-[0.6rem] uppercase tracking-[0.22em] mb-3 font-medium" style={{ color: 'var(--white-35)' }}>
-              {t('newsletterLabel')}
-            </p>
-            <p className="text-sm leading-relaxed mb-6" style={{ color: 'var(--white-55)' }}>
-              {t('newsletterSubtitle')}
-            </p>
-
-            {status === 'success' ? (
-              <p className="text-sm font-medium" style={{ color: 'var(--accent)' }}>
-                {t('newsletterSuccess')}
-              </p>
-            ) : (
-              <>
-                <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => { setEmail(e.target.value); if (status === 'error') setStatus('idle') }}
-                    placeholder={t('newsletterPlaceholder')}
-                    required
-                    disabled={status === 'loading'}
-                    className="flex-1 text-sm px-4 py-2.5 rounded-xl outline-none transition-all duration-200 placeholder:opacity-35 disabled:opacity-50"
-                    style={{ border: '1px solid rgba(10,10,15,0.12)', backgroundColor: 'rgba(10,10,15,0.03)', color: 'var(--white-90)' }}
-                    onFocus={(e) => (e.currentTarget.style.border = '1px solid rgba(212,119,90,0.45)')}
-                    onBlur={(e) => (e.currentTarget.style.border = '1px solid rgba(10,10,15,0.12)')}
-                  />
-                  <button
-                    type="submit"
-                    disabled={status === 'loading'}
-                    className="text-xs uppercase tracking-widest px-5 py-2.5 rounded-xl transition-all duration-200 whitespace-nowrap disabled:opacity-60"
-                    style={{ backgroundColor: 'var(--accent)', color: '#fff' }}
-                    onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.85')}
-                    onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
-                  >
-                    {status === 'loading' ? '...' : t('newsletterSubmit')}
-                  </button>
-                </form>
-                {status === 'error' && (
-                  <p className="text-xs mt-2" style={{ color: 'rgba(180,60,40,0.8)' }}>
-                    {t('newsletterError')}
-                  </p>
-                )}
-              </>
-            )}
-          </motion.div>
         </section>
 
         <FeaturedContent />

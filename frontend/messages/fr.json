@@ -36,19 +36,19 @@
     "aboutLink": "À mon sujet →",
     "featuredContent": "Contenu en Vedette",
     "videos": "Vidéos",
-    "videoFilterAll": "Tous",
     "viewAllVideos": "Voir toutes les vidéos →",
     "newsletterLabel": "Newsletter",
-    "newsletterSubtitle": "Notes occasionnelles sur la cybersécurité, le travail profond et ce que je construis. Sans spam — uniquement du contenu pertinent.",
+    "newsletterSubtitle": "C'est ici que je partage l'évolution de la Problem Solver Foundation, ainsi que des notes occasionnelles sur la cybersécurité et le travail profond. Sans spam — uniquement du contenu pertinent.",
     "newsletterPlaceholder": "votre@email.com",
     "newsletterSubmit": "S'abonner",
     "newsletterSuccess": "Vous êtes inscrit. Je prendrai contact bientôt.",
-    "newsletterError": "Une erreur s'est produite. Veuillez réessayer."
+    "newsletterError": "Une erreur s'est produite. Veuillez réessayer.",
+    "noSocialNote": "Je ne suis pas sur les réseaux sociaux. Si vous voulez discuter, l'e-mail reste le meilleur moyen de me joindre."
   },
   "about": {
     "sectionLabel": "À propos",
     "title": "À mon sujet",
-    "tagline": "Solutionneur de Problèmes · Aracaju, Brésil"
+    "tagline": "Solutionneur de Problèmes · Aracaju, Sergipe, Brésil"
   },
   "portfolio": {
     "sectionLabel": "Portfolio",
@@ -113,7 +113,8 @@
     "fundNextTier": "Prochain jalon",
     "survivalRate5yr": "Taux de survie à 5 ans",
     "sourceLabel": "Source",
-    "seeRelatedPosts": "Voir tous les épisodes →"
+    "seeRelatedPosts": "Voir tous les épisodes →",
+    "empty": "Aucun défi actif pour le moment — revenez bientôt"
   },
   "press": {
     "sectionLabel": "Presse",

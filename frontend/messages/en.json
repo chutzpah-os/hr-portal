@@ -36,19 +36,19 @@
     "aboutLink": "About me →",
     "featuredContent": "Featured Content",
     "videos": "Videos",
-    "videoFilterAll": "All",
     "viewAllVideos": "View all videos →",
     "newsletterLabel": "Newsletter",
-    "newsletterSubtitle": "Occasional notes on cybersecurity, deep work, and what I'm building. No spam — just signal.",
+    "newsletterSubtitle": "This is where I share how the Problem Solver Foundation is evolving, plus occasional notes on cybersecurity and deep work. No spam — just signal.",
     "newsletterPlaceholder": "your@email.com",
     "newsletterSubmit": "Subscribe",
     "newsletterSuccess": "You're in. I'll be in touch.",
-    "newsletterError": "Something went wrong. Please try again."
+    "newsletterError": "Something went wrong. Please try again.",
+    "noSocialNote": "I'm not on social media. If you'd like to talk, email is the best way to reach me."
   },
   "about": {
     "sectionLabel": "About",
     "title": "About Me",
-    "tagline": "Problem Solver · Aracaju, Brazil"
+    "tagline": "Problem Solver · Aracaju, Sergipe, Brazil"
   },
   "portfolio": {
     "sectionLabel": "Portfolio",
@@ -113,7 +113,8 @@
     "fundNextTier": "Next milestone",
     "survivalRate5yr": "5-year survival rate",
     "sourceLabel": "Source",
-    "seeRelatedPosts": "See all running log posts →"
+    "seeRelatedPosts": "See all running log posts →",
+    "empty": "No active challenges right now — check back soon"
   },
   "press": {
     "sectionLabel": "Press",

@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 import { useLocale, useTranslations } from 'next-intl'
 
 const CHAPTERS = [
@@ -269,37 +268,12 @@ export default function AboutSection() {
           </motion.h1>
 
           <motion.p
-            className="text-xs uppercase tracking-widest mb-10"
+            className="text-xs uppercase tracking-widest"
             style={{ color: 'var(--accent)' }}
             {...fade(0.1)}
           >
             {t('tagline')}
           </motion.p>
-
-          <motion.div
-            style={{
-              width: 'min(90vw, clamp(280px, 44vw, 560px))',
-              height: 'clamp(160px, 28vw, 360px)',
-              position: 'relative',
-              borderRadius: '18px',
-              overflow: 'hidden',
-              boxShadow: '0 24px 60px rgba(10,10,15,0.10)',
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.7, delay: 0.15, ease: 'easeOut' }}
-          >
-            <Image
-              src="/images/hanielrolemberg1.png"
-              alt="Haniel Rolemberg"
-              fill
-              sizes="(max-width: 768px) 90vw, 560px"
-              quality={85}
-              className="object-cover object-center"
-              priority
-            />
-          </motion.div>
         </div>
 
         {/* Chapters */}
