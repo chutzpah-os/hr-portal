@@ -20,7 +20,9 @@ export class NewsletterService {
     }
 
     await this.firebase.collection(COLLECTION).add({
+      name: dto.name.trim(),
       email: dto.email.toLowerCase(),
+      phone: dto.phone?.trim() || null,
       subscribedAt: new Date().toISOString(),
     })
 
