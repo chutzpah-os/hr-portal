@@ -332,24 +332,6 @@ export const portfolioDataPt: PortfolioData = {
       },
     },
     {
-      id: 'vol2',
-      title: 'Voluntário',
-      organization: 'Terry Fox Foundation',
-      period: '2025 - Present',
-      description: 'Arrecadando fundos para pesquisa do câncer através do desafio de corrida 1K Miles of Hope.',
-      cvAreas: [],
-      details: {
-        overview:
-          'Arrecadando fundos para pesquisa do câncer através do desafio de corrida 1K Miles of Hope — um desafio de resistência de 1.000 milhas em apoio à missão da Terry Fox Foundation.',
-        focusAreas: [
-          'Arrecadação de fundos para pesquisa do câncer',
-          '1K Miles of Hope — desafio de corrida de 1.000 milhas',
-          'Conscientização internacional para a Terry Fox Foundation',
-        ],
-        category: 'Health and Cancer Research',
-      },
-    },
-    {
       id: 'vol3',
       title: 'Strategic Alliances | IT',
       organization: 'Project Management Institute (PMI)',
@@ -862,51 +844,8 @@ export const portfolioDataPt: PortfolioData = {
           githubLink: 'https://github.com/hanielrolemberg',
         },
       },
-      {
-        id: 'proj-ai3',
-        gradient: 'from-cyan-900 to-blue-900',
-        title: 'AI for Oncology Research (Series)',
-        description: 'Série de revisões sistemáticas e meta-análises avaliando modelos de IA e deep learning para detecção precoce de câncer em múltiplos tipos da doença.',
-        category: 'aiml',
-        tags: ['Medical AI', 'Deep Learning', 'Computer Vision', 'Research'],
-        cvAreas: ['aiml'],
-        details: {
-          overview: 'Uma série de pesquisas aplicando IA e deep learning à detecção precoce de câncer, cobrindo câncer ósseo, hematológico, de próstata, de pele, de mama e colorretal, usando imagens médicas e dados genômicos.',
-          features: [
-            'Revisões sistemáticas sobre modelos de IA para detecção de câncer ósseo (TC, RM, raio-X)',
-            'Abordagens de ML para detecção de neoplasias hematológicas via dados clínicos e genômicos',
-            'Triagem de câncer de próstata assistida por IA com integração de imagem e biomarcadores',
-            'Deep learning para classificação de câncer de pele (foco em melanoma)',
-            'Arquiteturas CNN para triagem mamográfica de câncer de mama',
-            'Detecção de câncer colorretal orientada por IA via imagens endoscópicas',
-          ],
-          techStack: 'Python, TensorFlow, PyTorch, Medical Imaging Libraries, Systematic Review Methodology',
-          githubLink: 'https://github.com/hanielrolemberg',
-        },
-      },
     ],
     challenges: [
-      {
-        id: 'proj-ch1',
-        gradient: 'from-red-900 to-rose-900',
-        title: 'Running for Hope — 1,000-Mile Challenge',
-        description: 'Um desafio de corrida de resistência de 1.000 milhas para arrecadar financiamento contínuo para pesquisa do câncer, documentado através de redes sociais, um livro e um documentário.',
-        category: 'challenges',
-        tags: ['Social Impact', 'Fundraising', 'Health', 'Media'],
-        cvAreas: ['software'],
-        details: {
-          overview: 'Um ecossistema de arrecadação de fundos multicanal que converte resistência física e storytelling em apoio financeiro contínuo para a pesquisa do câncer. O desafio de corrida de 1.000 milhas é transmitido nas redes sociais e ampliado através de um livro e um documentário.',
-          features: [
-            'Desafio de corrida de 1.000 milhas como motor central de arrecadação de fundos',
-            'Transmissão em tempo real nas redes sociais do treinamento e do progresso',
-            'Livro documentando a jornada, a missão e as histórias humanas por trás da pesquisa do câncer',
-            'Documentário ampliando o alcance para públicos globais',
-            'Funil de doação multicanal conectando esporte de resistência, publicação e cinema',
-          ],
-          techStack: 'Social Media, Content Production, Fundraising Platforms',
-          githubLink: 'https://github.com/hanielrolemberg',
-        },
-      },
     ],
   },
 

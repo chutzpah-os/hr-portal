@@ -334,24 +334,6 @@ export const portfolioDataEn: PortfolioData = {
       },
     },
     {
-      id: 'vol2',
-      title: 'Volunteer',
-      organization: 'Terry Fox Foundation',
-      period: '2025 - Present',
-      description: 'Raising funds for cancer research through the 1K Miles of Hope running challenge.',
-      cvAreas: [],
-      details: {
-        overview:
-          'Raising funds for cancer research through the 1K Miles of Hope running challenge — a 1,000-mile endurance fundraiser in support of the Terry Fox Foundation\'s mission.',
-        focusAreas: [
-          'Fundraising for cancer research',
-          '1K Miles of Hope — 1,000-mile running challenge',
-          'Raising international awareness for the Terry Fox Foundation',
-        ],
-        category: 'Health and Cancer Research',
-      },
-    },
-    {
       id: 'vol3',
       title: 'Strategic Alliances | IT',
       organization: 'Project Management Institute (PMI)',
@@ -1164,51 +1146,8 @@ export const portfolioDataEn: PortfolioData = {
           githubLink: 'https://github.com/hanielrolemberg',
         },
       },
-      {
-        id: 'proj-ai3',
-        gradient: 'from-cyan-900 to-blue-900',
-        title: 'AI for Oncology Research (Series)',
-        description: 'Series of systematic reviews and meta-analyses evaluating AI and deep learning models for early cancer detection across multiple cancer types.',
-        category: 'aiml',
-        tags: ['Medical AI', 'Deep Learning', 'Computer Vision', 'Research'],
-        cvAreas: ['aiml'],
-        details: {
-          overview: 'A research series applying AI and deep learning to early cancer detection, covering bone, hematologic, prostate, skin, breast, and colorectal cancers using medical imaging and genomic data.',
-          features: [
-            'Systematic reviews on AI models for bone cancer detection (CT, MRI, X-ray)',
-            'ML approaches for hematologic malignancy detection via clinical and genomic data',
-            'AI-assisted prostate cancer screening with imaging and biomarker integration',
-            'Deep learning for skin cancer classification (melanoma focus)',
-            'CNN architectures for mammographic breast cancer screening',
-            'AI-driven colorectal cancer detection via endoscopic imaging',
-          ],
-          techStack: 'Python, TensorFlow, PyTorch, Medical Imaging Libraries, Systematic Review Methodology',
-          githubLink: 'https://github.com/hanielrolemberg',
-        },
-      },
     ],
     challenges: [
-      {
-        id: 'proj-ch1',
-        gradient: 'from-red-900 to-rose-900',
-        title: 'Running for Hope — 1,000-Mile Challenge',
-        description: 'A 1,000-mile endurance running challenge to raise sustained funding for cancer research, documented through social media, a book, and a documentary film.',
-        category: 'challenges',
-        tags: ['Social Impact', 'Fundraising', 'Health', 'Media'],
-        cvAreas: ['software'],
-        details: {
-          overview: 'A multi-channel fundraising ecosystem converting physical endurance and storytelling into sustained financial support for cancer research. The 1,000-mile running challenge is broadcast on social media and extended through a book and documentary film.',
-          features: [
-            '1,000-mile running challenge as the core fundraising engine',
-            'Real-time social media broadcasting of training and progress',
-            'Book documenting the journey, mission, and human stories behind cancer research',
-            'Documentary film expanding reach to global audiences',
-            'Multi-channel donation funnel linking endurance sport, publishing, and film',
-          ],
-          techStack: 'Social Media, Content Production, Fundraising Platforms',
-          githubLink: 'https://github.com/hanielrolemberg',
-        },
-      },
     ],
   },
 

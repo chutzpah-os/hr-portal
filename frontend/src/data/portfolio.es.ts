@@ -334,24 +334,6 @@ export const portfolioDataEs: PortfolioData = {
       },
     },
     {
-      id: 'vol2',
-      title: 'Voluntario',
-      organization: 'Terry Fox Foundation',
-      period: '2025 - Present',
-      description: 'Recaudando fondos para la investigación del cáncer a través del desafío de carrera 1K Miles of Hope.',
-      cvAreas: [],
-      details: {
-        overview:
-          "Recaudando fondos para la investigación del cáncer a través del desafío de carrera 1K Miles of Hope — una carrera de resistencia de 1.000 millas en apoyo de la misión de la Terry Fox Foundation.",
-        focusAreas: [
-          'Recaudación de fondos para la investigación del cáncer',
-          '1K Miles of Hope — desafío de carrera de 1.000 millas',
-          'Concientización internacional sobre la Terry Fox Foundation',
-        ],
-        category: 'Health and Cancer Research',
-      },
-    },
-    {
       id: 'vol3',
       title: 'Alianzas Estratégicas | TI',
       organization: 'Project Management Institute (PMI)',
@@ -863,51 +845,8 @@ export const portfolioDataEs: PortfolioData = {
           githubLink: 'https://github.com/hanielrolemberg',
         },
       },
-      {
-        id: 'proj-ai3',
-        gradient: 'from-cyan-900 to-blue-900',
-        title: 'IA para Investigación en Oncología (Serie)',
-        description: 'Serie de revisiones sistemáticas y meta-análisis que evalúan modelos de IA y deep learning para la detección temprana del cáncer en múltiples tipos de cáncer.',
-        category: 'aiml',
-        tags: ['Medical AI', 'Deep Learning', 'Computer Vision', 'Research'],
-        cvAreas: ['aiml'],
-        details: {
-          overview: 'Una serie de investigaciones que aplica IA y deep learning a la detección temprana del cáncer, cubriendo cánceres de hueso, hematológicos, de próstata, de piel, de mama y colorrectal.',
-          features: [
-            'Revisiones sistemáticas sobre modelos de IA para detección de cáncer de hueso (TC, MRI, rayos X)',
-            'Enfoques de ML para detección de neoplasias hematológicas via datos clínicos y genómicos',
-            'Detección de cáncer de próstata asistida por IA con integración de imágenes y biomarcadores',
-            'Deep learning para clasificación de cáncer de piel (enfoque en melanoma)',
-            'Arquitecturas CNN para cribado mamográfico de cáncer de mama',
-            'Detección de cáncer colorrectal impulsada por IA via imágenes endoscópicas',
-          ],
-          techStack: 'Python, TensorFlow, PyTorch, Medical Imaging Libraries, Systematic Review Methodology',
-          githubLink: 'https://github.com/hanielrolemberg',
-        },
-      },
     ],
     challenges: [
-      {
-        id: 'proj-ch1',
-        gradient: 'from-red-900 to-rose-900',
-        title: 'Corriendo por la Esperanza — Desafío de 1.000 Millas',
-        description: 'Un desafío de carrera de resistencia de 1.000 millas para recaudar financiamiento sostenido para la investigación del cáncer, documentado a través de redes sociales, un libro y un documental.',
-        category: 'challenges',
-        tags: ['Social Impact', 'Fundraising', 'Health', 'Media'],
-        cvAreas: ['software'],
-        details: {
-          overview: 'Un ecosistema de recaudación de fondos multicanal que convierte la resistencia física y la narrativa en apoyo financiero sostenido para la investigación del cáncer.',
-          features: [
-            'Desafío de carrera de 1.000 millas como motor principal de recaudación de fondos',
-            'Transmisión en tiempo real de entrenamiento y progreso en redes sociales',
-            'Libro que documenta el viaje, la misión y las historias humanas detrás de la investigación del cáncer',
-            'Documental que amplía el alcance a audiencias globales',
-            'Canal de donación multicanal que vincula deporte de resistencia, publicación y cine',
-          ],
-          techStack: 'Social Media, Content Production, Fundraising Platforms',
-          githubLink: 'https://github.com/hanielrolemberg',
-        },
-      },
     ],
   },
 

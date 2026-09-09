@@ -334,24 +334,6 @@ export const portfolioDataFr: PortfolioData = {
       },
     },
     {
-      id: 'vol2',
-      title: 'Bénévole',
-      organization: 'Terry Fox Foundation',
-      period: '2025 - Present',
-      description: "Collecte de fonds pour la recherche sur le cancer via le défi de course 1K Miles of Hope.",
-      cvAreas: [],
-      details: {
-        overview:
-          "Collecte de fonds pour la recherche sur le cancer via le défi de course 1K Miles of Hope — un défi d'endurance de 1 000 miles en soutien à la mission de la Terry Fox Foundation.",
-        focusAreas: [
-          'Collecte de fonds pour la recherche sur le cancer',
-          '1K Miles of Hope — défi de course de 1 000 miles',
-          'Sensibilisation internationale à la Terry Fox Foundation',
-        ],
-        category: 'Health and Cancer Research',
-      },
-    },
-    {
       id: 'vol3',
       title: 'Alliances Stratégiques | IT',
       organization: 'Project Management Institute (PMI)',
@@ -863,51 +845,8 @@ export const portfolioDataFr: PortfolioData = {
           githubLink: 'https://github.com/hanielrolemberg',
         },
       },
-      {
-        id: 'proj-ai3',
-        gradient: 'from-cyan-900 to-blue-900',
-        title: "IA pour la Recherche en Oncologie (Série)",
-        description: "Série de revues systématiques et méta-analyses évaluant les modèles d'IA et de deep learning pour la détection précoce du cancer dans plusieurs types de cancer.",
-        category: 'aiml',
-        tags: ['Medical AI', 'Deep Learning', 'Computer Vision', 'Research'],
-        cvAreas: ['aiml'],
-        details: {
-          overview: "Une série de recherches appliquant l'IA et le deep learning à la détection précoce du cancer, couvrant les cancers osseux, hématologiques, de la prostate, de la peau, du sein et colorectaux.",
-          features: [
-            "Revues systématiques sur les modèles d'IA pour la détection du cancer osseux (TDM, IRM, rayons X)",
-            "Approches ML pour la détection des néoplasies hématologiques via les données cliniques et génomiques",
-            "Détection du cancer de la prostate assistée par IA avec intégration d'imagerie et de biomarqueurs",
-            "Deep learning pour la classification du cancer de la peau (focus mélanome)",
-            "Architectures CNN pour le dépistage mammographique du cancer du sein",
-            "Détection du cancer colorectal par IA via l'imagerie endoscopique",
-          ],
-          techStack: 'Python, TensorFlow, PyTorch, Medical Imaging Libraries, Systematic Review Methodology',
-          githubLink: 'https://github.com/hanielrolemberg',
-        },
-      },
     ],
     challenges: [
-      {
-        id: 'proj-ch1',
-        gradient: 'from-red-900 to-rose-900',
-        title: "Courir pour l'Espoir — Défi 1 000 Miles",
-        description: "Un défi de course d'endurance de 1 000 miles pour collecter des financements durables pour la recherche sur le cancer, documenté via les réseaux sociaux, un livre et un documentaire.",
-        category: 'challenges',
-        tags: ['Social Impact', 'Fundraising', 'Health', 'Media'],
-        cvAreas: ['software'],
-        details: {
-          overview: "Un écosystème de collecte de fonds multicanal convertissant l'endurance physique et la narration en soutien financier durable pour la recherche sur le cancer.",
-          features: [
-            "Défi de course de 1 000 miles comme moteur principal de collecte de fonds",
-            "Diffusion en temps réel de l'entraînement et des progrès sur les réseaux sociaux",
-            "Livre documentant le voyage, la mission et les histoires humaines derrière la recherche sur le cancer",
-            "Documentaire élargissant la portée aux audiences mondiales",
-            "Entonnoir de dons multicanal reliant sport d'endurance, édition et cinéma",
-          ],
-          techStack: 'Social Media, Content Production, Fundraising Platforms',
-          githubLink: 'https://github.com/hanielrolemberg',
-        },
-      },
     ],
   },
 

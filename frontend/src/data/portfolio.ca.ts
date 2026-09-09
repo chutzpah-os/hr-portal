@@ -334,24 +334,6 @@ export const portfolioDataCa: PortfolioData = {
       },
     },
     {
-      id: 'vol2',
-      title: 'Voluntari',
-      organization: 'Terry Fox Foundation',
-      period: '2025 - Present',
-      description: 'Recaptant fons per a la recerca del càncer a través del repte de cursa 1K Miles of Hope.',
-      cvAreas: [],
-      details: {
-        overview:
-          'Recaptant fons per a la recerca del càncer a través del repte de cursa 1K Miles of Hope — un repte d\'endurance de 1.000 milles en suport a la missió de la Terry Fox Foundation.',
-        focusAreas: [
-          'Recaptació de fons per a la recerca del càncer',
-          '1K Miles of Hope — repte de cursa de 1.000 milles',
-          'Sensibilització internacional sobre la Terry Fox Foundation',
-        ],
-        category: 'Health and Cancer Research',
-      },
-    },
-    {
       id: 'vol3',
       title: 'Aliances Estratègiques | TI',
       organization: 'Project Management Institute (PMI)',
@@ -863,51 +845,8 @@ export const portfolioDataCa: PortfolioData = {
           githubLink: 'https://github.com/hanielrolemberg',
         },
       },
-      {
-        id: 'proj-ai3',
-        gradient: 'from-cyan-900 to-blue-900',
-        title: 'IA per a la Recerca en Oncologia (Sèrie)',
-        description: 'Sèrie de revisions sistemàtiques i meta-anàlisis que avaluen models d\'IA i deep learning per a la detecció primerenca del càncer en múltiples tipus de càncer.',
-        category: 'aiml',
-        tags: ['Medical AI', 'Deep Learning', 'Computer Vision', 'Research'],
-        cvAreas: ['aiml'],
-        details: {
-          overview: 'Una sèrie d\'investigacions que aplica IA i deep learning a la detecció primerenca del càncer, cobrint càncers ossis, hematològics, de pròstata, de pell, de mama i colorectals.',
-          features: [
-            'Revisions sistemàtiques sobre models d\'IA per a la detecció del càncer ossi (TC, RM, raigs X)',
-            'Enfocaments ML per a la detecció de neoplàsies hematològiques via dades clíniques i genòmiques',
-            'Detecció del càncer de pròstata assistida per IA amb integració d\'imatges i biomarcadors',
-            'Deep learning per a la classificació del càncer de pell (focus en melanoma)',
-            'Arquitectures CNN per al cribratge mamogràfic del càncer de mama',
-            'Detecció del càncer colorectal per IA via imatges endoscòpiques',
-          ],
-          techStack: 'Python, TensorFlow, PyTorch, Medical Imaging Libraries, Systematic Review Methodology',
-          githubLink: 'https://github.com/hanielrolemberg',
-        },
-      },
     ],
     challenges: [
-      {
-        id: 'proj-ch1',
-        gradient: 'from-red-900 to-rose-900',
-        title: 'Corrent per l\'Esperança — Repte de 1.000 Milles',
-        description: 'Un repte de cursa d\'endurance de 1.000 milles per recaptar finançament sostingut per a la recerca del càncer, documentat a través de les xarxes socials, un llibre i un documental.',
-        category: 'challenges',
-        tags: ['Social Impact', 'Fundraising', 'Health', 'Media'],
-        cvAreas: ['software'],
-        details: {
-          overview: 'Un ecosistema de recaptació de fons multicanal que converteix l\'endurance físic i la narració en suport financer sostingut per a la recerca del càncer.',
-          features: [
-            'Repte de cursa de 1.000 milles com a motor principal de recaptació de fons',
-            'Difusió en temps real d\'entrenament i progrés a les xarxes socials',
-            'Llibre que documenta el viatge, la missió i les històries humanes darrere de la recerca del càncer',
-            'Documental que amplia l\'abast a audiències globals',
-            'Canal de donació multicanal que vincula esport d\'endurance, publicació i cinema',
-          ],
-          techStack: 'Social Media, Content Production, Fundraising Platforms',
-          githubLink: 'https://github.com/hanielrolemberg',
-        },
-      },
     ],
   },
 
