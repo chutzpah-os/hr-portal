@@ -14,6 +14,7 @@
     { "source": "/press", "destination": "/en/press", "permanent": true },
     { "source": "/researches", "destination": "/en/researches", "permanent": true },
     { "source": "/writing", "destination": "/en/writing", "permanent": true },
+    { "source": "/contact", "destination": "/en/contact", "permanent": true },
     { "source": "/:locale/solutions/etz", "destination": "/:locale/solutions", "permanent": true },
     { "source": "/:locale/solutions/etz-defense", "destination": "/:locale/solutions", "permanent": true },
     { "source": "/:locale/solutions/shemesh", "destination": "/:locale/solutions", "permanent": true },
@@ -22,7 +23,6 @@
     { "source": "/:locale/solutions/data-aggregator", "destination": "/:locale/solutions", "permanent": true },
     { "source": "/:locale/solutions/seder-koah", "destination": "/:locale/solutions", "permanent": true },
     { "source": "/:locale/solutions/sentinel-ai", "destination": "/:locale/solutions", "permanent": true },
-    { "source": "/contact", "destination": "/en/#contact", "permanent": true },
     { "source": "/category/:slug", "destination": "/en/blog", "permanent": true },
     { "source": "/category/:slug/", "destination": "/en/blog", "permanent": true }
   ]

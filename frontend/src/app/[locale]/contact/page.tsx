@@ -54,7 +54,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
 
   return (
     <main style={{ paddingTop: '5.5rem', minHeight: '80svh' }}>
-      <div className="max-w-content mx-auto px-6 md:px-10 py-16 md:py-24">
+      <div className="max-w-lg mx-auto px-6 py-16 md:py-24 text-center">
         <p
           className="text-[0.6rem] uppercase tracking-[0.22em] mb-4 font-medium"
           style={{ color: 'var(--accent)' }}

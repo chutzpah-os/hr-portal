@@ -67,7 +67,7 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="max-w-sm">
+    <div className="max-w-sm mx-auto text-left">
       <p className="text-sm leading-relaxed mb-6" style={{ color: 'var(--white-55)' }}>
         {t('newsletterSubtitle')}
       </p>

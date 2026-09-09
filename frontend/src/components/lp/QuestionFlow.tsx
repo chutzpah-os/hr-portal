@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useMemo, useState } from 'react'
+import { Suspense, useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import { LP_QUESTIONS, getLocalizedQuestion } from '@/data/lpQuestions'
@@ -39,10 +39,20 @@ function FlowInner() {
   // Locale comes from the site (?locale=) when the visitor clicked "Book a
   // 1:1" somewhere on hanielrolemberg.com. Otherwise, guess from the
   // browser's language. Either way, the picker below lets them override it.
-  const [locale, setLocale] = useState<LocaleKey>(() => {
-    const fromUrl = searchParams.get('locale')
-    return fromUrl ? resolveLocale(fromUrl) : detectBrowserLocale()
-  })
+  // Browser-language detection only runs after mount (not in the initial
+  // render) so the client's first render matches the server-rendered HTML —
+  // running it eagerly caused a hydration mismatch whenever the visitor's
+  // browser language differed from the 'en' SSR default.
+  const localeFromUrl = searchParams.get('locale')
+  const [locale, setLocale] = useState<LocaleKey>(() =>
+    localeFromUrl ? resolveLocale(localeFromUrl) : 'en',
+  )
+
+  useEffect(() => {
+    if (!localeFromUrl) setLocale(detectBrowserLocale())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const ui = getUiStrings(locale).lp
 
   const questions = useMemo(
