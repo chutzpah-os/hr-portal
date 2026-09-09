@@ -3,9 +3,10 @@
 import { useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Link as LocaleLink } from '@/navigation'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
-import { useGetInTouch } from '@/components/providers/GetInTouchProvider'
+import { saveReturnUrl } from '@/lib/lpReturn'
 
 interface YTVideo {
   id: string
@@ -143,7 +144,6 @@ function FeaturedContent() {
 
 export default function Home() {
   const t = useTranslations('home')
-  const { openGetInTouch } = useGetInTouch()
 
   return (
     <>
@@ -187,16 +187,16 @@ export default function Home() {
             </div>
 
             <div className="flex flex-wrap gap-3 mt-10">
-              <button
-                type="button"
-                onClick={openGetInTouch}
+              <LocaleLink
+                href="/contact"
+                onClick={saveReturnUrl}
                 className="text-xs uppercase tracking-widest px-5 py-2.5 rounded-full transition-all duration-200"
                 style={{ border: '1px solid rgba(10,10,15,0.15)', color: 'var(--white-65)' }}
                 onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent)' }}
                 onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(10,10,15,0.15)'; e.currentTarget.style.color = 'var(--white-65)' }}
               >
                 {t('bookCall')}
-              </button>
+              </LocaleLink>
               <Link
                 href="/about"
                 className="text-xs uppercase tracking-widest px-5 py-2.5 rounded-full transition-all duration-200"

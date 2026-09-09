@@ -1,11 +1,13 @@
 'use client'
 
-import { useGetInTouch } from '@/components/providers/GetInTouchProvider'
+import { Link as LocaleLink } from '@/navigation'
+import { saveReturnUrl } from '@/lib/lpReturn'
 
 const SOCIAL_LINKS = [
   {
     label: 'LinkedIn',
     href: 'https://linkedin.com/in/hanielrolemberg',
+    external: true,
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
@@ -14,7 +16,8 @@ const SOCIAL_LINKS = [
   },
   {
     label: 'Book a 1:1',
-    action: 'getInTouch' as const,
+    href: '/contact',
+    external: false,
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
@@ -24,6 +27,7 @@ const SOCIAL_LINKS = [
   {
     label: 'Email',
     href: 'mailto:contact@hanielrolemberg.com',
+    external: true,
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
@@ -51,8 +55,6 @@ const handleIconHoverLeave = (e: React.MouseEvent<HTMLElement>) => {
 }
 
 export default function Footer() {
-  const { openGetInTouch } = useGetInTouch()
-
   return (
     <footer
       className="no-print"
@@ -62,20 +64,7 @@ export default function Footer() {
         {/* Social icons */}
         <div className="flex items-center gap-3">
           {SOCIAL_LINKS.map((link) =>
-            link.action === 'getInTouch' ? (
-              <button
-                key={link.label}
-                type="button"
-                onClick={openGetInTouch}
-                aria-label={link.label}
-                className="flex items-center justify-center transition-colors duration-200"
-                style={iconButtonStyle}
-                onMouseEnter={handleIconHoverEnter}
-                onMouseLeave={handleIconHoverLeave}
-              >
-                {link.icon}
-              </button>
-            ) : (
+            link.external ? (
               <a
                 key={link.label}
                 href={link.href}
@@ -89,6 +78,19 @@ export default function Footer() {
               >
                 {link.icon}
               </a>
+            ) : (
+              <LocaleLink
+                key={link.label}
+                href={link.href}
+                onClick={saveReturnUrl}
+                aria-label={link.label}
+                className="flex items-center justify-center transition-colors duration-200"
+                style={iconButtonStyle}
+                onMouseEnter={handleIconHoverEnter}
+                onMouseLeave={handleIconHoverLeave}
+              >
+                {link.icon}
+              </LocaleLink>
             )
           )}
         </div>

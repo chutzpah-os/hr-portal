@@ -6,7 +6,8 @@ import { motion } from 'framer-motion'
 import { useLocale } from 'next-intl'
 import CVDownloadModal from '@/components/ui/CVDownloadModal'
 import { getUiStrings } from '@/i18n/uiStrings'
-import { useGetInTouch } from '@/components/providers/GetInTouchProvider'
+import { Link as LocaleLink } from '@/navigation'
+import { saveReturnUrl } from '@/lib/lpReturn'
 
 const fadeUp = (delay = 0) => ({
   hidden:  { opacity: 0, y: 28 },
@@ -18,7 +19,6 @@ export default function Hero() {
   const locale = useLocale()
   const ui = getUiStrings(locale)
   const [h1, h2, h3] = ui.heroHeadline
-  const { openGetInTouch } = useGetInTouch()
 
   return (
     <section
@@ -89,9 +89,9 @@ export default function Hero() {
             >
               {ui.downloadCv}
             </button>
-            <button
-              type="button"
-              onClick={openGetInTouch}
+            <LocaleLink
+              href="/contact"
+              onClick={saveReturnUrl}
               className="text-xs uppercase tracking-widest px-6 py-3 rounded-full transition-all duration-200"
               style={{ border: '1px solid var(--white-20)', color: 'var(--white-60)' }}
               onMouseEnter={(e) => {
@@ -104,7 +104,7 @@ export default function Hero() {
               }}
             >
               {ui.bookCall}
-            </button>
+            </LocaleLink>
           </motion.div>
         </div>
 

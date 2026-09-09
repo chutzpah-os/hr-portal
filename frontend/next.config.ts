@@ -8,7 +8,6 @@ const nextConfig: NextConfig = {
   outputFileTracingRoot: path.join(__dirname, '../'),
   async redirects() {
     return [
-      { source: '/contact', destination: '/', permanent: true },
       { source: '/challenges/1k-miles', destination: '/challenges/1k-miles-of-hope', permanent: true },
       {
         source: '/solutions/etz-defense',

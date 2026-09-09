@@ -96,6 +96,7 @@ export async function GET() {
     ...localeEntries('/press', '2026-04-01', 'monthly', 0.7),
     ...localeEntries('/researches', '2026-05-01', 'monthly', 0.7),
     ...localeEntries('/writing', '2026-05-01', 'monthly', 0.7),
+    ...localeEntries('/contact', '2026-08-11', 'monthly', 0.6),
     // Translated dynamic pages
     ...localeEntries('/blog', latestPostDate, 'weekly', 0.8),
     ...PRODUCTS.filter((p) => p.active !== false).flatMap((p) =>

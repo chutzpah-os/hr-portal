@@ -8,6 +8,7 @@
     "writing": "Publicacions",
     "research": "Recerca",
     "about": "Sobre mi",
+    "contact": "Contacte",
     "bookCall": "Reservar un 1:1"
   },
   "common": {
@@ -45,7 +46,7 @@
     "newsletterNameError": "Si us plau, indica el teu nom.",
     "newsletterPhoneError": "Si us plau, indica un telèfon vàlid.",
     "newsletterSubmit": "Fet",
-    "newsletterSuccess": "Ja ets dins. Em posaré en contacte aviat.",
+    "newsletterSuccess": "Fet — et porto a unes preguntes ràpides…",
     "newsletterError": "Alguna cosa ha anat malament. Si us plau, torna-ho a intentar.",
     "noSocialNote": "No sóc a les xarxes socials. Si vols parlar, el correu electrònic és la millor manera de contactar-me."
   },

@@ -8,6 +8,7 @@
     "writing": "Writing",
     "research": "Research",
     "about": "About",
+    "contact": "Contact",
     "bookCall": "Book a 1:1"
   },
   "common": {
@@ -45,7 +46,7 @@
     "newsletterNameError": "Please enter your name.",
     "newsletterPhoneError": "Please enter a valid phone number.",
     "newsletterSubmit": "Done",
-    "newsletterSuccess": "You're in. I'll be in touch.",
+    "newsletterSuccess": "You're in — taking you to a couple quick questions…",
     "newsletterError": "Something went wrong. Please try again.",
     "noSocialNote": "I'm not on social media. If you'd like to talk, email is the best way to reach me."
   },

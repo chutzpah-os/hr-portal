@@ -3,10 +3,11 @@
 import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Link as LocaleLink } from '@/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations, useLocale } from 'next-intl'
 import { PRODUCTS, getLocalizedProduct, type Product } from '@/data/solutions'
-import { useGetInTouch } from '@/components/providers/GetInTouchProvider'
+import { saveReturnUrl } from '@/lib/lpReturn'
 
 function ProductModal({ product, onClose }: { product: Product; onClose: () => void }) {
   const tc = useTranslations('common')
@@ -284,7 +285,6 @@ export default function SolutionsPage() {
   const products = PRODUCTS.filter((p) => p.active !== false).map((p) => getLocalizedProduct(p, locale))
   const [selected, setSelected] = useState<Product | null>(null)
   const handleClose = useCallback(() => setSelected(null), [])
-  const { openGetInTouch } = useGetInTouch()
 
   return (
     <>
@@ -396,16 +396,16 @@ export default function SolutionsPage() {
             >
               {tc('haveProblemSub')}
             </p>
-            <button
-              type="button"
-              onClick={openGetInTouch}
+            <LocaleLink
+              href="/contact"
+              onClick={saveReturnUrl}
               className="inline-flex items-center gap-2 text-xs uppercase tracking-widest px-6 py-3 rounded-full transition-all duration-200"
               style={{ backgroundColor: 'var(--accent)', color: 'rgb(255,255,255)', fontWeight: 600 }}
               onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.85' }}
               onMouseLeave={(e) => { e.currentTarget.style.opacity = '1' }}
             >
               {tc('bookCallCta')}
-            </button>
+            </LocaleLink>
           </motion.div>
         </div>
       </main>

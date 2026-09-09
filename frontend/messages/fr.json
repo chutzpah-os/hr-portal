@@ -8,6 +8,7 @@
     "writing": "Publications",
     "research": "Recherche",
     "about": "À propos",
+    "contact": "Contact",
     "bookCall": "Réserver un 1:1"
   },
   "common": {
@@ -45,7 +46,7 @@
     "newsletterNameError": "Veuillez indiquer votre nom.",
     "newsletterPhoneError": "Veuillez indiquer un numéro de téléphone valide.",
     "newsletterSubmit": "Terminé",
-    "newsletterSuccess": "Vous êtes inscrit. Je prendrai contact bientôt.",
+    "newsletterSuccess": "C'est fait — je vous emmène à quelques questions rapides…",
     "newsletterError": "Une erreur s'est produite. Veuillez réessayer.",
     "noSocialNote": "Je ne suis pas sur les réseaux sociaux. Si vous voulez discuter, l'e-mail reste le meilleur moyen de me joindre."
   },

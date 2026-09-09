@@ -88,6 +88,18 @@ interface UiStrings {
   cvDownloadTex: string
   cvDownloadPdf: string
   cvGenerating: string
+  // ── lp (post-modal qualification flow) ───────────────────────────────────
+  lp: {
+    introTitle: (name: string) => string
+    introBody: string
+    introCta: string
+    back: string
+    next: string
+    submit: string
+    videoWaiting: (secondsLeft: number) => string
+    thankYou: string
+    redirecting: string
+  }
 }
 
 const UI: Record<LocaleKey, UiStrings> = {
@@ -177,6 +189,17 @@ const UI: Record<LocaleKey, UiStrings> = {
     cvDownloadTex: 'Descarregar .tex',
     cvDownloadPdf: 'Descarregar .pdf',
     cvGenerating: 'Generant...',
+    lp: {
+      introTitle: (name) => name ? `Gràcies, ${name} — ja tenim les teves dades.` : 'Gràcies — ja tenim les teves dades.',
+      introBody: 'Abans de la nostra trucada 1:1, unes preguntes ràpides perquè hi entrem ja sabent de què vols parlar.',
+      introCta: 'Anem-hi',
+      back: 'Enrere',
+      next: 'Següent',
+      submit: 'Enviar',
+      videoWaiting: (s) => `Falten ${s}s…`,
+      thankYou: 'Gràcies! Ja tinc el que necessitava.',
+      redirecting: "Et torno a portar on eres…",
+    },
   },
   fr: {
     close: 'Fermer',
@@ -264,6 +287,17 @@ const UI: Record<LocaleKey, UiStrings> = {
     cvDownloadTex: 'Télécharger .tex',
     cvDownloadPdf: 'Télécharger .pdf',
     cvGenerating: 'Génération...',
+    lp: {
+      introTitle: (name) => name ? `Merci, ${name} — vos informations sont bien arrivées.` : 'Merci — vos informations sont bien arrivées.',
+      introBody: "Avant notre appel en tête-à-tête, quelques questions rapides pour qu'on sache déjà de quoi vous voulez parler.",
+      introCta: "C'est parti",
+      back: 'Retour',
+      next: 'Suivant',
+      submit: 'Envoyer',
+      videoWaiting: (s) => `${s}s restantes…`,
+      thankYou: "Merci ! J'ai ce qu'il me faut.",
+      redirecting: 'Je vous ramène là où vous étiez…',
+    },
   },
 
   en: {
@@ -352,6 +386,17 @@ const UI: Record<LocaleKey, UiStrings> = {
     cvDownloadTex: 'Download .tex',
     cvDownloadPdf: 'Download .pdf',
     cvGenerating: 'Generating...',
+    lp: {
+      introTitle: (name) => name ? `Thanks, ${name} — your info already came through.` : 'Thanks — your info already came through.',
+      introBody: "Before our 1:1, a few quick questions so we go in already knowing what you want to talk about.",
+      introCta: "Let's go",
+      back: 'Back',
+      next: 'Next',
+      submit: 'Submit',
+      videoWaiting: (s) => `${s}s remaining…`,
+      thankYou: "Thank you! That's everything I needed.",
+      redirecting: 'Taking you back to where you were…',
+    },
   },
 
   pt: {
@@ -440,6 +485,17 @@ const UI: Record<LocaleKey, UiStrings> = {
     cvDownloadTex: 'Baixar .tex',
     cvDownloadPdf: 'Baixar .pdf',
     cvGenerating: 'Gerando...',
+    lp: {
+      introTitle: (name) => name ? `Obrigado, ${name} — seus dados já chegaram.` : 'Obrigado — seus dados já chegaram.',
+      introBody: 'Antes da nossa reunião 1:1, algumas perguntas rápidas pra já entrarmos sabendo sobre o que você quer falar.',
+      introCta: 'Vamos lá',
+      back: 'Voltar',
+      next: 'Próxima',
+      submit: 'Enviar',
+      videoWaiting: (s) => `Faltam ${s}s…`,
+      thankYou: 'Obrigado! Já tenho o que eu precisava.',
+      redirecting: 'Te levando de volta pra onde você estava…',
+    },
   },
 
   es: {
@@ -528,6 +584,17 @@ const UI: Record<LocaleKey, UiStrings> = {
     cvDownloadTex: 'Descargar .tex',
     cvDownloadPdf: 'Descargar .pdf',
     cvGenerating: 'Generando...',
+    lp: {
+      introTitle: (name) => name ? `Gracias, ${name} — tus datos ya llegaron.` : 'Gracias — tus datos ya llegaron.',
+      introBody: 'Antes de nuestra reunión 1:1, unas preguntas rápidas para llegar ya sabiendo de qué quieres hablar.',
+      introCta: 'Vamos',
+      back: 'Atrás',
+      next: 'Siguiente',
+      submit: 'Enviar',
+      videoWaiting: (s) => `Quedan ${s}s…`,
+      thankYou: '¡Gracias! Ya tengo lo que necesitaba.',
+      redirecting: 'Te llevo de vuelta a donde estabas…',
+    },
   },
 }
 

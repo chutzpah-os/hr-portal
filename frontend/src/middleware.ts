@@ -19,16 +19,39 @@ const TOP_LEVEL_ROUTES = new Set([
   'researches',
   'solutions',
   'challenges',
+  'contact',
 ])
+
+const LP_SUBDOMAIN = 'lp.hanielrolemberg.com'
 
 export default function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl
+  const hostname = request.headers.get('host') || ''
+
+  // lp.hanielrolemberg.com/* -> /lp (internal path), any subpath collapses to /lp.
+  // Same Vercel project/deployment as the main domain — see plan doc for the
+  // Vercel/DNS setup this depends on.
+  if (hostname === LP_SUBDOMAIN || hostname.startsWith(`${LP_SUBDOMAIN}:`)) {
+    if (pathname.startsWith('/_next') || pathname.includes('.')) {
+      return NextResponse.next()
+    }
+    const url = request.nextUrl.clone()
+    url.pathname = '/lp'
+    url.search = search
+    return NextResponse.rewrite(url)
+  }
 
   if (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
     pathname.includes('.')
   ) {
+    return NextResponse.next()
+  }
+
+  // /lp also works directly on the main domain/localhost (testing, and so it
+  // doesn't get caught by the TOP_LEVEL_ROUTES/locale checks below).
+  if (pathname === '/lp') {
     return NextResponse.next()
   }
 
