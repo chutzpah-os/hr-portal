@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Link as LocaleLink } from '@/navigation'
 import type { ReactNode } from 'react'
 
 interface CTAProps {
@@ -21,14 +22,17 @@ export default function CTA({
   const classes = `cta-button ${className}`
 
   if (href) {
+    if (external) {
+      return (
+        <Link href={href} className={classes} target="_blank" rel="noopener noreferrer">
+          {children}
+        </Link>
+      )
+    }
     return (
-      <Link
-        href={href}
-        className={classes}
-        {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-      >
+      <LocaleLink href={href} className={classes}>
         {children}
-      </Link>
+      </LocaleLink>
     )
   }
 

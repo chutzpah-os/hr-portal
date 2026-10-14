@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CHALLENGES, getLocalizedChallenge, type Challenge } from '@/data/challenges'
 import { useTranslations, useLocale } from 'next-intl'

@@ -2,7 +2,6 @@
 
 import { useRef } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { Link as LocaleLink } from '@/navigation'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
@@ -197,7 +196,7 @@ export default function Home() {
               >
                 {t('bookCall')}
               </LocaleLink>
-              <Link
+              <LocaleLink
                 href="/about"
                 className="text-xs uppercase tracking-widest px-5 py-2.5 rounded-full transition-all duration-200"
                 style={{ color: 'var(--white-45)' }}
@@ -205,7 +204,7 @@ export default function Home() {
                 onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--white-45)')}
               >
                 {t('aboutLink')}
-              </Link>
+              </LocaleLink>
             </div>
           </motion.div>
         </section>

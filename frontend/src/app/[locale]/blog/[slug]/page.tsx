@@ -1,6 +1,6 @@
 import { getAllPosts, getPostBySlug, getPostLangs, formatDate } from '@/lib/blog'
 import { notFound, redirect } from 'next/navigation'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import { getTranslations } from 'next-intl/server'

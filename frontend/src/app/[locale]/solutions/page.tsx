@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { Link as LocaleLink } from '@/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations, useLocale } from 'next-intl'
@@ -159,7 +158,7 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
           <p className="text-xs" style={{ color: 'var(--white-35)' }}>
             {tc('fullDetailsPage')}
           </p>
-          <Link
+          <LocaleLink
             href={`/solutions/${product.id}`}
             onClick={onClose}
             className="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest px-5 py-2.5 rounded-full transition-all duration-200 shrink-0"
@@ -173,7 +172,7 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(10,10,15,0.05)' }}
           >
             {tc('viewFullPage')}
-          </Link>
+          </LocaleLink>
         </div>
       </motion.div>
     </motion.div>

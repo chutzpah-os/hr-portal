@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import { CHALLENGES, getChallenge, getLocalizedChallenge } from '@/data/challenges'
 import { buildAlternates } from '@/lib/metadata'
 import { getTranslations } from 'next-intl/server'

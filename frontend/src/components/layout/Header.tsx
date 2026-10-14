@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations, useLocale } from 'next-intl'
 import { usePathname, useRouter, Link as LocaleLink } from '@/navigation'
@@ -48,7 +47,7 @@ export default function Header() {
         transition={{ duration: 0.55, ease: 'easeOut' }}
       >
         {/* Logo */}
-        <Link
+        <LocaleLink
           href="/"
           className="flex items-center px-3 py-1.5 rounded-full transition-colors duration-200"
           style={{ color: 'var(--white-100)' }}
@@ -56,14 +55,14 @@ export default function Header() {
           onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
         >
           <span className="text-sm font-bold uppercase tracking-widest" style={{ color: 'var(--accent)' }}>HR</span>
-        </Link>
+        </LocaleLink>
 
         <div className="hidden xl:block w-px h-4 mx-1" style={{ backgroundColor: 'rgba(10,10,15,0.1)' }} />
 
         {/* Desktop nav items */}
         <nav className="hidden xl:flex items-center gap-1">
           {NAV_ITEMS.map((item) => (
-            <Link
+            <LocaleLink
               key={item.href}
               href={item.href}
               className="text-xs uppercase tracking-widest px-3 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap"
@@ -78,7 +77,7 @@ export default function Header() {
               }}
             >
               {item.label}
-            </Link>
+            </LocaleLink>
           ))}
         </nav>
 
@@ -158,7 +157,7 @@ export default function Header() {
             transition={{ duration: 0.2, ease: 'easeOut' }}
           >
             {NAV_ITEMS.map((item) => (
-              <Link
+              <LocaleLink
                 key={item.href}
                 href={item.href}
                 className="text-xs uppercase tracking-widest px-4 py-2.5 rounded-xl transition-all duration-200"
@@ -174,7 +173,7 @@ export default function Header() {
                 }}
               >
                 {item.label}
-              </Link>
+              </LocaleLink>
             ))}
 
             <div className="mx-3 my-1 h-px" style={{ backgroundColor: 'rgba(10,10,15,0.08)' }} />
