@@ -38,7 +38,7 @@ export default function ContactForm() {
 
     setStatus('loading')
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/newsletter/subscribe`, {
+      const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -57,7 +57,7 @@ export default function ContactForm() {
         })
         setTimeout(() => {
           window.location.href = `${LP_URL}/?${params.toString()}`
-        }, 900)
+        }, 300)
       } else {
         setStatus('error')
       }
@@ -68,6 +68,7 @@ export default function ContactForm() {
 
   return (
     <div className="max-w-sm mx-auto text-left">
+      <link rel="preconnect" href={new URL(LP_URL).origin} />
       <p className="text-sm leading-relaxed mb-6" style={{ color: 'var(--white-55)' }}>
         {t('newsletterSubtitle')}
       </p>
