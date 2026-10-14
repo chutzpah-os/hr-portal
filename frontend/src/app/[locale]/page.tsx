@@ -165,10 +165,8 @@ export default function Home() {
             </p>
 
             <div className="space-y-5 max-w-xl">
-              <p className="text-base leading-relaxed" style={{ color: 'var(--white-70)' }}>{t('bio1')}</p>
-              <p className="text-base leading-relaxed" style={{ color: 'var(--white-70)' }}>{t('bio2')}</p>
               <p className="text-base leading-relaxed" style={{ color: 'var(--white-70)' }}>
-                {t.rich('bio3', {
+                {t.rich('bio1', {
                   psf: (chunks) => (
                     <a
                       href="https://problemsolverfoundation.vercel.app/"
@@ -180,6 +178,11 @@ export default function Home() {
                       {chunks}
                     </a>
                   ),
+                })}
+              </p>
+              <p className="text-base leading-relaxed" style={{ color: 'var(--white-70)' }}>{t('bio2')}</p>
+              <p className="text-base leading-relaxed" style={{ color: 'var(--white-70)' }}>
+                {t.rich('bio3', {
                   mission: (chunks) => <span style={{ color: 'var(--white-50)' }}>{chunks}</span>,
                 })}
               </p>
