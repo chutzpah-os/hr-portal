@@ -28,6 +28,22 @@
     "bookCallCta": "Book a 1:1",
     "donate": "Donate"
   },
+  "accessGate": {
+    "title": "Let's get to know each other.",
+    "body": "Curious who I am and where I'm headed? We might want the same things. Let me get to know you a little — I'll be in touch soon.",
+    "consent": "By submitting this, you agree I may reach out to you soon.",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "your@email.com",
+    "locationPlaceholder": "City, country",
+    "connectionPlaceholder": "How do you know me?",
+    "linkedinPlaceholder": "Your LinkedIn profile",
+    "challengeQuestion": "What is {a} + {b}?",
+    "notRobot": "I'm not a robot",
+    "submit": "Come in",
+    "submitting": "...",
+    "submitError": "Something's not right. Please try again.",
+    "fieldError": "Please fill in all fields."
+  },
   "home": {
     "tagline": "Problem Solver",
     "bio1": "I'm the founder of the <psf>Problem Solver Foundation</psf> — a community connecting people across borders to solve real-world problems with technology and science. Right now, I'm focused on taking it further: more countries, more collaborators, more problems worth solving.",

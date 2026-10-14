@@ -6,6 +6,7 @@ import { routing } from '@/i18n/routing'
 import { buildAlternates } from '@/lib/metadata'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import AccessGate from '@/components/gate/AccessGate'
 
 // Provides canonical for the homepage (client component — can't export generateMetadata itself)
 // All other pages override this via their own generateMetadata
@@ -39,6 +40,7 @@ export default async function LocaleLayout({
     <NextIntlClientProvider messages={messages}>
       <script dangerouslySetInnerHTML={{ __html: `document.documentElement.lang='${locale}'` }} />
       <Header />
+      <AccessGate />
       {children}
       <Footer />
     </NextIntlClientProvider>

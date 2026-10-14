@@ -28,6 +28,22 @@
     "bookCallCta": "Réserver un 1:1",
     "donate": "Faire un don"
   },
+  "accessGate": {
+    "title": "Faisons connaissance.",
+    "body": "Envie d'en savoir plus sur qui je suis et où je veux aller ? On recherche peut-être les mêmes choses. Laisse-moi te connaître un peu — je te recontacte bientôt.",
+    "consent": "En soumettant ce formulaire, vous acceptez que je puisse vous recontacter prochainement.",
+    "namePlaceholder": "Votre nom",
+    "emailPlaceholder": "votre@email.com",
+    "locationPlaceholder": "Ville, pays",
+    "connectionPlaceholder": "Comment me connaissez-vous ?",
+    "linkedinPlaceholder": "Votre profil LinkedIn",
+    "challengeQuestion": "Combien font {a} + {b} ?",
+    "notRobot": "Je ne suis pas un robot",
+    "submit": "Entrer",
+    "submitting": "...",
+    "submitError": "Quelque chose cloche. Veuillez réessayer.",
+    "fieldError": "Veuillez remplir tous les champs."
+  },
   "home": {
     "tagline": "Solutionneur de Problèmes",
     "bio1": "Je suis le fondateur de la <psf>Problem Solver Foundation</psf> — une communauté qui connecte des personnes au-delà des frontières pour résoudre de vrais problèmes grâce à la technologie et à la science. En ce moment, je me concentre sur son expansion : plus de pays, plus de collaborateurs, plus de problèmes qui valent la peine d'être résolus.",
