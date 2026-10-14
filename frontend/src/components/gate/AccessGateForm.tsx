@@ -109,7 +109,7 @@ export default function AccessGateForm({ onGranted }: { onGranted: () => void })
         placeholder={t('namePlaceholder')}
         disabled={status === 'loading'}
         autoComplete="name"
-        className="text-sm px-4 py-2.5 rounded-xl outline-none transition-all duration-200 placeholder:opacity-35 disabled:opacity-50"
+        className="text-sm px-4 py-2.5 rounded-xl outline-none transition-all duration-200 placeholder:text-[rgba(10,10,15,0.45)] disabled:opacity-50"
         style={inputStyle}
         onFocus={(e) => (e.currentTarget.style.border = '1px solid rgba(212,119,90,0.45)')}
         onBlur={(e) => (e.currentTarget.style.border = '1px solid rgba(10,10,15,0.12)')}
@@ -121,7 +121,7 @@ export default function AccessGateForm({ onGranted }: { onGranted: () => void })
         placeholder={t('emailPlaceholder')}
         disabled={status === 'loading'}
         autoComplete="email"
-        className="text-sm px-4 py-2.5 rounded-xl outline-none transition-all duration-200 placeholder:opacity-35 disabled:opacity-50"
+        className="text-sm px-4 py-2.5 rounded-xl outline-none transition-all duration-200 placeholder:text-[rgba(10,10,15,0.45)] disabled:opacity-50"
         style={inputStyle}
         onFocus={(e) => (e.currentTarget.style.border = '1px solid rgba(212,119,90,0.45)')}
         onBlur={(e) => (e.currentTarget.style.border = '1px solid rgba(10,10,15,0.12)')}
@@ -133,7 +133,7 @@ export default function AccessGateForm({ onGranted }: { onGranted: () => void })
         placeholder={t('locationPlaceholder')}
         disabled={status === 'loading'}
         autoComplete="off"
-        className="text-sm px-4 py-2.5 rounded-xl outline-none transition-all duration-200 placeholder:opacity-35 disabled:opacity-50"
+        className="text-sm px-4 py-2.5 rounded-xl outline-none transition-all duration-200 placeholder:text-[rgba(10,10,15,0.45)] disabled:opacity-50"
         style={inputStyle}
         onFocus={(e) => (e.currentTarget.style.border = '1px solid rgba(212,119,90,0.45)')}
         onBlur={(e) => (e.currentTarget.style.border = '1px solid rgba(10,10,15,0.12)')}
@@ -145,7 +145,7 @@ export default function AccessGateForm({ onGranted }: { onGranted: () => void })
         placeholder={t('connectionPlaceholder')}
         disabled={status === 'loading'}
         autoComplete="off"
-        className="text-sm px-4 py-2.5 rounded-xl outline-none transition-all duration-200 placeholder:opacity-35 disabled:opacity-50"
+        className="text-sm px-4 py-2.5 rounded-xl outline-none transition-all duration-200 placeholder:text-[rgba(10,10,15,0.45)] disabled:opacity-50"
         style={inputStyle}
         onFocus={(e) => (e.currentTarget.style.border = '1px solid rgba(212,119,90,0.45)')}
         onBlur={(e) => (e.currentTarget.style.border = '1px solid rgba(10,10,15,0.12)')}
@@ -157,7 +157,7 @@ export default function AccessGateForm({ onGranted }: { onGranted: () => void })
         placeholder={t('linkedinPlaceholder')}
         disabled={status === 'loading'}
         autoComplete="off"
-        className="text-sm px-4 py-2.5 rounded-xl outline-none transition-all duration-200 placeholder:opacity-35 disabled:opacity-50"
+        className="text-sm px-4 py-2.5 rounded-xl outline-none transition-all duration-200 placeholder:text-[rgba(10,10,15,0.45)] disabled:opacity-50"
         style={inputStyle}
         onFocus={(e) => (e.currentTarget.style.border = '1px solid rgba(212,119,90,0.45)')}
         onBlur={(e) => (e.currentTarget.style.border = '1px solid rgba(10,10,15,0.12)')}
