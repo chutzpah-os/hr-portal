@@ -30,8 +30,8 @@
   },
   "accessGate": {
     "title": "Let's get to know each other.",
-    "body": "This is where I share my journey — something I only open up to real people who care about this path. That's why I want to know who's on the other side of the screen. If we haven't met, I'd like to. If we have, let's grow closer.",
-    "consent": "By submitting this, you agree I may reach out to you soon and that I'll temporarily store the details you share.",
+    "body": "Here, I share my journey — only with people who genuinely care about it. I want to know who's reading: if we haven't met, let's; if we have, let's grow closer.",
+    "consent": "By submitting, you agree I may contact you and will briefly store your details.",
     "namePlaceholder": "Your name",
     "emailPlaceholder": "your@email.com",
     "locationPlaceholder": "City, country",

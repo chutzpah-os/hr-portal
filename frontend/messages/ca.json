@@ -30,8 +30,8 @@
   },
   "accessGate": {
     "title": "Coneguem-nos millor.",
-    "body": "Aquí comparteixo el meu camí — una cosa que només obro a persones reals que es preocupen per aquesta trajectòria. Per això vull saber qui hi ha a l'altra banda de la pantalla. Si encara no et conec, m'agradaria conèixer-te. Si ja et conec, m'agradaria estrènyer llaços.",
-    "consent": "En enviar això, acceptes que et pugui contactar aviat i que guardi temporalment les dades enviades.",
+    "body": "Aquí comparteixo el meu camí — només amb persones reals que s'hi importen. Vull saber qui hi ha a l'altra banda: si no et conec, coneguem-nos; si ja et conec, apropem-nos.",
+    "consent": "En enviar, acceptes que et contacti i guardi les teves dades temporalment.",
     "namePlaceholder": "El teu nom",
     "emailPlaceholder": "el-teu@email.com",
     "locationPlaceholder": "Ciutat, país",

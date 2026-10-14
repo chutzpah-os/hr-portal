@@ -30,8 +30,8 @@
   },
   "accessGate": {
     "title": "Vamos nos conhecer melhor.",
-    "body": "Aqui eu conto a minha jornada — isso eu só compartilho com pessoas reais, que se importam com essa trajetória. Por isso, quero saber quem está do outro lado da tela. Se ainda não te conheço, gostaria de conhecer. Se já te conheço, gostaria de estreitar os laços.",
-    "consent": "Ao preencher, você concorda que eu entre em contato com você em breve e que eu guarde temporariamente os dados enviados.",
+    "body": "Aqui eu conto minha jornada — só com pessoas reais que se importam com ela. Quero saber quem está do outro lado: se não te conheço, vamos nos conhecer; se já te conheço, vamos estreitar os laços.",
+    "consent": "Ao enviar, você concorda que eu entre em contato e guarde seus dados temporariamente.",
     "namePlaceholder": "Seu nome",
     "emailPlaceholder": "seu@email.com",
     "locationPlaceholder": "Cidade, país",

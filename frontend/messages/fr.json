@@ -30,8 +30,8 @@
   },
   "accessGate": {
     "title": "Faisons connaissance.",
-    "body": "C'est ici que je partage mon parcours — quelque chose que je n'ouvre qu'aux personnes réelles qui se soucient de ce chemin. C'est pourquoi je veux savoir qui est de l'autre côté de l'écran. Si on ne se connaît pas encore, j'aimerais te connaître. Si on se connaît déjà, j'aimerais qu'on se rapproche.",
-    "consent": "En soumettant ce formulaire, vous acceptez que je puisse vous recontacter prochainement et que je conserve temporairement les informations transmises.",
+    "body": "Ici, je partage mon parcours — uniquement avec des personnes réelles qui s'y intéressent. Je veux savoir qui est de l'autre côté : si on ne se connaît pas, faisons connaissance ; si on se connaît, rapprochons-nous.",
+    "consent": "En envoyant, vous acceptez que je vous contacte et conserve temporairement vos données.",
     "namePlaceholder": "Votre nom",
     "emailPlaceholder": "votre@email.com",
     "locationPlaceholder": "Ville, pays",

@@ -64,7 +64,7 @@ export default function AccessGate() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-[200] flex items-center justify-center overflow-y-auto px-6 py-10 no-print"
+          className="fixed inset-0 z-[200] flex flex-col items-center overflow-y-auto px-6 py-10 no-print"
           style={{
             backgroundColor: 'rgba(255,255,255,0.85)',
             backdropFilter: 'blur(24px)',
@@ -77,7 +77,7 @@ export default function AccessGate() {
             initial={{ opacity: 0, y: 16, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.35, ease: 'easeOut' }}
-            className="w-full max-w-sm rounded-2xl p-7"
+            className="w-full max-w-sm rounded-2xl p-7 my-auto"
             style={{
               backgroundColor: 'rgb(255,255,255)',
               border: '1px solid rgba(10,10,15,0.10)',

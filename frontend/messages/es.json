@@ -30,8 +30,8 @@
   },
   "accessGate": {
     "title": "Conozcámonos mejor.",
-    "body": "Aquí comparto mi camino — algo que solo abro a personas reales que se preocupan por esta trayectoria. Por eso quiero saber quién está al otro lado de la pantalla. Si no te conozco, me gustaría conocerte. Si ya te conozco, me gustaría estrechar lazos.",
-    "consent": "Al enviar esto, aceptas que pueda contactarte pronto y que guarde temporalmente los datos enviados.",
+    "body": "Aquí comparto mi camino — solo con personas reales que se preocupan por él. Quiero saber quién está al otro lado: si no te conozco, conozcámonos; si ya te conozco, estrechemos lazos.",
+    "consent": "Al enviar, aceptas que pueda contactarte y guarde tus datos temporalmente.",
     "namePlaceholder": "Tu nombre",
     "emailPlaceholder": "tu@email.com",
     "locationPlaceholder": "Ciudad, país",
