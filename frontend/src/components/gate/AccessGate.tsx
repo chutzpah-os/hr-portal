@@ -16,10 +16,38 @@ export default function AccessGate() {
 
   useEffect(() => {
     if (status !== 'show') return
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
+
+    // Plain `overflow: hidden` on body doesn't reliably block scroll on
+    // mobile Safari/Chrome — touch drags can still pan the page, which (since
+    // `position: fixed` is pinned to the layout viewport, not the visual one)
+    // makes this overlay appear to drift sideways. Pinning the body itself
+    // with `position: fixed` is the robust cross-browser lock.
+    const scrollY = window.scrollY
+    const { style } = document.body
+    const previous = {
+      position: style.position,
+      top: style.top,
+      left: style.left,
+      right: style.right,
+      width: style.width,
+      overflow: style.overflow,
+    }
+
+    style.position = 'fixed'
+    style.top = `-${scrollY}px`
+    style.left = '0'
+    style.right = '0'
+    style.width = '100%'
+    style.overflow = 'hidden'
+
     return () => {
-      document.body.style.overflow = previousOverflow
+      style.position = previous.position
+      style.top = previous.top
+      style.left = previous.left
+      style.right = previous.right
+      style.width = previous.width
+      style.overflow = previous.overflow
+      window.scrollTo(0, scrollY)
     }
   }, [status])
 
@@ -36,11 +64,13 @@ export default function AccessGate() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-[200] flex items-center justify-center px-6 no-print"
+          className="fixed inset-0 z-[200] flex items-center justify-center overflow-y-auto px-6 py-10 no-print"
           style={{
             backgroundColor: 'rgba(255,255,255,0.85)',
             backdropFilter: 'blur(24px)',
             WebkitBackdropFilter: 'blur(24px)',
+            overscrollBehavior: 'contain',
+            touchAction: 'pan-y',
           }}
         >
           <motion.div
