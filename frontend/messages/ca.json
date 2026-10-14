@@ -30,8 +30,8 @@
   },
   "accessGate": {
     "title": "Coneguem-nos millor.",
-    "body": "Vols saber més sobre qui sóc i cap a on vull anar? Potser busquem les mateixes coses. Deixa'm conèixer-te una mica — aviat et contactaré.",
-    "consent": "En enviar això, acceptes que et pugui contactar aviat.",
+    "body": "Aquí comparteixo el meu camí — una cosa que només obro a persones reals que es preocupen per aquesta trajectòria. Per això vull saber qui hi ha a l'altra banda de la pantalla. Si encara no et conec, m'agradaria conèixer-te. Si ja et conec, m'agradaria estrènyer llaços.",
+    "consent": "En enviar això, acceptes que et pugui contactar aviat i que guardi temporalment les dades enviades.",
     "namePlaceholder": "El teu nom",
     "emailPlaceholder": "el-teu@email.com",
     "locationPlaceholder": "Ciutat, país",
@@ -47,8 +47,8 @@
   "home": {
     "tagline": "Solucionador de Problemes",
     "bio1": "Sóc el fundador de la <psf>Problem Solver Foundation</psf> — una comunitat que connecta persones més enllà de les fronteres per resoldre problemes reals amb tecnologia i ciència. Ara mateix, el meu focus és portar-la més lluny: més països, més col·laboradors, més problemes que valgui la pena resoldre.",
-    "bio2": "Aquesta feina travessa disciplines — polítiques públiques, enginyeria de programari, sistemes de dades, ciberseguretat, IA/ML. No perquè busqui credencials, sinó perquè els problemes més difícils no caben en una sola disciplina.",
-    "bio3": "La meva missió: <mission>impactar mil milions de vides per al 2035</mission>.",
+    "bio2": "El meu objectiu: <mission>impactar mil milions de vides per al 2035</mission>. Aquí podràs seguir el meu progrés personal cap a aquesta fita.",
+    "bio3": "Vols formar-ne part? Parlem-ne.",
     "bookCall": "Reservar un 1:1",
     "aboutLink": "Sobre mi →",
     "featuredContent": "Contingut Destacat",

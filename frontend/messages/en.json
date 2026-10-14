@@ -30,8 +30,8 @@
   },
   "accessGate": {
     "title": "Let's get to know each other.",
-    "body": "Curious who I am and where I'm headed? We might want the same things. Let me get to know you a little — I'll be in touch soon.",
-    "consent": "By submitting this, you agree I may reach out to you soon.",
+    "body": "This is where I share my journey — something I only open up to real people who care about this path. That's why I want to know who's on the other side of the screen. If we haven't met, I'd like to. If we have, let's grow closer.",
+    "consent": "By submitting this, you agree I may reach out to you soon and that I'll temporarily store the details you share.",
     "namePlaceholder": "Your name",
     "emailPlaceholder": "your@email.com",
     "locationPlaceholder": "City, country",
@@ -47,8 +47,8 @@
   "home": {
     "tagline": "Problem Solver",
     "bio1": "I'm the founder of the <psf>Problem Solver Foundation</psf> — a community connecting people across borders to solve real-world problems with technology and science. Right now, I'm focused on taking it further: more countries, more collaborators, more problems worth solving.",
-    "bio2": "That work crosses fields — public policy, software engineering, data systems, cybersecurity, AI/ML. Not because I'm chasing credentials, but because the hardest problems don't fit inside one discipline.",
-    "bio3": "My mission: <mission>impact one billion lives by 2035</mission>.",
+    "bio2": "My goal: <mission>impact one billion lives by 2035</mission>. Here, you'll be able to follow my personal progress toward it.",
+    "bio3": "Want to be part of it? Let's talk.",
     "bookCall": "Book a 1:1",
     "aboutLink": "About me →",
     "featuredContent": "Featured Content",

@@ -180,12 +180,12 @@ export default function Home() {
                   ),
                 })}
               </p>
-              <p className="text-base leading-relaxed" style={{ color: 'var(--white-70)' }}>{t('bio2')}</p>
               <p className="text-base leading-relaxed" style={{ color: 'var(--white-70)' }}>
-                {t.rich('bio3', {
+                {t.rich('bio2', {
                   mission: (chunks) => <span style={{ color: 'var(--white-50)' }}>{chunks}</span>,
                 })}
               </p>
+              <p className="text-base leading-relaxed" style={{ color: 'var(--white-70)' }}>{t('bio3')}</p>
             </div>
 
             <div className="flex flex-wrap gap-3 mt-10">

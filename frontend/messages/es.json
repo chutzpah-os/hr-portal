@@ -30,8 +30,8 @@
   },
   "accessGate": {
     "title": "Conozcámonos mejor.",
-    "body": "¿Quieres saber más sobre quién soy y hacia dónde voy? Puede que busquemos las mismas cosas. Déjame conocerte un poco — pronto me pondré en contacto.",
-    "consent": "Al enviar esto, aceptas que pueda contactarte pronto.",
+    "body": "Aquí comparto mi camino — algo que solo abro a personas reales que se preocupan por esta trayectoria. Por eso quiero saber quién está al otro lado de la pantalla. Si no te conozco, me gustaría conocerte. Si ya te conozco, me gustaría estrechar lazos.",
+    "consent": "Al enviar esto, aceptas que pueda contactarte pronto y que guarde temporalmente los datos enviados.",
     "namePlaceholder": "Tu nombre",
     "emailPlaceholder": "tu@email.com",
     "locationPlaceholder": "Ciudad, país",
@@ -47,8 +47,8 @@
   "home": {
     "tagline": "Solucionador de Problemas",
     "bio1": "Soy el fundador de la <psf>Problem Solver Foundation</psf> — una comunidad que conecta personas más allá de las fronteras para resolver problemas reales con tecnología y ciencia. Ahora mismo, mi foco es llevarla más lejos: más países, más colaboradores, más problemas que valgan la pena resolver.",
-    "bio2": "Ese trabajo atraviesa disciplinas — políticas públicas, ingeniería de software, sistemas de datos, ciberseguridad, IA/ML. No porque busque credenciales, sino porque los problemas más difíciles no caben en una sola disciplina.",
-    "bio3": "Mi misión: <mission>impactar mil millones de vidas para 2035</mission>.",
+    "bio2": "Mi objetivo: <mission>impactar mil millones de vidas para 2035</mission>. Aquí podrás seguir mi progreso personal hacia esa meta.",
+    "bio3": "¿Quieres ser parte de esto? Hablemos.",
     "bookCall": "Agendar 1:1",
     "aboutLink": "Sobre mí →",
     "featuredContent": "Contenido Destacado",
