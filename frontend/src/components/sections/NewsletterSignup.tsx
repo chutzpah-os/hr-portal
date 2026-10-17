@@ -7,13 +7,14 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export default function NewsletterSignup() {
   const t = useTranslations('newsletterSignup')
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (status === 'loading') return
-    if (!EMAIL_REGEX.test(email.trim())) {
+    if (!name.trim() || !EMAIL_REGEX.test(email.trim())) {
       setStatus('error')
       return
     }
@@ -23,7 +24,7 @@ export default function NewsletterSignup() {
       const res = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email.trim() }),
+        body: JSON.stringify({ name: name.trim(), email: email.trim() }),
       })
       setStatus(res.ok || res.status === 409 ? 'success' : 'error')
     } catch {
@@ -55,6 +56,18 @@ export default function NewsletterSignup() {
           </p>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 w-full md:w-auto shrink-0">
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => { setName(e.target.value); if (status === 'error') setStatus('idle') }}
+              placeholder={t('namePlaceholder')}
+              disabled={status === 'loading'}
+              autoComplete="name"
+              className="text-sm px-4 py-2.5 rounded-xl outline-none transition-all duration-200 placeholder:text-[rgba(10,10,15,0.45)] disabled:opacity-50 sm:w-44"
+              style={{ border: '1px solid rgba(10,10,15,0.12)', backgroundColor: 'rgb(255,255,255)', color: 'var(--white-90)' }}
+              onFocus={(e) => (e.currentTarget.style.border = '1px solid rgba(212,119,90,0.45)')}
+              onBlur={(e) => (e.currentTarget.style.border = '1px solid rgba(10,10,15,0.12)')}
+            />
             <input
               type="email"
               value={email}

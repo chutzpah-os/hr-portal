@@ -48,6 +48,7 @@
     "label": "Newsletter",
     "title": "Suis le chemin vers le 1B2035",
     "body": "L'avancée de la mission de la Problem Solver Foundation : impacter un milliard de vies d'ici 2035 — mises à jour occasionnelles, sans spam.",
+    "namePlaceholder": "Votre nom",
     "emailPlaceholder": "votre@email.com",
     "submit": "S'abonner",
     "submitting": "...",

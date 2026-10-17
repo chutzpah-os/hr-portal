@@ -3,7 +3,7 @@ import { firestoreCollection } from '@/lib/firebaseAdmin'
 
 export const runtime = 'nodejs'
 
-const COLLECTION = 'newsletter'
+const COLLECTION = 'newsletter-hr-psf'
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export async function POST(request: Request) {
@@ -18,8 +18,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: 'Invalid request body' }, { status: 400 })
   }
 
-  const { email } = body as Record<string, unknown>
+  const { name, email } = body as Record<string, unknown>
 
+  if (typeof name !== 'string' || name.trim().length < 2 || name.trim().length > 100) {
+    return NextResponse.json({ message: 'name must be between 2 and 100 characters' }, { status: 400 })
+  }
   if (typeof email !== 'string' || email.length > 254 || !EMAIL_REGEX.test(email)) {
     return NextResponse.json({ message: 'a valid email is required' }, { status: 400 })
   }
@@ -33,6 +36,7 @@ export async function POST(request: Request) {
   }
 
   await collection.add({
+    name: name.trim(),
     email: normalizedEmail,
     subscribedAt: new Date().toISOString(),
   })

@@ -48,6 +48,7 @@
     "label": "Newsletter",
     "title": "Get updates on the 1B2035 journey",
     "body": "Progress on the Problem Solver Foundation's mission to impact one billion lives by 2035 — occasional updates, no spam.",
+    "namePlaceholder": "Your name",
     "emailPlaceholder": "your@email.com",
     "submit": "Subscribe",
     "submitting": "...",
