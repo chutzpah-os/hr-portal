@@ -6,6 +6,7 @@ import { Link as LocaleLink } from '@/navigation'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { saveReturnUrl } from '@/lib/lpReturn'
+import NewsletterSignup from '@/components/sections/NewsletterSignup'
 
 interface YTVideo {
   id: string
@@ -211,6 +212,8 @@ export default function Home() {
             </div>
           </motion.div>
         </section>
+
+        <NewsletterSignup />
 
         <FeaturedContent />
       </main>

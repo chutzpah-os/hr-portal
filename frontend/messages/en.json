@@ -44,6 +44,16 @@
     "submitError": "Something's not right. Please try again.",
     "fieldError": "Please fill in all fields."
   },
+  "newsletterSignup": {
+    "label": "Newsletter",
+    "title": "Get updates on the 1B2035 journey",
+    "body": "Progress on the Problem Solver Foundation's mission to impact one billion lives by 2035 — occasional updates, no spam.",
+    "emailPlaceholder": "your@email.com",
+    "submit": "Subscribe",
+    "submitting": "...",
+    "success": "You're in — thanks for following along.",
+    "error": "Something went wrong. Please try again."
+  },
   "home": {
     "tagline": "Problem Solver",
     "bio1": "I'm the founder of the <psf>Problem Solver Foundation</psf> — a community connecting people across borders to solve real-world problems with technology and science. Right now, I'm focused on taking it further: more countries, more collaborators, more problems worth solving.",

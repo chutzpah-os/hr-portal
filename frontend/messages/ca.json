@@ -44,6 +44,16 @@
     "submitError": "Alguna cosa no quadra. Torna-ho a intentar.",
     "fieldError": "Si us plau, omple tots els camps."
   },
+  "newsletterSignup": {
+    "label": "Newsletter",
+    "title": "Segueix el camí cap al 1B2035",
+    "body": "Progrés de la missió de la Problem Solver Foundation per impactar mil milions de vides per al 2035 — actualitzacions ocasionals, sense spam.",
+    "emailPlaceholder": "el-teu@email.com",
+    "submit": "Subscriure's",
+    "submitting": "...",
+    "success": "Fet — gràcies per seguir-nos.",
+    "error": "Alguna cosa ha fallat. Torna-ho a intentar."
+  },
   "home": {
     "tagline": "Solucionador de Problemes",
     "bio1": "Sóc el fundador de la <psf>Problem Solver Foundation</psf> — una comunitat que connecta persones més enllà de les fronteres per resoldre problemes reals amb tecnologia i ciència. Ara mateix, el meu focus és portar-la més lluny: més països, més col·laboradors, més problemes que valgui la pena resoldre.",

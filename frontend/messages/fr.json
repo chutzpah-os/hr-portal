@@ -44,6 +44,16 @@
     "submitError": "Quelque chose cloche. Veuillez réessayer.",
     "fieldError": "Veuillez remplir tous les champs."
   },
+  "newsletterSignup": {
+    "label": "Newsletter",
+    "title": "Suis le chemin vers le 1B2035",
+    "body": "L'avancée de la mission de la Problem Solver Foundation : impacter un milliard de vies d'ici 2035 — mises à jour occasionnelles, sans spam.",
+    "emailPlaceholder": "votre@email.com",
+    "submit": "S'abonner",
+    "submitting": "...",
+    "success": "C'est fait — merci de suivre l'aventure.",
+    "error": "Une erreur s'est produite. Veuillez réessayer."
+  },
   "home": {
     "tagline": "Solutionneur de Problèmes",
     "bio1": "Je suis le fondateur de la <psf>Problem Solver Foundation</psf> — une communauté qui connecte des personnes au-delà des frontières pour résoudre de vrais problèmes grâce à la technologie et à la science. En ce moment, je me concentre sur son expansion : plus de pays, plus de collaborateurs, plus de problèmes qui valent la peine d'être résolus.",
