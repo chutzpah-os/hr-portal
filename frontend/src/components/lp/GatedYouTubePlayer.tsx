@@ -69,6 +69,7 @@ export default function GatedYouTubePlayer({ videoUrl, onEnded, onTick }: GatedY
   const playerRef = useRef<YTPlayer | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [ready, setReady] = useState(false)
+  const [progress, setProgress] = useState(0)
 
   useEffect(() => {
     let cancelled = false
@@ -100,14 +101,17 @@ export default function GatedYouTubePlayer({ videoUrl, onEnded, onTick }: GatedY
               if (!player) return
               const duration = player.getDuration()
               if (!duration) return
-              const remaining = Math.max(0, Math.ceil(duration - player.getCurrentTime()))
+              const current = player.getCurrentTime()
+              const remaining = Math.max(0, Math.ceil(duration - current))
               onTick?.(remaining)
+              setProgress(Math.min(100, (current / duration) * 100))
             }, 500)
           },
           onStateChange: (e: YTStateChangeEvent) => {
             setIsPlaying(e.data === YT_PLAYING_STATE)
             if (e.data === YT_ENDED_STATE) {
               onTick?.(0)
+              setProgress(100)
               onEnded?.()
             }
           },
@@ -135,25 +139,38 @@ export default function GatedYouTubePlayer({ videoUrl, onEnded, onTick }: GatedY
   }
 
   return (
-    <div
-      className="relative w-full rounded-xl overflow-hidden"
-      style={{ aspectRatio: '16/9', border: '1px solid rgba(10,10,15,0.12)' }}
-      onContextMenu={(e) => e.preventDefault()}
-    >
-      <div id={containerId} className="absolute inset-0 w-full h-full" style={{ pointerEvents: 'none' }} />
-      <button
-        type="button"
-        onClick={togglePlayback}
-        aria-label={isPlaying ? 'Pause' : 'Play'}
-        className="absolute inset-0 w-full h-full flex items-center justify-center cursor-pointer"
-        style={{ backgroundColor: isPlaying ? 'transparent' : 'rgba(10,10,15,0.15)', border: 'none', padding: 0 }}
+    <div>
+      <div
+        className="relative w-full rounded-xl overflow-hidden"
+        style={{ aspectRatio: '16/9', border: '1px solid rgba(10,10,15,0.12)' }}
+        onContextMenu={(e) => e.preventDefault()}
       >
-        {!isPlaying && ready && (
-          <span className="flex items-center justify-center w-14 h-14 rounded-full" style={{ backgroundColor: 'var(--accent)' }}>
-            <svg width="20" height="20" viewBox="0 0 16 16" fill="white"><path d="M4 2l10 6-10 6V2z" /></svg>
-          </span>
-        )}
-      </button>
+        <div id={containerId} className="absolute inset-0 w-full h-full" style={{ pointerEvents: 'none' }} />
+        <button
+          type="button"
+          onClick={togglePlayback}
+          aria-label={isPlaying ? 'Pause' : 'Play'}
+          className="absolute inset-0 w-full h-full flex items-center justify-center cursor-pointer"
+          style={{ backgroundColor: isPlaying ? 'transparent' : 'rgba(10,10,15,0.15)', border: 'none', padding: 0 }}
+        >
+          {!isPlaying && ready && (
+            <span className="flex items-center justify-center w-14 h-14 rounded-full" style={{ backgroundColor: 'var(--accent)' }}>
+              <svg width="20" height="20" viewBox="0 0 16 16" fill="white"><path d="M4 2l10 6-10 6V2z" /></svg>
+            </span>
+          )}
+        </button>
+      </div>
+      {ready && (
+        <div
+          className="w-full rounded-full overflow-hidden mt-3"
+          style={{ height: '4px', backgroundColor: 'var(--white-10)' }}
+        >
+          <div
+            className="transition-[width] duration-500 ease-linear"
+            style={{ width: `${progress}%`, height: '100%', backgroundColor: 'var(--accent)', borderRadius: '9999px' }}
+          />
+        </div>
+      )}
     </div>
   )
 }
