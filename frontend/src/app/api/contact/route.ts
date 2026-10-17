@@ -3,7 +3,7 @@ import { firestoreCollection } from '@/lib/firebaseAdmin'
 
 export const runtime = 'nodejs'
 
-const COLLECTION = 'newsletter_subscribers'
+const COLLECTION = 'contact'
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const PHONE_REGEX = /^\+?[0-9\s\-()]{8,20}$/
 
@@ -36,15 +36,15 @@ export async function POST(request: Request) {
 
   const existing = await collection.where('email', '==', normalizedEmail).limit(1).get()
   if (!existing.empty) {
-    return NextResponse.json({ message: 'Email already subscribed' }, { status: 409 })
+    return NextResponse.json({ message: 'Already submitted' }, { status: 409 })
   }
 
   await collection.add({
     name: name.trim(),
     email: normalizedEmail,
     phone: typeof phone === 'string' && phone.trim() ? phone.trim() : null,
-    subscribedAt: new Date().toISOString(),
+    submittedAt: new Date().toISOString(),
   })
 
-  return NextResponse.json({ message: 'Subscribed successfully' }, { status: 201 })
+  return NextResponse.json({ message: 'Submitted successfully' }, { status: 201 })
 }
