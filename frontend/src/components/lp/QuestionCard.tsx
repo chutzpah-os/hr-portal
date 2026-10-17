@@ -4,8 +4,6 @@ import { useEffect, useState } from 'react'
 import type { LpQuestion } from '@/data/lpQuestions'
 import GatedYouTubePlayer from './GatedYouTubePlayer'
 
-const VIDEO_GATE_SECONDS = 60
-
 interface QuestionCardProps {
   question: LpQuestion
   value: string
@@ -28,18 +26,16 @@ export default function QuestionCard({
   videoWaitingLabel,
 }: QuestionCardProps) {
   const isVideo = question.type === 'video'
-  const [secondsLeft, setSecondsLeft] = useState(isVideo ? VIDEO_GATE_SECONDS : 0)
+  const [secondsLeft, setSecondsLeft] = useState<number | null>(null)
+  const [videoEnded, setVideoEnded] = useState(false)
 
   useEffect(() => {
     if (!isVideo) return
-    setSecondsLeft(VIDEO_GATE_SECONDS)
-    const interval = setInterval(() => {
-      setSecondsLeft((s) => (s > 0 ? s - 1 : 0))
-    }, 1000)
-    return () => clearInterval(interval)
+    setSecondsLeft(null)
+    setVideoEnded(false)
   }, [isVideo, question.id])
 
-  const canAdvance = isVideo ? secondsLeft <= 0 : question.type === 'choice' ? !!value : true
+  const canAdvance = isVideo ? videoEnded : question.type === 'choice' ? !!value : true
 
   return (
     <div>
@@ -95,9 +91,13 @@ export default function QuestionCard({
       {isVideo && (
         <div>
           <div className="mb-3">
-            <GatedYouTubePlayer videoUrl={question.videoUrl ?? ''} />
+            <GatedYouTubePlayer
+              videoUrl={question.videoUrl ?? ''}
+              onTick={setSecondsLeft}
+              onEnded={() => setVideoEnded(true)}
+            />
           </div>
-          {secondsLeft > 0 && (
+          {!videoEnded && secondsLeft !== null && secondsLeft > 0 && (
             <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--white-35)' }}>
               {videoWaitingLabel(secondsLeft)}
             </p>

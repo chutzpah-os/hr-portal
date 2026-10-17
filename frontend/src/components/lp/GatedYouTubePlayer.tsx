@@ -15,6 +15,8 @@ interface YTPlayer {
   playVideo: () => void
   pauseVideo: () => void
   destroy: () => void
+  getDuration: () => number
+  getCurrentTime: () => number
 }
 
 interface YTStateChangeEvent {
@@ -22,6 +24,7 @@ interface YTStateChangeEvent {
 }
 
 const YT_PLAYING_STATE = 1
+const YT_ENDED_STATE = 0
 
 function extractVideoId(url: string): string {
   const match = url.match(/embed\/([a-zA-Z0-9_-]+)/)
@@ -50,13 +53,18 @@ function loadYouTubeApi(): Promise<void> {
 
 interface GatedYouTubePlayerProps {
   videoUrl: string
+  onEnded?: () => void
+  onTick?: (secondsLeft: number) => void
 }
 
 // Fully chrome-less YouTube embed: no progress bar, no native buttons, no
 // branding, no seeking, no right-click menu, no keyboard shortcuts. The only
 // way to interact with it is a single click to play/pause, handled by our
-// own overlay — nothing from the real player is ever clickable.
-export default function GatedYouTubePlayer({ videoUrl }: GatedYouTubePlayerProps) {
+// own overlay — nothing from the real player is ever clickable. The "gate"
+// (reporting onEnded/onTick) is driven by this specific video's own real
+// duration via the IFrame API, not a fixed timer — it adapts to whatever
+// video is loaded.
+export default function GatedYouTubePlayer({ videoUrl, onEnded, onTick }: GatedYouTubePlayerProps) {
   const containerId = `yt-player-${useId().replace(/[^a-zA-Z0-9]/g, '')}`
   const playerRef = useRef<YTPlayer | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -65,6 +73,7 @@ export default function GatedYouTubePlayer({ videoUrl }: GatedYouTubePlayerProps
   useEffect(() => {
     let cancelled = false
     let autoplayTimeout: ReturnType<typeof setTimeout> | undefined
+    let tickInterval: ReturnType<typeof setInterval> | undefined
 
     loadYouTubeApi().then(() => {
       if (cancelled || !window.YT) return
@@ -86,8 +95,22 @@ export default function GatedYouTubePlayer({ videoUrl }: GatedYouTubePlayerProps
             autoplayTimeout = setTimeout(() => {
               if (!cancelled) playerRef.current?.playVideo()
             }, 1000)
+            tickInterval = setInterval(() => {
+              const player = playerRef.current
+              if (!player) return
+              const duration = player.getDuration()
+              if (!duration) return
+              const remaining = Math.max(0, Math.ceil(duration - player.getCurrentTime()))
+              onTick?.(remaining)
+            }, 500)
           },
-          onStateChange: (e: YTStateChangeEvent) => setIsPlaying(e.data === YT_PLAYING_STATE),
+          onStateChange: (e: YTStateChangeEvent) => {
+            setIsPlaying(e.data === YT_PLAYING_STATE)
+            if (e.data === YT_ENDED_STATE) {
+              onTick?.(0)
+              onEnded?.()
+            }
+          },
         },
       })
     })
@@ -95,6 +118,7 @@ export default function GatedYouTubePlayer({ videoUrl }: GatedYouTubePlayerProps
     return () => {
       cancelled = true
       clearTimeout(autoplayTimeout)
+      clearInterval(tickInterval)
       try {
         playerRef.current?.destroy()
       } catch {
