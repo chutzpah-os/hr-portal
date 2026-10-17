@@ -34,7 +34,7 @@ export default function NewsletterSignup() {
 
   return (
     <section className="w-full" style={{ backgroundColor: 'var(--accent-dim)' }}>
-      <div className="max-w-content mx-auto px-6 md:px-10 py-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div className="max-w-content mx-auto px-6 md:px-10 py-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
         <div className="max-w-md">
           <p className="mb-2 text-xs uppercase tracking-widest" style={{ color: 'var(--accent)' }}>
             {t('label')}
@@ -55,7 +55,7 @@ export default function NewsletterSignup() {
             {t('success')}
           </p>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 w-full md:w-auto shrink-0">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 w-full lg:w-auto shrink-0">
             <input
               type="text"
               value={name}
