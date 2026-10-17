@@ -72,7 +72,7 @@ function FlowInner() {
 
   async function submitAnswers() {
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/lp-responses`, {
+      await fetch('/api/lp-responses', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
