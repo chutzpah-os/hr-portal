@@ -1,0 +1,27 @@
+# Haniel Rolemberg
+
+> Problem Solver — portfolio, writing, and research by Haniel Rolemberg: cybersecurity, AI/ML, data engineering, and the Problem Solver Foundation's mission to impact one billion lives by 2035.
+
+Haniel Rolemberg works across public policy, software engineering, data systems, cybersecurity, and AI/ML — not to collect credentials, but because the hardest problems don't fit inside one discipline. He founded the Problem Solver Foundation, a community connecting people across borders to solve real-world problems with technology and science.
+
+## Main sections
+
+- [Portfolio](https://hanielrolemberg.com/en/portfolio): Experience, education, certifications, skills, and projects across cybersecurity, data engineering, and AI/ML.
+- [Lab](https://hanielrolemberg.com/en/solutions): Systems, software, and platforms built end-to-end, from compliance intelligence and physical security to governance, education, and community infrastructure.
+- [Writing](https://hanielrolemberg.com/en/writing): Published books on power and influence, public speaking, and language learning.
+- [Blog](https://hanielrolemberg.com/en/blog): Technical and non-technical writing on cybersecurity, AI, data engineering, and personal reflection — every word written by Haniel, no AI assistance.
+- [Challenges](https://hanielrolemberg.com/en/challenges): Personal initiatives and campaigns, including the 1k Miles of Hope running challenge for cancer research.
+- [About](https://hanielrolemberg.com/en/about): Background and story.
+- [Contact](https://hanielrolemberg.com/en/contact): Get in touch or book a 1:1.
+
+## Books
+
+- A Lei da Selva — a guide to understanding power, hierarchy, and influence before being swallowed by it (Portuguese).
+- Inglês em Seis Passos — a six-step method for learning English (Portuguese).
+- Pilares da Oratória — a 12-week method to speak with clarity, authority, and control in any situation (Portuguese).
+- The Language Acquisition Formula / A Fórmula de Aquisição de Línguas — a 12-week system to acquire any language (English and Portuguese).
+
+## Notes
+
+- The site is available in English, Portuguese, Spanish, French, and Catalan, with locale-prefixed URLs (e.g. /en/, /pt/, /es/, /fr/, /ca/).
+- The mission: impact one billion lives by 2035, through the Problem Solver Foundation.
