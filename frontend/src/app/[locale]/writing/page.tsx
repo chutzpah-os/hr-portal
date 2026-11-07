@@ -93,16 +93,10 @@ export default async function WritingPage({ params }: { params: Promise<{ locale
           {t('title')}
         </h1>
         <p
-          className="text-base leading-relaxed mb-4 max-w-xl"
+          className="text-base leading-relaxed mb-12 max-w-xl"
           style={{ color: 'var(--white-55)' }}
         >
           {t('subtitle')}
-        </p>
-        <p
-          className="text-sm leading-relaxed mb-12 max-w-2xl"
-          style={{ color: 'var(--white-40)' }}
-        >
-          {t('intro')}
         </p>
 
         {BOOKS.length === 0 ? (
