@@ -81,9 +81,7 @@ export default function AccessGate() {
             onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.9')}
             onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.97-4.03 9-9 9a8.96 8.96 0 01-4.26-1.07L3 21l1.07-3.74A8.96 8.96 0 013 12c0-4.97 4.03-9 9-9s9 4.03 9 9z" />
-            </svg>
+            <span className="text-sm font-bold uppercase tracking-widest" style={{ color: '#fff' }}>HR</span>
           </motion.button>
         )}
       </AnimatePresence>
