@@ -39,6 +39,15 @@ const VIDEOS: YTVideo[] = [
     channelId: 'psf',
     url: 'https://www.youtube.com/watch?v=FYU0XuAOmcM',
   },
+  {
+    id: 'MIzcIbMnFu0',
+    title: 'What Happens When People Who Want to Help Work Together?',
+    thumbnail: 'https://i.ytimg.com/vi/MIzcIbMnFu0/hqdefault.jpg',
+    publishedAt: '',
+    channelName: 'Problem Solver Foundation',
+    channelId: 'psf',
+    url: 'https://www.youtube.com/watch?v=MIzcIbMnFu0',
+  },
 ]
 
 function FeaturedContent() {
