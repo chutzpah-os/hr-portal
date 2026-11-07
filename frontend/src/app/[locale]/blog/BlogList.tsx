@@ -271,9 +271,9 @@ export default function BlogList({ posts }: { posts: PostMeta[] }) {
               <span
                 className="text-[0.48rem] uppercase tracking-widest px-2 py-0.5 rounded-full"
                 style={{
-                  backgroundColor: 'rgba(147,197,253,0.06)',
-                  color: 'rgba(147,197,253,0.55)',
-                  border: '1px solid rgba(147,197,253,0.14)',
+                  backgroundColor: 'rgba(37,99,235,0.08)',
+                  color: 'rgb(37,99,235)',
+                  border: '1px solid rgba(37,99,235,0.2)',
                 }}
               >
                 {post.lang}
