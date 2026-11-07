@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server'
 import ContactForm from '@/components/sections/ContactForm'
 import { buildAlternates } from '@/lib/metadata'
 
-const BASE_URL = 'https://www.hanielrolemberg.com'
+const BASE_URL = 'https://hanielrolemberg.com'
 
 const METADATA_BY_LOCALE: Record<string, { title: string; description: string }> = {
   en: {

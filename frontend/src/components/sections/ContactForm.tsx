@@ -6,7 +6,7 @@ import { getReturnUrl } from '@/lib/lpReturn'
 
 const PHONE_REGEX = /^\+?[0-9\s\-()]{8,20}$/
 const LP_URL = process.env.NEXT_PUBLIC_LP_URL || 'https://lp.hanielrolemberg.com'
-const DEFAULT_RETURN_URL = 'https://www.hanielrolemberg.com'
+const DEFAULT_RETURN_URL = 'https://hanielrolemberg.com'
 
 export default function ContactForm() {
   const t = useTranslations('home')

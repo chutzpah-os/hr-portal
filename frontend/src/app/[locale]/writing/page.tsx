@@ -4,7 +4,7 @@ import { buildAlternates } from '@/lib/metadata'
 import { BOOKS } from '@/data/writing'
 import WritingBooksGrid from '@/components/sections/WritingBooksGrid'
 
-const BASE_URL = 'https://www.hanielrolemberg.com'
+const BASE_URL = 'https://hanielrolemberg.com'
 
 const METADATA_BY_LOCALE: Record<string, { title: string; description: string }> = {
   en: {

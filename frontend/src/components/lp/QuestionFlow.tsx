@@ -9,7 +9,7 @@ import LanguagePicker from '@/components/ui/LanguagePicker'
 import QuestionCard from './QuestionCard'
 import ProgressBar from './ProgressBar'
 
-const DEFAULT_RETURN_URL = 'https://www.hanielrolemberg.com'
+const DEFAULT_RETURN_URL = 'https://hanielrolemberg.com'
 
 type Answers = Record<string, string>
 
