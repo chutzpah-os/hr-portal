@@ -125,7 +125,7 @@ export async function GET() {
         for (const lang of langMap.keys()) {
           alternates[lang] = `${BASE_URL}/${lang}/blog/${slug}`
         }
-        alternates['x-default'] = `${BASE_URL}/en/blog/${slug}`
+        alternates['x-default'] = `${BASE_URL}/${routing.defaultLocale}/blog/${slug}`
 
         // One <url> per available language
         for (const [lang, date] of langMap) {
