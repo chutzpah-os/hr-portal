@@ -169,6 +169,14 @@
     "availableOn": "Comprar na Amazon",
     "comingSoon": "Em breve",
     "authorPageCta": "Ver página do autor",
-    "otherEditions": "Também disponível em:"
+    "otherEditions": "Também disponível em:",
+    "intro": "De poder e influência em A Lei da Selva, à oratória em Pilares da Oratória, até aprender um novo idioma em 12 semanas — esses são os livros que já escrevi.",
+    "filterAll": "Todos",
+    "languagePt": "Português",
+    "languageEn": "Inglês",
+    "topicPower": "Poder & Influência",
+    "topicCommunication": "Oratória",
+    "topicLanguages": "Aprendizado de Idiomas",
+    "noResults": "Nenhum livro corresponde a esses filtros."
   }
 }

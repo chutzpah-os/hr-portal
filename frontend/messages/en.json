@@ -169,6 +169,14 @@
     "availableOn": "Buy on Amazon",
     "comingSoon": "Coming soon",
     "authorPageCta": "View author page",
-    "otherEditions": "Also available in:"
+    "otherEditions": "Also available in:",
+    "intro": "From power and influence in A Lei da Selva, to public speaking in Pilares da Oratória, to learning a new language in 12 weeks — these are the books I've written so far.",
+    "filterAll": "All",
+    "languagePt": "Portuguese",
+    "languageEn": "English",
+    "topicPower": "Power & Influence",
+    "topicCommunication": "Public Speaking",
+    "topicLanguages": "Language Learning",
+    "noResults": "No books match these filters."
   }
 }

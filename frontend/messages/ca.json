@@ -169,6 +169,14 @@
     "availableOn": "Comprar a Amazon",
     "comingSoon": "Properament",
     "authorPageCta": "Veure pàgina d'autor",
-    "otherEditions": "També disponible a:"
+    "otherEditions": "També disponible a:",
+    "intro": "Del poder i la influència a A Lei da Selva, a l'oratòria a Pilares da Oratória, fins a aprendre un nou idioma en 12 setmanes — aquests són els llibres que he escrit fins ara.",
+    "filterAll": "Tots",
+    "languagePt": "Portuguès",
+    "languageEn": "Anglès",
+    "topicPower": "Poder i Influència",
+    "topicCommunication": "Oratòria",
+    "topicLanguages": "Aprenentatge d'Idiomes",
+    "noResults": "Cap llibre coincideix amb aquests filtres."
   }
 }
