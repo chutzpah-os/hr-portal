@@ -205,7 +205,7 @@ export default async function ProductPage(
             <div
               className="rounded-2xl overflow-hidden mb-10"
               style={{
-                aspectRatio: '4/3',
+                aspectRatio: '16/9',
                 position: 'relative',
                 border: '1px solid rgba(10,10,15,0.07)',
               }}

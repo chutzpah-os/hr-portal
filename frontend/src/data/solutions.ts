@@ -64,6 +64,7 @@ Built for ambitious people who want to move faster without losing clarity on why
     status: 'Ideation',
     image: '/images/cherut.png',
     imageFit: 'contain',
+    modalImage: '/images/cherut.png',
     pt: {
       tagline: 'Sua vida, rodando em um sistema.',
       shortDescription: 'Sistema operacional completo para produtividade pessoal — OKRs, hábitos, calendário e diário em um só lugar.',
