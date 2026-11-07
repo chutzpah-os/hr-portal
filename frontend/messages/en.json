@@ -164,7 +164,11 @@
   "writing": {
     "sectionLabel": "Writing",
     "title": "Published Books",
-    "subtitle": "Books and long-form publications will be listed here.",
-    "empty": "No books published yet"
+    "subtitle": "Books I've written on power, communication, and language — published and in progress.",
+    "empty": "No books published yet",
+    "availableOn": "Buy on Amazon",
+    "comingSoon": "Coming soon",
+    "authorPageCta": "View author page",
+    "otherEditions": "Also available in:"
   }
 }

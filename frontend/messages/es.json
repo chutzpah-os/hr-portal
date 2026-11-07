@@ -164,7 +164,11 @@
   "writing": {
     "sectionLabel": "Publicaciones",
     "title": "Libros Publicados",
-    "subtitle": "Libros y publicaciones de largo alcance se listarán aquí.",
-    "empty": "Ningún libro publicado aún"
+    "subtitle": "Libros que he escrito sobre poder, comunicación e idiomas — publicados y en curso.",
+    "empty": "Ningún libro publicado aún",
+    "availableOn": "Comprar en Amazon",
+    "comingSoon": "Próximamente",
+    "authorPageCta": "Ver página de autor",
+    "otherEditions": "También disponible en:"
   }
 }

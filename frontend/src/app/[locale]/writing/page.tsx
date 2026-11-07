@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { getTranslations } from 'next-intl/server'
 import { buildAlternates } from '@/lib/metadata'
+import { BOOKS, AUTHOR_PAGE_URL, amazonEditionLinks } from '@/data/writing'
 
 export async function generateMetadata(
   { params }: { params: Promise<{ locale: string }> }
@@ -45,25 +47,114 @@ export default async function WritingPage() {
           {t('subtitle')}
         </p>
 
-        <div
-          className="flex flex-col items-center justify-center py-20 rounded-2xl"
-          style={{ border: '1px dashed rgba(10,10,15,0.12)' }}
-        >
+        {BOOKS.length === 0 ? (
           <div
-            className="w-10 h-10 rounded-full flex items-center justify-center mb-5"
-            style={{ backgroundColor: 'rgba(212,119,90,0.08)', border: '1px solid rgba(212,119,90,0.18)' }}
+            className="flex flex-col items-center justify-center py-20 rounded-2xl"
+            style={{ border: '1px dashed rgba(10,10,15,0.12)' }}
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-            </svg>
+            <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--white-35)' }}>
+              {t('empty')}
+            </p>
           </div>
-          <p
-            className="text-xs uppercase tracking-widest"
-            style={{ color: 'var(--white-35)' }}
-          >
-            {t('empty')}
-          </p>
-        </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {BOOKS.map((book) => {
+              const editions = book.asin ? amazonEditionLinks(book.asin) : []
+              const primary = editions.find((e) => e.country === 'US') ?? editions[0]
+              const otherEditions = editions.filter((e) => e !== primary)
+
+              return (
+                <div
+                  key={book.id}
+                  className="flex flex-col rounded-2xl overflow-hidden"
+                  style={{ border: '1px solid rgba(10,10,15,0.10)', backgroundColor: 'rgb(255,255,255)' }}
+                >
+                  <div className="relative w-full" style={{ aspectRatio: '2/3', backgroundColor: 'rgba(10,10,15,0.03)' }}>
+                    <Image
+                      src={book.cover}
+                      alt={book.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </div>
+
+                  <div className="flex flex-col flex-1 p-5">
+                    <p className="text-[0.6rem] uppercase tracking-widest mb-2" style={{ color: 'var(--white-35)' }}>
+                      {book.language}
+                    </p>
+                    <h2
+                      className="font-bold leading-snug mb-1"
+                      style={{ color: 'var(--white-100)', fontSize: '1.05rem', letterSpacing: '-0.01em', fontFamily: 'var(--font-syne)' }}
+                    >
+                      {book.title}
+                    </h2>
+                    {book.subtitle && (
+                      <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--white-55)' }}>
+                        {book.subtitle}
+                      </p>
+                    )}
+
+                    <div className="mt-auto pt-4">
+                      {book.status === 'published' && primary ? (
+                        <>
+                          <a
+                            href={primary.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center text-xs uppercase tracking-widest px-5 py-2.5 rounded-full transition-all duration-200 w-full"
+                            style={{ backgroundColor: 'var(--accent)', color: '#fff' }}
+                          >
+                            {t('availableOn')}
+                          </a>
+                          {otherEditions.length > 0 && (
+                            <details className="mt-3">
+                              <summary
+                                className="text-xs cursor-pointer select-none"
+                                style={{ color: 'var(--white-40)' }}
+                              >
+                                {t('otherEditions')}
+                              </summary>
+                              <div className="flex flex-wrap gap-2 mt-2">
+                                {otherEditions.map((edition) => (
+                                  <a
+                                    key={edition.country}
+                                    href={edition.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-[0.65rem] uppercase tracking-wide px-2.5 py-1 rounded-full transition-colors duration-200"
+                                    style={{ border: '1px solid rgba(10,10,15,0.12)', color: 'var(--white-55)' }}
+                                  >
+                                    {edition.country}
+                                  </a>
+                                ))}
+                              </div>
+                            </details>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          <p className="text-xs uppercase tracking-widest mb-3" style={{ color: 'var(--accent)' }}>
+                            {t('comingSoon')}
+                          </p>
+                          <a
+                            href={AUTHOR_PAGE_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center text-xs uppercase tracking-widest px-5 py-2.5 rounded-full transition-all duration-200 w-full"
+                            style={{ border: '1px solid rgba(10,10,15,0.15)', color: 'var(--white-65)' }}
+                          >
+                            {t('authorPageCta')}
+                          </a>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        )}
 
       </div>
     </main>

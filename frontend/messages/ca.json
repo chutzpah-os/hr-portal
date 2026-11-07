@@ -164,7 +164,11 @@
   "writing": {
     "sectionLabel": "Publicacions",
     "title": "Llibres Publicats",
-    "subtitle": "Llibres i publicacions de llarg abast s'enumeraran aquí.",
-    "empty": "Cap llibre publicat encara"
+    "subtitle": "Llibres que he escrit sobre poder, comunicació i idiomes — publicats i en curs.",
+    "empty": "Cap llibre publicat encara",
+    "availableOn": "Comprar a Amazon",
+    "comingSoon": "Properament",
+    "authorPageCta": "Veure pàgina d'autor",
+    "otherEditions": "També disponible a:"
   }
 }
