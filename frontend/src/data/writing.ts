@@ -106,6 +106,7 @@ export const BOOKS: Book[] = [
     languageCode: 'pt',
     topics: ['languages'],
     cover: '/images/writing/formula-aquisicao-linguas-pt-cover.jpg',
-    status: 'coming-soon',
+    status: 'published',
+    asin: 'B0HQXPT9TJ',
   },
 ]
