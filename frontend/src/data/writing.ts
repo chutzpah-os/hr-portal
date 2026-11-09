@@ -94,7 +94,8 @@ export const BOOKS: Book[] = [
     languageCode: 'en',
     topics: ['languages'],
     cover: '/images/writing/formula-aquisicao-linguas-en-cover.jpg',
-    status: 'coming-soon',
+    status: 'published',
+    asin: 'B0HQXZPVZM',
   },
   {
     id: 'formula-aquisicao-linguas-pt',
