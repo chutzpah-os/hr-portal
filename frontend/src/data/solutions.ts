@@ -367,6 +367,86 @@ Construït primer per a la resposta humanitària: la mateixa infraestructura que
       tags: ['R+D', 'Programari', 'Impacte Social'],
     },
   },
+  {
+    id: 'etz',
+    name: 'ETZ',
+    tagline: 'Enterprise data infrastructure, built to scale.',
+    shortDescription: 'Large-scale enterprise data management platform in production at a stealth company serving government institutions — 2,000+ employees, 5,000+ daily active users.',
+    fullDescription: `ETZ is a large-scale enterprise management platform focused on data, deployed at a stealth company serving government institutions. It's in production today at real scale: 2,000+ employees and 5,000+ daily active users since activation.
+
+The architecture is a Turborepo + pnpm monorepo, with a Next.js 16 (App Router) frontend and a fully serverless backend on Firebase — Firestore, Auth, and Storage — running on AWS-managed infrastructure.
+
+The core of the system is role-based access control with strict per-unit isolation: every organizational unit operates inside its own independent access boundary. Every operation carries a full audit trail for traceability and compliance, and sensitive data moves through a hierarchical access classification layer with encryption at rest.`,
+    metrics: [
+      { label: 'Scale', value: '2,000+ Employees' },
+      { label: 'Daily Active Users', value: '5,000+' },
+      { label: 'Stack', value: 'Next.js 16 + Firebase' },
+    ],
+    tags: ['R&D', 'Software', 'Data'],
+    status: 'Scale',
+    image: '/images/etz-cover.png',
+    imageFit: 'contain',
+    pt: {
+      tagline: 'Infraestrutura de dados corporativa, construída para escalar.',
+      shortDescription: 'Plataforma corporativa de gestão de dados em produção numa stealth company que atende instituições governamentais — mais de 2.000 funcionários, mais de 5.000 usuários ativos diários.',
+      fullDescription: `ETZ é uma plataforma corporativa de grande escala focada em dados, implantada numa stealth company que atende instituições governamentais. Está em produção hoje em escala real: mais de 2.000 funcionários e mais de 5.000 usuários ativos diários desde a ativação.
+
+A arquitetura é um monorepo Turborepo + pnpm, com frontend em Next.js 16 (App Router) e um backend totalmente serverless no Firebase — Firestore, Auth e Storage — rodando sobre infraestrutura gerenciada na AWS.
+
+O núcleo do sistema é controle de acesso baseado em papéis (RBAC) com isolamento estrito por unidade: cada unidade organizacional opera dentro da sua própria fronteira de acesso independente. Toda operação carrega uma trilha de auditoria completa para rastreabilidade e conformidade, e dados sensíveis passam por uma camada de classificação hierárquica de acesso com criptografia em repouso.`,
+      metrics: [
+        { label: 'Escala', value: '2.000+ Funcionários' },
+        { label: 'Usuários Ativos Diários', value: '5.000+' },
+        { label: 'Stack', value: 'Next.js 16 + Firebase' },
+      ],
+      tags: ['P&D', 'Software', 'Dados'],
+    },
+    es: {
+      tagline: 'Infraestructura de datos corporativa, construida para escalar.',
+      shortDescription: 'Plataforma corporativa de gestión de datos en producción en una stealth company que atiende a instituciones gubernamentales — más de 2.000 empleados, más de 5.000 usuarios activos diarios.',
+      fullDescription: `ETZ es una plataforma corporativa de gran escala enfocada en datos, desplegada en una stealth company que atiende a instituciones gubernamentales. Está en producción hoy a escala real: más de 2.000 empleados y más de 5.000 usuarios activos diarios desde su activación.
+
+La arquitectura es un monorepo Turborepo + pnpm, con frontend en Next.js 16 (App Router) y un backend totalmente serverless en Firebase — Firestore, Auth y Storage — corriendo sobre infraestructura gestionada en AWS.
+
+El núcleo del sistema es control de acceso basado en roles (RBAC) con aislamiento estricto por unidad: cada unidad organizacional opera dentro de su propio límite de acceso independiente. Cada operación lleva un registro de auditoría completo para trazabilidad y cumplimiento, y los datos sensibles pasan por una capa de clasificación jerárquica de acceso con cifrado en reposo.`,
+      metrics: [
+        { label: 'Escala', value: '2.000+ Empleados' },
+        { label: 'Usuarios Activos Diarios', value: '5.000+' },
+        { label: 'Stack', value: 'Next.js 16 + Firebase' },
+      ],
+      tags: ['I+D', 'Software', 'Datos'],
+    },
+    fr: {
+      tagline: 'Infrastructure de données d\'entreprise, conçue pour l\'échelle.',
+      shortDescription: 'Plateforme de gestion de données d\'entreprise en production chez une stealth company au service d\'institutions gouvernementales — plus de 2 000 employés, plus de 5 000 utilisateurs actifs quotidiens.',
+      fullDescription: `ETZ est une plateforme de gestion d\'entreprise à grande échelle axée sur les données, déployée chez une stealth company au service d\'institutions gouvernementales. Elle est en production aujourd\'hui à échelle réelle : plus de 2 000 employés et plus de 5 000 utilisateurs actifs quotidiens depuis son activation.
+
+L\'architecture est un monorepo Turborepo + pnpm, avec un frontend Next.js 16 (App Router) et un backend entièrement serverless sur Firebase — Firestore, Auth et Storage — fonctionnant sur une infrastructure gérée par AWS.
+
+Le cœur du système est un contrôle d\'accès basé sur les rôles (RBAC) avec isolation stricte par unité : chaque unité organisationnelle opère dans sa propre limite d\'accès indépendante. Chaque opération porte une trace d\'audit complète pour la traçabilité et la conformité, et les données sensibles passent par une couche de classification d\'accès hiérarchique avec chiffrement au repos.`,
+      metrics: [
+        { label: 'Échelle', value: '2 000+ Employés' },
+        { label: 'Utilisateurs Actifs Quotidiens', value: '5 000+' },
+        { label: 'Stack', value: 'Next.js 16 + Firebase' },
+      ],
+      tags: ['R&D', 'Logiciel', 'Données'],
+    },
+    ca: {
+      tagline: 'Infraestructura de dades corporativa, construïda per escalar.',
+      shortDescription: 'Plataforma corporativa de gestió de dades en producció en una stealth company que atén institucions governamentals — més de 2.000 empleats, més de 5.000 usuaris actius diaris.',
+      fullDescription: `ETZ és una plataforma corporativa de gran escala centrada en dades, desplegada en una stealth company que atén institucions governamentals. Està en producció avui a escala real: més de 2.000 empleats i més de 5.000 usuaris actius diaris des de la seva activació.
+
+L\'arquitectura és un monorepo Turborepo + pnpm, amb un frontend en Next.js 16 (App Router) i un backend totalment serverless a Firebase — Firestore, Auth i Storage — funcionant sobre infraestructura gestionada a AWS.
+
+El nucli del sistema és el control d\'accés basat en rols (RBAC) amb aïllament estricte per unitat: cada unitat organitzativa opera dins del seu propi límit d\'accés independent. Cada operació porta un registre d\'auditoria complet per a la traçabilitat i el compliment, i les dades sensibles passen per una capa de classificació jeràrquica d\'accés amb xifratge en repòs.`,
+      metrics: [
+        { label: 'Escala', value: '2.000+ Empleats' },
+        { label: 'Usuaris Actius Diaris', value: '5.000+' },
+        { label: 'Stack', value: 'Next.js 16 + Firebase' },
+      ],
+      tags: ['R+D', 'Programari', 'Dades'],
+    },
+  },
 ]
 
 export function getProduct(slug: string): Product | undefined {
