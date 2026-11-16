@@ -5,6 +5,93 @@ import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import { getTranslations } from 'next-intl/server'
 
+interface HowToStep {
+  name: string
+  text: string
+}
+
+interface HowToData {
+  name: string
+  description: string
+  totalTime?: string
+  step: { '@type': 'HowToStep'; position: number; name: string; text: string }[]
+}
+
+function howTo(name: string, description: string, steps: HowToStep[], totalTime?: string): HowToData {
+  return {
+    name,
+    description,
+    ...(totalTime ? { totalTime } : {}),
+    step: steps.map((s, i) => ({ '@type': 'HowToStep', position: i + 1, name: s.name, text: s.text })),
+  }
+}
+
+const HOWTO_SCHEMAS: Record<string, HowToData> = {
+  'the-language-acquisition-formula': howTo(
+    'How to acquire a language with the Language Acquisition Formula',
+    'A 12-week, 7-stage method to acquire a new language, built on Acquisition = M + SR + CI + AO (Memorization, Spaced Repetition, Comprehensible Input, Active Output).',
+    [
+      { name: 'Planning', text: 'Write your why, your goal as an action, your fixed daily time slot, and record Video Zero.' },
+      { name: 'Alphabet & sounds', text: 'Listen to and repeat each sound out loud, write each letter by hand, and build associations before learning any vocabulary.' },
+      { name: 'Vocabulary', text: 'Memorize the ~200 most-used words in the language, each tied to a personal, vivid image instead of a flat translation.' },
+      { name: 'Listening & reading', text: 'Work through seven short stories built from those words, listening to and reading each one until you can follow it with the audio without stopping.' },
+      { name: 'Creating need', text: 'Use active listening and the Mirror Method to turn your own daily life into real, repeated practice.' },
+      { name: 'Losing the fear', text: 'Practice Solo Immersion, then have a real, unscripted conversation with a real person.' },
+      { name: 'Autonomy', text: 'Continue in four-week cycles — working through plateaus, fine-tuning grammar, and keeping the language in your routine.' },
+    ],
+    'P12W'
+  ),
+  'the-12-week-roadmap-to-fluency': howTo(
+    'The 12-week roadmap of the Language Acquisition Formula',
+    'Week-by-week breakdown of the 7 stages used to acquire a language in 12 weeks: Planning, Alphabet & sounds, Vocabulary, Listening & reading, Creating need, Losing the fear, and Autonomy.',
+    [
+      { name: 'Planning (Day 1)', text: 'Write your why, your goal as an action, your fixed daily time slot, and record Video Zero.' },
+      { name: 'Alphabet & sounds (Week 1)', text: 'Listen to and repeat each sound out loud, write each letter by hand, and build associations before learning any vocabulary.' },
+      { name: 'Vocabulary (Weeks 1–2)', text: 'Memorize the ~200 most-used words in the language, each tied to a personal, vivid image instead of a flat translation.' },
+      { name: 'Listening & reading (Week 2)', text: 'Work through seven short stories built from those words, until you can follow each one with the audio without stopping.' },
+      { name: 'Creating need (Weeks 3–8)', text: 'Use active listening and the Mirror Method to turn your own daily life into real, repeated practice.' },
+      { name: 'Losing the fear (Weeks 9–12)', text: 'Practice Solo Immersion, then have a real, unscripted conversation with a real person.' },
+      { name: 'Autonomy (Ongoing)', text: 'Continue in four-week cycles — working through plateaus, fine-tuning grammar, and keeping the language in your routine.' },
+    ],
+    'P12W'
+  ),
+  'why-the-order-of-the-stages-matters': howTo(
+    'The correct order of the Language Acquisition Formula’s 6 stages',
+    'Why each stage of the Language Acquisition Formula has to happen before the next — skipping ahead (e.g. conversation before vocabulary, or grammar before real usage) undermines the stages that follow.',
+    [
+      { name: 'Alphabet & sounds', text: 'Comes first so no word gets memorized later with the wrong pronunciation.' },
+      { name: 'Vocabulary', text: 'The ~200 most-used words give you material to actually practice with in the next stage.' },
+      { name: 'Listening & reading', text: 'Needs the vocabulary from stage 2 already in place to be comprehensible rather than noise.' },
+      { name: 'Creating need', text: 'Builds on stories and vocabulary already acquired, turning them into real, personal use.' },
+      { name: 'Losing the fear', text: 'Only works once there is already something to say — speaking before this stage leads to a one-word freeze.' },
+      { name: 'Autonomy', text: 'Grammar as fine-tuning only makes sense once you are already producing real mistakes to correct.' },
+    ]
+  ),
+  'm-sr-ci-ao-explained': howTo(
+    'How the M + SR + CI + AO formula works',
+    'The four components of the Language Acquisition Formula and the foundation underneath them: Planning, Memorization, Spaced Repetition, Comprehensible Input, and Active Output.',
+    [
+      { name: 'Planning (the foundation)', text: 'A weekly plan/do/check/adjust cycle and a Video Zero recording, so progress becomes visible against a real starting point.' },
+      { name: 'M — Memorization', text: 'Learn the ~200 most-used words in the language, each tied to a vivid personal image instead of a flat translation.' },
+      { name: 'SR — Spaced Repetition', text: 'Review each word right before you would forget it, with the gap growing every time you get it right.' },
+      { name: 'CI — Comprehensible Input', text: 'Listen to and read short stories built from those same words until you understand every line, before touching native-speaker material.' },
+      { name: 'AO — Active Output', text: 'Speak what you have absorbed, starting with the Mirror Method, then alone out loud, then with a real person.' },
+    ]
+  ),
+  'the-mirror-method-explained': howTo(
+    'How the Mirror Method works',
+    'A notebook-based technique from the Language Acquisition Formula that turns real moments in your day into practiced sentences in the language you are acquiring.',
+    [
+      { name: 'Wait for the situation', text: 'Notice when your day actually calls for a sentence — needing to say you will be late, or need something.' },
+      { name: 'Try to build it in your head', text: 'Attempt the sentence with the words you already know, even if it comes out incomplete.' },
+      { name: 'Translate it if you cannot', text: 'Look up the sentence and write it in your notebook, native language on one side, new language on the other.' },
+      { name: 'Say the sentence', text: 'Say it out loud, or in your head, inside the real situation it came from.' },
+      { name: 'Repeat it when the situation returns', text: 'Try to recall the sentence from memory before checking the translation again.' },
+      { name: 'Reuse the structure', text: 'Swap one word in a sentence you already have to produce a new one for free.' },
+    ]
+  ),
+}
+
 function renderInline(text: string): ReactNode {
   const regex = /\*\*([^*]+)\*\*|\*([^*]+)\*|\[([^\]]+)\]\(([^)]+)\)/g
   const parts: ReactNode[] = []
@@ -264,25 +351,13 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     })),
   } : null
 
-  // HowTo schema for the flagship Language Acquisition Formula post — the 12-week
-  // roadmap is a literal step-by-step process, which is exactly what HowTo targets
-  // for "how to acquire/learn a language" queries.
-  const howToSchema = slug === 'the-language-acquisition-formula' ? {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: 'How to acquire a language with the Language Acquisition Formula',
-    description: 'A 12-week, 7-stage method to acquire a new language, built on Acquisition = M + SR + CI + AO (Memorization, Spaced Repetition, Comprehensible Input, Active Output).',
-    totalTime: 'P12W',
-    step: [
-      { '@type': 'HowToStep', position: 1, name: 'Planning', text: 'Write your why, your goal as an action, your fixed daily time slot, and record Video Zero.' },
-      { '@type': 'HowToStep', position: 2, name: 'Alphabet & sounds', text: 'Listen to and repeat each sound out loud, write each letter by hand, and build associations before learning any vocabulary.' },
-      { '@type': 'HowToStep', position: 3, name: 'Vocabulary', text: 'Memorize the ~200 most-used words in the language, each tied to a personal, vivid image instead of a flat translation.' },
-      { '@type': 'HowToStep', position: 4, name: 'Listening & reading', text: 'Work through seven short stories built from those words, listening to and reading each one until you can follow it with the audio without stopping.' },
-      { '@type': 'HowToStep', position: 5, name: 'Creating need', text: 'Use active listening and the Mirror Method to turn your own daily life into real, repeated practice.' },
-      { '@type': 'HowToStep', position: 6, name: 'Losing the fear', text: 'Practice Solo Immersion, then have a real, unscripted conversation with a real person.' },
-      { '@type': 'HowToStep', position: 7, name: 'Autonomy', text: 'Continue in four-week cycles — working through plateaus, fine-tuning grammar, and keeping the language in your routine.' },
-    ],
-  } : null
+  // HowTo schema for the Language Acquisition Formula cluster's process-shaped
+  // posts — these describe a literal sequence of steps, which is exactly what
+  // HowTo targets for "how to acquire/learn a language" style queries. Kept
+  // in English across locales (schema metadata, not visible page content) —
+  // a reasonable simplification given the small number of pages involved.
+  const howToData = HOWTO_SCHEMAS[slug]
+  const howToSchema = howToData ? { '@context': 'https://schema.org', '@type': 'HowTo', ...howToData } : null
 
   return (
     <main style={{ paddingTop: '5.5rem', minHeight: '80svh' }}>
