@@ -1,5 +1,5 @@
 import { getAllPosts, getPostBySlug, getPostLangs, formatDate } from '@/lib/blog'
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import { Link } from '@/navigation'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
@@ -211,7 +211,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function PostPage({ params }: { params: Promise<{ slug: string; locale: string }> }) {
   const { slug, locale } = await params
   const post = getPostBySlug(slug, locale)
-  if (!post) redirect('/blog')
+  if (!post) notFound()
   const t = await getTranslations('blog')
 
   const articleSchema = {

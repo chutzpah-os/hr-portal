@@ -5,8 +5,29 @@
   "redirects": [
     { "source": "/about", "destination": "/en/about", "permanent": true },
     { "source": "/portfolio", "destination": "/en/portfolio", "permanent": true },
+
+    { "source": "/challenges/1k-miles", "destination": "/en/challenges/1k-miles-of-hope", "permanent": true },
+    { "source": "/:locale/challenges/1k-miles", "destination": "/:locale/challenges/1k-miles-of-hope", "permanent": true },
+
+    { "source": "/blog/your-phone-lost-on-the-map-yet-alert-to-imminent-danger", "destination": "/en/blog/phone-gps-spoofing-emergency-alerts", "permanent": true },
+    { "source": "/:locale/blog/your-phone-lost-on-the-map-yet-alert-to-imminent-danger", "destination": "/:locale/blog/phone-gps-spoofing-emergency-alerts", "permanent": true },
+    { "source": "/blog/how-your-phone-knows-where-you-are-gps-spoofing-cell-broadcast-emergency-alerts", "destination": "/en/blog/phone-gps-spoofing-emergency-alerts", "permanent": true },
+    { "source": "/:locale/blog/how-your-phone-knows-where-you-are-gps-spoofing-cell-broadcast-emergency-alerts", "destination": "/:locale/blog/phone-gps-spoofing-emergency-alerts", "permanent": true },
+    { "source": "/blog/why-duolingo-alone-wont-make-you-fluent", "destination": "/en/blog/why-apps-alone-wont-make-you-fluent", "permanent": true },
+    { "source": "/:locale/blog/why-duolingo-alone-wont-make-you-fluent", "destination": "/:locale/blog/why-apps-alone-wont-make-you-fluent", "permanent": true },
+
     { "source": "/blog", "destination": "/en/blog", "permanent": true },
     { "source": "/blog/:slug", "destination": "/en/blog/:slug", "permanent": true },
+
+    { "source": "/solutions/etz", "destination": "/en/solutions", "permanent": true },
+    { "source": "/solutions/etz-defense", "destination": "/en/solutions", "permanent": true },
+    { "source": "/solutions/shemesh", "destination": "/en/solutions", "permanent": true },
+    { "source": "/solutions/shoresh", "destination": "/en/solutions", "permanent": true },
+    { "source": "/solutions/psf-portal", "destination": "/en/solutions", "permanent": true },
+    { "source": "/solutions/data-aggregator", "destination": "/en/solutions", "permanent": true },
+    { "source": "/solutions/seder-koah", "destination": "/en/solutions", "permanent": true },
+    { "source": "/solutions/sentinel-ai", "destination": "/en/solutions", "permanent": true },
+
     { "source": "/solutions", "destination": "/en/solutions", "permanent": true },
     { "source": "/solutions/:slug", "destination": "/en/solutions/:slug", "permanent": true },
     { "source": "/challenges", "destination": "/en/challenges", "permanent": true },

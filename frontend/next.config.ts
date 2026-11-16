@@ -6,26 +6,10 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 
 const nextConfig: NextConfig = {
   outputFileTracingRoot: path.join(__dirname, '../'),
-  async redirects() {
-    return [
-      { source: '/challenges/1k-miles', destination: '/challenges/1k-miles-of-hope', permanent: true },
-      {
-        source: '/solutions/etz-defense',
-        destination: '/solutions/etz',
-        permanent: true,
-      },
-      {
-        source: '/blog/your-phone-lost-on-the-map-yet-alert-to-imminent-danger',
-        destination: '/blog/phone-gps-spoofing-emergency-alerts',
-        permanent: true,
-      },
-      {
-        source: '/blog/how-your-phone-knows-where-you-are-gps-spoofing-cell-broadcast-emergency-alerts',
-        destination: '/blog/phone-gps-spoofing-emergency-alerts',
-        permanent: true,
-      },
-    ]
-  },
+  // Redirects for renamed/retired URLs live in vercel.json, not here.
+  // Vercel's platform-level redirects run before the request reaches this
+  // app, so any redirect defined here for a path shape vercel.json also
+  // matches (e.g. /blog/:slug, /solutions/:slug) never actually fires.
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'i.ibb.co' },
