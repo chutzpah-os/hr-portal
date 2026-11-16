@@ -264,11 +264,32 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     })),
   } : null
 
+  // HowTo schema for the flagship Language Acquisition Formula post — the 12-week
+  // roadmap is a literal step-by-step process, which is exactly what HowTo targets
+  // for "how to acquire/learn a language" queries.
+  const howToSchema = slug === 'the-language-acquisition-formula' ? {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to acquire a language with the Language Acquisition Formula',
+    description: 'A 12-week, 7-stage method to acquire a new language, built on Acquisition = M + SR + CI + AO (Memorization, Spaced Repetition, Comprehensible Input, Active Output).',
+    totalTime: 'P12W',
+    step: [
+      { '@type': 'HowToStep', position: 1, name: 'Planning', text: 'Write your why, your goal as an action, your fixed daily time slot, and record Video Zero.' },
+      { '@type': 'HowToStep', position: 2, name: 'Alphabet & sounds', text: 'Listen to and repeat each sound out loud, write each letter by hand, and build associations before learning any vocabulary.' },
+      { '@type': 'HowToStep', position: 3, name: 'Vocabulary', text: 'Memorize the ~200 most-used words in the language, each tied to a personal, vivid image instead of a flat translation.' },
+      { '@type': 'HowToStep', position: 4, name: 'Listening & reading', text: 'Work through seven short stories built from those words, listening to and reading each one until you can follow it with the audio without stopping.' },
+      { '@type': 'HowToStep', position: 5, name: 'Creating need', text: 'Use active listening and the Mirror Method to turn your own daily life into real, repeated practice.' },
+      { '@type': 'HowToStep', position: 6, name: 'Losing the fear', text: 'Practice Solo Immersion, then have a real, unscripted conversation with a real person.' },
+      { '@type': 'HowToStep', position: 7, name: 'Autonomy', text: 'Continue in four-week cycles — working through plateaus, fine-tuning grammar, and keeping the language in your routine.' },
+    ],
+  } : null
+
   return (
     <main style={{ paddingTop: '5.5rem', minHeight: '80svh' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
+      {howToSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />}
       <div style={{ maxWidth: '680px', margin: '0 auto', padding: '3rem 1.5rem 6rem' }}>
 
         {/* Back link */}

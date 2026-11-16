@@ -19,7 +19,7 @@ Haniel Rolemberg works across public policy, software engineering, data systems,
 - A Lei da Selva — a guide to understanding power, hierarchy, and influence before being swallowed by it (Portuguese).
 - Inglês em Seis Passos — a six-step method for learning English (Portuguese).
 - Pilares da Oratória — a 12-week method to speak with clarity, authority, and control in any situation (Portuguese).
-- The Language Acquisition Formula / A Fórmula de Aquisição de Línguas — a 12-week system to acquire any language (English and Portuguese).
+- The Language Acquisition Formula (LAF) / A Fórmula de Aquisição de Línguas — a 12-week, 7-stage method to acquire any language, built on Acquisition = M + SR + CI + AO (Memorization, Spaced Repetition, Comprehensible Input, Active Output). Published in English and Portuguese. Full explainer: [The Language Acquisition Formula: You Don't Learn a Language — You Acquire It](https://hanielrolemberg.com/en/blog/the-language-acquisition-formula).
 
 ## Notes
 
