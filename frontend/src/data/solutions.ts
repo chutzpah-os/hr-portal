@@ -198,8 +198,8 @@ Construït per a persones ambicioses que volen moure\'s més ràpid sense perdre
     id: 'hofshilab',
     name: 'HofShiLab',
     tagline: 'Freedom, measured in fluency.',
-    shortDescription: 'Language learning built on the Language Acquisition Formula (LAF) — a structured method that turns ambition into measurable fluency.',
-    fullDescription: `HofShiLab — "hofshi" is Hebrew for free — is a language learning product built on the Language Acquisition Formula (LAF), the method behind Haniel Rolemberg's book of the same name. Not a generic curriculum: a structured system that maps ambition to measurable outcomes.
+    shortDescription: 'Language learning built on the Language Acquisition Formula (LAF) — a science-grounded methodology for acquiring any language naturally, not studying it.',
+    fullDescription: `HofShiLab — "hofshi" is Hebrew for free — is a language learning product built on the Language Acquisition Formula (LAF), the method behind Haniel Rolemberg's book of the same name. Not a generic curriculum or a rigid structured method: a methodology grounded in second-language-acquisition science, built to help you acquire a language naturally instead of studying it.
 
 The core insight: most learners plateau because they track effort (hours studied, lessons completed) instead of progress (what they can actually do). HofShiLab shifts the frame. Every learner has a clear CEFR target, a weekly engagement contract, and real-world interaction goals that build toward fluency.
 
@@ -217,8 +217,8 @@ The formula: memorization + spaced repetition + comprehensible input + active ou
     imageFit: 'cover',
     pt: {
       tagline: 'Liberdade, medida em fluência.',
-      shortDescription: 'Aprendizado de idiomas construído sobre a Language Acquisition Formula (LAF) — um método estruturado que transforma ambição em fluência mensurável.',
-      fullDescription: `HofShiLab — "hofshi" significa livre em hebraico — é um produto de aprendizado de idiomas construído sobre a Language Acquisition Formula (LAF), o método por trás do livro de mesmo nome de Haniel Rolemberg. Não é um currículo genérico: é um sistema estruturado que mapeia ambição para resultados mensuráveis.
+      shortDescription: 'Aprendizado de idiomas construído sobre a Language Acquisition Formula (LAF) — uma metodologia embasada em ciência para adquirir qualquer idioma de forma natural, em vez de estudá-lo.',
+      fullDescription: `HofShiLab — "hofshi" significa livre em hebraico — é um produto de aprendizado de idiomas construído sobre a Language Acquisition Formula (LAF), o método por trás do livro de mesmo nome de Haniel Rolemberg. Não é um currículo genérico nem um método estruturado rígido: é uma metodologia embasada na ciência da aquisição de segunda língua, construída para que você adquira um idioma de forma natural, em vez de estudá-lo.
 
 O insight central: a maioria dos aprendizes estaciona porque rastreia esforço (horas estudadas, lições concluídas) em vez de progresso (o que realmente conseguem fazer). HofShiLab muda esse enquadramento. Cada aprendiz tem uma meta clara no CEFR, um contrato semanal de engajamento e metas de interação no mundo real que constroem fluência.
 
@@ -234,8 +234,8 @@ A fórmula: memorização + repetição espaçada + insumo compreensível + prod
     },
     es: {
       tagline: 'Libertad, medida en fluidez.',
-      shortDescription: 'Aprendizaje de idiomas construido sobre la Language Acquisition Formula (LAF) — un método estructurado que convierte la ambición en fluidez medible.',
-      fullDescription: `HofShiLab — "hofshi" significa libre en hebreo — es un producto de aprendizaje de idiomas construido sobre la Language Acquisition Formula (LAF), el método detrás del libro homónimo de Haniel Rolemberg. No es un currículo genérico: es un sistema estructurado que traza el camino de la ambición a los resultados medibles.
+      shortDescription: 'Aprendizaje de idiomas construido sobre la Language Acquisition Formula (LAF) — una metodología basada en la ciencia para adquirir cualquier idioma de forma natural, en lugar de estudiarlo.',
+      fullDescription: `HofShiLab — "hofshi" significa libre en hebreo — es un producto de aprendizaje de idiomas construido sobre la Language Acquisition Formula (LAF), el método detrás del libro homónimo de Haniel Rolemberg. No es un currículo genérico ni un método estructurado rígido: es una metodología basada en la ciencia de la adquisición de segundas lenguas, construida para que adquieras un idioma de forma natural, en lugar de estudiarlo.
 
 El insight central: la mayoría de los aprendices se estancan porque rastrean el esfuerzo (horas estudiadas, lecciones completadas) en lugar del progreso (lo que realmente son capaces de hacer). HofShiLab cambia el marco. Cada aprendiz tiene una meta clara en el MCER, un contrato semanal de compromiso y metas de interacción en el mundo real que construyen hacia la fluidez.
 
@@ -251,8 +251,8 @@ La fórmula: memorización + repetición espaciada + insumo comprensible + produ
     },
     fr: {
       tagline: 'La liberté, mesurée en fluidité.',
-      shortDescription: 'Apprentissage des langues construit sur la Language Acquisition Formula (LAF) — une méthode structurée qui transforme l\'ambition en fluidité mesurable.',
-      fullDescription: `HofShiLab — « hofshi » signifie libre en hébreu — est un produit d\'apprentissage des langues construit sur la Language Acquisition Formula (LAF), la méthode derrière le livre du même nom de Haniel Rolemberg. Ce n\'est pas un curriculum générique : c\'est un système structuré qui trace le chemin de l\'ambition aux résultats mesurables.
+      shortDescription: 'Apprentissage des langues construit sur la Language Acquisition Formula (LAF) — une méthodologie fondée sur la science pour acquérir n\'importe quelle langue naturellement, plutôt que de l\'étudier.',
+      fullDescription: `HofShiLab — « hofshi » signifie libre en hébreu — est un produit d\'apprentissage des langues construit sur la Language Acquisition Formula (LAF), la méthode derrière le livre du même nom de Haniel Rolemberg. Ce n\'est ni un curriculum générique ni une méthode structurée rigide : c\'est une méthodologie fondée sur la science de l\'acquisition des langues secondes, conçue pour vous aider à acquérir une langue naturellement plutôt que de l\'étudier.
 
 L\'insight central : la plupart des apprenants plafonnent parce qu\'ils suivent l\'effort (heures étudiées, leçons complétées) plutôt que les progrès (ce qu\'ils peuvent réellement faire). HofShiLab change le cadre. Chaque apprenant a un objectif CECRL clair, un contrat d\'engagement hebdomadaire et des objectifs d\'interaction réels qui construisent vers la fluidité.
 
@@ -268,8 +268,8 @@ La formule : mémorisation + répétition espacée + input compréhensible + out
     },
     ca: {
       tagline: 'Llibertat, mesurada en fluïdesa.',
-      shortDescription: 'Aprenentatge d\'idiomes construït sobre la Language Acquisition Formula (LAF) — un mètode estructurat que converteix l\'ambició en fluïdesa mesurable.',
-      fullDescription: `HofShiLab — "hofshi" vol dir lliure en hebreu — és un producte d\'aprenentatge d\'idiomes construït sobre la Language Acquisition Formula (LAF), el mètode darrere el llibre homònim de Haniel Rolemberg. No és un currículum genèric: és un sistema estructurat que traça el camí de l\'ambició als resultats mesurables.
+      shortDescription: 'Aprenentatge d\'idiomes construït sobre la Language Acquisition Formula (LAF) — una metodologia basada en la ciència per adquirir qualsevol idioma de forma natural, en lloc d\'estudiar-lo.',
+      fullDescription: `HofShiLab — "hofshi" vol dir lliure en hebreu — és un producte d\'aprenentatge d\'idiomes construït sobre la Language Acquisition Formula (LAF), el mètode darrere el llibre homònim de Haniel Rolemberg. No és un currículum genèric ni un mètode estructurat rígid: és una metodologia basada en la ciència de l\'adquisició de segones llengües, construïda perquè adquireixis un idioma de forma natural, en lloc d\'estudiar-lo.
 
 L\'insight central: la majoria dels aprenents s\'estanquen perquè fan seguiment de l\'esforç (hores estudiades, lliçons completades) en lloc del progrés (el que realment són capaços de fer). HofShiLab canvia el marc. Cada aprenent té un objectiu clar en el MECR, un contracte setmanal de compromís i objectius d\'interacció en el món real que construeixen cap a la fluïdesa.
 
