@@ -89,7 +89,7 @@ export const portfolioDataEn: PortfolioData = {
       company: 'Stealth',
       period: 'Apr 2022 - Apr 2023',
       description:
-        'Developed full-stack web and mobile applications. Delivered sprint scope in 25% of allocated timeline on average. Notable project: ETZ — an enterprise platform on Turborepo + pnpm monorepo with serverless Firebase backend, RBAC, audit trail, and AWS infrastructure.',
+        'Developed full-stack web and mobile applications. Delivered sprint scope in 25% of allocated timeline on average. Notable project: ETZ — a platform on Turborepo + pnpm monorepo with serverless Firebase backend, RBAC, audit trail, and AWS infrastructure.',
       tags: ['React', 'Next.js', 'NestJS', 'Node.js', 'TypeScript', 'Java', 'Kotlin'],
       cvAreas: ['software'],
       details: {
@@ -931,20 +931,19 @@ export const portfolioDataEn: PortfolioData = {
       {
         id: 'proj-etz',
         gradient: 'from-blue-950 to-indigo-950',
-        title: 'ETZ — Enterprise Management Platform',
-        description: 'Production-grade enterprise management platform serving 2,000+ employees with 5,000+ DAU, built on a Turborepo + pnpm monorepo with serverless Firebase and AWS infrastructure.',
+        title: 'ETZ — Management Platform',
+        description: 'Production-grade management platform built on a Turborepo + pnpm monorepo with serverless Firebase and AWS infrastructure.',
         category: 'softwareDevelopment',
         tags: ['Next.js', 'Firebase', 'Turborepo', 'RBAC', 'AWS'],
         cvAreas: ['software'],
         details: {
-          overview: 'ETZ is a large-scale enterprise management platform deployed at a stealth company, serving 2,000+ employees with 5,000+ daily active users. Built on a Turborepo + pnpm monorepo with a Next.js 16 (App Router) frontend and a serverless Firebase backend (Firestore, Auth, Storage), running on AWS-managed infrastructure.',
+          overview: 'ETZ is a large-scale management platform built on a Turborepo + pnpm monorepo with a Next.js 16 (App Router) frontend and a serverless Firebase backend (Firestore, Auth, Storage), running on AWS-managed infrastructure.',
           features: [
             'Turborepo + pnpm monorepo architecture with Next.js 16 (App Router) frontend',
             'RBAC with strict per-unit isolation — each organizational unit has independent access boundaries',
             'Audit trail on every operation for full traceability and compliance',
             'Hierarchical access classification with encryption for sensitive data',
             'Serverless Firebase backend (Firestore, Auth, Storage) on AWS-managed infrastructure',
-            'Production scale: 2,000+ employees, 5,000+ DAU since activation',
           ],
           techStack: 'Next.js 16, Turborepo, pnpm, Firebase Firestore, Firebase Auth, Firebase Storage, RBAC, AWS',
           githubLink: 'https://github.com/hanielrolemberg',

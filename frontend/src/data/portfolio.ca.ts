@@ -89,7 +89,7 @@ export const portfolioDataCa: PortfolioData = {
       company: 'Stealth',
       period: 'Apr 2022 - Apr 2023',
       description:
-        'Va desenvolupar aplicacions web i mòbils full-stack. Va lliurar l\'abast de sprint en el 25% del temps assignat de mitjana. Projecte notable: ETZ — plataforma empresarial en monorepo Turborepo + pnpm amb backend Firebase serverless, RBAC, rastre d\'auditoria i infraestructura AWS.',
+        'Va desenvolupar aplicacions web i mòbils full-stack. Va lliurar l\'abast de sprint en el 25% del temps assignat de mitjana. Projecte notable: ETZ — plataforma en monorepo Turborepo + pnpm amb backend Firebase serverless, RBAC, rastre d\'auditoria i infraestructura AWS.',
       tags: ['React', 'Next.js', 'NestJS', 'Node.js', 'TypeScript', 'Java', 'Kotlin'],
       cvAreas: ['software'],
       details: {
@@ -630,20 +630,19 @@ export const portfolioDataCa: PortfolioData = {
       {
         id: 'proj-etz',
         gradient: 'from-blue-950 to-indigo-950',
-        title: 'ETZ — Plataforma de Gestió Empresarial',
-        description: 'Plataforma de gestió empresarial en producció amb 2.000+ empleats i 5.000+ DAU, construïda en monorepo Turborepo + pnpm amb Firebase serverless i infraestructura AWS.',
+        title: 'ETZ — Plataforma de Gestió',
+        description: 'Plataforma de gestió en producció, construïda en monorepo Turborepo + pnpm amb Firebase serverless i infraestructura AWS.',
         category: 'softwareDevelopment',
         tags: ['Next.js', 'Firebase', 'Turborepo', 'RBAC', 'AWS'],
         cvAreas: ['software'],
         details: {
-          overview: 'ETZ és una plataforma de gestió empresarial a gran escala desplegada en una empresa stealth, amb 2.000+ empleats i 5.000+ usuaris actius diaris. Construïda en un monorepo Turborepo + pnpm amb frontend Next.js 16 (App Router) i backend Firebase serverless (Firestore, Auth, Storage), sobre infraestructura gestionada per AWS.',
+          overview: 'ETZ és una plataforma de gestió a gran escala, construïda en un monorepo Turborepo + pnpm amb frontend Next.js 16 (App Router) i backend Firebase serverless (Firestore, Auth, Storage), sobre infraestructura gestionada per AWS.',
           features: [
             'Arquitectura monorepo Turborepo + pnpm amb frontend Next.js 16 (App Router)',
             'RBAC amb aïllament estricte per unitat organitzacional — cada unitat té límits d\'accés independents',
             'Pista d\'auditoria en cada operació per a traçabilitat completa i compliment normatiu',
             'Classificació jeràrquica d\'accés amb xifrat de dades sensibles',
             'Backend Firebase serverless (Firestore, Auth, Storage) en infraestructura gestionada per AWS',
-            'Escala de producció: 2.000+ empleats, 5.000+ DAU des de l\'activació',
           ],
           techStack: 'Next.js 16, Turborepo, pnpm, Firebase Firestore, Firebase Auth, Firebase Storage, RBAC, AWS',
           githubLink: 'https://github.com/hanielrolemberg',

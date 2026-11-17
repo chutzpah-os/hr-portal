@@ -115,94 +115,93 @@ Construït per a persones ambicioses que volen moure\'s més ràpid sense perdre
     },
   },
   {
-    id: 'hofshilang',
-    active: false,
-    name: 'HofShiLang',
-    tagline: 'Empowering youth through languages.',
-    shortDescription: 'Language learning with a proprietary formula designed to turn ambition into measurable fluency.',
-    fullDescription: `HofShiLang is a language learning product built around a proprietary formula — not a generic curriculum, but a structured method that maps ambition to measurable outcomes.
+    id: 'hofshilab',
+    name: 'HofShiLab',
+    tagline: 'Freedom, measured in fluency.',
+    shortDescription: 'Language learning built on the Language Acquisition Formula (LAF) — a structured method that turns ambition into measurable fluency.',
+    fullDescription: `HofShiLab — "hofshi" is Hebrew for free — is a language learning product built on the Language Acquisition Formula (LAF), the method behind Haniel Rolemberg's book of the same name. Not a generic curriculum: a structured system that maps ambition to measurable outcomes.
 
-The core insight: most learners plateau because they track effort (hours studied, lessons completed) instead of progress (what they can actually do). HofShiLang shifts the frame. Every learner has a clear CEFR target, a weekly engagement contract, and real-world interaction goals that build toward fluency.
+The core insight: most learners plateau because they track effort (hours studied, lessons completed) instead of progress (what they can actually do). HofShiLab shifts the frame. Every learner has a clear CEFR target, a weekly engagement contract, and real-world interaction goals that build toward fluency.
 
-Beyond the product, HofShiLang operates as an educational initiative. Through partnerships with youth programs, it brings language access to communities where multilingualism is a direct path to economic opportunity.
+Beyond the product, HofShiLab operates as an educational initiative. Through partnerships with youth programs, it brings language access to communities where multilingualism is a direct path to economic opportunity.
 
-The formula: structured input + real-world output + accountability loops. The result: learners who don't just study a language — they start using it.`,
+The formula: memorization + spaced repetition + comprehensible input + active output. The result: learners who don't just study a language — they start using it.`,
     metrics: [
+      { label: 'Method', value: 'LAF' },
       { label: 'Framework', value: 'CEFR-aligned' },
-      { label: 'Focus', value: 'Youth' },
       { label: 'Model', value: 'Product + Initiative' },
     ],
-    tags: ['R&D', 'Software', 'Education'],
+    tags: ['R&D', 'Software', 'Languages'],
     status: 'Ideation',
     image: '/images/hofshilang.png',
     imageFit: 'cover',
     pt: {
-      tagline: 'Empoderando jovens através de idiomas.',
-      shortDescription: 'Aprendizado de idiomas com uma fórmula proprietária projetada para transformar ambição em fluência mensurável.',
-      fullDescription: `HofShiLang é um produto de aprendizado de idiomas construído em torno de uma fórmula proprietária — não um currículo genérico, mas um método estruturado que mapeia ambição para resultados mensuráveis.
+      tagline: 'Liberdade, medida em fluência.',
+      shortDescription: 'Aprendizado de idiomas construído sobre a Language Acquisition Formula (LAF) — um método estruturado que transforma ambição em fluência mensurável.',
+      fullDescription: `HofShiLab — "hofshi" significa livre em hebraico — é um produto de aprendizado de idiomas construído sobre a Language Acquisition Formula (LAF), o método por trás do livro de mesmo nome de Haniel Rolemberg. Não é um currículo genérico: é um sistema estruturado que mapeia ambição para resultados mensuráveis.
 
-O insight central: a maioria dos aprendizes estaciona porque rastreia esforço (horas estudadas, lições concluídas) em vez de progresso (o que realmente conseguem fazer). HofShiLang muda esse enquadramento. Cada aprendiz tem uma meta clara no CEFR, um contrato semanal de engajamento e metas de interação no mundo real que constroem fluência.
+O insight central: a maioria dos aprendizes estaciona porque rastreia esforço (horas estudadas, lições concluídas) em vez de progresso (o que realmente conseguem fazer). HofShiLab muda esse enquadramento. Cada aprendiz tem uma meta clara no CEFR, um contrato semanal de engajamento e metas de interação no mundo real que constroem fluência.
 
-Além do produto, HofShiLang opera como uma iniciativa educacional. Por meio de parcerias com programas voltados a jovens, leva acesso a idiomas para comunidades onde o multilinguismo é um caminho direto para oportunidade econômica.
+Além do produto, HofShiLab opera como uma iniciativa educacional. Por meio de parcerias com programas voltados a jovens, leva acesso a idiomas para comunidades onde o multilinguismo é um caminho direto para oportunidade econômica.
 
-A fórmula: input estruturado + output no mundo real + ciclos de responsabilização. O resultado: aprendizes que não apenas estudam um idioma — eles começam a usá-lo.`,
+A fórmula: memorização + repetição espaçada + insumo compreensível + produção ativa. O resultado: aprendizes que não apenas estudam um idioma — eles começam a usá-lo.`,
       metrics: [
+        { label: 'Método', value: 'LAF' },
         { label: 'Framework', value: 'Alinhado ao CEFR' },
-        { label: 'Foco', value: 'Jovens' },
         { label: 'Modelo', value: 'Produto + Iniciativa' },
       ],
-      tags: ['P&D', 'Software', 'Educação'],
+      tags: ['P&D', 'Software', 'Idiomas'],
     },
     es: {
-      tagline: 'Empoderando a los jóvenes a través de los idiomas.',
-      shortDescription: 'Aprendizaje de idiomas con una fórmula propia diseñada para convertir la ambición en fluidez medible.',
-      fullDescription: `HofShiLang es un producto de aprendizaje de idiomas construido en torno a una fórmula propia — no un currículo genérico, sino un método estructurado que traza el camino de la ambición a los resultados medibles.
+      tagline: 'Libertad, medida en fluidez.',
+      shortDescription: 'Aprendizaje de idiomas construido sobre la Language Acquisition Formula (LAF) — un método estructurado que convierte la ambición en fluidez medible.',
+      fullDescription: `HofShiLab — "hofshi" significa libre en hebreo — es un producto de aprendizaje de idiomas construido sobre la Language Acquisition Formula (LAF), el método detrás del libro homónimo de Haniel Rolemberg. No es un currículo genérico: es un sistema estructurado que traza el camino de la ambición a los resultados medibles.
 
-El insight central: la mayoría de los aprendices se estancan porque rastrean el esfuerzo (horas estudiadas, lecciones completadas) en lugar del progreso (lo que realmente son capaces de hacer). HofShiLang cambia el marco. Cada aprendiz tiene una meta clara en el MCER, un contrato semanal de compromiso y metas de interacción en el mundo real que construyen hacia la fluidez.
+El insight central: la mayoría de los aprendices se estancan porque rastrean el esfuerzo (horas estudiadas, lecciones completadas) en lugar del progreso (lo que realmente son capaces de hacer). HofShiLab cambia el marco. Cada aprendiz tiene una meta clara en el MCER, un contrato semanal de compromiso y metas de interacción en el mundo real que construyen hacia la fluidez.
 
-Más allá del producto, HofShiLang opera como una iniciativa educativa. A través de alianzas con programas juveniles, lleva el acceso a los idiomas a comunidades donde el multilingüismo es un camino directo hacia la oportunidad económica.
+Más allá del producto, HofShiLab opera como una iniciativa educativa. A través de alianzas con programas juveniles, lleva el acceso a los idiomas a comunidades donde el multilingüismo es un camino directo hacia la oportunidad económica.
 
-La fórmula: input estructurado + output en el mundo real + ciclos de responsabilidad. El resultado: aprendices que no solo estudian un idioma — empiezan a usarlo.`,
+La fórmula: memorización + repetición espaciada + insumo comprensible + producción activa. El resultado: aprendices que no solo estudian un idioma — empiezan a usarlo.`,
       metrics: [
+        { label: 'Método', value: 'LAF' },
         { label: 'Marco', value: 'Alineado al MCER' },
-        { label: 'Enfoque', value: 'Jóvenes' },
         { label: 'Modelo', value: 'Producto + Iniciativa' },
       ],
-      tags: ['I+D', 'Software', 'Educación'],
+      tags: ['I+D', 'Software', 'Idiomas'],
     },
     fr: {
-      tagline: 'Donner le pouvoir aux jeunes grâce aux langues.',
-      shortDescription: 'Apprentissage des langues avec une formule propriétaire conçue pour transformer l\'ambition en fluidité mesurable.',
-      fullDescription: `HofShiLang est un produit d\'apprentissage des langues construit autour d\'une formule propriétaire — pas un curriculum générique, mais une méthode structurée qui trace le chemin de l\'ambition aux résultats mesurables.
+      tagline: 'La liberté, mesurée en fluidité.',
+      shortDescription: 'Apprentissage des langues construit sur la Language Acquisition Formula (LAF) — une méthode structurée qui transforme l\'ambition en fluidité mesurable.',
+      fullDescription: `HofShiLab — « hofshi » signifie libre en hébreu — est un produit d\'apprentissage des langues construit sur la Language Acquisition Formula (LAF), la méthode derrière le livre du même nom de Haniel Rolemberg. Ce n\'est pas un curriculum générique : c\'est un système structuré qui trace le chemin de l\'ambition aux résultats mesurables.
 
-L\'insight central : la plupart des apprenants plafonnent parce qu\'ils suivent l\'effort (heures étudiées, leçons complétées) plutôt que les progrès (ce qu\'ils peuvent réellement faire). HofShiLang change le cadre. Chaque apprenant a un objectif CECRL clair, un contrat d\'engagement hebdomadaire et des objectifs d\'interaction réels qui construisent vers la fluidité.
+L\'insight central : la plupart des apprenants plafonnent parce qu\'ils suivent l\'effort (heures étudiées, leçons complétées) plutôt que les progrès (ce qu\'ils peuvent réellement faire). HofShiLab change le cadre. Chaque apprenant a un objectif CECRL clair, un contrat d\'engagement hebdomadaire et des objectifs d\'interaction réels qui construisent vers la fluidité.
 
-Au-delà du produit, HofShiLang fonctionne comme une initiative éducative. Grâce à des partenariats avec des programmes jeunesse, il apporte l\'accès aux langues dans des communautés où le multilinguisme est un chemin direct vers l\'opportunité économique.
+Au-delà du produit, HofShiLab fonctionne comme une initiative éducative. Grâce à des partenariats avec des programmes jeunesse, il apporte l\'accès aux langues dans des communautés où le multilinguisme est un chemin direct vers l\'opportunité économique.
 
-La formule : input structuré + output dans le monde réel + boucles de responsabilité. Le résultat : des apprenants qui n\'étudient pas seulement une langue — ils commencent à l\'utiliser.`,
+La formule : mémorisation + répétition espacée + input compréhensible + output actif. Le résultat : des apprenants qui n\'étudient pas seulement une langue — ils commencent à l\'utiliser.`,
       metrics: [
+        { label: 'Méthode', value: 'LAF' },
         { label: 'Cadre', value: 'Aligné CECRL' },
-        { label: 'Focus', value: 'Jeunesse' },
         { label: 'Modèle', value: 'Produit + Initiative' },
       ],
-      tags: ['R&D', 'Logiciel', 'Éducation'],
+      tags: ['R&D', 'Logiciel', 'Langues'],
     },
     ca: {
-      tagline: 'Empoderant els joves a través de les llengües.',
-      shortDescription: 'Aprenentatge d\'idiomes amb una fórmula pròpia dissenyada per convertir l\'ambició en fluïdesa mesurable.',
-      fullDescription: `HofShiLang és un producte d\'aprenentatge d\'idiomes construït al voltant d\'una fórmula pròpia — no un currículum genèric, sinó un mètode estructurat que traça el camí de l\'ambició als resultats mesurables.
+      tagline: 'Llibertat, mesurada en fluïdesa.',
+      shortDescription: 'Aprenentatge d\'idiomes construït sobre la Language Acquisition Formula (LAF) — un mètode estructurat que converteix l\'ambició en fluïdesa mesurable.',
+      fullDescription: `HofShiLab — "hofshi" vol dir lliure en hebreu — és un producte d\'aprenentatge d\'idiomes construït sobre la Language Acquisition Formula (LAF), el mètode darrere el llibre homònim de Haniel Rolemberg. No és un currículum genèric: és un sistema estructurat que traça el camí de l\'ambició als resultats mesurables.
 
-L\'insight central: la majoria dels aprenents s\'estanquen perquè fan seguiment de l\'esforç (hores estudiades, lliçons completades) en lloc del progrés (el que realment són capaços de fer). HofShiLang canvia el marc. Cada aprenent té un objectiu clar en el MECR, un contracte setmanal de compromís i objectius d\'interacció en el món real que construeixen cap a la fluïdesa.
+L\'insight central: la majoria dels aprenents s\'estanquen perquè fan seguiment de l\'esforç (hores estudiades, lliçons completades) en lloc del progrés (el que realment són capaços de fer). HofShiLab canvia el marc. Cada aprenent té un objectiu clar en el MECR, un contracte setmanal de compromís i objectius d\'interacció en el món real que construeixen cap a la fluïdesa.
 
-Més enllà del producte, HofShiLang opera com una iniciativa educativa. A través d\'aliances amb programes juvenils, porta l\'accés als idiomes a comunitats on el multilingüisme és un camí directe cap a l\'oportunitat econòmica.
+Més enllà del producte, HofShiLab opera com una iniciativa educativa. A través d\'aliances amb programes juvenils, porta l\'accés als idiomes a comunitats on el multilingüisme és un camí directe cap a l\'oportunitat econòmica.
 
-La fórmula: input estructurat + output en el món real + cicles de responsabilitat. El resultat: aprenents que no només estudien un idioma — comencen a usar-lo.`,
+La fórmula: memorització + repetició espaiada + input comprensible + producció activa. El resultat: aprenents que no només estudien un idioma — comencen a usar-lo.`,
       metrics: [
+        { label: 'Mètode', value: 'LAF' },
         { label: 'Marc', value: 'Alineat al MECR' },
-        { label: 'Focus', value: 'Joventut' },
         { label: 'Model', value: 'Producte + Iniciativa' },
       ],
-      tags: ['R+D', 'Programari', 'Educació'],
+      tags: ['R+D', 'Programari', 'Idiomes'],
     },
   },
   {
@@ -288,7 +287,6 @@ Construïda de principi a fi en 8 mòduls integrats, amb arquitectura segura, xi
   },
   {
     id: 'psf',
-    active: false,
     name: 'PSF',
     tagline: 'Solving real-world problems, at scale.',
     shortDescription: 'Nonprofit R&D in production, building the Data Aggregator — intelligence infrastructure that unifies multi-source data to detect patterns, predict risks, and accelerate humanitarian decision-making.',
@@ -365,86 +363,6 @@ Construït primer per a la resposta humanitària: la mateixa infraestructura que
         { label: 'Model', value: 'R+D Sense Ànim de Lucre' },
       ],
       tags: ['R+D', 'Programari', 'Impacte Social'],
-    },
-  },
-  {
-    id: 'etz',
-    name: 'ETZ',
-    tagline: 'Enterprise data infrastructure, built to scale.',
-    shortDescription: 'Large-scale enterprise data management platform in production at a stealth company serving government institutions — 2,000+ employees, 5,000+ daily active users.',
-    fullDescription: `ETZ is a large-scale enterprise management platform focused on data, deployed at a stealth company serving government institutions. It's in production today at real scale: 2,000+ employees and 5,000+ daily active users since activation.
-
-The architecture is a Turborepo + pnpm monorepo, with a Next.js 16 (App Router) frontend and a fully serverless backend on Firebase — Firestore, Auth, and Storage — running on AWS-managed infrastructure.
-
-The core of the system is role-based access control with strict per-unit isolation: every organizational unit operates inside its own independent access boundary. Every operation carries a full audit trail for traceability and compliance, and sensitive data moves through a hierarchical access classification layer with encryption at rest.`,
-    metrics: [
-      { label: 'Scale', value: '2,000+ Employees' },
-      { label: 'Daily Active Users', value: '5,000+' },
-      { label: 'Stack', value: 'Next.js 16 + Firebase' },
-    ],
-    tags: ['R&D', 'Software', 'Data'],
-    status: 'Scale',
-    image: '/images/etz-cover.png',
-    imageFit: 'contain',
-    pt: {
-      tagline: 'Infraestrutura de dados corporativa, construída para escalar.',
-      shortDescription: 'Plataforma corporativa de gestão de dados em produção numa stealth company que atende instituições governamentais — mais de 2.000 funcionários, mais de 5.000 usuários ativos diários.',
-      fullDescription: `ETZ é uma plataforma corporativa de grande escala focada em dados, implantada numa stealth company que atende instituições governamentais. Está em produção hoje em escala real: mais de 2.000 funcionários e mais de 5.000 usuários ativos diários desde a ativação.
-
-A arquitetura é um monorepo Turborepo + pnpm, com frontend em Next.js 16 (App Router) e um backend totalmente serverless no Firebase — Firestore, Auth e Storage — rodando sobre infraestrutura gerenciada na AWS.
-
-O núcleo do sistema é controle de acesso baseado em papéis (RBAC) com isolamento estrito por unidade: cada unidade organizacional opera dentro da sua própria fronteira de acesso independente. Toda operação carrega uma trilha de auditoria completa para rastreabilidade e conformidade, e dados sensíveis passam por uma camada de classificação hierárquica de acesso com criptografia em repouso.`,
-      metrics: [
-        { label: 'Escala', value: '2.000+ Funcionários' },
-        { label: 'Usuários Ativos Diários', value: '5.000+' },
-        { label: 'Stack', value: 'Next.js 16 + Firebase' },
-      ],
-      tags: ['P&D', 'Software', 'Dados'],
-    },
-    es: {
-      tagline: 'Infraestructura de datos corporativa, construida para escalar.',
-      shortDescription: 'Plataforma corporativa de gestión de datos en producción en una stealth company que atiende a instituciones gubernamentales — más de 2.000 empleados, más de 5.000 usuarios activos diarios.',
-      fullDescription: `ETZ es una plataforma corporativa de gran escala enfocada en datos, desplegada en una stealth company que atiende a instituciones gubernamentales. Está en producción hoy a escala real: más de 2.000 empleados y más de 5.000 usuarios activos diarios desde su activación.
-
-La arquitectura es un monorepo Turborepo + pnpm, con frontend en Next.js 16 (App Router) y un backend totalmente serverless en Firebase — Firestore, Auth y Storage — corriendo sobre infraestructura gestionada en AWS.
-
-El núcleo del sistema es control de acceso basado en roles (RBAC) con aislamiento estricto por unidad: cada unidad organizacional opera dentro de su propio límite de acceso independiente. Cada operación lleva un registro de auditoría completo para trazabilidad y cumplimiento, y los datos sensibles pasan por una capa de clasificación jerárquica de acceso con cifrado en reposo.`,
-      metrics: [
-        { label: 'Escala', value: '2.000+ Empleados' },
-        { label: 'Usuarios Activos Diarios', value: '5.000+' },
-        { label: 'Stack', value: 'Next.js 16 + Firebase' },
-      ],
-      tags: ['I+D', 'Software', 'Datos'],
-    },
-    fr: {
-      tagline: 'Infrastructure de données d\'entreprise, conçue pour l\'échelle.',
-      shortDescription: 'Plateforme de gestion de données d\'entreprise en production chez une stealth company au service d\'institutions gouvernementales — plus de 2 000 employés, plus de 5 000 utilisateurs actifs quotidiens.',
-      fullDescription: `ETZ est une plateforme de gestion d\'entreprise à grande échelle axée sur les données, déployée chez une stealth company au service d\'institutions gouvernementales. Elle est en production aujourd\'hui à échelle réelle : plus de 2 000 employés et plus de 5 000 utilisateurs actifs quotidiens depuis son activation.
-
-L\'architecture est un monorepo Turborepo + pnpm, avec un frontend Next.js 16 (App Router) et un backend entièrement serverless sur Firebase — Firestore, Auth et Storage — fonctionnant sur une infrastructure gérée par AWS.
-
-Le cœur du système est un contrôle d\'accès basé sur les rôles (RBAC) avec isolation stricte par unité : chaque unité organisationnelle opère dans sa propre limite d\'accès indépendante. Chaque opération porte une trace d\'audit complète pour la traçabilité et la conformité, et les données sensibles passent par une couche de classification d\'accès hiérarchique avec chiffrement au repos.`,
-      metrics: [
-        { label: 'Échelle', value: '2 000+ Employés' },
-        { label: 'Utilisateurs Actifs Quotidiens', value: '5 000+' },
-        { label: 'Stack', value: 'Next.js 16 + Firebase' },
-      ],
-      tags: ['R&D', 'Logiciel', 'Données'],
-    },
-    ca: {
-      tagline: 'Infraestructura de dades corporativa, construïda per escalar.',
-      shortDescription: 'Plataforma corporativa de gestió de dades en producció en una stealth company que atén institucions governamentals — més de 2.000 empleats, més de 5.000 usuaris actius diaris.',
-      fullDescription: `ETZ és una plataforma corporativa de gran escala centrada en dades, desplegada en una stealth company que atén institucions governamentals. Està en producció avui a escala real: més de 2.000 empleats i més de 5.000 usuaris actius diaris des de la seva activació.
-
-L\'arquitectura és un monorepo Turborepo + pnpm, amb un frontend en Next.js 16 (App Router) i un backend totalment serverless a Firebase — Firestore, Auth i Storage — funcionant sobre infraestructura gestionada a AWS.
-
-El nucli del sistema és el control d\'accés basat en rols (RBAC) amb aïllament estricte per unitat: cada unitat organitzativa opera dins del seu propi límit d\'accés independent. Cada operació porta un registre d\'auditoria complet per a la traçabilitat i el compliment, i les dades sensibles passen per una capa de classificació jeràrquica d\'accés amb xifratge en repòs.`,
-      metrics: [
-        { label: 'Escala', value: '2.000+ Empleats' },
-        { label: 'Usuaris Actius Diaris', value: '5.000+' },
-        { label: 'Stack', value: 'Next.js 16 + Firebase' },
-      ],
-      tags: ['R+D', 'Programari', 'Dades'],
     },
   },
 ]
